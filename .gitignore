@@ -5,17 +5,20 @@
 # Do NOT ignore .gitignore
 !.gitignore
 
+# Do NOT ignore .gitattributes
+!.gitattributes
+
+# Do NOT ignore .distignore
+!.distignore
+
+# Do NOT ignore .circleci
+!.circleci
+
 # Do NOT ignore .editorconfig
 !.editorconfig
 
-# Do NOT ignore .readme.md
-!readme.md
-
-# Do NOT ignore .jscsrc
-!.jscsrc
-
-# Do NOT ignore .jshintignore
-!.jshintignore
+# Do NOT ignore .README.md
+!README.md
 
 # Ignore all files that start with ~
 ~*

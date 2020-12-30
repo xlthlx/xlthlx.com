@@ -1,0 +1,25 @@
+# Files to exclude from the distribution
+
+.distignore
+.editorconfig
+.git
+.gitignore
+.gitattributes
+.DS_Store
+Thumbs.db
+bin
+build
+.circleci
+.circleci/config.yml
+composer.json
+composer.lock
+Gruntfile.js
+package.json
+package-lock.json
+*.sql
+*.tar.gz
+*.zip
+README.md
+debug.log
+wp-config.php
+
