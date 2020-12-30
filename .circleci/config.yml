@@ -1,0 +1,38 @@
+# PHP CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-php/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/buildpack-deps:focal
+    working_directory: ~/wkd
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dep-{{ .Branch }}-
+            - v1-dep-
+      - run:
+          name: Install
+          shell: sudo bash -eo pipefail
+          command: 'apt install rsync'
+      - run:
+          name: Build
+          command: 'rm -rf ./build && mkdir ./build && rsync -az --exclude-from=.distignore ./ ./build'
+      - add_ssh_keys:
+          fingerprints:
+            - "3a:5f:5a:03:af:68:66:bd:f0:d3:ce:0c:ef:d0:c8:d8"
+      - run:
+          name: SSH
+          command: 'ssh -o StrictHostKeyChecking=no xlthlxcotb@ssh.cluster026.hosting.ovh.net exit'
+      - run:
+          name: Deploy
+          command: 'cd ./build && rsync -avz . xlthlxcotb@ssh.cluster026.hosting.ovh.net:/home/xlthlxcotb/xlthlx.com/wp-content/themes/xlthlx.com'
+workflows:
+  version: 2
+  build&deploy:
+    jobs:
+      - build
