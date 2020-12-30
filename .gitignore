@@ -43,7 +43,5 @@ Thumbs.db
 # Ignore build Tools
 /assets/node_modules
 /node_modules
-/assets/vendor
-/vendor
 config.codekit3
 .idea
