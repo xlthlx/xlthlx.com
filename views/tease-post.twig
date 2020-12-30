@@ -1,0 +1,14 @@
+<article class="tease tease-{{ post.post_type }}" id="tease-{{ post.ID }}">
+	<div class="mb-4 pb-4">
+
+		<h2 class="mb-1 h1"><a href="{{ post.link }}">{{ post.title }}</a></h2>
+		<p class="text-muted">{{ post.date }}</p>
+
+		<p class="px-0 col-md-8">{{ post.preview.length(55).read_more('') }}
+			<a href="{{ post.link }}">{{ _e( 'Read more...') }}</a>
+		</p>
+		<hr/>
+
+	</div>
+</article>
+

@@ -1,0 +1,13 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+		{% for post in posts %}
+			{{ loop.index0 is even ? '<div class="row mb-2">' }}
+			{% include ['tease.twig'] %}
+			{{ loop.index0 is odd ? '</div><hr class="pt-0 mt-0 mb-4"/>' }}
+		{% endfor %}
+
+	{% include 'partial/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
+
+{% endblock %}

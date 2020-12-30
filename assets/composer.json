@@ -1,0 +1,13 @@
+{
+  "name": "xlthlx/xlthlx",
+  "license": "MIT",
+  "description": "Boostrap for Xlthlx theme",
+  "type":"css",
+  "minimum-stability" : "stable",
+  "require": {
+    "twbs/bootstrap": "5.0.0-beta1"
+  },
+  "require-dev": {
+	"roave/security-advisories": "dev-master"
+  }
+}

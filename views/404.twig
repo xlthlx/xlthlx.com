@@ -1,0 +1,28 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	<article class="post-type-404" id="post-0">
+		<section class="page-content">
+			<h2 class="display-5 pb-3">{{ _e( 'Not found') }}</h2>
+			<hr class="pt-0 mt-0 mb-4"/>
+
+			<div class="row">
+				<div class="col-md-8">
+					<p>Sorry, we couldn't find what you're looking for.</p>
+					{% include 'searchform.twig' %}
+				</div>
+
+				<div class="col-md-4">
+					<aside class="sidebar px-5">
+						{% if sidebar %}
+							{{ sidebar }}
+						{% endif %}
+					</aside>
+				</div>
+			</div>
+
+		</section>
+	</article>
+
+{% endblock %}

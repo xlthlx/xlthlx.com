@@ -1,0 +1,29 @@
+{
+  "name": "xlthlx/boot",
+  "license": "MIT",
+  "description": "Theme based on Timber and Bootstrap 5.",
+  "type":"wordpress-theme",
+  "minimum-stability" : "stable",
+  "authors": [
+    {
+      "email": "xlthlx@gmail.com",
+      "name": "xlthlx"
+    }
+  ],
+  "require": {
+	"timber/timber": "1.*",
+    "johnbillion/extended-cpts": "^4.3",
+    "hellonico/timber-dump-extension": "^1.0",
+	"cmb2/cmb2": "^2.7",
+	"composer/installers": "^1.9"
+  }
+  ,
+  "require-dev": {
+	"roave/security-advisories": "dev-master"
+  },
+  "extra": {
+	"installer-paths": {
+	  "vendor/{$vendor}/{$name}/": ["type:wordpress-plugin"]
+	}
+  }
+}

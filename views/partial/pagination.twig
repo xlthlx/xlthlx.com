@@ -1,0 +1,64 @@
+{% if posts.pagination.pages is not empty %}
+	<nav>
+		<ul class="pagination flex-wrap">
+
+			{# First #}
+			{% if posts.pagination.pages|first and posts.pagination.pages|first.current != true %}
+				<li class="page-item">
+					<a class="page-link" href="{{ posts.pagination.pages|first.link }}">&laquo;</a>
+				</li>
+			{% else %}
+				<li class="page-item disabled">
+					<span class="page-link" tabindex="-1" aria-disabled="true">&laquo;</span>
+				</li>
+			{% endif %}
+
+			{# Previous #}
+			{% if posts.pagination.prev %}
+				<li class="page-item">
+					<a class="page-link" href="{{ posts.pagination.prev.link }}">&lsaquo;</a>
+				</li>
+			{% else %}
+				<li class="page-item disabled">
+					<span class="page-link" tabindex="-1" aria-disabled="true">&lsaquo;</span>
+				</li>
+			{% endif %}
+
+			{# Pages #}
+			{% for page in posts.pagination.pages %}
+				{% if page.link %}
+					<li class="page-item">
+						<a class="page-link" href="{{ page.link }}" class="{{ page.class }}">{{ page.title }}</a>
+					</li>
+				{% else %}
+					<li class="page-item active" aria-current="page">
+						<span class="page-link {{ page.class }}">{{ page.title }} <span class="visually-hidden">(current)</span></span>
+					</li>
+				{% endif %}
+			{% endfor %}
+
+			{# Next #}
+			{% if posts.pagination.next %}
+				<li class="page-item">
+					<a class="page-link" href="{{ posts.pagination.next.link }}">&rsaquo;</a>
+				</li>
+			{% else %}
+				<li class="page-item disabled">
+					<span class="page-link" tabindex="-1" aria-disabled="true">&rsaquo;</span>
+				</li>
+			{% endif %}
+
+			{# Last #}
+			{% if posts.pagination.pages|last and posts.pagination.pages|last.current != true %}
+				<li class="page-item">
+					<a class="page-link" href="{{ posts.pagination.pages|last.link }}">&raquo;</a>
+				</li>
+			{% else %}
+				<li class="page-item disabled">
+					<span class="page-link" tabindex="-1" aria-disabled="true">&raquo;</span>
+				</li>
+			{% endif %}
+
+		</ul>
+	</nav>
+{% endif %}

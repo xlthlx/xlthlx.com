@@ -1,0 +1,24 @@
+{
+  "name": "xlthlx",
+  "version": "1.0.0",
+  "description": "Theme based on Timber and Bootstrap 5.",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "xlthlx",
+  "devDependencies": {
+    "autoprefixer": "^9.4.8",
+    "grunt": "^1.0.3",
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-postcss": "^0.9.0",
+    "pixrem": "^5.0.0",
+    "postcss-flexibility": "^2.0.0"
+  },
+  "dependencies": {
+    "highlightjs-badge": "^0.1.9"
+  }
+}
