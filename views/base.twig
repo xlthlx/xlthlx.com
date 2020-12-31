@@ -29,6 +29,7 @@
 			</div>
 		</div>
 	</div>
+	{% if not is_home %}
 	<div class="container bg-white pt-4 px-4 pb-0">
 		<nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
 			{% if (fn('xlt_breadcrumbs')) %}
@@ -36,6 +37,7 @@
 			{% endif %}
 		</nav>
 	</div>
+	{% endif %}
 
 	{% if title %}
 		<div class="container bg-white">
@@ -49,6 +51,7 @@
 		{% block content %}
 			Sorry, no content
 		{% endblock %}
+
 	</div>
 
 </main>

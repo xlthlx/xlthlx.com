@@ -57,6 +57,16 @@ ol.breadcrumb {
 	background-color: white !important;
 }
 
+.page-item:last-child .page-link {
+	border-top-right-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+}
+
+.page-item:first-child .page-link {
+	border-top-left-radius: 0 !important;
+	border-bottom-left-radius: 0 !important;
+}
+
 /*-------
 Colors
 _______*/
