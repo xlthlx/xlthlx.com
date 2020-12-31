@@ -6,19 +6,14 @@
 
 		<div class="d-flex align-items-start">
 
-			<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-				<a class="nav-link active rounded-0" id="v-pills-ita-tab" data-bs-toggle="pill" href="#v-pills-ita"
-				   role="tab" aria-controls="v-pills-ita" aria-selected="true">Italiano</a>
-				<a class="nav-link rounded-0" id="v-pills-eng-tab" data-bs-toggle="pill" href="#v-pills-eng"
-				   role="tab" aria-controls="v-pills-eng" aria-selected="false">English</a>
-			</div>
+
 
 			<div class="tab-content w-100" id="v-pills-tabContent">
 				<div class="tab-pane fade show active" id="v-pills-ita" role="tabpanel"
 					 aria-labelledby="v-pills-ita-tab">
 
 					<div class="row">
-						<div class="col-md-8">
+						<div class="col-md-7">
 							<h2 class="display-5 pb-3">{{ post.title }}</h2>
 							<hr class="pt-0 mt-0 mb-4"/>
 							<section class="article-content">
@@ -82,6 +77,15 @@
 									{{ fn('xlt_comment_form') }}
 								</section>
 							{% endif %}
+
+						</div>
+						<div class="col-md-1">
+							<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+								<a class="nav-link active rounded-0" id="v-pills-ita-tab" data-bs-toggle="pill" href="#v-pills-ita"
+								   role="tab" aria-controls="v-pills-ita" aria-selected="true">Italiano</a>
+								<a class="nav-link rounded-0" id="v-pills-eng-tab" data-bs-toggle="pill" href="#v-pills-eng"
+								   role="tab" aria-controls="v-pills-eng" aria-selected="false">English</a>
+							</div>
 
 						</div>
 						<div class="col-md-4">

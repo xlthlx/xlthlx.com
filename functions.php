@@ -48,9 +48,11 @@ class xlthlxSite extends Timber\Site {
 		$context['site']->login_url  = wp_login_url( get_permalink() );
 		$context['site']->logout_url = wp_logout_url( $context['site']->url );
 		$context['logged_in']        = is_user_logged_in();
+		$context['is_home']          = is_home();
 		$context['current_user']     = new Timber\User();
 		$context['related']          = xlt_related_posts();
 		$context['sidebar']          = $timber::get_widgets( 'sidebar' );
+		$context['page_sidebar']     = $timber::get_widgets( 'page_sidebar' );
 
 		return $context;
 	}
@@ -134,9 +136,19 @@ class xlthlxSite extends Timber\Site {
 	public function widgets_init() {
 
 		register_sidebar( array(
-				'name'          => esc_html__( 'Sidebar', 'boot' ),
+				'name'          => esc_html__( 'Sidebar', 'xlthlx' ),
 				'id'            => 'sidebar',
-				'description'   => esc_html__( 'Sidebar', 'boot' ),
+				'description'   => esc_html__( 'Sidebar', 'xlthlx' ),
+				'before_widget' => '<div id="%1$s" class="widget %2$s p-4 mb-3 rounded-0">',
+				'after_widget'  => '</div>',
+				'before_title'  => '<h4 class="font-italic pb-2">',
+				'after_title'   => '</h4>',
+		) );
+
+		register_sidebar( array(
+				'name'          => esc_html__( 'Page Sidebar', 'xlthlx' ),
+				'id'            => 'page_sidebar',
+				'description'   => esc_html__( 'Page Sidebar', 'xlthlx' ),
 				'before_widget' => '<div id="%1$s" class="widget %2$s p-4 mb-3 rounded-0">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h4 class="font-italic pb-2">',
