@@ -67,6 +67,28 @@ ol.breadcrumb {
 	border-bottom-left-radius: 0 !important;
 }
 
+.btn-fb {
+	color: rgba(59,89,152,1);
+	border-color: rgba(59,89,152,1);
+}
+
+.btn-fb:hover, .btn-fb:active {
+	color: #fefcfd;
+	background-color: rgba(59,89,152,1);
+	border-color: rgba(59,89,152,1);
+}
+
+.btn-tw {
+	color: rgba(20,123,201,1);
+	border-color: rgba(20,123,201,1);
+}
+
+.btn-tw:hover, .btn-tw:active {
+	color: #fefcfd;
+	background-color: rgba(20,123,201,1);
+	border-color: rgba(20,123,201,1);
+}
+
 /*-------
 Colors
 _______*/
