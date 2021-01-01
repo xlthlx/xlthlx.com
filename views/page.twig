@@ -1,29 +1,36 @@
 {% extends "base.twig" %}
 
 {% block content %}
-
 	<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
+		<div class="d-flex align-items-start">
 
-		<section class="page-content">
+			<div class="tab-content w-100" id="v-pills-tabContent">
+				<div class="tab-pane fade show active" id="v-pills-ita" role="tabpanel"
+					 aria-labelledby="v-pills-ita-tab">
 
-			<div class="row">
-				<div class="col-md-8">
-					<h2 class="display-5 pb-3">{{ post.title }}</h2>
-					<hr class="pt-0 mt-0 mb-4"/>
-					<section class="page-content">
-						{{ post.content }}
-					</section>
-				</div>
-				<div class="col-md-4">
-					<aside class="sidebar px-5">
-						{% if page_sidebar %}
-							{{ page_sidebar }}
-						{% endif %}
-					</aside>
+					<div class="row">
+						<div class="col-md-7">
+							<h2 class="display-5 pb-3">{{ post.title }}</h2>
+							<hr class="pt-0 mt-0 mb-4"/>
+							<section class="page-content">
+								{{ post.content }}
+							</section>
+						</div>
+						<div class="col-md-1">
+							{% include 'partial/tabs.twig' %}
+						</div>
+						<div class="col-md-4">
+							<aside class="sidebar px-5">
+								{% if page_sidebar %}
+									{{ page_sidebar }}
+								{% endif %}
+							</aside>
+						</div>
+					</div>
+
 				</div>
 			</div>
 
-		</section>
+		</div>
 	</article>
-
 {% endblock %}

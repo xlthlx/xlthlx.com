@@ -20,7 +20,7 @@ body.admin-bar .navbar {
 	margin-top: 0 !important;
 }
 
-.widget_custom_html {
+.widget_grey, .widget_pages {
 	background-color: #e7e6f7 !important;
 }
 
@@ -30,6 +30,16 @@ body.admin-bar .navbar {
 	cursor: auto;
 	background-color: #fff;
 	border-color: #dee2e6;
+}
+
+.page-item:last-child .page-link {
+	border-top-right-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+}
+
+.page-item:first-child .page-link {
+	border-top-left-radius: 0 !important;
+	border-bottom-left-radius: 0 !important;
 }
 
 a.dropdown-item.text-light:hover {
@@ -57,36 +67,30 @@ ol.breadcrumb {
 	background-color: white !important;
 }
 
-.page-item:last-child .page-link {
-	border-top-right-radius: 0 !important;
-	border-bottom-right-radius: 0 !important;
-}
-
-.page-item:first-child .page-link {
-	border-top-left-radius: 0 !important;
-	border-bottom-left-radius: 0 !important;
-}
-
 .btn-fb {
-	color: rgba(59,89,152,1);
-	border-color: rgba(59,89,152,1);
+	color: rgba(59, 89, 152, 1);
+	border-color: rgba(59, 89, 152, 1);
 }
 
 .btn-fb:hover, .btn-fb:active {
 	color: #fefcfd;
-	background-color: rgba(59,89,152,1);
-	border-color: rgba(59,89,152,1);
+	background-color: rgba(59, 89, 152, 1);
+	border-color: rgba(59, 89, 152, 1);
 }
 
 .btn-tw {
-	color: rgba(20,123,201,1);
-	border-color: rgba(20,123,201,1);
+	color: rgba(20, 123, 201, 1);
+	border-color: rgba(20, 123, 201, 1);
 }
 
 .btn-tw:hover, .btn-tw:active {
 	color: #fefcfd;
-	background-color: rgba(20,123,201,1);
-	border-color: rgba(20,123,201,1);
+	background-color: rgba(20, 123, 201, 1);
+	border-color: rgba(20, 123, 201, 1);
+}
+
+div.comments.children {
+	padding-left: 3rem!important;
 }
 
 /*-------
