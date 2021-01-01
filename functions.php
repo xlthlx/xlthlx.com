@@ -50,7 +50,6 @@ class xlthlxSite extends Timber\Site {
 		$context['logged_in']        = is_user_logged_in();
 		$context['is_home']          = is_home();
 		$context['current_user']     = new Timber\User();
-		$context['related']          = xlt_related_posts();
 		$context['sidebar']          = $timber::get_widgets( 'sidebar' );
 		$context['page_sidebar']     = $timber::get_widgets( 'page_sidebar' );
 
@@ -162,7 +161,6 @@ class xlthlxSite extends Timber\Site {
 		remove_action( 'try_gutenberg_panel', 'wp_try_gutenberg_panel' );
 	}
 
-
 	/**
 	 * Hides the very annoying Welcome Tips popup for Gutenberg.
 	 */
@@ -198,6 +196,11 @@ new xlthlxSite();
 require_once 'inc/custom-login.php';
 
 /**
+ * Custom widgets.
+ */
+require_once 'inc/custom-widgets.php';
+
+/**
  * Custom fields for English.
  */
 require_once 'inc/eng-fields-admin.php';
@@ -211,11 +214,6 @@ require_once 'inc/eng-fields-template.php';
  * Functions which enhance the theme by hooking into WordPress.
  */
 require_once 'inc/template-functions.php';
-
-/**
- * Theme options.
- */
-require_once 'inc/template-options.php';
 
 /**
  * Custom template tags.

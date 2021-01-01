@@ -6,8 +6,6 @@
 
 		<div class="d-flex align-items-start">
 
-
-
 			<div class="tab-content w-100" id="v-pills-tabContent">
 				<div class="tab-pane fade show active" id="v-pills-ita" role="tabpanel"
 					 aria-labelledby="v-pills-ita-tab">
@@ -80,27 +78,13 @@
 
 						</div>
 						<div class="col-md-1">
-							<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-								<a class="nav-link active rounded-0" id="v-pills-ita-tab" data-bs-toggle="pill" href="#v-pills-ita"
-								   role="tab" aria-controls="v-pills-ita" aria-selected="true">Italiano</a>
-								<a class="nav-link rounded-0" id="v-pills-eng-tab" data-bs-toggle="pill" href="#v-pills-eng"
-								   role="tab" aria-controls="v-pills-eng" aria-selected="false">English</a>
-							</div>
-
+							{% include 'partial/tabs.twig' %}
 						</div>
 						<div class="col-md-4">
 							<aside class="sidebar px-5">
-								<div id="related" class="widget_text widget widget_custom_html p-4 mb-3 rounded-0">
-									<h4 class="font-italic pb-2">{{ _e( 'Related articles' ) }}</h4>
-									<div class="textwidget">{{ related }}</div>
-								</div>
 								{% if sidebar %}
 									{{ sidebar }}
 								{% endif %}
-								<div id="archives" class="widget_text widget widget_custom_html p-4 mb-3 rounded-0">
-									<h4 class="font-italic pb-2">{{ _e( 'Archives' ) }}</h4>
-									<div class="textwidget">{{ fn('xlt_archives') }}</div>
-								</div>
 							</aside>
 						</div>
 					</div>

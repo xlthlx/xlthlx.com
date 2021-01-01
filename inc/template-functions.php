@@ -249,7 +249,6 @@ if ( is_admin() ) {
 	add_action( 'manage_pages_custom_column', 'xlt_page_custom_column_views', 9999, 2 );
 }
 
-
 /**
  * Removes annoying submenus.
  */
@@ -258,7 +257,6 @@ function xlt_remove_menu_pages() {
 }
 
 add_action( 'admin_menu', 'xlt_remove_menu_pages', 999 );
-
 
 /**
  * Removes WP Logo, comments and SEO in the admin bar.
