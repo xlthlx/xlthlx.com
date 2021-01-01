@@ -30,30 +30,27 @@
 		</div>
 	</div>
 	{% if not is_home %}
-	<div class="container bg-white pt-4 px-4 pb-0">
-		<nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
-			{% if (fn('xlt_breadcrumbs')) %}
-				{{ fn('xlt_breadcrumbs') }}
-			{% endif %}
-		</nav>
-	</div>
-	{% endif %}
-
-	{% if title %}
-		<div class="container bg-white">
-			<h2 class="display-5 pb-3">{{ title }}</h2>
-			<hr class="pt-0 mt-0 mb-4"/>
+		<div class="container bg-white pt-4 px-4 pb-0">
+			<nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
+				{% if (fn('xlt_breadcrumbs')) %}
+					{{ fn('xlt_breadcrumbs') }}
+				{% endif %}
+			</nav>
 		</div>
 	{% endif %}
 
 	<div class="container px-4 py-5 bg-white mb-0" id="content">
+
+		{% if title %}
+			<h2 class="display-5 pb-3">{{ title }}</h2>
+			<hr class="pt-0 mt-0 mb-4"/>
+		{% endif %}
 
 		{% block content %}
 			Sorry, no content
 		{% endblock %}
 
 	</div>
-
 </main>
 
 {% block footer %}

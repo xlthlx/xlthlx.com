@@ -4,10 +4,8 @@
 			<div class="col px-4 py-3 d-flex flex-column position-static">
 				{% set cat = post.terms('category')|first %}
 				<strong class="d-inline-block mb-2 text-primary">{{ cat.name }}</strong>
-				<h3 class="mb-0">{{ post.title }}</h3>
-				<div class="mb-1 text-muted">
-					{{ post.post_date|date("d M") }}</div>
-				<p class="card-text mb-auto">{{ post.preview.length(8).read_more('') }}</p>
+				<h3 class="mb-3">{{ post.title }}</h3>
+				<p class="card-text mb-auto">{{ post.preview.length(20).read_more('') }}</p>
 				<a href="{{ post.link }}" class="stretched-link">{{ _e( 'continua') }} ></a>
 			</div>
 			<div class="col-auto d-none d-lg-block">
