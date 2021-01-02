@@ -35,8 +35,10 @@ $(document).ready(function () {
 		hljs.highlightBlock(pres[i]);
 	}
 	var options = {
-		copyIconClass: "icon-copy",
-		checkIconClass: "icon-check text-success"
+		copyIconClass: "open",
+		copyIconContent: "Copy",
+		checkIconClass: "text-success",
+		checkIconContent: "Copied!",
 	};
 	window.highlightJsBadge(options);
 

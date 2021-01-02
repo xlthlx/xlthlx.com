@@ -9,6 +9,11 @@
 $context         = Timber::context();
 $timber_post     = Timber::query_post();
 $context['post'] = $timber_post;
+$context['lang'] = get_lang();
+$context['class_it'] = get_query_var( 'class_it' );
+$context['class_en'] = get_query_var( 'class_en' );
+
+$context['post']->date_en = get_date_en();
 
 if ( post_password_required( $timber_post->ID ) ) {
 	Timber::render( 'single-password.twig', $context );

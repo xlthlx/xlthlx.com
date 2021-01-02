@@ -4,94 +4,79 @@
 
 	<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
 
-		<div class="d-flex align-items-start">
+		<div class="row">
+			<div class="col-md-7">
+				<h2 class="display-5 pb-3">{{ post.title }}</h2>
+				<hr class="pt-0 mt-0 mb-4"/>
+				<section class="article-content">
 
-			<div class="tab-content w-100" id="v-pills-tabContent">
-				<div class="tab-pane fade show active" id="v-pills-ita" role="tabpanel"
-					 aria-labelledby="v-pills-ita-tab">
+					<p>{{ lang == 'it'? post.date : post.date_en }}</p>
 
-					<div class="row">
-						<div class="col-md-7">
-							<h2 class="display-5 pb-3">{{ post.title }}</h2>
-							<hr class="pt-0 mt-0 mb-4"/>
-							<section class="article-content">
-
-								{% if post.terms('category') | length %}
-									<ul class="list-unstyled ml-0 pl-0">
-										<li class="d-inline">{{ post.date }}</li>
-									</ul>
-								{% else %}
-									<p>{{ post.date }}</p>
-								{% endif %}
-
-								<div class="article-body pr-4">
-									{{ post.content }}
-								</div>
-
-								{% include ['partial/social.twig'] %}
-
-								<div class="pt-4">
-									{% if post.terms('category') | length %}
-										<ul class="list-unstyled ml-0 pl-0 mb-0">
-											{% for cat in post.terms('category') %}
-												<li class="d-inline"><a href="{{ cat.link }}">{{ cat.name }}</a>
-													{% if cat != post.terms('category')|last %}
-														<span class="badge bg-white text-dark rounded-0 border-0 fw-bold">|</span>
-													{% endif %}
-												</li>
-											{% endfor %}
-										</ul>
-									{% endif %}
-									{% if post.terms('tags') | length %}
-										<ul class="list-unstyled ml-0 pl-0 mb-0">
-											{% for tag in post.terms('tags') %}
-												<li class="d-inline"><a href="{{ tag.link }}">{{ tag.name }}</a>
-													{% if tag != post.terms('tags')|last %}
-														<span class="badge bg-white text-dark rounded-0 border-0 fw-bold">|</span>
-													{% endif %}
-												</li>
-											{% endfor %}
-										</ul>
-									{% endif %}
-								</div>
-
-								<hr class="mt-4 mb-4"/>
-							</section>
-
-							<!-- Comments -->
-							<section id="post-comments" class="comment-box">
-								{% if post.comments | length %}
-									<h3>{{ _e( 'Comments') }}</h3>
-									{% for comment in post.comments %}
-										{% include 'comment.twig' %}
-									{% endfor %}
-									<hr/>
-								{% endif %}
-							</section>
-
-							<!-- Comment form -->
-							{% if 'open' == post.comment_status %}
-								<section id="comment-form" class="comment-box">
-									{{ fn('xlt_comment_form') }}
-								</section>
-							{% endif %}
-
-						</div>
-						<div class="col-md-1">
-							{% include 'partial/tabs.twig' %}
-						</div>
-						<div class="col-md-4">
-							<aside class="sidebar px-5">
-								{% if sidebar %}
-									{{ sidebar }}
-								{% endif %}
-							</aside>
-						</div>
+					<div class="article-body pr-4">
+						{{ post.content }}
 					</div>
-				</div>
-			</div>
 
+					{% include ['partial/social.twig'] %}
+
+					<div class="pt-4">
+						{% if post.terms('category') | length %}
+							<ul class="list-unstyled ml-0 pl-0 mb-0">
+								{% for cat in post.terms('category') %}
+									<li class="d-inline"><a href="{{ cat.link }}">{{ cat.name }}</a>
+										{% if cat != post.terms('category')|last %}
+											<span class="badge bg-white text-dark rounded-0 border-0 fw-bold">|</span>
+										{% endif %}
+									</li>
+								{% endfor %}
+							</ul>
+						{% endif %}
+						{% if post.terms('tags') | length %}
+							<ul class="list-unstyled ml-0 pl-0 mb-0">
+								{% for tag in post.terms('tags') %}
+									<li class="d-inline"><a href="{{ tag.link }}">{{ tag.name }}</a>
+										{% if tag != post.terms('tags')|last %}
+											<span class="badge bg-white text-dark rounded-0 border-0 fw-bold">|</span>
+										{% endif %}
+									</li>
+								{% endfor %}
+							</ul>
+						{% endif %}
+					</div>
+
+					<hr class="mt-4 mb-4"/>
+				</section>
+
+				<!-- Comments -->
+				<section id="post-comments" class="comment-box">
+					{% if post.comments | length %}
+						<h3 class="mb-4">{{ _e( 'Comments') }}</h3>
+						{% for comment in post.comments %}
+							{% include 'comment.twig' %}
+						{% endfor %}
+						<hr/>
+					{% endif %}
+				</section>
+
+				<!-- Comment form -->
+				{% if 'open' == post.comment_status %}
+					<section id="comment-form" class="comment-box">
+						{{ fn('xlt_comment_form') }}
+					</section>
+				{% endif %}
+
+			</div>
+			<div class="col-md-1">
+				{% include 'partial/tabs.twig' %}
+			</div>
+			<div class="col-md-4">
+				<aside class="sidebar px-5">
+					{% if sidebar %}
+						{{ sidebar }}
+					{% endif %}
+				</aside>
+			</div>
 		</div>
+
 	</article>
 
 {% endblock %}

@@ -22,7 +22,7 @@ use simplehtmldom\HtmlDocument;
  *
  * @return array|string
  */
-function xm_translate( $element ) {
+function xlt_translate( $element ) {
 	$trans_content = '';
 
 	$trc = new Dejurin\GoogleTranslateForFree();
@@ -49,7 +49,7 @@ function get_date_en() {
 	if ( ! is_home() || ! is_archive() ) {
 		if ( ! get_post_meta( $post_id, 'date_en',
 				true ) || get_post_meta( $post_id, 'date_en', true ) === '' ) {
-			$month = xm_translate( get_the_time( 'F', $post_id ) );
+			$month = xlt_translate( get_the_time( 'F', $post_id ) );
 			$date  = get_the_time( 'd', $post_id ) . ' ' . ucfirst( $month ) . ' ' . get_the_time( 'Y', $post_id );
 			update_post_meta( $post_id, 'date_en', $date );
 		}
@@ -70,7 +70,7 @@ function get_title_en() {
 	if ( ! get_post_meta( $post_id, 'title_en', true )
 	     || get_post_meta( $post_id, 'title_en', true ) === '' ) {
 
-		$title = xm_translate( get_the_title( $post_id ) );
+		$title = xlt_translate( get_the_title( $post_id ) );
 		update_post_meta( $post_id, 'title_en', $title );
 	}
 
@@ -134,7 +134,7 @@ function get_content_en() {
 							$plain_tag = $pg->find( $tag );
 							if ( $plain_tag ) {
 								foreach ( $plain_tag as $pt ) {
-									$trans_tag     = xm_translate( $pt->innertext );
+									$trans_tag     = xlt_translate( $pt->innertext );
 									$pt->innertext = $trans_tag;
 									$to_remove[]   = $pt->outertext;
 								}
@@ -145,10 +145,10 @@ function get_content_en() {
 
 						if ( $plain_a ) {
 							foreach ( $plain_a as $pa ) {
-								$trans_a       = xm_translate( $pa->innertext );
+								$trans_a       = xlt_translate( $pa->innertext );
 								$pa->innertext = $trans_a;
 								if ( $pa->title ) {
-									$title_a   = xm_translate( $pa->title );
+									$title_a   = xlt_translate( $pa->title );
 									$pa->title = $title_a;
 								}
 								$to_remove[] = $pa->outertext;
@@ -169,7 +169,7 @@ function get_content_en() {
 							'</p>'
 						), '', $plain_p );
 
-						$trans_p = xm_translate( $plain_p );
+						$trans_p = xlt_translate( $plain_p );
 
 						$i = 0;
 						foreach ( $to_remove as $remove ) {
@@ -197,17 +197,17 @@ function get_content_en() {
 }
 
 
-add_action( 'comment_post', 'xm_save_comment_lang' );
-add_filter( 'query_vars', 'xm_query_vars_lang' );
-add_action( 'init', 'xm_rewrite_tags_lang' );
-add_action( 'template_redirect', 'xm_template_redirect' );
+add_action( 'comment_post', 'xlt_save_comment_lang' );
+add_filter( 'query_vars', 'xlt_query_vars_lang' );
+add_action( 'init', 'xlt_rewrite_tags_lang' );
+add_action( 'template_redirect', 'xlt_template_redirect' );
 
 /**
  * Save comment meta lang.
  *
  * @param $comment_id
  */
-function xm_save_comment_lang( $comment_id ) {
+function xlt_save_comment_lang( $comment_id ) {
 
 	update_comment_meta( $comment_id, 'comment_lang', $_POST['comment_lang'] );
 }
@@ -220,7 +220,7 @@ function xm_save_comment_lang( $comment_id ) {
  *
  * @return mixed
  */
-function xm_query_vars_lang( $vars ) {
+function xlt_query_vars_lang( $vars ) {
 	$vars[] = 'en';
 
 	return $vars;
@@ -229,7 +229,7 @@ function xm_query_vars_lang( $vars ) {
 /**
  *
  */
-function xm_template_redirect() {
+function xlt_template_redirect() {
 	global $wp_query;
 
 	if ( ! isset( $wp_query->query_vars['en'] ) ) {
@@ -263,7 +263,7 @@ function xm_template_redirect() {
 /**
  * Add rewrite endpoint.
  */
-function xm_rewrite_tags_lang() {
+function xlt_rewrite_tags_lang() {
 
 	add_rewrite_endpoint( 'en', EP_ALL, 'en' );
 
@@ -375,11 +375,11 @@ function get_archive_title() {
  *
  * @param $query
  */
-function xm_home_posts_per_page( $query ) {
+function xlt_home_posts_per_page( $query ) {
 
 	if ( ! is_admin() && $query->is_main_query() && is_front_page() ) {
 		set_query_var( 'posts_per_page', 5 );
 	}
 }
 
-add_action( 'pre_get_posts', 'xm_home_posts_per_page' );
+add_action( 'pre_get_posts', 'xlt_home_posts_per_page' );

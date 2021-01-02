@@ -1,28 +1,31 @@
 <?php
 /**
- * Custom login
+ * Custom login.
  */
 
-add_action( 'login_enqueue_scripts', 'xm_enqueue_login', 10 );
-add_filter( 'login_headerurl', 'xm_login_url' );
-add_filter( 'login_headertext', 'xm_login_title' );
-add_action( 'login_head', 'xm_login_head' );
-add_action( 'init', 'xm_login_classes' );
-add_filter( 'login_title', 'xm_login_page_title', 99 );
+add_action( 'login_enqueue_scripts', 'xlt_enqueue_login', 10 );
+add_filter( 'login_headerurl', 'xlt_login_url' );
+add_filter( 'login_headertext', 'xlt_login_title' );
+add_action( 'login_head', 'xlt_login_head' );
+add_action( 'init', 'xlt_login_classes' );
+add_filter( 'login_title', 'xlt_login_page_title', 99 );
 remove_filter( 'authenticate', 'wp_authenticate_username_password', 20 );
-add_filter( 'authenticate', 'xm_authenticate', 20, 3 );
+add_filter( 'authenticate', 'xlt_authenticate', 20, 3 );
 
 /**
  * Enqueue login CSS.
  */
-function xm_enqueue_login() {
-	$css_path = get_template_directory_uri() . '/assets/css/';
+function xlt_enqueue_login() {
 
-	wp_enqueue_style( 'bootstrap', $css_path . 'bootstrap.min.css', false, '', 'screen,print' );
-	wp_enqueue_style( 'mdb', $css_path . 'mdb.min.css', array( 'bootstrap' ), '', 'screen,print' );
-	wp_enqueue_style( 'style', get_stylesheet_uri(), false, '', 'screen,print' );
-	wp_enqueue_style( 'custom-login', $css_path . 'admin/login.min.css', false, '', 'screen,print' );
-	wp_enqueue_script( 'jquery-login', includes_url( '/js/jquery/jquery.js' ), false, '', false );
+	wp_dequeue_style( 'login' );
+	wp_deregister_style( 'login' );
+	wp_enqueue_style( 'dashicons' );
+
+	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/vendor/twbs/bootstrap/dist/css/bootstrap.css', [], filemtime( get_template_directory() . '/assets/vendor/twbs/bootstrap/dist/css/bootstrap.css' ) );
+	wp_enqueue_style( 'fonts', get_template_directory_uri() . '/assets/css/custom-fonts.css', [], filemtime( get_template_directory() . '/assets/css/custom-fonts.css' ) );
+	wp_enqueue_style( 'custom-login', get_template_directory_uri() . '/assets/css/admin/login.css', [], filemtime( get_template_directory() . '/assets/css/admin/login.css' ) );
+	wp_enqueue_script( 'jquery-login', includes_url( '/js/jquery/jquery.js' ), [], '' );
+	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js', [ 'jquery' ], filemtime( get_template_directory() . '/assets/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js' ), true );
 }
 
 /**
@@ -30,7 +33,7 @@ function xm_enqueue_login() {
  *
  * @return mixed
  */
-function xm_login_url() {
+function xlt_login_url() {
 	return get_home_url();
 }
 
@@ -39,7 +42,7 @@ function xm_login_url() {
  *
  * @return mixed
  */
-function xm_login_title() {
+function xlt_login_title() {
 	return get_bloginfo( 'name' ) . '</a></h1><p class="desc"><em>' . get_bloginfo( 'description' ) . '</em></p><h1 style="display:none"><a>';
 }
 
@@ -52,7 +55,7 @@ function xm_login_title() {
  *
  * @return string
  */
-function xm_gettext( $translation, $login_texts, $domain ) {
+function xlt_gettext( $translation, $login_texts, $domain ) {
 
 	// Login Main Page
 	if ( 'Username or Email Address' === $login_texts ) {
@@ -78,29 +81,29 @@ function xm_gettext( $translation, $login_texts, $domain ) {
 /**
  * Init filter strings.
  */
-function xm_login_head() {
-	add_filter( 'gettext', 'xm_gettext', 20, 3 );
+function xlt_login_head() {
+	add_filter( 'gettext', 'xlt_gettext', 20, 3 );
 }
 
 /**
  * Add some classes to login fields.
  */
-function xm_login_classes_footer() {
+function xlt_login_classes_footer() {
 	echo "<script>
 		        jQuery('#loginform').addClass('md-form');
 		        jQuery('#lostpasswordform').addClass('md-form');
 		        jQuery('#resetpassform').addClass('md-form');
-		        jQuery('#user_login').removeClass('input').addClass('form-control');
-		        jQuery('#user_pass').removeClass('input').addClass('form-control');
-		        jQuery('#wp-submit').removeClass('button button-primary button-large').addClass('btn btn-outline-primary waves-effect btn-sm');
+		        jQuery('#user_login').removeClass('input').addClass('form-control rounded-0');
+		        jQuery('#user_pass').removeClass('input').addClass('form-control rounded-0');
+		        jQuery('#wp-submit').removeClass('button button-primary button-large').addClass('btn btn-outline-primary pink-hover rounded-0');
 			</script>";
 }
 
 /**
  * Init script for classes.
  */
-function xm_login_classes() {
-	add_filter( 'login_footer', 'xm_login_classes_footer' );
+function xlt_login_classes() {
+	add_filter( 'login_footer', 'xlt_login_classes_footer' );
 }
 
 /**
@@ -108,7 +111,7 @@ function xm_login_classes() {
  *
  * @return string
  */
-function xm_login_page_title() {
+function xlt_login_page_title() {
 
 	return 'Entra | ' . get_bloginfo( 'name' );
 
@@ -123,7 +126,7 @@ function xm_login_page_title() {
  *
  * @return bool|WP_Error|WP_User
  */
-function xm_authenticate( $user, $username, $password ) {
+function xlt_authenticate( $user, $username, $password ) {
 	if ( $user instanceof WP_User ) {
 		return $user;
 	}
