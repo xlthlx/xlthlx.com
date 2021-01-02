@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'b119ab1b6bcbcfe552b845062192b1653320f096',
+    'reference' => 'd722688c45c958d5ff7ecd47a5892f38823abca8',
     'name' => 'xlthlx/boot',
   ),
   'versions' => 
@@ -199,7 +199,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'b119ab1b6bcbcfe552b845062192b1653320f096',
+      'reference' => 'd722688c45c958d5ff7ecd47a5892f38823abca8',
     ),
   ),
 );
