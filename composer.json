@@ -20,8 +20,7 @@
   }
   ,
   "require-dev": {
-	"roave/security-advisories": "dev-master",
-	"hellonico/timber-dump-extension": "^1.0"
+	"roave/security-advisories": "dev-master"
   },
   "extra": {
 	"installer-paths": {
