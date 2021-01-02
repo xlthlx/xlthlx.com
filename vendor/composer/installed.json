@@ -1470,6 +1470,10 @@
     ],
     "dev": true,
     "dev-package-names": [
-        "roave/security-advisories"
+        "hellonico/timber-dump-extension",
+        "hellonico/twig-dump-extension",
+        "roave/security-advisories",
+        "symfony/polyfill-php80",
+        "symfony/var-dumper"
     ]
 }
