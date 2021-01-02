@@ -93,6 +93,24 @@ div.comments.children {
 	padding-left: 3rem!important;
 }
 
+.comment-reply-title {
+	margin-bottom: 1rem !important;
+}
+
+.pink-hover:hover, .pink-hover:active{
+	background-color: #d93f87 !important;
+	border-color: #d93f87 !important;
+}
+
+.wp-block-code {
+	padding: 0 !important;
+	border: none !important;
+	border-radius: 0 !important;
+}
+
+.code-badge-language {
+	display: none;
+}
 /*-------
 Colors
 _______*/

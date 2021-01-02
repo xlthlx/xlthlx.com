@@ -524,7 +524,7 @@ if ( ! function_exists( 'xlt_comment_form' ) ) {
 		$comments_args = array(
 				'format'               => 'xhtml',
 				'comment_notes_before' => '<p>' . __( 'Your email address will not be published.' ) . '</p>',
-				'class_submit'         => 'btn btn-outline-primary rounded-0',
+				'class_submit'         => 'btn btn-outline-primary pink-hover rounded-0',
 				'fields'               => array(
 						'author' => '<div class="form-floating mb-3">
 							<input placeholder="' . __( 'Author' ) . '" class="form-control rounded-0" type="text" id="author" name="author" required>
