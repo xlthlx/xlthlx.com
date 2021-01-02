@@ -8,8 +8,7 @@ _______*/
 	font-weight: 400;
 	font-display: swap;
 	src: local('Titillium Web Regular'), local('TitilliumWeb-Regular'),
-	url('../fonts/titillium-web-v6-latin-ext_latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-	url('../fonts/titillium-web-v6-latin-ext_latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+	url('../fonts/titillium-web-v6-latin-ext_latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/titillium-web-v6-latin-ext_latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 @font-face {
@@ -18,8 +17,7 @@ _______*/
 	font-weight: 400;
 	font-display: swap;
 	src: local('Titillium Web Italic'), local('TitilliumWeb-Italic'),
-	url('../fonts/titillium-web-v6-latin-ext_latin-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-	url('../fonts/titillium-web-v6-latin-ext_latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+	url('../fonts/titillium-web-v6-latin-ext_latin-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/titillium-web-v6-latin-ext_latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 
@@ -29,8 +27,7 @@ _______*/
 	font-weight: 700;
 	font-display: swap;
 	src: local('Titillium Web Bold'), local('TitilliumWeb-Bold'),
-	url('../fonts/titillium-web-v6-latin-ext_latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-	url('../fonts/titillium-web-v6-latin-ext_latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+	url('../fonts/titillium-web-v6-latin-ext_latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/titillium-web-v6-latin-ext_latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 
@@ -40,8 +37,7 @@ _______*/
 	font-weight: 700;
 	font-display: swap;
 	src: local('Titillium Web Bold Italic'), local('TitilliumWeb-BoldItalic'),
-	url('../fonts/titillium-web-v6-latin-ext_latin-700italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-	url('../fonts/titillium-web-v6-latin-ext_latin-700italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+	url('../fonts/titillium-web-v6-latin-ext_latin-700italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/titillium-web-v6-latin-ext_latin-700italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 body {
@@ -163,22 +159,27 @@ div.comments.children {
 }
 
 #cookie-notice {
-	text-align: right !important
+	text-align: right !important;
 }
 
 .cookie-revoke-visible {
-	background-color: transparent !important
+	background-color: transparent !important;
 }
 
 #cookie-notice .cn-button {
 	font-variant: all-small-caps;
-	font-weight: 700
+	font-weight: 700;
+}
+
+.cn-button.btn-outline-primary {
+	border-color: #44318d !important;
+	background-color: #fff;
 }
 
 .cn-text-container {
 	margin: 0 !important;
 	font-variant: all-small-caps;
-	font-size: 1.3rem
+	font-size: 1.3rem;
 }
 
 /*-------
