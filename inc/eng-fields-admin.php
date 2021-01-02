@@ -2,17 +2,11 @@
 /**
  * Backend functions for English translation.
  *
- * @package WordPress
- * @subpackage Xlthlx
+ * @package  WordPress
+ * @subpackage  Xlthlx
  */
 
 add_action( 'cmb2_init', 'xlt_add_metabox' );
-add_filter( 'manage_posts_columns', 'xlt_eng_posts_columns', 15 );
-add_action( 'manage_posts_custom_column', 'xlt_eng_posts_custom_columns', 15, 2 );
-add_filter( 'manage_pages_columns', 'xlt_eng_posts_columns', 15 );
-add_action( 'manage_pages_custom_column', 'xlt_eng_posts_custom_columns', 15, 2 );
-
-
 /**
  * Adds the English fields.
  */
@@ -49,6 +43,8 @@ function xlt_add_metabox() {
 
 }
 
+add_filter( 'manage_posts_columns', 'xlt_eng_posts_columns', 15 );
+add_filter( 'manage_pages_columns', 'xlt_eng_posts_columns', 15 );
 /**
  * Add columns in the admin list.
  *
@@ -70,6 +66,8 @@ function xlt_eng_posts_columns( $defaults ) {
 	return $defaults;
 }
 
+add_action( 'manage_posts_custom_column', 'xlt_eng_posts_custom_columns', 15, 2 );
+add_action( 'manage_pages_custom_column', 'xlt_eng_posts_custom_columns', 15, 2 );
 /**
  * Sets columns values.
  *
@@ -99,7 +97,6 @@ function xlt_eng_posts_custom_columns( $column_name, $id ) {
 		}
 	}
 }
-
 
 add_action( 'cmb2_init', 'xlt_register_comment_language' );
 /**

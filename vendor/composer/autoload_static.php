@@ -37,6 +37,10 @@ class ComposerStaticInite6b00e8610c1cfeb40886c961ed17339
         array (
             'ExtCPTs\\Tests\\' => 14,
         ),
+        'D' => 
+        array (
+            'Dejurin\\' => 8,
+        ),
         'C' => 
         array (
             'Composer\\Installers\\' => 20,
@@ -80,6 +84,10 @@ class ComposerStaticInite6b00e8610c1cfeb40886c961ed17339
         array (
             0 => __DIR__ . '/..' . '/johnbillion/extended-cpts/tests/phpunit',
         ),
+        'Dejurin\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dejurin/php-google-translate-for-free/src',
+        ),
         'Composer\\Installers\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
@@ -114,6 +122,10 @@ class ComposerStaticInite6b00e8610c1cfeb40886c961ed17339
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
+        'simplehtmldom\\Debug' => __DIR__ . '/..' . '/simplehtmldom/simplehtmldom/Debug.php',
+        'simplehtmldom\\HtmlDocument' => __DIR__ . '/..' . '/simplehtmldom/simplehtmldom/HtmlDocument.php',
+        'simplehtmldom\\HtmlNode' => __DIR__ . '/..' . '/simplehtmldom/simplehtmldom/HtmlNode.php',
+        'simplehtmldom\\HtmlWeb' => __DIR__ . '/..' . '/simplehtmldom/simplehtmldom/HtmlWeb.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -100,7 +100,6 @@ class xlthlxSite extends Timber\Site {
 	public function enqueue_scripts() {
 		// Styles.
 		wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/vendor/twbs/bootstrap/dist/css/bootstrap.css', [], filemtime( get_template_directory() . '/assets/vendor/twbs/bootstrap/dist/css/bootstrap.css' ) );
-		wp_enqueue_style( 'fonts', get_template_directory_uri() . '/assets/css/custom-fonts.css', [], filemtime( get_template_directory() . '/assets/css/custom-fonts.css' ) );
 		wp_enqueue_style( 'main', get_template_directory_uri() . '/assets/css/main.css', [], filemtime( get_template_directory() . '/assets/css/main.css' ) );
 
 		// Scripts.
@@ -114,14 +113,14 @@ class xlthlxSite extends Timber\Site {
 			wp_enqueue_style( 'highlight-js', get_template_directory_uri() . '/assets/js/highlightjs-badge/highlightjs/styles/vs2015.css' );
 
 			wp_enqueue_script( 'highlight-js', get_template_directory_uri() . '/assets/js/highlightjs-badge/highlightjs/highlight.pack.js', [ 'jquery' ], filemtime( get_template_directory() . '/assets/js/highlightjs-badge/highlightjs/highlight.pack.js' ), true );
-			wp_enqueue_script( 'highlight-js-badge', get_template_directory_uri() . '/assets/js/highlightjs-badge/highlightjs-badge.min.js', [ 'highlight-js' ], filemtime( get_template_directory() . '/assets/js/highlightjs-badge/highlightjs-badge.min.js' ), true );
+			wp_enqueue_script( 'highlight-js-badge', get_template_directory_uri() . '/assets/js/highlightjs-badge/highlightjs-badge.js', [ 'highlight-js' ], filemtime( get_template_directory() . '/assets/js/highlightjs-badge/highlightjs-badge.js' ), true );
 			wp_enqueue_script( 'xlthlx-single', get_template_directory_uri() . '/assets/js/single.js', [ 'jquery' ], filemtime( get_template_directory() . '/assets/js/single.js' ), true );
 		}
 
 		// Analytics.
 		if ( ! is_user_logged_in() ) {
 			wp_enqueue_script( 'gtag-script', 'https://www.googletagmanager.com/gtag/js?id=UA-21923886-8', [] );
-			wp_enqueue_script( 'gtag', get_template_directory_uri() . '/assets/js/gtag.min.js', [], filemtime( get_template_directory() . '/assets/js/gtag.min.js' ) );
+			wp_enqueue_script( 'gtag', get_template_directory_uri() . '/assets/js/gtag.js', [], filemtime( get_template_directory() . '/assets/js/gtag.js' ) );
 		}
 
 	}
@@ -219,4 +218,9 @@ require_once 'inc/template-functions.php';
  * Custom template tags.
  */
 require_once 'inc/template-tags.php';
+
+/**
+ * Toolkit.
+ */
+require_once 'inc/toolkit/toolkit.php';
 

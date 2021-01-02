@@ -15,6 +15,7 @@ return array(
     'HelloNico\\Twig\\' => array($vendorDir . '/hellonico/twig-dump-extension/src'),
     'HelloNico\\Timber\\' => array($vendorDir . '/hellonico/timber-dump-extension/src'),
     'ExtCPTs\\Tests\\' => array($vendorDir . '/johnbillion/extended-cpts/tests/phpunit'),
+    'Dejurin\\' => array($vendorDir . '/dejurin/php-google-translate-for-free/src'),
     'Composer\\Installers\\' => array($vendorDir . '/composer/installers/src/Composer/Installers'),
     '' => array($vendorDir . '/asm89/twig-cache-extension/lib'),
 );

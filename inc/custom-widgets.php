@@ -2,7 +2,8 @@
 /**
  * Custom Widgets.
  *
- * @package Xlthlx
+ * @package  WordPress
+ * @subpackage  Xlthlx
  */
 
 /**
@@ -410,6 +411,7 @@ class Related_Widget extends WP_Widget {
 	}
 }
 
+add_action( 'widgets_init', 'xlt_register_widget' );
 /**
  * Register Widgets.
  */
@@ -419,5 +421,3 @@ function xlt_register_widget() {
 	register_widget( 'Related_Widget' );
 
 }
-
-add_action( 'widgets_init', 'xlt_register_widget' );
