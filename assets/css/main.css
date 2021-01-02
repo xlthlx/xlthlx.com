@@ -162,6 +162,29 @@ div.comments.children {
 	background-color: #e7e6f7 !important;
 }
 
+#cookie-notice {
+	text-align: right !important
+}
+
+.cookie-notice-container {
+	border-top: 1px solid rgba(0, 0, 0, .1)
+}
+
+.cookie-revoke-visible {
+	background-color: transparent !important
+}
+
+#cookie-notice .cn-button {
+	background-color: #fff !important;
+	font-weight: 700
+}
+
+.cn-text-container {
+	margin: 0 !important;
+	font-variant: all-small-caps;
+	font-size: 1.3rem
+}
+
 /*-------
 Colors
 _______*/
