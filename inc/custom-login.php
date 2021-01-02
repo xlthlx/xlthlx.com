@@ -1,17 +1,12 @@
 <?php
 /**
  * Custom login.
+ *
+ * @package  WordPress
+ * @subpackage  Xlthlx
  */
-
-add_action( 'login_enqueue_scripts', 'xlt_enqueue_login', 10 );
-add_filter( 'login_headerurl', 'xlt_login_url' );
-add_filter( 'login_headertext', 'xlt_login_title' );
-add_action( 'login_head', 'xlt_login_head' );
-add_action( 'init', 'xlt_login_classes' );
-add_filter( 'login_title', 'xlt_login_page_title', 99 );
 remove_filter( 'authenticate', 'wp_authenticate_username_password', 20 );
-add_filter( 'authenticate', 'xlt_authenticate', 20, 3 );
-
+add_action( 'login_enqueue_scripts', 'xlt_enqueue_login', 10 );
 /**
  * Enqueue login CSS.
  */
@@ -28,6 +23,7 @@ function xlt_enqueue_login() {
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js', [ 'jquery' ], filemtime( get_template_directory() . '/assets/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js' ), true );
 }
 
+add_filter( 'login_headerurl', 'xlt_login_url' );
 /**
  * Change the header url into login.
  *
@@ -37,6 +33,7 @@ function xlt_login_url() {
 	return get_home_url();
 }
 
+add_filter( 'login_headertext', 'xlt_login_title' );
 /**
  * Change the header title into login.
  *
@@ -78,11 +75,20 @@ function xlt_gettext( $translation, $login_texts, $domain ) {
 
 }
 
+add_action( 'login_head', 'xlt_login_head' );
 /**
  * Init filter strings.
  */
 function xlt_login_head() {
 	add_filter( 'gettext', 'xlt_gettext', 20, 3 );
+}
+
+add_action( 'init', 'xlt_login_classes' );
+/**
+ * Init script for classes.
+ */
+function xlt_login_classes() {
+	add_filter( 'login_footer', 'xlt_login_classes_footer' );
 }
 
 /**
@@ -99,13 +105,7 @@ function xlt_login_classes_footer() {
 			</script>";
 }
 
-/**
- * Init script for classes.
- */
-function xlt_login_classes() {
-	add_filter( 'login_footer', 'xlt_login_classes_footer' );
-}
-
+add_filter( 'login_title', 'xlt_login_page_title', 99 );
 /**
  * Change login title.
  *
@@ -117,6 +117,7 @@ function xlt_login_page_title() {
 
 }
 
+add_filter( 'authenticate', 'xlt_authenticate', 20, 3 );
 /**
  * Force the login with email.
  *

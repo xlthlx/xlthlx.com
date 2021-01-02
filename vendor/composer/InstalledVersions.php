@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '5052eaf690ff84910dc83da633348f39806a57f8',
+    'reference' => 'b119ab1b6bcbcfe552b845062192b1653320f096',
     'name' => 'xlthlx/boot',
   ),
   'versions' => 
@@ -60,6 +60,15 @@ private static $installed = array (
       ),
       'reference' => 'b93bcf0fa1fccb0b7d176b0967d969691cd74cca',
     ),
+    'dejurin/php-google-translate-for-free' => 
+    array (
+      'pretty_version' => '1.0.0',
+      'version' => '1.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'db5e3d0ac66e711dc41ed59618595aa3e3a7e475',
+    ),
     'hellonico/timber-dump-extension' => 
     array (
       'pretty_version' => '1.0.0',
@@ -94,7 +103,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '49da07b20a780d3fca9fe12e1db27975a2910c18',
+      'reference' => 'a2c04f857299a7119e96448249a9dd5954e099c1',
     ),
     'roundcube/plugin-installer' => 
     array (
@@ -109,6 +118,16 @@ private static $installed = array (
       array (
         0 => '*',
       ),
+    ),
+    'simplehtmldom/simplehtmldom' => 
+    array (
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
+      'aliases' => 
+      array (
+        0 => '9999999-dev',
+      ),
+      'reference' => '31ce157e7ba0c6ca35f94faedf031a945c3f6427',
     ),
     'symfony/polyfill-ctype' => 
     array (
@@ -180,7 +199,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '5052eaf690ff84910dc83da633348f39806a57f8',
+      'reference' => 'b119ab1b6bcbcfe552b845062192b1653320f096',
     ),
   ),
 );

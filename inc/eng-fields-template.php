@@ -2,15 +2,8 @@
 /**
  * Frontend functions for English translation
  *
- * @package WordPress
- * @subpackage XMaterial
- */
-
-/**
- * Translate the date.
- *
- * @return string $date
- * @throws Exception
+ * @package  WordPress
+ * @subpackage  Xlthlx
  */
 
 use simplehtmldom\HtmlDocument;
@@ -196,79 +189,6 @@ function get_content_en() {
 	return apply_filters( 'the_content', get_post_meta( $post_id, 'content_en', true ) );
 }
 
-
-add_action( 'comment_post', 'xlt_save_comment_lang' );
-add_filter( 'query_vars', 'xlt_query_vars_lang' );
-add_action( 'init', 'xlt_rewrite_tags_lang' );
-add_action( 'template_redirect', 'xlt_template_redirect' );
-
-/**
- * Save comment meta lang.
- *
- * @param $comment_id
- */
-function xlt_save_comment_lang( $comment_id ) {
-
-	update_comment_meta( $comment_id, 'comment_lang', $_POST['comment_lang'] );
-}
-
-
-/**
- * Add query var.
- *
- * @param $vars
- *
- * @return mixed
- */
-function xlt_query_vars_lang( $vars ) {
-	$vars[] = 'en';
-
-	return $vars;
-}
-
-/**
- *
- */
-function xlt_template_redirect() {
-	global $wp_query;
-
-	if ( ! isset( $wp_query->query_vars['en'] ) ) {
-		return;
-	}
-	$template = '/index.php';
-
-	if ( is_single() ) {
-		$template = '/single.php';
-	}
-
-	if ( is_page() && ! is_paged() ) {
-		$template = '/page.php';
-	}
-
-	if ( is_archive() ) {
-		$template = '/archive.php';
-	}
-
-	if ( is_search() ) {
-		$template = '/search.php';
-	}
-
-	set_query_var( 'template', $template );
-
-	include( get_template_directory() . $template );
-	exit;
-}
-
-
-/**
- * Add rewrite endpoint.
- */
-function xlt_rewrite_tags_lang() {
-
-	add_rewrite_endpoint( 'en', EP_ALL, 'en' );
-
-}
-
 /**
  * Get language var.
  *
@@ -314,7 +234,6 @@ function get_lang( $is_archive = false ) {
 	return $lang;
 }
 
-
 /**
  * Sets search page title.
  *
@@ -328,7 +247,6 @@ function get_search_title() {
 
 	return $title;
 }
-
 
 /**
  * Sets archive page title.
@@ -369,7 +287,75 @@ function get_archive_title() {
 	return $title . $text . '</h2>';
 }
 
+add_action( 'comment_post', 'xlt_save_comment_lang' );
+/**
+ * Save comment meta lang.
+ *
+ * @param $comment_id
+ */
+function xlt_save_comment_lang( $comment_id ) {
+	update_comment_meta( $comment_id, 'comment_lang', $_POST['comment_lang'] );
+}
 
+add_filter( 'query_vars', 'xlt_query_vars_lang' );
+/**
+ * Add query var.
+ *
+ * @param $vars
+ *
+ * @return mixed
+ */
+function xlt_query_vars_lang( $vars ) {
+	$vars[] = 'en';
+
+	return $vars;
+}
+
+add_action( 'template_redirect', 'xlt_template_redirect' );
+/**
+ * Template redirect for en.
+ */
+function xlt_template_redirect() {
+	global $wp_query;
+
+	if ( ! isset( $wp_query->query_vars['en'] ) ) {
+		return;
+	}
+	$template = '/index.php';
+
+	if ( is_single() ) {
+		$template = '/single.php';
+	}
+
+	if ( is_page() && ! is_paged() ) {
+		$template = '/page.php';
+	}
+
+	if ( is_archive() ) {
+		$template = '/archive.php';
+	}
+
+	if ( is_search() ) {
+		$template = '/search.php';
+	}
+
+	set_query_var( 'template', $template );
+
+	include( get_template_directory() . $template );
+	exit;
+}
+
+add_action( 'init', 'xlt_rewrite_tags_lang' );
+/**
+ * Add rewrite endpoint.
+ */
+function xlt_rewrite_tags_lang() {
+
+	add_rewrite_endpoint( 'en', EP_ALL, 'en' );
+
+}
+
+add_action( 'pre_get_posts', 'xlt_home_posts_per_page' );
 /**
  * Control the number of search results
  *
@@ -381,5 +367,3 @@ function xlt_home_posts_per_page( $query ) {
 		set_query_var( 'posts_per_page', 5 );
 	}
 }
-
-add_action( 'pre_get_posts', 'xlt_home_posts_per_page' );

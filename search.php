@@ -2,8 +2,6 @@
 /**
  * Search results page
  *
- * Methods for TimberHelper can be found in the /lib sub-directory
- *
  * @package  WordPress
  * @subpackage  Xlthlx
  */

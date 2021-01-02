@@ -6,14 +6,15 @@
 
 		<div class="row">
 			<div class="col-md-7">
-				<h2 class="display-5 pb-3">{{ post.title }}</h2>
+				<h2 class="display-5 pb-3">{{ lang == 'it'? post.title : post.title_en }}</h2>
 				<hr class="pt-0 mt-0 mb-4"/>
 				<section class="article-content">
 
 					<p>{{ lang == 'it'? post.date : post.date_en }}</p>
 
 					<div class="article-body pr-4">
-						{{ post.content }}
+						{{ fn('xlt_old_posts_warning', lang) }}
+						{{ lang == 'it'? post.content : post.content_en }}
 					</div>
 
 					{% include ['partial/social.twig'] %}
@@ -46,21 +47,41 @@
 					<hr class="mt-4 mb-4"/>
 				</section>
 
+				{% set comments_eng = 0 %}
+				{% set comments_it = 0 %}
+
+				{% for comment in post.comments %}
+					{% if comment.comment_lang == 'it' %}
+						{% set comments_it = comments_it + 1 %}
+					{% else %}
+						{% set comments_en = comments_en + 1 %}
+					{% endif %}
+				{% endfor %}
+
 				<!-- Comments -->
-				<section id="post-comments" class="comment-box">
-					{% if post.comments | length %}
-						<h3 class="mb-4">{{ _e( 'Comments') }}</h3>
+				{% if comments_it != 0 and lang == 'it' %}
+					<section id="post-comments" class="comment-box">
+						<h3 class="mb-4">Commenti</h3>
 						{% for comment in post.comments %}
 							{% include 'comment.twig' %}
 						{% endfor %}
 						<hr/>
-					{% endif %}
-				</section>
+					</section>
+				{% endif %}
+				{% if comments_en != 0 and lang == 'en' %}
+					<section id="post-comments" class="comment-box">
+						<h3 class="mb-4">Comments</h3>
+						{% for comment in post.comments %}
+							{% include 'comment-en.twig' %}
+						{% endfor %}
+						<hr/>
+					</section>
+				{% endif %}
 
 				<!-- Comment form -->
 				{% if 'open' == post.comment_status %}
 					<section id="comment-form" class="comment-box">
-						{{ fn('xlt_comment_form') }}
+						{{ lang == 'it'? fn('xlt_comment_form') : fn('xlt_comment_form_en') }}
 					</section>
 				{% endif %}
 

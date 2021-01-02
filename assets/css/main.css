@@ -1,3 +1,49 @@
+/*-------
+Fonts
+_______*/
+
+@font-face {
+	font-family: 'Titillium Web';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: local('Titillium Web Regular'), local('TitilliumWeb-Regular'),
+	url('../fonts/titillium-web-v6-latin-ext_latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+	url('../fonts/titillium-web-v6-latin-ext_latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+	font-family: 'Titillium Web';
+	font-style: italic;
+	font-weight: 400;
+	font-display: swap;
+	src: local('Titillium Web Italic'), local('TitilliumWeb-Italic'),
+	url('../fonts/titillium-web-v6-latin-ext_latin-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+	url('../fonts/titillium-web-v6-latin-ext_latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+
+@font-face {
+	font-family: 'Titillium Web';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: local('Titillium Web Bold'), local('TitilliumWeb-Bold'),
+	url('../fonts/titillium-web-v6-latin-ext_latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+	url('../fonts/titillium-web-v6-latin-ext_latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+
+@font-face {
+	font-family: 'Titillium Web';
+	font-style: italic;
+	font-weight: 700;
+	font-display: swap;
+	src: local('Titillium Web Bold Italic'), local('TitilliumWeb-BoldItalic'),
+	url('../fonts/titillium-web-v6-latin-ext_latin-700italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+	url('../fonts/titillium-web-v6-latin-ext_latin-700italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
 body {
 	padding-top: 3rem;
 	font-family: 'Titillium Web', Tahoma, Arial, serif !important;
@@ -90,14 +136,14 @@ ol.breadcrumb {
 }
 
 div.comments.children {
-	padding-left: 3rem!important;
+	padding-left: 3rem !important;
 }
 
 .comment-reply-title {
 	margin-bottom: 1rem !important;
 }
 
-.pink-hover:hover, .pink-hover:active{
+.pink-hover:hover, .pink-hover:active {
 	background-color: #d93f87 !important;
 	border-color: #d93f87 !important;
 }
@@ -111,6 +157,11 @@ div.comments.children {
 .code-badge-language {
 	display: none;
 }
+
+.alert {
+	background-color: #e7e6f7 !important;
+}
+
 /*-------
 Colors
 _______*/
