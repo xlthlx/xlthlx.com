@@ -177,6 +177,10 @@ div.comments.children {
 	font-size: 1.3rem;
 }
 
+.grecaptcha-badge {
+	display: none !important
+}
+
 /*-------
 Colors
 _______*/
