@@ -158,25 +158,6 @@ div.comments.children {
 	background-color: #e7e6f7 !important;
 }
 
-#cookie-notice {
-	text-align: right !important;
-}
-
-.cookie-revoke-visible {
-	background-color: transparent !important;
-}
-
-#cookie-notice .cn-button {
-	font-variant: all-small-caps;
-	font-weight: 700;
-}
-
-.cn-text-container {
-	margin: 0 !important;
-	font-variant: all-small-caps;
-	font-size: 1.3rem;
-}
-
 .grecaptcha-badge {
 	display: none !important
 }

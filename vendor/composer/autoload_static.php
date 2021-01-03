@@ -4,11 +4,11 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInite6b00e8610c1cfeb40886c961ed17339
+class ComposerStaticInitcee77e18789396bd254d1cfca19cfc80
 {
     public static $files = array (
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'a2c48002d05f7782d8b603bd2bcb5252' => __DIR__ . '/..' . '/johnbillion/extended-cpts/extended-cpts.php',
     );
 
@@ -101,11 +101,11 @@ class ComposerStaticInite6b00e8610c1cfeb40886c961ed17339
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInite6b00e8610c1cfeb40886c961ed17339::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInite6b00e8610c1cfeb40886c961ed17339::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInite6b00e8610c1cfeb40886c961ed17339::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInite6b00e8610c1cfeb40886c961ed17339::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInite6b00e8610c1cfeb40886c961ed17339::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitcee77e18789396bd254d1cfca19cfc80::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitcee77e18789396bd254d1cfca19cfc80::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitcee77e18789396bd254d1cfca19cfc80::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitcee77e18789396bd254d1cfca19cfc80::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitcee77e18789396bd254d1cfca19cfc80::$classMap;
 
         }, null, ClassLoader::class);
     }
