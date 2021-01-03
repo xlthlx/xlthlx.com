@@ -48,3 +48,7 @@ Thumbs.db
 /node_modules
 config.codekit3
 .idea
+!/vendor/
+!/vendor/*
+!/vendor/simplehtmldom/*
+!/vendor/simplehtmldom/simplehtmldom/*
