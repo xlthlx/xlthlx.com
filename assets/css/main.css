@@ -162,6 +162,14 @@ div.comments.children {
 	display: none !important
 }
 
+.cc-revoke.cc-bottom {
+	bottom: 0;
+	left: unset !important;
+	right: 3em;
+	border-top-left-radius: 0 !important;
+	border-top-right-radius: 0 !important;
+}
+
 /*-------
 Colors
 _______*/
