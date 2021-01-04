@@ -26,15 +26,6 @@ function xlt_remove_admin_bar_wp_logo() {
 	$wp_admin_bar->remove_node( 'aioseo-main' );
 }
 
-add_action( 'admin_init', 'xlt_add_editor_style' );
-/**
- * Registers an editor stylesheet in a sub-directory.
- */
-function xlt_add_editor_style() {
-	add_editor_style( get_template_directory_uri() . '/assets/css/admin/editor.css' );
-	add_editor_style( get_template_directory_uri() . '/assets/css/admin/gutenberg.css' );
-}
-
 add_filter( 'pre_option_link_manager_enabled', '__return_true' );
 add_filter( 'wpcf7_load_js', '__return_false' );
 add_filter( 'wpcf7_load_css', '__return_false' );
