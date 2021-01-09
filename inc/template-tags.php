@@ -34,8 +34,8 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 			'before'         => '<li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">',
 			'before_active'  => '<li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">',
 			'after'          => '</li>',
-			'link'           => '<a href="%1$s" title="%2$s" itemscope itemtype="http://schema.org/Thing" itemprop="item" itemid="%1$s">%3$s</a>',
-			'active'         => '<span itemscope itemtype="http://schema.org/Thing" itemprop="item" itemid="%1$s">%2$s</span>',
+			'link'           => '<a href="%1$s" title="%2$s" itemscope itemtype="http://schema.org/Thing" itemprop="item-name" itemid="%1$s">%3$s</a>',
+			'active'         => '<span itemscope itemtype="http://schema.org/Thing" itemprop="item-name" itemid="%1$s">%2$s</span>',
 			'name'           => '<span itemprop="name">%1$s</span>',
 			'position'       => '<meta itemprop="position" content="%1$s">',
 			'show_on_home'   => false,
@@ -233,9 +233,9 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 					echo $args['separator'];
 				}
 			} else if ( is_single() && ! is_attachment() ) {
-				if ( get_post_type() != 'post' ) {
+				$post_type = get_post_type_object( get_post_type() );
+				if ( $post_type && $post_type !== 'post' ) {
 					$position ++;
-					$post_type = get_post_type_object( get_post_type() );
 
 					if ( $position > 1 ) {
 						echo $args['separator'];
@@ -312,7 +312,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				}
 			} else if ( is_post_type_archive() ) {
 				$post_type = get_post_type_object( get_post_type() );
-				if ( get_query_var( 'paged' ) ) {
+				if ( $post_type && get_query_var( 'paged' ) ) {
 
 					$position ++;
 
