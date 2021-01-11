@@ -34,7 +34,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 			'before'         => '<li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">',
 			'before_active'  => '<li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">',
 			'after'          => '</li>',
-			'link'           => '<a href="%1$s" title="%2$s" itemscope itemtype="http://schema.org/Thing" itemprop="name" itemid="%1$s">%3$s</a>',
+			'link'           => '<a href="%1$s" title="%2$s" itemscope itemtype="http://schema.org/Thing" itemprop="item" itemid="%1$s">%3$s</a>',
 			'active'         => '<span itemscope itemtype="http://schema.org/Thing" itemprop="name" itemid="%1$s">%2$s</span>',
 			'name'           => '<span itemprop="name">%1$s</span>',
 			'position'       => '<meta itemprop="position" content="%1$s">',
