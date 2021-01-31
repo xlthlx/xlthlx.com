@@ -7,13 +7,15 @@
 					   aria-expanded="false">{{ item.title }}</a>
 					<ul class="dropdown-menu bg-dark rounded-0" aria-labelledby="{{ item.slug }}">
 						{% for item in item.children %}
-							<li><a class="dropdown-item text-light" href="{{ item.link }}">{{ item.title }}</a></li>
+							{% set target = item.target? ' target="'~item.target~'"': '' %}
+							<li><a class="dropdown-item text-light"{{ target }} href="{{ item.link }}">{{ item.title }}</a></li>
 						{% endfor %}
 					</ul>
 				</li>
 			{% else %}
+				{% set target = item.target? ' target="'~item.target~'"': '' %}
 				<li class="nav-item {{ item.classes | join(' ') }}">
-					<a class="nav-link" target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
+					<a class="nav-link"{{ target }} href="{{ item.link }}">{{ item.title }}</a>
 				</li>
 			{% endif %}
 		{% endfor %}
