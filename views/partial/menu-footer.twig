@@ -1,8 +1,9 @@
 {% if menu %}
-	{% for item in items %}
-		<span class="badge bg-dark rounded-0 border-0">|</span>
-		<a class="nav-link d-inline p-0" target="{{ item.target }}" href="{{ item.link }}">
-			{{ item.title }}
-		</a>
-	{% endfor %}
+    {% for item in items %}
+        {% set target = item.target? ' target="'~item.target~'"': '' %}
+        <span class="badge bg-dark rounded-0 border-0">|</span>
+        <a class="nav-link d-inline p-0"{{ target }} href="{{ item.link }}">
+            {{ item.title }}
+        </a>
+    {% endfor %}
 {% endif %}
