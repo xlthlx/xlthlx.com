@@ -2,7 +2,8 @@
 		{% for item in items %}
 			{% if item.children %}
 				<li class="nav-item dropdown {{ item.classes | join(' ') }}">
-					<a class="nav-link dropdown-toggle" target="{{ item.target }}" href="{{ item.link }}"
+					{% set target = item.target? ' target="'~item.target~'"': '' %}
+					<a class="nav-link dropdown-toggle"{{ target }} href="{{ item.link }}"
 					   id="{{ item.slug }}" data-bs-toggle="dropdown" aria-haspopup="true"
 					   aria-expanded="false">{{ item.title }}</a>
 					<ul class="dropdown-menu bg-dark rounded-0" aria-labelledby="{{ item.slug }}">
