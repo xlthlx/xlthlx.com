@@ -1,0 +1,44 @@
+<script async custom-element="amp-sidebar"
+        src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+<style>
+    body {
+        padding-top: 0 !important;
+    }
+    .amp-sidebar-toolbar-target-hidden {
+        display: none;
+    }
+</style>
+<amp-sidebar id="sidebar-right" layout="nodisplay" side="right">
+    <button on="tap:sidebar-right.close">Close sidebar</button>
+    <nav toolbar="(min-width: 784px)"
+         toolbar-target="target-element-right">
+
+        <ul>
+            {% for item in menu.get_items %}
+                {% set target = item.target? ' target="'~item.target~'"': '' %}
+                <li class="nav-item {{ item.classes | join(' ') }}">
+                    <a class="nav-link"{{ target }}
+                       href="{{ item.link }}">{{ item.title }}</a>
+                </li>
+                {% if item.children %}
+                    <ul>
+                        {% for item in item.children %}
+                            {% set target = item.target? ' target="'~item.target~'"': '' %}
+                            <li><a class="dropdown-item text-light"{{ target }}
+                                   href="{{ item.link }}">{{ item.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+    </nav>
+</amp-sidebar>
+
+<button class="navbar-toggler" on="tap:sidebar-right.toggle" tabindex="0"
+        aria-expanded="false" aria-label="{{ _e( 'Toggle navigation') }}">
+    ☰
+</button>
+<div id="target-element-right">
+</div>
