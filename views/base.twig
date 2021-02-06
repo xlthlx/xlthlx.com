@@ -1,9 +1,9 @@
 {% block html_head_container %}
 
-	{% include 'header.twig' %}
+    {% include 'header.twig' %}
 
-	{% block head %}
-	{% endblock %}
+    {% block head %}
+    {% endblock %}
 
 {% endblock %}
 
@@ -12,54 +12,56 @@
 <a class="visually-hidden" href="#content">{{ _e( 'Skip to content') }}</a>
 
 <header>
-	{% block header %}
-		{% include 'partial/navbar.twig' %}
-	{% endblock %}
+    {% block header %}
+        {% if not is_amp %}
+            {% include 'partial/navbar.twig' %}
+        {% endif %}
+    {% endblock %}
 </header>
 
 <main class="py-0 mb-0">
-	<div class="container-fluid p-0">
-		<div class="py-3 px-5 bg-light rounded-0">
-			<div class="row px-0">
-				<h1 class="display-4 font-italic col-md-6 pt-2 mb-0">
-					<a title="Homepage" class="text-white text-decoration-none"
-					   href="{{ site.url }}">{{ site.name }}</a>
-				</h1>
-				<p class="lead col-md-6 pt-4 mt-1 mb-0 pb-0 text-md-end text-white fs-6">{{ site.description }}</p>
-			</div>
-		</div>
-	</div>
-	{% if not is_home %}
-		<div class="container bg-white pt-4 px-4 pb-0">
-			<nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
-				{% if (fn('xlt_breadcrumbs')) %}
-					{{ fn('xlt_breadcrumbs') }}
-				{% endif %}
-			</nav>
-		</div>
-	{% endif %}
+    <div class="container-fluid p-0">
+        <div class="py-3 px-5 bg-light rounded-0">
+            <div class="row px-0">
+                <h1 class="display-4 font-italic col-md-6 pt-2 mb-0">
+                    <a title="Homepage" class="text-white text-decoration-none"
+                       href="{{ site.url }}">{{ site.name }}</a>
+                </h1>
+                <p class="lead col-md-6 pt-4 mt-1 mb-0 pb-0 text-md-end text-white fs-6">{{ site.description }}</p>
+            </div>
+        </div>
+    </div>
+    {% if not is_home %}
+        <div class="container bg-white pt-4 px-4 pb-0">
+            <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
+                {% if (fn('xlt_breadcrumbs')) %}
+                    {{ fn('xlt_breadcrumbs') }}
+                {% endif %}
+            </nav>
+        </div>
+    {% endif %}
 
-	<div class="container px-4 py-5 bg-white mb-0" id="content">
+    <div class="container px-4 py-5 bg-white mb-0" id="content">
 
-		{% if title %}
-			<h2 class="display-5 pb-3">{{ title }}</h2>
-			<hr class="pt-0 mt-0 mb-4"/>
-		{% endif %}
+        {% if title %}
+            <h2 class="display-5 pb-3">{{ title }}</h2>
+            <hr class="pt-0 mt-0 mb-4"/>
+        {% endif %}
 
-		{% block content %}
-			Sorry, no content
-		{% endblock %}
+        {% block content %}
+            Sorry, no content
+        {% endblock %}
 
-	</div>
+    </div>
 </main>
 
 {% block footer %}
-	<footer>
-		<div class="pt-4 pb-3 bg-dark navbar-dark">
-			{% include 'footer.twig' %}
-		</div>
-	</footer>
-	{{ fn('wp_footer') }}
+    <footer>
+        <div class="pt-4 pb-3 bg-dark navbar-dark">
+            {% include 'footer.twig' %}
+        </div>
+    </footer>
+    {{ fn('wp_footer') }}
 {% endblock %}
 
 <span id="db3bd4a3c96f1fe80cd12d8df05e6320"></span>
