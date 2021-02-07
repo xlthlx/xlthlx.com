@@ -155,6 +155,16 @@ class xlthlxSite extends Timber\Site {
 				'before_title'  => '<h4 class="font-italic pb-2">',
 				'after_title'   => '</h4>',
 		) );
+
+		register_sidebar( array(
+				'name'          => esc_html__( 'AMP Sidebar', 'xlthlx' ),
+				'id'            => 'amp_sidebar',
+				'description'   => esc_html__( 'AMP Sidebar', 'xlthlx' ),
+				'before_widget' => '<div id="%1$s" class="widget %2$s p-4 mb-3 rounded-0">',
+				'after_widget'  => '</div>',
+				'before_title'  => '<h4 class="font-italic pb-2">',
+				'after_title'   => '</h4>',
+		) );
 	}
 
 	/**
