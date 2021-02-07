@@ -1,12 +1,16 @@
-<amp-sidebar id="sidebar" class="bg-dark" layout="nodisplay" side="left">
-	<button class="navbar-toggler text-white border-0 shadow-none" on="tap:sidebar.close">X</button>
+<amp-sidebar id="sidebar" class="bg-dark" layout="nodisplay" side="right">
+	<div class="d-flex align-items-end flex-column">
+		<div class="my-2 ml-auto me-3">
+			<button class="navbar-toggler text-white border-0 shadow-none" on="tap:sidebar.close">X</button>
+		</div>
+	</div>
 	<nav toolbar="(min-width: 784px)" toolbar-target="target-element">
 
 		<ul>
 			{% for item in menu.get_items %}
 				{% set target = item.target? ' target="'~item.target~'"': '' %}
 				<li class="nav-item {{ item.classes | join(' ') }}">
-					<a class="nav-link"{{ target }}href="{{ item.link }}">{{ item.title }}</a>
+					<a class="nav-link" {{ target }}href="{{ item.link }}">{{ item.title }}</a>
 				</li>
 				{% if item.children %}
 					<ul>
@@ -21,24 +25,20 @@
 					</ul>
 				{% endif %}
 			{% endfor %}
+			<li class="my-3 mx-3">
+				{% include 'searchform.twig' %}
+			</li>
 		</ul>
 
 	</nav>
 </amp-sidebar>
 <header>
-	<div class="bg-dark border-0 shadow-none banner row">
-		<div class="col-md-10">
-			<div class="my-2">
-				<button class="navbar-toggler text-white border-0 shadow-none" on="tap:sidebar.toggle" tabindex="0"
-						aria-expanded="false" aria-label="{{ _e( 'Toggle navigation') }}">
-					☰
-				</button>
-			</div>
-		</div>
-		<div class="col-md-2">
-			<div class="my-2 px-3">
-				{% include 'searchform.twig' %}
-			</div>
+	<div class="bg-dark border-0 shadow-none banner d-flex align-items-end flex-column">
+		<div class="my-2 ml-auto me-3">
+			<button class="navbar-toggler text-white border-0 shadow-none" on="tap:sidebar.toggle" tabindex="0"
+					aria-expanded="false" aria-label="{{ _e( 'Toggle navigation') }}">
+				☰
+			</button>
 		</div>
 	</div>
 </header>
