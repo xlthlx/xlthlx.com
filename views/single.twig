@@ -91,10 +91,7 @@
 			</div>
 			<div class="col-md-4">
 				<aside class="sidebar px-5">
-					{% if is_amp and amp_sidebar %}
-						{{ amp_sidebar }}
-						{% include 'amp/archives.twig' %}
-					{% elseif sidebar %}
+					{% if sidebar %}
 						{{ sidebar }}
 					{% endif %}
 				</aside>

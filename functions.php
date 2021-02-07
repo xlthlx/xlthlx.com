@@ -53,7 +53,6 @@ class xlthlxSite extends Timber\Site {
 		$context['current_user']     = new Timber\User();
 		$context['sidebar']          = $timber::get_widgets( 'sidebar' );
 		$context['page_sidebar']     = $timber::get_widgets( 'page_sidebar' );
-		$context['amp_sidebar']      = $timber::get_widgets( 'amp_sidebar' );
 		if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
 			$context['is_amp'] = true;
 		}
@@ -151,16 +150,6 @@ class xlthlxSite extends Timber\Site {
 				'name'          => esc_html__( 'Page Sidebar', 'xlthlx' ),
 				'id'            => 'page_sidebar',
 				'description'   => esc_html__( 'Page Sidebar', 'xlthlx' ),
-				'before_widget' => '<div id="%1$s" class="widget %2$s p-4 mb-3 rounded-0">',
-				'after_widget'  => '</div>',
-				'before_title'  => '<h4 class="font-italic pb-2">',
-				'after_title'   => '</h4>',
-		) );
-
-		register_sidebar( array(
-				'name'          => esc_html__( 'AMP Sidebar', 'xlthlx' ),
-				'id'            => 'amp_sidebar',
-				'description'   => esc_html__( 'AMP Sidebar', 'xlthlx' ),
 				'before_widget' => '<div id="%1$s" class="widget %2$s p-4 mb-3 rounded-0">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h4 class="font-italic pb-2">',

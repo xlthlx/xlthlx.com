@@ -170,6 +170,29 @@ div.comments.children {
 	border-top-right-radius: 0 !important;
 }
 
+.months-container {
+	overflow-x: hidden;
+}
+
+.months-container ul {
+	list-style-type: none;
+	position: relative;
+	left: -1px;
+	padding: 0;
+}
+
+.months-container ul li {
+	display: inline-block;
+	line-height: 1;
+	padding: 0 0.6em;
+	margin-bottom: 0.6em;
+	border-right: 1px solid rgba(0, 5, 5, .2);
+}
+
+.months-container ul li:last-child {
+	border-right: none;
+}
+
 /*-------
 Colors
 _______*/
