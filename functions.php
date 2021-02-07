@@ -53,6 +53,7 @@ class xlthlxSite extends Timber\Site {
 		$context['current_user']     = new Timber\User();
 		$context['sidebar']          = $timber::get_widgets( 'sidebar' );
 		$context['page_sidebar']     = $timber::get_widgets( 'page_sidebar' );
+		$context['amp_sidebar']      = $timber::get_widgets( 'amp_sidebar' );
 		if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
 			$context['is_amp'] = true;
 		}
