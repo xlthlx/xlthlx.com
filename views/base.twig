@@ -1,6 +1,10 @@
 {% block html_head_container %}
 
-    {% include 'header.twig' %}
+    {% if is_amp %}
+        {% include 'amp/header.twig' %}
+    {% else %}
+        {% include 'header.twig' %}
+    {% endif %}
 
     {% block head %}
     {% endblock %}
