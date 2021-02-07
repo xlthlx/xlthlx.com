@@ -91,7 +91,9 @@
 			</div>
 			<div class="col-md-4">
 				<aside class="sidebar px-5">
-					{% if sidebar %}
+					{% if is_amp and if amp_sidebar %}
+						{{ amp_sidebar }}
+					{% elseif sidebar %}
 						{{ sidebar }}
 					{% endif %}
 				</aside>
