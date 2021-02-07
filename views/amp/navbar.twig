@@ -1,13 +1,12 @@
-<amp-sidebar id="sidebar" layout="nodisplay" side="left">
-	<button on="tap:sidebar.close">X</button>
+<amp-sidebar id="sidebar" class="bg-dark" layout="nodisplay" side="left">
+	<button class="navbar-toggler text-white border-0 shadow-none" on="tap:sidebar.close">X</button>
 	<nav toolbar="(min-width: 784px)" toolbar-target="target-element">
 
 		<ul>
 			{% for item in menu.get_items %}
 				{% set target = item.target? ' target="'~item.target~'"': '' %}
 				<li class="nav-item {{ item.classes | join(' ') }}">
-					<a class="nav-link"{{ target }}
-					   href="{{ item.link }}">{{ item.title }}</a>
+					<a class="nav-link"{{ target }}href="{{ item.link }}">{{ item.title }}</a>
 				</li>
 				{% if item.children %}
 					<ul>
