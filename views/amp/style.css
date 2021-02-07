@@ -2,8 +2,10 @@ body {
 	padding-top: 0 !important;
 }
 
-.amp-sidebar-toolbar-target-hidden {
-	display: none;
+@media (min-width: 784px) {
+	.amp-sidebar-toolbar-target-hidden {
+		display: none;
+	}
 }
 
 amp-accordion section[expanded] h2 {
@@ -30,4 +32,9 @@ amp-accordion section[expanded] .accordion-button::after {
 
 .navbar-toggler {
 	font-size: 1.8rem;
+}
+
+amp-sidebar ul {
+	padding-left: 1rem;
+	padding-right: 1rem;
 }
