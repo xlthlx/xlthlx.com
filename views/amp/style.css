@@ -1,0 +1,13 @@
+body {
+	padding-top: 0 !important;
+}
+
+.amp-sidebar-toolbar-target-hidden {
+	display: none;
+}
+
+.accordion-header {
+	background-color: inherit !important;
+	padding-right: 0 !important;
+	border: none !important;
+}
