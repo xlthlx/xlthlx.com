@@ -1,6 +1,6 @@
-<amp-sidebar id="sidebar-right" layout="nodisplay" side="right">
-	<button on="tap:sidebar-right.close">X</button>
-	<nav toolbar="(min-width: 784px)" toolbar-target="target-element-right">
+<amp-sidebar id="sidebar" layout="nodisplay" side="left">
+	<button on="tap:sidebar.close">X</button>
+	<nav toolbar="(min-width: 784px)" toolbar-target="target-element">
 
 		<ul>
 			{% for item in menu.get_items %}
@@ -26,10 +26,22 @@
 
 	</nav>
 </amp-sidebar>
-
-<button class="navbar-toggler" on="tap:sidebar-right.toggle" tabindex="0"
-		aria-expanded="false" aria-label="{{ _e( 'Toggle navigation') }}">
-	☰
-</button>
-<div id="target-element-right">
+<header>
+	<div class="bg-dark border-0 shadow-none banner row">
+		<div class="col-md-10">
+			<div class="my-2">
+				<button class="navbar-toggler text-white border-0 shadow-none" on="tap:sidebar.toggle" tabindex="0"
+						aria-expanded="false" aria-label="{{ _e( 'Toggle navigation') }}">
+					☰
+				</button>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="my-2 px-3">
+				{% include 'searchform.twig' %}
+			</div>
+		</div>
+	</div>
+</header>
+<div id="target-element">
 </div>

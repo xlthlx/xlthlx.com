@@ -51,7 +51,14 @@ class Archive_Widget extends WP_Widget {
 
 			<div class="textwidget">
 
-				<?php $this->render(); ?>
+				<?php
+				if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
+					$this->render_amp();
+				}
+				else {
+					$this->render();
+				}
+				 ?>
 
 			</div>
 
@@ -121,14 +128,14 @@ class Archive_Widget extends WP_Widget {
 					</button>
 				</h2>
 				<div id="collapse-<?php echo $month->year; ?>" class="accordion-collapse collapse" aria-labelledby="year-<?php echo $month->year; ?>" data-bs-parent="#archives">
-				<div class="accordion-body">
+				<div class="accordion-body months-container">
 				<ul>
-			<?php } ?>
-			<li>
-				<a href="<?php bloginfo( 'url' ) ?>/<?php echo $month->year; ?>/<?php echo date( "m", mktime( 0, 0, 0, $month->month, 1, $month->year ) ) ?>/">
-					<?php echo date_i18n( "F", mktime( 0, 0, 0, $month->month, 1, $month->year ) ) ?>
-				</a>
-			</li>
+				<?php } ?>
+					<li>
+						<a href="<?php bloginfo( 'url' ) ?>/<?php echo $month->year; ?>/<?php echo date( "m", mktime( 0, 0, 0, $month->month, 1, $month->year ) ) ?>/">
+							<?php echo date_i18n( "m", mktime( 0, 0, 0, $month->month, 1, $month->year ) ) ?>
+						</a>
+					</li>
 			<?php $year_prev = $year_current;
 
 		endforeach;
@@ -138,6 +145,54 @@ class Archive_Widget extends WP_Widget {
 </div>';
 
 		echo '</div>';
+
+	}
+
+		/**
+	 * Renders the Widget Content AMP.
+	 */
+	public function render_amp() {
+
+		global $wpdb;
+
+		echo '<amp-accordion id="archives" class="accordion accordion-flush" animate>';
+
+		$year_prev = null;
+		$months    = $wpdb->get_results( "SELECT DISTINCT MONTH( post_date ) AS month ,  YEAR( post_date ) AS year, COUNT( id ) as post_count FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now( ) and post_type = 'post' GROUP BY month , year ORDER BY post_date DESC" );
+		foreach ( $months as $month ) :
+			$year_current = $month->year;
+
+			if ( $year_current !== $year_prev ) {
+				if ( $year_prev !== null ) {
+					echo '</ul>
+		</div>
+	</div>
+</section>';
+				} ?>
+				<section class="accordion-item">
+				<h2 class="accordion-header" id="year-<?php echo $month->year; ?>">
+					<button class="accordion-button collapsed">
+						<?php echo $month->year; ?>
+					</button>
+				</h2>
+				<div id="collapse-<?php echo $month->year; ?>" class="accordion-collapse collapse show">
+				<div class="accordion-body months-container">
+				<ul>
+				<?php } ?>
+					<li>
+						<a href="<?php bloginfo( 'url' ) ?>/<?php echo $month->year; ?>/<?php echo date( "m", mktime( 0, 0, 0, $month->month, 1, $month->year ) ) ?>/">
+							<?php echo date_i18n( "m", mktime( 0, 0, 0, $month->month, 1, $month->year ) ) ?>
+						</a>
+					</li>
+			<?php $year_prev = $year_current;
+
+		endforeach;
+		echo '</ul>
+		</div>
+	</div>
+</section>';
+
+		echo '</amp-accordion>';
 
 	}
 
