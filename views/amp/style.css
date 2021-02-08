@@ -38,3 +38,9 @@ amp-sidebar ul {
 	padding-left: 1rem;
 	padding-right: 1rem;
 }
+
+#amp-mobile-version-switcher {
+	width: 10%;
+	margin: 0 auto;
+	text-align: center;
+}

@@ -11,8 +11,8 @@
 
 {% endblock %}
 
-<a class="visually-hidden" id="top"></a>
 <body class="{{ body_class }}">
+<a class="visually-hidden" id="top"></a>
 {% block header %}
 	{% if is_amp %}
 		{% include 'amp/navbar.twig' %}
@@ -63,10 +63,14 @@
 {% block footer %}
 	<footer>
 		<div class="pt-4 pb-3 bg-dark navbar-dark">
-			{% include 'footer.twig' %}
+			{% if is_amp %}
+				{% include 'amp/footer.twig' %}
+			{% else %}
+				{% include 'footer.twig' %}
+			{% endif %}
+			{{ fn('wp_footer') }}
 		</div>
 	</footer>
-	{{ fn('wp_footer') }}
 {% endblock %}
 
 <span id="db3bd4a3c96f1fe80cd12d8df05e6320"></span>
