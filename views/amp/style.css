@@ -44,3 +44,23 @@ amp-sidebar ul {
 	margin: 0 auto;
 	text-align: center;
 }
+
+#scrollToTopButton:focus {
+	border: none !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus {
+	outline: none;
+}
+
+amp-consent {
+	background-color: transparent !important;
+}
+
+.header h1 {
+	padding-top: 0 !important;
+}
+
+.header p.lead {
+	margin-top: 0 !important;
+}

@@ -1,6 +1,7 @@
 <div class="container">
 	<p class="navbar-nav float-end d-inline">
-		<a id="scrollToTopButton" title="Back to top" class="nav-link d-inline p-0 border-0" on="tap:top.scrollTo(duration=400)">
+		<a id="scrollToTopButton" title="Back to top" class="nav-link d-inline p-0 border-0"
+		   on="tap:top.scrollTo(duration=400)">
 			<svg style="width:20px;height:20px" data-icon="arrow-up" role="img" xmlns="http://www.w3.org/2000/svg"
 				 viewBox="0 0 448 512">
 				<path fill="currentColor"
@@ -57,7 +58,7 @@
 	</p>
 </div>
 <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-<amp-analytics type="gtag" data-credentials="include">
+<amp-analytics data-block-on-consent type="gtag" data-credentials="include">
 	<script type="application/json">
 		{
 			"vars": {
@@ -77,4 +78,33 @@
 		}
 	</script>
 </amp-analytics>
+<amp-consent id="cookieConsent" layout="nodisplay">
+	<script type="application/json">{
+			"consentInstanceId": "consent-id",
+			"consentRequired": true,
+			"promptUI": "consent-dialog",
+			"postPromptUI": "post-consent-ui"
+		}</script>
+	<div class="bg-light text-white pt-3" id="consent-dialog">
+		<div class="consent-popup row">
+			<div class="col-6">
+				<p class="ps-3 pt-1">Cookies, anyone?
+					<a aria-label="Policy" role="button" tabindex="0" class="text-decoration-underline text-white"
+					   href="{{ site.url }}/policy/">
+						Policy
+					</a>
+				</p>
+			</div>
+			<div class="col-6 d-flex align-items-end flex-column">
+				<p>
+					<button class="btn btn-light rounded-0" on="tap:cookieConsent.reject">No way!</button>
+					<button class="btn btn-outline-primary me-3 rounded-0" on="tap:cookieConsent.accept">Whatever.</button>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div id="post-consent-ui" class="d-flex align-items-end flex-column">
+		<button class="btn btn-primary rounded-0" on="tap:cookieConsent.prompt()">Cookies</button>
+	</div>
+</amp-consent>
 
