@@ -30,10 +30,9 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 		$defaults = array(
 			'wrap_before'    => '<ol class="breadcrumb" id="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">',
 			'wrap_after'     => '</ol>',
-			'separator'      => '<span class="badge bg-white text-dark rounded-0 border-0 fw-bold pt-2">|</span>',
 			'before'         => '<li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">',
 			'before_active'  => '<li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">',
-			'after'          => '</li>',
+			'after'          => '',
 			'link'           => '<a href="%1$s" title="%2$s" itemscope itemtype="http://schema.org/Thing" itemprop="item" itemid="%1$s">%3$s</a>',
 			'active'         => '<span itemscope itemtype="http://schema.org/Thing" itemprop="name" itemid="%1$s">%2$s</span>',
 			'name'           => '<span itemprop="name">%1$s</span>',
@@ -41,7 +40,6 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 			'show_on_home'   => false,
 			'show_home_link' => true,
 			'show_current'   => true,
-			'show_last_sep'  => true,
 			'text'           => array(
 				'home'     => __( 'Home' ),
 				'category' => '%s',
@@ -91,10 +89,6 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 					$position ++;
 
-					if ( $position > 1 ) {
-						echo $args['separator'];
-					}
-
 					$link = $args['before'];
 					$link .= sprintf( $args['link'], get_category_link( $cat ), get_cat_name( $cat ), sprintf( $args['name'], get_cat_name( $cat ) ) );
 					$link .= sprintf( $args['position'], $position );
@@ -108,30 +102,20 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 					$link .= sprintf( $args['link'], get_category_link( $cat ), get_cat_name( $cat ), sprintf( $args['name'], get_cat_name( $cat ) ) );
 					$link .= sprintf( $args['position'], $position );
 					$link .= $args['after'];
-					echo $args['separator'] . $link;
-					echo $args['separator'] . $args['before'] . sprintf( $args['text']['page'], get_query_var( 'paged' ) ) . $args['after'];
+					echo $link;
+					echo $args['before'] . sprintf( $args['text']['page'], get_query_var( 'paged' ) ) . $args['after'];
 				} else {
 					if ( $args['show_current'] ) {
-
-						if ( $position >= 1 ) {
-							echo $args['separator'];
-						}
 
 						$position ++;
 						echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['name'], sprintf( $args['text']['category'], single_cat_title( '', false ) ) ) ) . sprintf( $args['position'], $position ) . $args['after'];
 
-					} else if ( $args['show_last_sep'] ) {
-						echo $args['separator'];
 					}
 				}
 			} else if ( is_search() ) {
 				if ( get_query_var( 'paged' ) ) {
 
 					$position ++;
-
-					if ( $args['show_home_link'] ) {
-						echo $args['separator'];
-					}
 
 					$link = $args['before'];
 					$link .= sprintf(
@@ -143,38 +127,23 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 					$link .= sprintf( $args['position'], $position );
 					$link .= $args['after'];
 					echo $link;
-					echo $args['separator'] . $args['before'] . sprintf( $args['text']['page'], get_query_var( 'paged' ) ) . $args['after'];
+					echo $args['before'] . sprintf( $args['text']['page'], get_query_var( 'paged' ) ) . $args['after'];
 
 				} else {
 					if ( $args['show_current'] ) {
-
-						if ( $position >= 1 ) {
-							echo $args['separator'];
-						}
-
 						$position ++;
 						echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['search'], get_search_query() ) ) . sprintf( $args['position'], $position ) . $args['after'];
 
-					} else if ( $args['show_last_sep'] ) {
-						echo $args['separator'];
 					}
 				}
 			} else if ( is_year() ) {
-				if ( $args['show_home_link'] && $args['show_current'] ) {
-					echo $args['separator'];
-				}
 
 				if ( $args['show_current'] ) {
 					$position ++;
 					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_time( 'Y' ) ) . sprintf( $args['position'], $position ) . $args['after'];
 
-				} else if ( $args['show_home_link'] && $args['show_last_sep'] ) {
-					echo $args['separator'];
 				}
 			} else if ( is_month() ) {
-				if ( $args['show_home_link'] ) {
-					echo $args['separator'];
-				}
 
 				$position ++;
 
@@ -191,14 +160,9 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 				if ( $args['show_current'] ) {
 					$position ++;
-					echo $args['separator'] . $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_time( 'F' ) ) . sprintf( $args['position'], $position ) . $args['after'];
-				} else if ( $args['show_last_sep'] ) {
-					echo $args['separator'];
+					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_time( 'F' ) ) . sprintf( $args['position'], $position ) . $args['after'];
 				}
 			} else if ( is_day() ) {
-				if ( $args['show_home_link'] ) {
-					echo $args['separator'];
-				}
 
 				$position ++;
 
@@ -228,18 +192,12 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 				if ( $args['show_current'] ) {
 					$position ++;
-					echo $args['separator'] . $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_time( 'd' ) ) . sprintf( $args['position'], $position ) . $args['after'];
-				} else if ( $args['show_last_sep'] ) {
-					echo $args['separator'];
+					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_time( 'd' ) ) . sprintf( $args['position'], $position ) . $args['after'];
 				}
 			} else if ( is_single() && ! is_attachment() ) {
 				$post_type = get_post_type_object( get_post_type() );
 				if ( $post_type && $post_type !== 'post' ) {
 					$position ++;
-
-					if ( $position > 1 ) {
-						echo $args['separator'];
-					}
 
 					$link = $args['before'];
 					$link .= sprintf(
@@ -254,9 +212,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 					if ( $args['show_current'] ) {
 						$position ++;
-						echo $args['separator'] . $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_title() ) . sprintf( $args['position'], $position ) . $args['after'];
-					} else if ( $args['show_last_sep'] ) {
-						echo $args['separator'];
+						$args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_title() ) . sprintf( $args['position'], $position ) . $args['after'];
 					}
 				} else {
 					$cat       = get_the_category();
@@ -266,10 +222,6 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 					$parents[] = $catID;
 					foreach ( $parents as $cat ) {
 						$position ++;
-
-						if ( $position > 1 ) {
-							echo $args['separator'];
-						}
 
 						$link = $args['before'];
 						$link .= sprintf(
@@ -295,19 +247,16 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 						);
 						$link .= sprintf( $args['position'], $position );
 						$link .= $args['after'];
-						echo $args['separator'] . $link;
+						echo $link;
 
 						$position ++;
-						echo $args['separator'] . $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['cpage'], get_query_var( 'cpage' ) ) ) . sprintf( $args['position'], $position ) . $args['after'];
+						echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['cpage'], get_query_var( 'cpage' ) ) ) . sprintf( $args['position'], $position ) . $args['after'];
 					} else {
 						$position ++;
 
 						if ( $args['show_current'] ) {
-							echo $args['separator'] . $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['name'], get_the_title() ) ) . sprintf( $args['position'], $position ) . $args['after'];
-						} else if ( $args['show_last_sep'] ) {
-							echo $args['separator'];
+							echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['name'], get_the_title() ) ) . sprintf( $args['position'], $position ) . $args['after'];
 						}
-
 					}
 				}
 			} else if ( is_post_type_archive() ) {
@@ -315,10 +264,6 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				if ( $post_type && get_query_var( 'paged' ) ) {
 
 					$position ++;
-
-					if ( $position > 1 ) {
-						echo $args['separator'];
-					}
 
 					$link = $args['before'];
 					$link .= sprintf(
@@ -332,17 +277,11 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 					echo $link;
 
 					$position ++;
-					echo $args['separator'] . $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['page'], get_query_var( 'paged' ) ) ) . sprintf( $args['position'], $position ) . $args['after'];
+					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['page'], get_query_var( 'paged' ) ) ) . sprintf( $args['position'], $position ) . $args['after'];
 				} else {
-					if ( $args['show_home_link'] && $args['show_current'] ) {
-						echo $args['separator'];
-					}
-
 					if ( $args['show_current'] ) {
 						$position ++;
 						echo $args['before_active'] . sprintf( $args['active'], get_permalink(), $post_type->label ) . sprintf( $args['position'], $position ) . $args['after'];
-					} else if ( $args['show_home_link'] && $args['show_last_sep'] ) {
-						echo $args['separator'];
 					}
 				}
 			} else if ( is_attachment() ) {
@@ -354,10 +293,6 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				$parents[] = $catID;
 				foreach ( $parents as $cat ) {
 					$position ++;
-
-					if ( $position > 1 ) {
-						echo $args['separator'];
-					}
 
 					$link = $args['before'];
 					$link .= sprintf(
@@ -382,34 +317,23 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				);
 				$link .= sprintf( $args['position'], $position );
 				$link .= $args['after'];
-				echo $args['separator'] . $link;
+				echo $link;
 
 				if ( $args['show_current'] ) {
 					$position ++;
-					echo $args['separator'] . $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_title() ) . sprintf( $args['position'], $position ) . $args['after'];
-				} else if ( $args['show_last_sep'] ) {
-					echo $args['separator'];
+					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_title() ) . sprintf( $args['position'], $position ) . $args['after'];
 				}
-			} else if ( is_page() && ! $parent_id ) {
-				if ( $args['show_home_link'] && $args['show_current'] ) {
-					echo $args['separator'];
-				}
+			} else if ( ! $parent_id && is_page() ) {
 
 				if ( $args['show_current'] ) {
 					$position ++;
 					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_title() ) . sprintf( $args['position'], $position ) . $args['after'];
 
-				} else if ( $args['show_home_link'] && $args['show_last_sep'] ) {
-					echo $args['separator'];
 				}
-			} else if ( is_page() && $parent_id ) {
+			} else if ( $parent_id && is_page() ) {
 				$parents = get_post_ancestors( get_the_ID() );
 				foreach ( array_reverse( $parents ) as $pageID ) {
 					$position ++;
-
-					if ( $position > 1 ) {
-						echo $args['separator'];
-					}
 
 					$link = $args['before'];
 					$link .= sprintf(
@@ -425,9 +349,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 				if ( $args['show_current'] ) {
 					$position ++;
-					echo $args['separator'] . $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_title() ) . sprintf( $args['position'], $position ) . $args['after'];
-				} else if ( $args['show_last_sep'] ) {
-					echo $args['separator'];
+					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_title() ) . sprintf( $args['position'], $position ) . $args['after'];
 				}
 			} else if ( is_tag() ) {
 				if ( get_query_var( 'paged' ) ) {
@@ -443,20 +365,15 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 					);
 					$link .= sprintf( $args['position'], $position );
 					$link .= $args['after'];
-					echo $args['separator'] . $link;
+					echo $link;
 
 					$position ++;
-					echo $args['separator'] . $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['page'], get_query_var( 'paged' ) ) ) . sprintf( $args['position'], $position ) . $args['after'];
+					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['page'], get_query_var( 'paged' ) ) ) . sprintf( $args['position'], $position ) . $args['after'];
 				} else {
-					if ( $args['show_home_link'] && $args['show_current'] ) {
-						echo $args['separator'];
-					}
 
 					if ( $args['show_current'] ) {
 						$position ++;
 						echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['tag'], single_tag_title( '', false ) ) ) . sprintf( $args['position'], $position ) . $args['after'];
-					} else if ( $args['show_home_link'] && $args['show_last_sep'] ) {
-						echo $args['separator'];
 					}
 				}
 			} else if ( is_author() ) {
@@ -474,38 +391,25 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 					);
 					$link .= sprintf( $args['position'], $position );
 					$link .= $args['after'];
-					echo $args['separator'] . $link;
+					echo $link;
 
 					$position ++;
-					echo $args['separator'] . $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['page'], get_query_var( 'paged' ) ) ) . sprintf( $args['position'], $position ) . $args['after'];
+					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['page'], get_query_var( 'paged' ) ) ) . sprintf( $args['position'], $position ) . $args['after'];
 
 				} else {
-					if ( $args['show_home_link'] && $args['show_current'] ) {
-						echo $args['separator'];
-					}
 
 					if ( $args['show_current'] ) {
 						$position ++;
 						echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['author'], $author->display_name ) ) . sprintf( $args['position'], $position ) . $args['after'];
-					} else if ( $args['show_home_link'] && $args['show_last_sep'] ) {
-						echo $args['separator'];
 					}
 				}
 			} else if ( is_404() ) {
-				if ( $args['show_home_link'] && $args['show_current'] ) {
-					echo $args['separator'];
-				}
 
 				if ( $args['show_current'] ) {
 					$position ++;
 					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), $args['text']['404'] ) . sprintf( $args['position'], $position ) . $args['after'];
-				} else if ( $args['show_last_sep'] ) {
-					echo $args['separator'];
 				}
 			} else if ( has_post_format() && ! is_singular() ) {
-				if ( $args['show_home_link'] && $args['show_current'] ) {
-					echo $args['separator'];
-				}
 
 				echo get_post_format_string( get_post_format() );
 			}

@@ -4,9 +4,10 @@
 			<div class="col px-4 py-3 d-flex flex-column position-static">
 				{% set cat = post.terms('category')|first %}
 				<strong class="d-inline-block mb-2 text-primary">{{ cat.name }}</strong>
-				<h3 class="mb-3">{{ post.title }}</h3>
+				<h2 class="mb-3">{{ post.title }}</h2>
 				<p class="card-text mb-auto">{{ post.preview.length(20).read_more('') }}</p>
-				<a href="{{ post.link }}" class="stretched-link">{{ _e( 'continua') }} ></a>
+				<a aria-label="Continua a leggere: {{ post.title }}" href="{{ post.link }}"
+				   class="stretched-link">{{ _e( 'continua') }} ></a>
 			</div>
 			<div class="col-auto d-none d-lg-block">
 				{% if post.thumbnail.src %}

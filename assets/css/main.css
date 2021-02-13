@@ -43,7 +43,7 @@ _______*/
 body {
 	padding-top: 3rem;
 	font-family: 'Titillium Web', Tahoma, Arial, serif !important;
-	font-size: 1.125rem;
+	font-size: 1.2rem;
 	background-color: #e7e6f7 !important;
 }
 
@@ -191,6 +191,21 @@ div.comments.children {
 
 .months-container ul li:last-child {
 	border-right: none;
+}
+
+iframe {
+	display: block;
+	max-height: 100%;
+	max-width: 100%;
+	min-height: 100%;
+	min-width: 100%;
+	margin: auto;
+}
+
+.breadcrumb-item + .breadcrumb-item:before {
+	content: ">";
+	display: block;
+	border: 0 solid #505a5f;
 }
 
 /*-------
