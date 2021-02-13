@@ -180,7 +180,7 @@ sup {
 }
 
 a {
-  color: #d93f87;
+  color: #ab0061;
   text-decoration: none;
 }
 a:hover {
@@ -218,7 +218,7 @@ pre code {
 
 code {
   font-size: 0.875em;
-  color: #d93f87;
+  color: #ab0061;
   word-wrap: break-word;
 }
 a > code {

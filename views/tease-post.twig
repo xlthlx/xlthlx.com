@@ -5,7 +5,8 @@
 		<p class="text-muted">{{ post.date }}</p>
 
 		<p class="px-0 col-md-8">{{ post.preview.length(50).read_more('') }}
-			<a href="{{ post.link }}">{{ _e( 'continua') }} ></a>
+			<a aria-label="Continua a leggere: {{ post.title }}" href="{{ post.link }}"
+			   class="stretched-link">{{ _e( 'continua') }} ></a>
 		</p>
 		<hr/>
 
