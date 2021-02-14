@@ -11,12 +11,17 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
 	<link rel="author" href="{{ site.theme.link }}/humans.txt"/>
+	<link rel="preload" href="{{ fn('get_template_directory_uri') }}/assets/vendor/twbs/bootstrap/dist/css/bootstrap.css" as="style" />
+	<link rel="preload" href="{{ fn('get_template_directory_uri') }}/assets/css/main.css" as="style" />
+	<link rel="preload" href="{{ fn('get_template_directory_uri') }}/views/amp/style.css" as="style" />
+	<link rel="preload" href="{{ fn('get_template_directory_uri') }}/assets/fonts/titillium-web-v6-latin-ext_latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+	<link rel="preload" href="{{ fn('get_template_directory_uri') }}/assets/fonts/titillium-web-v6-latin-ext_latin-700.woff2" as="font" type="font/woff2" crossorigin />
+	<link rel="preload" href="{{ fn('get_template_directory_uri') }}/assets/fonts/titillium-web-v6-latin-ext_latin-italic.woff2" as="font" type="font/woff2" crossorigin />
+	<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+	<script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
+	<script async custom-element="amp-animation" src="https://cdn.ampproject.org/v0/amp-animation-0.1.js"></script>
+	<script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
 	<link rel="stylesheet" href="{{ fn('get_template_directory_uri') }}/assets/vendor/twbs/bootstrap/dist/css/bootstrap.css" media="all" />
 	<link rel="stylesheet" href="{{ fn('get_template_directory_uri') }}/assets/css/main.css" media="all" />
 	<link rel="stylesheet" href="{{ fn('get_template_directory_uri') }}/views/amp/style.css" media="all" />
-	<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
-	<script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
-	<script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
-	<script async custom-element="amp-animation" src="https://cdn.ampproject.org/v0/amp-animation-0.1.js"></script>
-	<script async custom-element="amp-consent" src="https://cdn.ampproject.org/v0/amp-consent-0.1.js"></script>
 </head>
