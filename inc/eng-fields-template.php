@@ -7,6 +7,7 @@
  */
 
 use simplehtmldom\HtmlDocument;
+use Highlight\Highlighter;
 
 /**
  * Translate a piece of string.
@@ -24,7 +25,7 @@ function xlt_translate( $element ) {
 		$trans_content = $trc::translate( 'it', 'en', $element, 5 );
 
 	} catch ( Exception $ex ) {
-		error_log( $ex );
+		//error_log( $ex );
 	}
 
 	return $trans_content;
@@ -97,84 +98,110 @@ function get_content_en() {
 				'core/pullquote',
 				'core/html',
 				'core/table',
-				'core/text-columns'
+				'core/text-columns',
+				'core/code'
 			);
 
 			if ( isset( $block['blockName'] ) && $block['blockName'] !== '' && in_array( $block['blockName'], $block_types, true ) ) {
 
-				$html = $doc->load( $block['innerHTML'] );
-				$p    = $html->find( "p" );
+				if ( $block['blockName'] == 'core/code' ) {
+					$code = $doc->load( $block['innerHTML'] );
 
-				$to_remove = array();
+					if ( $code ) {
 
-				if ( $p ) {
+						$hl = new Highlighter();
+						$hl->setAutodetectLanguages( array( 'php', 'javascript', 'html' ) );
 
-					foreach ( $p as $pg ) {
+						$code = str_replace( array(
+							'<pre class="wp-block-code">',
+							'<code>',
+							'</code>',
+							'</pre>'
+						), '', html_entity_decode( $code ) );
 
-						$tags = array(
-							"em",
-							"strong",
-							"h1",
-							"h2",
-							"h3",
-							"h4",
-							"h5",
-							"h6",
-							"li"
-						);
+						$highlighted = $hl->highlightAuto( $code );
 
-						foreach ( $tags as $tag ) {
-							$plain_tag = $pg->find( $tag );
-							if ( $plain_tag ) {
-								foreach ( $plain_tag as $pt ) {
-									$trans_tag     = xlt_translate( $pt->innertext );
-									$pt->innertext = $trans_tag;
-									$to_remove[]   = $pt->outertext;
-								}
-							}
-						}
+						$code            = '<pre class="wp-block-code"><code class="hljs ' . $highlighted->language . '">' . $highlighted->value . '</code></pre>';
+						$code->outertext = apply_filters( 'the_content', $code );
 
-						$plain_a = $pg->find( "a" );
-
-						if ( $plain_a ) {
-							foreach ( $plain_a as $pa ) {
-								$trans_a       = xlt_translate( $pa->innertext );
-								$pa->innertext = $trans_a;
-								if ( $pa->title ) {
-									$title_a   = xlt_translate( $pa->title );
-									$pa->title = $title_a;
-								}
-								$to_remove[] = $pa->outertext;
-							}
-						}
-
-						$plain_p = $pg;
-
-						$i = 0;
-						foreach ( $to_remove as $remove ) {
-							$plain_p = str_replace( $remove, '{' . $i . '}', $plain_p );
-							$i ++;
-						}
-
-
-						$plain_p = str_replace( array(
-							'<p>',
-							'</p>'
-						), '', $plain_p );
-
-						$trans_p = xlt_translate( $plain_p );
-
-						$i = 0;
-						foreach ( $to_remove as $remove ) {
-							$trans_p = str_replace( '{' . $i . '}', $remove, $trans_p );
-							$i ++;
-						}
-
-						$pg->outertext = '<p>' . $trans_p . '</p>';
 					}
-				}
 
-				$output .= $html;
+					$output .= $code;
+				} else {
+					$html = $doc->load( $block['innerHTML'] );
+					$p    = $html->find( "p" );
+
+					$to_remove = array();
+
+					if ( $p ) {
+
+						foreach ( $p as $pg ) {
+
+							$tags = array(
+								"em",
+								"strong",
+								"h1",
+								"h2",
+								"h3",
+								"h4",
+								"h5",
+								"h6",
+								"li"
+							);
+
+							foreach ( $tags as $tag ) {
+								$plain_tag = $pg->find( $tag );
+								if ( $plain_tag ) {
+									foreach ( $plain_tag as $pt ) {
+										$trans_tag     = xlt_translate( $pt->innertext );
+										$pt->innertext = $trans_tag;
+										$to_remove[]   = $pt->outertext;
+									}
+								}
+							}
+
+							$plain_a = $pg->find( "a" );
+
+							if ( $plain_a ) {
+								foreach ( $plain_a as $pa ) {
+									$trans_a       = xlt_translate( $pa->innertext );
+									$pa->innertext = $trans_a;
+									if ( $pa->title ) {
+										$title_a   = xlt_translate( $pa->title );
+										$pa->title = $title_a;
+									}
+									$to_remove[] = $pa->outertext;
+								}
+							}
+
+							$plain_p = $pg;
+
+							$i = 0;
+							foreach ( $to_remove as $remove ) {
+								$plain_p = str_replace( $remove, '{' . $i . '}', $plain_p );
+								$i ++;
+							}
+
+
+							$plain_p = str_replace( array(
+								'<p>',
+								'</p>'
+							), '', $plain_p );
+
+							$trans_p = xlt_translate( $plain_p );
+
+							$i = 0;
+							foreach ( $to_remove as $remove ) {
+								$trans_p = str_replace( '{' . $i . '}', $remove, $trans_p );
+								$i ++;
+							}
+
+							$pg->outertext = '<p>' . $trans_p . '</p>';
+						}
+					}
+
+					$output .= $html;
+				}
 
 			} else {
 				$output .= $block['innerHTML'];

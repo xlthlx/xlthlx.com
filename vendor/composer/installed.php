@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '3611125c1c44c3322046350482aa3e0e4202c9a7',
+    'reference' => '07e6667f4710d69aee701953ab0b4a71a57aae84',
     'name' => 'xlthlx/boot',
   ),
   'versions' => 
@@ -31,21 +31,21 @@
     ),
     'cmb2/cmb2' => 
     array (
-      'pretty_version' => 'v2.7.0',
-      'version' => '2.7.0.0',
+      'pretty_version' => 'v2.8.0',
+      'version' => '2.8.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '438c26dda7ac110d0741448d65614b3ec6379034',
+      'reference' => '8391c9ab88a564ca7c7b380e20152ca8554d5166',
     ),
     'composer/installers' => 
     array (
-      'pretty_version' => 'v1.9.0',
-      'version' => '1.9.0.0',
+      'pretty_version' => 'v1.10.0',
+      'version' => '1.10.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'b93bcf0fa1fccb0b7d176b0967d969691cd74cca',
+      'reference' => '1a0357fccad9d1cc1ea0c9a05b8847fbccccb78d',
     ),
     'dejurin/php-google-translate-for-free' => 
     array (
@@ -58,12 +58,12 @@
     ),
     'johnbillion/extended-cpts' => 
     array (
-      'pretty_version' => '4.4.1',
-      'version' => '4.4.1.0',
+      'pretty_version' => '4.5.1',
+      'version' => '4.5.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'b62d104bffbf9998a1063879565f61c289f0c6a9',
+      'reference' => 'b8aef5ef64335d51784e391c9393145f50482fb4',
     ),
     'roave/security-advisories' => 
     array (
@@ -72,7 +72,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'a2c04f857299a7119e96448249a9dd5954e099c1',
+      'reference' => '1e48e1beacb6122df93aa61a6cc291254984be2a',
     ),
     'roundcube/plugin-installer' => 
     array (
@@ -80,6 +80,15 @@
       array (
         0 => '*',
       ),
+    ),
+    'scrivo/highlight.php' => 
+    array (
+      'pretty_version' => 'v9.18.1.6',
+      'version' => '9.18.1.6',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '44a3d4136edb5ad8551590bf90f437db80b2d466',
     ),
     'shama/baton' => 
     array (
@@ -100,21 +109,21 @@
     ),
     'symfony/polyfill-ctype' => 
     array (
-      'pretty_version' => 'v1.20.0',
-      'version' => '1.20.0.0',
+      'pretty_version' => 'v1.22.1',
+      'version' => '1.22.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'f4ba089a5b6366e453971d3aad5fe8e897b37f41',
+      'reference' => 'c6c942b1ac76c82448322025e084cadc56048b4e',
     ),
     'symfony/polyfill-mbstring' => 
     array (
-      'pretty_version' => 'v1.20.0',
-      'version' => '1.20.0.0',
+      'pretty_version' => 'v1.22.1',
+      'version' => '1.22.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '39d483bdf39be819deabf04ec872eb0b2410b531',
+      'reference' => '5232de97ee3b75b0360528dae24e73db49566ab1',
     ),
     'timber/timber' => 
     array (
@@ -127,12 +136,12 @@
     ),
     'twig/twig' => 
     array (
-      'pretty_version' => 'v2.14.1',
-      'version' => '2.14.1.0',
+      'pretty_version' => 'v2.14.3',
+      'version' => '2.14.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => '5eb9ac5dfdd20c3f59495c22841adc5da980d312',
+      'reference' => '8bc568d460d88b25c00c046256ec14a787ea60d9',
     ),
     'upstatement/routes' => 
     array (
@@ -150,7 +159,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '3611125c1c44c3322046350482aa3e0e4202c9a7',
+      'reference' => '07e6667f4710d69aee701953ab0b4a71a57aae84',
     ),
   ),
 );

@@ -17,8 +17,5 @@
     "grunt-postcss": "^0.9.0",
     "pixrem": "^5.0.0",
     "postcss-flexibility": "^2.0.0"
-  },
-  "dependencies": {
-    "highlightjs-badge": "^0.1.9"
   }
 }

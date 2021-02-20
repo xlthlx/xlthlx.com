@@ -29,11 +29,7 @@ $(document).ready(function () {
 
 	});
 
-	// HighlightJS
-	var pres = document.querySelectorAll("pre>code");
-	for (var i = 0; i < pres.length; i++) {
-		hljs.highlightBlock(pres[i]);
-	}
+	// HighlightJS Badge
 	var options = {
 		copyIconClass: "open",
 		copyIconContent: "Copy",
