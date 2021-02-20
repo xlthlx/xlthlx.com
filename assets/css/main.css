@@ -208,6 +208,10 @@ iframe {
 	border: 0 solid #505a5f;
 }
 
+.code-badge {
+	border-radius: 0 !important;
+}
+
 /*-------
 Colors
 _______*/
