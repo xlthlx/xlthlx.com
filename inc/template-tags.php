@@ -6,415 +6,245 @@
  * @subpackage  Xlthlx
  */
 
+/**
+ * Set up the single link.
+ *
+ * @param $args
+ * @param $link
+ * @param $name
+ * @param $position
+ *
+ * @return string
+ */
+function xlt_get_link( $args, $link, $name, $position ) {
+	$return = $args['before'];
+	$return .= sprintf(
+		$args['link'],
+		$link,
+		$name,
+		sprintf( $args['name'], $name )
+	);
+	$return .= sprintf( $args['position'], $position );
+
+	return $return;
+}
+
 if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 	/**
-	 * WP Bootstrap Breadcrumbs
-	 * @package WP-Bootstrap-Breadcrumbs
-	 *
-	 * Description: A custom WordPress nav walker class to implement the Bootstrap 4 breadcrumbs style in a custom theme using the WordPress.
-	 * Author: Dimox - @Dimox, Alexsander Vyshnyvetskyy - @alex-wdmg
-	 * Version: 1.1.0
-	 * Author URI: https://github.com/Dimox
-	 * Author URI: https://github.com/alex-wdmg
-	 * GitHub Gist URI: https://gist.github.com/alex-wdmg/21e150e00f327215ee3ad5d0ca669b17
-	 * License: MIT
+	 * Breadcrumbs
 	 */
+	function xlt_breadcrumbs() {
 
-	/**
-	 * Modified to be compatible with Bootstrap 5.
-	 *
-	 * @param array $args
-	 */
-	function xlt_breadcrumbs( $args = array() ) {
-
-		$defaults = array(
-			'wrap_before'    => '<ol class="breadcrumb" id="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList">',
-			'wrap_after'     => '</ol>',
-			'before'         => '<li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">',
-			'before_active'  => '<li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">',
-			'after'          => '',
-			'link'           => '<a href="%1$s" title="%2$s" itemscope itemtype="http://schema.org/Thing" itemprop="item" itemid="%1$s">%3$s</a>',
-			'active'         => '<span itemscope itemtype="http://schema.org/Thing" itemprop="name" itemid="%1$s">%2$s</span>',
-			'name'           => '<span itemprop="name">%1$s</span>',
-			'position'       => '<meta itemprop="position" content="%1$s">',
-			'show_on_home'   => false,
-			'show_home_link' => true,
-			'show_current'   => true,
-			'text'           => array(
+		$args = array(
+			'before'        => '<li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">',
+			'before_active' => '<li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">',
+			'link'          => '<a href="%1$s" title="%2$s" itemscope itemtype="https://schema.org/Thing" itemprop="item" itemid="%1$s">%3$s</a>',
+			'active'        => '<span itemscope itemtype="https://schema.org/Thing" itemprop="name" itemid="%1$s">%2$s</span>',
+			'name'          => '<span itemprop="name">%1$s</span>',
+			'position'      => '<meta itemprop="position" content="%1$s">',
+			'text'          => array(
 				'home'     => __( 'Home' ),
 				'category' => '%s',
 				'search'   => __( 'Search results for "%s"' ),
-				'tag'      => __( 'Post by tag "%s"' ),
-				'author'   => __( 'Posts by author %s' ),
+				'tag'      => '%s',
+				'author'   => __( 'Posts by %s' ),
 				'404'      => __( 'Error 404' ),
 				'page'     => __( 'Page %s' ),
-				'cpage'    => __( 'Comments Page %s' )
+				'cpage'    => __( 'Comments page %s' )
 			)
-		);
-
-		$args = wp_parse_args(
-			$args,
-			apply_filters( 'xlt_breadcrumbs_defaults', $defaults )
 		);
 
 		global $post;
 		$home_url  = home_url( '/' );
-		$parent_id = ( $post ) ? $post->post_parent : '';
+		$parent_id = $post->post_parent ?? 0;
 
-		$link      = $args['before'];
-		$link      .= sprintf( $args['link'], $home_url, $args['text']['home'], sprintf( $args['name'], $args['text']['home'] ) );
-		$link      .= sprintf( $args['position'], 1 );
-		$link      .= $args['after'];
-		$home_link = $link;
+		$home_link = xlt_get_link( $args, $home_url, $args['text']['home'], 1 );
 
-		if ( is_home() || is_front_page() ) {
-
-			if ( $args['show_on_home'] ) {
-				echo $args['wrap_before'] . $home_link . $args['wrap_after'];
-			}
-
-		} else {
+		if ( ! is_home() && ! is_front_page() ) {
 
 			$position = 0;
-			echo $args['wrap_before'];
+			echo '<ol class="breadcrumb" id="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">';
 
-			if ( $args['show_home_link'] ) {
-				$position ++;
-				echo $home_link;
-			}
+			$position ++;
+			echo $home_link;
 
 			if ( is_category() ) {
 				$parents = get_ancestors( get_query_var( 'cat' ), 'category' );
 				foreach ( array_reverse( $parents ) as $cat ) {
-
 					$position ++;
-
-					$link = $args['before'];
-					$link .= sprintf( $args['link'], get_category_link( $cat ), get_cat_name( $cat ), sprintf( $args['name'], get_cat_name( $cat ) ) );
-					$link .= sprintf( $args['position'], $position );
-					$link .= $args['after'];
-					echo $link;
+					echo xlt_get_link( $args, get_category_link( $cat ), get_cat_name( $cat ), $position );
 				}
 				if ( get_query_var( 'paged' ) ) {
 					$position ++;
-					$cat  = get_query_var( 'cat' );
-					$link = $args['before'];
-					$link .= sprintf( $args['link'], get_category_link( $cat ), get_cat_name( $cat ), sprintf( $args['name'], get_cat_name( $cat ) ) );
-					$link .= sprintf( $args['position'], $position );
-					$link .= $args['after'];
-					echo $link;
-					echo $args['before'] . sprintf( $args['text']['page'], get_query_var( 'paged' ) ) . $args['after'];
+					echo xlt_get_link( $args, get_category_link( get_query_var( 'cat' ) ), get_cat_name( get_query_var( 'cat' ) ), $position );
+					echo $args['before'] . sprintf( $args['text']['page'], get_query_var( 'paged' ) );
+
 				} else {
-					if ( $args['show_current'] ) {
-
-						$position ++;
-						echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['name'], sprintf( $args['text']['category'], single_cat_title( '', false ) ) ) ) . sprintf( $args['position'], $position ) . $args['after'];
-
-					}
+					$position ++;
+					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['name'], sprintf( $args['text']['category'], single_cat_title( '', false ) ) ) ) . sprintf( $args['position'], $position );
 				}
-			} else if ( is_search() ) {
+			} elseif ( is_search() ) {
 				if ( get_query_var( 'paged' ) ) {
 
 					$position ++;
-
-					$link = $args['before'];
-					$link .= sprintf(
-						$args['link'],
-						$home_url . '?s=' . get_search_query(),
-						sprintf( $args['text']['search'], get_search_query() ),
-						sprintf( $args['name'], sprintf( $args['text']['search'], get_search_query() ) )
-					);
-					$link .= sprintf( $args['position'], $position );
-					$link .= $args['after'];
-					echo $link;
-					echo $args['before'] . sprintf( $args['text']['page'], get_query_var( 'paged' ) ) . $args['after'];
+					echo xlt_get_link( $args, $home_url . '?s=' . get_search_query(), sprintf( $args['text']['search'], get_search_query() ), $position );
+					echo $args['before'] . sprintf( $args['text']['page'], get_query_var( 'paged' ) );
 
 				} else {
-					if ( $args['show_current'] ) {
-						$position ++;
-						echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['search'], get_search_query() ) ) . sprintf( $args['position'], $position ) . $args['after'];
 
-					}
-				}
-			} else if ( is_year() ) {
-
-				if ( $args['show_current'] ) {
 					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_time( 'Y' ) ) . sprintf( $args['position'], $position ) . $args['after'];
+					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['search'], get_search_query() ) ) . sprintf( $args['position'], $position );
+
 
 				}
-			} else if ( is_month() ) {
+			} elseif ( is_year() ) {
 
 				$position ++;
+				echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_time( 'Y' ) ) . sprintf( $args['position'], $position );
 
-				$link = $args['before'];
-				$link .= sprintf(
-					$args['link'],
-					get_year_link( get_the_time( 'Y' ) ),
-					get_the_time( 'Y' ),
-					sprintf( $args['name'], get_the_time( 'Y' ) )
-				);
-				$link .= sprintf( $args['position'], $position );
-				$link .= $args['after'];
-				echo $link;
 
-				if ( $args['show_current'] ) {
-					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_time( 'F' ) ) . sprintf( $args['position'], $position ) . $args['after'];
-				}
-			} else if ( is_day() ) {
+			} elseif ( is_month() ) {
 
 				$position ++;
-
-				$link = $args['before'];
-				$link .= sprintf(
-					$args['link'],
-					get_year_link( get_the_time( 'Y' ) ),
-					get_the_time( 'Y' ),
-					sprintf( $args['name'], get_the_time( 'Y' ) )
-				);
-				$link .= sprintf( $args['position'], $position );
-				$link .= $args['after'];
-				echo $link;
+				echo xlt_get_link( $args, get_year_link( get_the_time( 'Y' ) ), get_the_time( 'Y' ), $position );
 
 				$position ++;
+				echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_time( 'F' ) ) . sprintf( $args['position'], $position );
 
-				$link = $args['before'];
-				$link .= sprintf(
-					$args['link'],
-					get_month_link( get_the_time( 'Y' ), get_the_time( 'm' ) ),
-					get_the_time( 'F' ),
-					sprintf( $args['name'], get_the_time( 'F' ) )
-				);
-				$link .= sprintf( $args['position'], $position );
-				$link .= $args['after'];
-				echo $link;
+			} elseif ( is_day() ) {
 
-				if ( $args['show_current'] ) {
-					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_time( 'd' ) ) . sprintf( $args['position'], $position ) . $args['after'];
-				}
-			} else if ( is_single() && ! is_attachment() ) {
+				$position ++;
+				echo xlt_get_link( $args, get_year_link( get_the_time( 'Y' ) ), get_the_time( 'Y' ), $position );
+
+				$position ++;
+				echo xlt_get_link( $args, get_month_link( get_the_time( 'Y' ), get_the_time( 'm' ) ), get_the_time( 'F' ), $position );
+
+
+				$position ++;
+				echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_time( 'd' ) ) . sprintf( $args['position'], $position );
+
+			} elseif ( is_single() && ! is_attachment() ) {
 				$post_type = get_post_type_object( get_post_type() );
-				if ( $post_type && $post_type !== 'post' ) {
+				if ( $post_type && get_post_type() !== 'post' ) {
 					$position ++;
+					echo xlt_get_link( $args, get_post_type_archive_link( $post_type->name ), $post_type->labels->name, $position );
+					$position ++;
+					$args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_title() ) . sprintf( $args['position'], $position );
 
-					$link = $args['before'];
-					$link .= sprintf(
-						$args['link'],
-						get_post_type_archive_link( $post_type->name ),
-						$post_type->labels->name,
-						sprintf( $args['name'], $post_type->labels->name )
-					);
-					$link .= sprintf( $args['position'], $position );
-					$link .= $args['after'];
-					echo $link;
-
-					if ( $args['show_current'] ) {
-						$position ++;
-						$args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_title() ) . sprintf( $args['position'], $position ) . $args['after'];
-					}
 				} else {
 					$cat       = get_the_category();
 					$catID     = $cat[0]->cat_ID;
-					$parents   = get_ancestors( $catID, 'category' );
-					$parents   = array_reverse( $parents );
+					$parents   = array_reverse( get_ancestors( $catID, 'category' ));
 					$parents[] = $catID;
+
 					foreach ( $parents as $cat ) {
 						$position ++;
-
-						$link = $args['before'];
-						$link .= sprintf(
-							$args['link'],
-							get_category_link( $cat ),
-							get_cat_name( $cat ),
-							sprintf( $args['name'], get_cat_name( $cat ) )
-						);
-						$link .= sprintf( $args['position'], $position );
-						$link .= $args['after'];
-						echo $link;
+						echo xlt_get_link( $args, get_category_link( $cat ), get_cat_name( $cat ), $position );
 					}
 
 					if ( get_query_var( 'cpage' ) ) {
 						$position ++;
-
-						$link = $args['before'];
-						$link .= sprintf(
-							$args['link'],
-							get_permalink(),
-							get_the_title(),
-							sprintf( $args['name'], get_the_title() )
-						);
-						$link .= sprintf( $args['position'], $position );
-						$link .= $args['after'];
-						echo $link;
+						echo xlt_get_link( $args, get_permalink(), get_the_title(), $position );
 
 						$position ++;
-						echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['cpage'], get_query_var( 'cpage' ) ) ) . sprintf( $args['position'], $position ) . $args['after'];
+						echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['cpage'], get_query_var( 'cpage' ) ) ) . sprintf( $args['position'], $position );
+
 					} else {
 						$position ++;
+						echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['name'], get_the_title() ) ) . sprintf( $args['position'], $position );
 
-						if ( $args['show_current'] ) {
-							echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['name'], get_the_title() ) ) . sprintf( $args['position'], $position ) . $args['after'];
-						}
 					}
 				}
-			} else if ( is_post_type_archive() ) {
+			} elseif ( is_post_type_archive() ) {
 				$post_type = get_post_type_object( get_post_type() );
 				if ( $post_type && get_query_var( 'paged' ) ) {
 
 					$position ++;
-
-					$link = $args['before'];
-					$link .= sprintf(
-						$args['link'],
-						get_post_type_archive_link( $post_type->name ),
-						$post_type->label,
-						sprintf( $args['name'], $post_type->label )
-					);
-					$link .= sprintf( $args['position'], $position );
-					$link .= $args['after'];
-					echo $link;
+					echo xlt_get_link( $args, get_post_type_archive_link( $post_type->name ), $post_type->label, $position );
 
 					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['page'], get_query_var( 'paged' ) ) ) . sprintf( $args['position'], $position ) . $args['after'];
+					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['page'], get_query_var( 'paged' ) ) ) . sprintf( $args['position'], $position );
 				} else {
-					if ( $args['show_current'] ) {
-						$position ++;
-						echo $args['before_active'] . sprintf( $args['active'], get_permalink(), $post_type->label ) . sprintf( $args['position'], $position ) . $args['after'];
-					}
+
+					$position ++;
+					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), $post_type->label ) . sprintf( $args['position'], $position );
+
 				}
-			} else if ( is_attachment() ) {
+
+			} elseif ( is_attachment() ) {
 				$parent    = get_post( $parent_id );
 				$cat       = get_the_category( $parent->ID );
 				$catID     = $cat[0]->cat_ID;
-				$parents   = get_ancestors( $catID, 'category' );
-				$parents   = array_reverse( $parents );
+				$parents   = array_reverse(get_ancestors( $catID, 'category' ));
 				$parents[] = $catID;
 				foreach ( $parents as $cat ) {
 					$position ++;
-
-					$link = $args['before'];
-					$link .= sprintf(
-						$args['link'],
-						get_category_link( $cat ),
-						get_cat_name( $cat ),
-						sprintf( $args['name'], get_cat_name( $cat ) )
-					);
-					$link .= sprintf( $args['position'], $position );
-					$link .= $args['after'];
-					echo $link;
+					echo xlt_get_link( $args, get_category_link( $cat ), get_cat_name( $cat ), $position );
 				}
 
 				$position ++;
+				echo xlt_get_link( $args, get_permalink( $parent ), $parent->post_title, $position );
 
-				$link = $args['before'];
-				$link .= sprintf(
-					$args['link'],
-					get_permalink( $parent ),
-					$parent->post_title,
-					sprintf( $args['name'], $parent->post_title )
-				);
-				$link .= sprintf( $args['position'], $position );
-				$link .= $args['after'];
-				echo $link;
+				$position ++;
+				echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_title() ) . sprintf( $args['position'], $position );
 
-				if ( $args['show_current'] ) {
-					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_title() ) . sprintf( $args['position'], $position ) . $args['after'];
-				}
-			} else if ( ! $parent_id && is_page() ) {
+			} elseif ( ! $parent_id && is_page() ) {
 
-				if ( $args['show_current'] ) {
-					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_title() ) . sprintf( $args['position'], $position ) . $args['after'];
+				$position ++;
+				echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_title() ) . sprintf( $args['position'], $position );
 
-				}
-			} else if ( $parent_id && is_page() ) {
+
+			} elseif ( $parent_id && is_page() ) {
 				$parents = get_post_ancestors( get_the_ID() );
 				foreach ( array_reverse( $parents ) as $pageID ) {
 					$position ++;
-
-					$link = $args['before'];
-					$link .= sprintf(
-						$args['link'],
-						get_page_link( $pageID ),
-						get_the_title( $pageID ),
-						sprintf( $args['name'], get_the_title( $pageID ) )
-					);
-					$link .= sprintf( $args['position'], $position );
-					$link .= $args['after'];
-					echo $link;
+					echo xlt_get_link( $args, get_page_link( $pageID ), get_the_title( $pageID ), $position );
 				}
 
-				if ( $args['show_current'] ) {
-					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_title() ) . sprintf( $args['position'], $position ) . $args['after'];
-				}
+				$position ++;
+				echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_title() ) . sprintf( $args['position'], $position );
+
 			} else if ( is_tag() ) {
 				if ( get_query_var( 'paged' ) ) {
 					$position ++;
 					$tagID = get_query_var( 'tag_id' );
-
-					$link = $args['before'];
-					$link .= sprintf(
-						$args['link'],
-						get_tag_link( $tagID ),
-						single_tag_title( '', false ),
-						sprintf( $args['name'], single_tag_title( '', false ) )
-					);
-					$link .= sprintf( $args['position'], $position );
-					$link .= $args['after'];
-					echo $link;
+					echo xlt_get_link( $args, get_tag_link( $tagID ), single_tag_title( '', false ), $position );
 
 					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['page'], get_query_var( 'paged' ) ) ) . sprintf( $args['position'], $position ) . $args['after'];
+					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['page'], get_query_var( 'paged' ) ) ) . sprintf( $args['position'], $position );
 				} else {
 
-					if ( $args['show_current'] ) {
-						$position ++;
-						echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['tag'], single_tag_title( '', false ) ) ) . sprintf( $args['position'], $position ) . $args['after'];
-					}
+					$position ++;
+					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['tag'], single_tag_title( '', false ) ) ) . sprintf( $args['position'], $position );
+
 				}
-			} else if ( is_author() ) {
+			} elseif ( is_author() ) {
 				$author = get_userdata( get_query_var( 'author' ) );
 				if ( get_query_var( 'paged' ) ) {
 
 					$position ++;
-
-					$link = $args['before'];
-					$link .= sprintf(
-						$args['link'],
-						get_author_posts_url( $author->ID ),
-						$author->display_name,
-						sprintf( $args['name'], sprintf( $args['text']['author'], $author->display_name ) )
-					);
-					$link .= sprintf( $args['position'], $position );
-					$link .= $args['after'];
-					echo $link;
+					echo xlt_get_link( $args, get_author_posts_url( $author->ID ), sprintf( $args['text']['author'], $author->display_name ), $position );
 
 					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['page'], get_query_var( 'paged' ) ) ) . sprintf( $args['position'], $position ) . $args['after'];
+					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['page'], get_query_var( 'paged' ) ) ) . sprintf( $args['position'], $position );
 
 				} else {
 
-					if ( $args['show_current'] ) {
-						$position ++;
-						echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['author'], $author->display_name ) ) . sprintf( $args['position'], $position ) . $args['after'];
-					}
-				}
-			} else if ( is_404() ) {
-
-				if ( $args['show_current'] ) {
 					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), $args['text']['404'] ) . sprintf( $args['position'], $position ) . $args['after'];
+					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['author'], $author->display_name ) ) . sprintf( $args['position'], $position );
+
 				}
-			} else if ( has_post_format() && ! is_singular() ) {
+			} elseif ( is_404() ) {
+
+				$position ++;
+				echo $args['before_active'] . sprintf( $args['active'], get_permalink(), $args['text']['404'] ) . sprintf( $args['position'], $position );
+
+			} elseif ( has_post_format() && ! is_singular() ) {
 
 				echo get_post_format_string( get_post_format() );
 			}
 
-			echo $args['wrap_after'];
+			echo '</ol>';
 		}
 	}
 }
