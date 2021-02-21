@@ -134,7 +134,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				} else {
 					$cat       = get_the_category();
 					$catID     = $cat[0]->cat_ID;
-					$parents   = array_reverse( get_ancestors( $catID, 'category' ));
+					$parents   = array_reverse( get_ancestors( $catID, 'category' ) );
 					$parents[] = $catID;
 
 					foreach ( $parents as $cat ) {
@@ -175,7 +175,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				$parent    = get_post( $parent_id );
 				$cat       = get_the_category( $parent->ID );
 				$catID     = $cat[0]->cat_ID;
-				$parents   = array_reverse(get_ancestors( $catID, 'category' ));
+				$parents   = array_reverse( get_ancestors( $catID, 'category' ) );
 				$parents[] = $catID;
 				foreach ( $parents as $cat ) {
 					$position ++;
