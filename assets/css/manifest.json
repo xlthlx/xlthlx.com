@@ -1,7 +1,8 @@
 {
   "theme_color": "#8265A7",
   "background_color": "#E7E6F7",
-  "display": "browser",
+  "display": "minimal-ui",
+  "prefer_related_applications": false,
   "scope": "/",
   "start_url": "/?amp",
   "name": "xlthlx",
