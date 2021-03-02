@@ -23,6 +23,12 @@
 	  "src": "/wp-content/uploads/2021/01/cropped-icon-1-512X512.png",
 	  "sizes": "512x512",
 	  "type": "image/png"
+	},
+	{
+	  "src": "/assets/css/maskable_icon_x192.png",
+	  "sizes": "192x192",
+	  "type": "image/png",
+	  "purpose": "any maskable"
 	}
   ]
 }
