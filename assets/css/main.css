@@ -212,6 +212,10 @@ iframe {
 	border-radius: 0 !important;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+	color: white !important;
+}
+
 /*-------
 Colors
 _______*/
