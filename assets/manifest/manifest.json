@@ -25,7 +25,7 @@
 	  "type": "image/png"
 	},
 	{
-	  "src": "/assets/css/maskable_icon_x192.png",
+	  "src": "/assets/manifest/maskable_icon_x192.png",
 	  "sizes": "192x192",
 	  "type": "image/png",
 	  "purpose": "any maskable"
