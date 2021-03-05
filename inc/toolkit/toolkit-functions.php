@@ -402,7 +402,8 @@ function wt_change_version_from_style_js( $src ) {
 	if ( ! is_admin() ) {
 
 		$clean_src  = $src ? esc_url( remove_query_arg( 'ver', $src ) ) : false;
-		$clean_path = '';
+		$clean_path = $clean_path = str_replace( site_url(), ABSPATH, $clean_src );
+		// Default to root
 
 		if ( strpos( $clean_src, 'wp-content/plugins' ) !== false ) {
 			$clean_path = str_replace( site_url() . '/wp-content/plugins',

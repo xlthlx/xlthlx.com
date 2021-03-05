@@ -4,7 +4,7 @@
   "display": "minimal-ui",
   "prefer_related_applications": false,
   "scope": "/",
-  "start_url": "/?amp",
+  "start_url": "/",
   "name": "xlthlx",
   "short_name": "xlthlx",
   "description": "xlthlx | This page is best viewed with your brain switched on.",
@@ -25,7 +25,7 @@
 	  "type": "image/png"
 	},
 	{
-	  "src": "/assets/manifest/maskable_icon_x192.png",
+	  "src": "/assets/manifest/maskable_icon.png",
 	  "sizes": "192x192",
 	  "type": "image/png",
 	  "purpose": "any maskable"

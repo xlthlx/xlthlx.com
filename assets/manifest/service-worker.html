@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Installing service worker</title>
+	<script type="text/javascript">
+		var swsource = "https://xlthlx.com/service-worker-amp.js";
+		if ("serviceWorker" in navigator) {
+			navigator.serviceWorker.register(swsource).then(function (reg) {
+				console.log('ServiceWorker scope: ', reg.scope);
+			}).catch(function (err) {
+				console.log('ServiceWorker registration failed: ', err);
+			});
+		}
+	</script>
+</head>
+<body data-new-gr-c-s-check-loaded="14.997.0" data-gr-ext-installed="" cz-shortcut-listen="true">
+
+</body>
+</html>
