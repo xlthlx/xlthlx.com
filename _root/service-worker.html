@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Installing service worker</title>
 	<script type="text/javascript">
-		var swsource = "https://xlthlx.com/service-worker-amp.js";
+		var swsource = "/service-worker-amp.js";
 		if ("serviceWorker" in navigator) {
 			navigator.serviceWorker.register(swsource).then(function (reg) {
-				console.log('ServiceWorker scope: ', reg.scope);
+				//console.log('ServiceWorker scope: ', reg.scope);
 			}).catch(function (err) {
 				console.log('ServiceWorker registration failed: ', err);
 			});

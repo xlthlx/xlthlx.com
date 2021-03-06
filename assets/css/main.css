@@ -216,6 +216,11 @@ iframe {
 	color: white !important;
 }
 
+.cc-banner .cc-message, .cc-link, .cc-deny, .cc-allow {
+	font-weight: 900;
+	opacity: 1;
+}
+
 /*-------
 Colors
 _______*/

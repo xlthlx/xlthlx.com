@@ -32,6 +32,16 @@ add_filter( 'pre_option_link_manager_enabled', '__return_true' );
 add_filter( 'wpcf7_load_js', '__return_false' );
 add_filter( 'wpcf7_load_css', '__return_false' );
 
+add_action( 'after_setup_theme', 'xlt_render_code_block' );
+/**
+ * Modify the rendering of code Gutenberg block.
+ */
+function xlt_render_code_block() {
+	register_block_type( 'core/code', array(
+		'render_callback' => 'xlt_render_code',
+	) );
+}
+
 /**
  * Renders the block type output for given attributes.
  *
@@ -64,10 +74,10 @@ function xlt_render_code( $attributes, string $content ) {
 	return $content;
 }
 
-function xlt_render_code_block() {
-	register_block_type( 'core/code', array(
-		'render_callback' => 'xlt_render_code',
-	) );
+add_action( 'init', 'xlt_remove_comment_reply' );
+/**
+ * Removes the comment-reply script.
+ */
+function xlt_remove_comment_reply() {
+	wp_deregister_script( 'comment-reply' );
 }
-
-add_action( 'after_setup_theme', 'xlt_render_code_block' );

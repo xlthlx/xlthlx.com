@@ -20,6 +20,9 @@
 # Do NOT ignore .README.md
 !README.md
 
+!_root/.htaccess
+!_root/.well-known
+
 # Ignore all files that start with ~
 ~*
 

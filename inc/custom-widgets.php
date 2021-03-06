@@ -148,7 +148,7 @@ class Archive_Widget extends WP_Widget {
 
 	}
 
-		/**
+	/**
 	 * Renders the Widget Content AMP.
 	 */
 	public function render_amp() {

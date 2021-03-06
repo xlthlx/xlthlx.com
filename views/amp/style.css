@@ -63,3 +63,15 @@ amp-consent {
 .header p.lead {
 	margin-top: 0 !important;
 }
+
+.hover:hover {
+	background-color: #44318d !important;
+}
+
+.btn {
+	font-size: inherit !important;
+}
+
+#amp-mobile-version-switcher a {
+	color: white;
+}
