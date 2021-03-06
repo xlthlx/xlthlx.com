@@ -89,8 +89,7 @@ if ( isset( $wt_dashboard ) ) {
 		if ( $value === 'yes' ) {
 			switch ( $key ) {
 				case 'dashboard_widgets':
-					add_action( 'wp_dashboard_setup',
-						'wt_disable_dashboard_widgets', 999 );
+					add_action( 'wp_dashboard_setup', 'wt_disable_dashboard_widgets', 999 );
 					break;
 			}
 		}

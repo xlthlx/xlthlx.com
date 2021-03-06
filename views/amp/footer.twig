@@ -8,7 +8,7 @@
 					  d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path>
 			</svg>
 		</a>
-		<a title="Follow me on Twitter" class="nav-link d-inline ms-2 p-0" target="_blank"
+		<a rel="noreferrer noopener" title="Follow me on Twitter" class="nav-link d-inline ms-2 p-0" target="_blank"
 		   href="https://twitter.com/xlthlx/">
 			<svg style="width:20px;height:20px" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg"
 				 viewBox="0 0 512 512">
@@ -29,7 +29,7 @@
 		   href="{{ site.url }}"
 		   property="cc:attributionName"
 		   rel="cc:attributionURL">{{ site.name }}</a>
-		<a class="nav-link d-inline p-0" rel="license"
+		<a class="nav-link d-inline p-0" rel="license noreferrer noopener"
 		   title="Attribution-NonCommercial-ShareAlike"
 		   target="_blank"
 		   href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
@@ -85,7 +85,7 @@
 			"postPromptUI": "post-consent-ui"
 		}</script>
 	<div class="bg-light text-white pt-3" id="consent-dialog">
-		<div class="consent-popup row">
+		<div class="consent-popup row fw-bold">
 			<div class="col-6">
 				<p class="ps-3 pt-1">Cookies, anyone?
 					<a aria-label="Policy" role="button" tabindex="0" class="text-decoration-underline text-white"
@@ -96,8 +96,8 @@
 			</div>
 			<div class="col-6 d-flex align-items-end flex-column">
 				<p>
-					<button class="btn btn-light rounded-0" on="tap:cookieConsent.reject">No way!</button>
-					<button class="btn btn-outline-primary me-3 rounded-0" on="tap:cookieConsent.accept">Whatever.</button>
+					<button class="btn btn-light rounded-0 fw-bold" on="tap:cookieConsent.reject">No way!</button>
+					<button class="btn btn-outline-primary me-3 rounded-0 bg-white fw-bold hover" on="tap:cookieConsent.accept">Whatever.</button>
 				</p>
 			</div>
 		</div>

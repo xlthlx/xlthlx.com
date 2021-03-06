@@ -11,8 +11,8 @@
 			</div>
 			<div class="col-auto d-none d-lg-block">
 				{% if post.thumbnail.src %}
-					<img src="{{ post.thumbnail.src | resize(200, 250) }}" class="img-fluid"
-						 alt="{{ post.title }}">
+					<img width="200" height="250" src="{{ post.thumbnail.src|tojpg | resize(200, 250) }}"
+						 class="img-fluid" alt="{{ post.title }}">
 				{% endif %}
 			</div>
 		</div>

@@ -46,7 +46,7 @@ function wt_upload_filter( $file ) {
  *
  * @since 1.2
  */
-function update_attachment_title( $attachment_id ) {
+function wt_update_attachment_title( $attachment_id ) {
 
 	$original_filename = get_transient( '_clean_image_filenames_original_filename' );
 

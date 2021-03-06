@@ -6,6 +6,7 @@
  * @subpackage  Xlthlx
  */
 remove_filter( 'authenticate', 'wp_authenticate_username_password', 20 );
+
 add_action( 'login_enqueue_scripts', 'xlt_enqueue_login', 10 );
 /**
  * Enqueue login CSS.
