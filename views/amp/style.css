@@ -34,26 +34,38 @@ amp-accordion section[expanded] .accordion-button::after {
 	font-size: 1.8rem;
 }
 
+amp-sidebar {
+	max-width: 90vw !important;
+}
+
 amp-sidebar ul {
 	padding-left: 1rem;
 	padding-right: 1rem;
 }
 
 #amp-mobile-version-switcher {
-	width: 100%;
-	text-align: center;
+	display: none;
 }
 
 #scrollToTopButton:focus {
 	border: none !important;
 }
 
+.nav-link {
+	font-size: 1.5rem;
+}
+
 .navbar-dark .navbar-nav .nav-link:focus {
 	outline: none;
 }
 
+.dropdown-item {
+	color: white !important;
+}
+
 amp-consent {
 	background-color: transparent !important;
+	z-index: 0;
 }
 
 .header h1 {
@@ -72,6 +84,7 @@ amp-consent {
 	font-size: inherit !important;
 }
 
-#amp-mobile-version-switcher a {
-	color: white;
+footer .container {
+	position: relative;
+	z-index: 3;
 }

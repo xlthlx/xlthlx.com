@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '07e6667f4710d69aee701953ab0b4a71a57aae84',
+    'reference' => 'ab03e62445ac0f10a15b49a68006be4b051e1455',
     'name' => 'xlthlx/boot',
   ),
   'versions' => 
@@ -44,12 +44,12 @@ private static $installed = array (
     ),
     'cmb2/cmb2' => 
     array (
-      'pretty_version' => 'v2.8.0',
-      'version' => '2.8.0.0',
+      'pretty_version' => 'v2.9.0',
+      'version' => '2.9.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '8391c9ab88a564ca7c7b380e20152ca8554d5166',
+      'reference' => 'cacbc8cedbfdf8ffe0e840858e6860f9333c33f2',
     ),
     'composer/installers' => 
     array (
@@ -85,7 +85,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '1e48e1beacb6122df93aa61a6cc291254984be2a',
+      'reference' => '0745f820eed6cb92603ca44a9c137ff8ce315e86',
     ),
     'roundcube/plugin-installer' => 
     array (
@@ -172,7 +172,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '07e6667f4710d69aee701953ab0b4a71a57aae84',
+      'reference' => 'ab03e62445ac0f10a15b49a68006be4b051e1455',
     ),
   ),
 );

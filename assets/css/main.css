@@ -84,6 +84,11 @@ body.admin-bar .navbar {
 	border-bottom-left-radius: 0 !important;
 }
 
+.dropdown-item {
+	font-size: 1.2rem;
+	opacity: 1;
+}
+
 a.dropdown-item.text-light:hover {
 	color: #e7e6f7 !important;
 }
