@@ -41,4 +41,39 @@ $(document).ready(function () {
 	$('.first-button').on('click', function () {
 		$('.animated-icon1').toggleClass('open');
 	});
+
+	// Use history.pushState to switch lang
+	function switch_lang(url) {
+
+		$.ajax({
+			url: url,
+			type: 'GET',
+			async: true,
+			cache: true,
+			success: function (result) {
+				var cont = $(result).find('#push-container');
+				var data = cont[0].innerHTML;
+				$('#push-container').html(data);
+			}
+		});
+	}
+
+	$(document).on('click', 'a.switch_tab', function (e) {
+		e.preventDefault();
+		var url = $(this).attr("href");
+		switch_lang(url);
+		window.history.pushState({url: url}, '', url);
+	});
+
+	window.addEventListener('popstate', function (e) {
+		if (e.state) {
+			switch_lang(e.state.url);
+		}
+		else {
+			var url = $(location).attr("href");
+			switch_lang(url);
+		}
+
+	});
+
 });
