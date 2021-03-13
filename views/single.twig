@@ -51,7 +51,7 @@
 							<hr class="mt-4 mb-4"/>
 						</section>
 
-						{% set comments_eng = 0 %}
+						{% set comments_en = 0 %}
 						{% set comments_it = 0 %}
 
 						{% for comment in post.comments %}
@@ -72,6 +72,7 @@
 								<hr/>
 							</section>
 						{% endif %}
+
 						{% if comments_en != 0 and lang == 'en' %}
 							<section id="post-comments" class="comment-box">
 								<h3 class="mb-4">Comments</h3>
