@@ -311,6 +311,10 @@ if ( ! function_exists( 'xlt_comment_form_en' ) ) {
 							<input placeholder="Url" class="form-control rounded-0" type="url" id="url" name="url">
 							<label for="url">Url</label>
 						</div>',
+				'subscribe_to_comment' => '<div class="form-check mb-3">
+							<input class="form-check-input" id="cren_subscribe_to_comment" name="cren_subscribe_to_comment" type="checkbox" value="on">
+							<label class="form-check-label" for="cren_subscribe_to_comment">Subscribe to comments</label>
+						</div>',
 			),
 			'comment_field'        => '<div class="form-floating mb-3">
 								<textarea placeholder="Comment" class="form-control rounded-0" id="comment" name="comment" style="height: 150px" required></textarea>
