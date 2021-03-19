@@ -373,6 +373,7 @@ function xlt_template_redirect() {
 }
 
 add_action( 'init', 'xlt_rewrite_tags_lang' );
+
 /**
  * Add rewrite endpoint.
  */

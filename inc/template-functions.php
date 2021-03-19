@@ -81,3 +81,65 @@ add_action( 'init', 'xlt_remove_comment_reply' );
 function xlt_remove_comment_reply() {
 	wp_deregister_script( 'comment-reply' );
 }
+
+/*add_action( 'admin_enqueue_scripts', 'my_enqueue' );
+
+function my_enqueue() {
+
+	wp_enqueue_script(
+		'switch-lang-script',
+		plugins_url( '/js/ajax.js', __FILE__ ),
+		array( 'jquery' ),
+		'',
+		true
+	);
+	$switch_lang_nonce = wp_create_nonce( 'switch_lang_nonce' );
+	wp_localize_script(
+		'switch-lang-script',
+		'switch_lang_obj',
+		array(
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'nonce'    => $switch_lang_nonce,
+		)
+	);
+}
+
+add_action( 'wp_ajax_switch_lang', 'xlt_get_page_content' );
+add_action( 'wp_ajax_nopriv_switch_lang', 'xlt_get_page_content' );
+
+
+function xlt_get_page_content() {
+	check_ajax_referer( 'switch_lang_nonce' );
+
+	$url = filter_var( $_REQUEST['url'] );
+
+	if ( $url !== '' ) {
+		$posts   = new Timber\PostQuery( array( 'p' => $url ) );
+		$context = Timber::context();
+
+		if ( $url === 'en' ) {
+			$context['class_it'] = ' active';
+			$context['class_en'] = '';
+
+		} else {
+			$context['class_it'] = '';
+			$context['class_en'] = ' active';
+		}
+
+		$post = $posts[0];
+
+		$context['post'] = $post;
+		$context['lang'] = $url;
+
+		$context['post']->title_en   = get_title_en();
+		$context['post']->date_en    = get_date_en();
+		$context['post']->content_en = get_content_en();
+
+		Timber::render( 'ajax/content.twig', $context );
+	} else {
+		$context = Timber::context();
+		Timber::render( '404.twig', $context );
+	}
+
+	wp_die();
+}*/
