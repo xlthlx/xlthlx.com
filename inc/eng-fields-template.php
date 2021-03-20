@@ -25,7 +25,7 @@ function xlt_translate( $element ) {
 		$trans_content = $trc::translate( 'it', 'en', $element, 5 );
 
 	} catch ( Exception $ex ) {
-		//error_log( $ex );
+		error_log( $ex );
 	}
 
 	return $trans_content;
@@ -34,11 +34,15 @@ function xlt_translate( $element ) {
 /**
  * Translate the month of the date.
  *
+ * @param bool $post_id
+ *
  * @return mixed
  */
-function get_date_en() {
-	global $post;
-	$post_id = $post->ID;
+function get_date_en( $post_id = false ) {
+	if ( ! $post_id ) {
+		global $post;
+		$post_id = $post->ID;
+	}
 
 	if ( ! is_home() || ! is_archive() ) {
 		if ( ! get_post_meta( $post_id, 'date_en',
@@ -55,11 +59,15 @@ function get_date_en() {
 /**
  * Translate the title.
  *
+ * @param bool $post_id
+ *
  * @return string $title
  */
-function get_title_en() {
-	global $post;
-	$post_id = $post->ID;
+function get_title_en( $post_id = false ) {
+	if ( ! $post_id ) {
+		global $post;
+		$post_id = $post->ID;
+	}
 
 	if ( ! get_post_meta( $post_id, 'title_en', true )
 	     || get_post_meta( $post_id, 'title_en', true ) === '' ) {
@@ -74,12 +82,16 @@ function get_title_en() {
 /**
  * Translate the content.
  *
+ * @param bool $post_id
+ *
  * @return string $content
  * @throws Exception
  */
-function get_content_en() {
-	global $post;
-	$post_id = $post->ID;
+function get_content_en( $post_id = false ) {
+	if ( ! $post_id ) {
+		global $post;
+		$post_id = $post->ID;
+	}
 
 	if ( ! get_post_meta( $post_id, 'content_en', true )
 	     || get_post_meta( $post_id, 'content_en', true ) === '' ) {
@@ -368,7 +380,7 @@ function xlt_template_redirect() {
 
 	set_query_var( 'template', $template );
 
-	include( get_template_directory() . $template );
+	include get_template_directory() . $template;
 	exit;
 }
 
@@ -385,7 +397,7 @@ function xlt_rewrite_tags_lang() {
 
 add_action( 'pre_get_posts', 'xlt_home_posts_per_page' );
 /**
- * Control the number of search results
+ * Controls the number of search results.
  *
  * @param $query
  */
@@ -394,4 +406,82 @@ function xlt_home_posts_per_page( $query ) {
 	if ( ! is_admin() && $query->is_main_query() && is_front_page() ) {
 		set_query_var( 'posts_per_page', 5 );
 	}
+}
+
+add_action( 'wp_enqueue_scripts', 'xlt_enqueue_switch_lang' );
+
+/**
+ * Sets the scripts and url for the switch lang functionality.
+ */
+function xlt_enqueue_switch_lang() {
+	if ( is_singular() ) {
+
+		wp_enqueue_script( 'switch-lang', get_template_directory_uri() . '/assets/js/ajax.js', [ 'jquery' ], '', true );
+
+		$switch_lang_nonce = wp_create_nonce( 'switch_lang_nonce' );
+
+		wp_localize_script(
+			'switch-lang',
+			'switch_lang_obj',
+			array(
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'nonce'    => $switch_lang_nonce,
+			)
+		);
+
+	}
+}
+
+add_action( 'wp_ajax_switch_lang', 'xlt_get_ajax_content' );
+add_action( 'wp_ajax_nopriv_switch_lang', 'xlt_get_ajax_content' );
+
+/**
+ * Gets internal content for the single post/page.
+ *
+ * @throws Exception
+ */
+function xlt_get_ajax_content() {
+	check_ajax_referer( 'switch_lang_nonce' );
+
+	$url     = filter_var( $_REQUEST['url'] );
+	$context = Timber::context();
+
+	if ( $url !== '' ) {
+		$pos = strpos( $url, '/en/' );
+
+		if ( $pos !== false ) {
+			$lang                = 'en';
+			$context['class_it'] = '';
+			$context['class_en'] = 'active';
+
+		} else {
+			$lang                = 'it';
+			$context['class_it'] = 'active';
+			$context['class_en'] = '';
+		}
+
+		$post_id = url_to_postid( $url );
+		$post    = new Timber\Post( $post_id );
+
+		$context['post'] = $post;
+		$context['lang'] = $lang;
+
+		$context['post']->title_en   = get_title_en( $post_id );
+		$context['post']->date_en    = get_date_en( $post_id );
+		$context['post']->content_en = get_content_en( $post_id );
+
+
+		if ( 'post' === $post->post_type ) {
+			Timber::render( 'ajax/single.twig', $context );
+		} else {
+			Timber::render( 'ajax/page.twig', $context );
+		}
+
+
+	} else {
+		$context = Timber::context();
+		Timber::render( '404.twig', $context );
+	}
+
+	wp_die();
 }

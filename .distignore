@@ -22,4 +22,5 @@ package-lock.json
 README.md
 debug.log
 wp-config.php
+_root/
 
