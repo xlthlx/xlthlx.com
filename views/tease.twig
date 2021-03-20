@@ -11,9 +11,9 @@
 			</div>
 			{% if post.thumbnail.src %}
 				<picture loading="lazy" class="col-auto d-none d-lg-block">
-					<source srcset="{{ post.thumbnail.src | resize(200, 250) |towebp }}"
+					<source srcset="{{ post.thumbnail.src | resize(200, 250) }}"
 							class="img-fluid" type="image/webp" sizes="(max-width: 200px) 100vw, 200px">
-					<img width="200" height="250" src="{{ post.thumbnail.src | resize(200, 250) |tojpg }}"
+					<img width="200" height="250" src="{{ post.thumbnail.src | resize(200, 250) }}"
 						 class="img-fluid" alt="{{ post.title }}" sizes="(max-width: 200px) 100vw, 200px">
 				</picture>
 			{% endif %}

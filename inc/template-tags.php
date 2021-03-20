@@ -253,7 +253,7 @@ if ( ! function_exists( 'xlt_comment_form' ) ) {
 	/**
 	 * Custom comments form.
 	 */
-	function xlt_comment_form() {
+	function xlt_comment_form( $post_id = false ) {
 
 		$comments_args = array(
 			'format'               => 'xhtml',
@@ -281,15 +281,21 @@ if ( ! function_exists( 'xlt_comment_form' ) ) {
 								</div>',
 		);
 
-		comment_form( $comments_args );
+		if ( $post_id ) {
+			comment_form( $comments_args, $post_id );
+		} else {
+			comment_form( $comments_args );
+		}
 	}
 }
 
 if ( ! function_exists( 'xlt_comment_form_en' ) ) {
 	/**
 	 * Custom comments form.
+	 *
+	 * @param bool $post_id
 	 */
-	function xlt_comment_form_en() {
+	function xlt_comment_form_en( $post_id = false ) {
 
 		$comments_args = array(
 			'format'               => 'xhtml',
@@ -299,15 +305,15 @@ if ( ! function_exists( 'xlt_comment_form_en' ) ) {
 			'comment_notes_before' => '<p>Your email address will not be published.</p>',
 			'class_submit'         => 'btn btn-outline-primary btn-lg py-1 px-5 pink-hover rounded-0',
 			'fields'               => array(
-				'author' => '<div class="form-floating mb-3">
+				'author'               => '<div class="form-floating mb-3">
 							<input placeholder="Name" class="form-control rounded-0" type="text" id="author" name="author" required>
 							<label for="author">Name</label>
 						</div>',
-				'email'  => '<div class="form-floating mb-3">
+				'email'                => '<div class="form-floating mb-3">
 							<input placeholder="Email" class="form-control rounded-0" type="email" id="email" name="email" required>
 							<label for="email">Email</label>
 						</div>',
-				'url'    => '<div class="form-floating mb-3">
+				'url'                  => '<div class="form-floating mb-3">
 							<input placeholder="Url" class="form-control rounded-0" type="url" id="url" name="url">
 							<label for="url">Url</label>
 						</div>',
@@ -323,7 +329,12 @@ if ( ! function_exists( 'xlt_comment_form_en' ) ) {
 								</div>',
 		);
 
-		comment_form( $comments_args );
+		if ( $post_id ) {
+			comment_form( $comments_args, $post_id );
+		} else {
+			comment_form( $comments_args );
+		}
+
 	}
 }
 
