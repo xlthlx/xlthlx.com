@@ -1,6 +1,6 @@
 {% if posts.pagination.pages is not empty %}
-	<nav class="row mt-4">
-		<ul class="pagination flex-wrap col-6">
+	<nav class="mt-4">
+		<ul class="pagination flex-wrap">
 
 			{# First #}
 			{% if posts.pagination.pages|first and posts.pagination.pages|first.current != true %}
