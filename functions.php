@@ -231,9 +231,7 @@ require_once 'inc/template-tags.php';
  */
 require_once 'inc/toolkit/toolkit.php';
 
-
 /**
  * Comments Email Notification.
  */
 //require_once 'inc/comment-reply-notification.php';
-
