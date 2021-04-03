@@ -31,7 +31,6 @@ function xlt_remove_admin_bar_wp_logo() {
 add_filter( 'pre_option_link_manager_enabled', '__return_true' );
 add_filter( 'wpcf7_load_js', '__return_false' );
 add_filter( 'wpcf7_load_css', '__return_false' );
-
 add_filter( 'render_block', 'xlt_render_code_block', 10, 2 );
 
 /**
@@ -83,13 +82,13 @@ function xlt_render_code( string $content ) {
 }
 
 add_action( 'init', 'xlt_remove_comment_reply' );
+
 /**
  * Removes the comment-reply script.
  */
 function xlt_remove_comment_reply() {
 	wp_deregister_script( 'comment-reply' );
 }
-
 
 add_action( 'init', 'xlt_remove_jquery_migrate_notice', 5 );
 
@@ -101,4 +100,52 @@ function xlt_remove_jquery_migrate_notice() {
 	$m->extra['before'][] = 'temp_jm_logconsole = window.console.log; window.console.log=null;';
 	$m->extra['after'][]  = 'window.console.log=temp_jm_logconsole;';
 }
+
+/**
+ * Comment Field Order.
+ *
+ * @param $fields
+ *
+ * @return array
+ */
+function xlt_comment_fields_custom_order( $fields ) {
+
+	$comment_field = $fields['comment'];
+	$author_field  = $fields['author'];
+	$email_field   = $fields['email'];
+	$url_field     = $fields['url'];
+
+	unset( $fields['comment'], $fields['author'], $fields['email'], $fields['url'], $fields['cookies'] );
+
+	$fields['author']  = $author_field;
+	$fields['email']   = $email_field;
+	$fields['url']     = $url_field;
+	$fields['comment'] = $comment_field;
+
+	return $fields;
+}
+
+add_filter( 'comment_form_fields', 'xlt_comment_fields_custom_order' );
+
+/**
+ * Redirect en comments to the correct url.
+ *
+ * @param $location
+ * @param $commentdata
+ *
+ * @return mixed
+ */
+function xlt_en_comment_redirect( $location, $commentdata ) {
+	if ( ! isset( $commentdata ) || empty( $commentdata->comment_post_ID ) ) {
+		return $location;
+	}
+
+	if ( isset( $_POST['en_redirect_to'] ) ) {
+		$location = get_permalink( $commentdata->comment_post_ID ) . "en/#comment-" . $commentdata->comment_ID;
+	}
+
+	return $location;
+}
+
+add_filter( 'comment_post_redirect', 'xlt_en_comment_redirect', 10, 2 );
 

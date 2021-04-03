@@ -24,6 +24,7 @@ function xlt_add_metabox() {
 		'name'         => __( 'Date', 'xm' ),
 		'id'           => 'date_en',
 		'type'         => 'text_medium',
+		'object_types' => array( 'post' ),
 		'show_in_rest' => WP_REST_Server::ALLMETHODS,
 	) );
 
@@ -31,6 +32,7 @@ function xlt_add_metabox() {
 		'name'         => __( 'Title', 'xm' ),
 		'id'           => 'title_en',
 		'type'         => 'text',
+		'object_types' => array( 'page', 'post' ),
 		'show_in_rest' => WP_REST_Server::ALLMETHODS,
 	) );
 
@@ -38,6 +40,7 @@ function xlt_add_metabox() {
 		'name'         => __( 'Content', 'xm' ),
 		'id'           => 'content_en',
 		'type'         => 'wysiwyg',
+		'object_types' => array( 'page', 'post' ),
 		'show_in_rest' => WP_REST_Server::ALLMETHODS,
 	) );
 
@@ -104,12 +107,9 @@ add_action( 'cmb2_init', 'xlt_register_comment_language' );
  */
 function xlt_register_comment_language() {
 
-	/**
-	 * Sample metabox to demonstrate each field type included
-	 */
 	$cmb = new_cmb2_box( array(
 		'id'           => 'xlt_comment_metabox',
-		'title'        => 'Lingua',
+		'title'        => 'Altre opzioni',
 		'object_types' => array( 'comment' ),
 	) );
 
