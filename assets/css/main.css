@@ -226,6 +226,23 @@ iframe {
 	opacity: 1;
 }
 
+.letter-avatar {
+	background-color: #8265a7;
+	text-align: center;
+	border-radius: 0 !important;
+	line-height: 64px;
+	height: 64px;
+	width: 64px;
+}
+
+.letter-avatar > span {
+	color: #ffffff;
+	display: block;
+	text-transform: uppercase;
+	font-weight: 200;
+	font-size: 48px;
+}
+
 /*-------
 Colors
 _______*/
