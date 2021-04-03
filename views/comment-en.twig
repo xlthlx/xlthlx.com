@@ -1,5 +1,5 @@
 {% if comment.comment_type == 'comment' and comment.comment_lang == 'en' %}
-	<div class="blog-comment {{ comment.comment_type }} {{ comment.comment_lang }}" id="blog-comment-{{ comment.ID }}">
+	<div class="blog-comment {{ comment.comment_type }} {{ comment.comment_lang }}" id="comment-{{ comment.ID }}">
 		<hr/>
 		<div class="card mb-3 rounded-0 border-0">
 			<div class="row g-0">
@@ -26,7 +26,11 @@
 										{{ _e( 'Edit' ) }} &raquo;</a>&nbsp;&nbsp;
 								</small>
 							{% endif %}
-							<small>{{ comment.reply_link('Reply &raquo;') }}</small>
+							<small>
+								<a href="{{ fn('get_permalink', comment.comment_post_ID ) }}en/?replytocom={{ comment.ID }}#respond">
+									Reply &raquo;
+								</a>
+							</small>
 						</p>
 					</div>
 				</div>
@@ -39,7 +43,7 @@
 			{% if comment.children %}
 				<div class="comments ml-5 children">
 					{% for cmt in comment.children %}
-						{% include "comment.twig" with {comment:cmt} %}
+						{% include "comment-en.twig" with {comment:cmt} %}
 					{% endfor %}
 				</div>
 			{% endif %}

@@ -56,7 +56,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 		global $post;
 		$home_url  = home_url( '/' );
-		$parent_id = $post->post_parent ?? 0;
+		$parent_id = $post->post_parent??0;
 
 		$home_link = xlt_get_link( $args, $home_url, $args['text']['home'], 1 );
 
@@ -278,6 +278,10 @@ if ( ! function_exists( 'xlt_comment_form' ) ) {
 								<textarea placeholder="Commento" class="form-control rounded-0" id="comment" name="comment" style="height: 150px" required></textarea>
 								<label for="comment">Commento</label>
 								<input id="comment_lang" name="comment_lang" type="hidden" value="it" />
+								</div>
+								<div class="form-check mb-3">
+									<input class="form-check-input" id="subscribe_to_comment" name="subscribe_to_comment" type="checkbox" value="on">
+									<label class="form-check-label" for="subscribe_to_comment">Iscriviti ai commenti</label>
 								</div>',
 		);
 
@@ -302,30 +306,32 @@ if ( ! function_exists( 'xlt_comment_form_en' ) ) {
 			'label_submit'         => 'Send',
 			'title_reply'          => 'Leave a comment',
 			'title_reply_to'       => 'Reply to %s',
+			'cancel_reply_link'    => 'Cancel reply',
 			'comment_notes_before' => '<p>Your email address will not be published.</p>',
 			'class_submit'         => 'btn btn-outline-primary btn-lg py-1 px-5 pink-hover rounded-0',
 			'fields'               => array(
-				'author'               => '<div class="form-floating mb-3">
+				'author' => '<div class="form-floating mb-3">
 							<input placeholder="Name" class="form-control rounded-0" type="text" id="author" name="author" required>
 							<label for="author">Name</label>
 						</div>',
-				'email'                => '<div class="form-floating mb-3">
+				'email'  => '<div class="form-floating mb-3">
 							<input placeholder="Email" class="form-control rounded-0" type="email" id="email" name="email" required>
 							<label for="email">Email</label>
 						</div>',
-				'url'                  => '<div class="form-floating mb-3">
+				'url'    => '<div class="form-floating mb-3">
 							<input placeholder="Url" class="form-control rounded-0" type="url" id="url" name="url">
 							<label for="url">Url</label>
 						</div>',
-/*				'subscribe_to_comment' => '<div class="form-check mb-3">
-							<input class="form-check-input" id="cren_subscribe_to_comment" name="cren_subscribe_to_comment" type="checkbox" value="on">
-							<label class="form-check-label" for="cren_subscribe_to_comment">Subscribe to comments</label>
-						</div>',*/
 			),
 			'comment_field'        => '<div class="form-floating mb-3">
 								<textarea placeholder="Comment" class="form-control rounded-0" id="comment" name="comment" style="height: 150px" required></textarea>
 								<label for="comment">Comment</label>
 								<input id="comment_lang" name="comment_lang" type="hidden" value="en" />
+								<input id="en_redirect_to" name="en_redirect_to" type="hidden" value="true" />
+								</div>
+								<div class="form-check mb-3">
+									<input class="form-check-input" id="subscribe_to_comment" name="subscribe_to_comment" type="checkbox" value="on">
+									<label class="form-check-label" for="subscribe_to_comment">Subscribe to comments</label>
 								</div>',
 		);
 
@@ -349,7 +355,7 @@ if ( ! function_exists( 'xlt_countdown' ) ) {
 
 		$count_down = false;
 		$start_date = '2021-04-08 00:00:00';
-		$end_date = date('Y-m-d H:i:s');
+		$end_date   = date( 'Y-m-d H:i:s' );
 		if ( $start_date ) {
 			$datetime1 = new DateTime( $start_date );
 			$datetime2 = new DateTime( $end_date );
