@@ -6,27 +6,29 @@
  * @subpackage  Xlthlx
  */
 
-/**
- * Set up the single link.
- *
- * @param $args
- * @param $link
- * @param $name
- * @param $position
- *
- * @return string
- */
-function xlt_get_link( $args, $link, $name, $position ) {
-	$return = $args['before'];
-	$return .= sprintf(
-		$args['link'],
-		$link,
-		$name,
-		sprintf( $args['name'], $name )
-	);
-	$return .= sprintf( $args['position'], $position );
+if ( ! function_exists( 'xlt_get_link' ) ) {
+	/**
+	 * Set up the single link.
+	 *
+	 * @param $args
+	 * @param $link
+	 * @param $name
+	 * @param $position
+	 *
+	 * @return string
+	 */
+	function xlt_get_link( $args, $link, $name, $position ) {
+		$return = $args['before'];
+		$return .= sprintf(
+			$args['link'],
+			$link,
+			$name,
+			sprintf( $args['name'], $name )
+		);
+		$return .= sprintf( $args['position'], $position );
 
-	return $return;
+		return $return;
+	}
 }
 
 if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
@@ -56,7 +58,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 		global $post;
 		$home_url  = home_url( '/' );
-		$parent_id = $post->post_parent??0;
+		$parent_id = $post->post_parent ?? 0;
 
 		$home_link = xlt_get_link( $args, $home_url, $args['text']['home'], 1 );
 
@@ -412,5 +414,70 @@ if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 
 		return $warning;
 
+	}
+}
+
+if ( ! function_exists( 'xlt_get_avatar' ) ) {
+	/**
+	 * Get the gravatar or set a first letter avatar.
+	 *
+	 * @param $comment
+	 * @param $author_name
+	 *
+	 * @return string
+	 */
+	function xlt_get_avatar( $comment, $author_name ) {
+		$args = array(
+			'size'    => '64',
+			'default' => '404',
+		);
+
+		$url = get_avatar_url( $comment, $args );
+
+		if ( ! xlt_gravatar_exists( $url ) ) {
+			$first_letter = substr( xlt_clean( $author_name ), 0, 1 );
+			$avatar       = '<div class="letter-avatar">
+							    <span>' . $first_letter . '</span>
+							</div>';
+		} else {
+			$avatar = '<img class="img-fluid p-1" src="' . $url . '" alt="' . $author_name . '">';
+		}
+
+		return $avatar;
+	}
+}
+
+if ( ! function_exists( 'xlt_clean' ) ) {
+	/**
+	 * Clean a string from all the special chars.
+	 *
+	 * @param $string
+	 *
+	 * @return string|string[]|null
+	 */
+	function xlt_clean( $string ) {
+		$string = str_replace( ' ', '', $string );
+
+		return preg_replace( '/[^A-Za-z0-9\-]/', '', $string );
+	}
+}
+
+if ( ! function_exists( 'xlt_gravatar_exists' ) ) {
+	/**
+	 * Check if the url is a valid gravatar.
+	 *
+	 * @param $url
+	 *
+	 * @return bool
+	 */
+	function xlt_gravatar_exists( $url ) {
+		$headers = @get_headers( $url );
+		if ( false === strpos( $headers[0], "200" ) ) {
+			$has_valid_avatar = false;
+		} else {
+			$has_valid_avatar = true;
+		}
+
+		return $has_valid_avatar;
 	}
 }
