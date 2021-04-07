@@ -1,0 +1,12 @@
+.interface-interface-skeleton__content .wp-block {
+	max-width: 90%
+}
+
+.interface-interface-skeleton__content .wp-block .wp-block {
+	max-width: 100%
+}
+
+.interface-interface-skeleton__content .block-list-appender {
+	margin-left: auto;
+	margin-right: auto
+}
