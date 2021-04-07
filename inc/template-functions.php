@@ -149,3 +149,13 @@ function xlt_en_comment_redirect( $location, $commentdata ) {
 
 add_filter( 'comment_post_redirect', 'xlt_en_comment_redirect', 10, 2 );
 
+/**
+ * Enqueue js and css into admin.
+ */
+function xlt_enqueue_admin_css_js() {
+	wp_enqueue_style( 'admin', get_template_directory_uri() . '/assets/css/admin/admin.css' );
+	wp_enqueue_script( 'admin', get_template_directory_uri() . '/assets/js/admin/admin.js', [], '', true );
+}
+
+add_action( 'admin_enqueue_scripts', 'xlt_enqueue_admin_css_js' );
+

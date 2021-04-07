@@ -30,9 +30,6 @@ class xlthlxSite extends Timber\Site {
 		add_action( 'init', array( $this, 'register_menus' ) );
 		add_filter( 'timber/context', array( $this, 'add_to_context' ) );
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
-		add_action( 'wp_dashboard_setup', array( $this, 'remove_gutenberg_panel' ) );
-		add_action( 'admin_head', array( $this, 'remove_gutenberg_tips' ) );
-		add_action( 'enqueue_block_editor_assets', array( $this, 'disable_editor_fullscreen' ) );
 		parent::__construct();
 	}
 
@@ -158,38 +155,6 @@ class xlthlxSite extends Timber\Site {
 				'before_title'  => '<h4 class="font-italic pb-2">',
 				'after_title'   => '</h4>',
 		) );
-	}
-
-	/**
-	 * Removes the very annoying Try Gutenberg Panel.
-	 */
-	public function remove_gutenberg_panel() {
-		remove_action( 'try_gutenberg_panel', 'wp_try_gutenberg_panel' );
-	}
-
-	/**
-	 * Hides the very annoying Welcome Tips popup for Gutenberg.
-	 */
-	public function remove_gutenberg_tips() {
-		?>
-		<style>
-			.components-modal__frame.components-guide {
-				display: none !important;
-			}
-
-			.components-modal__screen-overlay {
-				display: none !important;
-			}
-		</style>
-		<?php
-	}
-
-	/**
-	 * Disable the very annoying fullscreen mode for Gutenberg.
-	 */
-	public function disable_editor_fullscreen() {
-		$script = "window.onload = function() { const isFullscreenMode = wp.data.select( 'core/edit-post' ).isFeatureActive( 'fullscreenMode' ); if ( isFullscreenMode ) { wp.data.dispatch( 'core/edit-post' ).toggleFeature( 'fullscreenMode' ); } }";
-		wp_add_inline_script( 'wp-blocks', $script );
 	}
 
 }
