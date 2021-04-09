@@ -1,5 +1,5 @@
 {
-    "name": "xlthlx/boot",
+    "name": "xlthlx/com",
     "license": "MIT",
     "description": "Theme based on Timber and Bootstrap 5.",
     "type": "wordpress-theme",
@@ -18,9 +18,6 @@
         "dejurin/php-google-translate-for-free": "^1.0",
         "simplehtmldom/simplehtmldom": "dev-master",
         "scrivo/highlight.php": "v9.18.1.6"
-    },
-    "require-dev": {
-        "roave/security-advisories": "dev-master"
     },
     "extra": {
         "installer-paths": {

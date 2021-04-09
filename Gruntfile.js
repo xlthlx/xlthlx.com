@@ -20,24 +20,12 @@ module.exports = function (grunt) {
           'css/main.min.css': 'scss/main.scss',
         }]
       }
-    },
-    browserSync: {
-      dev: {
-          bsFiles: {
-              src : ['*.php','css/main.css']
-          },
-          options: {
-              watchTask: true,
-              proxy: "${themeslug}.test"
-          }
-      }
     }
 
   });
   // Load Grunt plugins
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-browser-sync');
 
   // Register Grunt tasks
   grunt.registerTask('default', ['browserSync', 'watch']);
