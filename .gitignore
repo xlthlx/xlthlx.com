@@ -51,3 +51,9 @@ Thumbs.db
 /node_modules
 config.codekit3
 .idea
+/assets/vendor/composer/
+/assets/vendor/twbs/bootstrap/build/
+/assets/vendor/twbs/bootstrap/nuget/
+/assets/vendor/twbs/bootstrap/site/
+/assets/vendor/twbs/bootstrap/vendor/
+package-lock.json

@@ -1,0 +1,10 @@
+{
+  "name": "xlthlx/com",
+  "license": "MIT",
+  "description": "Boostrap for Boot theme",
+  "type":"css",
+  "minimum-stability" : "stable",
+  "require": {
+    "twbs/bootstrap": "5.0.0-beta3"
+  }
+}
