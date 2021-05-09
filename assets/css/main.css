@@ -46,7 +46,7 @@ body {
 	background-color: #e7e6f7 !important;
 }
 
-body.admin-bar .navbar {
+body.admin-bar div.fixed-top {
 	top: 32px !important;
 }
 
