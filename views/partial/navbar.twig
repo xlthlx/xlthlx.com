@@ -1,19 +1,61 @@
-<nav aria-label="navbar" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark border-0 shadow-none">
+<div class="container-fluid bg-light fixed-top">
+	<div class="row">
+		<div class="col-2">
+			<h1 class="display-4 font-italic py-2 px-3 pt-md-2 pt-3 ps-md-3 ps-2">
+				<a title="Homepage" class="text-white text-decoration-none"
+				   href="{{ site.url }}">{{ site.name }}</a>
+			</h1>
+		</div>
+		<div class="col-8">
+			<p class="lead pt-4 mt-2 text-end text-white fs-6">{{ site.description }}</p>
+		</div>
+		<div class="col-2">
+			<div class="navbar navbar-dark bg-light pt-3 text-white border-0 shadow-none banner d-flex align-items-end flex-column">
+				<div class="my-2 ml-auto me-md-3 me-2">
+					<button class="navbar-toggler text-white border-0 shadow-none" type="button" data-bs-toggle="offcanvas"
+							data-bs-target="#menuOffcanvas" aria-expanded="false" aria-controls="menuOffcanvas"
+							aria-label="{{ _e( 'Toggle navigation') }}">
+						☰
+					</button>
+				</div>
 
-	<div class="container-fluid">
-
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
-				aria-controls="navbarMain" aria-expanded="false" aria-label="{{ _e( 'Toggle navigation') }}">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarMain">
-			<ul class="navbar-nav me-auto mb-2 mb-md-0">
-				{% include "partial/menu.twig" with {'items': menu.get_items} %}
-			</ul>
-			<div class="d-flex justify-content-md-end">
-				{% include 'searchform.twig' %}
+				<div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="menuOffcanvas" aria-labelledby="menuOffcanvasLabel">
+					<div class="offcanvas-header pb-0 white-text">
+						<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+					</div>
+					<div class="offcanvas-body pb-5rem px-5">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							{% for item in menu.get_items %}
+								{% set target = item.target? ' target="'~item.target~'"': '' %}
+								{% if item.children %}
+									<li class="nav-item dropdown pink{{ item.classes | join(' ') }}">
+										<a class="nav-link dropdown-toggle pink" {{ target }}href="{{ item.link }}"
+										   id="{{ fn('sanitize_title', item.title) }}"
+										   data-bs-toggle="dropdown" aria-expanded="false">{{ item.title }}</a>
+										<ul class="dropdown-menu bg-dark" aria-labelledby="{{ fn('sanitize_title', item.title) }}">
+											{% for item in item.children %}
+												{% set target = item.target? ' target="'~item.target~'"': '' %}
+												<li class="white">
+													<a class="dropdown-item white"{{ target }} href="{{ item.link }}">
+														{{ item.title }}
+													</a>
+												</li>
+											{% endfor %}
+										</ul>
+									</li>
+								{% else %}
+									<li class="nav-item white-text{{ item.classes | join(' ') }}">
+										<a class="nav-link white-text" {{ target }}href="{{ item.link }}">{{ item.title }}</a>
+									</li>
+								{% endif %}
+							{% endfor %}
+						</ul>
+						<div class="my-3">
+							{% include 'searchform.twig' %}
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</nav>
+</div>
