@@ -19,8 +19,8 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'ab03e62445ac0f10a15b49a68006be4b051e1455',
-    'name' => 'xlthlx/boot',
+    'reference' => 'c9c38474e6fe40e1c0cf06ffe73741acec292c65',
+    'name' => 'xlthlx/com',
   ),
   'versions' => 
   array (
@@ -53,12 +53,12 @@ private static $installed = array (
     ),
     'composer/installers' => 
     array (
-      'pretty_version' => 'v1.10.0',
-      'version' => '1.10.0.0',
+      'pretty_version' => 'v1.11.0',
+      'version' => '1.11.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1a0357fccad9d1cc1ea0c9a05b8847fbccccb78d',
+      'reference' => 'ae03311f45dfe194412081526be2e003960df74b',
     ),
     'dejurin/php-google-translate-for-free' => 
     array (
@@ -71,21 +71,12 @@ private static $installed = array (
     ),
     'johnbillion/extended-cpts' => 
     array (
-      'pretty_version' => '4.5.1',
-      'version' => '4.5.1.0',
+      'pretty_version' => '4.5.2',
+      'version' => '4.5.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'b8aef5ef64335d51784e391c9393145f50482fb4',
-    ),
-    'roave/security-advisories' => 
-    array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '0745f820eed6cb92603ca44a9c137ff8ce315e86',
+      'reference' => '59ce9f4e0422512eec6f698ccba4a6a81b018fdb',
     ),
     'roundcube/plugin-installer' => 
     array (
@@ -149,12 +140,12 @@ private static $installed = array (
     ),
     'twig/twig' => 
     array (
-      'pretty_version' => 'v2.14.3',
-      'version' => '2.14.3.0',
+      'pretty_version' => 'v2.14.4',
+      'version' => '2.14.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => '8bc568d460d88b25c00c046256ec14a787ea60d9',
+      'reference' => '0b4ba691fb99ec7952d25deb36c0a83061b93bbf',
     ),
     'upstatement/routes' => 
     array (
@@ -165,14 +156,14 @@ private static $installed = array (
       ),
       'reference' => '3267d28be0a73f197087d58384e1a358d85671b6',
     ),
-    'xlthlx/boot' => 
+    'xlthlx/com' => 
     array (
       'pretty_version' => 'dev-main',
       'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => 'ab03e62445ac0f10a15b49a68006be4b051e1455',
+      'reference' => 'c9c38474e6fe40e1c0cf06ffe73741acec292c65',
     ),
   ),
 );
