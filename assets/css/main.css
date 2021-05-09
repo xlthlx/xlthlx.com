@@ -41,7 +41,6 @@ _______*/
 }
 
 body {
-	padding-top: 3rem;
 	font-family: 'Titillium Web', serif !important;
 	font-size: 1.2rem;
 	background-color: #e7e6f7 !important;
@@ -49,6 +48,10 @@ body {
 
 body.admin-bar .navbar {
 	top: 32px !important;
+}
+
+main {
+	margin-top: 91px;
 }
 
 .breadcrumb-item.active {
@@ -217,13 +220,25 @@ iframe {
 	border-radius: 0 !important;
 }
 
-.navbar-dark .navbar-nav .nav-link {
+.navbar-dark .navbar-nav .nav-link.white-text {
 	color: white !important;
+}
+
+.nav-link {
+	font-size: 1.4rem;
+}
+
+.navbar-toggler {
+	font-size: 1.8rem;
 }
 
 .cc-banner .cc-message, .cc-link, .cc-deny, .cc-allow {
 	font-weight: 900;
 	opacity: 1;
+}
+
+.btn-close {
+	background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
 }
 
 .letter-avatar {
@@ -260,7 +275,7 @@ _______*/
 }
 
 .pink {
-	color: #d93f87;
+	color: #ab0061 !important;
 }
 
 .violet {
@@ -268,7 +283,7 @@ _______*/
 }
 
 .light {
-	color: #e7e6f7;
+	color: #e7e6f7 !important;
 }
 
 .dark {
