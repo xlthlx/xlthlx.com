@@ -234,7 +234,7 @@ iframe {
 
 .cc-banner .cc-message, .cc-link, .cc-deny, .cc-allow {
 	font-weight: 900;
-	opacity: 1;
+	opacity: 1!important;
 }
 
 .btn-close {
