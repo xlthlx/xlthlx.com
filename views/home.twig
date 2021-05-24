@@ -7,11 +7,7 @@
 		{% if is_amp %}
 			{% include 'amp/tease.twig' %}
 		{% else %}
-			{% if loop.index == 1 or loop.index == 2 %}
-				{% include 'tease.twig' %}
-			{% else %}
-				{% include 'tease-home.twig' %}
-			{% endif %}
+			{% include 'tease-home.twig' %}
 		{% endif %}
 		{% if loop.last %}
 			</div>
