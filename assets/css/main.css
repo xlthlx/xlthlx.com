@@ -50,6 +50,10 @@ body.admin-bar div.fixed-top {
 	top: 32px !important;
 }
 
+body.admin-bar div.offcanvas {
+	top: 32px !important;
+}
+
 main {
 	margin-top: 91px;
 }
