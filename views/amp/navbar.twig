@@ -33,27 +33,27 @@
 	</nav>
 </amp-sidebar>
 <header>
-	<div class="bg-dark border-0 shadow-none banner d-flex align-items-end flex-column">
-		<div class="my-2 ml-auto me-3">
-			<button class="navbar-toggler text-white border-0 shadow-none" on="tap:sidebar.toggle" tabindex="0"
-					aria-expanded="false" aria-label="{{ _e( 'Toggle navigation') }}">
-				☰
-			</button>
+	<div class="container-fluid bg-light fixed-top">
+		<div class="row">
+			<div class="col-2">
+				<h1 class="display-4 font-italic py-2 px-3 pt-md-2 pt-3 ps-md-4 ps-2">
+					<a title="Homepage" class="text-white text-decoration-none"
+					   href="{{ site.url }}">{{ site.name }}</a>
+				</h1>
+			</div>
+			<div class="col-8">
+				<p class="lead pt-4 mt-2 text-end text-white fs-6">{{ site.description }}</p>
+			</div>
+			<div class="col-2">
+				<div class="my-2 ml-auto me-3">
+					<button class="navbar-toggler text-white border-0 shadow-none" on="tap:sidebar.toggle" tabindex="0"
+							aria-expanded="false" aria-label="{{ _e( 'Toggle navigation') }}">
+						☰
+					</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </header>
 <div id="target-element">
-</div>
-<div class="container-fluid bg-light">
-	<div class="row">
-		<div class="col-3">
-			<h1 class="display-4 font-italic py-2 px-3 pt-md-2 pt-3 ps-md-4 ps-2">
-				<a title="Homepage" class="text-white text-decoration-none"
-				   href="{{ site.url }}">{{ site.name }}</a>
-			</h1>
-		</div>
-		<div class="col-9">
-			<p class="lead pt-4 mt-2 text-end text-white fs-6">{{ site.description }}</p>
-		</div>
-	</div>
 </div>
