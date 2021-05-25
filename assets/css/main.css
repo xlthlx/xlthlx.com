@@ -258,6 +258,11 @@ iframe {
 	font-size: 48px;
 }
 
+.cc-animate.cc-revoke.cc-bottom {
+	-webkit-transform: unset !important;
+	transform: unset !important;
+}
+
 /*-------
 Colors
 _______*/
