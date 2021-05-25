@@ -172,10 +172,14 @@ div.comments.children {
 
 .cc-revoke.cc-bottom {
 	bottom: 0;
-	left: unset !important;
-	right: 3em;
+	left: 0 !important;
 	border-top-left-radius: 0 !important;
 	border-top-right-radius: 0 !important;
+	background-color: #44318d;
+	border-color: #44318d;
+	font-weight: 400;
+	font-size: 1.3rem;
+	font-family: 'Titillium Web', serif !important;
 }
 
 .months-container {
