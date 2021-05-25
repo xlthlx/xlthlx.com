@@ -180,12 +180,14 @@ div.comments.children {
 	font-weight: 400 !important;
 	font-size: 1.2rem !important;
 	font-family: 'Titillium Web', serif !important;
-	padding: .375rem .75rem  !important;
-	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	padding: .375rem .75rem !important;
+	transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .cc-revoke.cc-bottom:hover {
 	text-decoration: none;
+	background-color: #3a2a78;
+	border-color: #362771;
 }
 
 .months-container {
@@ -244,7 +246,7 @@ iframe {
 
 .cc-banner .cc-message, .cc-link, .cc-deny, .cc-allow {
 	font-weight: 900;
-	opacity: 1!important;
+	opacity: 1 !important;
 }
 
 .btn-close {
