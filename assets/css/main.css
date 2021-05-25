@@ -171,7 +171,6 @@ div.comments.children {
 }
 
 .cc-revoke.cc-bottom {
-	bottom: 0;
 	left: unset !important;
 	right: 3em;
 	border-top-left-radius: 0 !important;
@@ -179,8 +178,14 @@ div.comments.children {
 	background-color: #44318d !important;
 	border-color: #44318d !important;
 	font-weight: 400 !important;
-	font-size: 1.3rem !important;
+	font-size: 1.2rem !important;
 	font-family: 'Titillium Web', serif !important;
+	padding: .375rem .75rem  !important;
+	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.cc-revoke.cc-bottom:hover {
+	text-decoration: none;
 }
 
 .months-container {
