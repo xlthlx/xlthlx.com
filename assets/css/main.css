@@ -176,7 +176,7 @@ div.comments.children {
 	border-top-left-radius: 0 !important;
 	border-top-right-radius: 0 !important;
 	background-color: #44318d !important;
-	border-color: #44318d !important;
+	border: 1px solid #44318d !important;
 	font-weight: 400 !important;
 	font-size: 1.2rem !important;
 	font-family: 'Titillium Web', serif !important;
@@ -186,8 +186,8 @@ div.comments.children {
 
 .cc-revoke.cc-bottom:hover {
 	text-decoration: none;
-	background-color: #3a2a78;
-	border-color: #362771;
+	background-color: #3a2a78 !important;
+	border-color: #362771 !important;
 }
 
 .months-container {
