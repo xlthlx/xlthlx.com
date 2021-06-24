@@ -1,13 +1,13 @@
 <div class="col-md-6">
 	<article class="tease tease-{{ post.post_type }}" id="tease-{{ post.ID }}">
 		<div class="row g-0 border overflow-hidden flex-md-row mb-4 border-0 h-md-250 position-relative rounded-0">
-			<div class="col px-4 py-3 d-flex flex-column position-static">
+			<div class="col px-4 py-3 d-flex flex-column position-static min-h-240">
 				{% set cat = post.terms('category')|first %}
 				<strong class="d-inline-block mb-2 text-primary">{{ cat.name }}</strong>
 				<h2 class="mb-3">{{ post.title }}</h2>
 				<p class="card-text mb-auto">{{ post.preview.length(20).read_more('') }}</p>
 				<a aria-label="Continua a leggere: {{ post.title }}" href="{{ post.link }}"
-				   class="stretched-link">{{ _e( 'continua') }} ></a>
+				   class="align-text-bottom stretched-link">{{ _e( 'continua') }} ></a>
 			</div>
 		</div>
 	</article>
