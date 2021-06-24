@@ -121,11 +121,10 @@ class xlthlxSite extends Timber\Site {
 		}
 
 		// Analytics.
-		if ( ( isset( $_COOKIE['cookieconsent_status'] ) ) && ( $_COOKIE['cookieconsent_status'] === 'allow' ) && ( ! is_user_logged_in() ) ) {
-			wp_enqueue_script( 'gtag-script', 'https://www.googletagmanager.com/gtag/js?id=UA-21923886-8' );
+		wp_enqueue_script( 'gtag-script', 'https://www.googletagmanager.com/gtag/js?id=UA-21923886-8' );
+		if ( function_exists( 'is_amp_endpoint' ) && ! is_amp_endpoint() ) {
 			wp_enqueue_script( 'gtag', get_template_directory_uri() . '/assets/js/gtag.js' );
 		}
-
 	}
 
 	/**

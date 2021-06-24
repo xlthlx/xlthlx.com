@@ -77,35 +77,6 @@
 		}
 	</script>
 </amp-analytics>
-<amp-consent id="cookieConsent" layout="nodisplay">
-	<script type="application/json">{
-			"consentInstanceId": "consent-id",
-			"consentRequired": true,
-			"promptUI": "consent-dialog",
-			"postPromptUI": "post-consent-ui"
-		}</script>
-	<div class="bg-light text-white pt-3" id="consent-dialog">
-		<div class="consent-popup row fw-bold">
-			<div class="col-6">
-				<p class="ps-3 pt-1">Cookies, anyone?
-					<a aria-label="Policy" role="button" tabindex="0" class="text-decoration-underline text-white"
-					   href="{{ site.url }}/policy/">
-						Policy
-					</a>
-				</p>
-			</div>
-			<div class="col-6 d-flex align-items-end flex-column">
-				<p>
-					<button class="btn btn-light rounded-0 fw-bold" on="tap:cookieConsent.reject">No way!</button>
-					<button class="btn btn-outline-primary me-3 rounded-0 bg-white fw-bold hover" on="tap:cookieConsent.accept">Whatever.</button>
-				</p>
-			</div>
-		</div>
-	</div>
-	<div id="post-consent-ui" class="d-flex align-items-end flex-column">
-		<button class="btn btn-primary rounded-0" on="tap:cookieConsent.prompt()">Cookies</button>
-	</div>
-</amp-consent>
 
 <amp-install-serviceworker
 		src="{{ site.url }}/service-worker-amp.js"
