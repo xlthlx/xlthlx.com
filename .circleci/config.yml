@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/buildpack-deps:focal
+      - image: circleci/buildpack-deps:hirsute
     working_directory: ~/wkd
     steps:
       - checkout
@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Install
           shell: sudo bash -eo pipefail
-          command: 'apt install rsync'
+          command: 'apt-get update -y && apt-get install -y rsync'
       - run:
           name: Build
           command: 'rm -rf ./build && mkdir ./build && rsync -az --exclude-from=.distignore ./ ./build'
