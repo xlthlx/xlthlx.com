@@ -23,7 +23,6 @@ add_action( 'wp_before_admin_bar_render', 'xlt_remove_admin_bar_wp_logo', 20 );
 function xlt_remove_admin_bar_wp_logo() {
 	global $wp_admin_bar;
 	$wp_admin_bar->remove_node( 'wp-logo' );
-	$wp_admin_bar->remove_node( 'view-site' );
 	$wp_admin_bar->remove_node( 'comments' );
 	$wp_admin_bar->remove_node( 'aioseo-main' );
 }
