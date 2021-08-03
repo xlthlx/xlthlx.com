@@ -6,7 +6,7 @@
 		<p>{{ lang == 'it'? post.date : post.date_en }}</p>
 
 		<div class="article-body pr-4">
-			{{ fn('xlt_old_posts_warning', lang) }}
+			{{ fn('xlt_old_posts_warning', lang, post.ID) }}
 			{{ lang == 'it'? post.content : post.content_en }}
 		</div>
 

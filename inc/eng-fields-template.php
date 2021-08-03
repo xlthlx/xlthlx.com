@@ -82,12 +82,13 @@ function get_title_en( $post_id = false ) {
 /**
  * Translate the content.
  *
- * @param bool $post_id
+ * @param int $post_id
  *
  * @return string $content
  * @throws Exception
  */
-function get_content_en( $post_id = false ) {
+function get_content_en( $post_id = null ) {
+
 	if ( ! $post_id ) {
 		global $post;
 		$post_id = $post->ID;
@@ -468,7 +469,7 @@ function xlt_get_ajax_content() {
 
 		$context['post']->title_en   = get_title_en( $post_id );
 		$context['post']->date_en    = get_date_en( $post_id );
-		$context['post']->content_en = get_content_en( $post_id );
+		$context['post']->content_en = apply_shortcodes( get_content_en( $post_id ) );
 
 
 		if ( 'post' === $post->post_type ) {

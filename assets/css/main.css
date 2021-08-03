@@ -283,6 +283,45 @@ iframe {
 	min-height: 240px;
 }
 
+#mailpoet_form_1 .mailpoet_submit {
+	border-radius: 0 !important;
+	padding: 0.25rem 3rem !important;
+	color: #44318d;
+	border-color: #44318d !important;
+	font-size: 1.25rem;
+	background-color: transparent !important;
+	width: auto !important;
+	display: inline-block;
+	font-weight: 400;
+	line-height: 1.5;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+#mailpoet_form_1 .mailpoet_submit:hover, #mailpoet_form_1 .mailpoet_submit:active {
+	background-color: #d93f87 !important;
+	border-color: #d93f87 !important;
+	color: #fefcfd;
+	border-radius: 0 !important;
+}
+
+#mailpoet_form_1 form.mailpoet_form {
+	padding: 0 !important;
+}
+
+table.wp-inci td:first-child {
+	display: table-row;
+}
+
+table.wp-inci td {
+	padding-left: 10px;
+}
+
 /*-------
 Colors
 _______*/

@@ -387,29 +387,31 @@ if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 	 * Old posts warning.
 	 *
 	 * @param $lang
+	 * @param null $post_id
 	 *
 	 * @return string
 	 */
-	function xlt_old_posts_warning( $lang ) {
+	function xlt_old_posts_warning( $lang, $post_id = null ) {
 
 		$warning = '';
 
-		if ( is_single() ) {
+		if ( ! $post_id ) {
+			global $post;
+			$post_id = $post->ID;
+		}
 
-			$today         = current_time( 'Y-m-d', $gmt = 0 );
-			$postdate      = get_the_date( 'Y-m-d' );
-			$today_str     = strtotime( $today );
-			$post_date_str = strtotime( $postdate );
-			$diff          = ( $today_str - $post_date_str ) / 60 / 60 / 24;
-			$days          = 365;
-			if ( $diff > $days ) {
-				if ( $lang !== 'en' ) {
-					$warning = '<div class="alert alert-primary rounded-0 border-0" role="alert">Attenzione: questo articolo è stato scritto più di un anno fa, potrebbero esserci alcune informazioni che nel frattempo sono diventate obsolete.</div>';
-				} else {
-					$warning = '<div class="alert alert-primary rounded-0 border-0" role="alert">Warning: this article was written more than a year ago, there may be some information that has become obsolete in the meantime.</div>';
-				}
+		$today         = current_time( 'Y-m-d' );
+		$postdate      = get_the_date( 'Y-m-d', $post_id );
+		$today_str     = strtotime( $today );
+		$post_date_str = strtotime( $postdate );
+		$diff          = ( $today_str - $post_date_str ) / 60 / 60 / 24;
+		$days          = 365;
+		if ( $diff > $days ) {
+			if ( $lang !== 'en' ) {
+				$warning = '<div class="alert alert-primary rounded-0 border-0" role="alert">Attenzione: questo articolo è stato scritto più di un anno fa, potrebbero esserci alcune informazioni che nel frattempo sono diventate obsolete.</div>';
+			} else {
+				$warning = '<div class="alert alert-primary rounded-0 border-0" role="alert">Warning: this article was written more than a year ago, there may be some information that has become obsolete in the meantime.</div>';
 			}
-
 		}
 
 		return $warning;

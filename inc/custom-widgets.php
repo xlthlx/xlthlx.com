@@ -466,6 +466,138 @@ class Related_Widget extends WP_Widget {
 	}
 }
 
+
+/**
+ * Related Articles Widget Class.
+ */
+class Newsletter_Widget extends WP_Widget {
+
+	/**
+	 * Widget Constructor.
+	 */
+	public function __construct() {
+
+		// Setup Widget.
+		parent::__construct(
+			'xlthlx-newsletter', // ID.
+			esc_html__( 'Newsletter', 'xlthlx' ), // Name.
+			array(
+				'description' => esc_html__( 'Shows newsletter subscription form.', 'xlthlx' ),
+				'customize_selective_refresh' => true,
+			) // Args.
+		);
+	}
+
+	/**
+	 * Main Function to display the widget.
+	 *
+	 * @param array $args
+	 * @param array $instance
+	 *
+	 *@uses this->render()
+	 *
+	 */
+	public function widget( $args, $instance ) {
+
+		// Start Output Buffering.
+		ob_start();
+
+		// Get Widget Settings.
+		$settings = wp_parse_args( $instance, $this->default_settings() );
+		// Output.
+		echo $args['before_widget'];
+ // Display Title.
+			$this->widget_title( $args, $settings ); ?>
+
+			<div class="textwidget">
+
+				<?php $this->render(); ?>
+
+			</div>
+
+		<?php
+		echo $args['after_widget'];
+
+		// End Output Buffering.
+		ob_end_flush();
+	}
+
+	/**
+	 * Set default settings of the widget.
+	 */
+	private function default_settings() {
+
+		return array(
+			'title'    => esc_html__( 'Newsletter', 'xlthlx' ),
+		);
+	}
+
+	/**
+	 * Displays Widget Title.
+	 *
+	 * @param array $args
+	 * @param array $settings
+	 */
+	public function widget_title( $args, $settings ) {
+
+		// Add Widget Title Filter.
+		$widget_title = apply_filters( 'widget_title', $settings['title'], $settings, $this->id_base );
+
+		if ( ! empty( $widget_title ) ) :
+
+			// Display Widget Title.
+			echo $args['before_title'] . $widget_title . $args['after_title'];
+
+		endif;
+	}
+
+	/**
+	 * Renders the Widget Content.
+	 */
+	public function render() {
+
+		$newsletter_form = do_shortcode('[mailpoet_form id="1"]');
+		echo $newsletter_form;
+
+	}
+
+	/**
+	 * Update Widget Settings.
+	 *
+	 * @param array $new_instance
+	 * @param array $old_instance
+	 *
+	 * @return array $instance
+	 */
+	function update( $new_instance, $old_instance ) {
+
+		$instance = $old_instance;
+		$instance['title'] = sanitize_text_field( $new_instance['title'] );
+
+		return $instance;
+	}
+
+	/**
+	 * Displays Widget Settings Form in the Backend.
+	 *
+	 * @param array $instance
+	 */
+	function form( $instance ) {
+
+		// Get Widget Settings.
+		$settings = wp_parse_args( $instance, $this->default_settings() );
+		?>
+
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'xlthlx' ); ?>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $settings['title'] ); ?>" />
+			</label>
+		</p>
+
+		<?php
+	}
+}
+
 add_action( 'widgets_init', 'xlt_register_widget' );
 /**
  * Register Widgets.
@@ -474,5 +606,6 @@ function xlt_register_widget() {
 
 	register_widget( 'Archive_Widget' );
 	register_widget( 'Related_Widget' );
+	register_widget( 'Newsletter_Widget');
 
 }
