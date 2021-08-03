@@ -67,3 +67,4 @@ config.codekit3
 /assets/vendor/twbs/bootstrap/package.js
 /assets/vendor/twbs/bootstrap/package.json
 package-lock.json
+/_root/
