@@ -190,11 +190,6 @@ require_once 'inc/template-functions.php';
 require_once 'inc/template-tags.php';
 
 /**
- * Comment reply notification.
- */
-require_once 'inc/comment-notification.php';
-
-/**
  * Toolkit.
  */
 require_once 'inc/toolkit/toolkit.php';
