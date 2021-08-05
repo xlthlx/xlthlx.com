@@ -280,10 +280,6 @@ if ( ! function_exists( 'xlt_comment_form' ) ) {
 								<textarea placeholder="Commento" class="form-control rounded-0" id="comment" name="comment" style="height: 150px" required></textarea>
 								<label for="comment">Commento</label>
 								<input id="comment_lang" name="comment_lang" type="hidden" value="it" />
-								</div>
-								<div class="form-check mb-3">
-									<input class="form-check-input" id="subscribe_to_comment" name="subscribe_to_comment" type="checkbox" value="on">
-									<label class="form-check-label" for="subscribe_to_comment">Iscriviti ai commenti</label>
 								</div>',
 		);
 
@@ -330,10 +326,6 @@ if ( ! function_exists( 'xlt_comment_form_en' ) ) {
 								<label for="comment">Comment</label>
 								<input id="comment_lang" name="comment_lang" type="hidden" value="en" />
 								<input id="en_redirect_to" name="en_redirect_to" type="hidden" value="true" />
-								</div>
-								<div class="form-check mb-3">
-									<input class="form-check-input" id="subscribe_to_comment" name="subscribe_to_comment" type="checkbox" value="on">
-									<label class="form-check-label" for="subscribe_to_comment">Subscribe to comments</label>
 								</div>',
 		);
 
