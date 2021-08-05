@@ -99,6 +99,9 @@
 			</div>
 			<div class="col-md-4">
 				<aside class="sidebar ps-5 ms-1">
+					{% if not is_amp %}
+						{% include 'partial/newsletter.twig' %}
+					{% endif %}
 					{% if sidebar %}
 						{{ sidebar }}
 					{% endif %}
