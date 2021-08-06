@@ -283,6 +283,14 @@ iframe {
 	min-height: 240px;
 }
 
+table.wp-inci td:first-child {
+	display: table-row;
+}
+
+table.wp-inci td {
+	padding-left: 10px;
+}
+
 #mailpoet_form_1 .mailpoet_submit {
 	border-radius: 0 !important;
 	padding: 0.25rem 3rem !important;
@@ -314,16 +322,23 @@ iframe {
 	padding: 0 !important;
 }
 
-table.wp-inci td:first-child {
-	display: table-row;
-}
-
-table.wp-inci td {
-	padding-left: 10px;
-}
-
-.stcr-form {
-	padding-bottom: 1rem;
+#mailpoet_subscribe_on_comment {
+	border-radius: 0.25em;
+	width: 1em;
+	height: 1em;
+	margin-top: 0.25em;
+	vertical-align: top;
+	background-color: #fefcfd;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	border: 1px solid rgba(0, 5, 5, 0.25);
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	-webkit-print-color-adjust: exact;
+	color-adjust: exact;
+	margin-right: 0.25em;
 }
 
 /*-------
