@@ -154,6 +154,7 @@ div.comments.children {
 .pink-hover:hover, .pink-hover:active {
 	background-color: #d93f87 !important;
 	border-color: #d93f87 !important;
+	color: white !important;
 }
 
 .wp-block-code {
@@ -240,8 +241,13 @@ iframe {
 	color: white !important;
 }
 
-.nav-link {
-	font-size: 1.4rem;
+.lang {
+	padding: 6px 12px;
+	font-size: 1.3rem;
+	min-width: 44px;
+	max-height: 44px;
+	text-align: center;
+	border: 1px solid transparent !important;
 }
 
 .navbar-toggler {
@@ -289,6 +295,55 @@ table.wp-inci td:first-child {
 
 table.wp-inci td {
 	padding-left: 10px;
+}
+
+.wpcf7 form .wpcf7-response-output {
+	margin: 2em 0.5em 1em 0;
+	padding: 0.2em 0 0.2em 1em;
+	border-left: 2px solid #44318d;
+}
+
+.wpcf7 form.init .wpcf7-response-output {
+	display: none;
+}
+
+.wpcf7 form.sent .wpcf7-response-output {
+	border-color: #46b450;
+}
+
+.wpcf7 form.failed .wpcf7-response-output,
+.wpcf7 form.aborted .wpcf7-response-output {
+	border-color: #dc3232;
+}
+
+.wpcf7 form.spam .wpcf7-response-output {
+	border-color: #ab0061;
+}
+
+.wpcf7 form.invalid .wpcf7-response-output,
+.wpcf7 form.unaccepted .wpcf7-response-output {
+	border-color: #ffb900;
+}
+
+.wpcf7-not-valid-tip {
+	color: #ab0061;
+	font-size: 1em;
+	font-weight: normal;
+	display: block;
+}
+
+@media (min-width: 1024px) {
+	.screen-reader-response {
+		position: absolute !important;
+		width: 1px !important;
+		height: 1px !important;
+		padding: 0 !important;
+		margin: -1px !important;
+		overflow: hidden !important;
+		clip: rect(0, 0, 0, 0) !important;
+		white-space: nowrap !important;
+		border: 0 !important;
+	}
 }
 
 #mailpoet_form_1 .mailpoet_submit {

@@ -232,11 +232,9 @@ function get_content_en( $post_id = null ) {
 /**
  * Get language var.
  *
- * @param bool $is_archive
- *
- * @return string|string[]
+ * @return string
  */
-function get_lang( $is_archive = false ) {
+function get_lang() {
 	$link = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ?
 			"https" : "http" ) . "://" . $_SERVER['HTTP_HOST'] .
 	        $_SERVER['REQUEST_URI'];
@@ -245,30 +243,7 @@ function get_lang( $is_archive = false ) {
 	$pos  = strpos( $link, '/en/' );
 
 	if ( $pos !== false ) {
-
 		$lang = 'en';
-
-		$link_it = str_replace( 'en/', '', $link );
-
-		if ( $is_archive ) {
-			$link_it = str_replace( '/en/', '', $link );
-		}
-
-		set_query_var( 'url_it', $link_it );
-		set_query_var( 'url_en', $link );
-		set_query_var( 'class_it', '' );
-		set_query_var( 'class_en', ' active' );
-
-
-	} else {
-
-		$link_en = $link . 'en/';
-
-		set_query_var( 'url_it', $link );
-		set_query_var( 'url_en', $link_en );
-		set_query_var( 'class_it', ' active' );
-		set_query_var( 'class_en', '' );
-
 	}
 
 	return $lang;
@@ -369,14 +344,6 @@ function xlt_template_redirect() {
 
 	if ( is_page() && ! is_paged() ) {
 		$template = '/page.php';
-	}
-
-	if ( is_archive() ) {
-		$template = '/archive.php';
-	}
-
-	if ( is_search() ) {
-		$template = '/search.php';
 	}
 
 	set_query_var( 'template', $template );
