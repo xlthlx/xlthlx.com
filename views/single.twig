@@ -9,9 +9,14 @@
 
 				<div class="row" id="push-container">
 
-					<div class="col-md-11 text-break">
-						<h2 class="display-5 pb-3">{{ lang == 'it'? post.title : post.title_en }}</h2>
-						<hr class="pt-0 mt-0 mb-4"/>
+					<div class="col-12 d-flex">
+						<div class="col-10 d-flex">
+							<h2 class="display-5 pb-3">{{ lang == 'it'? post.title : post.title_en }}</h2>
+						</div>
+						{% include 'partial/tabs.twig' %}
+					</div>
+					<hr class="pt-0 mt-0 mb-4"/>
+					<div class="col-md-12 text-break">
 						<section class="article-content">
 
 							<p>{{ lang == 'it'? post.date : post.date_en }}</p>
@@ -90,9 +95,6 @@
 							</section>
 						{% endif %}
 
-					</div>
-					<div class="col-md-1">
-						{% include 'partial/tabs.twig' %}
 					</div>
 				</div>
 

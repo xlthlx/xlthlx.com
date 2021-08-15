@@ -15,15 +15,6 @@ if ( $id !== '' && $lang !== '' ) {
 	$posts   = new Timber\PostQuery( array( 'p' => $id ) );
 	$context = Timber::context();
 
-	if ( $lang === 'en' ) {
-		$context['class_it'] = ' active';
-		$context['class_en'] = '';
-
-	} else {
-		$context['class_it'] = '';
-		$context['class_en'] = ' active';
-	}
-
 	$post = $posts[0];
 
 	$context['post'] = $post;
