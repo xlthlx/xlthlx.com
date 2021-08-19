@@ -159,3 +159,68 @@ function xlt_enqueue_admin_css_js() {
 }
 
 add_action( 'admin_enqueue_scripts', 'xlt_enqueue_admin_css_js' );
+
+/**
+ * Change the meta title based on language.
+ *
+ * @param $title
+ *
+ * @return mixed|string
+ */
+function xlt_en_title( $title ) {
+	if ( is_single() ) {
+		$lang = get_lang();
+		if ( 'en' === $lang ) {
+			$title = get_title_en() . ' | ' . get_bloginfo( 'name' );
+		}
+	}
+
+	return $title;
+}
+
+add_filter( 'slim_seo_meta_title', 'xlt_en_title' );
+
+
+/**
+ * Change the meta description based on language.
+ *
+ * @param $description
+ *
+ * @return mixed|string
+ * @throws Exception
+ */
+function xlt_en_description( $description ) {
+	if ( is_single() ) {
+		$lang = get_lang();
+		if ( 'en' === $lang ) {
+			$description = wp_trim_excerpt( get_content_en() );
+		}
+	}
+
+	return $description;
+}
+
+add_filter( 'slim_seo_meta_description', 'xlt_en_description' );
+
+/**
+ * Hide SEO settings meta box for posts.
+ */
+function xlt_hide_slim_seo_meta_box() {
+	$context = apply_filters( 'slim_seo_meta_box_context', 'normal' );
+	remove_meta_box( 'slim-seo', null, $context );
+}
+
+add_action( 'add_meta_boxes', 'xlt_hide_slim_seo_meta_box', 20 );
+
+/**
+ * Change the title separator.
+ *
+ * @return string
+ */
+function xlt_document_title_separator() {
+	return "|";
+}
+
+add_filter( 'document_title_separator', 'xlt_document_title_separator' );
+
+
