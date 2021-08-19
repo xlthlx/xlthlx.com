@@ -1,0 +1,47 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
+
+
+		<div class="row">
+			<div class="col-md-8">
+
+				<div class="row" id="push-container">
+
+					<div class="col-12 d-flex">
+						<div class="col-10 d-flex">
+							<h2 class="display-5 pb-3">{{ lang == 'it'? post.title : post.title_en }}</h2>
+						</div>
+						{% include 'partial/tabs.twig' %}
+					</div>
+					<hr class="pt-0 mt-0 mb-4"/>
+
+					<div class="col-md-12 text-break">
+
+						<section class="page-content">
+							{{ lang == 'it'? post.content : post.content_en }}
+							{% if scrivi %}
+								<p>Action: {{ act }}<br/>
+									Code: {{ cod }}<br/>
+									Lang: {{ lang }}
+								</p>
+								<pre>{{ fn('print_r',query) }}</pre>
+							{% endif %}
+						</section>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-md-4">
+				<aside class="sidebar ps-5 ms-1">
+					{% if page_sidebar %}
+						{{ page_sidebar }}
+					{% endif %}
+				</aside>
+			</div>
+		</div>
+
+	</article>
+{% endblock %}

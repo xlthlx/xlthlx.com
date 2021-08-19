@@ -10,3 +10,17 @@
 	margin-left: auto;
 	margin-right: auto
 }
+
+#group_contacts, #group_en {
+	float: left;
+	width: 100%;
+}
+
+#group_contacts:after, #group_en:after {
+	clear: both;
+}
+
+.half-width {
+	float: left;
+	width: 50%;
+}
