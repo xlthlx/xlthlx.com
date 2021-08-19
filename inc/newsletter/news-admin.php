@@ -153,14 +153,14 @@ function xlt_add_flamingo_metabox() {
 		'name'    => __( 'Nome', 'xlthlx' ),
 		'id'      => '_name',
 		'type'    => 'text_medium',
-		'classes'      => ['half-width'],
+		'classes' => [ 'half-width' ],
 	) );
 
 	$cmb->add_field( array(
 		'name'    => __( 'Email', 'xlthlx' ),
 		'id'      => '_email',
 		'type'    => 'text_email',
-		'classes'      => ['half-width'],
+		'classes' => [ 'half-width' ],
 	) );
 
 	$cmb->add_field( array(
@@ -173,7 +173,7 @@ function xlt_add_flamingo_metabox() {
 			'no' => __( 'No', 'xlthlx' ),
 			'si' => __( 'Si', 'xlthlx' ),
 		),
-		'classes'      => ['half-width'],
+		'classes'          => [ 'half-width' ],
 	) );
 
 	$cmb->add_field( array(
@@ -186,17 +186,17 @@ function xlt_add_flamingo_metabox() {
 			'it' => __( 'Italiano', 'xlthlx' ),
 			'en' => __( 'English', 'xlthlx' ),
 		),
-		'classes'      => ['half-width'],
+		'classes'          => [ 'half-width' ],
 	) );
 
 	$cmb->add_field( array(
-		'name'       => __( 'Codice', 'xlthlx' ),
-		'id'         => '_code',
-		'type'       => 'text_medium',
-/*		'attributes' => array(
-			'readonly' => 'readonly',
-		),*/
-		'classes'    => 'half-width',
+		'name'    => __( 'Codice', 'xlthlx' ),
+		'id'      => '_code',
+		'type'    => 'text_medium',
+		/*		'attributes' => array(
+					'readonly' => 'readonly',
+				),*/
+		'classes' => 'half-width',
 	) );
 
 	$cmb->add_field( array(
@@ -206,7 +206,7 @@ function xlt_add_flamingo_metabox() {
 		'attributes' => array(
 			'readonly' => 'readonly',
 		),
-		'classes'      => ['half-width'],
+		'classes'    => [ 'half-width' ],
 	) );
 
 }
