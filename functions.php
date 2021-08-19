@@ -193,3 +193,8 @@ require_once 'inc/template-tags.php';
  * Toolkit.
  */
 require_once 'inc/toolkit/toolkit.php';
+
+/**
+ * Newsletter.
+ */
+require_once 'inc/newsletter/newsletter.php';
