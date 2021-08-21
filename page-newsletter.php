@@ -23,10 +23,15 @@ if ( $lan ) {
 	$context['lang']   = $lan;
 
 	$args = array(
-		'numberposts' => - 1,
+		'nopaging' => true,
 		'post_type'   => 'flamingo_contact',
-		'meta_key'    => '_code',
-		'meta_value'  => $cod,
+		'meta_query' => array(
+			array(
+				'key'     => '_code',
+				'value'   => $cod,
+				'compare' => '=',
+			),
+		),
 	);
 
 	$query = new WP_Query( $args );
@@ -40,6 +45,8 @@ if ( $lan ) {
 				case 'confirm':
 					$post_id = get_the_ID();
 					update_post_meta( $post_id, '_active', 'si' );
+					$_code = wp_generate_password( 64, false );
+					update_post_meta( $post_id, '_code', $_code );
 					break;
 				case 'unsubscribe':
 					$post_id = get_the_ID();
@@ -57,7 +64,7 @@ if ( $lan ) {
 
 	wp_reset_postdata();
 
-	$img = '<p><img class="img-fluid mx-auto d-block" src="' . get_template_directory_uri() . '/assets/img/404.gif" alt="Error"></p>';
+	$img = '<p><img class="img-fluid d-block" src="' . get_template_directory_uri() . '/assets/img/404.gif" alt="Error"></p>';
 
 	switch ( $act ) {
 		case 'confirm':
