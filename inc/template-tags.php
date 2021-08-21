@@ -283,6 +283,13 @@ if ( ! function_exists( 'xlt_comment_form' ) ) {
 								<textarea placeholder="Commento" class="form-control rounded-0" id="comment" name="comment" style="height: 150px" required></textarea>
 								<label for="comment">Commento</label>
 								<input id="comment_lang" name="comment_lang" type="hidden" value="it" />
+								<div class="mt-3">
+									<select name="subscribe-reloaded" id="subscribe-reloaded" class="form-select form-select-lg" aria-label="iscirizione ai commenti">
+										<option value="none" selected>Non iscrivermi ai commenti</option>
+										<option value="yes">Iscrivimi a tutti i commenti</option>
+										<option value="replies">Iscrivimi alle risposte ai miei commenti</option>
+									</select>
+								</div>
 								</div>',
 		);
 
@@ -329,6 +336,13 @@ if ( ! function_exists( 'xlt_comment_form_en' ) ) {
 								<label for="comment">Comment</label>
 								<input id="comment_lang" name="comment_lang" type="hidden" value="en" />
 								<input id="en_redirect_to" name="en_redirect_to" type="hidden" value="true" />
+								<div class="mt-3">
+									<select name="subscribe-reloaded" id="subscribe-reloaded" class="form-select form-select-lg" aria-label="subscribe to comments">
+										<option value="none" selected>No subscription to comments</option>
+										<option value="yes">Subscribe to all comments</option>
+										<option value="replies">Subscribe to replies to my comments</option>
+									</select>
+								</div>
 								</div>',
 		);
 
