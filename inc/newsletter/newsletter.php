@@ -8,6 +8,6 @@
  * @subpackage  Xlthlx
  */
 
-require_once( __DIR__ . '/news-functions.php' );
 require_once( __DIR__ . '/news-admin.php' );
 require_once( __DIR__ . '/news-emails.php' );
+require_once( __DIR__ . '/news-functions.php' );

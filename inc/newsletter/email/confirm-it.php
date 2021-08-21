@@ -1,4 +1,4 @@
-<html lang="en" style="margin:0;padding:0">
+<html lang="it" style="margin:0;padding:0">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -127,7 +127,7 @@
 															<tr>
 																<td style="border-collapse:collapse;text-align:center"><!--[if mso]>
 																  <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
-																	href="https://xlthlx.com/newsletter/?act=confirm&cod=<?php echo $code; ?>&lan=it"
+																	href="https://xlthlx.com/newsletter/?act=confirm&lan=it&cod=<?php echo $code; ?>"
 																	style="height:36px;
 																		   width:288px;
 																		   v-text-anchor:middle;"
@@ -141,7 +141,7 @@
 																	font-weight:bold;">CONFERMA EMAIL
 																  </center>
 																  </v:roundrect>
-																  <![endif]--><a href="https://xlthlx.com/newsletter/?act=confirm&cod=<?php echo $code; ?>&lan=it" style="color:#ffffff;text-decoration:none !important;display:inline-block;-webkit-text-size-adjust:none;mso-hide:all;text-align:center;background-color:#8265a7;border-color:#000000;border-width:0px;border-radius:0px;border-style:solid;width:288px;line-height:36px;font-size:16px;font-weight:normal">
+																  <![endif]--><a href="https://xlthlx.com/newsletter/?act=confirm&lan=it&cod=<?php echo $code; ?>" style="color:#ffffff;text-decoration:none !important;display:inline-block;-webkit-text-size-adjust:none;mso-hide:all;text-align:center;background-color:#8265a7;border-color:#000000;border-width:0px;border-radius:0px;border-style:solid;width:288px;line-height:36px;font-size:16px;font-weight:normal">
 																		CONFERMA EMAIL</a>
 																</td>
 															</tr>
@@ -181,9 +181,9 @@
 										<tr>
 											<td style="border-collapse:collapse;padding:10px 20px;line-height:20px;text-align:center;color:#222222;font-size:12px">
 												<span style="color: #ffffff">
-													The hamsters who run the <a target="_blank" href="https://xlthlx.com/" style="color:#ffffff">xlthlx.com</a> site say that<br/>
-													you receive this email because you subscribed to the newsletter.<br/>
-													This is an automatically generated email; the address does not accept replies.
+													I criceti che gestiscono il sito <a target="_blank" href="https://xlthlx.com/" style="color:#ffffff">xlthlx.com</a> dicono<br/>
+													che ricevi questa email perché ti sei iscritto alla newsletter.<br/>
+													Questa è una email generata automaticamente; l'indirizzo non accetta risposte.
 												</span>
 											</td>
 										</tr>
