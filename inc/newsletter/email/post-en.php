@@ -187,7 +187,7 @@
 													The hamsters who run the <a target="_blank" href="https://xlthlx.com/" style="color:#ffffff">xlthlx.com</a> site say that <br/>
 													you receive this email because you subscribed to the newsletter.<br/>
 													If you no longer wish to receive it, click on the link below.<br/><br/>
-													<a target="_blank" href="https://xlthlx.com/newsletter/?act=unsubscribe&cod=<?php echo $code; ?>&lan=en" style="color:#ffffff">
+													<a target="_blank" href="https://xlthlx.com/newsletter/?act=unsubscribe&lan=en&cod=<?php echo $code; ?>" style="color:#ffffff">
 														Unsubscribe
 													</a>
 													<br/><br/>This is an automatically generated email; the address does not accept replies.

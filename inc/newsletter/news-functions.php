@@ -188,7 +188,7 @@ function xlt_flamingo_submit( $contact_form, $result ) {
 		$_code = wp_generate_password( 24 );
 		$_lang = get_post_meta( $flamingo_inbound_id, '_field_lang', true );
 		$_name = explode( '@', get_post_meta( $flamingo_contact_id, '_name', true ) );
-		$_email = get_post_meta( $flamingo_inbound_id, '_email', true );
+		$_email = get_post_meta( $flamingo_contact_id, '_email', true );
 
 		update_post_meta( $flamingo_contact_id, '_code', $_code );
 		update_post_meta( $flamingo_contact_id, '_lang', $_lang );

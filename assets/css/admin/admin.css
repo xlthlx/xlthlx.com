@@ -16,11 +16,11 @@
 	width: 100%;
 }
 
-#group_contacts:after, #group_en:after {
-	clear: both;
-}
-
 .half-width {
 	float: left;
 	width: 50%;
+}
+
+.postbox {
+	clear: both;
 }

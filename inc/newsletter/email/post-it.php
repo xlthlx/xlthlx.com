@@ -1,4 +1,4 @@
-<html lang="en" style="margin:0;padding:0">
+<html lang="it" style="margin:0;padding:0">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -143,7 +143,7 @@
 																	font-weight:bold;">continua &gt;
 																  </center>
 																  </v:roundrect>
-																  <![endif]--><a href="h<?php echo $permalink; ?>"
+																  <![endif]--><a href="<?php echo $permalink; ?>"
 																				 style="color:#ffffff;text-decoration:none !important;display:inline-block;-webkit-text-size-adjust:none;mso-hide:all;text-align:center;background-color:#8265a7;border-color:#000000;border-width:0px;border-radius:0px;border-style:solid;width:288px;line-height:36px;font-size:16px;font-weight:normal">
 																		continua &gt;</a>
 																</td>
@@ -187,7 +187,7 @@
 													I criceti che gestiscono il sito <a target="_blank" href="https://xlthlx.com/" style="color:#ffffff">xlthlx.com</a> dicono <br/>
 													che ricevi questa email perché ti sei iscritto alla newsletter.<br/>
 													Se non vuoi più riceverla, clicca sul link qui sotto.<br/><br/>
-													<a target="_blank" href="https://xlthlx.com/newsletter-2/?act=unsubscribe&cod=<?php echo $code; ?>&lan=it" style="color:#ffffff">
+													<a target="_blank" href="https://xlthlx.com/newsletter/?act=unsubscribe&lan=it&cod=<?php echo $code; ?>" style="color:#ffffff">
 														Cancella l’iscrizione
 													</a>
 													<br/><br/>Questa è una email generata automaticamente; l'indirizzo non accetta risposte.

@@ -127,7 +127,7 @@
 															<tr>
 																<td style="border-collapse:collapse;text-align:center"><!--[if mso]>
 																  <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
-																	href="https://xlthlx.com/newsletter/?act=confirm&cod=<?php echo $code; ?>&lan=en"
+																	href="https://xlthlx.com/newsletter/?act=confirm&lan=en&cod=<?php echo $code; ?>"
 																	style="height:36px;
 																		   width:288px;
 																		   v-text-anchor:middle;"
@@ -141,7 +141,7 @@
 																	font-weight:bold;">CONFIRM EMAIL
 																  </center>
 																  </v:roundrect>
-																  <![endif]--><a href="https://xlthlx.com/newsletter/?act=confirm&cod=<?php echo $code; ?>&lan=en" style="color:#ffffff;text-decoration:none !important;display:inline-block;-webkit-text-size-adjust:none;mso-hide:all;text-align:center;background-color:#8265a7;border-color:#000000;border-width:0px;border-radius:0px;border-style:solid;width:288px;line-height:36px;font-size:16px;font-weight:normal">
+																  <![endif]--><a href="https://xlthlx.com/newsletter/?act=confirm&lan=en&cod=<?php echo $code; ?>" style="color:#ffffff;text-decoration:none !important;display:inline-block;-webkit-text-size-adjust:none;mso-hide:all;text-align:center;background-color:#8265a7;border-color:#000000;border-width:0px;border-radius:0px;border-style:solid;width:288px;line-height:36px;font-size:16px;font-weight:normal">
 																	CONFIRM EMAIL</a>
 																</td>
 															</tr>
