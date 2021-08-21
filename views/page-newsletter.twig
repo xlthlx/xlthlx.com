@@ -21,13 +21,6 @@
 
 						<section class="page-content">
 							{{ lang == 'it'? post.content : post.content_en }}
-							{% if scrivi %}
-								<p>Action: {{ act }}<br/>
-									Code: {{ cod }}<br/>
-									Lang: {{ lang }}
-								</p>
-								<pre>{{ fn('print_r',query) }}</pre>
-							{% endif %}
 						</section>
 					</div>
 				</div>

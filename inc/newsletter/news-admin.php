@@ -1,6 +1,7 @@
 <?php
 /**
- * Functions to manage the newsletter.
+ * Admin functions to manage the newsletter.
+ * Requires Flamingo and Contact Form 7 plugins.
  *
  * @package  WordPress
  * @subpackage  Xlthlx
@@ -50,6 +51,8 @@ function xlt_print_flamingo_contact_columns( $column_name, $post_id ) {
 add_action( 'manage_flamingo_contact_posts_custom_column', 'xlt_print_flamingo_contact_columns', 10, 2 );
 
 /**
+ * Changes some attributes for the post type 'flamingo_contact'.
+ *
  * @param $args
  * @param $post_type
  *
@@ -75,6 +78,8 @@ function xlt_change_post_type_args( $args, $post_type ) {
 add_filter( 'register_post_type_args', 'xlt_change_post_type_args', 10, 2 );
 
 /**
+ * Changes some attributes for the taxonomy 'flamingo_contact_tag'.
+ *
  * @param $args
  * @param $taxonomy
  *
@@ -98,6 +103,9 @@ function xlt_change_taxonomy_args( $args, $taxonomy ) {
 
 add_filter( 'register_taxonomy_args', 'xlt_change_taxonomy_args', 10, 2 );
 
+/**
+ * Changes the flamingo menu.
+ */
 function xlt_change_admin() {
 	remove_submenu_page( 'flamingo', 'flamingo_inbound' );
 	remove_submenu_page( 'flamingo', 'flamingo' );
@@ -137,7 +145,7 @@ function xlt_change_admin() {
 add_action( 'admin_menu', 'xlt_change_admin' );
 
 /**
- * Adds the English fields.
+ * Adds some fields for the post type 'flamingo_contact'.
  */
 function xlt_add_flamingo_metabox() {
 
@@ -190,13 +198,13 @@ function xlt_add_flamingo_metabox() {
 	) );
 
 	$cmb->add_field( array(
-		'name'    => __( 'Codice', 'xlthlx' ),
-		'id'      => '_code',
-		'type'    => 'text_medium',
-		/*		'attributes' => array(
-					'readonly' => 'readonly',
-				),*/
-		'classes' => 'half-width',
+		'name'       => __( 'Codice', 'xlthlx' ),
+		'id'         => '_code',
+		'type'       => 'text_medium',
+		'attributes' => array(
+			'readonly' => 'readonly',
+		),
+		'classes'    => 'half-width',
 	) );
 
 	$cmb->add_field( array(
