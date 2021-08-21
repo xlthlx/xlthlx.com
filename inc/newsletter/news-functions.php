@@ -1,6 +1,7 @@
 <?php
 /**
  * Functions to manage the newsletter.
+ * Requires Flamingo and Contact Form 7 plugins.
  *
  * @package  WordPress
  * @subpackage  Xlthlx
@@ -18,7 +19,6 @@ add_action( 'init', 'xlt_remove_flamingo_save' );
 
 /**
  * Save forms submissions.
- * Based on Flamingo and Contact Form 7 plugins.
  *
  * @param $contact_form
  * @param $result
@@ -188,11 +188,14 @@ function xlt_flamingo_submit( $contact_form, $result ) {
 		$_code = wp_generate_password( 24 );
 		$_lang = get_post_meta( $flamingo_inbound_id, '_field_lang', true );
 		$_name = explode( '@', get_post_meta( $flamingo_contact_id, '_name', true ) );
+		$_email = get_post_meta( $flamingo_inbound_id, '_email', true );
 
 		update_post_meta( $flamingo_contact_id, '_code', $_code );
 		update_post_meta( $flamingo_contact_id, '_lang', $_lang );
 		update_post_meta( $flamingo_contact_id, '_active', 'no' );
 		update_post_meta( $flamingo_contact_id, '_name', ucfirst( $_name[0] ) );
+
+		xlt_send_confirmation( $_lang, $_email, $_code );
 	}
 }
 
