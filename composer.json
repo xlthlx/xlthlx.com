@@ -1,29 +1,35 @@
 {
-    "name": "xlthlx/com",
-    "license": "MIT",
-    "description": "Theme based on Timber and Bootstrap 5.",
-    "type": "wordpress-theme",
-    "minimum-stability": "stable",
-    "authors": [
-        {
-            "email": "xlthlx@gmail.com",
-            "name": "xlthlx"
-        }
-    ],
-    "require": {
-        "timber/timber": "1.*",
-        "johnbillion/extended-cpts": "^4.3",
-        "cmb2/cmb2": "^2.7",
-        "composer/installers": "^1.9",
-        "dejurin/php-google-translate-for-free": "^1.0",
-        "simplehtmldom/simplehtmldom": "dev-master",
-        "scrivo/highlight.php": "v9.18.1.6"
-    },
-    "extra": {
-        "installer-paths": {
-            "vendor/{$vendor}/{$name}/": [
-                "type:wordpress-plugin"
-            ]
-        }
-    }
+  "name": "xlthlx/com",
+  "license": "MIT",
+  "description": "Theme based on Timber and Bootstrap 5.",
+  "type": "wordpress-theme",
+  "minimum-stability": "stable",
+  "authors": [
+	{
+	  "email": "xlthlx@gmail.com",
+	  "name": "xlthlx"
+	}
+  ],
+  "require": {
+	"timber/timber": "1.*",
+	"johnbillion/extended-cpts": "^4.3",
+	"cmb2/cmb2": "^2.7",
+	"composer/installers": "^1.9",
+	"dejurin/php-google-translate-for-free": "^1.0",
+	"simplehtmldom/simplehtmldom": "dev-master",
+	"scrivo/highlight.php": "v9.18.1.6"
+  },
+  "extra": {
+	"installer-paths": {
+	  "vendor/{$vendor}/{$name}/": [
+		"type:wordpress-plugin"
+	  ]
+	}
+  },
+  "require-dev": {
+	"dxw/phar-install": "^1.1"
+  },
+  "scripts": {
+	"post-update-cmd": "vendor/bin/phar-install"
+  }
 }
