@@ -137,7 +137,6 @@ function xlt_change_admin() {
 	);
 
 	global $menu;
-	$menu[26][0] = 'Iscrizioni';
 	$menu[30][0] = 'Form';
 	$menu[30][6] = 'dashicons-forms';
 

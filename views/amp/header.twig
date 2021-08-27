@@ -1,5 +1,5 @@
 <head>
-	<title>{{ fn('wp_title', ' | ') }}</title>
+	<title>{% if is_hpme %}{{ site.name }}{% else %}{{ fn('wp_title', '') }} | {{ site.name }}{% endif %}</title>
 	<meta charset="{{ site.charset }}">
 	<meta http-equiv="Content-Type" content="text/html; charset={{ site.charset }}">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="{{ fn('get_template_directory_uri') }}/assets/css/highlight.css" media="all" />
 
 	<meta name="theme-color" content="#8265A7"/>
-	<link rel="manifest" href="{{ fn('get_template_directory_uri') }}/assets/manifest/manifest.json"/>
+	<link rel="preload" href="{{ fn('get_template_directory_uri') }}/assets/manifest/manifest.json"/>
 	<link rel="icon" href="{{ site.url }}/wp-content/uploads/2021/01/cropped-icon-1-32x32.png" sizes="32x32" />
 	<link rel="icon" href="{{ site.url }}/wp-content/uploads/2021/01/cropped-icon-1-192x192.png" sizes="192x192" />
 	<link rel="apple-touch-icon" href="{{ site.url }}/wp-content/uploads/2021/01/cropped-icon-1-180x180.png" />

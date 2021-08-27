@@ -46,7 +46,7 @@ class xlthlxSite extends Timber\Site {
 		$context['site']->login_url  = wp_login_url( get_permalink() );
 		$context['site']->logout_url = wp_logout_url( $context['site']->url );
 		$context['logged_in']        = is_user_logged_in();
-		$context['is_home']          = is_home();
+		$context['is_home']          = is_home() || is_front_page();
 		$context['current_user']     = new Timber\User();
 		$context['sidebar']          = $timber::get_widgets( 'sidebar' );
 		$context['page_sidebar']     = $timber::get_widgets( 'page_sidebar' );
@@ -70,16 +70,16 @@ class xlthlxSite extends Timber\Site {
 		add_theme_support( 'editor-styles' );
 		add_theme_support( 'customize-selective-refresh-widgets' );
 		add_theme_support(
-				'html5',
-				array(
-						'search-form',
-						'comment-form',
-						'comment-list',
-						'gallery',
-						'caption',
-						'style',
-						'script',
-				)
+			'html5',
+			array(
+				'search-form',
+				'comment-form',
+				'comment-list',
+				'gallery',
+				'caption',
+				'style',
+				'script',
+			)
 		);
 	}
 
@@ -88,10 +88,10 @@ class xlthlxSite extends Timber\Site {
 	 */
 	public function register_menus() {
 		register_nav_menus(
-				[
-						'primary' => 'Main',
-						'footer'  => 'Footer',
-				]
+			[
+				'primary' => 'Main',
+				'footer'  => 'Footer',
+			]
 		);
 	}
 
@@ -135,23 +135,23 @@ class xlthlxSite extends Timber\Site {
 	public function widgets_init() {
 
 		register_sidebar( array(
-				'name'          => esc_html__( 'Sidebar', 'xlthlx' ),
-				'id'            => 'sidebar',
-				'description'   => esc_html__( 'Sidebar', 'xlthlx' ),
-				'before_widget' => '<div id="%1$s" class="widget %2$s p-4 mb-3 rounded-0">',
-				'after_widget'  => '</div>',
-				'before_title'  => '<h4 class="font-italic pb-2">',
-				'after_title'   => '</h4>',
+			'name'          => esc_html__( 'Sidebar', 'xlthlx' ),
+			'id'            => 'sidebar',
+			'description'   => esc_html__( 'Sidebar', 'xlthlx' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s p-4 mb-3 rounded-0">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h4 class="font-italic pb-2">',
+			'after_title'   => '</h4>',
 		) );
 
 		register_sidebar( array(
-				'name'          => esc_html__( 'Page Sidebar', 'xlthlx' ),
-				'id'            => 'page_sidebar',
-				'description'   => esc_html__( 'Page Sidebar', 'xlthlx' ),
-				'before_widget' => '<div id="%1$s" class="widget %2$s p-4 mb-3 rounded-0">',
-				'after_widget'  => '</div>',
-				'before_title'  => '<h4 class="font-italic pb-2">',
-				'after_title'   => '</h4>',
+			'name'          => esc_html__( 'Page Sidebar', 'xlthlx' ),
+			'id'            => 'page_sidebar',
+			'description'   => esc_html__( 'Page Sidebar', 'xlthlx' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s p-4 mb-3 rounded-0">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h4 class="font-italic pb-2">',
+			'after_title'   => '</h4>',
 		) );
 	}
 
@@ -198,3 +198,8 @@ require_once 'inc/toolkit/toolkit.php';
  * Newsletter.
  */
 require_once 'inc/newsletter/newsletter.php';
+
+/**
+ * AMP form.
+ */
+require_once 'inc/amp-form/amp-form.php';
