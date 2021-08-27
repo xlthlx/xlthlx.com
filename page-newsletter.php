@@ -18,13 +18,13 @@ $context['post']->content_en = get_content_en();
 $lan = get_query_var( 'lan', false );
 
 if ( $lan ) {
-	$act = get_query_var( 'act' );
-	$cod = get_query_var( 'cod' );
-	$context['lang']   = $lan;
+	$act             = get_query_var( 'act' );
+	$cod             = get_query_var( 'cod' );
+	$context['lang'] = $lan;
 
 	$args = array(
-		'nopaging' => true,
-		'post_type'   => 'flamingo_contact',
+		'nopaging'   => true,
+		'post_type'  => 'flamingo_contact',
 		'meta_query' => array(
 			array(
 				'key'     => '_code',
