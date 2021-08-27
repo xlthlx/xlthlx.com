@@ -490,12 +490,3 @@ if ( ! function_exists( 'xlt_gravatar_exists' ) ) {
 		return $has_valid_avatar;
 	}
 }
-
-/**
- * Removes tags from blog posts
- */
-function xlt_unregister_tags() {
-	unregister_taxonomy_for_object_type( 'post_tag', 'post' );
-}
-
-add_action( 'init', 'xlt_unregister_tags' );

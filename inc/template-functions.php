@@ -180,7 +180,6 @@ function xlt_en_title( $title ) {
 
 add_filter( 'slim_seo_meta_title', 'xlt_en_title' );
 
-
 /**
  * Change the meta description based on language.
  *
@@ -222,5 +221,14 @@ function xlt_document_title_separator() {
 }
 
 add_filter( 'document_title_separator', 'xlt_document_title_separator' );
+
+/**
+ * Removes tags from blog posts.
+ */
+function xlt_unregister_tags() {
+	unregister_taxonomy_for_object_type( 'post_tag', 'post' );
+}
+
+add_action( 'init', 'xlt_unregister_tags' );
 
 
