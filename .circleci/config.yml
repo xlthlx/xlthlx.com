@@ -30,7 +30,7 @@ jobs:
           command: 'ssh -o StrictHostKeyChecking=no xlthlxcotb@ssh.cluster026.hosting.ovh.net exit'
       - run:
           name: Deploy
-          command: 'cd ./build && rsync -avz . xlthlxcotb@ssh.cluster026.hosting.ovh.net:/home/xlthlxcotb/xlthlx.com/wp-content/themes/xlthlx.com'
+          command: 'cd ./build && rsync -avz --delete . xlthlxcotb@ssh.cluster026.hosting.ovh.net:/home/xlthlxcotb/xlthlx.com/wp-content/themes/xlthlx.com'
 workflows:
   version: 2
   build&deploy:
