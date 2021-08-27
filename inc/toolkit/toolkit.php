@@ -25,7 +25,7 @@ $defaults = [
 		'versions'          => 'yes',
 	],
 	'wt_dashboard' => [
-		'dashboard_widgets'      => 'yes',
+		'dashboard_widgets' => 'yes',
 	],
 	'wt_seo'       => [
 		'pretty_search' => 'yes',

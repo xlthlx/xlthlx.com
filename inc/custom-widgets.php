@@ -99,6 +99,54 @@ class Archive_Widget extends WP_Widget {
 	}
 
 	/**
+	 * Renders the Widget Content AMP.
+	 */
+	public function render_amp() {
+
+		global $wpdb;
+
+		echo '<amp-accordion id="archives" class="accordion accordion-flush" animate>';
+
+		$year_prev = null;
+		$months    = $wpdb->get_results( "SELECT DISTINCT MONTH( post_date ) AS month ,  YEAR( post_date ) AS year, COUNT( id ) as post_count FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now( ) and post_type = 'post' GROUP BY month , year ORDER BY post_date DESC" );
+		foreach ( $months as $month ) :
+			$year_current = $month->year;
+
+			if ( $year_current !== $year_prev ) {
+				if ( $year_prev !== null ) {
+					echo '</ul>
+		</div>
+	</div>
+</section>';
+				} ?>
+				<section class="accordion-item">
+				<h2 class="accordion-header" id="year-<?php echo $month->year; ?>">
+					<button class="accordion-button collapsed">
+						<?php echo $month->year; ?>
+					</button>
+				</h2>
+				<div id="collapse-<?php echo $month->year; ?>" class="accordion-collapse collapse show">
+				<div class="accordion-body months-container">
+				<ul>
+				<?php } ?>
+					<li>
+						<a href="<?php bloginfo( 'url' ) ?>/<?php echo $month->year; ?>/<?php echo date( "m", mktime( 0, 0, 0, $month->month, 1, $month->year ) ) ?>/">
+							<?php echo date_i18n( "m", mktime( 0, 0, 0, $month->month, 1, $month->year ) ) ?>
+						</a>
+					</li>
+			<?php $year_prev = $year_current;
+
+		endforeach;
+		echo '</ul>
+		</div>
+	</div>
+</section>';
+
+		echo '</amp-accordion>';
+
+	}
+
+	/**
 	 * Renders the Widget Content.
 	 */
 	public function render() {
@@ -145,54 +193,6 @@ class Archive_Widget extends WP_Widget {
 </div>';
 
 		echo '</div>';
-
-	}
-
-	/**
-	 * Renders the Widget Content AMP.
-	 */
-	public function render_amp() {
-
-		global $wpdb;
-
-		echo '<amp-accordion id="archives" class="accordion accordion-flush" animate>';
-
-		$year_prev = null;
-		$months    = $wpdb->get_results( "SELECT DISTINCT MONTH( post_date ) AS month ,  YEAR( post_date ) AS year, COUNT( id ) as post_count FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now( ) and post_type = 'post' GROUP BY month , year ORDER BY post_date DESC" );
-		foreach ( $months as $month ) :
-			$year_current = $month->year;
-
-			if ( $year_current !== $year_prev ) {
-				if ( $year_prev !== null ) {
-					echo '</ul>
-		</div>
-	</div>
-</section>';
-				} ?>
-				<section class="accordion-item">
-				<h2 class="accordion-header" id="year-<?php echo $month->year; ?>">
-					<button class="accordion-button collapsed">
-						<?php echo $month->year; ?>
-					</button>
-				</h2>
-				<div id="collapse-<?php echo $month->year; ?>" class="accordion-collapse collapse show">
-				<div class="accordion-body months-container">
-				<ul>
-				<?php } ?>
-					<li>
-						<a href="<?php bloginfo( 'url' ) ?>/<?php echo $month->year; ?>/<?php echo date( "m", mktime( 0, 0, 0, $month->month, 1, $month->year ) ) ?>/">
-							<?php echo date_i18n( "m", mktime( 0, 0, 0, $month->month, 1, $month->year ) ) ?>
-						</a>
-					</li>
-			<?php $year_prev = $year_current;
-
-		endforeach;
-		echo '</ul>
-		</div>
-	</div>
-</section>';
-
-		echo '</amp-accordion>';
 
 	}
 
@@ -333,46 +333,7 @@ class Related_Widget extends WP_Widget {
 			$count     = 0;
 			$postIDs   = array( $post->ID );
 			$related   = '';
-			$tags      = wp_get_post_tags( $post->ID );
 			$cats      = wp_get_post_categories( $post->ID );
-			$tagID     = [];
-
-			if ( $tags ) {
-				foreach ( $tags as $tag ) {
-					$tagID[] = $tag->term_id;
-				}
-				$args      = array(
-						'tag__in'             => $tagID,
-						'post__not_in'        => $postIDs,
-						'showposts'           => $num_posts,
-						'ignore_sticky_posts' => 1,
-						'tax_query'           => array(
-								array(
-										'taxonomy' => 'post_format',
-										'field'    => 'slug',
-										'terms'    => array(
-												'post-format-link',
-												'post-format-status',
-												'post-format-aside',
-												'post-format-quote'
-										),
-										'operator' => 'NOT IN'
-								)
-						)
-				);
-				$tag_query = new WP_Query( $args );
-
-				if ( $tag_query->have_posts() ) {
-					while ( $tag_query->have_posts() ) {
-						$tag_query->the_post();
-
-						$related .= '<li><a href="' . get_permalink() . '" rel="bookmark" title="' . get_the_title() . '">' . get_the_title() . '</a></li>';
-
-						$postIDs[] = $post->ID;
-						$count ++;
-					}
-				}
-			}
 
 			if ( $count <= ( $num_posts - 1 ) ) {
 
@@ -466,7 +427,6 @@ class Related_Widget extends WP_Widget {
 	}
 }
 
-add_action( 'widgets_init', 'xlt_register_widget' );
 /**
  * Register Widgets.
  */
@@ -476,3 +436,5 @@ function xlt_register_widget() {
 	register_widget( 'Related_Widget' );
 
 }
+
+add_action( 'widgets_init', 'xlt_register_widget' );

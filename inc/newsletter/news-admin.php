@@ -198,10 +198,10 @@ function xlt_add_flamingo_metabox() {
 	) );
 
 	$cmb->add_field( array(
-		'name'       => __( 'Codice', 'xlthlx' ),
-		'id'         => '_code',
-		'type'       => 'text_medium',
-		'classes'    => 'half-width',
+		'name'    => __( 'Codice', 'xlthlx' ),
+		'id'      => '_code',
+		'type'    => 'text_medium',
+		'classes' => 'half-width',
 	) );
 
 	$cmb->add_field( array(

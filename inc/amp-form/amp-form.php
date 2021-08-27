@@ -38,41 +38,48 @@ function dequeue_scripts_on_amp_responses() {
 		wp_dequeue_script( 'contact-form-7' );
 	}
 }
+
 add_action( 'wp_enqueue_scripts', 'dequeue_scripts_on_amp_responses', 20 );
 
 /**
  * Filter whether novalidate attribute is used on the form.
  *
  * @param bool $novalidate Use form novalidate.
+ *
  * @return bool Whether to use novalidate.
  */
 function filter_form_novalidate( $novalidate ) {
 	if ( is_amp_xlt() ) {
 		$novalidate = false;
 	}
+
 	return $novalidate;
 }
+
 add_filter( 'wpcf7_form_novalidate', 'filter_form_novalidate' );
 
 /**
  * Replace aria-required="true" with required on AMP pages, since client-side jQuery validation will not work in AMP.
  *
  * @param string $elements Form elements.
+ *
  * @return string Filtered form elements.
  */
 function filter_form_elements_for_required( $elements ) {
 	if ( is_amp_xlt() ) {
 		$elements = str_replace( 'aria-required="true"', 'required', $elements );
 	}
+
 	return $elements;
 }
+
 add_filter( 'wpcf7_form_elements', 'filter_form_elements_for_required' );
 
 /**
  * Handle submission.
  *
  * @param WPCF7_ContactForm $contact_form Contact Form.
- * @param array              $result       Result.
+ * @param array $result Result.
  */
 function handle_submit( $contact_form, $result ) {
 	if ( ! is_amp_xlt() ) {
@@ -81,6 +88,7 @@ function handle_submit( $contact_form, $result ) {
 
 	if ( ! function_exists( 'wp_is_json_request' ) ) {
 		_doing_it_wrong( __FUNCTION__, 'Please update to WordPress 5.0', '0.1' );
+
 		return;
 	}
 
@@ -107,6 +115,7 @@ function handle_submit( $contact_form, $result ) {
 		);
 	}
 }
+
 add_action( 'wpcf7_submit', 'handle_submit', 11, 2 );
 
 /**
@@ -127,6 +136,7 @@ function maybe_add_recaptcha_support() {
 	add_filter( 'wpcf7_form_hidden_fields', 'filter_recaptcha_hidden_fields', 200, 1 );
 	add_filter( 'wpcf7_form_elements', 'filter_form_elements_for_recaptcha' );
 }
+
 add_action( 'wpcf7_init', 'maybe_add_recaptcha_support' );
 
 /**
@@ -147,6 +157,7 @@ function handle_recaptcha_scripts_on_amp_responses() {
  * Remove hidden field for recaptcha on AMP pages.
  *
  * @param array $fields Form hidden fields.
+ *
  * @return array Filtered form hidden fields.
  */
 function filter_recaptcha_hidden_fields( $fields ) {
@@ -161,6 +172,7 @@ function filter_recaptcha_hidden_fields( $fields ) {
  * Add amp-recaptcha-input on AMP pages.
  *
  * @param string $elements Form elements.
+ *
  * @return string Filtered form elements.
  */
 function filter_form_elements_for_recaptcha( $elements ) {
@@ -169,7 +181,7 @@ function filter_form_elements_for_recaptcha( $elements ) {
 	}
 
 	$actions = apply_filters( 'wpcf7_recaptcha_actions', array(
-		'homepage' => 'homepage',
+		'homepage'    => 'homepage',
 		'contactform' => 'contactform',
 	) );
 

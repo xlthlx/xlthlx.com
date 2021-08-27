@@ -40,17 +40,6 @@
 										{% endfor %}
 									</ul>
 								{% endif %}
-								{% if post.terms('tags') | length %}
-									<ul class="list-unstyled ml-0 pl-0 mb-0">
-										{% for tag in post.terms('tags') %}
-											<li class="d-inline"><a href="{{ tag.link }}">{{ tag.name }}</a>
-												{% if tag != post.terms('tags')|last %}
-													<span class="badge bg-white text-dark rounded-0 border-0 fw-bold">|</span>
-												{% endif %}
-											</li>
-										{% endfor %}
-									</ul>
-								{% endif %}
 							</div>
 
 							<hr class="mt-4 mb-4"/>

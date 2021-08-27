@@ -185,9 +185,9 @@ function xlt_flamingo_submit( $contact_form, $result ) {
 	 */
 	$form_id = (string) $contact_form->id();
 	if ( ( $form_id === '34396' ) || ( $form_id === '34503' ) ) {
-		$_code = wp_generate_password( 64, false );
-		$_lang = get_post_meta( $flamingo_inbound_id, '_field_lang', true );
-		$_name = explode( '@', get_post_meta( $flamingo_contact_id, '_name', true ) );
+		$_code  = wp_generate_password( 64, false );
+		$_lang  = get_post_meta( $flamingo_inbound_id, '_field_lang', true );
+		$_name  = explode( '@', get_post_meta( $flamingo_contact_id, '_name', true ) );
 		$_email = get_post_meta( $flamingo_contact_id, '_email', true );
 
 		update_post_meta( $flamingo_contact_id, '_code', $_code );

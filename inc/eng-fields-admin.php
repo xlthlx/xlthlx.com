@@ -6,7 +6,6 @@
  * @subpackage  Xlthlx
  */
 
-add_action( 'cmb2_init', 'xlt_add_metabox' );
 /**
  * Adds the English fields.
  */
@@ -24,7 +23,7 @@ function xlt_add_metabox() {
 		'name'         => __( 'Date', 'xm' ),
 		'id'           => 'date_en',
 		'type'         => 'text_medium',
-		'classes'      => ['half-width'],
+		'classes'      => [ 'half-width' ],
 		'show_in_rest' => WP_REST_Server::ALLMETHODS,
 	) );
 
@@ -32,7 +31,7 @@ function xlt_add_metabox() {
 		'name'         => __( 'Title', 'xm' ),
 		'id'           => 'title_en',
 		'type'         => 'text',
-		'classes'      => ['half-width'],
+		'classes'      => [ 'half-width' ],
 		'show_in_rest' => WP_REST_Server::ALLMETHODS,
 	) );
 
@@ -67,8 +66,8 @@ function xlt_add_metabox() {
 
 }
 
-add_filter( 'manage_posts_columns', 'xlt_eng_posts_columns', 15 );
-add_filter( 'manage_pages_columns', 'xlt_eng_posts_columns', 15 );
+add_action( 'cmb2_init', 'xlt_add_metabox' );
+
 /**
  * Add columns in the admin list.
  *
@@ -90,8 +89,9 @@ function xlt_eng_posts_columns( $defaults ) {
 	return $defaults;
 }
 
-add_action( 'manage_posts_custom_column', 'xlt_eng_posts_custom_columns', 15, 2 );
-add_action( 'manage_pages_custom_column', 'xlt_eng_posts_custom_columns', 15, 2 );
+add_filter( 'manage_posts_columns', 'xlt_eng_posts_columns', 15 );
+add_filter( 'manage_pages_columns', 'xlt_eng_posts_columns', 15 );
+
 /**
  * Sets columns values.
  *
@@ -122,7 +122,9 @@ function xlt_eng_posts_custom_columns( $column_name, $id ) {
 	}
 }
 
-add_action( 'cmb2_init', 'xlt_register_comment_language' );
+add_action( 'manage_posts_custom_column', 'xlt_eng_posts_custom_columns', 15, 2 );
+add_action( 'manage_pages_custom_column', 'xlt_eng_posts_custom_columns', 15, 2 );
+
 /**
  * Hook in and register a metabox for the admin comment edit page.
  */
@@ -151,3 +153,5 @@ function xlt_register_comment_language() {
 		),
 	) );
 }
+
+add_action( 'cmb2_init', 'xlt_register_comment_language' );

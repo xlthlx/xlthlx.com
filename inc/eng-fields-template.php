@@ -315,7 +315,6 @@ function get_archive_title() {
 	return $title . $text . '</h2>';
 }
 
-add_action( 'comment_post', 'xlt_save_comment_lang' );
 /**
  * Save comment meta lang.
  *
@@ -325,7 +324,8 @@ function xlt_save_comment_lang( $comment_id ) {
 	update_comment_meta( $comment_id, 'comment_lang', $_POST['comment_lang'] );
 }
 
-add_filter( 'query_vars', 'xlt_query_vars_lang' );
+add_action( 'comment_post', 'xlt_save_comment_lang' );
+
 /**
  * Add query var.
  *
@@ -339,7 +339,8 @@ function xlt_query_vars_lang( $vars ) {
 	return $vars;
 }
 
-add_action( 'template_redirect', 'xlt_template_redirect' );
+add_filter( 'query_vars', 'xlt_query_vars_lang' );
+
 /**
  * Template redirect for en.
  */
@@ -365,7 +366,7 @@ function xlt_template_redirect() {
 	exit;
 }
 
-add_action( 'init', 'xlt_rewrite_tags_lang' );
+add_action( 'template_redirect', 'xlt_template_redirect' );
 
 /**
  * Add rewrite endpoint.
@@ -376,7 +377,8 @@ function xlt_rewrite_tags_lang() {
 
 }
 
-add_action( 'pre_get_posts', 'xlt_home_posts_per_page' );
+add_action( 'init', 'xlt_rewrite_tags_lang' );
+
 /**
  * Controls the number of search results.
  *
@@ -388,3 +390,5 @@ function xlt_home_posts_per_page( $query ) {
 		set_query_var( 'posts_per_page', 5 );
 	}
 }
+
+add_action( 'pre_get_posts', 'xlt_home_posts_per_page' );

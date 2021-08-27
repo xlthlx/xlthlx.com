@@ -7,7 +7,6 @@
  */
 
 remove_filter( 'authenticate', 'wp_authenticate_username_password', 20 );
-add_action( 'login_enqueue_scripts', 'xlt_enqueue_login', 10 );
 
 /**
  * Enqueue login CSS.
@@ -24,7 +23,8 @@ function xlt_enqueue_login() {
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js', [ 'jquery' ], filemtime( get_template_directory() . '/assets/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js' ), true );
 }
 
-add_filter( 'login_headerurl', 'xlt_login_url' );
+add_action( 'login_enqueue_scripts', 'xlt_enqueue_login', 10 );
+
 /**
  * Change the header url into login.
  *
@@ -34,7 +34,8 @@ function xlt_login_url() {
 	return get_home_url();
 }
 
-add_filter( 'login_headertext', 'xlt_login_title' );
+add_filter( 'login_headerurl', 'xlt_login_url' );
+
 /**
  * Change the header title into login.
  *
@@ -43,6 +44,8 @@ add_filter( 'login_headertext', 'xlt_login_title' );
 function xlt_login_title() {
 	return get_bloginfo( 'name' ) . '</a></h1><p class="desc"><em>' . get_bloginfo( 'description' ) . '</em></p><h1 style="display:none"><a>';
 }
+
+add_filter( 'login_headertext', 'xlt_login_title' );
 
 /**
  * Change some text strings into login.
@@ -76,7 +79,6 @@ function xlt_gettext( $translation, $login_texts, $domain ) {
 
 }
 
-add_action( 'login_head', 'xlt_login_head' );
 /**
  * Init filter strings.
  */
@@ -84,13 +86,16 @@ function xlt_login_head() {
 	add_filter( 'gettext', 'xlt_gettext', 20, 3 );
 }
 
-add_action( 'init', 'xlt_login_classes' );
+add_action( 'login_head', 'xlt_login_head' );
+
 /**
  * Init script for classes.
  */
 function xlt_login_classes() {
 	add_filter( 'login_footer', 'xlt_login_classes_footer' );
 }
+
+add_action( 'init', 'xlt_login_classes' );
 
 /**
  * Add some classes to login fields.
@@ -106,7 +111,6 @@ function xlt_login_classes_footer() {
 			</script>";
 }
 
-add_filter( 'login_title', 'xlt_login_page_title', 99 );
 /**
  * Change login title.
  *
@@ -118,7 +122,8 @@ function xlt_login_page_title() {
 
 }
 
-add_filter( 'authenticate', 'xlt_authenticate', 20, 3 );
+add_filter( 'login_title', 'xlt_login_page_title', 99 );
+
 /**
  * Force the login with email.
  *
@@ -150,3 +155,5 @@ function xlt_authenticate( $user, $username, $password ) {
 		return wp_authenticate_username_password( null, "", "" );
 	}
 }
+
+add_filter( 'authenticate', 'xlt_authenticate', 20, 3 );
