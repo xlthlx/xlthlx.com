@@ -34,15 +34,15 @@ function xlt_send_confirmation( $lang, $to, $_code ) {
 /**
  * @throws Exception
  */
-function xlt_post_published_notification( $post_id, $post ) {
+function xlt_post_published_notification( $new_status, $old_status, $post ) {
 
-	if ( ! ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+	if ( 'publish' === $new_status && 'publish' !== $old_status && $post->post_type === 'post' ) {
 
 		$_title        = $post->post_title;
-		$_permalink    = get_permalink( $post_id );
+		$_permalink    = get_permalink( $post->ID );
 		$_excerpt      = wp_trim_excerpt( $post->post_content );
 		$_title_en     = get_title_en();
-		$_permalink_en = get_permalink( $post_id ) . 'en/';
+		$_permalink_en = get_permalink( $post->ID ) . 'en/';
 		$_excerpt_en   = wp_trim_excerpt( get_content_en() );
 
 		$args = array(
@@ -85,6 +85,11 @@ function xlt_post_published_notification( $post_id, $post ) {
 				}
 
 				xlt_send_email( $to, $subject, $body );
+
+				$contact_id = '';
+				$to         = '';
+				$_lang      = '';
+				$_code      = '';
 			}
 		}
 
@@ -92,7 +97,7 @@ function xlt_post_published_notification( $post_id, $post ) {
 	}
 }
 
-add_action( 'publish_post', 'xlt_post_published_notification', 10, 2 );
+add_action( 'transition_post_status', 'xlt_post_published_notification', 10, 3 );
 
 /**
  * Send HTML email.

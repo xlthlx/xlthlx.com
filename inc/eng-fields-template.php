@@ -34,22 +34,26 @@ function xlt_translate( $element ) {
 /**
  * Translate the month of the date.
  *
- * @param bool $post_id
+ * @param int $post_id
  *
  * @return mixed
  */
-function get_date_en( $post_id = false ) {
-	if ( ! $post_id ) {
+function get_date_en( $post_id = 0 ) {
+	if ( $post_id === 0 ) {
 		global $post;
 		$post_id = $post->ID;
 	}
 
-	if ( ! is_home() || ! is_archive() ) {
-		if ( ! get_post_meta( $post_id, 'date_en',
-				true ) || get_post_meta( $post_id, 'date_en', true ) === '' ) {
-			$month = xlt_translate( get_the_time( 'F', $post_id ) );
-			$date  = get_the_time( 'd', $post_id ) . ' ' . ucfirst( $month ) . ' ' . get_the_time( 'Y', $post_id );
-			update_post_meta( $post_id, 'date_en', $date );
+	$post_type = get_post_type( $post_id );
+
+	if ( 'post' === $post_type ) {
+		if ( ! is_home() || ! is_archive() ) {
+			if ( ! get_post_meta( $post_id, 'date_en',
+					true ) || get_post_meta( $post_id, 'date_en', true ) === '' ) {
+				$month = xlt_translate( get_the_time( 'F', $post_id ) );
+				$date  = get_the_time( 'd', $post_id ) . ' ' . ucfirst( $month ) . ' ' . get_the_time( 'Y', $post_id );
+				update_post_meta( $post_id, 'date_en', $date );
+			}
 		}
 	}
 
@@ -59,21 +63,25 @@ function get_date_en( $post_id = false ) {
 /**
  * Translate the title.
  *
- * @param bool $post_id
+ * @param int $post_id
  *
  * @return string $title
  */
-function get_title_en( $post_id = false ) {
-	if ( ! $post_id ) {
+function get_title_en( $post_id = 0 ) {
+	if ( $post_id === 0 ) {
 		global $post;
 		$post_id = $post->ID;
 	}
 
-	if ( ! get_post_meta( $post_id, 'title_en', true )
-	     || get_post_meta( $post_id, 'title_en', true ) === '' ) {
+	$post_type = get_post_type( $post_id );
 
-		$title = xlt_translate( get_the_title( $post_id ) );
-		update_post_meta( $post_id, 'title_en', $title );
+	if ( 'post' === $post_type || 'page' === $post_type ) {
+		if ( ! get_post_meta( $post_id, 'title_en', true )
+		     || get_post_meta( $post_id, 'title_en', true ) === '' ) {
+
+			$title = xlt_translate( get_the_title( $post_id ) );
+			update_post_meta( $post_id, 'title_en', $title );
+		}
 	}
 
 	return apply_filters( 'the_title', get_post_meta( $post_id, 'title_en', true ) );
@@ -87,143 +95,148 @@ function get_title_en( $post_id = false ) {
  * @return string $content
  * @throws Exception
  */
-function get_content_en( $post_id = null ) {
+function get_content_en( $post_id = 0 ) {
 
-	if ( ! $post_id ) {
+	if ( $post_id === 0 ) {
 		global $post;
 		$post_id = $post->ID;
 	}
 
-	if ( ! get_post_meta( $post_id, 'content_en', true )
-	     || get_post_meta( $post_id, 'content_en', true ) === '' ) {
-		$blocks = parse_blocks( get_the_content() );
-		$doc    = new HtmlDocument();
-		$output = '';
+	$post_type = get_post_type( $post_id );
 
-		foreach ( $blocks as $block ) {
+	if ( 'post' === $post_type || 'page' === $post_type ) {
 
-			$block_types = array(
-				'core/paragraph',
-				'core/heading',
-				'core/freeform',
-				'core/list',
-				'core/quote',
-				'core/pullquote',
-				'core/html',
-				'core/table',
-				'core/text-columns',
-				'core/code'
-			);
+		if ( ! get_post_meta( $post_id, 'content_en', true )
+		     || get_post_meta( $post_id, 'content_en', true ) === '' ) {
+			$blocks = parse_blocks( get_the_content() );
+			$doc    = new HtmlDocument();
+			$output = '';
 
-			if ( isset( $block['blockName'] ) && $block['blockName'] !== '' && in_array( $block['blockName'], $block_types, true ) ) {
+			foreach ( $blocks as $block ) {
 
-				if ( $block['blockName'] == 'core/code' ) {
-					$code = $doc->load( $block['innerHTML'] );
+				$block_types = array(
+					'core/paragraph',
+					'core/heading',
+					'core/freeform',
+					'core/list',
+					'core/quote',
+					'core/pullquote',
+					'core/html',
+					'core/table',
+					'core/text-columns',
+					'core/code'
+				);
 
-					if ( $code ) {
+				if ( isset( $block['blockName'] ) && $block['blockName'] !== '' && in_array( $block['blockName'], $block_types, true ) ) {
 
-						$hl = new Highlighter();
-						$hl->setAutodetectLanguages( array( 'php', 'javascript', 'html' ) );
+					if ( $block['blockName'] == 'core/code' ) {
+						$code = $doc->load( $block['innerHTML'] );
 
-						$code = str_replace( array(
-							'<pre class="wp-block-code">',
-							'<code>',
-							'</code>',
-							'</pre>'
-						), '', html_entity_decode( $code ) );
+						if ( $code ) {
 
-						$highlighted = $hl->highlightAuto( $code );
+							$hl = new Highlighter();
+							$hl->setAutodetectLanguages( array( 'php', 'javascript', 'html' ) );
 
-						$code            = '<pre class="wp-block-code"><code class="hljs ' . $highlighted->language . '">' . $highlighted->value . '</code></pre>';
-						$code->outertext = apply_filters( 'the_content', $code );
+							$code = str_replace( array(
+								'<pre class="wp-block-code">',
+								'<code>',
+								'</code>',
+								'</pre>'
+							), '', html_entity_decode( $code ) );
 
-					}
+							$highlighted = $hl->highlightAuto( $code );
 
-					$output .= $code;
-				} else {
-					$html = $doc->load( $block['innerHTML'] );
-					$p    = $html->find( "p" );
+							$code            = '<pre class="wp-block-code"><code class="hljs ' . $highlighted->language . '">' . $highlighted->value . '</code></pre>';
+							$code->outertext = apply_filters( 'the_content', $code );
 
-					$to_remove = array();
-
-					if ( $p ) {
-
-						foreach ( $p as $pg ) {
-
-							$tags = array(
-								"em",
-								"strong",
-								"h1",
-								"h2",
-								"h3",
-								"h4",
-								"h5",
-								"h6",
-								"li"
-							);
-
-							foreach ( $tags as $tag ) {
-								$plain_tag = $pg->find( $tag );
-								if ( $plain_tag ) {
-									foreach ( $plain_tag as $pt ) {
-										$trans_tag     = xlt_translate( $pt->innertext );
-										$pt->innertext = $trans_tag;
-										$to_remove[]   = $pt->outertext;
-									}
-								}
-							}
-
-							$plain_a = $pg->find( "a" );
-
-							if ( $plain_a ) {
-								foreach ( $plain_a as $pa ) {
-									$trans_a       = xlt_translate( $pa->innertext );
-									$pa->innertext = $trans_a;
-									if ( $pa->title ) {
-										$title_a   = xlt_translate( $pa->title );
-										$pa->title = $title_a;
-									}
-									$to_remove[] = $pa->outertext;
-								}
-							}
-
-							$plain_p = $pg;
-
-							$i = 0;
-							foreach ( $to_remove as $remove ) {
-								$plain_p = str_replace( $remove, '{' . $i . '}', $plain_p );
-								$i ++;
-							}
-
-
-							$plain_p = str_replace( array(
-								'<p>',
-								'</p>'
-							), '', $plain_p );
-
-							$trans_p = xlt_translate( $plain_p );
-
-							$i = 0;
-							foreach ( $to_remove as $remove ) {
-								$trans_p = str_replace( '{' . $i . '}', $remove, $trans_p );
-								$i ++;
-							}
-
-							$pg->outertext = '<p>' . $trans_p . '</p>';
 						}
+
+						$output .= $code;
+					} else {
+						$html = $doc->load( $block['innerHTML'] );
+						$p    = $html->find( "p" );
+
+						$to_remove = array();
+
+						if ( $p ) {
+
+							foreach ( $p as $pg ) {
+
+								$tags = array(
+									"em",
+									"strong",
+									"h1",
+									"h2",
+									"h3",
+									"h4",
+									"h5",
+									"h6",
+									"li"
+								);
+
+								foreach ( $tags as $tag ) {
+									$plain_tag = $pg->find( $tag );
+									if ( $plain_tag ) {
+										foreach ( $plain_tag as $pt ) {
+											$trans_tag     = xlt_translate( $pt->innertext );
+											$pt->innertext = $trans_tag;
+											$to_remove[]   = $pt->outertext;
+										}
+									}
+								}
+
+								$plain_a = $pg->find( "a" );
+
+								if ( $plain_a ) {
+									foreach ( $plain_a as $pa ) {
+										$trans_a       = xlt_translate( $pa->innertext );
+										$pa->innertext = $trans_a;
+										if ( $pa->title ) {
+											$title_a   = xlt_translate( $pa->title );
+											$pa->title = $title_a;
+										}
+										$to_remove[] = $pa->outertext;
+									}
+								}
+
+								$plain_p = $pg;
+
+								$i = 0;
+								foreach ( $to_remove as $remove ) {
+									$plain_p = str_replace( $remove, '{' . $i . '}', $plain_p );
+									$i ++;
+								}
+
+
+								$plain_p = str_replace( array(
+									'<p>',
+									'</p>'
+								), '', $plain_p );
+
+								$trans_p = xlt_translate( $plain_p );
+
+								$i = 0;
+								foreach ( $to_remove as $remove ) {
+									$trans_p = str_replace( '{' . $i . '}', $remove, $trans_p );
+									$i ++;
+								}
+
+								$pg->outertext = '<p>' . $trans_p . '</p>';
+							}
+						}
+
+						$output .= $html;
 					}
 
-					$output .= $html;
+				} else {
+					$output .= $block['innerHTML'];
 				}
-
-			} else {
-				$output .= $block['innerHTML'];
 			}
+
+			$output .= '<!-- GT -->';
+
+			update_post_meta( $post_id, 'content_en', $output );
 		}
-
-		$output .= '<!-- GT -->';
-
-		update_post_meta( $post_id, 'content_en', $output );
 	}
 
 	return apply_filters( 'the_content', get_post_meta( $post_id, 'content_en', true ) );

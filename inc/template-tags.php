@@ -59,8 +59,8 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 		global $post;
 		$home_url  = home_url( '/' );
 		$parent_id = $post->post_parent ?? 0;
-		$lang = get_lang();
-		$title = ( 'en' === $lang ) ? get_title_en() : get_the_title();
+		$lang      = get_lang();
+		$title     = ( 'en' === $lang ) ? get_title_en() : get_the_title();
 
 
 		$home_link = xlt_get_link( $args, $home_url, $args['text']['home'], 1 );
@@ -283,12 +283,11 @@ if ( ! function_exists( 'xlt_comment_form' ) ) {
 								<textarea placeholder="Commento" class="form-control rounded-0" id="comment" name="comment" style="height: 150px" required></textarea>
 								<label for="comment">Commento</label>
 								<input id="comment_lang" name="comment_lang" type="hidden" value="it" />
-								<div class="mt-3">
-									<select name="subscribe-reloaded" id="subscribe-reloaded" class="form-select form-select-lg" aria-label="iscirizione ai commenti">
-										<option value="none" selected>Non iscrivermi ai commenti</option>
-										<option value="yes">Iscrivimi a tutti i commenti</option>
-										<option value="replies">Iscrivimi alle risposte ai miei commenti</option>
-									</select>
+								<div id="lstc-comment-subscription" class="form-check mt-3">
+								  <input class="form-check-input" type="checkbox" type="checkbox" value="1" name="lstc_subscribe" id="lstc_subscribe">
+								  <label class="form-check-label" id="cnns-label" for="lstc_subscribe">
+								    Avvisami quando vengono aggiunti nuovi commenti
+								  </label>
 								</div>
 								</div>',
 		);
@@ -336,12 +335,11 @@ if ( ! function_exists( 'xlt_comment_form_en' ) ) {
 								<label for="comment">Comment</label>
 								<input id="comment_lang" name="comment_lang" type="hidden" value="en" />
 								<input id="en_redirect_to" name="en_redirect_to" type="hidden" value="true" />
-								<div class="mt-3">
-									<select name="subscribe-reloaded" id="subscribe-reloaded" class="form-select form-select-lg" aria-label="subscribe to comments">
-										<option value="none" selected>No subscription to comments</option>
-										<option value="yes">Subscribe to all comments</option>
-										<option value="replies">Subscribe to replies to my comments</option>
-									</select>
+								<div id="lstc-comment-subscription" class="form-check mt-3">
+								  <input class="form-check-input" type="checkbox" type="checkbox" value="1" name="lstc_subscribe" id="lstc_subscribe">
+								  <label class="form-check-label" id="cnns-label" for="lstc_subscribe">
+								    Notify me when new comments are added
+								  </label>
 								</div>
 								</div>',
 		);
@@ -492,3 +490,12 @@ if ( ! function_exists( 'xlt_gravatar_exists' ) ) {
 		return $has_valid_avatar;
 	}
 }
+
+/**
+ * Removes tags from blog posts
+ */
+function xlt_unregister_tags() {
+	unregister_taxonomy_for_object_type( 'post_tag', 'post' );
+}
+
+add_action( 'init', 'xlt_unregister_tags' );
