@@ -21,7 +21,6 @@ class Archive_Widget extends WP_Widget {
 			'xlthlx-archive', // ID.
 			esc_html__( 'Archives by year', 'xlthlx' ), // Name.
 			array(
-				'classname' => 'widget_grey',
 				'description' => esc_html__( 'Displays a post archive by year.', 'xlthlx' ),
 				'customize_selective_refresh' => true,
 			) // Args.
@@ -248,7 +247,6 @@ class Related_Widget extends WP_Widget {
 			'xlthlx-related', // ID.
 			esc_html__( 'Related articles', 'xlthlx' ), // Name.
 			array(
-				'classname' => 'widget_grey',
 				'description' => esc_html__( 'Displays related articles.', 'xlthlx' ),
 				'customize_selective_refresh' => true,
 			) // Args.

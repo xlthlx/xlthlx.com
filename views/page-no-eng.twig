@@ -4,22 +4,22 @@
 
 	<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
 
-			<div class="row">
-				<div class="col-md-8">
-					<h2 class="display-5 pb-3">{{ post.title }}</h2>
+		<div class="row">
+			<div class="col-md-8">
+				<h2 class="display-5 pb-3">{{ post.title }}</h2>
+				<section class="page-content">
 					<hr class="pt-0 mt-0 mb-4"/>
-					<section class="page-content">
-						{{ post.content }}
-					</section>
-				</div>
-				<div class="col-md-4">
-					<aside class="sidebar ps-5 ms-1">
-						{% if page_sidebar %}
-							{{ page_sidebar }}
-						{% endif %}
-					</aside>
-				</div>
+					{{ post.content }}
+				</section>
 			</div>
+			<div class="col-md-4">
+				<aside class="sidebar px-4">
+					{% if page_sidebar %}
+						{{ page_sidebar }}
+					{% endif %}
+				</aside>
+			</div>
+		</div>
 
 	</article>
 
