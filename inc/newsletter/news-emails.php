@@ -8,6 +8,21 @@
  */
 
 /**
+ * Filter the excerpt length to 30 words.
+ *
+ * @param int $length Excerpt length.
+ * @return int Modified excerpt length.
+ */
+function xlt_excerpt_length( $length ) {
+        if ( is_admin() ) {
+                return $length;
+        }
+        return 30;
+}
+
+add_filter( 'excerpt_length', 'xlt_excerpt_length', 999 );
+
+/**
  * Send confirmation email.
  *
  * @param $lang
@@ -41,9 +56,9 @@ function xlt_post_published_notification( $new_status, $old_status, $post ) {
 		$_title        = $post->post_title;
 		$_permalink    = get_permalink( $post->ID );
 		$_excerpt      = wp_trim_excerpt( $post->post_content );
-		$_title_en     = get_title_en();
+		$_title_en     = get_title_en( $post->ID );
 		$_permalink_en = get_permalink( $post->ID ) . 'en/';
-		$_excerpt_en   = wp_trim_excerpt( get_content_en() );
+		$_excerpt_en   = wp_trim_excerpt( get_content_en( $post->ID ) );
 
 		$args = array(
 			'numberposts' => - 1,
