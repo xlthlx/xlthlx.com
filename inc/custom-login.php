@@ -17,7 +17,6 @@ function xlt_enqueue_login() {
 	wp_enqueue_style( 'dashicons' );
 
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/vendor/twbs/bootstrap/dist/css/bootstrap.css', [], filemtime( get_template_directory() . '/assets/vendor/twbs/bootstrap/dist/css/bootstrap.css' ) );
-	wp_enqueue_style( 'fonts', get_template_directory_uri() . '/assets/css/custom-fonts.css', [], filemtime( get_template_directory() . '/assets/css/custom-fonts.css' ) );
 	wp_enqueue_style( 'custom-login', get_template_directory_uri() . '/assets/css/admin/login.css', [], filemtime( get_template_directory() . '/assets/css/admin/login.css' ) );
 	wp_enqueue_script( 'jquery-login', includes_url( '/js/jquery/jquery.js' ), [], '' );
 	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js', [ 'jquery' ], filemtime( get_template_directory() . '/assets/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js' ), true );
