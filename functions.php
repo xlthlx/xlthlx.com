@@ -159,6 +159,10 @@ class xlthlxSite extends Timber\Site {
 
 new xlthlxSite();
 
+if ( file_exists( __DIR__ . '/inc/cmb2/cmb2/init.php' ) ) {
+	require_once __DIR__ . '/inc/cmb2/cmb2/init.php';
+}
+
 /**
  * Custom login.
  */
