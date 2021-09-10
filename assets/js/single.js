@@ -1,44 +1,36 @@
-var $ = jQuery.noConflict();
+// Social buttons
+let socialBtn = document.querySelector('.social-btn');
 
-$(document).ready(function () {
-	var url = location.href;
+socialBtn.addEventListener('click', function (e) {
+	e.preventDefault();
 
-	if (location.hash) {
-		var hash = url.split("#");
-		if ((hash[1] === 'it') || (hash[1] === 'en')) {
-			window.location.href = hash[0] + '/' + hash[1] + '/';
-		}
+	if (socialBtn.classList.contains('s-twitter') && typeof window.targetWindow != 'undefined') {
+		return;
 	}
 
-	// Social buttons
-	$(document).on('click', '.social-btn', function (e) {
+	if (socialBtn.classList.contains('s-facebook') && typeof window.targetWindow != 'undefined') {
+		return;
+	}
 
-		e.preventDefault();
+	socialBtn.blur();
 
-		if ($(this).hasClass('s-twitter') && typeof window.twttr != 'undefined') {
-			return;
-		}
+	let href = socialBtn.getAttribute('href');
+	let width = window.innerWidth;
 
-		if ($(this).attr('href') === '#') {
-			return false;
-		}
-
-		$(this).blur();
-
-		window.open($(this).attr('href'), 'targetWindow', "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=yes,width=700,height=300,top=200,left=" + ($(window).innerWidth() - 700) / 2);
-
-	});
-
-	// HighlightJS Badge
-	var options = {
-		copyIconClass: "open",
-		copyIconContent: "Copy",
-		checkIconClass: "text-success",
-		checkIconContent: "Copied!",
-	};
-	window.highlightJsBadge(options);
-
-	$('.first-button').on('click', function () {
-		$('.animated-icon1').toggleClass('open');
-	});
+	window.open(href, 'targetWindow', "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=yes,width=700,height=300,top=200,left=" + (width - 700) / 2);
 });
+
+
+// HighlightJS Badge
+let options = {
+	copyIconClass: "open",
+	copyIconContent: "Copy",
+	checkIconClass: "text-success",
+	checkIconContent: "Copied!",
+}
+window.highlightJsBadge(options);
+
+$('.first-button').on('click', function () {
+	$('.animated-icon1').toggleClass('open');
+});
+
