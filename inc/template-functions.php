@@ -26,7 +26,6 @@ function xlt_remove_admin_bar_wp_logo() {
 	global $wp_admin_bar;
 	$wp_admin_bar->remove_node( 'wp-logo' );
 	$wp_admin_bar->remove_node( 'comments' );
-	$wp_admin_bar->remove_node( 'aioseo-main' );
 }
 
 add_filter( 'pre_option_link_manager_enabled', '__return_true' );
@@ -98,8 +97,8 @@ add_action( 'init', 'xlt_remove_jquery_migrate_notice', 5 );
  */
 function xlt_remove_jquery_migrate_notice() {
 	$m                    = $GLOBALS['wp_scripts']->registered['jquery-migrate'];
-	$m->extra['before'][] = 'temp_jm_logconsole = window.console.log; window.console.log=null;';
-	$m->extra['after'][]  = 'window.console.log=temp_jm_logconsole;';
+	$m->extra['before'][] = 'wporg_logconsole = window.console.log; window.console.log=null;';
+	$m->extra['after'][]  = 'window.console.log=wporg_logconsole;';
 }
 
 /**

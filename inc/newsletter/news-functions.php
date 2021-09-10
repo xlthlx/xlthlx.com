@@ -34,7 +34,7 @@ function xlt_flamingo_submit( $contact_form, $result ) {
 	}
 
 	$cases = (array) apply_filters( 'wpcf7_flamingo_submit_if',
-		array( 'spam', 'mail_sent', 'mail_failed' ) );
+		array( 'mail_sent' ) );
 
 	if ( empty( $result['status'] )
 	     || ! in_array( $result['status'], $cases, true ) ) {
