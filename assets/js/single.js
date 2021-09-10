@@ -1,16 +1,8 @@
 // Social buttons
-let socialBtn = document.querySelector('.social-btn');
+let socialBtn = document.getElementsByClassName('social-btn');
 
 socialBtn.addEventListener('click', function (e) {
 	e.preventDefault();
-
-	if (socialBtn.classList.contains('s-twitter') && typeof window.targetWindow != 'undefined') {
-		return;
-	}
-
-	if (socialBtn.classList.contains('s-facebook') && typeof window.targetWindow != 'undefined') {
-		return;
-	}
 
 	socialBtn.blur();
 
@@ -28,9 +20,15 @@ let options = {
 	checkIconClass: "text-success",
 	checkIconContent: "Copied!",
 }
+
 window.highlightJsBadge(options);
 
-$('.first-button').on('click', function () {
-	$('.animated-icon1').toggleClass('open');
-});
+let firstBtn = document.getElementsByClassName('first-button');
 
+if(firstBtn !== null) {
+	firstBtn.addEventListener('click', function (e) {
+
+		let animatedIcon = document.getElementsByClassName('animated-icon1');
+		animatedIcon.classList.toggle('open');
+	})
+}
