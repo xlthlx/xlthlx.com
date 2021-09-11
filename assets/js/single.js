@@ -1,17 +1,24 @@
 // Social buttons
-let socialBtn = document.getElementsByClassName('social-btn');
-
-socialBtn.addEventListener('click', function (e) {
+function openShare(object, e, name) {
 	e.preventDefault();
 
-	socialBtn.blur();
+	object.blur();
 
-	let href = socialBtn.getAttribute('href');
+	let href = object.getAttribute('href');
 	let width = window.innerWidth;
 
-	window.open(href, 'targetWindow', "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=yes,width=700,height=300,top=200,left=" + (width - 700) / 2);
+	window.open(href, name, "toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=yes,width=700,height=300,top=200,left=" + (width - 700) / 2);
+}
+
+let twitterBtn = document.getElementsByClassName('s-twitter');
+twitterBtn[0].addEventListener('click', function (e) {
+	openShare(this, e, 'twtWindow');
 });
 
+let facebookBtn = document.getElementsByClassName('s-facebook');
+facebookBtn[0].addEventListener('click', function (e) {
+	openShare(this, e, 'fbWindow');
+});
 
 // HighlightJS Badge
 let options = {
@@ -22,13 +29,3 @@ let options = {
 }
 
 window.highlightJsBadge(options);
-
-let firstBtn = document.getElementsByClassName('first-button');
-
-if(firstBtn !== null) {
-	firstBtn.addEventListener('click', function (e) {
-
-		let animatedIcon = document.getElementsByClassName('animated-icon1');
-		animatedIcon.classList.toggle('open');
-	})
-}
