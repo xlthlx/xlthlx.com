@@ -29,10 +29,10 @@
 								{% set target = item.target? ' target="'~item.target~'"': '' %}
 								{% if item.children %}
 									<li class="nav-item dropdown pink{{ item.classes | join(' ') }}">
-										<a class="nav-link dropdown-toggle pink" {{ target }}href="{{ item.link }}"
+										<a class="nav-link dropdown-toggle pink show" {{ target }}href="{{ item.link }}"
 										   id="{{ fn('sanitize_title', item.title) }}"
-										   data-bs-toggle="dropdown" aria-expanded="false">{{ item.title }}</a>
-										<ul class="dropdown-menu bg-dark" aria-labelledby="{{ fn('sanitize_title', item.title) }}">
+										   data-bs-toggle="dropdown" aria-expanded="true">{{ item.title }}</a>
+										<ul class="dropdown-menu bg-dark border-0 rounded-0 show" aria-labelledby="{{ fn('sanitize_title', item.title) }}">
 											{% for item in item.children %}
 												{% set target = item.target? ' target="'~item.target~'"': '' %}
 												<li class="white">
