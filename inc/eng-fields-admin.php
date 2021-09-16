@@ -110,12 +110,12 @@ function xlt_eng_posts_custom_columns( $column_name, $id ) {
 		}
 		if ( $content_en !== '' && strpos( $content_en,
 				"<!-- GT -->" ) === false ) {
-			echo 'Yes';
+			echo '';
 		}
 	}
 	if ( $column_name === 'editor' ) {
 		if ( has_blocks( $id ) ) {
-			echo 'Gutenberg';
+			echo '';
 		} else {
 			echo 'Classic';
 		}
