@@ -237,18 +237,15 @@ function xlt_youtube_oembed_filters( $html, $data, $url ) {
 
 	if ( false !== strpos( $html, 'youtube' ) || false !== strpos( $html, 'youtu.be' ) ) {
 		$title = ! empty( $data->title ) ? $data->title . ' (video)' : '';
-		$allow = 'accelerometer; clipboard-write; encrypted-media; gyroscope';
 
 		$html = str_replace( array(
 			'<iframe title="' . $data->title . '" ',
-			'<iframe ',
 			'youtube.com/embed',
 			'?feature=oembed'
 		), array(
 			sprintf( '<iframe title="%s" ', esc_attr( $title ) ),
-			sprintf( '<iframe allow="%s" ', esc_attr( $allow ) ),
 			'youtube-nocookie.com/embed',
-			'?feature=oembed&modestbranding=1'
+			esc_attr('?feature=oembed&modestbranding=1')
 		), $html );
 		$html = '<div class="youtube_responsive">' . $html . '</div>';
 
