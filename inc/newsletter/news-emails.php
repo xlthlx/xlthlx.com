@@ -8,19 +8,20 @@
  */
 
 /**
- * Filter the excerpt length to 30 words.
+ * Create an excerpt from any text.
  *
- * @param int $length Excerpt length.
- * @return int Modified excerpt length.
+ * @param $text
+ *
+ * @return string
  */
-function xlt_excerpt_length( $length ) {
-        if ( is_admin() ) {
-                return $length;
-        }
-        return 30;
-}
+function xlt_trim( $text ) {
+	$text = strip_shortcodes( $text );
+	$text = excerpt_remove_blocks( $text );
+	$text = apply_filters( 'the_content', $text );
+	$text = str_replace( ']]>', ']]&gt;', $text );
 
-add_filter( 'excerpt_length', 'xlt_excerpt_length', 999 );
+	return wp_trim_words( $text, 30, '...' );
+}
 
 /**
  * Send confirmation email.
@@ -55,10 +56,10 @@ function xlt_post_published_notification( $new_status, $old_status, $post ) {
 
 		$_title        = $post->post_title;
 		$_permalink    = get_permalink( $post->ID );
-		$_excerpt      = wp_trim_excerpt( $post->post_content );
+		$_excerpt      = xlt_trim( $post->post_content );
 		$_title_en     = get_title_en( $post->ID );
 		$_permalink_en = get_permalink( $post->ID ) . 'en/';
-		$_excerpt_en   = wp_trim_excerpt( get_content_en( $post->ID ) );
+		$_excerpt_en   = xlt_trim( get_content_en( $post->ID ) );
 
 		$args = array(
 			'numberposts' => - 1,
