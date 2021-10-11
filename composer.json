@@ -11,13 +11,14 @@
 	}
   ],
   "require": {
-	"timber/timber": "1.*",
-	"johnbillion/extended-cpts": "^4.5",
 	"cmb2/cmb2": "^2.9",
-	"composer/installers": "^1.11",
+	"composer/installers": "^1.12",
 	"dejurin/php-google-translate-for-free": "^1.0",
+	"htmlburger/carbon-fields": "^3.3",
+	"johnbillion/extended-cpts": "^4.5",
+	"scrivo/highlight.php": "v9.18.1.6",
 	"simplehtmldom/simplehtmldom": "dev-master",
-	"scrivo/highlight.php": "v9.18.1.6"
+	"timber/timber": "1.*"
   },
   "extra": {
 	"installer-paths": {
