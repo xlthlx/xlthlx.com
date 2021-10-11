@@ -350,6 +350,14 @@ table.wp-inci td {
 	margin-top: 1em;
 }
 
+.youtube_responsive {
+	position: relative;
+	display: block;
+	width: 100%;
+	padding: 0;
+	overflow: hidden;
+}
+
 /*-------
 Colors
 _______*/
