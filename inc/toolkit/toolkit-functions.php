@@ -151,7 +151,7 @@ function wt_disable_rest_api() {
 }
 
 /**
- * Disable REST API only for non logged in users.
+ * Disable REST API only for non-logged-in users.
  *
  * @param $access
  *

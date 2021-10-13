@@ -58,29 +58,19 @@ class xlthlxSite extends Timber\Site {
 	}
 
 	/**
-	 *
+	 * Registers theme support.
 	 */
 	public function theme_supports() {
-		add_theme_support( 'automatic-feed-links' );
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'menus' );
-		add_theme_support( 'wp-block-styles' );
 		add_theme_support( 'align-wide' );
 		add_theme_support( 'editor-styles' );
-		add_theme_support( 'customize-selective-refresh-widgets' );
-		add_theme_support(
-			'html5',
-			array(
-				'search-form',
-				'comment-form',
-				'comment-list',
-				'gallery',
-				'caption',
-				'style',
-				'script',
-			)
-		);
+		add_theme_support( 'responsive-embeds' );
+		add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'style', 'script' ) );
+
+		remove_theme_support( 'automatic-feed-links' );
+		remove_theme_support( 'widgets-block-editor' );
 	}
 
 	/**
@@ -116,7 +106,6 @@ class xlthlxSite extends Timber\Site {
 
 		if ( is_singular() ) {
 			wp_enqueue_style( 'highlight', get_template_directory_uri() . '/assets/css/highlight.css' );
-
 			wp_enqueue_script( 'badge', get_template_directory_uri() . '/assets/js/badge.js', [], false, true );
 			wp_enqueue_script( 'single', get_template_directory_uri() . '/assets/js/single.js', [], false, true );
 		}
