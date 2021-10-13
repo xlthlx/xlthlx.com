@@ -415,9 +415,9 @@ if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 		$days          = 365;
 		if ( $diff > $days ) {
 			if ( $lang !== 'en' ) {
-				$warning = '<div class="alert alert-primary rounded-0 border-0" role="alert">Attenzione: questo articolo è stato scritto più di un anno fa, potrebbero esserci alcune informazioni che nel frattempo sono diventate obsolete.</div>';
+				$warning = '<div class="alert alert-primary rounded-0 border-0" role="alert"><small>Attenzione: questo articolo è stato scritto più di un anno fa, alcune informazioni potrebbero essere obsolete.</small></div>';
 			} else {
-				$warning = '<div class="alert alert-primary rounded-0 border-0" role="alert">Warning: this article was written more than a year ago, there may be some information that has become obsolete in the meantime.</div>';
+				$warning = '<div class="alert alert-primary rounded-0 border-0" role="alert"><small>Warning: this article was written over a year ago, some information may be out of date.</small></div>';
 			}
 		}
 
