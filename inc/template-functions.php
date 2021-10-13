@@ -229,3 +229,36 @@ function xlt_unregister_tags() {
 }
 
 add_action( 'init', 'xlt_unregister_tags' );
+
+function xlt_youtube_oembed_filters( $html, $data, $url ) {
+	if ( false === $html || ! in_array( $data->type, [ 'rich', 'video' ], true ) ) {
+		return $html;
+	}
+
+	if ( false !== strpos( $html, 'youtube' ) || false !== strpos( $html, 'youtu.be' ) ) {
+		$html = str_replace( 'youtube.com/embed', 'youtube-nocookie.com/embed', $html );
+	}
+
+	return $html;
+}
+
+add_filter( 'oembed_dataparse', 'xlt_youtube_oembed_filters', 99, 3 );
+
+function xlt_clean_oembed_cache() {
+	$GLOBALS['wp_embed']->usecache = 0;
+	do_action( 'wpse_do_cleanup' );
+
+	return 0;
+}
+
+add_filter( 'oembed_ttl', 'xlt_clean_oembed_cache' );
+
+function xlt_restore_oembed_cache( $discover ) {
+	if ( 1 === did_action( 'wpse_do_cleanup' ) ) {
+		$GLOBALS['wp_embed']->usecache = 1;
+	}
+
+	return $discover;
+}
+
+add_filter( 'embed_oembed_discover', 'xlt_restore_oembed_cache' );
