@@ -350,12 +350,15 @@ table.wp-inci td {
 	margin-top: 1em;
 }
 
-.youtube_responsive {
+blockquote {
+	background-color: #e7e6f7;
 	position: relative;
-	display: block;
-	width: 100%;
-	padding: 0;
-	overflow: hidden;
+	padding: 1rem 1.5rem;
+	font-style: italic;
+}
+
+blockquote p {
+	line-height: 1.2 !important;
 }
 
 /*-------
