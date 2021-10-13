@@ -68,7 +68,6 @@ class xlthlxSite extends Timber\Site {
 		add_theme_support( 'editor-styles' );
 		add_theme_support( 'responsive-embeds' );
 		add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'style', 'script' ) );
-
 		remove_theme_support( 'automatic-feed-links' );
 		remove_theme_support( 'widgets-block-editor' );
 	}
