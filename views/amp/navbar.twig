@@ -33,19 +33,19 @@
 	</nav>
 </amp-sidebar>
 <header>
-	<div class="container-fluid bg-light fixed-top">
+	<div class="container-fluid bg-light fixed-navbar">
 		<div class="row">
-			<div class="col-2">
-				<h1 class="display-4 font-italic py-2 px-3 pt-md-2 pt-3 ps-md-4 ps-2">
-					<a title="Homepage" class="text-white text-decoration-none"
+			<div class="col-md-2 col-12">
+				<h1 class="display-4 font-italic py-md-2 py-0 px-md-3 px-0 ps-md-4 ps-0 pt-3 mb-md-2 mb-0 text-md-start text-center">
+					<a title="Homepage" class="text-white text-decoration-none font-big"
 					   href="{{ site.url }}">{{ site.name }}</a>
 				</h1>
 			</div>
-			<div class="col-8">
-				<p class="lead pt-4 mt-2 text-end text-white fs-6">{{ site.description }}</p>
+			<div class="col-md-8 col-10">
+				<p class="my-md-4 my-2 pt-2 lead text-md-end text-center text-white fs-6 small-desc">{{ site.description }}</p>
 			</div>
 			<div class="col-2">
-				<div class="mt-4 float-md-end pe-3">
+				<div class="my-md-4 my-2 float-md-end me-md-4 me-0">
 					<button class="navbar-toggler text-white border-0 shadow-none" on="tap:sidebar.toggle" tabindex="0"
 							aria-expanded="false" aria-label="{{ _e( 'Toggle navigation') }}">
 						☰

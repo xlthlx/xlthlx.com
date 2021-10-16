@@ -46,16 +46,32 @@ body {
 	background-color: #e7e6f7 !important;
 }
 
-body.admin-bar div.fixed-top {
-	top: 32px !important;
+body.admin-bar div.fixed-navbar {
+	margin-top: 44px !important;
 }
 
 body.admin-bar div.offcanvas {
-	top: 32px !important;
+	top: 44px !important;
+}
+
+@media (min-width: 992px) {
+	body.admin-bar div.fixed-navbar {
+		margin-top: 32px !important;
+	}
+
+	body.admin-bar div.offcanvas {
+		top: 32px !important;
+	}
 }
 
 main {
-	margin-top: 91px;
+	margin-top: 118px;
+}
+
+@media (min-width: 992px) {
+	main {
+		margin-top: 91px;
+	}
 }
 
 .breadcrumb-item.active {
@@ -359,6 +375,25 @@ blockquote {
 
 blockquote p {
 	line-height: 1.2 !important;
+}
+
+.fixed-navbar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	margin-top: 0;
+	padding-top: 0;
+}
+
+@media (min-width: 992px) {
+	.fixed-navbar {
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		z-index: 1030;
+	}
 }
 
 /*-------

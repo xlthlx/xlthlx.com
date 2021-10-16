@@ -1,7 +1,3 @@
-body {
-	padding-top: 0 !important;
-}
-
 @media (min-width: 784px) {
 	.amp-sidebar-toolbar-target-hidden {
 		display: none;
@@ -87,4 +83,22 @@ amp-consent {
 footer .container {
 	position: relative;
 	z-index: 3;
+}
+
+.fixed-navbar {
+	position: relative !important;
+}
+
+main {
+	margin-top: 0 !important;
+}
+
+@media (max-width: 992px) {
+	.font-big {
+		font-size: 3.2rem !important;
+	}
+
+	.small-desc {
+		font-size: .7em !important;
+	}
 }
