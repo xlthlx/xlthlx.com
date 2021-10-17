@@ -7,6 +7,9 @@ jobs:
   build:
     docker:
       - image: circleci/buildpack-deps:hirsute
+        auth:
+          username: xlthlx
+          password: $DOCKERHUB_PASSWORD
     working_directory: ~/wkd
     resource_class: small
     steps:
