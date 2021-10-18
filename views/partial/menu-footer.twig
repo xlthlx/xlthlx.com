@@ -2,7 +2,7 @@
 <div class="piped d-md-inline d-block">
     {% for item in items %}
         {% set target = item.target? ' target="'~item.target~'"': '' %}
-        <a class="nav-link d-inline p-0"{{ target }} href="{{ item.link }}">
+        <a title="{{ item.title }}" class="nav-link d-inline p-0"{{ target }} href="{{ item.link }}">
             {{ item.title }}
         </a>
     {% endfor %}
