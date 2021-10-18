@@ -400,6 +400,10 @@ blockquote p {
 	padding-left: 10px;
 }
 
+.piped a {
+	color: rgba(254, 252, 253, .55) !important;
+}
+
 .piped a:after {
 	content: "|";
 	margin: 0 10px;
