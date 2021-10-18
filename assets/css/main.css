@@ -396,6 +396,21 @@ blockquote p {
 	}
 }
 
+.piped {
+	padding-left: 10px;
+}
+
+.piped a:after {
+	content: "|";
+	margin: 0 10px;
+	color: white;
+}
+
+.piped a:last-child:after {
+	content: '';
+	margin: 0 10px;
+}
+
 /*-------
 Colors
 _______*/
