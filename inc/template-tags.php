@@ -33,7 +33,7 @@ if ( ! function_exists( 'xlt_get_link' ) ) {
 
 if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 	/**
-	 * Breadcrumbs
+	 * Breadcrumbs.
 	 */
 	function xlt_breadcrumbs() {
 
@@ -302,7 +302,7 @@ if ( ! function_exists( 'xlt_comment_form' ) ) {
 
 if ( ! function_exists( 'xlt_comment_form_en' ) ) {
 	/**
-	 * Custom comments form.
+	 * Custom english comments form.
 	 *
 	 * @param bool $post_id
 	 */
@@ -362,27 +362,25 @@ if ( ! function_exists( 'xlt_countdown' ) ) {
 	 */
 	function xlt_countdown() {
 
-		$count_down = false;
-		$start_date = '2021-04-08 00:00:00';
+		$start_date = '2021-12-25 00:00:00';
 		$end_date   = date( 'Y-m-d H:i:s' );
-		if ( $start_date ) {
-			$datetime1 = new DateTime( $start_date );
-			$datetime2 = new DateTime( $end_date );
-			$interval  = $datetime1->diff( $datetime2 );
-			$days      = $interval->days;
 
-			if ( $datetime1 <= $datetime2 ) {
-				$count_down = '';
+		$datetime1 = new DateTime( $start_date );
+		$datetime2 = new DateTime( $end_date );
+		$interval  = $datetime1->diff( $datetime2 );
+		$days      = $interval->days;
 
-			} else {
-				$count_down = '<div class="container bg-white pt-3 pb-0 px-3">';
-				$count_down .= '<div class="alert alert-secondary text-center mb-0 rounded-0 border-0" role="alert">';
-				$link       = "the 6th Motzkin number";
-				$text       = ( $days === '1' ) ? ' day to ' : ' days to ';
-				$count_down .= $days . $text . $link;
-				$count_down .= '</div>';
-				$count_down .= '</div>';
-			}
+		if ( $datetime1 <= $datetime2 ) {
+			$count_down = '';
+
+		} else {
+			$count_down = '<div class="container bg-white pt-3 pb-0 px-3">';
+			$count_down .= '<div class="alert alert-secondary text-center mb-0 rounded-0 border-0" role="alert">';
+			$link       = "Christmas";
+			$text       = ( $days === '1' ) ? ' day to ' : ' days to ';
+			$count_down .= $days . $text . $link;
+			$count_down .= '</div>';
+			$count_down .= '</div>';
 		}
 
 		return $count_down;

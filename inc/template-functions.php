@@ -8,19 +8,8 @@
 
 use Highlight\Highlighter;
 
-add_action( 'admin_menu', 'xlt_remove_menu_pages', 999 );
-
 /**
- * Removes annoying submenus.
- */
-function xlt_remove_menu_pages() {
-	remove_submenu_page( 'aioseo', 'https://aioseo.com/lite-upgrade/?utm_source=WordPress&#038;utm_campaign=liteplugin&#038;utm_medium=admin-menu' );
-}
-
-add_action( 'wp_before_admin_bar_render', 'xlt_remove_admin_bar_wp_logo', 20 );
-
-/**
- * Removes WP Logo, comments and SEO in the admin bar.
+ * Removes WP Logo and comments in the admin bar.
  */
 function xlt_remove_admin_bar_wp_logo() {
 	global $wp_admin_bar;
@@ -28,10 +17,11 @@ function xlt_remove_admin_bar_wp_logo() {
 	$wp_admin_bar->remove_node( 'comments' );
 }
 
+add_action( 'wp_before_admin_bar_render', 'xlt_remove_admin_bar_wp_logo', 20 );
+
 add_filter( 'pre_option_link_manager_enabled', '__return_true' );
 add_filter( 'wpcf7_load_js', '__return_false' );
 add_filter( 'wpcf7_load_css', '__return_false' );
-add_filter( 'render_block', 'xlt_render_code_block', 10, 2 );
 
 /**
  * Modify the rendering of code Gutenberg block.
@@ -49,6 +39,8 @@ function xlt_render_code_block( $block_content, $block ) {
 
 	return xlt_render_code( $block_content );
 }
+
+add_filter( 'render_block', 'xlt_render_code_block', 10, 2 );
 
 /**
  * Renders the block type output for given attributes.
@@ -81,8 +73,6 @@ function xlt_render_code( string $content ) {
 	return $content;
 }
 
-add_action( 'init', 'xlt_remove_comment_reply' );
-
 /**
  * Removes the comment-reply script.
  */
@@ -90,16 +80,18 @@ function xlt_remove_comment_reply() {
 	wp_deregister_script( 'comment-reply' );
 }
 
-add_action( 'init', 'xlt_remove_jquery_migrate_notice', 5 );
+add_action( 'init', 'xlt_remove_comment_reply' );
 
 /**
  * Remove the very annoying jQuery Migrate notice.
  */
 function xlt_remove_jquery_migrate_notice() {
 	$m                    = $GLOBALS['wp_scripts']->registered['jquery-migrate'];
-	$m->extra['before'][] = 'wporg_logconsole = window.console.log; window.console.log=null;';
-	$m->extra['after'][]  = 'window.console.log=wporg_logconsole;';
+	$m->extra['before'][] = 'xlt_logconsole = window.console.log; window.console.log=null;';
+	$m->extra['after'][]  = 'window.console.log=xlt_logconsole;';
 }
+
+add_action( 'init', 'xlt_remove_jquery_migrate_notice', 5 );
 
 /**
  * Comment Field Order.
@@ -154,7 +146,7 @@ add_filter( 'comment_post_redirect', 'xlt_en_comment_redirect', 10, 2 );
  */
 function xlt_enqueue_admin_css_js() {
 	wp_enqueue_style( 'admin', get_template_directory_uri() . '/assets/css/admin/admin.css', [], filemtime( get_template_directory() . '/assets/css/admin/admin.css' ) );
-	wp_enqueue_script( 'admin', get_template_directory_uri() . '/assets/js/admin/admin.js', [], '', true );
+	wp_enqueue_script( 'admin', get_template_directory_uri() . '/assets/js/admin/admin.js', [], filemtime( get_template_directory() . '/assets/js/admin/admin.js' ), true );
 }
 
 add_action( 'admin_enqueue_scripts', 'xlt_enqueue_admin_css_js' );
@@ -230,6 +222,16 @@ function xlt_unregister_tags() {
 
 add_action( 'init', 'xlt_unregister_tags' );
 
+
+/**
+ * Replace youtube.com with the no cookie version.
+ *
+ * @param $html
+ * @param $data
+ * @param $url
+ *
+ * @return string
+ */
 function xlt_youtube_oembed_filters( $html, $data, $url ) {
 	if ( false === $html || ! in_array( $data->type, [ 'rich', 'video' ], true ) ) {
 		return $html;
@@ -244,6 +246,11 @@ function xlt_youtube_oembed_filters( $html, $data, $url ) {
 
 add_filter( 'oembed_dataparse', 'xlt_youtube_oembed_filters', 99, 3 );
 
+/**
+ * Clean the oembed cache.
+ *
+ * @return int
+ */
 function xlt_clean_oembed_cache() {
 	$GLOBALS['wp_embed']->usecache = 0;
 	do_action( 'wpse_do_cleanup' );
@@ -253,6 +260,13 @@ function xlt_clean_oembed_cache() {
 
 add_filter( 'oembed_ttl', 'xlt_clean_oembed_cache' );
 
+/**
+ * Restore the oembed cache.
+ *
+ * @param $discover
+ *
+ * @return mixed
+ */
 function xlt_restore_oembed_cache( $discover ) {
 	if ( 1 === did_action( 'wpse_do_cleanup' ) ) {
 		$GLOBALS['wp_embed']->usecache = 1;

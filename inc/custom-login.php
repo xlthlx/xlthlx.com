@@ -18,8 +18,7 @@ function xlt_enqueue_login() {
 
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/vendor/twbs/bootstrap/dist/css/bootstrap.css', [], filemtime( get_template_directory() . '/assets/vendor/twbs/bootstrap/dist/css/bootstrap.css' ) );
 	wp_enqueue_style( 'custom-login', get_template_directory_uri() . '/assets/css/admin/login.css', [], filemtime( get_template_directory() . '/assets/css/admin/login.css' ) );
-	wp_enqueue_script( 'jquery-login', includes_url( '/js/jquery/jquery.js' ), [], '' );
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js', [ 'jquery' ], filemtime( get_template_directory() . '/assets/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js' ), true );
+	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js', [], filemtime( get_template_directory() . '/assets/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js' ), true );
 }
 
 add_action( 'login_enqueue_scripts', 'xlt_enqueue_login', 10 );
@@ -101,13 +100,36 @@ add_action( 'init', 'xlt_login_classes' );
  */
 function xlt_login_classes_footer() {
 	echo "<script>
-		        jQuery('#loginform').addClass('md-form');
-		        jQuery('#lostpasswordform').addClass('md-form');
-		        jQuery('#resetpassform').addClass('md-form');
-		        jQuery('#user_login').removeClass('input').addClass('form-control rounded-0');
-		        jQuery('#user_pass').removeClass('input').addClass('form-control rounded-0');
-		        jQuery('#wp-submit').removeClass('button button-primary button-large').addClass('btn btn-outline-primary pink-hover rounded-0');
-			</script>";
+		if (document.getElementById('loginform') !==null) {
+		    document.getElementById('loginform').classList.add('md-form')
+		}
+
+		if (document.getElementById('lostpasswordform') !==null) {
+		    document.getElementById('lostpasswordform').classList.add('md-form')
+		}
+
+		if (document.getElementById('lostpasswordform') !==null) {
+		    document.getElementById('lostpasswordform').classList.add('md-form')
+		}
+
+		if (document.getElementById('user_login') !==null) {
+	        let user_login = document.getElementById('user_login')
+	        user_login.classList.remove('input')
+			user_login.classList.add('form-control','rounded-0')
+        }
+
+		if (document.getElementById('user_pass') !==null) {
+            let user_pass = document.getElementById('user_pass')
+			user_pass.classList.remove('input')
+			user_pass.classList.add('form-control','rounded-0')
+		}
+
+        if (document.getElementById('wp-submit') !==null) {
+            let wp_submit = document.getElementById('wp-submit')
+            wp_submit.classList.remove('button','button-primary','button-large');
+            wp_submit.classList.add('btn','btn-outline-primary','pink-hover','rounded-0')
+		}
+		</script>";
 }
 
 /**
@@ -117,7 +139,7 @@ function xlt_login_classes_footer() {
  */
 function xlt_login_page_title() {
 
-	return 'Entra | ' . get_bloginfo( 'name' );
+	return 'Login | ' . get_bloginfo( 'name' );
 
 }
 
@@ -150,9 +172,9 @@ function xlt_authenticate( $user, $username, $password ) {
 
 	if ( ! empty( $username ) || ! empty( $password ) ) {
 		return false;
-	} else {
-		return wp_authenticate_username_password( null, "", "" );
 	}
+
+	return wp_authenticate_username_password( null, "", "" );
 }
 
 add_filter( 'authenticate', 'xlt_authenticate', 20, 3 );

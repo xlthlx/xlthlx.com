@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Theme based on Timber and Bootstrap 5.",
   "main": "Gruntfile.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "xlthlx",
   "devDependencies": {
     "autoprefixer": "^9.4.8",
