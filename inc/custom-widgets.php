@@ -45,7 +45,7 @@ class Archive_Widget extends WP_Widget {
 		$settings = wp_parse_args( $instance, $this->default_settings() );
 		// Output.
 		echo $args['before_widget'];
- // Display Title.
+ 		// Display Title.
 			$this->widget_title( $args, $settings ); ?>
 
 			<div class="textwidget">
@@ -271,7 +271,7 @@ class Related_Widget extends WP_Widget {
 		$settings = wp_parse_args( $instance, $this->default_settings() );
 		// Output.
 		echo $args['before_widget'];
- // Display Title.
+ 		// Display Title.
 			$this->widget_title( $args, $settings ); ?>
 
 			<div class="textwidget">

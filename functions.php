@@ -63,7 +63,6 @@ class xlthlxSite extends Timber\Site {
 	public function theme_supports() {
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
-		add_theme_support( 'menus' );
 		add_theme_support( 'align-wide' );
 		add_theme_support( 'editor-styles' );
 		add_theme_support( 'responsive-embeds' );
@@ -93,7 +92,7 @@ class xlthlxSite extends Timber\Site {
 		wp_enqueue_style( 'main', get_template_directory_uri() . '/assets/css/main.css' );
 
 		// Scripts.
-		wp_deregister_script( 'jquery' );
+		//wp_deregister_script( 'jquery' );
 		wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js', [], false, true );
 
 		// Service worker.
