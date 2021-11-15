@@ -108,7 +108,11 @@ function get_content_en( $post_id = 0 ) {
 
 		if ( ! get_post_meta( $post_id, 'content_en', true )
 		     || get_post_meta( $post_id, 'content_en', true ) === '' ) {
-			$blocks = parse_blocks( get_the_content() );
+			
+			global $post;
+    			$blocks = parse_blocks( $post->post_content );
+			
+			//$blocks = parse_blocks( get_the_content() );
 			$doc    = new HtmlDocument();
 			$output = '';
 
