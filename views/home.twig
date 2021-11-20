@@ -4,11 +4,7 @@
 
 	{% for post in posts %}
 		{{ loop.index0 is even ? '<div class="row mb-2">' }}
-		{% if is_amp %}
-			{% include 'amp/tease.twig' %}
-		{% else %}
 			{% include 'tease-home.twig' %}
-		{% endif %}
 		{% if loop.last %}
 			</div>
 		{% else %}

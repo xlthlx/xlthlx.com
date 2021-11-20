@@ -50,9 +50,6 @@ class xlthlxSite extends Timber\Site {
 		$context['current_user']     = new Timber\User();
 		$context['sidebar']          = $timber::get_widgets( 'sidebar' );
 		$context['page_sidebar']     = $timber::get_widgets( 'page_sidebar' );
-		if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ) {
-			$context['is_amp'] = true;
-		}
 
 		return $context;
 	}
@@ -107,12 +104,6 @@ class xlthlxSite extends Timber\Site {
 			wp_enqueue_style( 'highlight', get_template_directory_uri() . '/assets/css/highlight.css' );
 			wp_enqueue_script( 'badge', get_template_directory_uri() . '/assets/js/badge.js', [], false, true );
 			wp_enqueue_script( 'single', get_template_directory_uri() . '/assets/js/single.js', [], false, true );
-		}
-
-		// Analytics.
-		if ( ! function_exists( 'is_amp_endpoint' ) || ( function_exists( 'is_amp_endpoint' ) && ! is_amp_endpoint() ) ) {
-			//wp_enqueue_script( 'gtag-script', 'https://www.googletagmanager.com/gtag/js?id=UA-21923886-8' );
-			//wp_enqueue_script( 'gtag', get_template_directory_uri() . '/assets/js/gtag.js' );
 		}
 	}
 
@@ -191,8 +182,3 @@ require_once 'inc/toolkit/toolkit.php';
  * Newsletter.
  */
 require_once 'inc/newsletter/newsletter.php';
-
-/**
- * AMP form.
- */
-require_once 'inc/amp-form/amp-form.php';

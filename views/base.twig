@@ -1,27 +1,16 @@
 <!doctype html>
 <html {{ site.language_attributes }} id="top">
 {% block html_head_container %}
-
-	{% if is_amp %}
-		{% include 'amp/header.twig' %}
-	{% else %}
-		{% include 'header.twig' %}
-	{% endif %}
-
+	{% include 'header.twig' %}
 	{% block head %}
 	{% endblock %}
-
 {% endblock %}
 
 <body class="{{ body_class }}">
 {% block header %}
-	{% if is_amp %}
-		{% include 'amp/navbar.twig' %}
-	{% else %}
-		<header>
-			{% include 'partial/navbar.twig' %}
-		</header>
-	{% endif %}
+	<header>
+		{% include 'partial/navbar.twig' %}
+	</header>
 {% endblock %}
 
 <main class="py-0 mb-0">
@@ -54,17 +43,11 @@
 {% block footer %}
 	<footer>
 		<div class="pt-4 pb-3 bg-dark navbar-dark">
-			{% if is_amp %}
-				{% include 'amp/footer.twig' %}
-			{% else %}
-				{% include 'footer.twig' %}
-			{% endif %}
+			{% include 'footer.twig' %}
 			{{ fn('wp_footer') }}
 		</div>
 	</footer>
 {% endblock %}
-
-<script defer data-domain="xlthlx.com" src="https://plausible.io/js/plausible.js"></script>
 
 <span id="db3bd4a3c96f1fe80cd12d8df05e6320"></span>
 </body>
