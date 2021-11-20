@@ -187,10 +187,6 @@ div.comments.children {
 	background-color: #e7e6f7 !important;
 }
 
-.grecaptcha-badge {
-	display: none !important
-}
-
 .cc-revoke.cc-bottom {
 	left: unset !important;
 	right: 0;
@@ -413,6 +409,11 @@ blockquote p {
 .piped a:last-child:after {
 	content: '';
 	margin: 0 10px;
+}
+
+.wpcf7-form-control.h-captcha.hcap_cf7-h-captcha {
+	display: block !important;
+	margin-bottom: 0 !important;
 }
 
 /*-------
