@@ -24,7 +24,6 @@ $timber::$autoescape = false;
 class xlthlxSite extends Timber\Site {
 	/** Add timber support. */
 	public function __construct() {
-		add_filter( 'amp_customizer_is_enabled', '__return_false' );
 		add_action( 'after_setup_theme', array( $this, 'theme_supports' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'init', array( $this, 'register_menus' ) );
