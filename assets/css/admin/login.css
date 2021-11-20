@@ -76,11 +76,17 @@ p {
 }
 
 .login form {
-	width: 320px;
+	width: 360px;
 	margin: 20px auto 0;
 	padding: 26px 24px;
 	overflow: hidden;
 	background: #fff;
+}
+
+@media screen and (max-width: 782px) {
+	.login form {
+		width: 320px;
+	}
 }
 
 .login form.shake {
@@ -129,7 +135,7 @@ p {
 	margin-bottom: 0;
 	display: block;
 	text-align: left;
-	padding-top: 1em;
+	padding-top: 10px;
 }
 
 .login label[for=user_login], .login label[for=user_pass] {
@@ -334,4 +340,12 @@ input::-ms-reveal {
 
 #wp-submit {
 	width: 100%;
+}
+
+.h-captcha {
+	padding-top: 15px;
+}
+
+.h-captcha iframe {
+	width: 100% !important;
 }
