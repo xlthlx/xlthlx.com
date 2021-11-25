@@ -7,20 +7,20 @@
   "start_url": "/",
   "name": "xlthlx",
   "short_name": "xlthlx",
-  "description": "xlthlx | This page is best viewed with your brain switched on.",
+  "description": "xlthlx | I’m not an early bird or a night owl, I am some form of permanently exhausted pigeon.",
   "icons": [
 	{
-	  "src": "/wp-content/uploads/2021/01/cropped-icon-1-192x192.png",
+	  "src": "/assets/manifest/icon-192x192.png",
 	  "sizes": "192x192",
 	  "type": "image/png"
 	},
 	{
-	  "src": "/wp-content/uploads/2021/01/cropped-icon-1-256x256.png",
+	  "src": "/assets/manifest/icon-256x256.png",
 	  "sizes": "256x256",
 	  "type": "image/png"
 	},
 	{
-	  "src": "/wp-content/uploads/2021/01/cropped-icon-1-512X512.png",
+	  "src": "/assets/manifest/icon-512X512.png",
 	  "sizes": "512x512",
 	  "type": "image/png"
 	},
