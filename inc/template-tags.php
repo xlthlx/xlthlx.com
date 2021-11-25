@@ -374,10 +374,10 @@ if ( ! function_exists( 'xlt_countdown' ) ) {
 			$count_down = '';
 
 		} else {
-			$count_down = '<div class="container bg-white pt-3 pb-0 px-3">';
+			$count_down = '<div class="container bg-white pt-5 pt-md-3 mt-5 mt-md-0 pb-0 px-3">';
 			$count_down .= '<div class="alert alert-secondary text-center mb-0 rounded-0 border-0" role="alert">';
 			$link       = "Christmas";
-			$text       = ( $days === '1' ) ? ' day to ' : ' days to ';
+			$text       = ( (string) $days === '1' ) ? ' day to ' : ' days to ';
 			$count_down .= $days . $text . $link;
 			$count_down .= '</div>';
 			$count_down .= '</div>';
