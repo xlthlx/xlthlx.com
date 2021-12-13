@@ -2,6 +2,10 @@
 
 {% block content %}
 
+	{% if posts.pagination.current==1 %}
+		{% include 'partial/sticky.twig' with { first_posts } %}
+	{% endif %}
+
 	{% for post in posts %}
 		{{ loop.index0 is even ? '<div class="row mb-2">' }}
 			{% include 'tease-home.twig' %}

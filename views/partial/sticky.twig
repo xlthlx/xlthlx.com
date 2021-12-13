@@ -1,0 +1,20 @@
+{% if first_posts %}
+	<div class="p-4 p-md-5 bg-violet rounded-0 mb-4">
+		{% for first_post in first_posts %}
+		<div class="row">
+			<div class="col-md-9 px-0">
+				<h2 class="display-4 font-italic">{{ first_post.title }}</h2>
+				<p class="lead my-3">{{ first_post.preview.length(40).read_more('') }}</p>
+				<p class="lead mb-0"><a href="{{ first_post.link }}" class="fw-bold">{{ _e( 'continua') }} ></a>
+				</p>
+			</div>
+			<div class="col-md-3 d-none d-lg-block">
+				{% if first_post.thumbnail.src %}
+					<img src="{{ first_post.thumbnail.src | resize(276, 276) }}" class="img-fluid"
+						 alt="{{ first_post.title }}">
+				{% endif %}
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+{% endif %}
