@@ -84,7 +84,7 @@ function get_title_en( $post_id = 0 ) {
 		}
 	}
 
-	return apply_filters( 'the_title', get_post_meta( $post_id, 'title_en', true ) );
+	return get_post_meta( $post_id, 'title_en', true );
 }
 
 /**

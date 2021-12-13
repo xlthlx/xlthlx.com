@@ -20,7 +20,7 @@ $defaults = [
 		'rest_api'          => 'yes',
 		'links'             => 'yes',
 		'wordpress_version' => 'yes',
-		'pings'             => 'yes',
+		'pings'             => 'no',
 		'comments'          => 'yes',
 		'versions'          => 'yes',
 	],
