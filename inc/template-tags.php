@@ -362,7 +362,7 @@ if ( ! function_exists( 'xlt_countdown' ) ) {
 	 */
 	function xlt_countdown() {
 
-		$start_date = '2021-12-25 00:00:00';
+		$start_date = '2021-12-25 23:59:59';
 		$end_date   = date( 'Y-m-d H:i:s' );
 
 		$datetime1 = new DateTime( $start_date );
