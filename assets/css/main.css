@@ -43,7 +43,7 @@ _______*/
 body {
 	font-family: 'Titillium Web', serif !important;
 	font-size: 1.2rem;
-	background-color: #f0f0f7 !important;
+	background-color: #e0e1ee !important;
 }
 
 body.admin-bar div.fixed-navbar {
@@ -86,7 +86,7 @@ main {
 }
 
 .widget_grey, .widget_pages {
-	background-color: #f0f0f7 !important;
+	background-color: #e0e1ee !important;
 }
 
 .page-item.active .page-link.dots {
@@ -113,7 +113,7 @@ main {
 }
 
 a.dropdown-item.text-light:hover {
-	color: #f0f0f7 !important;
+	color: #e0e1ee !important;
 }
 
 li a:hover {
@@ -184,7 +184,7 @@ div.comments.children {
 }
 
 .alert {
-	background-color: #f0f0f7 !important;
+	background-color: #e0e1ee !important;
 }
 
 .cc-revoke.cc-bottom {
@@ -374,7 +374,7 @@ table.wp-inci td {
 }
 
 blockquote {
-	background-color: #f0f0f7;
+	background-color: #e0e1ee;
 	position: relative;
 	padding: 1rem 1.5rem;
 	font-style: italic;
@@ -428,7 +428,7 @@ blockquote p {
 }
 
 .bg-violet {
-	background-color: #f0f0f7 !important;
+	background-color: #e0e1ee !important;
 }
 
 /*-------
@@ -456,7 +456,7 @@ _______*/
 }
 
 .light {
-	color: #f0f0f7 !important;
+	color: #e0e1ee !important;
 }
 
 .dark {
