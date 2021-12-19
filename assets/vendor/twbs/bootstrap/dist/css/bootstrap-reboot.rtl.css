@@ -23,10 +23,10 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #2a1b3c;
-  background-color: #fefcfd;
+  color: #333456;
+  background-color: #fff;
   -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 5, 5, 0);
+  -webkit-tap-highlight-color: rgba(10, 10, 17, 0);
 }
 
 hr {
@@ -175,11 +175,11 @@ sup {
 }
 
 a {
-  color: #ab0061;
+  color: #b73275;
   text-decoration: none;
 }
 a:hover {
-  color: #89004e;
+  color: #b73275;
   text-decoration: underline;
 }
 
@@ -213,7 +213,7 @@ pre code {
 
 code {
   font-size: 0.875em;
-  color: #ab0061;
+  color: #b73275;
   word-wrap: break-word;
 }
 a > code {
@@ -223,8 +223,8 @@ a > code {
 kbd {
   padding: 0.2rem 0.4rem;
   font-size: 0.875em;
-  color: #fefcfd;
-  background-color: #2a1b3c;
+  color: #fff;
+  background-color: #333456;
   border-radius: 0.2rem;
 }
 kbd kbd {
@@ -250,7 +250,7 @@ table {
 caption {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  color: #44318d;
+  color: #6667ab;
   text-align: right;
 }
 

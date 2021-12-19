@@ -8,7 +8,7 @@ body {
 body {
 	font-family: 'Titillium Web', Tahoma, Arial, serif !important;
 	font-size: 1.125rem;
-	background-color: #e7e6f7 !important;
+	background-color: #f0f0f7 !important;
 }
 
 p {
@@ -312,8 +312,8 @@ input::-ms-reveal {
 
 .login .button.wp-hide-pw:focus {
 	background: transparent;
-	border-color: #44318d;
-	box-shadow: 0 0 0 1px #44318d;
+	border-color: #6667ab;
+	box-shadow: 0 0 0 1px #6667ab;
 	/* Only visible in Windows High Contrast mode */
 	outline: 2px solid transparent;
 }

@@ -17,6 +17,7 @@ require_once __DIR__ . '/vendor.phar';
 $timber              = new Timber\Timber();
 $timber::$dirname    = array( 'views' );
 $timber::$autoescape = false;
+$timber::$twig_cache = false;
 
 /**
  * Subclass of Timber\Site to init the theme.
