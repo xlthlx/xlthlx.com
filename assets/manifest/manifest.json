@@ -1,5 +1,5 @@
 {
-  "theme_color": "#b73275",
+  "theme_color": "#6667ab",
   "background_color": "#e0e1ee",
   "display": "minimal-ui",
   "prefer_related_applications": false,
@@ -7,7 +7,7 @@
   "start_url": "/",
   "name": "xlthlx",
   "short_name": "xlthlx",
-  "description": "xlthlx | I’m not an early bird or a night owl, I am some form of permanently exhausted pigeon.",
+  "description": "xlthlx's blog'",
   "icons": [
 	{
 	  "src": "icon-192x192.png",
@@ -26,7 +26,6 @@
 	},
 	{
 	  "src": "maskable_icon.png",
-	  "sizes": "192x192",
 	  "type": "image/png",
 	  "purpose": "any maskable"
 	}
