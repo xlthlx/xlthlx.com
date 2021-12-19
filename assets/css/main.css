@@ -43,7 +43,7 @@ _______*/
 body {
 	font-family: 'Titillium Web', serif !important;
 	font-size: 1.2rem;
-	background-color: #e7e6f7 !important;
+	background-color: #f0f0f7 !important;
 }
 
 body.admin-bar div.fixed-navbar {
@@ -86,7 +86,7 @@ main {
 }
 
 .widget_grey, .widget_pages {
-	background-color: #e7e6f7 !important;
+	background-color: #f0f0f7 !important;
 }
 
 .page-item.active .page-link.dots {
@@ -113,7 +113,7 @@ main {
 }
 
 a.dropdown-item.text-light:hover {
-	color: #e7e6f7 !important;
+	color: #f0f0f7 !important;
 }
 
 li a:hover {
@@ -143,7 +143,7 @@ ol.breadcrumb {
 }
 
 .btn-fb:hover, .btn-fb:active {
-	color: #fefcfd;
+	color: #ffffff;
 	background-color: rgba(59, 89, 152, 1);
 	border-color: rgba(59, 89, 152, 1);
 }
@@ -154,7 +154,7 @@ ol.breadcrumb {
 }
 
 .btn-tw:hover, .btn-tw:active {
-	color: #fefcfd;
+	color: #ffffff;
 	background-color: rgba(20, 123, 201, 1);
 	border-color: rgba(20, 123, 201, 1);
 }
@@ -184,7 +184,7 @@ div.comments.children {
 }
 
 .alert {
-	background-color: #e7e6f7 !important;
+	background-color: #f0f0f7 !important;
 }
 
 .cc-revoke.cc-bottom {
@@ -192,8 +192,8 @@ div.comments.children {
 	right: 0;
 	border-top-left-radius: 0 !important;
 	border-top-right-radius: 0 !important;
-	background-color: #44318d !important;
-	border: 1px solid #44318d !important;
+	background-color: #6667ab !important;
+	border: 1px solid #6667ab !important;
 	font-weight: 400 !important;
 	font-size: 1.2rem !important;
 	font-family: 'Titillium Web', serif !important;
@@ -253,6 +253,17 @@ iframe {
 	color: white !important;
 }
 
+.navbar-dark .navbar-nav .nav-link.dropdown-toggle.pink, .navbar-dark .navbar-nav .nav-link.dropdown-toggle.pink:hover {
+	background-color: #b73275 !important;
+	border-color: #b73275 !important;
+	color: white !important;
+	padding-left: 10px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+	color: white !important;
+}
+
 .lang {
 	padding: 6px 12px;
 	font-size: 1.3rem;
@@ -276,7 +287,7 @@ iframe {
 }
 
 .letter-avatar {
-	background-color: #8265a7;
+	background-color: #b73275;
 	text-align: center;
 	border-radius: 0 !important;
 	line-height: 64px;
@@ -312,7 +323,7 @@ table.wp-inci td {
 .wpcf7 form .wpcf7-response-output {
 	margin: 2em 0.5em 1em 0;
 	padding: 0.2em 0 0.2em 1em;
-	border-left: 2px solid #44318d;
+	border-left: 2px solid #6667ab;
 }
 
 .wpcf7 form.init .wpcf7-response-output {
@@ -329,7 +340,7 @@ table.wp-inci td {
 }
 
 .wpcf7 form.spam .wpcf7-response-output {
-	border-color: #ab0061;
+	border-color: #b73275;
 }
 
 .wpcf7 form.invalid .wpcf7-response-output,
@@ -338,7 +349,7 @@ table.wp-inci td {
 }
 
 .wpcf7-not-valid-tip {
-	color: #ab0061;
+	color: #b73275;
 	font-size: 1em;
 	font-weight: normal;
 	display: block;
@@ -363,7 +374,7 @@ table.wp-inci td {
 }
 
 blockquote {
-	background-color: #e7e6f7;
+	background-color: #f0f0f7;
 	position: relative;
 	padding: 1rem 1.5rem;
 	font-style: italic;
@@ -397,7 +408,7 @@ blockquote p {
 }
 
 .piped a {
-	color: rgba(254, 252, 253, .55) !important;
+	color: white !important;
 }
 
 .piped a:after {
@@ -417,7 +428,7 @@ blockquote p {
 }
 
 .bg-violet {
-	background-color: #e7e6f7 !important;
+	background-color: #f0f0f7 !important;
 }
 
 /*-------
@@ -425,29 +436,29 @@ Colors
 _______*/
 
 .white {
-	color: #fefcfd;
+	color: #ffffff;
 }
 
 .black {
-	color: #000505;
+	color: #0a0a11;
 }
 
 .blue {
-	color: #44318d;
+	color: #6667ab;
 }
 
 .pink {
-	color: #ab0061 !important;
+	color: #b73275 !important;
 }
 
 .violet {
-	color: #8265a7;
+	color: #b73275;
 }
 
 .light {
-	color: #e7e6f7 !important;
+	color: #f0f0f7 !important;
 }
 
 .dark {
-	color: #2a1b3c;
+	color: #333456;
 }

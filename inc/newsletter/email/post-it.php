@@ -29,8 +29,8 @@
 				<tbody>
 
 				<tr>
-					<td align="center" style="border-collapse:collapse;background-color:#8265a7!important"
-						bgcolor="#8265a7">
+					<td align="center" style="border-collapse:collapse;background-color:#b73275!important"
+						bgcolor="#b73275">
 						<table width="100%" border="0" cellpadding="0" cellspacing="0"
 							   style="border-collapse:collapse;border-spacing:0;mso-table-lspace:0;mso-table-rspace:0">
 							<tbody>
@@ -135,7 +135,7 @@
 																	arcsize="0%"
 																	strokeweight="0px"
 																	strokecolor="#000000"
-																	fillcolor="#8265a7">
+																	fillcolor="#b73275">
 																  <w:anchorlock/>
 																  <center style="color:#ffffff;
 																	font-family:Lucida;
@@ -144,7 +144,7 @@
 																  </center>
 																  </v:roundrect>
 																  <![endif]--><a href="<?php echo $permalink; ?>"
-																				 style="color:#ffffff;text-decoration:none !important;display:inline-block;-webkit-text-size-adjust:none;mso-hide:all;text-align:center;background-color:#8265a7;border-color:#000000;border-width:0px;border-radius:0px;border-style:solid;width:288px;line-height:36px;font-size:16px;font-weight:normal">
+																				 style="color:#ffffff;text-decoration:none !important;display:inline-block;-webkit-text-size-adjust:none;mso-hide:all;text-align:center;background-color:#b73275;border-color:#000000;border-width:0px;border-radius:0px;border-style:solid;width:288px;line-height:36px;font-size:16px;font-weight:normal">
 																		continua &gt;</a>
 																</td>
 															</tr>
@@ -163,8 +163,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td align="center" style="border-collapse:collapse;background-color:#2a1b3c!important"
-						bgcolor="#2a1b3c">
+					<td align="center" style="border-collapse:collapse;background-color:#333456!important"
+						bgcolor="#333456">
 						<table width="100%" border="0" cellpadding="0" cellspacing="0"
 							   style="border-collapse:collapse;border-spacing:0;mso-table-lspace:0;mso-table-rspace:0">
 							<tbody>
