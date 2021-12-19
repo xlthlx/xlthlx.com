@@ -28,8 +28,8 @@
 				<tbody>
 
 				<tr>
-					<td align="center" style="border-collapse:collapse;background-color:#b73275!important"
-						bgcolor="#b73275">
+					<td align="center" style="border-collapse:collapse;background-color:#6667ab!important"
+						bgcolor="#6667ab">
 						<table width="100%" border="0" cellpadding="0" cellspacing="0"
 							   style="border-collapse:collapse;border-spacing:0;mso-table-lspace:0;mso-table-rspace:0">
 							<tbody>
@@ -141,7 +141,7 @@
 																	font-weight:bold;">CONFIRM EMAIL
 																  </center>
 																  </v:roundrect>
-																  <![endif]--><a href="https://xlthlx.com/newsletter/?act=confirm&lan=en&cod=<?php echo $code; ?>" style="color:#ffffff;text-decoration:none !important;display:inline-block;-webkit-text-size-adjust:none;mso-hide:all;text-align:center;background-color:#b73275;border-color:#000000;border-width:0px;border-radius:0px;border-style:solid;width:288px;line-height:36px;font-size:16px;font-weight:normal">
+																  <![endif]--><a href="https://xlthlx.com/newsletter/?act=confirm&lan=en&cod=<?php echo $code; ?>" style="color:#ffffff;text-decoration:none !important;display:inline-block;-webkit-text-size-adjust:none;mso-hide:all;text-align:center;background-color:#6667ab;border-color:#000000;border-width:0px;border-radius:0px;border-style:solid;width:288px;line-height:36px;font-size:16px;font-weight:normal">
 																	CONFIRM EMAIL</a>
 																</td>
 															</tr>
