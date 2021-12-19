@@ -4,7 +4,7 @@
 			<div class="col px-4 py-3 d-flex flex-column position-static min-h-240">
 				{% set cat = post.terms('category')|first %}
 				<strong class="d-inline-block mb-2 text-primary">{{ cat.name }}</strong>
-				<h2 class="mb-3">{{ post.title }}</h2>
+				<h2 class="display-6 mb-3 shadows">{{ post.title }}</h2>
 				<p class="card-text mb-auto me-5">{{ post.preview.length(20).read_more('') }}</p>
 				<a aria-label="Continua a leggere: {{ post.title }}" href="{{ post.link }}"
 				   class="align-text-bottom stretched-link">{{ _e( 'continua') }} ></a>

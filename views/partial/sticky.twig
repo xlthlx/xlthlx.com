@@ -3,7 +3,7 @@
 		{% for first_post in first_posts %}
 		<div class="row">
 			<div class="col-md-9 px-0">
-				<h2 class="display-4 font-italic">{{ first_post.title }}</h2>
+				<h2 class="display-4 font-italic shadows">{{ first_post.title }}</h2>
 				<p class="lead my-3">{{ first_post.preview.length(40).read_more('') }}</p>
 				<p class="lead mb-0"><a href="{{ first_post.link }}" class="fw-bold">{{ _e( 'continua') }} ></a>
 				</p>

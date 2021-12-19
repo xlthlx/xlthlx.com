@@ -45,29 +45,11 @@ _______*/
 }
 
 @font-face {
-	font-family: 'Merienda';
-	src: url('fonts/Merienda-Bold.eot');
-	src: local('Merienda Bold'), local('Merienda-Bold'),
-	url('fonts/Merienda-Bold.eot?#iefix') format('embedded-opentype'),
-	url('fonts/Merienda-Bold.woff2') format('woff2'),
-	url('fonts/Merienda-Bold.woff') format('woff'),
-	url('fonts/Merienda-Bold.ttf') format('truetype'),
-	url('fonts/Merienda-Bold.svg#Merienda-Bold') format('svg');
-	font-weight: bold;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Merienda';
-	src: url('fonts/Merienda-Regular_0_wt.eot');
-	src: local('Merienda'), local('Merienda-Regular_0_wt'),
-	url('fonts/Merienda-Regular.eot?#iefix') format('embedded-opentype'),
-	url('fonts/Merienda-Regular.woff2') format('woff2'),
-	url('fonts/Merienda-Regular.woff') format('woff'),
-	url('fonts/Merienda-Regular.ttf') format('truetype'),
-	url('fonts/Merienda-Regular.svg#Merienda-Regular') format('svg');
-	font-weight: normal;
+	font-family: 'Shadows';
+	src: local('Shadows Into Light'), local('ShadowsIntoLight'),
+	url('../fonts/ShadowsIntoLight.woff2') format('woff2'),
+	url('../fonts/ShadowsIntoLight.woff') format('woff');
+	font-weight: 300;
 	font-style: normal;
 	font-display: swap;
 }
@@ -444,6 +426,12 @@ blockquote p {
 	background-color: #e0e1ee !important;
 }
 
+.shadows {
+	font-family: 'Shadows';
+	font-weight: 300;
+	font-style: normal;
+}
+
 /*-------
 Colors
 _______*/
@@ -474,8 +462,4 @@ _______*/
 
 .dark {
 	color: #333456;
-}
-
-.merienda {
-	font-family: 'Merienda', cursive;
 }
