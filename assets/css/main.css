@@ -8,7 +8,8 @@ _______*/
 	font-weight: 400;
 	font-display: swap;
 	src: local('Titillium Web Regular'), local('TitilliumWeb-Regular'),
-	url('../fonts/titillium-web-v6-latin-ext_latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/titillium-web-v6-latin-ext_latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+	url('../fonts/titillium-web-v6-latin-ext_latin-regular.woff2') format('woff2'),
+	url('../fonts/titillium-web-v6-latin-ext_latin-regular.woff') format('woff');
 }
 
 @font-face {
@@ -17,7 +18,8 @@ _______*/
 	font-weight: 400;
 	font-display: swap;
 	src: local('Titillium Web Italic'), local('TitilliumWeb-Italic'),
-	url('../fonts/titillium-web-v6-latin-ext_latin-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/titillium-web-v6-latin-ext_latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+	url('../fonts/titillium-web-v6-latin-ext_latin-italic.woff2') format('woff2'),
+	url('../fonts/titillium-web-v6-latin-ext_latin-italic.woff') format('woff');
 }
 
 
@@ -27,7 +29,8 @@ _______*/
 	font-weight: 700;
 	font-display: swap;
 	src: local('Titillium Web Bold'), local('TitilliumWeb-Bold'),
-	url('../fonts/titillium-web-v6-latin-ext_latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/titillium-web-v6-latin-ext_latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+	url('../fonts/titillium-web-v6-latin-ext_latin-700.woff2') format('woff2'),
+	url('../fonts/titillium-web-v6-latin-ext_latin-700.woff') format('woff');
 }
 
 
@@ -37,8 +40,38 @@ _______*/
 	font-weight: 700;
 	font-display: swap;
 	src: local('Titillium Web Bold Italic'), local('TitilliumWeb-BoldItalic'),
-	url('../fonts/titillium-web-v6-latin-ext_latin-700italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/titillium-web-v6-latin-ext_latin-700italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+	url('../fonts/titillium-web-v6-latin-ext_latin-700italic.woff2') format('woff2'),
+	url('../fonts/titillium-web-v6-latin-ext_latin-700italic.woff') format('woff');
 }
+
+@font-face {
+	font-family: 'Merienda';
+	src: url('fonts/Merienda-Bold.eot');
+	src: local('Merienda Bold'), local('Merienda-Bold'),
+	url('fonts/Merienda-Bold.eot?#iefix') format('embedded-opentype'),
+	url('fonts/Merienda-Bold.woff2') format('woff2'),
+	url('fonts/Merienda-Bold.woff') format('woff'),
+	url('fonts/Merienda-Bold.ttf') format('truetype'),
+	url('fonts/Merienda-Bold.svg#Merienda-Bold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Merienda';
+	src: url('fonts/Merienda-Regular_0_wt.eot');
+	src: local('Merienda'), local('Merienda-Regular_0_wt'),
+	url('fonts/Merienda-Regular.eot?#iefix') format('embedded-opentype'),
+	url('fonts/Merienda-Regular.woff2') format('woff2'),
+	url('fonts/Merienda-Regular.woff') format('woff'),
+	url('fonts/Merienda-Regular.ttf') format('truetype'),
+	url('fonts/Merienda-Regular.svg#Merienda-Regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
 
 body {
 	font-family: 'Titillium Web', serif !important;
@@ -185,26 +218,6 @@ div.comments.children {
 
 .alert {
 	background-color: #e0e1ee !important;
-}
-
-.cc-revoke.cc-bottom {
-	left: unset !important;
-	right: 0;
-	border-top-left-radius: 0 !important;
-	border-top-right-radius: 0 !important;
-	background-color: #6667ab !important;
-	border: 1px solid #6667ab !important;
-	font-weight: 400 !important;
-	font-size: 1.2rem !important;
-	font-family: 'Titillium Web', serif !important;
-	padding: .375rem .75rem !important;
-	transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-}
-
-.cc-revoke.cc-bottom:hover {
-	text-decoration: none;
-	background-color: #3a2a78 !important;
-	border-color: #362771 !important;
 }
 
 .months-container {
@@ -461,4 +474,8 @@ _______*/
 
 .dark {
 	color: #333456;
+}
+
+.merienda {
+	font-family: 'Merienda', cursive;
 }
