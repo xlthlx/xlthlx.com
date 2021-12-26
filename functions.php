@@ -90,7 +90,7 @@ class xlthlxSite extends Timber\Site {
 		wp_enqueue_style( 'main', get_template_directory_uri() . '/assets/css/main.css' );
 
 		// Scripts.
-		//wp_deregister_script( 'jquery' );
+		wp_deregister_script( 'jquery' );
 		wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js', [], false, true );
 
 		// Service worker.
