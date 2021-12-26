@@ -362,7 +362,7 @@ if ( ! function_exists( 'xlt_countdown' ) ) {
 	 */
 	function xlt_countdown() {
 
-		$start_date = '2021-12-25 23:59:59';
+		$start_date = '2021-12-31 23:59:59';
 		$end_date   = date( 'Y-m-d H:i:s' );
 
 		$datetime1 = new DateTime( $start_date );
@@ -376,7 +376,7 @@ if ( ! function_exists( 'xlt_countdown' ) ) {
 		} else {
 			$count_down = '<div class="container bg-white pt-4 mt-0 pb-0 px-4">';
 			$count_down .= '<div class="alert alert-secondary text-center mb-0 rounded-0 border-0 pink" role="alert">';
-			$link       = "Christmas";
+			$link       = "the Year of the Tiger";
 			$text       = ( (string) $days === '1' ) ? ' day to ' : ' days to ';
 			$count_down .= $days . $text . $link;
 			$count_down .= '</div>';
