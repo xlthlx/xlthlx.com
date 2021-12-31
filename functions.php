@@ -98,11 +98,10 @@ class xlthlxSite extends Timber\Site {
 		// Service worker.
 		wp_enqueue_script( 'service-worker', get_template_directory_uri() . '/assets/js/sw.js', [], false, true );
 
-		if ( is_singular() && get_option( 'thread_comments' ) ) {
-			wp_enqueue_script( 'comment-reply' );
-		}
-
-		if ( is_singular() ) {
+		if ( is_singular( 'post' ) ) {
+			if ( get_option( 'thread_comments' ) ) {
+				wp_enqueue_script( 'comment-reply' );
+			}
 			wp_enqueue_style( 'highlight', get_template_directory_uri() . '/assets/css/highlight.css' );
 			wp_enqueue_script( 'badge', get_template_directory_uri() . '/assets/js/badge.js', [], false, true );
 			wp_enqueue_script( 'single', get_template_directory_uri() . '/assets/js/single.js', [], false, true );
