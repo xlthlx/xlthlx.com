@@ -30,6 +30,8 @@ class xlthlxSite extends Timber\Site {
 		add_action( 'init', array( $this, 'register_menus' ) );
 		add_filter( 'timber/context', array( $this, 'add_to_context' ) );
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
+		add_action( 'after_setup_theme', array( $this, 'add_image_size' ) );
+		add_filter( 'image_size_names_choose', array( $this, 'custom_size_name' ) );
 		parent::__construct();
 	}
 
@@ -132,6 +134,28 @@ class xlthlxSite extends Timber\Site {
 			'after_widget'  => '</div>',
 			'before_title'  => '<h4 class="font-italic pb-2">',
 			'after_title'   => '</h4>',
+		) );
+	}
+
+	/**
+	 * Add custom image size.
+	 *
+	 * @return void
+	 */
+	public function add_image_size() {
+		add_image_size( 'featured', 1200, 675, true );
+	}
+
+	/**
+	 * Make image custom size selectable from WordPress admin.
+	 *
+	 * @param $sizes
+	 *
+	 * @return array
+	 */
+	public function custom_size_name( $sizes ) {
+		return array_merge( $sizes, array(
+			'featured' => __( 'Featured' ),
 		) );
 	}
 
