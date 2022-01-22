@@ -145,8 +145,8 @@ add_filter( 'comment_post_redirect', 'xlt_en_comment_redirect', 10, 2 );
  * Enqueue js and css into admin.
  */
 function xlt_enqueue_admin_css_js() {
-	wp_enqueue_style( 'admin', get_template_directory_uri() . '/assets/css/admin/admin.css', [], filemtime( get_template_directory() . '/assets/css/admin/admin.css' ) );
-	wp_enqueue_script( 'admin', get_template_directory_uri() . '/assets/js/admin/admin.js', [], filemtime( get_template_directory() . '/assets/js/admin/admin.js' ), true );
+	wp_enqueue_style( 'admin', get_template_directory_uri() . '/assets/css/admin/admin.min.css', [], filemtime( get_template_directory() . '/assets/css/admin/admin.min.css' ) );
+	wp_enqueue_script( 'admin', get_template_directory_uri() . '/assets/js/admin/admin.min.js', [], filemtime( get_template_directory() . '/assets/js/admin/admin.min.js' ), true );
 }
 
 add_action( 'admin_enqueue_scripts', 'xlt_enqueue_admin_css_js' );
@@ -276,3 +276,17 @@ function xlt_restore_oembed_cache( $discover ) {
 }
 
 add_filter( 'embed_oembed_discover', 'xlt_restore_oembed_cache' );
+
+/**
+ * Insert minified CSS into header.
+ *
+ * @return void
+ */
+function xlt_insert_css() {
+	$file = get_template_directory() . '/assets/css/main.min.css';
+	$style = str_replace('../fonts/', get_template_directory_uri() . '/assets/fonts/', xlt_get_file_content($file));
+
+	echo '<style id="all-styles-inline">'.$style.'</style>';
+}
+
+add_action('wp_head', 'xlt_insert_css');

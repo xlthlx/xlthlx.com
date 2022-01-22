@@ -58,7 +58,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 		global $post;
 		$home_url  = home_url( '/' );
-		$parent_id = $post->post_parent ?? 0;
+		$parent_id = $post->post_parent??0;
 		$lang      = get_lang();
 		$title     = ( 'en' === $lang ) ? get_title_en() : get_the_title();
 
@@ -77,86 +77,129 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				$parents = get_ancestors( get_query_var( 'cat' ), 'category' );
 				foreach ( array_reverse( $parents ) as $cat ) {
 					$position ++;
-					echo xlt_get_link( $args, get_category_link( $cat ), get_cat_name( $cat ), $position );
+					echo xlt_get_link( $args, get_category_link( $cat ),
+						get_cat_name( $cat ), $position );
 				}
 				if ( get_query_var( 'paged' ) ) {
 					$position ++;
-					echo xlt_get_link( $args, get_category_link( get_query_var( 'cat' ) ), get_cat_name( get_query_var( 'cat' ) ), $position );
-					echo $args['before'] . sprintf( $args['text']['page'], get_query_var( 'paged' ) );
+					echo xlt_get_link( $args,
+						get_category_link( get_query_var( 'cat' ) ),
+						get_cat_name( get_query_var( 'cat' ) ), $position );
+					echo $args['before'] . sprintf( $args['text']['page'],
+							get_query_var( 'paged' ) );
 
 				} else {
 					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['name'], sprintf( $args['text']['category'], single_cat_title( '', false ) ) ) ) . sprintf( $args['position'], $position );
+					echo $args['before_active'] . sprintf( $args['active'],
+							get_permalink(), sprintf( $args['name'],
+								sprintf( $args['text']['category'],
+									single_cat_title( '',
+										false ) ) ) ) . sprintf( $args['position'],
+							$position );
 				}
 			} elseif ( is_search() ) {
 				if ( get_query_var( 'paged' ) ) {
 
 					$position ++;
-					echo xlt_get_link( $args, $home_url . '?s=' . get_search_query(), sprintf( $args['text']['search'], get_search_query() ), $position );
-					echo $args['before'] . sprintf( $args['text']['page'], get_query_var( 'paged' ) );
+					echo xlt_get_link( $args,
+						$home_url . '?s=' . get_search_query(),
+						sprintf( $args['text']['search'], get_search_query() ),
+						$position );
+					echo $args['before'] . sprintf( $args['text']['page'],
+							get_query_var( 'paged' ) );
 
 				} else {
 
 					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['search'], get_search_query() ) ) . sprintf( $args['position'], $position );
+					echo $args['before_active'] . sprintf( $args['active'],
+							get_permalink(), sprintf( $args['text']['search'],
+								get_search_query() ) ) . sprintf( $args['position'],
+							$position );
 
 
 				}
 			} elseif ( is_year() ) {
 
 				$position ++;
-				echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_time( 'Y' ) ) . sprintf( $args['position'], $position );
+				echo $args['before_active'] . sprintf( $args['active'],
+						get_permalink(),
+						get_the_time( 'Y' ) ) . sprintf( $args['position'],
+						$position );
 
 
 			} elseif ( is_month() ) {
 
 				$position ++;
-				echo xlt_get_link( $args, get_year_link( get_the_time( 'Y' ) ), get_the_time( 'Y' ), $position );
+				echo xlt_get_link( $args, get_year_link( get_the_time( 'Y' ) ),
+					get_the_time( 'Y' ), $position );
 
 				$position ++;
-				echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_time( 'F' ) ) . sprintf( $args['position'], $position );
+				echo $args['before_active'] . sprintf( $args['active'],
+						get_permalink(),
+						get_the_time( 'F' ) ) . sprintf( $args['position'],
+						$position );
 
 			} elseif ( is_day() ) {
 
 				$position ++;
-				echo xlt_get_link( $args, get_year_link( get_the_time( 'Y' ) ), get_the_time( 'Y' ), $position );
+				echo xlt_get_link( $args, get_year_link( get_the_time( 'Y' ) ),
+					get_the_time( 'Y' ), $position );
 
 				$position ++;
-				echo xlt_get_link( $args, get_month_link( get_the_time( 'Y' ), get_the_time( 'm' ) ), get_the_time( 'F' ), $position );
+				echo xlt_get_link( $args,
+					get_month_link( get_the_time( 'Y' ), get_the_time( 'm' ) ),
+					get_the_time( 'F' ), $position );
 
 
 				$position ++;
-				echo $args['before_active'] . sprintf( $args['active'], get_permalink(), get_the_time( 'd' ) ) . sprintf( $args['position'], $position );
+				echo $args['before_active'] . sprintf( $args['active'],
+						get_permalink(),
+						get_the_time( 'd' ) ) . sprintf( $args['position'],
+						$position );
 
 			} elseif ( is_single() && ! is_attachment() ) {
 				$post_type = get_post_type_object( get_post_type() );
 				if ( $post_type && get_post_type() !== 'post' ) {
 					$position ++;
-					echo xlt_get_link( $args, get_post_type_archive_link( $post_type->name ), $post_type->labels->name, $position );
+					echo xlt_get_link( $args,
+						get_post_type_archive_link( $post_type->name ),
+						$post_type->labels->name, $position );
 					$position ++;
-					$args['before_active'] . sprintf( $args['active'], get_permalink(), $title ) . sprintf( $args['position'], $position );
+					$args['before_active'] . sprintf( $args['active'],
+						get_permalink(), $title ) . sprintf( $args['position'],
+						$position );
 
 				} else {
 					$cat       = get_the_category();
 					$catID     = $cat[0]->cat_ID;
-					$parents   = array_reverse( get_ancestors( $catID, 'category' ) );
+					$parents   = array_reverse( get_ancestors( $catID,
+						'category' ) );
 					$parents[] = $catID;
 
 					foreach ( $parents as $cat ) {
 						$position ++;
-						echo xlt_get_link( $args, get_category_link( $cat ), get_cat_name( $cat ), $position );
+						echo xlt_get_link( $args, get_category_link( $cat ),
+							get_cat_name( $cat ), $position );
 					}
 
 					if ( get_query_var( 'cpage' ) ) {
 						$position ++;
-						echo xlt_get_link( $args, get_permalink(), $title, $position );
+						echo xlt_get_link( $args, get_permalink(), $title,
+							$position );
 
 						$position ++;
-						echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['cpage'], get_query_var( 'cpage' ) ) ) . sprintf( $args['position'], $position );
+						echo $args['before_active'] . sprintf( $args['active'],
+								get_permalink(),
+								sprintf( $args['text']['cpage'],
+									get_query_var( 'cpage' ) ) ) . sprintf( $args['position'],
+								$position );
 
 					} else {
 						$position ++;
-						echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['name'], $title ) ) . sprintf( $args['position'], $position );
+						echo $args['before_active'] . sprintf( $args['active'],
+								get_permalink(), sprintf( $args['name'],
+									$title ) ) . sprintf( $args['position'],
+								$position );
 
 					}
 				}
@@ -165,14 +208,22 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				if ( $post_type && get_query_var( 'paged' ) ) {
 
 					$position ++;
-					echo xlt_get_link( $args, get_post_type_archive_link( $post_type->name ), $post_type->label, $position );
+					echo xlt_get_link( $args,
+						get_post_type_archive_link( $post_type->name ),
+						$post_type->label, $position );
 
 					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['page'], get_query_var( 'paged' ) ) ) . sprintf( $args['position'], $position );
+					echo $args['before_active'] . sprintf( $args['active'],
+							get_permalink(), sprintf( $args['text']['page'],
+								get_query_var( 'paged' ) ) ) . sprintf( $args['position'],
+							$position );
 				} else {
 
 					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), $post_type->label ) . sprintf( $args['position'], $position );
+					echo $args['before_active'] . sprintf( $args['active'],
+							get_permalink(),
+							$post_type->label ) . sprintf( $args['position'],
+							$position );
 
 				}
 
@@ -180,47 +231,65 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				$parent    = get_post( $parent_id );
 				$cat       = get_the_category( $parent->ID );
 				$catID     = $cat[0]->cat_ID;
-				$parents   = array_reverse( get_ancestors( $catID, 'category' ) );
+				$parents   = array_reverse( get_ancestors( $catID,
+					'category' ) );
 				$parents[] = $catID;
 				foreach ( $parents as $cat ) {
 					$position ++;
-					echo xlt_get_link( $args, get_category_link( $cat ), get_cat_name( $cat ), $position );
+					echo xlt_get_link( $args, get_category_link( $cat ),
+						get_cat_name( $cat ), $position );
 				}
 
 				$position ++;
-				echo xlt_get_link( $args, get_permalink( $parent ), $parent->post_title, $position );
+				echo xlt_get_link( $args, get_permalink( $parent ),
+					$parent->post_title, $position );
 
 				$position ++;
-				echo $args['before_active'] . sprintf( $args['active'], get_permalink(), $title ) . sprintf( $args['position'], $position );
+				echo $args['before_active'] . sprintf( $args['active'],
+						get_permalink(), $title ) . sprintf( $args['position'],
+						$position );
 
 			} elseif ( ! $parent_id && is_page() ) {
 
 				$position ++;
-				echo $args['before_active'] . sprintf( $args['active'], get_permalink(), $title ) . sprintf( $args['position'], $position );
+				echo $args['before_active'] . sprintf( $args['active'],
+						get_permalink(), $title ) . sprintf( $args['position'],
+						$position );
 
 
 			} elseif ( $parent_id && is_page() ) {
 				$parents = get_post_ancestors( get_the_ID() );
 				foreach ( array_reverse( $parents ) as $pageID ) {
 					$position ++;
-					echo xlt_get_link( $args, get_page_link( $pageID ), get_the_title( $pageID ), $position );
+					echo xlt_get_link( $args, get_page_link( $pageID ),
+						get_the_title( $pageID ), $position );
 				}
 
 				$position ++;
-				echo $args['before_active'] . sprintf( $args['active'], get_permalink(), $title ) . sprintf( $args['position'], $position );
+				echo $args['before_active'] . sprintf( $args['active'],
+						get_permalink(), $title ) . sprintf( $args['position'],
+						$position );
 
-			} else if ( is_tag() ) {
+			} elseif ( is_tag() ) {
 				if ( get_query_var( 'paged' ) ) {
 					$position ++;
 					$tagID = get_query_var( 'tag_id' );
-					echo xlt_get_link( $args, get_tag_link( $tagID ), single_tag_title( '', false ), $position );
+					echo xlt_get_link( $args, get_tag_link( $tagID ),
+						single_tag_title( '', false ), $position );
 
 					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['page'], get_query_var( 'paged' ) ) ) . sprintf( $args['position'], $position );
+					echo $args['before_active'] . sprintf( $args['active'],
+							get_permalink(), sprintf( $args['text']['page'],
+								get_query_var( 'paged' ) ) ) . sprintf( $args['position'],
+							$position );
 				} else {
 
 					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['tag'], single_tag_title( '', false ) ) ) . sprintf( $args['position'], $position );
+					echo $args['before_active'] . sprintf( $args['active'],
+							get_permalink(), sprintf( $args['text']['tag'],
+								single_tag_title( '',
+									false ) ) ) . sprintf( $args['position'],
+							$position );
 
 				}
 			} elseif ( is_author() ) {
@@ -228,21 +297,33 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				if ( get_query_var( 'paged' ) ) {
 
 					$position ++;
-					echo xlt_get_link( $args, get_author_posts_url( $author->ID ), sprintf( $args['text']['author'], $author->display_name ), $position );
+					echo xlt_get_link( $args,
+						get_author_posts_url( $author->ID ),
+						sprintf( $args['text']['author'],
+							$author->display_name ), $position );
 
 					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['page'], get_query_var( 'paged' ) ) ) . sprintf( $args['position'], $position );
+					echo $args['before_active'] . sprintf( $args['active'],
+							get_permalink(), sprintf( $args['text']['page'],
+								get_query_var( 'paged' ) ) ) . sprintf( $args['position'],
+							$position );
 
 				} else {
 
 					$position ++;
-					echo $args['before_active'] . sprintf( $args['active'], get_permalink(), sprintf( $args['text']['author'], $author->display_name ) ) . sprintf( $args['position'], $position );
+					echo $args['before_active'] . sprintf( $args['active'],
+							get_permalink(), sprintf( $args['text']['author'],
+								$author->display_name ) ) . sprintf( $args['position'],
+							$position );
 
 				}
 			} elseif ( is_404() ) {
 
 				$position ++;
-				echo $args['before_active'] . sprintf( $args['active'], get_permalink(), $args['text']['404'] ) . sprintf( $args['position'], $position );
+				echo $args['before_active'] . sprintf( $args['active'],
+						get_permalink(),
+						$args['text']['404'] ) . sprintf( $args['position'],
+						$position );
 
 			} elseif ( has_post_format() && ! is_singular() ) {
 
@@ -486,5 +567,32 @@ if ( ! function_exists( 'xlt_gravatar_exists' ) ) {
 		}
 
 		return $has_valid_avatar;
+	}
+}
+
+if ( ! function_exists( 'xlt_get_file_content' ) ) {
+	/**
+	 * This method gets the content of a given file.
+	 *
+	 * @param string $file_path
+	 *
+	 * @return  string Content of $file_path
+	 */
+	function xlt_get_file_content( $file_path ) {
+
+		global $wp_filesystem;
+		if ( ! is_admin() ) {
+			require_once( ABSPATH . '/wp-admin/includes/file.php' );
+		}
+
+		WP_Filesystem();
+		$content = '';
+
+		if ( $wp_filesystem->exists( $file_path ) ) {
+			$content = $wp_filesystem->get_contents( $file_path );
+		}
+
+		return $content;
+
 	}
 }
