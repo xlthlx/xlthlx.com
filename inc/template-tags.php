@@ -581,9 +581,7 @@ if ( ! function_exists( 'xlt_get_file_content' ) ) {
 	function xlt_get_file_content( $file_path ) {
 
 		global $wp_filesystem;
-		if ( ! is_admin() ) {
-			require_once( ABSPATH . '/wp-admin/includes/file.php' );
-		}
+		require_once( ABSPATH . '/wp-admin/includes/file.php' );
 
 		WP_Filesystem();
 		$content = '';
