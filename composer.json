@@ -16,7 +16,8 @@
 	"dejurin/php-google-translate-for-free": "^1.0",
 	"scrivo/highlight.php": "v9.18.1.6",
 	"simplehtmldom/simplehtmldom": "dev-master",
-	"timber/timber": "1.*"
+	"timber/timber": "1.*",
+    "johnbillion/extended-cpts": "^5.0"
   },
   "extra": {
 	"installer-paths": {
