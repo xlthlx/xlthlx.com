@@ -11,14 +11,18 @@ function openShare(object, e, name) {
 }
 
 let twitterBtn = document.getElementsByClassName('s-twitter');
-twitterBtn[0].addEventListener('click', function (e) {
-	openShare(this, e, 'twtWindow');
-});
+if ( typeof twitterBtn !== 'undefined' && twitterBtn.length > 0 ) {
+	twitterBtn[0].addEventListener('click', function (e) {
+		openShare(this, e, 'twtWindow');
+	});
+}
 
 let facebookBtn = document.getElementsByClassName('s-facebook');
-facebookBtn[0].addEventListener('click', function (e) {
-	openShare(this, e, 'fbWindow');
-});
+if ( typeof facebookBtn !== 'undefined' && twitterBtn.length > 0 ) {
+	facebookBtn[0].addEventListener('click', function (e) {
+		openShare(this, e, 'fbWindow');
+	});
+}
 
 // HighlightJS Badge
 let options = {
