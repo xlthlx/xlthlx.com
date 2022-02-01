@@ -36,7 +36,8 @@ class xlthlxSite extends Timber\Site {
 		parent::__construct();
 	}
 
-	/** General context.
+	/**
+	 * General context.
 	 *
 	 * @return string
 	 */
@@ -78,16 +79,12 @@ class xlthlxSite extends Timber\Site {
 		) );
 		remove_theme_support( 'automatic-feed-links' );
 		remove_theme_support( 'widgets-block-editor' );
-		// remove SVG and global styles
-		remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
 
-		// remove wp_footer actions which add's global inline styles
-		remove_action('wp_footer', 'wp_enqueue_global_styles', 1);
-
-		// remove render_block filters which adding unnecessary stuff
-		remove_filter('render_block', 'wp_render_duotone_support');
-		remove_filter('render_block', 'wp_restore_group_inner_container');
-		remove_filter('render_block', 'wp_render_layout_support_flag');
+		remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+		remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
+		remove_filter( 'render_block', 'wp_render_duotone_support' );
+		remove_filter( 'render_block', 'wp_restore_group_inner_container' );
+		remove_filter( 'render_block', 'wp_render_layout_support_flag' );
 	}
 
 	/**
@@ -219,3 +216,8 @@ require_once 'inc/toolkit/toolkit.php';
  * Newsletter.
  */
 require_once 'inc/newsletter/newsletter.php';
+
+/**
+ * Minify HTML.
+ */
+require_once 'inc/minify-html.php';
