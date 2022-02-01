@@ -33,6 +33,7 @@ class xlthlxSite extends Timber\Site {
 		add_action( 'after_setup_theme', array( $this, 'add_image_size' ) );
 		add_filter( 'image_size_names_choose',
 			array( $this, 'custom_size_name' ) );
+		add_filter( 'login_display_language_dropdown', '__return_false' );
 		parent::__construct();
 	}
 
