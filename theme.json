@@ -1,60 +1,77 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/theme.json",
-  "version": 1,
-  "styles": {},
-  "settings": {
-	"color": {
-	  "custom": false,
-	  "customDuotone": false,
-	  "customGradient": false,
-	  "link": true,
-	  "palette": [
-		{
-		  "name": "White",
-		  "slug": "white",
-		  "color": "#ffffff"
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 2,
+	"styles": {},
+	"settings": {
+		"color": {
+			"custom": false,
+			"customDuotone": false,
+			"customGradient": false,
+			"defaultGradients": false,
+			"defaultPalette": false,
+			"gradients": {},
+			"link": true,
+			"palette": [
+				{
+					"name": "White",
+					"slug": "white",
+					"color": "#ffffff"
+				},
+				{
+					"name": "Light",
+					"slug": "light",
+					"color": "#e0e1ee"
+				},
+				{
+					"name": "Violet",
+					"slug": "violet",
+					"color": "#544275"
+				},
+				{
+					"name": "Pink",
+					"slug": "pink",
+					"color": "#b73275"
+				},
+				{
+					"name": "Blue",
+					"slug": "blue",
+					"color": "#6667ab"
+				},
+				{
+					"name": "Dark",
+					"slug": "dark",
+					"color": "#333456"
+				},
+				{
+					"name": "Black",
+					"slug": "black",
+					"color": "#0a0a11"
+				}
+			]
 		},
-		{
-		  "name": "Light",
-		  "slug": "light",
-		  "color": "#e0e1ee"
-		},
-		{
-		  "name": "Violet",
-		  "slug": "violet",
-		  "color": "#544275"
-		},
-		{
-		  "name": "Pink",
-		  "slug": "pink",
-		  "color": "#b73275"
-		},
-		{
-		  "name": "Blue",
-		  "slug": "blue",
-		  "color": "#6667ab"
-		},
-		{
-		  "name": "Dark",
-		  "slug": "dark",
-		  "color": "#333456"
-		},
-		{
-		  "name": "Black",
-		  "slug": "black",
-		  "color": "#0a0a11"
+		"custom": {},
+		"layout": {
+			"contentSize": "900px",
+			"wideSize": "1200px"
 		}
-	  ]
-	},
-	"custom": {},
-	"layout": {
-	  "contentSize": "900px",
-	  "wideSize": "1200px"
 	},
 	"typography": {
-	  "customFontSize": false,
-	  "dropCap": false,
-	  "fontSizes": []
+		"customFontSize": false,
+		"fontStyle": false,
+		"fontWeight": false,
+		"letterSpacing": false,
+		"lineHeight": false,
+		"textDecoration": false,
+		"textTransform": false,
+		"dropCap": false,
+		"fontSizes": [],
+		"fontFamilies": []
+	},
+	"blocks": {
+		"core/button": {
+			"border": {
+				"radius": false
+			}
+		}
 	}
-  }
 }
