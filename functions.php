@@ -67,6 +67,7 @@ class xlthlxSite extends Timber\Site {
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'align-wide' );
 		add_theme_support( 'editor-styles' );
+		add_theme_support( 'wp-block-styles' );
 		add_theme_support( 'custom-spacing' );
 		add_theme_support( 'responsive-embeds' );
 		add_theme_support( 'html5', array(
@@ -78,14 +79,9 @@ class xlthlxSite extends Timber\Site {
 			'style',
 			'script'
 		) );
+
 		remove_theme_support( 'automatic-feed-links' );
 		remove_theme_support( 'widgets-block-editor' );
-
-		remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
-		remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
-		remove_filter( 'render_block', 'wp_render_duotone_support' );
-		remove_filter( 'render_block', 'wp_restore_group_inner_container' );
-		remove_filter( 'render_block', 'wp_render_layout_support_flag' );
 	}
 
 	/**

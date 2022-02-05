@@ -145,8 +145,13 @@ add_filter( 'comment_post_redirect', 'xlt_en_comment_redirect', 10, 2 );
  * Enqueue js and css into admin.
  */
 function xlt_enqueue_admin_css_js() {
-	wp_enqueue_style( 'admin', get_template_directory_uri() . '/assets/css/admin/admin.min.css', [], filemtime( get_template_directory() . '/assets/css/admin/admin.min.css' ) );
-	wp_enqueue_script( 'admin', get_template_directory_uri() . '/assets/js/admin/admin.min.js', [], filemtime( get_template_directory() . '/assets/js/admin/admin.min.js' ), true );
+	wp_enqueue_style( 'admin',
+		get_template_directory_uri() . '/assets/css/admin/admin.min.css', [],
+		filemtime( get_template_directory() . '/assets/css/admin/admin.min.css' ) );
+	wp_enqueue_script( 'admin',
+		get_template_directory_uri() . '/assets/js/admin/admin.min.js', [],
+		filemtime( get_template_directory() . '/assets/js/admin/admin.min.js' ),
+		true );
 }
 
 add_action( 'admin_enqueue_scripts', 'xlt_enqueue_admin_css_js' );
@@ -233,12 +238,15 @@ add_action( 'init', 'xlt_unregister_tags' );
  * @return string
  */
 function xlt_youtube_oembed_filters( $html, $data, $url ) {
-	if ( false === $html || ! in_array( $data->type, [ 'rich', 'video' ], true ) ) {
+	if ( false === $html || ! in_array( $data->type, [ 'rich', 'video' ],
+			true ) ) {
 		return $html;
 	}
 
-	if ( false !== strpos( $html, 'youtube' ) || false !== strpos( $html, 'youtu.be' ) ) {
-		$html = str_replace( 'youtube.com/embed', 'youtube-nocookie.com/embed', $html );
+	if ( false !== strpos( $html, 'youtube' ) || false !== strpos( $html,
+			'youtu.be' ) ) {
+		$html = str_replace( 'youtube.com/embed', 'youtube-nocookie.com/embed',
+			$html );
 	}
 
 	return $html;
@@ -283,10 +291,41 @@ add_filter( 'embed_oembed_discover', 'xlt_restore_oembed_cache' );
  * @return void
  */
 function xlt_insert_css() {
-	$file = get_template_directory() . '/assets/css/main.min.css';
-	$style = str_replace('../fonts/', get_template_directory_uri() . '/assets/fonts/', xlt_get_file_content($file));
+	$file  = get_template_directory() . '/assets/css/main.min.css';
+	$style = str_replace( '../fonts/',
+		get_template_directory_uri() . '/assets/fonts/',
+		xlt_get_file_content( $file ) );
 
-	echo '<style id="all-styles-inline">'.$style.'</style>';
+	echo '<style id="all-styles-inline">' . $style . '</style>';
 }
 
-add_action('wp_head', 'xlt_insert_css');
+add_action( 'wp_head', 'xlt_insert_css' );
+
+/**
+ * Fix output duotone svg filters in footer.
+ *
+ * @link https://github.com/WordPress/gutenberg/issues/38299
+ * @link https://core.trac.wordpress.org/ticket/54941
+ *
+ * @return void
+ * @throws ReflectionException
+ */
+function xlt_fix_output_duotone_svg() {
+	$filters = $GLOBALS['wp_filter']['wp_footer'][10];
+	if ( empty( $filters ) ) {
+		return;
+	}
+
+	foreach ( $filters as $callback ) {
+		if ( $callback['function'] instanceof Closure ) {
+			$instance  = new \ReflectionFunction( $callback['function'] );
+			$variables = $instance->getStaticVariables();
+			if ( ! empty( $variables['svg'] ) && strpos( $variables['svg'],
+					'feColorMatrix' ) ) {
+				remove_action( 'wp_footer', $callback['function'] );
+			}
+		}
+	}
+}
+
+add_action( 'wp_footer', 'xlt_fix_output_duotone_svg', 0 );
