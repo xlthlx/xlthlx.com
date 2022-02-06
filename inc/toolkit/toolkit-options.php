@@ -10,28 +10,6 @@ require_once( __DIR__ . '/toolkit-functions.php' );
 global $wt_updates, $wt_general, $wt_dashboard, $wt_seo, $wt_archives, $wt_listing, $wt_login, $wt_uploads;
 
 /**
- * Updates options.
- */
-if ( isset( $wt_updates ) ) {
-	foreach ( $wt_updates as $key => $value ) {
-		//Radio fields yes/no
-		if ( $value === 'yes' ) {
-			switch ( $key ) {
-				case 'core':
-					add_filter( 'auto_update_core', '__return_true' );
-					break;
-				case 'themes':
-					add_filter( 'auto_update_theme', '__return_true' );
-					break;
-				case 'plugins':
-					add_filter( 'auto_update_plugin', '__return_true' );
-					break;
-			}
-		}
-	}
-}
-
-/**
  * General options.
  */
 if ( isset( $wt_general ) ) {
@@ -89,7 +67,8 @@ if ( isset( $wt_dashboard ) ) {
 		if ( $value === 'yes' ) {
 			switch ( $key ) {
 				case 'dashboard_widgets':
-					add_action( 'wp_dashboard_setup', 'wt_disable_dashboard_widgets', 999 );
+					add_action( 'wp_dashboard_setup',
+						'wt_disable_dashboard_widgets', 999 );
 					break;
 			}
 		}
@@ -113,7 +92,8 @@ if ( isset( $wt_seo ) ) {
 					break;
 				case 'images_alt':
 					add_filter( 'the_content', 'wt_add_image_alt', 9999 );
-					add_filter( 'wp_get_attachment_image_attributes', 'wt_change_image_attr', 20, 2 );
+					add_filter( 'wp_get_attachment_image_attributes',
+						'wt_change_image_attr', 20, 2 );
 					break;
 			}
 		}
@@ -184,10 +164,13 @@ if ( isset( $wt_login ) ) {
 					add_filter( 'site_url', 'wt_site_url', 10, 4 );
 					add_filter( 'wp_redirect', 'wt_wp_redirect', 10, 2 );
 
-					add_filter( 'site_option_welcome_email', 'wt_welcome_email' );
-					add_filter( 'body_class', 'wt_admin_bar_body_class', 10, 2 );
+					add_filter( 'site_option_welcome_email',
+						'wt_welcome_email' );
+					add_filter( 'body_class', 'wt_admin_bar_body_class', 10,
+						2 );
 
-					remove_action( 'template_redirect', 'wp_redirect_admin_locations', 1000 );
+					remove_action( 'template_redirect',
+						'wp_redirect_admin_locations', 1000 );
 					break;
 			}
 		}
@@ -203,8 +186,10 @@ if ( isset( $wt_uploads ) ) {
 		if ( $value === 'yes' ) {
 			switch ( $key ) {
 				case 'clean_names':
-					add_action( 'wp_handle_upload_prefilter', 'wt_upload_filter' );
-					add_action( 'add_attachment', 'wt_update_attachment_title' );
+					add_action( 'wp_handle_upload_prefilter',
+						'wt_upload_filter' );
+					add_action( 'add_attachment',
+						'wt_update_attachment_title' );
 					break;
 			}
 		}
