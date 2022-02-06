@@ -145,11 +145,5 @@ function xlt_minify_html_output( $buffer ) {
 		$buffer = str_replace( ' />', '>', $buffer );
 	}
 
-	$buffer = str_replace( array(
-		'https://' . $_SERVER['HTTP_HOST'] . '/',
-		'http://' . $_SERVER['HTTP_HOST'] . '/',
-		'//' . $_SERVER['HTTP_HOST'] . '/'
-	), array( '/', '/', '/' ), $buffer );
-
 	return ( $buffer );
 }

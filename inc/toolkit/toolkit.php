@@ -10,11 +10,6 @@
  * Sets all the default values for the options.
  */
 $defaults = [
-	'wt_updates'   => [
-		'core'    => 'yes',
-		'themes'  => 'yes',
-		'plugins' => 'yes',
-	],
 	'wt_general'   => [
 		'emoji_support'     => 'yes',
 		'rest_api'          => 'yes',

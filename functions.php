@@ -150,7 +150,7 @@ class xlthlxSite extends Timber\Site {
 	 * @return void
 	 */
 	public function add_image_size() {
-		add_image_size( 'featured', 1200, 675, true );
+		add_image_size( 'featured', 1200, 900, true );
 	}
 
 	/**
