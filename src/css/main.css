@@ -83,7 +83,7 @@ main {
     margin-top: 118px;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
     main {
         margin-top: 91px;
     }
@@ -296,11 +296,6 @@ iframe {
     text-transform: uppercase;
     font-weight: 200;
     font-size: 48px;
-}
-
-.cc-animate.cc-revoke.cc-bottom {
-    -webkit-transform: unset !important;
-    transform: unset !important;
 }
 
 .min-h-240 {
