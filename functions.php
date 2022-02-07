@@ -150,7 +150,12 @@ class xlthlxSite extends Timber\Site {
 	 * @return void
 	 */
 	public function add_image_size() {
+		add_image_size( 'extra_large', 1536, 1536 );
+		add_image_size( 'extra_extra_large', 2048, 2048 );
 		add_image_size( 'featured', 1200, 900, true );
+		add_image_size( 'sticky', 437, 225, true );
+		remove_image_size('1536x1536');
+		remove_image_size('2048x2048');
 	}
 
 	/**
@@ -161,8 +166,7 @@ class xlthlxSite extends Timber\Site {
 	 * @return array
 	 */
 	public function custom_size_name( $sizes ) {
-		return array_merge( $sizes, array(
-			'featured' => __( 'Featured' ),
+		return array_merge( $sizes, array( 'featured' => __( 'Featured' ), 'sticky' => __( 'Sticky' ),
 		) );
 	}
 

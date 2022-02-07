@@ -83,7 +83,7 @@ main {
     margin-top: 118px;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
     main {
         margin-top: 91px;
     }
