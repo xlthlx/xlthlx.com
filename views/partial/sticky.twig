@@ -1,15 +1,15 @@
 {% if first_posts %}
     <div class="bg-violet">
         {% for first_post in first_posts %}
-            <div class="row g-0 rounded-0 overflow-hidden flex-xl-row flex-column-reverse mb-4">
+            <div class="row g-0 rounded-0 overflow-hidden flex-lg-row flex-column-reverse mb-4">
                 <div class="col p-4 d-flex flex-column position-static">
                     <h2 class="display-4 font-italic shadows"><a class="text-dark" href="{{ first_post.link }}" title="Continua a leggere: '{{ first_post.title }}'">{{ first_post.title }}</a></h2>
                     <p class="card-text card-text mb-auto me-5 mt-3">{{ first_post.preview.length(40).read_more('') }}</p>
                     <a href="{{ first_post.link }}" title="Continua a leggere: '{{ first_post.title }}'">{{ _e( 'continua') }} ></a>
                 </div>
                 <div class="col-auto d-flex">
-                    {% if first_post.thumbnail.src %}
-                        <img src="{{ first_post.thumbnail.src | resize(600, 300) }}" class="img-fluid" alt="{{ first_post.title }}">
+                    {% if first_post.thumbnail.id %}
+                        {{ fn('xl_get_sticky_img', first_post.thumbnail.id, first_post.title ) }}
                     {% endif %}
                 </div>
             </div>
