@@ -31,6 +31,8 @@ class xlthlxSite extends Timber\Site {
 		add_filter( 'timber/context', array( $this, 'add_to_context' ) );
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 		add_action( 'after_setup_theme', array( $this, 'add_image_size' ) );
+		add_action( 'enqueue_block_editor_assets',
+			array( $this, 'enqueue_editor_scripts' ) );
 		add_filter( 'image_size_names_choose',
 			array( $this, 'custom_size_name' ) );
 		add_filter( 'login_display_language_dropdown', '__return_false' );
@@ -168,6 +170,19 @@ class xlthlxSite extends Timber\Site {
 	public function custom_size_name( $sizes ) {
 		return array_merge( $sizes, array( 'featured' => __( 'Featured' ), 'sticky' => __( 'Sticky' ),
 		) );
+	}
+
+	/**
+	 * Enqueue editor scripts.
+	 *
+	 * @return void
+	 */
+	public function enqueue_editor_scripts() {
+		wp_enqueue_script( 'theme-editor',
+			get_template_directory_uri() . '/assets/js/admin/editor.min.js',
+			[ 'wp-blocks', 'wp-dom' ],
+			filemtime( get_template_directory() . '/assets/js/admin/editor.min.js' ),
+			true );
 	}
 
 }
