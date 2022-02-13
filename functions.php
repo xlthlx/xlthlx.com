@@ -84,6 +84,7 @@ class xlthlxSite extends Timber\Site {
 
 		remove_theme_support( 'automatic-feed-links' );
 		remove_theme_support( 'widgets-block-editor' );
+		remove_theme_support( 'core-block-patterns' );
 	}
 
 	/**
