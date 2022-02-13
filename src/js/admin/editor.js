@@ -6,19 +6,19 @@ wp.domReady(() => {
   const restrictedBlocks = [
     'core/archives',
     //'core/audio',
-    //'core/button',
-    //'core/buttons',
+    'core/button',
+    'core/buttons',
     'core/calendar',
     'core/categories',
     // 'core/classic',
-    'core/code',
-    // 'core/column',
-    // 'core/columns',
+    // 'core/code',
+    'core/column',
+    'core/columns',
     'core/cover',
     // 'core/embed',
     // 'core/file',
     'core/freeform',
-    'core/gallery',
+    //'core/gallery',
     // 'core/group',
     // 'core/heading',
     // 'core/html',
@@ -31,8 +31,8 @@ wp.domReady(() => {
     // 'core/media-text',
     'core/missing',
     'core/more',
-    // 'core/navigation',
-    // 'core/navigation-link',
+    'core/navigation',
+    'core/navigation-link',
     'core/nextpage',
     'core/page-list',
     // 'core/paragraph',
@@ -42,8 +42,8 @@ wp.domReady(() => {
     'core/post-featured-image',
     'core/post-terms',
     'core/post-title',
-    'core/preformatted',
-    'core/pullquote',
+    //'core/preformatted',
+    //'core/pullquote',
     'core/query',
     'core/query-title',
     // 'core/quote',
@@ -63,8 +63,7 @@ wp.domReady(() => {
     'core/text-columns',
     'core/verse',
     // 'core/video',
-    // 'core/widget-area',
-    'filebird/block-filebird-gallery'
+    // 'core/widget-area'
   ]
 
   /**
@@ -78,8 +77,7 @@ wp.domReady(() => {
    * Manage embed variations.
    */
   const allowedEmbedBlocks = [
-    'youtube',
-    'vimeo'
+    'youtube'
   ]
 
   /**
