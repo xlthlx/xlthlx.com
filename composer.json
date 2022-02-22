@@ -5,31 +5,31 @@
   "type": "wordpress-theme",
   "minimum-stability": "stable",
   "authors": [
-	{
-	  "email": "xlthlx@gmail.com",
-	  "name": "xlthlx"
-	}
+    {
+      "email": "xlthlx@gmail.com",
+      "name": "xlthlx"
+    }
   ],
   "require": {
-	"cmb2/cmb2": "^2.9",
-	"composer/installers": "^1.12",
-	"dejurin/php-google-translate-for-free": "^1.0",
-	"scrivo/highlight.php": "dev-master",
-	"simplehtmldom/simplehtmldom": "dev-master",
-	"timber/timber": "1.*",
+    "cmb2/cmb2": "^v2.10.0",
+    "composer/installers": "^1.12",
+    "dejurin/php-google-translate-for-free": "^1.0",
+    "scrivo/highlight.php": "dev-master",
+    "simplehtmldom/simplehtmldom": "dev-master",
+    "timber/timber": "1.*",
     "johnbillion/extended-cpts": "^5.0"
   },
   "extra": {
-	"installer-paths": {
-	  "inc/{$vendor}/{$name}/": [
-		"type:wordpress-plugin"
-	  ]
-	}
+    "installer-paths": {
+      "inc/{$vendor}/{$name}/": [
+        "type:wordpress-plugin"
+      ]
+    }
   },
   "require-dev": {
-	"dxw/phar-install": "^1.1"
+    "dxw/phar-install": "^1.1"
   },
   "scripts": {
-	"post-update-cmd": "vendor/bin/phar-install"
+    "post-update-cmd": "vendor/bin/phar-install"
   }
 }

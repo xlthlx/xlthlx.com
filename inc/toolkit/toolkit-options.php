@@ -7,7 +7,7 @@
  */
 
 require_once( __DIR__ . '/toolkit-functions.php' );
-global $wt_updates, $wt_general, $wt_dashboard, $wt_seo, $wt_archives, $wt_listing, $wt_login, $wt_uploads;
+global $wt_general, $wt_dashboard, $wt_seo, $wt_archives, $wt_listing, $wt_login, $wt_uploads;
 
 /**
  * General options.

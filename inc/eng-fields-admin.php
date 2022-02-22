@@ -13,22 +13,22 @@ function xlt_add_metabox() {
 
 	$cmb_post = new_cmb2_box( array(
 		'id'           => 'group_en',
-		'title'        => __( 'English', 'xm' ),
+		'title'        => 'English',
 		'object_types' => array( 'post' ),
 		'context'      => 'normal',
 		'priority'     => 'high',
 	) );
 
 	$cmb_post->add_field( array(
-		'name'         => __( 'Date', 'xm' ),
+		'name'         => 'Data',
 		'id'           => 'date_en',
-		'type'         => 'text_medium',
+		'type'         => 'text',
 		'classes'      => [ 'half-width' ],
 		'show_in_rest' => WP_REST_Server::ALLMETHODS,
 	) );
 
 	$cmb_post->add_field( array(
-		'name'         => __( 'Title', 'xm' ),
+		'name'         => 'Titolo',
 		'id'           => 'title_en',
 		'type'         => 'text',
 		'classes'      => [ 'half-width' ],
@@ -36,31 +36,37 @@ function xlt_add_metabox() {
 	) );
 
 	$cmb_post->add_field( array(
-		'name'         => __( 'Content', 'xm' ),
+		'name'         => '',
 		'id'           => 'content_en',
 		'type'         => 'wysiwyg',
+		'options' => array(
+			'media_buttons' => false,
+		),
 		'show_in_rest' => WP_REST_Server::ALLMETHODS,
 	) );
 
 	$cmb_page = new_cmb2_box( array(
 		'id'           => 'group_page_en',
-		'title'        => __( 'English', 'xm' ),
+		'title'        => 'English',
 		'object_types' => array( 'page' ),
 		'context'      => 'normal',
 		'priority'     => 'high',
 	) );
 
 	$cmb_page->add_field( array(
-		'name'         => __( 'Title', 'xm' ),
+		'name'         => '',
 		'id'           => 'title_en',
 		'type'         => 'text',
 		'show_in_rest' => WP_REST_Server::ALLMETHODS,
 	) );
 
 	$cmb_page->add_field( array(
-		'name'         => __( 'Content', 'xm' ),
+		'name'         => '',
 		'id'           => 'content_en',
 		'type'         => 'wysiwyg',
+		'options' => array(
+			'media_buttons' => false,
+		),
 		'show_in_rest' => WP_REST_Server::ALLMETHODS,
 	) );
 
