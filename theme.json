@@ -51,8 +51,8 @@
 	},
 	  "custom": {},
 	  "layout": {
-		  "contentSize": "900px",
-		  "wideSize": "1200px"
+		  "contentSize": "95%",
+		  "wideSize": "95%"
 	  },
 	  "typography": {
 		  "customFontSize": false,
@@ -63,8 +63,7 @@
 		  "textDecoration": false,
 		  "textTransform": false,
 		  "dropCap": false,
-		  "fontSizes": false,
-		  "fontFamilies": false
+		  "fontSizes": {}
 	  }
 	}
 }

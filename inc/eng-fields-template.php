@@ -131,7 +131,7 @@ function get_content_en( $post_id = 0 ) {
 
 				if ( isset( $block['blockName'] ) && $block['blockName'] !== '' && in_array( $block['blockName'], $block_types, true ) ) {
 
-					if ( $block['blockName'] == 'core/code' ) {
+					if ( $block['blockName'] === 'core/code' ) {
 						$code = $doc->load( $block['innerHTML'] );
 
 						if ( $code ) {
