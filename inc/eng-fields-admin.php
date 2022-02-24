@@ -39,7 +39,7 @@ function xlt_add_metabox() {
 		'name'         => '',
 		'id'           => 'content_en',
 		'type'         => 'wysiwyg',
-		'options' => array(
+		'options'      => array(
 			'media_buttons' => false,
 		),
 		'show_in_rest' => WP_REST_Server::ALLMETHODS,
@@ -64,7 +64,7 @@ function xlt_add_metabox() {
 		'name'         => '',
 		'id'           => 'content_en',
 		'type'         => 'wysiwyg',
-		'options' => array(
+		'options'      => array(
 			'media_buttons' => false,
 		),
 		'show_in_rest' => WP_REST_Server::ALLMETHODS,
@@ -89,7 +89,6 @@ function xlt_eng_posts_columns( $defaults ) {
 		}
 
 		$defaults['eng']    = __( 'Eng' );
-		$defaults['editor'] = __( 'Editor' );
 	}
 
 	return $defaults;
@@ -117,13 +116,6 @@ function xlt_eng_posts_custom_columns( $column_name, $id ) {
 		if ( $content_en !== '' && strpos( $content_en,
 				"<!-- GT -->" ) === false ) {
 			echo '';
-		}
-	}
-	if ( $column_name === 'editor' ) {
-		if ( has_blocks( $id ) ) {
-			echo '';
-		} else {
-			echo 'Classic';
 		}
 	}
 }
