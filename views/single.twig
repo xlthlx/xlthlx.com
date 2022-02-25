@@ -18,8 +18,8 @@
 
 					<div class="col-md-12 text-break">
 						<section class="article-content mb-4">
-							<hr class="pt-0 mt-0 mb-4"/>
-							<p>{{ lang == 'it'? post.date : post.date_en }}</p>
+							<hr class="pt-0 mt-0 mb-2"/>
+							<p class="mb-0">{{ lang == 'it'? post.date : post.date_en }}</p>
 
 							<div class="article-body pr-4">
 								{{ fn('xlt_old_posts_warning', lang) }}
@@ -43,6 +43,7 @@
 							</div>
 
 							<hr class="mt-4 mb-4"/>
+							{% include 'partial/navigation.twig' %}
 						</section>
 
 						{% set comments_en = 0 %}

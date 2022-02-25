@@ -329,3 +329,19 @@ function xlt_fix_output_duotone_svg() {
 }
 
 add_action( 'wp_footer', 'xlt_fix_output_duotone_svg', 0 );
+
+function filter_next_post_link( $link ) {
+	$link = str_replace( "rel=", 'title="Next post" class="carousel-dark" rel=', $link );
+
+	return $link;
+}
+
+add_filter( 'next_post_link', 'filter_next_post_link' );
+
+function filter_previous_post_link( $link ) {
+	$link = str_replace( "rel=", 'title="Previous post" class="carousel-dark" rel=', $link );
+
+	return $link;
+}
+
+add_filter( 'previous_post_link', 'filter_previous_post_link' );

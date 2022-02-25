@@ -50,9 +50,7 @@ class Archive_Widget extends WP_Widget {
 
 			<div class="textwidget">
 
-				<?php
-					$this->render();
-				 ?>
+				<?php $this->render(); ?>
 
 			</div>
 
@@ -85,10 +83,14 @@ class Archive_Widget extends WP_Widget {
 		$widget_title = apply_filters( 'widget_title', $settings['title'], $settings, $this->id_base );
 
 		if ( ! empty( $widget_title ) ) :
-
-			// Display Widget Title.
-			echo $args['before_title'] . $widget_title . $args['after_title'];
-
+            // Display Widget Title.
+            echo '<div class="accordion" id="accordionTitle">';
+            echo '<div class="accordion-item">';
+            echo '<h2 class="accordion-header" id="headheadingOTitleingOne">';
+            echo '<button class="accordion-button widget_grey p-0 fs-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTitle" aria-expanded="false" aria-controls="collapseTitle">';
+            echo $widget_title;
+            echo '</button>';
+            echo '</h2>';
 		endif;
 	}
 
@@ -99,6 +101,8 @@ class Archive_Widget extends WP_Widget {
 
 		global $wpdb;
 
+        echo '<div id="collapseTitle" class="accordion-collapse collapse" aria-labelledby="headingOTitle" data-bs-parent="#accordionTitle">';
+        echo '<div class="accordion-body">';
 		echo '<div class="accordion accordion-flush" id="archives">';
 
 		$year_prev = null;
@@ -108,10 +112,7 @@ class Archive_Widget extends WP_Widget {
 
 			if ( $year_current !== $year_prev ) {
 				if ( $year_prev !== null ) {
-					echo '</ul>
-		</div>
-	</div>
-</div>';
+					echo '</ul></div></div></div>';
 				} ?>
 				<div class="accordion-item">
 				<h2 class="accordion-header" id="year-<?php echo $month->year; ?>">
@@ -133,14 +134,9 @@ class Archive_Widget extends WP_Widget {
 			<?php $year_prev = $year_current;
 
 		endforeach;
-		echo '</ul>
-		</div>
-	</div>
-</div>';
+        echo '</ul></div></div></div></div></div></div></div></div>';
 
-		echo '</div>';
-
-	}
+    }
 
 	/**
 	 * Update Widget Settings.
