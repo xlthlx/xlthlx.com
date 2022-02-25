@@ -479,24 +479,49 @@ if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 	 */
 	function xlt_old_posts_warning( $lang, $post_id = null ) {
 
-		$warning = '';
+		$warning = '<hr class="text-primary border border-primary border-3 mt-2 pt-0"/>';
 
 		if ( ! $post_id ) {
 			global $post;
 			$post_id = $post->ID;
 		}
 
-		$today         = current_time( 'Y-m-d' );
-		$postdate      = get_the_date( 'Y-m-d', $post_id );
-		$today_str     = strtotime( $today );
-		$post_date_str = strtotime( $postdate );
-		$diff          = ( $today_str - $post_date_str ) / 60 / 60 / 24;
-		$days          = 365;
-		if ( $diff > $days ) {
-			if ( $lang !== 'en' ) {
-				$warning = '<div class="alert alert-primary rounded-0 border-0" role="alert"><small>Attenzione: questo articolo è stato scritto più di un anno fa, alcune informazioni potrebbero essere obsolete.</small></div>';
-			} else {
-				$warning = '<div class="alert alert-primary rounded-0 border-0" role="alert"><small>Warning: this article was written over a year ago, some information may be out of date.</small></div>';
+		$post_categories = wp_get_post_categories( $post_id,
+			array( 'fields' => 'slugs' ) );
+
+		$cats = [
+			'analytics',
+			'android',
+			'android-apps',
+			'cosmetici',
+			'git',
+			'jquery',
+			'makeup',
+			'php',
+			'plugin',
+			'trucco',
+			'wordpress'
+		];
+
+		$intersect = array_intersect( $post_categories, $cats );
+
+		if ( ! empty( $intersect ) ) {
+			$today         = current_time( 'Y-m-d' );
+			$postdate      = get_the_date( 'Y-m-d', $post_id );
+			$today_str     = strtotime( $today );
+			$post_date_str = strtotime( $postdate );
+			$diff          = ( $today_str - $post_date_str ) / 60 / 60 / 24;
+			$days          = 365;
+			$years         = floor( $diff / $days );
+			$ay_label      = ( $lang !== 'en' ) ? 'anno' : 'year';
+			$ys_label      = ( $lang !== 'en' ) ? 'anni' : 'years';
+			$when          = ( 1 === (int) $years ) ? 'one ' . $ay_label : $years . ' ' . $ys_label;
+			if ( $diff > $days ) {
+				if ( $lang !== 'en' ) {
+					$warning = '<div class="alert alert-primary rounded-0 border-0 mt-2 black" role="alert"><small>Attenzione: questo articolo è stato scritto più di ' . $when . ' fa, alcune informazioni potrebbero essere obsolete.</small></div>';
+				} else {
+					$warning = '<div class="alert alert-primary rounded-0 border-0 mt-2 black" role="alert"><small>Warning: this article was written over ' . $when . ' ago, some information may be out of date.</small></div>';
+				}
 			}
 		}
 

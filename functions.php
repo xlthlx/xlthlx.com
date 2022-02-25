@@ -31,7 +31,8 @@ class xlthlxSite extends Timber\Site {
 		add_filter( 'timber/context', array( $this, 'add_to_context' ) );
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 		add_action( 'after_setup_theme', array( $this, 'add_image_size' ) );
-		add_action( 'enqueue_block_editor_assets',array( $this, 'enqueue_editor_scripts' ) );
+		add_action( 'enqueue_block_editor_assets',
+			array( $this, 'enqueue_editor_scripts' ) );
 		add_filter( 'image_size_names_choose',
 			array( $this, 'custom_size_name' ) );
 		add_filter( 'login_display_language_dropdown', '__return_false' );
@@ -156,8 +157,8 @@ class xlthlxSite extends Timber\Site {
 		add_image_size( 'extra_extra_large', 2048, 2048 );
 		add_image_size( 'featured', 1200, 900, true );
 		add_image_size( 'sticky', 437, 225, true );
-		remove_image_size('1536x1536');
-		remove_image_size('2048x2048');
+		remove_image_size( '1536x1536' );
+		remove_image_size( '2048x2048' );
 	}
 
 	/**
@@ -168,7 +169,9 @@ class xlthlxSite extends Timber\Site {
 	 * @return array
 	 */
 	public function custom_size_name( $sizes ) {
-		return array_merge( $sizes, array( 'featured' => __( 'Featured' ), 'sticky' => __( 'Sticky' ),
+		return array_merge( $sizes, array(
+			'featured' => __( 'Featured' ),
+			'sticky'   => __( 'Sticky' ),
 		) );
 	}
 
