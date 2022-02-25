@@ -1,38 +1,32 @@
 /* globals wp */
 wp.domReady(() => {
   /**
-   * Manage block registration.
+   * Block blacklist.
    */
   const restrictedBlocks = [
     'core/archives',
-    //'core/audio',
-    'core/button',
+    // 'core/audio',
     'core/buttons',
     'core/calendar',
     'core/categories',
     // 'core/classic',
     // 'core/code',
-    'core/column',
     'core/columns',
     'core/cover',
     // 'core/embed',
     // 'core/file',
-    'core/freeform',
     // 'core/gallery',
     'core/group',
     // 'core/heading',
     // 'core/html',
     // 'core/image',
-    // 'core/legacy-widget',
     'core/latest-comments',
     'core/latest-posts',
     'core/loginout',
     // 'core/list',
     'core/media-text',
-    'core/missing',
     'core/more',
     'core/navigation',
-    'core/navigation-link',
     'core/nextpage',
     'core/page-list',
     // 'core/paragraph',
@@ -57,17 +51,15 @@ wp.domReady(() => {
     'core/site-logo',
     'core/site-tagline',
     'core/site-title',
-    'core/social-link',
     'core/social-links',
     // 'core/spacer',
-    // 'core/subhead',
     // 'core/table',
     'core/tag-cloud',
+    'core/template-part',
     'core/term-description',
     'core/text-columns',
     'core/verse',
-    // 'core/video',
-    // 'core/widget-area'
+    // 'core/video'
   ]
 
   /**
@@ -78,14 +70,14 @@ wp.domReady(() => {
   };
 
   /**
-   * Manage embed variations.
+   * List whitelisted embed variations.
    */
   const allowedEmbedBlocks = [
-    'youtube'
+    'spotify','twitter','vimeo','youtube'
   ]
 
   /**
-   * Unregister blocks not included in whitelist.
+   * Unregister variation of embed blocks.
    */
   wp.blocks.getBlockVariations('core/embed').forEach(function (blockVariation) {
     if (allowedEmbedBlocks.indexOf(blockVariation.name) === -1) {
@@ -93,16 +85,4 @@ wp.domReady(() => {
     }
   })
 
-  /**
-   * Manage block style variations.
-   */
-  wp.blocks.registerBlockStyle('core/heading', {
-    name: 'heading-underline',
-    label: 'With underline',
-    isDefault: false
-  })
-
-  //wp.blocks.unregisterBlockStyle('core/image', ['rounded'])
-  //wp.blocks.unregisterBlockStyle('core/quote', ['large'])
-  //wp.blocks.unregisterBlockStyle('core/table', ['stripes'])
 })
