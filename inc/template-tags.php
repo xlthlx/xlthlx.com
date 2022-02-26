@@ -506,16 +506,14 @@ if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 		$intersect = array_intersect( $post_categories, $cats );
 
 		if ( ! empty( $intersect ) ) {
-			$today         = current_time( 'Y-m-d' );
-			$postdate      = get_the_date( 'Y-m-d', $post_id );
-			$today_str     = strtotime( $today );
-			$post_date_str = strtotime( $postdate );
+			$today_str     = strtotime( current_time( 'Y-m-d' ) );
+			$post_date_str = strtotime( get_the_date( 'Y-m-d', $post_id ) );
 			$diff          = ( $today_str - $post_date_str ) / 60 / 60 / 24;
 			$days          = 365;
 			$years         = floor( $diff / $days );
-			$ay_label      = ( $lang !== 'en' ) ? 'anno' : 'year';
+			$ay_label      = ( $lang !== 'en' ) ? 'un anno' : 'one year';
 			$ys_label      = ( $lang !== 'en' ) ? 'anni' : 'years';
-			$when          = ( 1 === (int) $years ) ? 'one ' . $ay_label : $years . ' ' . $ys_label;
+			$when          = ( 1 === (int) $years ) ? $ay_label : $years . ' ' . $ys_label;
 			if ( $diff > $days ) {
 				if ( $lang !== 'en' ) {
 					$warning = '<div class="alert alert-primary rounded-0 border-0 mt-2 black" role="alert"><small>Attenzione: questo articolo è stato scritto più di ' . $when . ' fa, alcune informazioni potrebbero essere obsolete.</small></div>';

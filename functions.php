@@ -104,10 +104,11 @@ class xlthlxSite extends Timber\Site {
 	 */
 	public function enqueue_scripts() {
 		// Styles.
-		wp_dequeue_style( 'wp-inci' );
 		wp_dequeue_style( 'wp-block-library' );
 		// Scripts.
-		wp_deregister_script( 'jquery' );
+		if ( 'http://localhost' !== home_url() ) {
+			wp_deregister_script( 'jquery' );
+		}
 		wp_deregister_script( 'wp-embed' );
 		wp_enqueue_script( 'main',
 			get_template_directory_uri() . '/assets/js/main.min.js', [],

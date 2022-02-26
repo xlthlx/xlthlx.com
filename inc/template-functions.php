@@ -302,46 +302,31 @@ function xlt_insert_css() {
 add_action( 'wp_head', 'xlt_insert_css' );
 
 /**
- * Fix output duotone svg filters in footer.
+ * Add attributes to next post link.
  *
- * @link https://github.com/WordPress/gutenberg/issues/38299
- * @link https://core.trac.wordpress.org/ticket/54941
+ * @param $link
  *
- * @return void
- * @throws ReflectionException
+ * @return string
  */
-function xlt_fix_output_duotone_svg() {
-	$filters = $GLOBALS['wp_filter']['wp_footer'][10];
-	if ( empty( $filters ) ) {
-		return;
-	}
-
-	foreach ( $filters as $callback ) {
-		if ( $callback['function'] instanceof Closure ) {
-			$instance  = new \ReflectionFunction( $callback['function'] );
-			$variables = $instance->getStaticVariables();
-			if ( ! empty( $variables['svg'] ) && strpos( $variables['svg'],
-					'feColorMatrix' ) ) {
-				remove_action( 'wp_footer', $callback['function'] );
-			}
-		}
-	}
-}
-
-add_action( 'wp_footer', 'xlt_fix_output_duotone_svg', 0 );
-
 function filter_next_post_link( $link ) {
-	$link = str_replace( "rel=", 'title="Next post" class="carousel-dark" rel=', $link );
+	$title = ( 'en' === get_lang() ) ? 'Next post' : 'Post successivo';
 
-	return $link;
+	return str_replace( "rel=", 'title="' . $title . '" class="carousel-dark" rel=', $link );
 }
 
 add_filter( 'next_post_link', 'filter_next_post_link' );
 
+/**
+ * Add attributes to previous post link.
+ *
+ * @param $link
+ *
+ * @return string
+ */
 function filter_previous_post_link( $link ) {
-	$link = str_replace( "rel=", 'title="Previous post" class="carousel-dark" rel=', $link );
+	$title = ( 'en' === get_lang() ) ? 'Previous post' : 'Post precedente';
 
-	return $link;
+	return str_replace( "rel=", 'title="' . $title . '" class="carousel-dark" rel=', $link );
 }
 
 add_filter( 'previous_post_link', 'filter_previous_post_link' );
