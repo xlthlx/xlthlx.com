@@ -85,9 +85,9 @@ class Archive_Widget extends WP_Widget {
 		if ( ! empty( $widget_title ) ) :
             // Display Widget Title.
             echo '<div class="accordion" id="accordionTitle">';
-            echo '<div class="accordion-item">';
+            echo '<div class="accordion-item widget_grey border-0">';
             echo '<h2 class="accordion-header" id="headheadingOTitleingOne">';
-            echo '<button class="accordion-button widget_grey p-0 fs-4 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTitle" aria-expanded="false" aria-controls="collapseTitle">';
+            echo '<button class="accordion-button widget_grey p-0 fs-4 shadow-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTitle" aria-expanded="false" aria-controls="collapseTitle">';
             echo $widget_title;
             echo '</button>';
             echo '</h2>';
