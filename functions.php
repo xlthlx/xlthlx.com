@@ -42,7 +42,9 @@ class xlthlxSite extends Timber\Site {
 	/**
 	 * General context.
 	 *
-	 * @return string
+	 * @param $context
+	 *
+	 * @return mixed
 	 */
 	public function add_to_context( $context ) {
 		global $timber;
