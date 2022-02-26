@@ -11,5 +11,8 @@
 	<meta name="theme-color" content="#6667ab"/>
 	<link rel="manifest" href="{{ fn('get_template_directory_uri') }}/assets/manifest/manifest.json"/>
 	{{ fn('wp_head') }}
-	<script id="stats" defer data-domain="xlthlx.com" data-api="https://plausible.io/api/event" src="/stats/js/script.js"></script>
+	{% set home = fn('home_url') %}
+	{% if home != 'http://localhost' %}
+		<script id="stats" defer data-domain="xlthlx.com" data-api="https://plausible.io/api/event" src="/stats/js/script.js"></script>
+	{% endif %}
 </head>
