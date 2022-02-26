@@ -479,7 +479,7 @@ if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 	 */
 	function xlt_old_posts_warning( $lang, $post_id = null ) {
 
-		$warning = '<hr class="text-primary border border-primary border-3 mt-2 pt-0"/>';
+		$warning = '<hr class="text-primary border border-primary mt-2 pt-0"/>';
 
 		if ( ! $post_id ) {
 			global $post;
