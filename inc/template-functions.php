@@ -308,13 +308,13 @@ add_action( 'wp_head', 'xlt_insert_css' );
  *
  * @return string
  */
-function filter_next_post_link( $link ) {
+function xl_filter_next_post_link( $link ) {
 	$title = ( 'en' === get_lang() ) ? 'Next post' : 'Post successivo';
 
 	return str_replace( "rel=", 'title="' . $title . '" class="carousel-dark" rel=', $link );
 }
 
-add_filter( 'next_post_link', 'filter_next_post_link' );
+add_filter( 'next_post_link', 'xl_filter_next_post_link' );
 
 /**
  * Add attributes to previous post link.
@@ -323,10 +323,10 @@ add_filter( 'next_post_link', 'filter_next_post_link' );
  *
  * @return string
  */
-function filter_previous_post_link( $link ) {
+function xl_filter_previous_post_link( $link ) {
 	$title = ( 'en' === get_lang() ) ? 'Previous post' : 'Post precedente';
 
 	return str_replace( "rel=", 'title="' . $title . '" class="carousel-dark" rel=', $link );
 }
 
-add_filter( 'previous_post_link', 'filter_previous_post_link' );
+add_filter( 'previous_post_link', 'xl_filter_previous_post_link' );
