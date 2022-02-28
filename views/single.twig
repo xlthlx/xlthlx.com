@@ -29,17 +29,7 @@
 							{% include 'partial/social.twig' %}
 
 							<div class="pt-4">
-								{% if post.terms('category') | length %}
-									<ul class="list-unstyled ml-0 pl-0 mb-0">
-										{% for cat in post.terms('category') %}
-											<li class="d-inline"><a href="{{ cat.link }}">{{ cat.name }}</a>
-												{% if cat != post.terms('category')|last %}
-													<span class="badge bg-white text-dark rounded-0 border-0 fw-bold">|</span>
-												{% endif %}
-											</li>
-										{% endfor %}
-									</ul>
-								{% endif %}
+								{% include 'partial/terms.twig' %}
 							</div>
 
 							<hr class="mt-4 mb-4"/>
