@@ -1,0 +1,8 @@
+{% if post.terms('category') | length %}
+    <ul class="list-unstyled ml-0 pl-0 mb-0">
+        {% for cat in post.terms('category') %}
+            <li class="d-inline fw-bold"><a href="{{ cat.link }}">{{ cat.name }}</a>{% if cat != post.terms('category')|last %}, {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
