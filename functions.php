@@ -17,7 +17,7 @@ require_once __DIR__ . '/vendor.phar';
 $timber              = new Timber\Timber();
 $timber::$dirname    = array( 'views' );
 $timber::$autoescape = false;
-$timber::$twig_cache = true;
+//$timber::$twig_cache = true;
 if ( 'http://localhost' === home_url() ) {
 	$timber::$twig_cache = false;
 }
