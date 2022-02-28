@@ -107,6 +107,7 @@ class xlthlxSite extends Timber\Site {
 	public function enqueue_scripts() {
 		// Styles.
 		wp_dequeue_style( 'wp-block-library' );
+		wp_dequeue_style('wpt-twitter-feed' );
 		// Scripts.
 		if ( 'http://localhost' !== home_url() ) {
 			wp_deregister_script( 'jquery' );
