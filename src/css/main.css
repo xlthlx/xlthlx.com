@@ -502,9 +502,13 @@ table.wp-inci td {
 }
 
 .shadows {
-    font-family: 'Shadows';
+    font-family: 'Shadows', sans-serif;
     font-weight: 300;
     font-style: normal;
+}
+
+.wp-block-code > code {
+    color: #fff !important;
 }
 
 /*-------
