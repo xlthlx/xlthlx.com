@@ -10,7 +10,7 @@ wp.domReady(() => {
     'core/calendar',
     'core/categories',
     // 'core/classic',
-    // 'core/code',
+    'core/code',
     'core/columns',
     'core/cover',
     // 'core/embed',
