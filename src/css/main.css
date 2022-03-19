@@ -58,7 +58,7 @@ _______*/
 body {
     font-family: 'Titillium Web', serif !important;
     font-size: 1.2rem;
-    background-color: #e0e1ee !important;
+    position: relative;
 }
 
 body.admin-bar div.fixed-navbar {
@@ -79,13 +79,21 @@ body.admin-bar div.offcanvas {
     }
 }
 
+.navbar {
+    padding: 0 !important;
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
 main {
     margin-top: 118px;
 }
 
 @media (min-width: 992px) {
     main {
-        margin-top: 91px;
+        margin-top: 90px;
     }
 }
 
@@ -102,6 +110,14 @@ main {
 
 .widget_grey, .widget_pages {
     background-color: #e0e1ee !important;
+}
+
+.page-link {
+    border: 0 !important;
+}
+
+.page-item.active .page-link, .page-link:hover {
+    border-radius: 30% 5% !important;
 }
 
 .page-item.active .page-link.dots {
@@ -131,10 +147,6 @@ a.dropdown-item.text-light:hover {
     color: #e0e1ee !important;
 }
 
-li a:hover {
-    text-decoration: none;
-}
-
 .article-content p {
     font-size: 1.2rem;
     line-height: 1.75;
@@ -154,6 +166,10 @@ ol.breadcrumb {
 
 .accordion-button.widget_grey {
     color: black !important;
+}
+
+.btn {
+    border-radius: 30% 5% !important;
 }
 
 .btn-fb {
@@ -176,6 +192,19 @@ ol.breadcrumb {
     color: #ffffff;
     background-color: rgba(20, 123, 201, 1);
     border-color: rgba(20, 123, 201, 1);
+}
+
+.grey_img {
+    border-radius: 0 25% !important;
+}
+
+.widget, .grey_box {
+    border-radius: 0 25% !important;
+    padding: 40px 50px 60px 50px !important;
+}
+
+.arrow:hover, .arrow:active {
+    color: #6667ab;
 }
 
 div.comments.children {
@@ -511,9 +540,87 @@ table.wp-inci td {
     color: #fff !important;
 }
 
-/*-------
-Colors
-_______*/
+#headheadingOTitleingOne {
+    margin-right: 1.25rem;
+}
+
+.box-dashed {
+    border-right: 3px dashed #e0e1ee;
+    border-left: 3px dashed #e0e1ee;
+}
+
+.form-control, .btn {
+    border: 3px dashed #6667ab;
+}
+
+hr {
+    height: 0;
+    border-bottom: 3px dashed #e0e1ee;
+}
+
+footer {
+    position: relative;
+}
+
+footer:after {
+    content: "";
+    position: absolute;
+    height: 90px;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    background-color: transparent;
+    border-bottom-left-radius: 50% 100px;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 90px 0 120px #333456;
+    clip: rect(0, 14000px, 90px, 0);
+    pointer-events: none;
+}
+
+#primary-nav:after {
+    content: "";
+    position: absolute;
+    height: 90px;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background-color: transparent;
+    border-top-right-radius: 50% 100px;
+    border-top-left-radius: 0;
+    box-shadow: 0 0 0 120px #6667ab;
+    clip: rect(0, 14000px, 90px, 0);
+    pointer-events: none;
+}
+
+.ln-0 {
+    line-height: 0 !important;
+}
+
+.acc-body {
+    padding: 2rem 1.25rem 1rem 0 !important;
+}
+
+.navbar-dark .navbar-nav .nav-link.white-text:focus, .navbar-dark .navbar-nav .nav-link.white-text:hover {
+    color: #2e2f4d !important;
+    text-decoration: none;
+    background-color: #e0e1ee;
+}
+
+.tease:hover li a, .tease:hover h2 a{
+    color: #6667ab;
+    text-decoration: underline;
+    text-decoration-color: #6667ab;
+}
+
+a:hover {
+    color: #6667ab;
+    text-decoration: underline;
+    text-decoration-color: #6667ab;
+}
+
+    /*-------
+    Colors
+    _______*/
 
 .white {
     color: #ffffff;

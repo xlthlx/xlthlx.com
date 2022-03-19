@@ -1,59 +1,60 @@
-<div class="container-fluid bg-primary fixed-navbar">
-	<div class="row">
-		<div class="col-lg-2 col-12">
-			<h1 class="display-1 display-xl-2 font-italic py-lg-2 py-0 px-xl-3 px-0 ps-xl-4 ps-0 pt-3 mb-0 text-xl-start text-center">
-				<a title="Homepage" class="text-white text-decoration-none shadows"
-				   href="{{ site.url }}">{{ site.name }}</a>
-			</h1>
-		</div>
-		<div class="col-lg-8 col-10">
-			<p class="lead pt-lg-4 pt-0 mt-3 text-xl-end text-center text-white fs-6">{{ site.description }}</p>
-		</div>
-		<div class="col-2">
-			<div class="navbar navbar-dark bg-primary pt-lg-4 pt-0 text-white border-0 shadow-none banner d-flex align-items-end flex-column">
-				<div class="my-2 ml-auto me-xl-3 me-2">
-					<button class="navbar-toggler text-white border-0 shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuOffcanvas" aria-expanded="false" aria-controls="menuOffcanvas" aria-label="{{ _e( 'Toggle navigation') }}">
-						☰
-					</button>
-				</div>
+<nav id="primary-nav" class="navbar navbar-dark bg-primary fixed-top">
+    <div class="container-fluid">
+        <h1 id="logo" class="display-2 display-xl-3 font-italic text-start m-0 ps-3 pt-1">
+            <a title="{{ site.description }}"
+               class="text-white text-decoration-none shadows"
+               href="{{ site.url }}">{{ site.name }}</a>
+        </h1>
 
-				<div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="menuOffcanvas" aria-labelledby="menuOffcanvasLabel">
-					<div class="offcanvas-header pb-0 white-text">
-						<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-					</div>
-					<div class="offcanvas-body pb-5rem px-5">
-						<ul class="navbar-nav me-auto mb-2 mb-xl-0">
-							{% for item in menu.get_items %}
-								{% set target = item.target? ' target="'~item.target~'"': '' %}
-								{% if item.children %}
-									<li class="nav-item dropdown pink{{ item.classes | join(' ') }}">
-										<a class="nav-link dropdown-toggle pink show" {{ target }}href="{{ item.link }}"
-										   id="{{ fn('sanitize_title', item.title) }}"
-										   data-bs-toggle="dropdown" aria-expanded="true">{{ item.title }}</a>
-										<ul class="dropdown-menu bg-dark border-0 rounded-0 show" aria-labelledby="{{ fn('sanitize_title', item.title) }}">
-											{% for item in item.children %}
-												{% set target = item.target? ' target="'~item.target~'"': '' %}
-												<li class="white">
-													<a class="dropdown-item white"{{ target }} href="{{ item.link }}">
-														{{ item.title }}
-													</a>
-												</li>
-											{% endfor %}
-										</ul>
-									</li>
-								{% else %}
-									<li class="nav-item white-text{{ item.classes | join(' ') }}">
-										<a class="nav-link white-text" {{ target }}href="{{ item.link }}">{{ item.title }}</a>
-									</li>
-								{% endif %}
-							{% endfor %}
-						</ul>
-						<div class="my-3">
-							{% include 'searchform.twig' %}
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+        <button id="navbar-toggler" class="navbar-toggler text-white border-0 shadow-none pe-3"
+                type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#menuOffcanvas" aria-expanded="false"
+                aria-controls="menuOffcanvas"
+                aria-label="{{ _e( 'Toggle navigation') }}">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="menuOffcanvas" aria-labelledby="menuOffcanvasLabel">
+            <div class="offcanvas-header pb-0 white-text">
+                <button type="button" class="btn-close text-reset"
+                        data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body pb-5rem px-5">
+                <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+                    {% for item in menu.get_items %}
+                        {% set target = item.target? ' target="'~item.target~'"': '' %}
+                        {% if item.children %}
+                            <li class="nav-item dropdown pink{{ item.classes | join(' ') }}">
+                                <a class="nav-link dropdown-toggle pink show"
+                                   {{ target }}href="{{ item.link }}"
+                                   id="{{ fn('sanitize_title', item.title) }}"
+                                   data-bs-toggle="dropdown"
+                                   aria-expanded="true">{{ item.title }}</a>
+                                <ul class="dropdown-menu bg-dark border-0 rounded-0 show"
+                                    aria-labelledby="{{ fn('sanitize_title', item.title) }}">
+                                    {% for item in item.children %}
+                                        {% set target = item.target? ' target="'~item.target~'"': '' %}
+                                        <li class="white">
+                                            <a class="dropdown-item white"{{ target }}
+                                               href="{{ item.link }}">
+                                                {{ item.title }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li class="nav-item white-text{{ item.classes | join(' ') }}">
+                                <a class="nav-link white-text"
+                                   {{ target }}href="{{ item.link }}">{{ item.title }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                <div class="my-3">
+                    {% include 'searchform.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
