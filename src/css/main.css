@@ -623,6 +623,10 @@ footer:after {
     text-decoration-color: #6667ab;
 }
 
+.form-check-input[type=checkbox] {
+    border: 3px dashed #6667ab;
+}
+
 /*-------
 Colors
 _______*/
