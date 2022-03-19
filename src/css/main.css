@@ -203,6 +203,11 @@ ol.breadcrumb {
     padding: 40px 50px 60px 50px !important;
 }
 
+.grey-sticky {
+    border-radius: 0 25% !important;
+    padding: 40px 0 0 40px !important;
+}
+
 .arrow:hover, .arrow:active {
     color: #6667ab;
 }
@@ -606,7 +611,7 @@ footer:after {
     background-color: #e0e1ee;
 }
 
-.tease:hover li a, .tease:hover h2 a{
+.tease:hover li a, .tease:hover h2 a {
     color: #6667ab;
     text-decoration: underline;
     text-decoration-color: #6667ab;
@@ -618,9 +623,9 @@ a:hover {
     text-decoration-color: #6667ab;
 }
 
-    /*-------
-    Colors
-    _______*/
+/*-------
+Colors
+_______*/
 
 .white {
     color: #ffffff;
