@@ -79,6 +79,12 @@ body.admin-bar div.offcanvas {
     }
 }
 
+a:hover {
+    color: #6667ab;
+    text-decoration: underline;
+    text-decoration-color: #6667ab;
+}
+
 .navbar {
     padding: 0 !important;
 }
@@ -612,12 +618,6 @@ footer:after {
 }
 
 .tease:hover li a, .tease:hover h2 a {
-    color: #6667ab;
-    text-decoration: underline;
-    text-decoration-color: #6667ab;
-}
-
-a:hover {
     color: #6667ab;
     text-decoration: underline;
     text-decoration-color: #6667ab;
