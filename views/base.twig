@@ -13,11 +13,11 @@
 	</header>
 {% endblock %}
 
-<main class="pb-0 mb-0 pt-3">
+<main class="pb-0 mb-0">
 	<a class="visually-hidden" href="#content">{{ _e( 'Skip to content') }}</a>
 	{{ fn('xlt_countdown') }}
 	{% if not is_home %}
-		<div class="container bg-white pt-4 px-4 pb-0">
+		<div class="container p-5 pb-0 box-dashed">
 			<nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
 				{% if (fn('xlt_breadcrumbs')) %}
 					{{ fn('xlt_breadcrumbs') }}
@@ -26,7 +26,7 @@
 		</div>
 	{% endif %}
 
-	<div class="container px-4 py-4 bg-white mb-0" id="content">
+	<div class="container p-5 mb-0 box-dashed" id="content">
 
 		{% if title %}
 			<h2 class="display-5 pb-3">{{ title }}</h2>
@@ -41,8 +41,8 @@
 </main>
 
 {% block footer %}
-	<footer>
-		<div class="pt-4 pb-3 bg-dark navbar-dark">
+	<footer class="bg-dark">
+		<div class="container pt-4 pb-3 navbar-dark">
 			{% include 'footer.twig' %}
 			{{ fn('wp_footer') }}
 		</div>
@@ -50,5 +50,6 @@
 {% endblock %}
 
 <span id="db3bd4a3c96f1fe80cd12d8df05e6320"></span>
+
 </body>
 </html>

@@ -5,9 +5,12 @@
 				{% set cat = post.terms('category')|first %}
 				<strong class="d-inline-block mb-2 text-primary">{{ cat.name }}</strong>
 				<h2 class="display-6 mb-3 shadows">{{ post.title }}</h2>
-				<p class="card-text mb-auto">{{ post.preview.length(20).read_more('') }}</p>
-				<a aria-label="Continua a leggere: {{ post.title }}" href="{{ post.link }}"
-				   class="stretched-link">{{ _e( 'continua') }} ></a>
+				<p class="card-text mb-auto">{{ post.preview.length(20).read_more('') }}
+				<a aria-label="Continua a leggere: {{ post.title }}"
+				   href="{{ post.link }}"
+				   class="display-6 stretched-link text-decoration-none arrow ln-0 align-middle">
+					&#8674;
+				</a></p>
 			</div>
 			{% if post.thumbnail.src %}
 					<picture loading="lazy" class="col-auto d-none d-lg-block">

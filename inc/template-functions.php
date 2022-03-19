@@ -311,7 +311,7 @@ add_action( 'wp_head', 'xlt_insert_css' );
 function xl_filter_next_post_link( $link ) {
 	$title = ( 'en' === get_lang() ) ? 'Next post' : 'Post successivo';
 
-	return str_replace( "rel=", 'title="' . $title . '" class="carousel-dark" rel=', $link );
+	return str_replace( "rel=", 'title="' . $title . '" class="display-5 arrow" rel=', $link );
 }
 
 add_filter( 'next_post_link', 'xl_filter_next_post_link' );
@@ -326,7 +326,14 @@ add_filter( 'next_post_link', 'xl_filter_next_post_link' );
 function xl_filter_previous_post_link( $link ) {
 	$title = ( 'en' === get_lang() ) ? 'Previous post' : 'Post precedente';
 
-	return str_replace( "rel=", 'title="' . $title . '" class="carousel-dark" rel=', $link );
+	return str_replace( "rel=", 'title="' . $title . '" class="display-5 arrow" rel=', $link );
 }
 
 add_filter( 'previous_post_link', 'xl_filter_previous_post_link' );
+
+function wpdocs_add_post_link( $html ){
+	$html = str_replace( '<a ', '<a class="text-decoration-none" ', $html );
+	return $html;
+}
+add_filter( 'next_post_link', 'wpdocs_add_post_link' );
+add_filter( 'previous_post_link', 'wpdocs_add_post_link' );

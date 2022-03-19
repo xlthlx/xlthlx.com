@@ -102,7 +102,7 @@ class Archive_Widget extends WP_Widget {
 		global $wpdb;
 
         echo '<div id="collapseTitle" class="accordion-collapse collapse" aria-labelledby="headingOTitle" data-bs-parent="#accordionTitle">';
-        echo '<div class="accordion-body">';
+        echo '<div class="accordion-body acc-body">';
 		echo '<div class="accordion accordion-flush" id="archives">';
 
 		$year_prev = null;
@@ -314,7 +314,10 @@ class Related_Widget extends WP_Widget {
 
 						$cat_query->the_post();
 
-						$related .= '<li><a href="' . get_permalink() . '" rel="bookmark" title="' . get_the_title() . '">' . get_the_title() . '</a></li>';
+                        $title = ( 'en' === get_lang() ) ? get_title_en() : get_the_title();
+                        $link = ( 'en' === get_lang() ) ? get_permalink().'en/' : get_permalink();
+
+						$related .= '<li><a href="' . $link . '" rel="bookmark" title="' . $title . '">' . $title . '</a></li>';
 					}
 				}
 			}
