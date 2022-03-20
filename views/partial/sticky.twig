@@ -1,7 +1,7 @@
 {% if first_posts %}
-    <div class="bg-violet mx-md-4 mx-0 grey-sticky">
+    <div class="bg-violet grey-sticky">
         {% for first_post in first_posts %}
-            <div class="row g-0 rounded-0 overflow-hidden flex-lg-row flex-column-reverse mb-4">
+            <div class="row g-0 rounded-0 overflow-hidden flex-lg-row flex-column-reverse mb-4 p-5">
                 <div class="col d-flex flex-column position-static">
                     <h2 class="display-4 font-italic shadows"><a class="text-dark" href="{{ first_post.link }}" title="Continua a leggere: '{{ first_post.title }}'">{{ first_post.title }}</a></h2>
                     <p class="card-text card-text mb-auto me-5 mt-3">{{ first_post.preview.length(40).read_more('') }} <a href="{{ first_post.link }}" title="Continua a leggere: '{{ first_post.title }}'" class="display-6 text-decoration-none arrow ln-0 align-middle">&#8674;</a></p>
