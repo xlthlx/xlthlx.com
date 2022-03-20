@@ -1,52 +1,55 @@
 <!doctype html>
 <html {{ site.language_attributes }} id="top">
 {% block html_head_container %}
-	{% include 'header.twig' %}
-	{% block head %}
-	{% endblock %}
+    {% include 'header.twig' %}
+    {% block head %}
+    {% endblock %}
 {% endblock %}
 
 <body class="{{ body_class }}">
 {% block header %}
-	<header>
-		{% include 'partial/navbar.twig' %}
-	</header>
+    <header>
+        {% include 'partial/navbar.twig' %}
+    </header>
 {% endblock %}
 
 <main class="pb-0 mb-0">
-	<a class="visually-hidden" href="#content">{{ _e( 'Skip to content') }}</a>
-	{{ fn('xlt_countdown') }}
-	{% if not is_home %}
-		<div class="container p-5 pb-0 box-dashed">
-			<nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
-				{% if (fn('xlt_breadcrumbs')) %}
-					{{ fn('xlt_breadcrumbs') }}
-				{% endif %}
-			</nav>
-		</div>
-	{% endif %}
+    <a class="visually-hidden" href="#content">{{ _e( 'Skip to content') }}</a>
+    <div class="container py-5 px-3 px-xl-5 mb-0 box-dashed">
 
-	<div class="container p-5 mb-0 box-dashed" id="content">
+        {% if not is_home %}
 
-		{% if title %}
-			<h2 class="display-5 pb-3">{{ title }}</h2>
-			<hr class="pt-0 mt-0 mb-4"/>
-		{% endif %}
+            <nav class="mb-4" style="--bs-breadcrumb-divider: '';"
+                 aria-label="breadcrumb">
+                {% if (fn('xlt_breadcrumbs')) %}
+                    {{ fn('xlt_breadcrumbs') }}
+                {% endif %}
+            </nav>
 
-		{% block content %}
-			Sorry, no content
-		{% endblock %}
+        {% endif %}
 
-	</div>
+
+        <div id="content">
+            {% if title %}
+                <h2 class="display-5 pb-3">{{ title }}</h2>
+                <hr class="pt-0 mt-0 mb-4"/>
+            {% endif %}
+
+            {% block content %}
+                Sorry, no content
+            {% endblock %}
+
+        </div>
+    </div>
 </main>
 
 {% block footer %}
-	<footer class="bg-dark">
-		<div class="container pt-4 pb-3 navbar-dark">
-			{% include 'footer.twig' %}
-			{{ fn('wp_footer') }}
-		</div>
-	</footer>
+    <footer class="bg-dark">
+        <div class="container pt-4 pb-3 navbar-dark">
+            {% include 'footer.twig' %}
+            {{ fn('wp_footer') }}
+        </div>
+    </footer>
 {% endblock %}
 
 <span id="db3bd4a3c96f1fe80cd12d8df05e6320"></span>

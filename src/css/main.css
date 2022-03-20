@@ -94,13 +94,7 @@ a:hover {
 }
 
 main {
-    margin-top: 118px;
-}
-
-@media (min-width: 992px) {
-    main {
-        margin-top: 90px;
-    }
+    margin-top: 90px;
 }
 
 .breadcrumb-item.active {
@@ -211,7 +205,6 @@ ol.breadcrumb {
 
 .grey-sticky {
     border-radius: 0 25% !important;
-    padding: 40px 0 0 40px !important;
 }
 
 .arrow:hover, .arrow:active {
@@ -485,6 +478,16 @@ table.wp-inci td {
         border: 0 !important;
     }
 }
+
+@media (max-width: 992px) {
+    #logo {
+        font-size: 3.2rem;
+    }
+    .min-container {
+        padding: 1.3rem;
+    }
+}
+
 
 .form-submit {
     margin-top: 1em;
