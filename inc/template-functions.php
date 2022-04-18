@@ -308,13 +308,14 @@ add_action( 'wp_head', 'xlt_insert_css' );
  *
  * @return string
  */
-function xl_filter_next_post_link( $link ) {
+function xlt_filter_next_post_link( $link ) {
 	$title = ( 'en' === get_lang() ) ? 'Next post' : 'Post successivo';
 
-	return str_replace( "rel=", 'title="' . $title . '" class="display-5 arrow" rel=', $link );
+	return str_replace( "rel=",
+		'title="' . $title . '" class="display-5 arrow" rel=', $link );
 }
 
-add_filter( 'next_post_link', 'xl_filter_next_post_link' );
+add_filter( 'next_post_link', 'xlt_filter_next_post_link' );
 
 /**
  * Add attributes to previous post link.
@@ -323,17 +324,36 @@ add_filter( 'next_post_link', 'xl_filter_next_post_link' );
  *
  * @return string
  */
-function xl_filter_previous_post_link( $link ) {
+function xlt_filter_previous_post_link( $link ) {
 	$title = ( 'en' === get_lang() ) ? 'Previous post' : 'Post precedente';
 
-	return str_replace( "rel=", 'title="' . $title . '" class="display-5 arrow" rel=', $link );
+	return str_replace( "rel=",
+		'title="' . $title . '" class="display-5 arrow" rel=', $link );
 }
 
-add_filter( 'previous_post_link', 'xl_filter_previous_post_link' );
+add_filter( 'previous_post_link', 'xlt_filter_previous_post_link' );
 
-function wpdocs_add_post_link( $html ){
-	$html = str_replace( '<a ', '<a class="text-decoration-none" ', $html );
-	return $html;
+/**
+ * @param $html
+ *
+ * @return array|string|string[]
+ */
+function xlt_add_post_link( $html ) {
+	return str_replace( '<a ', '<a class="text-decoration-none" ', $html );
 }
-add_filter( 'next_post_link', 'wpdocs_add_post_link' );
-add_filter( 'previous_post_link', 'wpdocs_add_post_link' );
+
+add_filter( 'next_post_link', 'xlt_add_post_link' );
+add_filter( 'previous_post_link', 'xlt_add_post_link' );
+
+/**
+ * @return void
+ */
+function xlt_404_plausible() {
+	if ( is_404() ) {
+		?>
+        <script>plausible("404", {props: {path: document.location.pathname}});</script>
+		<?php
+	}
+}
+
+add_action( 'wp_head', 'xlt_404_plausible' );
