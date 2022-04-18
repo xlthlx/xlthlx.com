@@ -199,6 +199,17 @@ ol.breadcrumb {
     border-color: rgba(20, 123, 201, 1);
 }
 
+.btn-pt {
+    color: #b73275;
+    border-color: #b73275;
+}
+
+.btn-pt:hover, .btn-pt:active {
+    color: #ffffff;
+    background-color: #b73275;
+    border-color: #b73275;
+}
+
 .grey_img {
     border-radius: 0 25% !important;
 }
