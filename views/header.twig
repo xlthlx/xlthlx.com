@@ -13,6 +13,7 @@
 	{{ fn('wp_head') }}
 	{% set home = fn('home_url') %}
 	{% if home != 'http://localhost' %}
-		<script id="stats" defer data-domain="xlthlx.com" data-api="https://plausible.io/api/event" src="/stats/js/script.outbound-links.outbound-links.hash.js"></script>
+		<script id="stats" defer data-domain="xlthlx.com" data-api="https://plausible.io/api/event" src="/stats/js/script.outbound-links.file-downloads.hash.js"></script>
+		<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
 	{% endif %}
 </head>
