@@ -357,3 +357,19 @@ function xlt_404_plausible() {
 }
 
 add_action( 'wp_head', 'xlt_404_plausible' );
+
+function xlt_admin_color_scheme() {
+
+	$theme_dir = get_stylesheet_directory_uri();
+
+	wp_admin_css_color( 'xlthlx', __( 'Xlthlx' ),
+		$theme_dir . '/assets/css/admin/color-scheme.min.css',
+		array( '#1e2327', '#fff', '#92285e', '#6667ab' ),
+		array( 'base'    => '#ffffff',
+		       'focus'   => '#92285e',
+		       'current' => '#ffffff'
+		)
+	);
+}
+
+add_action( 'admin_init', 'xlt_admin_color_scheme' );
