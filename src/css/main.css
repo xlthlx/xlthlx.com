@@ -585,8 +585,14 @@ table.wp-inci td {
 }
 
 hr {
-    height: 0;
-    border-bottom: 3px dashed #e0e1ee;
+    height: initial!important;
+    margin: initial!important;
+    color: inherit!important;
+    background-color: initial!important;
+    opacity: initial!important;
+    border-width: 3px 0 0 0!important;
+    border-style: dashed!important;
+    border-color:  #e0e1ee!important;
 }
 
 footer {
