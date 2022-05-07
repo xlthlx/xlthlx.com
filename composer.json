@@ -11,13 +11,13 @@
     }
   ],
   "require": {
-    "cmb2/cmb2": "^v2.10.0",
-    "composer/installers": "^1.12",
+    "cmb2/cmb2": "^v2.10.1",
+    "composer/installers": "^2.1.1",
     "dejurin/php-google-translate-for-free": "^1.0",
-    "scrivo/highlight.php": "dev-master",
+    "scrivo/highlight.php": "^9.18.1.9",
     "simplehtmldom/simplehtmldom": "dev-master",
-    "johnbillion/extended-cpts": "^5.0",
-    "timber/timber": "^1.19"
+    "johnbillion/extended-cpts": "^5.0.2",
+    "timber/timber": "^1.19.1"
   },
   "extra": {
     "installer-paths": {
@@ -27,9 +27,14 @@
     }
   },
   "require-dev": {
-    "dxw/phar-install": "^1.1"
+    "dxw/phar-install": "^1.1.2"
   },
   "scripts": {
     "post-update-cmd": "vendor/bin/phar-install"
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
   }
 }
