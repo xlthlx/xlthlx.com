@@ -10,7 +10,6 @@
  * Adds the English fields.
  */
 function xlt_add_metabox() {
-
 	$cmb_post = new_cmb2_box( array(
 		'id'           => 'group_en',
 		'title'        => 'English',
@@ -69,10 +68,56 @@ function xlt_add_metabox() {
 		),
 		'show_in_rest' => WP_REST_Server::ALLMETHODS,
 	) );
-
 }
 
 add_action( 'cmb2_init', 'xlt_add_metabox' );
+
+function xlt_add_category_metabox() {
+	$cmb_category = new_cmb2_box( array(
+		'id'               => 'category_group_en',
+		'title'            => 'English',
+		'object_types'     => array( 'term' ),
+		'taxonomies'       => array( 'category' ),
+		'priority'         => 'high',
+		'show_in_rest'     => WP_REST_Server::ALLMETHODS,
+		'mb_callback_args' => array( '__block_editor_compatible_meta_box' => true ),
+	) );
+
+	$cmb_category->add_field( array(
+		'id'           => 'category_en',
+		'name'         => 'Name',
+		'type'         => 'text',
+		'column'       => array(
+			'position' => 2,
+			'name'     => 'Name',
+		),
+		'show_in_rest' => WP_REST_Server::ALLMETHODS,
+	) );
+}
+
+add_action( 'cmb2_init', 'xlt_add_category_metabox' );
+
+function filter_term_name( $term, $taxonomy ) {
+
+	if ( is_admin() ) {
+		return $term;
+	}
+
+	$lang = get_lang();
+
+	if ( 'en' === $lang ) {
+
+		$meta_value = get_term_meta( $term->term_id, 'category_en', true );
+
+		if ( $meta_value ) {
+			$term->name = $meta_value;
+		}
+	}
+
+	return $term;
+}
+
+add_filter( 'get_term', 'filter_term_name', 10, 2 );
 
 /**
  * Add columns in the admin list.

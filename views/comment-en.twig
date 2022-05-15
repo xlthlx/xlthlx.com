@@ -4,10 +4,7 @@
 		<div class="card mb-3 rounded-0 border-0">
 			<div class="row g-0">
 				<div class="col-md-1">
-					{% if comment.comment_author_url != '' %}
-					<a target="_blank" href="{{ comment.comment_author_url }}">{% endif %}
-						{{ fn('xlt_get_avatar', comment, comment.author.name) }}
-						{% if comment.comment_author_url != '' %}</a>{% endif %}
+					{{ fn('xlt_get_avatar', comment, comment.author.name) }}
 				</div>
 				<div class="col-md-11">
 					<div class="card-body py-0">
