@@ -627,6 +627,6 @@ if ( ! function_exists( 'xl_get_sticky_img' ) ) {
 	 */
 	function xl_get_sticky_img( $id, $alt ) {
 		return wp_get_attachment_image( $id, array( '437', '225' ), false,
-			array( "class" => "img-fluid grey_img", "alt" => $alt ) );
+			array( "class" => "img-fluid grey_img", "alt" => $alt, "loading" => false ) );
 	}
 }

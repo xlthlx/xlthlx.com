@@ -250,9 +250,7 @@ function get_content_en( $post_id = 0 ) {
  * @return string
  */
 function get_lang() {
-	$link = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ?
-			"https" : "http" ) . "://" . $_SERVER['HTTP_HOST'] .
-	        $_SERVER['REQUEST_URI'];
+	$link = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 	$lang = 'it';
 	$pos  = strpos( $link, '/en/' );
