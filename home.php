@@ -8,14 +8,15 @@
 
 $context = Timber::context();
 
-global $paged;
-if ( ! isset( $paged ) || ! $paged ) {
-	$paged = 1;
+$context['lang'] = get_lang();
+
+$paged = ( get_query_var( 'paged' ) ) ?: 1;
+if ( 'en' === $context['lang'] ) {
+	$paged = ( get_query_var( 'page' ) ) ?: 1;
 }
 
-$context['lang'] = get_lang();
-$sticky          = get_option( 'sticky_posts' );
-$first           = array_slice( $sticky, 0, 1 );
+$sticky = get_option( 'sticky_posts' );
+$first  = array_slice( $sticky, 0, 1 );
 
 $offset = array();
 
@@ -33,7 +34,8 @@ if ( count( $first ) === 1 ) {
 foreach ( $context['first_posts'] as $context['first_post'] ) {
 	$context['first_post']->title_en   = get_title_en();
 	$context['first_post']->date_en    = get_date_en();
-	$context['first_post']->preview_en = xlt_get_excerpt( get_content_en(), 40 );
+	$context['first_post']->preview_en = xlt_get_excerpt( get_content_en(),
+		40 );
 }
 
 if ( count( $first ) === 1 ) {
