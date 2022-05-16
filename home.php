@@ -33,6 +33,12 @@ if ( count( $first ) === 1 ) {
 
 $context['posts'] = new Timber\PostQuery( array( 'post__not_in' => $offset, 'paged' => $paged ) );
 
+foreach ( $context['posts'] as $context['post'] ) {
+	$context['post']->title_en   = get_title_en();
+	$context['post']->date_en    = get_date_en();
+	$context['post']->preview_en = xlt_get_excerpt( get_content_en() );
+}
+
 $context['category'] = Timber::get_terms( [
 	'taxonomy'   => 'category',
 	'hide_empty' => 1,

@@ -49,9 +49,12 @@ function get_date_en( $post_id = 0 ) {
 	if ( 'post' === $post_type ) {
 		if ( ! is_home() || ! is_archive() ) {
 			if ( ! get_post_meta( $post_id, 'date_en',
-					true ) || get_post_meta( $post_id, 'date_en', true ) === '' ) {
+					true ) || get_post_meta( $post_id, 'date_en',
+					true ) === '' ) {
 				$month = xlt_translate( get_the_time( 'F', $post_id ) );
-				$date  = get_the_time( 'd', $post_id ) . ' ' . ucfirst( $month ) . ' ' . get_the_time( 'Y', $post_id );
+				$date  = get_the_time( 'd',
+						$post_id ) . ' ' . ucfirst( $month ) . ' ' . get_the_time( 'Y',
+						$post_id );
 				update_post_meta( $post_id, 'date_en', $date );
 			}
 		}
@@ -129,7 +132,8 @@ function get_content_en( $post_id = 0 ) {
 					'core/code'
 				);
 
-				if ( isset( $block['blockName'] ) && $block['blockName'] !== '' && in_array( $block['blockName'], $block_types, true ) ) {
+				if ( isset( $block['blockName'] ) && $block['blockName'] !== '' && in_array( $block['blockName'],
+						$block_types, true ) ) {
 
 					if ( $block['blockName'] === 'core/code' ) {
 						$code = $doc->load( $block['innerHTML'] );
@@ -137,7 +141,11 @@ function get_content_en( $post_id = 0 ) {
 						if ( $code ) {
 
 							$hl = new Highlighter();
-							$hl->setAutodetectLanguages( array( 'php', 'javascript', 'html' ) );
+							$hl->setAutodetectLanguages( array(
+								'php',
+								'javascript',
+								'html'
+							) );
 
 							$code = str_replace( array(
 								'<pre class="wp-block-code">',
@@ -149,7 +157,8 @@ function get_content_en( $post_id = 0 ) {
 							$highlighted = $hl->highlightAuto( $code );
 
 							$code            = '<pre class="wp-block-code"><code class="hljs ' . $highlighted->language . '">' . $highlighted->value . '</code></pre>';
-							$code->outertext = apply_filters( 'the_content', $code );
+							$code->outertext = apply_filters( 'the_content',
+								$code );
 
 						}
 
@@ -205,7 +214,8 @@ function get_content_en( $post_id = 0 ) {
 
 								$i = 0;
 								foreach ( $to_remove as $remove ) {
-									$plain_p = str_replace( $remove, '{' . $i . '}', $plain_p );
+									$plain_p = str_replace( $remove,
+										'{' . $i . '}', $plain_p );
 									$i ++;
 								}
 
@@ -219,7 +229,8 @@ function get_content_en( $post_id = 0 ) {
 
 								$i = 0;
 								foreach ( $to_remove as $remove ) {
-									$trans_p = str_replace( '{' . $i . '}', $remove, $trans_p );
+									$trans_p = str_replace( '{' . $i . '}',
+										$remove, $trans_p );
 									$i ++;
 								}
 
@@ -241,7 +252,8 @@ function get_content_en( $post_id = 0 ) {
 		}
 	}
 
-	return apply_filters( 'the_content', get_post_meta( $post_id, 'content_en', true ) );
+	return apply_filters( 'the_content',
+		get_post_meta( $post_id, 'content_en', true ) );
 }
 
 /**
@@ -260,59 +272,6 @@ function get_lang() {
 	}
 
 	return $lang;
-}
-
-/**
- * Sets search page title.
- *
- * @return string
- */
-function get_search_title() {
-	global $wp_query;
-	$title = '<h2 class="h3-responsive text-center white indigo-text p-3 mt-4 mb-4">';
-	$title .= $wp_query->found_posts . ' risultati per: ';
-	$title .= urldecode( get_query_var( 's' ) ) . '</h2>';
-
-	return $title;
-}
-
-/**
- * Sets archive page title.
- *
- * @return string
- */
-function get_archive_title() {
-
-	$title = '<h2 class="h3-responsive text-center white indigo-text p-3 mt-4 mb-4">';
-	$text  = 'Archivio';
-
-	if ( is_category() ) {
-		$text = single_cat_title( '', false );
-	}
-
-	if ( is_tag() ) {
-		$text = single_cat_title( '', false );
-	}
-
-	if ( is_day() ) {
-		$text = get_the_time( 'd F Y' );
-	}
-
-	if ( is_month() ) {
-		$text = get_the_time( 'F Y' );
-	}
-
-	if ( is_year() ) {
-		$text = get_the_time( 'Y' );
-	}
-
-	if ( is_author() ) {
-		$author = ( isset( $_GET['author_name'] ) ) ? get_user_by( 'slug', $_GET['author_name'] ) : get_userdata( (int) get_user_by( 'ID', $_GET['author_name'] ) );
-		$prefix = 'Tutti gli articoli di ';
-		$text   = $prefix . $author->display_name;
-	}
-
-	return $title . $text . '</h2>';
 }
 
 /**
@@ -360,6 +319,15 @@ function xlt_template_redirect() {
 		$template = '/page.php';
 	}
 
+	if ( is_archive() ) {
+		$template = '/archive.php';
+	}
+
+	if (( is_front_page()) || ( is_front_page() && is_paged()) ) {
+		$template = '/home.php';
+	}
+
+
 	set_query_var( 'template', $template );
 
 	include get_template_directory() . $template;
@@ -392,3 +360,22 @@ function xlt_home_posts_per_page( $query ) {
 }
 
 add_action( 'pre_get_posts', 'xlt_home_posts_per_page' );
+
+/**
+ * Set up an excerpt from $content.
+ *
+ * @param $content
+ *
+ * @return mixed|string
+ */
+function xlt_get_excerpt( $content ) {
+	if ( ! '' === $content ) {
+		$content = strip_shortcodes( $content );
+		$content = excerpt_remove_blocks( $content );
+		$content = apply_filters( 'the_content', $content );
+		$content = str_replace( ']]>', ']]&gt;', $content );
+		$content = wp_trim_words( $content, 50, '...' );
+	}
+
+	return $content;
+}

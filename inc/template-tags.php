@@ -37,6 +37,9 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 	 */
 	function xlt_breadcrumbs() {
 
+		global $post;
+		$lang = get_lang();
+
 		$args = array(
 			'before'        => '<li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">',
 			'before_active' => '<li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">',
@@ -45,21 +48,20 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 			'name'          => '<span itemprop="name">%1$s</span>',
 			'position'      => '<meta itemprop="position" content="%1$s">',
 			'text'          => array(
-				'home'     => __( 'Home' ),
+				'home'     => 'Home',
 				'category' => '%s',
-				'search'   => __( 'Search results for "%s"' ),
+				'search'   => ( 'en' === $lang ) ? 'Search results for "%s"' : 'Risultati della ricerca per "%s"',
 				'tag'      => '%s',
-				'author'   => __( 'Posts by %s' ),
-				'404'      => __( 'Error 404' ),
-				'page'     => __( 'Page %s' ),
-				'cpage'    => __( 'Comments page %s' )
+				'author'   => ( 'en' === $lang ) ? 'Posts by %s' : 'Articoli di %s',
+				'404'      => ( 'en' === $lang ) ? 'Error 404' : 'Errore 404',
+				'page'     => ( 'en' === $lang ) ? 'Page %s' : 'Pagina %s',
+				'cpage'    => ( 'en' === $lang ) ? 'Comments page %s' : 'Commenti pagina %s',
 			)
 		);
 
-		global $post;
+
 		$home_url  = home_url( '/' );
 		$parent_id = $post->post_parent??0;
-		$lang      = get_lang();
 		$title     = ( 'en' === $lang ) ? get_title_en() : get_the_title();
 
 

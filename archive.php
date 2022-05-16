@@ -11,8 +11,8 @@
 $templates = array( 'archive.twig', 'index.twig' );
 
 $context = Timber::context();
-
 $context['title'] = 'Archivio';
+
 if ( is_day() ) {
 	$context['title'] = get_the_date( 'D M Y' );
 } elseif ( is_month() ) {
@@ -30,4 +30,12 @@ if ( is_day() ) {
 }
 
 $context['posts'] = new Timber\PostQuery();
+$context['lang'] = get_lang();
+
+foreach ( $context['posts'] as $context['post'] ) {
+	$context['post']->title_en   = get_title_en();
+	$context['post']->date_en    = get_date_en();
+	$context['post']->preview_en = xlt_get_excerpt( get_content_en() );
+}
+
 Timber::render( $templates, $context );
