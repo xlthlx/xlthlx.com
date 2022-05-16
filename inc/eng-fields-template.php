@@ -369,8 +369,9 @@ add_action( 'pre_get_posts', 'xlt_home_posts_per_page' );
  *
  * @return string
  */
-function xlt_get_excerpt( $content, $length = 50 ) {
+function xlt_get_excerpt( $content, $length = false ) {
 	if ( '' !== $content ) {
+		$length = ( ! $length ) ? 50 : $length;
 		$content = strip_shortcodes( $content );
 		$content = excerpt_remove_blocks( $content );
 		$content = apply_filters( 'the_content', $content );
