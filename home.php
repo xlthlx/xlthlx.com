@@ -13,6 +13,7 @@ if ( ! isset( $paged ) || ! $paged ) {
 	$paged = 1;
 }
 
+$context['lang'] = get_lang();
 $sticky = get_option( 'sticky_posts' );
 $first  = array_slice( $sticky, 0, 1 );
 
@@ -26,6 +27,9 @@ if ( count( $first ) === 1 ) {
 	$offset[0]              = $context['first_posts'][0]->ID;
 }
 
+$context['first_posts']->title_en   = get_title_en();
+$context['first_posts']->date_en    = get_date_en();
+$context['first_posts']->preview_en = xlt_get_excerpt( get_content_en() , 40);
 
 if ( count( $first ) === 1 ) {
 	$offset = array_slice( $sticky, 0, 3 );

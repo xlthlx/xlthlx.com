@@ -365,16 +365,17 @@ add_action( 'pre_get_posts', 'xlt_home_posts_per_page' );
  * Set up an excerpt from $content.
  *
  * @param $content
+ * @param int $length
  *
- * @return mixed|string
+ * @return string
  */
-function xlt_get_excerpt( $content ) {
-	if ( ! '' === $content ) {
+function xlt_get_excerpt( $content, $length = 50 ) {
+	if ( '' !== $content ) {
 		$content = strip_shortcodes( $content );
 		$content = excerpt_remove_blocks( $content );
 		$content = apply_filters( 'the_content', $content );
 		$content = str_replace( ']]>', ']]&gt;', $content );
-		$content = wp_trim_words( $content, 50, '...' );
+		$content = wp_trim_words( $content, $length, '...' );
 	}
 
 	return $content;
