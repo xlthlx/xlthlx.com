@@ -119,6 +119,24 @@ function filter_term_name( $term, $taxonomy ) {
 
 add_filter( 'get_term', 'filter_term_name', 10, 2 );
 
+
+function term_link_filter( $url, $term, $taxonomy ) {
+
+	if ( is_admin() ) {
+		return $url;
+	}
+	$lang = get_lang();
+
+	if ( 'en' === $lang ) {
+		$url = str_replace( '/cat/', '/cat/en/', $url );
+	}
+
+	return $url;
+
+}
+
+add_filter( 'term_link', 'term_link_filter', 10, 3 );
+
 /**
  * Add columns in the admin list.
  *
