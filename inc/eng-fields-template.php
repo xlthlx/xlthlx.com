@@ -309,7 +309,17 @@ function xlt_template_redirect() {
 	if ( ! isset( $wp_query->query_vars['en'] ) ) {
 		return;
 	}
+
 	$template = '/index.php';
+
+	$url = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	$url = str_replace( 'https://xlthlx.com/en/', '', $url );
+
+	$page = explode( "/", $url );
+	if ( isset( $page[1] ) ) {
+		set_query_var( 'page', (int) $page[1] );
+		set_query_var( 'paged', (int) $page[1] );
+	}
 
 	if ( is_single() ) {
 		$template = '/single.php';
@@ -323,10 +333,9 @@ function xlt_template_redirect() {
 		$template = '/archive.php';
 	}
 
-	if (( is_front_page()) || ( is_front_page() && is_paged()) ) {
+	if ( is_front_page() ) {
 		$template = '/home.php';
 	}
-
 
 	set_query_var( 'template', $template );
 
@@ -370,8 +379,9 @@ add_action( 'pre_get_posts', 'xlt_home_posts_per_page' );
  * @return string
  */
 function xlt_get_excerpt( $content, $length = false ) {
+
 	if ( '' !== $content ) {
-		$length = ( ! $length ) ? 50 : $length;
+		$length  = ( ! $length ) ? 50 : $length;
 		$content = strip_shortcodes( $content );
 		$content = excerpt_remove_blocks( $content );
 		$content = apply_filters( 'the_content', $content );
