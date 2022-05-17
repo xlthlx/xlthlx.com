@@ -5,14 +5,14 @@
                 {% set cat = post.terms('category')|last %}
                 <span class="d-inline-block mb-2 text-primary fw-bold">{% include 'partial/terms.twig' %}</span>
                 {% if lang == 'en' %}
-                <h2 class="display-6 mb-3 shadows">{{ post.title_en }}</h2>
-                <p class="card-text mb-auto me-5">{{ post.preview_en }}
-                    <a aria-label="Keep reading: {{ post.title_en }}"
-                       href="{{ post.link }}en/"
-                       class="display-6 stretched-link text-decoration-none arrow ln-0 align-middle">
-                        &#8674;
-                    </a>
-                </p>
+                    <h2 class="display-6 mb-3 shadows">{{ post.title_en }}</h2>
+                    <p class="card-text mb-auto me-5">{{ post.preview_en }}
+                        <a aria-label="Keep reading: {{ post.title_en }}"
+                           href="{{ post.link }}en/"
+                           class="display-6 stretched-link text-decoration-none arrow ln-0 align-middle">
+                            &#8674;
+                        </a>
+                    </p>
                 {% else %}
                     <h2 class="display-6 mb-3 shadows">{{ post.title }}</h2>
                     <p class="card-text mb-auto me-5">{{ post.preview.length(20).read_more('') }}

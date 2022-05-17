@@ -6,11 +6,14 @@
  * @subpackage  Xlthlx
  */
 
-$timberContext = $GLOBALS['timberContext'];
+$context = $GLOBALS['timberContext'];
 if ( ! isset( $timberContext ) ) {
 	throw new Exception( 'Timber context not set in footer.' );
 }
-$timberContext['content'] = ob_get_contents();
+$context['content'] = ob_get_contents();
 ob_end_clean();
+
+$context['lang'] = get_lang();
+
 $templates = array( 'footer.twig' );
-Timber::render( $templates, $timberContext );
+Timber::render( $templates, $context );

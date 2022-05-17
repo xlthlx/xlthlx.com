@@ -4,20 +4,31 @@
 			<div class="col px-4 py-3 d-flex flex-column position-static">
 				{% set cat = post.terms('category')|first %}
 				<strong class="d-inline-block mb-2 text-primary">{{ cat.name }}</strong>
-				<h2 class="display-6 mb-3 shadows">{{ post.title }}</h2>
-				<p class="card-text mb-auto">{{ post.preview.length(20).read_more('') }}
-				<a aria-label="Continua a leggere: {{ post.title }}"
-				   href="{{ post.link }}"
-				   class="display-6 stretched-link text-decoration-none arrow ln-0 align-middle">
-					&#8674;
-				</a></p>
+				{% if lang == 'en' %}
+					<h2 class="display-6 mb-3 shadows">{{ post.title_en }}</h2>
+					<p class="card-text mb-auto">{{ post.preview_en }}
+						<a aria-label="Keep reading: {{ post.title_en }}"
+						   href="{{ post.link }}en/"
+						   class="display-6 stretched-link text-decoration-none arrow ln-0 align-middle">
+							&#8674;</a>
+					</p>
+				{% else %}
+					<h2 class="display-6 mb-3 shadows">{{ post.title }}</h2>
+					<p class="card-text mb-auto">{{ post.preview.length(20).read_more('') }}
+						<a aria-label="Continua a leggere: {{ post.title }}"
+						   href="{{ post.link }}"
+						   class="display-6 stretched-link text-decoration-none arrow ln-0 align-middle">
+							&#8674;</a>
+					</p>
+				{% endif %}
 			</div>
 			{% if post.thumbnail.src %}
+				{% set alt = lang == 'en'? post.title_en : post.title %}
 					<picture loading="lazy" class="col-auto d-none d-lg-block">
-						<source srcset="{{ post.thumbnail.src | resize(200, 250) |towebp }}"
+						<source srcset="{{ post.thumbnail.src | resize(200, 250) }}"
 								class="img-fluid" type="image/webp" sizes="(max-width: 200px) 100vw, 200px">
-						<img width="200" height="250" src="{{ post.thumbnail.src | resize(200, 250) |tojpg }}"
-							 class="img-fluid" alt="{{ post.title }}" sizes="(max-width: 200px) 100vw, 200px">
+						<img width="200" height="250" src="{{ post.thumbnail.src | resize(200, 250) }}"
+							 class="img-fluid" alt="{{ alt }}" sizes="(max-width: 200px) 100vw, 200px">
 					</picture>
 			{% endif %}
 		</div>
