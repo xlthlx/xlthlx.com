@@ -53,6 +53,7 @@ class xlthlxSite extends Timber\Site {
 	public function add_to_context( $context ) {
 		global $timber;
 
+		$context['lang'] = get_lang();
 		$context['menu']             = new Timber\Menu( 'primary' );
 		$context['menu_footer']      = new Timber\Menu( 'footer' );
 		$context['site']             = $this;
@@ -63,6 +64,9 @@ class xlthlxSite extends Timber\Site {
 		$context['current_user']     = new Timber\User();
 		$context['sidebar']          = $timber::get_widgets( 'sidebar' );
 		$context['page_sidebar']     = $timber::get_widgets( 'page_sidebar' );
+
+		$this->set_en_menu_title($context['menu']->items);
+		$this->set_en_menu_title($context['menu_footer']->items);
 
 		return $context;
 	}
@@ -204,6 +208,23 @@ class xlthlxSite extends Timber\Site {
 		return WP_CONTENT_DIR . '/cache/timber';
 	}
 
+	public function set_en_menu_title( $items ) {
+
+		if ( 'en' === get_lang() ) {
+			foreach ( $items as $item ) {
+				if ( get_title_en( $item->master_object->ID ) !== '' ) {
+					$item->title = get_title_en( $item->master_object->ID );
+				}
+				if ( isset( $item->children ) ) {
+					foreach ( $item->children as $child ) {
+						if ( get_title_en( $child->master_object->ID ) !== '' ) {
+							$child->title = get_title_en( $child->master_object->ID );
+						}
+					}
+				}
+			}
+		}
+	}
 
 }
 

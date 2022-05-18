@@ -97,46 +97,6 @@ function xlt_add_category_metabox() {
 
 add_action( 'cmb2_init', 'xlt_add_category_metabox' );
 
-function filter_term_name( $term, $taxonomy ) {
-
-	if ( is_admin() ) {
-		return $term;
-	}
-
-	$lang = get_lang();
-
-	if ( 'en' === $lang ) {
-
-		$meta_value = get_term_meta( $term->term_id, 'category_en', true );
-
-		if ( $meta_value ) {
-			$term->name = $meta_value;
-		}
-	}
-
-	return $term;
-}
-
-add_filter( 'get_term', 'filter_term_name', 10, 2 );
-
-
-function term_link_filter( $url, $term, $taxonomy ) {
-
-	if ( is_admin() ) {
-		return $url;
-	}
-	$lang = get_lang();
-
-	if ( 'en' === $lang ) {
-		$url = str_replace( '/cat/', '/cat/en/', $url );
-	}
-
-	return $url;
-
-}
-
-add_filter( 'term_link', 'term_link_filter', 10, 3 );
-
 /**
  * Add columns in the admin list.
  *

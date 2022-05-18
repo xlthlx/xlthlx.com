@@ -8,8 +8,6 @@
 
 $context = Timber::context();
 
-$context['lang'] = get_lang();
-
 $paged = ( get_query_var( 'paged' ) ) ?: 1;
 if ( 'en' === $context['lang'] ) {
 	$paged = ( get_query_var( 'page' ) ) ?: 1;
@@ -25,7 +23,8 @@ if ( count( $first ) === 1 ) {
 		'post__in'            => $first,
 		'ignore_sticky_posts' => 1
 	) );
-	$offset                 = $first;
+
+	$offset = $first;
 } else {
 	$context['first_posts'] = new Timber\PostQuery( array( 'posts_per_page' => 1 ) );
 	$offset[0]              = $context['first_posts'][0]->ID;

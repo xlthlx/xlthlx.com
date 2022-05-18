@@ -6,13 +6,13 @@
 
 		<div class="row">
 			<div class="col-md-8">
-				<h2 class="display-4 pb-3 shadows">{{ post.title }}</h2>
+				<h2 class="display-4 pb-3 shadows">{{ lang == 'it'? post.title : post.title_en }}</h2>
 				<section class="page-content">
 					<hr class="pt-0 mt-0 mb-4"/>
 					<ul class="list-unstyled">
 						{{ friends }}
 					</ul>
-					{{ post.content }}
+					{{ lang == 'it'? post.content : post.content_en }}
 				</section>
 			</div>
 			<div class="col-md-4">

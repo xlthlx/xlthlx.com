@@ -9,7 +9,6 @@
 $context         = Timber::context();
 $timber_post     = Timber::query_post();
 $context['post'] = $timber_post;
-$context['lang'] = get_lang();
 
 $context['post']->title_en   = get_title_en();
 $context['post']->date_en    = get_date_en();
