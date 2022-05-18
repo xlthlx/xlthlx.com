@@ -653,6 +653,10 @@ footer:after {
     border: 3px dashed #6667ab;
 }
 
+.btn-outline-secondary {
+    color: white!important;
+}
+
 /*-------
 Colors
 _______*/

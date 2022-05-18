@@ -30,7 +30,6 @@ if ( is_day() ) {
 }
 
 $context['posts'] = new Timber\PostQuery();
-$context['lang'] = get_lang();
 
 foreach ( $context['posts'] as $context['post'] ) {
 	$context['post']->title_en   = get_title_en();

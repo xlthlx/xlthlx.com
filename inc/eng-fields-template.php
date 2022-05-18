@@ -22,7 +22,7 @@ function xlt_translate( $element ) {
 	$trc = new Dejurin\GoogleTranslateForFree();
 
 	try {
-		$trans_content = $trc::translate( 'it', 'en', $element, 5 );
+		$trans_content = $trc::translate( 'it', 'en', $element );
 
 	} catch ( Exception $ex ) {
 		error_log( $ex );
@@ -68,7 +68,7 @@ function get_date_en( $post_id = 0 ) {
  *
  * @param int $post_id
  *
- * @return string $title
+ * @return string
  */
 function get_title_en( $post_id = 0 ) {
 	if ( $post_id === 0 ) {
@@ -95,7 +95,7 @@ function get_title_en( $post_id = 0 ) {
  *
  * @param int $post_id
  *
- * @return string $content
+ * @return string
  * @throws Exception
  */
 function get_content_en( $post_id = 0 ) {
@@ -257,12 +257,21 @@ function get_content_en( $post_id = 0 ) {
 }
 
 /**
+ * Gets absolute url.
+ *
+ * @return string
+ */
+function get_abs_url() {
+	return ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? "https" : "http" ) . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+}
+
+/**
  * Get language var.
  *
  * @return string
  */
 function get_lang() {
-	$link = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	$link = get_abs_url();
 
 	$lang = 'it';
 	$pos  = strpos( $link, '/en/' );
@@ -272,6 +281,46 @@ function get_lang() {
 	}
 
 	return $lang;
+}
+
+/**
+ * Get url for language switcher.
+ *
+ * @return string
+ */
+function get_url_trans() {
+
+	$link = get_abs_url();
+	$pos  = strpos( $link, '/en/' );
+
+
+	if ( is_category() ) {
+		if ( $pos === false ) {
+			$link = str_replace( '/cat/', '/cat/en/', $link );
+		} else {
+			$link = str_replace( 'en/', '', $link );
+		}
+
+		return $link;
+	}
+
+	if ( is_paged() ) {
+		if ( $pos === false ) {
+			$link = str_replace( '/page/', '/en/page/', $link );
+		} else {
+			$link = str_replace( 'en/', '', $link );
+		}
+
+		return $link;
+	}
+
+	if ( $pos === false ) {
+		$link .= 'en/';
+	} else {
+		$link = str_replace( 'en/', '', $link );
+	}
+
+	return $link;
 }
 
 /**
@@ -312,10 +361,11 @@ function xlt_template_redirect() {
 
 	$template = '/index.php';
 
-	$url = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	$url = get_abs_url();
 	$url = str_replace( 'https://xlthlx.com/en/', '', $url );
 
 	$page = explode( "/", $url );
+
 	if ( isset( $page[1] ) ) {
 		set_query_var( 'page', (int) $page[1] );
 		set_query_var( 'paged', (int) $page[1] );
@@ -327,6 +377,26 @@ function xlt_template_redirect() {
 
 	if ( is_page() && ! is_paged() ) {
 		$template = '/page.php';
+	}
+
+	if ( is_page_template( 'page-friends.php' ) ) {
+		$template = '/page-friends.php';
+	}
+
+	if ( is_page_template( 'page-links.php' ) ) {
+		$template = '/page-links.php';
+	}
+
+	if ( is_page_template( 'page-makeup.php' ) ) {
+		$template = '/page-makeup.php';
+	}
+
+	if ( is_page_template( 'page-newsletter.php' ) ) {
+		$template = '/page-newsletter.php';
+	}
+
+	if ( is_page_template( 'page-referral.php' ) ) {
+		$template = '/page-referral.php';
 	}
 
 	if ( is_archive() ) {
@@ -391,3 +461,111 @@ function xlt_get_excerpt( $content, $length = false ) {
 
 	return $content;
 }
+
+/**
+ * Filters a taxonomy term object.
+ *
+ * @param WP_Term $term Term object.
+ * @param string $taxonomy The taxonomy slug.
+ *
+ * @return WP_Term
+ */
+function filter_term_name( $term, $taxonomy ) {
+
+	if ( is_admin() ) {
+		return $term;
+	}
+
+	$lang = get_lang();
+
+	if ( 'en' === $lang ) {
+
+		$meta_value = get_term_meta( $term->term_id, 'category_en', true );
+
+		if ( $meta_value ) {
+			$term->name = $meta_value;
+		}
+	}
+
+	return $term;
+}
+
+add_filter( 'get_term', 'filter_term_name', 10, 2 );
+
+/**
+ * Filters the term link.
+ *
+ * @param string $termlink Term link URL.
+ * @param WP_Term $term Term object.
+ * @param string $taxonomy Taxonomy slug.
+ *
+ * @return string
+ */
+function term_link_filter( $termlink, $term, $taxonomy ) {
+
+	if ( null === $term ) {
+		return $termlink;
+	}
+
+	if ( is_admin() ) {
+		return $termlink;
+	}
+
+	if ( 'en' === get_lang() ) {
+		$termlink = str_replace( '/cat/', '/cat/en/', $termlink );
+	}
+
+	return $termlink;
+
+}
+
+add_filter( 'term_link', 'term_link_filter', 10, 3 );
+
+/**
+ * Filters the retrieved list of pages.
+ *
+ * @param array $pages Array of page objects.
+ * @param array $args Array of get_pages() arguments.
+ *
+ * @return array
+ */
+function xlt_set_title_en_pages( $pages, $args ) {
+
+	if ( ! is_admin() && 'en' === get_lang() ) {
+		foreach ( $pages as $page ) {
+			$page->post_title = get_title_en( $page->ID );
+		}
+	}
+
+	return $pages;
+}
+
+add_filter( 'get_pages', 'xlt_set_title_en_pages', 10, 2 );
+
+/**
+ * Filters the permalink for a page.
+ *
+ * @param string $link The page's permalink.
+ * @param int $post_id The ID of the page.
+ * @param bool $sample Is it a sample permalink.
+ *
+ * @return string
+ */
+function xlt_set_url_en_pages( $link, $post_id, $sample ) {
+
+	if ( empty( $post_id ) ) {
+		return $link;
+	}
+
+	if ( is_admin() ) {
+		return $link;
+	}
+
+	if ( 'en' === get_lang() ) {
+		return $link . 'en/';
+	}
+
+	return $link;
+}
+
+add_filter( 'page_link', 'xlt_set_url_en_pages', 10, 3 );
