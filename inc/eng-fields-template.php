@@ -371,14 +371,6 @@ function xlt_template_redirect() {
 		set_query_var( 'paged', (int) $page[1] );
 	}
 
-	$feed = get_feed_link();
-	$feed_en = str_replace( '/feed/', '/en/feed/', $feed );
-	echo $feed_en;
-
-	if($url === $feed_en ) {
-		$template = ABSPATH . WPINC . '/feed-rss2.php';
-	}
-
 	if ( is_single() ) {
 		$template = '/single.php';
 	}
