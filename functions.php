@@ -53,17 +53,17 @@ class xlthlxSite extends Timber\Site {
 	public function add_to_context( $context ) {
 		global $timber;
 
-		$context['lang'] = get_lang();
-		$context['menu']             = new Timber\Menu( 'primary' );
-		$context['menu_footer']      = new Timber\Menu( 'footer' );
-		$context['site']             = $this;
-		$context['site']->login_url  = wp_login_url( get_permalink() );
-		$context['site']->logout_url = wp_logout_url( $context['site']->url );
-		$context['logged_in']        = is_user_logged_in();
-		$context['is_home']          = is_home() || is_front_page();
-		$context['current_user']     = new Timber\User();
-		$context['sidebar']          = $timber::get_widgets( 'sidebar' );
-		$context['page_sidebar']     = $timber::get_widgets( 'page_sidebar' );
+		$context['lang']                 = get_lang();
+		$context['menu']                 = new Timber\Menu( 'primary' );
+		$context['menu_footer']          = new Timber\Menu( 'footer' );
+		$context['site']                 = $this;
+		$context['site']->url_en         = $context['site']->url . '/en/';
+		$context['site']->description_en = 'Better than a cyber duck in the ass.';
+		$context['logged_in']            = is_user_logged_in();
+		$context['is_home']              = is_home() || is_front_page();
+		$context['current_user']         = new Timber\User();
+		$context['sidebar']              = $timber::get_widgets( 'sidebar' );
+		$context['page_sidebar']         = $timber::get_widgets( 'page_sidebar' );
 
 		$this->set_en_menu_title($context['menu']->items);
 		$this->set_en_menu_title($context['menu_footer']->items);

@@ -308,7 +308,7 @@ function get_url_trans() {
 		if ( $pos === false ) {
 			$link = str_replace( '/page/', '/en/page/', $link );
 		} else {
-			$link = str_replace( 'en/', '', $link );
+			$link = str_replace( '/en/page/', '/page/', $link );
 		}
 
 		return $link;
@@ -362,13 +362,21 @@ function xlt_template_redirect() {
 	$template = '/index.php';
 
 	$url = get_abs_url();
-	$url = str_replace( 'https://xlthlx.com/en/', '', $url );
+	$url = str_replace( get_home_url().'/en/', '', $url );
 
 	$page = explode( "/", $url );
 
-	if ( isset( $page[1] ) ) {
+	if ( isset( $page[0], $page[1] ) && 'page' === $page[0] ) {
 		set_query_var( 'page', (int) $page[1] );
 		set_query_var( 'paged', (int) $page[1] );
+	}
+
+	$feed = get_feed_link();
+	$feed_en = str_replace( '/feed/', '/en/feed/', $feed );
+	echo $feed_en;
+
+	if($url === $feed_en ) {
+		$template = ABSPATH . WPINC . '/feed-rss2.php';
 	}
 
 	if ( is_single() ) {
