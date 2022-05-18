@@ -1,9 +1,9 @@
 <nav id="primary-nav" class="navbar navbar-dark bg-primary fixed-top">
     <div class="container-fluid min-container">
         <h1 id="logo" class="display-2 font-italic text-start m-0 ps-3 py-1">
-            <a title="{{ site.description }}"
+            <a title="{{ lang == 'it'? site.description : site.description_en }}"
                class="text-white text-decoration-none shadows"
-               href="{{ site.url }}">{{ site.name }}</a>
+               href="{{ lang == 'it'? site.url : site.url_en }}">{{ site.name }}</a>
         </h1>
 
         {% include 'partial/tabs.twig' %}
