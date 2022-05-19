@@ -622,13 +622,32 @@ if ( ! function_exists( 'xlt_get_file_content' ) ) {
 
 if ( ! function_exists( 'xl_get_sticky_img' ) ) {
 	/**
-	 * @param $id
-	 * @param $alt
+	 * Returns the HTML for the sticky image.
+	 *
+	 * @param int $id
+	 * @param string $alt
 	 *
 	 * @return string
 	 */
 	function xl_get_sticky_img( $id, $alt ) {
 		return wp_get_attachment_image( $id, array( '437', '225' ), false,
 			array( "class" => "img-fluid grey_img", "alt" => $alt, "loading" => false ) );
+	}
+}
+
+if ( ! function_exists( 'xlt_get_url_from_href' ) ) {
+	/**
+	 * Returns a url from an HTML link.
+	 *
+	 * @param string $string
+	 *
+	 * @return string
+	 */
+	function xlt_get_url_from_href( $string ) {
+
+		$re = '/href="(.*?)"/i';
+		preg_match($re, $string, $matches, PREG_OFFSET_CAPTURE);
+
+		return $matches[1][0];
 	}
 }

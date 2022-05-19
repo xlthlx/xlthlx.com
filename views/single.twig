@@ -48,7 +48,7 @@
 
 						<!-- Comments -->
 						{% if comments_it != 0 and lang == 'it' %}
-							<section id="post-comments" class="comment-box">
+							<section id="post-comments" class="comment-box mb-5">
 								<h3 class="mb-4">Commenti</h3>
 								{% for comment in post.comments %}
 									{% include 'comment.twig' %}
@@ -58,7 +58,7 @@
 						{% endif %}
 
 						{% if comments_en != 0 and lang == 'en' %}
-							<section id="post-comments" class="comment-box">
+							<section id="post-comments" class="comment-box mb-5">
 								<h3 class="mb-4">Comments</h3>
 								{% for comment in post.comments %}
 									{% include 'comment-en.twig' %}
@@ -69,7 +69,7 @@
 
 						<!-- Comment form -->
 						{% if 'open' == post.comment_status %}
-							<section id="comment-form" class="comment-box">
+							<section id="comment-form" class="comment-box mb-5">
 								{{ lang == 'it'? fn('xlt_comment_form') : fn('xlt_comment_form_en') }}
 							</section>
 						{% endif %}

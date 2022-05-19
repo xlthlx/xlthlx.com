@@ -309,7 +309,15 @@ add_action( 'wp_head', 'xlt_insert_css' );
  * @return string
  */
 function xlt_filter_next_post_link( $link ) {
-	$title = ( 'en' === get_lang() ) ? 'Next post' : 'Post successivo';
+
+	$title = 'Post successivo';
+
+	if ( 'en' === get_lang() ) {
+		$title = 'Next post';
+		$url   = xlt_get_url_from_href( $link );
+
+		$link = str_replace( $url, $url . 'en/', $link );
+	}
 
 	return str_replace( "rel=",
 		'title="' . $title . '" class="display-5 arrow" rel=', $link );
@@ -325,7 +333,15 @@ add_filter( 'next_post_link', 'xlt_filter_next_post_link' );
  * @return string
  */
 function xlt_filter_previous_post_link( $link ) {
-	$title = ( 'en' === get_lang() ) ? 'Previous post' : 'Post precedente';
+
+	$title = 'Post precedente';
+
+	if ( 'en' === get_lang() ) {
+		$title = 'Previous post';
+		$url   = xlt_get_url_from_href( $link );
+
+		$link = str_replace( $url, $url . 'en/', $link );
+	}
 
 	return str_replace( "rel=",
 		'title="' . $title . '" class="display-5 arrow" rel=', $link );
