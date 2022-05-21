@@ -39,7 +39,8 @@ class xlthlxSite extends Timber\Site {
 		add_filter( 'image_size_names_choose',
 			array( $this, 'custom_size_name' ) );
 		add_filter( 'login_display_language_dropdown', '__return_false' );
-		add_filter( 'timber/cache/location', array( $this, 'custom_change_twig_cache_dir' ) );
+		add_filter( 'timber/cache/location',
+			array( $this, 'custom_change_twig_cache_dir' ) );
 		parent::__construct();
 	}
 
@@ -65,8 +66,8 @@ class xlthlxSite extends Timber\Site {
 		$context['sidebar']              = $timber::get_widgets( 'sidebar' );
 		$context['page_sidebar']         = $timber::get_widgets( 'page_sidebar' );
 
-		$this->set_en_menu_title($context['menu']->items);
-		$this->set_en_menu_title($context['menu_footer']->items);
+		$this->set_en_menu_title( $context['menu']->items );
+		$this->set_en_menu_title( $context['menu_footer']->items );
 
 		return $context;
 	}
@@ -95,6 +96,7 @@ class xlthlxSite extends Timber\Site {
 		remove_theme_support( 'automatic-feed-links' );
 		remove_theme_support( 'widgets-block-editor' );
 		remove_theme_support( 'core-block-patterns' );
+		remove_action( 'wp_head', 'feed_links_extra', 3 );
 	}
 
 	/**
@@ -115,7 +117,7 @@ class xlthlxSite extends Timber\Site {
 	public function enqueue_scripts() {
 		// Styles.
 		wp_dequeue_style( 'wp-block-library' );
-		wp_dequeue_style('wpt-twitter-feed' );
+		wp_dequeue_style( 'wpt-twitter-feed' );
 		// Scripts.
 		if ( 'http://localhost' !== home_url() ) {
 			wp_deregister_script( 'jquery' );

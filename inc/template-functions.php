@@ -19,6 +19,17 @@ function xlt_remove_admin_bar_wp_logo() {
 
 add_action( 'wp_before_admin_bar_render', 'xlt_remove_admin_bar_wp_logo', 20 );
 
+/**
+ * Removes the version from the admin footer.
+ *
+ * @return void
+ */
+function xlt_admin_footer_remove() {
+	remove_filter( 'update_footer', 'core_update_footer' );
+}
+
+add_action( 'admin_menu', 'xlt_admin_footer_remove' );
+
 add_filter( 'pre_option_link_manager_enabled', '__return_true' );
 add_filter( 'wpcf7_load_js', '__return_false' );
 add_filter( 'wpcf7_load_css', '__return_false' );
@@ -164,6 +175,14 @@ add_action( 'admin_enqueue_scripts', 'xlt_enqueue_admin_css_js' );
  * @return mixed|string
  */
 function xlt_en_title( $title ) {
+
+	if ( is_home() || is_front_page() ) {
+		$lang = get_lang();
+		if ( 'en' === $lang ) {
+			$title = get_bloginfo( 'name' ) . ' | ' . 'Better than a cyber duck in the ass.';
+		}
+	}
+
 	if ( is_single() ) {
 		$lang = get_lang();
 		if ( 'en' === $lang ) {
@@ -185,6 +204,13 @@ add_filter( 'slim_seo_meta_title', 'xlt_en_title' );
  * @throws Exception
  */
 function xlt_en_description( $description ) {
+	if ( is_home() || is_front_page() ) {
+		$lang = get_lang();
+		if ( 'en' === $lang ) {
+			$description = 'xlthlx. Better than a cyber duck in the ass. Maybe.';
+		}
+	}
+
 	if ( is_single() ) {
 		$lang = get_lang();
 		if ( 'en' === $lang ) {
@@ -227,9 +253,8 @@ function xlt_unregister_tags() {
 
 add_action( 'init', 'xlt_unregister_tags' );
 
-
 /**
- * Replace youtube.com with the no cookie version.
+ * Replace YouTube.com with the no cookie version.
  *
  * @param $html
  * @param $data
@@ -350,6 +375,8 @@ function xlt_filter_previous_post_link( $link ) {
 add_filter( 'previous_post_link', 'xlt_filter_previous_post_link' );
 
 /**
+ * Add a class to previous/next links.
+ *
  * @param $html
  *
  * @return array|string|string[]
@@ -362,6 +389,8 @@ add_filter( 'next_post_link', 'xlt_add_post_link' );
 add_filter( 'previous_post_link', 'xlt_add_post_link' );
 
 /**
+ * Send 404 to Plausible.
+ *
  * @return void
  */
 function xlt_404_plausible() {
@@ -374,6 +403,11 @@ function xlt_404_plausible() {
 
 add_action( 'wp_head', 'xlt_404_plausible' );
 
+/**
+ * Custom Admin colour scheme.
+ *
+ * @return void
+ */
 function xlt_admin_color_scheme() {
 
 	$theme_dir = get_stylesheet_directory_uri();
@@ -381,11 +415,90 @@ function xlt_admin_color_scheme() {
 	wp_admin_css_color( 'xlthlx', __( 'Xlthlx' ),
 		$theme_dir . '/assets/css/admin/color-scheme.min.css',
 		array( '#1e2327', '#fff', '#92285e', '#6667ab' ),
-		array( 'base'    => '#ffffff',
-		       'focus'   => '#92285e',
-		       'current' => '#ffffff'
+		array(
+			'base'    => '#ffffff',
+			'focus'   => '#92285e',
+			'current' => '#ffffff'
 		)
 	);
 }
 
 add_action( 'admin_init', 'xlt_admin_color_scheme' );
+
+/**
+ * Create a menu separator.
+ *
+ * @param $position
+ *
+ * @return void
+ */
+function add_admin_menu_separator( $position ) {
+	global $menu;
+	$index = 0;
+	foreach ( $menu as $offset => $section ) {
+		if ( 0 === strpos( $section[2], 'separator' ) ) {
+			$index ++;
+		}
+		if ( $offset >= $position ) {
+			$menu[ $position ] = array(
+				'',
+				'read',
+				"separator$index",
+				'',
+				'wp-menu-separator'
+			);
+			break;
+		}
+	}
+	ksort( $menu );
+}
+
+/**
+ * Move around some admin menu items.
+ *
+ * @return void
+ */
+function xlt_rearrange_admin_menu() {
+	remove_menu_page( 'wp-tweets-pro' );
+	remove_menu_page( 'edit-comments.php' );
+
+	add_menu_page(
+		'Twitter',
+		'Twitter',
+		'manage_options',
+		'wp-tweets-pro',
+		'',
+		'dashicons-twitter',
+		34
+	);
+
+	add_submenu_page(
+		'edit.php',
+		'Commenti',
+		'Commenti',
+		'edit_posts',
+		'edit-comments.php',
+		'',
+		22
+	);
+
+	add_admin_menu_separator( 24 );
+}
+
+add_action( 'admin_menu', 'xlt_rearrange_admin_menu' );
+
+/**
+ * Hide SEO and description columns.
+ *
+ * @param $columns
+ *
+ * @return mixed
+ */
+function xlt_hide_seo_columns( $columns ) {
+	unset( $columns['meta_title'], $columns['meta_description'], $columns['description'] );
+
+	return $columns;
+}
+
+add_filter( 'manage_post_posts_columns', 'xlt_hide_seo_columns', 20 );
+add_filter( 'manage_edit-category_columns', 'xlt_hide_seo_columns', 20 );
