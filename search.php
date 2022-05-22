@@ -9,12 +9,39 @@
 $templates = array( 'search.twig', 'archive.twig', 'index.twig' );
 
 $context          = Timber::context();
-$context['title'] = 'Risultati della ricerca per: ' .get_search_query();
+
+$url = get_abs_url();
 
 if ( 'en' === $context['lang'] ) {
-	$context['title'] = 'Search results for: ' .get_search_query();
+	$url = str_replace( get_home_url() . '/search/en/', '', $url );
 }
-$context['posts'] = new Timber\PostQuery();
+else {
+	$url = str_replace( get_home_url() . '/search/', '', $url );
+}
+
+$page = explode( "/", $url );
+
+if ( isset( $page[0] ) ) {
+	$s = $page[0];
+	set_query_var( 's', $page[0] );
+}
+
+if ( isset( $page[1], $page[2] ) && 'page' === $page[1] ) {
+	$paged = (int) $page[2];
+	set_query_var( 'paged', (int) $page[2] );
+}
+
+$context['title'] = 'Risultati della ricerca per: ' . get_query_var( 's' );
+if ( 'en' === $context['lang'] ) {
+	$context['title'] = 'Search results for: ' . get_query_var( 's' );
+}
+
+$paged = ( get_query_var( 'paged' ) ) ?: 1;
+
+$context['posts'] = new Timber\PostQuery( array(
+	'paged' => $paged,
+	's'     => $s
+) );
 
 foreach ( $context['posts'] as $context['post'] ) {
 	$context['post']->title_en   = get_title_en();

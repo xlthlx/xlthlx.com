@@ -304,11 +304,11 @@ function get_url_trans() {
 		return $link;
 	}
 
-	if ( is_paged() ) {
+	if ( is_search() ) {
 		if ( $pos === false ) {
-			$link = str_replace( '/page/', '/en/page/', $link );
+			$link = str_replace( '/search/', '/search/en/', $link );
 		} else {
-			$link = str_replace( '/en/page/', '/page/', $link );
+			$link = str_replace( '/search/en/', '/search/', $link );
 		}
 
 		return $link;
@@ -362,7 +362,7 @@ function xlt_template_redirect() {
 	$template = '/index.php';
 
 	$url = get_abs_url();
-	$url = str_replace( get_home_url().'/en/', '', $url );
+	$url = str_replace( get_home_url() . '/en/', '', $url );
 
 	$page = explode( "/", $url );
 
@@ -403,7 +403,7 @@ function xlt_template_redirect() {
 		$template = '/archive.php';
 	}
 
-	if ( is_search() ) {
+	if ( is_search() || (is_search() && is_paged() ) ) {
 		$template = '/search.php';
 	}
 
@@ -425,6 +425,7 @@ add_action( 'template_redirect', 'xlt_template_redirect' );
 function xlt_rewrite_tags_lang() {
 
 	add_rewrite_endpoint( 'en', EP_ALL, 'en' );
+	add_rewrite_endpoint( 'search', EP_SEARCH, 's' );
 
 }
 
@@ -524,6 +525,34 @@ function term_link_filter( $termlink, $term, $taxonomy ) {
 }
 
 add_filter( 'term_link', 'term_link_filter', 10, 3 );
+
+/**
+ * Filters the search permalink.
+ *
+ * @param string $link Search permalink.
+ * @param string $search The URL-encoded search term.
+ *
+ * @return string
+ */
+function search_link_filter( $link, $search ) {
+
+	if ( null === $search ) {
+		return $link;
+	}
+
+	if ( is_admin() ) {
+		return $link;
+	}
+
+	if ( 'en' === get_lang() ) {
+		$link = str_replace( '/search/', '/search/en/', $link );
+	}
+
+	return $link;
+}
+
+add_filter( 'search_link', 'search_link_filter', 10, 2 );
+
 
 /**
  * Filters the retrieved list of pages.
@@ -668,7 +697,7 @@ function xlt_en_title( $title ) {
 		}
 
 		if ( is_search() ) {
-			$title = 'Search results for: ' .get_search_query();
+			$title = 'Search results for: ' . get_search_query() . ' | xlthlx';
 		}
 	}
 
@@ -700,7 +729,7 @@ function xlt_en_description( $description ) {
 		}
 
 		if ( is_search() ) {
-			$description = 'Search results for: ' .get_search_query();
+			$description = 'Search results for: ' . get_search_query();
 		}
 	}
 
