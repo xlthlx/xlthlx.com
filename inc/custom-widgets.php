@@ -79,8 +79,10 @@ class Archive_Widget extends WP_Widget {
 	 */
 	public function widget_title( $args, $settings ) {
 
-		// Add Widget Title Filter.
-		$widget_title = apply_filters( 'widget_title', $settings['title'], $settings, $this->id_base );
+        $widget_title = 'Archivi';
+        if ( 'en' === get_lang() ) {
+            $widget_title = 'Archives';
+        }
 
 		if ( ! empty( $widget_title ) ) :
             // Display Widget Title.
@@ -184,7 +186,6 @@ class Related_Widget extends WP_Widget {
 	 * Widget Constructor.
 	 */
 	public function __construct() {
-
 		// Setup Widget.
 		parent::__construct(
 			'xlthlx-related', // ID.
@@ -248,15 +249,12 @@ class Related_Widget extends WP_Widget {
 	 */
 	public function widget_title( $args, $settings ) {
 
-		// Add Widget Title Filter.
-		$widget_title = apply_filters( 'widget_title', $settings['title'], $settings, $this->id_base );
+        $widget_title = 'Articoli correlati';
+        if ( 'en' === get_lang() ) {
+            $widget_title = 'Related articles';
+        }
 
-		if ( ! empty( $widget_title ) ) :
-
-			// Display Widget Title.
-			echo $args['before_title'] . $widget_title . $args['after_title'];
-
-		endif;
+        echo $args['before_title'] . $widget_title . $args['after_title'];
 	}
 
 	/**

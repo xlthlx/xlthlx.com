@@ -502,3 +502,27 @@ function xlt_hide_seo_columns( $columns ) {
 
 add_filter( 'manage_post_posts_columns', 'xlt_hide_seo_columns', 20 );
 add_filter( 'manage_edit-category_columns', 'xlt_hide_seo_columns', 20 );
+
+/**
+ * Change widget title.
+ *
+ * @param string $title The widget title.
+ * @param array $instance Array of settings for the current widget.
+ * @param mixed $id_base The widget ID.
+ *
+ * @return string
+ */
+function xlt_change_widget_title( $title, $instance, $id_base ) {
+
+	if ( 963 === $instance['nav_menu'] && 'it' === get_lang() ) {
+		$title = 'Argomenti';
+	}
+
+	if ( 'Pages' === $instance['title'] && 'it' === get_lang() ) {
+		$title = 'Pagine';
+	}
+
+	return $title;
+}
+
+add_filter( 'widget_title', 'xlt_change_widget_title', 10, 3 );
