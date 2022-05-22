@@ -10,8 +10,12 @@
 
 $templates = array( 'archive.twig', 'index.twig' );
 
-$context = Timber::context();
+$context          = Timber::context();
 $context['title'] = 'Archivio';
+
+if ( 'en' === $context['lang'] ) {
+	$context['title'] = 'Archive';
+}
 
 if ( is_day() ) {
 	$context['title'] = get_the_date( 'D M Y' );

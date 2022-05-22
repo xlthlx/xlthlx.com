@@ -168,62 +168,6 @@ function xlt_enqueue_admin_css_js() {
 add_action( 'admin_enqueue_scripts', 'xlt_enqueue_admin_css_js' );
 
 /**
- * Change the meta title based on language.
- *
- * @param $title
- *
- * @return mixed|string
- */
-function xlt_en_title( $title ) {
-
-	if ( is_home() || is_front_page() ) {
-		$lang = get_lang();
-		if ( 'en' === $lang ) {
-			$title = get_bloginfo( 'name' ) . ' | ' . 'Better than a cyber duck in the ass.';
-		}
-	}
-
-	if ( is_single() ) {
-		$lang = get_lang();
-		if ( 'en' === $lang ) {
-			$title = get_title_en() . ' | ' . get_bloginfo( 'name' );
-		}
-	}
-
-	return $title;
-}
-
-add_filter( 'slim_seo_meta_title', 'xlt_en_title' );
-
-/**
- * Change the meta description based on language.
- *
- * @param $description
- *
- * @return mixed|string
- * @throws Exception
- */
-function xlt_en_description( $description ) {
-	if ( is_home() || is_front_page() ) {
-		$lang = get_lang();
-		if ( 'en' === $lang ) {
-			$description = 'xlthlx. Better than a cyber duck in the ass. Maybe.';
-		}
-	}
-
-	if ( is_single() ) {
-		$lang = get_lang();
-		if ( 'en' === $lang ) {
-			$description = wp_trim_excerpt( get_content_en() );
-		}
-	}
-
-	return $description;
-}
-
-add_filter( 'slim_seo_meta_description', 'xlt_en_description' );
-
-/**
  * Hide SEO settings meta box for posts.
  */
 function xlt_hide_slim_seo_meta_box() {
@@ -325,54 +269,6 @@ function xlt_insert_css() {
 }
 
 add_action( 'wp_head', 'xlt_insert_css' );
-
-/**
- * Add attributes to next post link.
- *
- * @param $link
- *
- * @return string
- */
-function xlt_filter_next_post_link( $link ) {
-
-	$title = 'Post successivo';
-
-	if ( 'en' === get_lang() ) {
-		$title = 'Next post';
-		$url   = xlt_get_url_from_href( $link );
-
-		$link = str_replace( $url, $url . 'en/', $link );
-	}
-
-	return str_replace( "rel=",
-		'title="' . $title . '" class="display-5 arrow" rel=', $link );
-}
-
-add_filter( 'next_post_link', 'xlt_filter_next_post_link' );
-
-/**
- * Add attributes to previous post link.
- *
- * @param $link
- *
- * @return string
- */
-function xlt_filter_previous_post_link( $link ) {
-
-	$title = 'Post precedente';
-
-	if ( 'en' === get_lang() ) {
-		$title = 'Previous post';
-		$url   = xlt_get_url_from_href( $link );
-
-		$link = str_replace( $url, $url . 'en/', $link );
-	}
-
-	return str_replace( "rel=",
-		'title="' . $title . '" class="display-5 arrow" rel=', $link );
-}
-
-add_filter( 'previous_post_link', 'xlt_filter_previous_post_link' );
 
 /**
  * Add a class to previous/next links.
@@ -502,27 +398,3 @@ function xlt_hide_seo_columns( $columns ) {
 
 add_filter( 'manage_post_posts_columns', 'xlt_hide_seo_columns', 20 );
 add_filter( 'manage_edit-category_columns', 'xlt_hide_seo_columns', 20 );
-
-/**
- * Change widget title.
- *
- * @param string $title The widget title.
- * @param array $instance Array of settings for the current widget.
- * @param mixed $id_base The widget ID.
- *
- * @return string
- */
-function xlt_change_widget_title( $title, $instance, $id_base ) {
-
-	if ( 963 === $instance['nav_menu'] && 'it' === get_lang() ) {
-		$title = 'Argomenti';
-	}
-
-	if ( 'Pages' === $instance['title'] && 'it' === get_lang() ) {
-		$title = 'Pagine';
-	}
-
-	return $title;
-}
-
-add_filter( 'widget_title', 'xlt_change_widget_title', 10, 3 );
