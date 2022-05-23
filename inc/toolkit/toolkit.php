@@ -23,7 +23,6 @@ $defaults = [
 		'dashboard_widgets' => 'yes',
 	],
 	'wt_seo'       => [
-		'pretty_search' => 'yes',
 		'header'        => 'yes',
 		'images_alt'    => 'yes',
 	],

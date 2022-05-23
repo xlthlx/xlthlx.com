@@ -471,33 +471,6 @@ function wt_disable_dashboard_widgets() {
 }
 
 /**
- * Pretty permalink for search.
- */
-function wt_search_url_rewrite() {
-	global $wp_rewrite;
-	if ( ! isset( $wp_rewrite ) || ! is_object( $wp_rewrite ) || ! $wp_rewrite->get_search_permastruct() ) {
-		return;
-	}
-
-	$search_base = $wp_rewrite->search_base;
-	if ( is_search() && strpos( $_SERVER['REQUEST_URI'],
-			"/{$search_base}/" ) === false && strpos( $_SERVER['REQUEST_URI'],
-			'&' ) === false ) {
-		wp_redirect( get_search_link() );
-		exit();
-	}
-}
-
-/**
- * @param $url
- *
- * @return mixed
- */
-function wt_rewrite( $url ) {
-	return str_replace( '/?s=', '/search/', $url );
-}
-
-/**
  * Remove archive title.
  *
  * @param $title
