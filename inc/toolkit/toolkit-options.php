@@ -83,10 +83,6 @@ if ( isset( $wt_seo ) ) {
 		//Radio fields yes/no
 		if ( $value === 'yes' ) {
 			switch ( $key ) {
-				case 'pretty_search':
-					//add_filter( 'wpseo_json_ld_search_url', 'wt_rewrite' );
-					add_action( 'template_redirect', 'wt_search_url_rewrite' );
-					break;
 				case 'header':
 					add_action( 'wp_headers', 'wt_last_mod_header' );
 					break;
