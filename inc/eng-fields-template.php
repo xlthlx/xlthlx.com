@@ -44,7 +44,7 @@ function xlt_template_redirect() {
 
 	$template = '/index.php';
 
-	$url = xlt_get_abs_url();
+	$url = get_abs_url();
 	$url = str_replace( get_home_url() . '/en/', '', $url );
 
 	$page = explode( "/", $url );
@@ -296,11 +296,11 @@ add_filter( 'page_link', 'xlt_set_url_en_pages', 10, 3 );
  */
 function xlt_change_widget_title( $title, $instance, $id_base ) {
 
-	if ( 963 === $instance['nav_menu'] && 'it' === get_lang() ) {
+	if ( isset( $instance['nav_menu'] ) && 963 === $instance['nav_menu'] && 'it' === get_lang() ) {
 		$title = 'Argomenti';
 	}
 
-	if ( 'Pages' === $instance['title'] && 'it' === get_lang() ) {
+	if ( isset( $instance['title'] ) && 'Pages' === $instance['title'] && 'it' === get_lang() ) {
 		$title = 'Pagine';
 	}
 
