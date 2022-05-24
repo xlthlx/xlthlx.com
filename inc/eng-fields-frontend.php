@@ -10,6 +10,15 @@ use simplehtmldom\HtmlDocument;
 use Highlight\Highlighter;
 
 /**
+ * Gets absolute url.
+ *
+ * @return string
+ */
+function get_abs_url() {
+	return ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? "https" : "http" ) . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+}
+
+/**
  * Translate a piece of string.
  *
  * @param $element
@@ -281,7 +290,7 @@ function get_lang() {
  */
 function get_url_trans() {
 
-	$link = ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? "https" : "http" ) . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	$link = get_abs_url();
 	$pos  = strpos( $link, '/en/' );
 
 	if ( is_front_page() ) {
