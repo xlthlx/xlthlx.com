@@ -6,41 +6,16 @@
  * @subpackage  Xlthlx
  */
 
-$templates = array( 'search.twig', 'archive.twig', 'index.twig' );
+$templates = array( 'search.twig' );
+$context = Timber::context();
 
-$context          = Timber::context();
-
-$url = get_abs_url();
-
-if ( 'en' === $context['lang'] ) {
-	$url = str_replace( get_home_url() . '/search/en/', '', $url );
-}
-else {
-	$url = str_replace( get_home_url() . '/search/', '', $url );
-}
-
-$page = explode( "/", $url );
-
-if ( isset( $page[0] ) ) {
-	$s = $page[0];
-	set_query_var( 's', $page[0] );
-}
-
-if ( isset( $page[1], $page[2] ) && 'page' === $page[1] ) {
-	$paged = (int) $page[2];
-	set_query_var( 'paged', (int) $page[2] );
-}
-
-$context['title'] = 'Risultati della ricerca per: ' . get_query_var( 's' );
-if ( 'en' === $context['lang'] ) {
-	$context['title'] = 'Search results for: ' . get_query_var( 's' );
-}
+$context['title'] = ( 'en' === $context['lang'] ) ? 'Search results for: ' . get_query_var( 's' ) : 'Risultati della ricerca per: ' . get_query_var( 's' );
 
 $paged = ( get_query_var( 'paged' ) ) ?: 1;
 
 $context['posts'] = new Timber\PostQuery( array(
 	'paged' => $paged,
-	's'     => $s
+	's'     => get_query_var( 's' )
 ) );
 
 foreach ( $context['posts'] as $context['post'] ) {

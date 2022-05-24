@@ -304,16 +304,6 @@ function get_url_trans() {
 		return $link;
 	}
 
-	if ( is_search() ) {
-		if ( $pos === false ) {
-			$link = str_replace( '/search/', '/search/en/', $link );
-		} else {
-			$link = str_replace( '/search/en/', '/search/', $link );
-		}
-
-		return $link;
-	}
-
 	if ( $pos === false ) {
 		$link .= 'en/';
 	} else {
@@ -403,7 +393,7 @@ function xlt_template_redirect() {
 		$template = '/archive.php';
 	}
 
-	if ( is_search() || (is_search() && is_paged() ) ) {
+	if ( is_search() ) {
 		$template = '/search.php';
 	}
 
@@ -545,7 +535,7 @@ function search_link_filter( $link, $search ) {
 	}
 
 	if ( 'en' === get_lang() ) {
-		$link = str_replace( '/search/', '/search/en/', $link );
+		$link .=  'en/';
 	}
 
 	return $link;
@@ -737,3 +727,107 @@ function xlt_en_description( $description ) {
 }
 
 add_filter( 'slim_seo_meta_description', 'xlt_en_description' );
+
+/**
+ * Join posts and post meta tables
+ *
+ * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_join
+ */
+function xlt_search_join( $join ) {
+	global $wpdb;
+
+	if ( is_search() ) {
+		$join .=' LEFT JOIN '.$wpdb->postmeta. ' ON '. $wpdb->posts . '.ID = ' . $wpdb->postmeta . '.post_id ';
+	}
+
+	return $join;
+}
+
+add_filter('posts_join', 'xlt_search_join' );
+
+/**
+ * Modify the search query with posts_where
+ *
+ * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_where
+ */
+function xlt_search_where( $where ) {
+	global $wpdb;
+
+	if ( is_search() ) {
+		$where = preg_replace(
+			"/\(\s*".$wpdb->posts.".post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
+			"(".$wpdb->posts.".post_title LIKE $1) OR (".$wpdb->postmeta.".meta_value LIKE $1)", $where );
+	}
+
+	return $where;
+}
+
+add_filter( 'posts_where', 'xlt_search_where' );
+
+/**
+ * Prevent duplicates
+ *
+ * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_distinct
+ */
+function xlt_search_distinct( $where ) {
+
+	if ( is_search() ) {
+		return "DISTINCT";
+	}
+
+	return $where;
+}
+
+add_filter( 'posts_distinct', 'xlt_search_distinct' );
+
+/**
+ * Pretty permalink for search.
+ */
+function xlt_search_url_rewrite() {
+	global $wp_rewrite;
+	if ( ! isset( $wp_rewrite ) || ! is_object( $wp_rewrite ) || ! $wp_rewrite->get_search_permastruct() ) {
+		return;
+	}
+
+	$search_base = $wp_rewrite->search_base;
+	$needle = "/".$search_base."/";
+	$uri = $_SERVER['REQUEST_URI'];
+
+	if ( strpos( $uri, $needle ) === false && strpos( $uri, '&lang=en' ) !== false ) {
+
+		$search = urlencode( get_query_var('s') );
+		$search = str_replace( '%2F', '/', $search ); // %2F(/) is not valid within a URL, send it un-encoded.
+
+		wp_redirect( home_url().'/search/'.$search.'/en/' );
+		exit();
+	}
+
+	if ( is_search() && strpos( $uri, $needle ) === false && strpos( $uri, '&' ) === false ) {
+		wp_redirect( get_search_link() );
+		exit();
+	}
+
+}
+
+add_action( 'template_redirect', 'xlt_search_url_rewrite' );
+
+/**
+ * Fires after the query variable object is created,
+ * but before the actual query is run.
+ *
+ * @param object $query The WP_Query instance (passed by reference).
+ */
+function xlt_exclude_pages_from_search_results( $query ) {
+	if ( $query->is_search() && ! is_admin() ) {
+		$query->set( 'post_type', array( 'post' ) );
+	}
+
+}
+
+add_action( 'pre_get_posts', 'xlt_exclude_pages_from_search_results' );
+
+function foo_rewrite_rule()
+{
+	add_rewrite_rule( '^search/([^/]+)/en/page/([0-9]+)/?$', 'index.php?s=$matches[1]&lang=en&paged=$matches[2]', 'top' );
+}
+add_action( 'init', 'foo_rewrite_rule' );
