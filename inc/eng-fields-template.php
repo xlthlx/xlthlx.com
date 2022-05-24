@@ -1,316 +1,19 @@
 <?php
 /**
- * Frontend functions for English translation
+ * Template (rewrite) functions for English translation.
  *
  * @package  WordPress
  * @subpackage  Xlthlx
  */
 
-use simplehtmldom\HtmlDocument;
-use Highlight\Highlighter;
-
-/**
- * Translate a piece of string.
- *
- * @param $element
- *
- * @return array|string
- */
-function xlt_translate( $element ) {
-	$trans_content = '';
-
-	$trc = new Dejurin\GoogleTranslateForFree();
-
-	try {
-		$trans_content = $trc::translate( 'it', 'en', $element );
-
-	} catch ( Exception $ex ) {
-		error_log( $ex );
-	}
-
-	return $trans_content;
-}
-
-/**
- * Translate the month of the date.
- *
- * @param int $post_id
- *
- * @return mixed
- */
-function get_date_en( $post_id = 0 ) {
-	if ( $post_id === 0 ) {
-		global $post;
-		$post_id = $post->ID;
-	}
-
-	$post_type = get_post_type( $post_id );
-
-	if ( 'post' === $post_type ) {
-		if ( ! is_home() || ! is_archive() ) {
-			if ( ! get_post_meta( $post_id, 'date_en',
-					true ) || get_post_meta( $post_id, 'date_en',
-					true ) === '' ) {
-				$month = xlt_translate( get_the_time( 'F', $post_id ) );
-				$date  = get_the_time( 'd',
-						$post_id ) . ' ' . ucfirst( $month ) . ' ' . get_the_time( 'Y',
-						$post_id );
-				update_post_meta( $post_id, 'date_en', $date );
-			}
-		}
-	}
-
-	return get_post_meta( $post_id, 'date_en', true );
-}
-
-/**
- * Translate the title.
- *
- * @param int $post_id
- *
- * @return string
- */
-function get_title_en( $post_id = 0 ) {
-	if ( $post_id === 0 ) {
-		global $post;
-		$post_id = $post->ID;
-	}
-
-	$post_type = get_post_type( $post_id );
-
-	if ( 'post' === $post_type || 'page' === $post_type ) {
-		if ( ! get_post_meta( $post_id, 'title_en', true )
-		     || get_post_meta( $post_id, 'title_en', true ) === '' ) {
-
-			$title = xlt_translate( get_the_title( $post_id ) );
-			update_post_meta( $post_id, 'title_en', $title );
-		}
-	}
-
-	return get_post_meta( $post_id, 'title_en', true );
-}
-
-/**
- * Translate the content.
- *
- * @param int $post_id
- *
- * @return string
- * @throws Exception
- */
-function get_content_en( $post_id = 0 ) {
-
-	if ( $post_id === 0 ) {
-		global $post;
-		$post_id = $post->ID;
-	}
-
-	$post_type = get_post_type( $post_id );
-
-	if ( 'post' === $post_type || 'page' === $post_type ) {
-
-		if ( ! get_post_meta( $post_id, 'content_en', true )
-		     || get_post_meta( $post_id, 'content_en', true ) === '' ) {
-
-			global $post;
-			$blocks = parse_blocks( $post->post_content );
-			$doc    = new HtmlDocument();
-			$output = '';
-
-			foreach ( $blocks as $block ) {
-
-				$block_types = array(
-					'core/paragraph',
-					'core/heading',
-					'core/freeform',
-					'core/list',
-					'core/quote',
-					'core/pullquote',
-					'core/html',
-					'core/table',
-					'core/text-columns',
-					'core/code'
-				);
-
-				if ( isset( $block['blockName'] ) && $block['blockName'] !== '' && in_array( $block['blockName'],
-						$block_types, true ) ) {
-
-					if ( $block['blockName'] === 'core/code' ) {
-						$code = $doc->load( $block['innerHTML'] );
-
-						if ( $code ) {
-
-							$hl = new Highlighter();
-							$hl->setAutodetectLanguages( array(
-								'php',
-								'javascript',
-								'html'
-							) );
-
-							$code = str_replace( array(
-								'<pre class="wp-block-code">',
-								'<code>',
-								'</code>',
-								'</pre>'
-							), '', html_entity_decode( $code ) );
-
-							$highlighted = $hl->highlightAuto( $code );
-
-							$code            = '<pre class="wp-block-code"><code class="hljs ' . $highlighted->language . '">' . $highlighted->value . '</code></pre>';
-							$code->outertext = apply_filters( 'the_content',
-								$code );
-
-						}
-
-						$output .= $code;
-					} else {
-						$html = $doc->load( $block['innerHTML'] );
-						$p    = $html->find( "p" );
-
-						$to_remove = array();
-
-						if ( $p ) {
-
-							foreach ( $p as $pg ) {
-
-								$tags = array(
-									"em",
-									"strong",
-									"h1",
-									"h2",
-									"h3",
-									"h4",
-									"h5",
-									"h6",
-									"li"
-								);
-
-								foreach ( $tags as $tag ) {
-									$plain_tag = $pg->find( $tag );
-									if ( $plain_tag ) {
-										foreach ( $plain_tag as $pt ) {
-											$trans_tag     = xlt_translate( $pt->innertext );
-											$pt->innertext = $trans_tag;
-											$to_remove[]   = $pt->outertext;
-										}
-									}
-								}
-
-								$plain_a = $pg->find( "a" );
-
-								if ( $plain_a ) {
-									foreach ( $plain_a as $pa ) {
-										$trans_a       = xlt_translate( $pa->innertext );
-										$pa->innertext = $trans_a;
-										if ( $pa->title ) {
-											$title_a   = xlt_translate( $pa->title );
-											$pa->title = $title_a;
-										}
-										$to_remove[] = $pa->outertext;
-									}
-								}
-
-								$plain_p = $pg;
-
-								$i = 0;
-								foreach ( $to_remove as $remove ) {
-									$plain_p = str_replace( $remove,
-										'{' . $i . '}', $plain_p );
-									$i ++;
-								}
-
-
-								$plain_p = str_replace( array(
-									'<p>',
-									'</p>'
-								), '', $plain_p );
-
-								$trans_p = xlt_translate( $plain_p );
-
-								$i = 0;
-								foreach ( $to_remove as $remove ) {
-									$trans_p = str_replace( '{' . $i . '}',
-										$remove, $trans_p );
-									$i ++;
-								}
-
-								$pg->outertext = '<p>' . $trans_p . '</p>';
-							}
-						}
-
-						$output .= $html;
-					}
-
-				} else {
-					$output .= $block['innerHTML'];
-				}
-			}
-
-			$output .= '<!-- GT -->';
-
-			update_post_meta( $post_id, 'content_en', $output );
-		}
-	}
-
-	return apply_filters( 'the_content',
-		get_post_meta( $post_id, 'content_en', true ) );
-}
 
 /**
  * Gets absolute url.
  *
  * @return string
  */
-function get_abs_url() {
+function xlt_get_abs_url() {
 	return ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? "https" : "http" ) . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-}
-
-/**
- * Get language var.
- *
- * @return string
- */
-function get_lang() {
-	$link = get_abs_url();
-
-	$lang = 'it';
-	$pos  = strpos( $link, '/en/' );
-
-	if ( $pos !== false ) {
-		$lang = 'en';
-	}
-
-	return $lang;
-}
-
-/**
- * Get url for language switcher.
- *
- * @return string
- */
-function get_url_trans() {
-
-	$link = get_abs_url();
-	$pos  = strpos( $link, '/en/' );
-
-
-	if ( is_category() ) {
-		if ( $pos === false ) {
-			$link = str_replace( '/cat/', '/cat/en/', $link );
-		} else {
-			$link = str_replace( 'en/', '', $link );
-		}
-
-		return $link;
-	}
-
-	if ( $pos === false ) {
-		$link .= 'en/';
-	} else {
-		$link = str_replace( 'en/', '', $link );
-	}
-
-	return $link;
 }
 
 /**
@@ -351,7 +54,7 @@ function xlt_template_redirect() {
 
 	$template = '/index.php';
 
-	$url = get_abs_url();
+	$url = xlt_get_abs_url();
 	$url = str_replace( get_home_url() . '/en/', '', $url );
 
 	$page = explode( "/", $url );
@@ -410,7 +113,7 @@ function xlt_template_redirect() {
 add_action( 'template_redirect', 'xlt_template_redirect' );
 
 /**
- * Add rewrite endpoint.
+ * Add rewrite endpoints.
  */
 function xlt_rewrite_tags_lang() {
 
@@ -465,7 +168,7 @@ function xlt_get_excerpt( $content, $length = false ) {
  *
  * @return WP_Term
  */
-function filter_term_name( $term, $taxonomy ) {
+function xlt_filter_term_name( $term, $taxonomy ) {
 
 	if ( is_admin() ) {
 		return $term;
@@ -485,7 +188,7 @@ function filter_term_name( $term, $taxonomy ) {
 	return $term;
 }
 
-add_filter( 'get_term', 'filter_term_name', 10, 2 );
+add_filter( 'get_term', 'xlt_filter_term_name', 10, 2 );
 
 /**
  * Filters the term link.
@@ -496,7 +199,7 @@ add_filter( 'get_term', 'filter_term_name', 10, 2 );
  *
  * @return string
  */
-function term_link_filter( $termlink, $term, $taxonomy ) {
+function xlt_term_link_filter( $termlink, $term, $taxonomy ) {
 
 	if ( null === $term ) {
 		return $termlink;
@@ -514,7 +217,7 @@ function term_link_filter( $termlink, $term, $taxonomy ) {
 
 }
 
-add_filter( 'term_link', 'term_link_filter', 10, 3 );
+add_filter( 'term_link', 'xlt_term_link_filter', 10, 3 );
 
 /**
  * Filters the search permalink.
@@ -524,7 +227,7 @@ add_filter( 'term_link', 'term_link_filter', 10, 3 );
  *
  * @return string
  */
-function search_link_filter( $link, $search ) {
+function xlt_search_link_filter( $link, $search ) {
 
 	if ( null === $search ) {
 		return $link;
@@ -535,14 +238,13 @@ function search_link_filter( $link, $search ) {
 	}
 
 	if ( 'en' === get_lang() ) {
-		$link .=  'en/';
+		$link = str_replace( '/page/', '/en/page/', $link );
 	}
 
 	return $link;
 }
 
-add_filter( 'search_link', 'search_link_filter', 10, 2 );
-
+add_filter( 'search_link', 'xlt_search_link_filter', 10, 2 );
 
 /**
  * Filters the retrieved list of pages.
@@ -689,6 +391,11 @@ function xlt_en_title( $title ) {
 		if ( is_search() ) {
 			$title = 'Search results for: ' . get_search_query() . ' | xlthlx';
 		}
+
+		if ( is_search() && is_paged() ) {
+			$title = 'Search results for: ' . get_search_query() . ' | Page ' . get_query_var( 'paged' ) . ' | xlthlx';
+		}
+
 	}
 
 	return $title;
@@ -729,56 +436,66 @@ function xlt_en_description( $description ) {
 add_filter( 'slim_seo_meta_description', 'xlt_en_description' );
 
 /**
- * Join posts and post meta tables
+ * Join posts and post meta tables for the search results.
  *
- * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_join
+ * @param string $join The JOIN clause of the query.
+ * @param WP_Query $query The WP_Query instance (passed by reference).
+ *
+ * @return string
  */
-function xlt_search_join( $join ) {
+function xlt_search_join_post_meta( $join, $query ) {
 	global $wpdb;
 
 	if ( is_search() ) {
-		$join .=' LEFT JOIN '.$wpdb->postmeta. ' ON '. $wpdb->posts . '.ID = ' . $wpdb->postmeta . '.post_id ';
+		$join .= ' LEFT JOIN ' . $wpdb->postmeta . ' ON ' . $wpdb->posts . '.ID = ' . $wpdb->postmeta . '.post_id ';
 	}
 
 	return $join;
 }
 
-add_filter('posts_join', 'xlt_search_join' );
+add_filter( 'posts_join', 'xlt_search_join_post_meta', 10, 2 );
 
 /**
- * Modify the search query with posts_where
+ * Modify the search query to add post meta.
  *
- * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_where
+ * @param string $where The WHERE clause of the query.
+ * @param WP_Query $query The WP_Query instance (passed by reference).
+ *
+ * @return string
  */
-function xlt_search_where( $where ) {
+function xlt_search_where_post_meta( $where, $query ) {
 	global $wpdb;
 
 	if ( is_search() ) {
 		$where = preg_replace(
-			"/\(\s*".$wpdb->posts.".post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
-			"(".$wpdb->posts.".post_title LIKE $1) OR (".$wpdb->postmeta.".meta_value LIKE $1)", $where );
+			"/\(\s*" . $wpdb->posts . ".post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
+			"(" . $wpdb->posts . ".post_title LIKE $1) OR (" . $wpdb->postmeta . ".meta_value LIKE $1)",
+			$where );
 	}
 
 	return $where;
 }
 
-add_filter( 'posts_where', 'xlt_search_where' );
+add_filter( 'posts_where', 'xlt_search_where_post_meta', 10, 2 );
 
 /**
- * Prevent duplicates
+ * Prevent duplicates in the search results.
  *
- * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_distinct
+ * @param string $distinct The DISTINCT clause of the query.
+ * @param WP_Query $query The WP_Query instance (passed by reference).
+ *
+ * @return string
  */
-function xlt_search_distinct( $where ) {
+function xlt_search_distinct( $distinct, $query ) {
 
 	if ( is_search() ) {
 		return "DISTINCT";
 	}
 
-	return $where;
+	return $distinct;
 }
 
-add_filter( 'posts_distinct', 'xlt_search_distinct' );
+add_filter( 'posts_distinct', 'xlt_search_distinct', 10, 2 );
 
 /**
  * Pretty permalink for search.
@@ -790,19 +507,22 @@ function xlt_search_url_rewrite() {
 	}
 
 	$search_base = $wp_rewrite->search_base;
-	$needle = "/".$search_base."/";
-	$uri = $_SERVER['REQUEST_URI'];
+	$needle      = "/" . $search_base . "/";
+	$uri         = $_SERVER['REQUEST_URI'];
 
-	if ( strpos( $uri, $needle ) === false && strpos( $uri, '&lang=en' ) !== false ) {
+	if ( strpos( $uri, $needle ) === false && strpos( $uri,
+			'&lang=en' ) !== false ) {
 
-		$search = urlencode( get_query_var('s') );
-		$search = str_replace( '%2F', '/', $search ); // %2F(/) is not valid within a URL, send it un-encoded.
+		$search = urlencode( get_query_var( 's' ) );
+		$search = str_replace( '%2F', '/',
+			$search ); // %2F(/) is not valid within a URL, send it un-encoded.
 
-		wp_redirect( home_url().'/search/'.$search.'/en/' );
+		wp_redirect( home_url() . '/search/' . $search . '/en/' );
 		exit();
 	}
 
-	if ( is_search() && strpos( $uri, $needle ) === false && strpos( $uri, '&' ) === false ) {
+	if ( is_search() && strpos( $uri, $needle ) === false && strpos( $uri,
+			'&' ) === false ) {
 		wp_redirect( get_search_link() );
 		exit();
 	}
@@ -826,8 +546,14 @@ function xlt_exclude_pages_from_search_results( $query ) {
 
 add_action( 'pre_get_posts', 'xlt_exclude_pages_from_search_results' );
 
-function foo_rewrite_rule()
-{
-	add_rewrite_rule( '^search/([^/]+)/en/page/([0-9]+)/?$', 'index.php?s=$matches[1]&lang=en&paged=$matches[2]', 'top' );
+/**
+ * Adds rewrite rule for English paginated search.
+ *
+ * @return void
+ */
+function xlt_rewrite_search_pages_en() {
+	add_rewrite_rule( '^search/([^/]+)/en/page/([0-9]+)/?$',
+		'index.php?s=$matches[1]&lang=en&paged=$matches[2]', 'top' );
 }
-add_action( 'init', 'foo_rewrite_rule' );
+
+add_action( 'init', 'xlt_rewrite_search_pages_en' );

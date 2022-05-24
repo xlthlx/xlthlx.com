@@ -7,7 +7,7 @@
  */
 
 $templates = array( 'search.twig' );
-$context = Timber::context();
+$context   = Timber::context();
 
 $context['title'] = ( 'en' === $context['lang'] ) ? 'Search results for: ' . get_query_var( 's' ) : 'Risultati della ricerca per: ' . get_query_var( 's' );
 

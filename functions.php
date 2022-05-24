@@ -252,7 +252,12 @@ require_once 'inc/custom-widgets.php';
 require_once 'inc/eng-fields-admin.php';
 
 /**
- * Custom fields for English template.
+ * Frontend functions for English translation.
+ */
+require_once 'inc/eng-fields-frontend.php';
+
+/**
+ * Template (rewrite) functions for English translation.
  */
 require_once 'inc/eng-fields-template.php';
 

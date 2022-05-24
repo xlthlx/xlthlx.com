@@ -68,10 +68,10 @@ function xlt_render_code( string $content ) {
 	$hl->setAutodetectLanguages( array( 'php', 'javascript', 'html' ) );
 
 	$content = str_replace( array(
-		'<pre class="wp-block-code">',
-		'<code>',
-		'</code>',
-		'</pre>'
+			'<pre class="wp-block-code">',
+			'<code>',
+			'</code>',
+			'</pre>'
 	), '', html_entity_decode( $content ) );
 
 	$highlighted = $hl->highlightAuto( trim( $content ) );
@@ -157,12 +157,12 @@ add_filter( 'comment_post_redirect', 'xlt_en_comment_redirect', 10, 2 );
  */
 function xlt_enqueue_admin_css_js() {
 	wp_enqueue_style( 'admin',
-		get_template_directory_uri() . '/assets/css/admin/admin.min.css', [],
-		filemtime( get_template_directory() . '/assets/css/admin/admin.min.css' ) );
+			get_template_directory_uri() . '/assets/css/admin/admin.min.css', [],
+			filemtime( get_template_directory() . '/assets/css/admin/admin.min.css' ) );
 	wp_enqueue_script( 'admin',
-		get_template_directory_uri() . '/assets/js/admin/admin.min.js', [],
-		filemtime( get_template_directory() . '/assets/js/admin/admin.min.js' ),
-		true );
+			get_template_directory_uri() . '/assets/js/admin/admin.min.js', [],
+			filemtime( get_template_directory() . '/assets/js/admin/admin.min.js' ),
+			true );
 }
 
 add_action( 'admin_enqueue_scripts', 'xlt_enqueue_admin_css_js' );
@@ -208,14 +208,14 @@ add_action( 'init', 'xlt_unregister_tags' );
  */
 function xlt_youtube_oembed_filters( $html, $data, $url ) {
 	if ( false === $html || ! in_array( $data->type, [ 'rich', 'video' ],
-			true ) ) {
+					true ) ) {
 		return $html;
 	}
 
 	if ( false !== strpos( $html, 'youtube' ) || false !== strpos( $html,
-			'youtu.be' ) ) {
+					'youtu.be' ) ) {
 		$html = str_replace( 'youtube.com/embed', 'youtube-nocookie.com/embed',
-			$html );
+				$html );
 	}
 
 	return $html;
@@ -262,8 +262,8 @@ add_filter( 'embed_oembed_discover', 'xlt_restore_oembed_cache' );
 function xlt_insert_css() {
 	$file  = get_template_directory() . '/assets/css/main.min.css';
 	$style = str_replace( '../fonts/',
-		get_template_directory_uri() . '/assets/fonts/',
-		xlt_get_file_content( $file ) );
+			get_template_directory_uri() . '/assets/fonts/',
+			xlt_get_file_content( $file ) );
 
 	echo '<style id="all-styles-inline">' . $style . '</style>';
 }
@@ -292,7 +292,7 @@ add_filter( 'previous_post_link', 'xlt_add_post_link' );
 function xlt_404_plausible() {
 	if ( is_404() ) {
 		?>
-        <script>plausible("404", {props: {path: document.location.pathname}});</script>
+		<script>plausible("404", {props: {path: document.location.pathname}});</script>
 		<?php
 	}
 }
@@ -309,13 +309,13 @@ function xlt_admin_color_scheme() {
 	$theme_dir = get_stylesheet_directory_uri();
 
 	wp_admin_css_color( 'xlthlx', __( 'Xlthlx' ),
-		$theme_dir . '/assets/css/admin/color-scheme.min.css',
-		array( '#1e2327', '#fff', '#92285e', '#6667ab' ),
-		array(
-			'base'    => '#ffffff',
-			'focus'   => '#92285e',
-			'current' => '#ffffff'
-		)
+			$theme_dir . '/assets/css/admin/color-scheme.min.css',
+			array( '#1e2327', '#fff', '#92285e', '#6667ab' ),
+			array(
+					'base'    => '#ffffff',
+					'focus'   => '#92285e',
+					'current' => '#ffffff'
+			)
 	);
 }
 
@@ -328,7 +328,7 @@ add_action( 'admin_init', 'xlt_admin_color_scheme' );
  *
  * @return void
  */
-function add_admin_menu_separator( $position ) {
+function xlt_add_admin_menu_separator( $position ) {
 	global $menu;
 	$index = 0;
 	foreach ( $menu as $offset => $section ) {
@@ -337,11 +337,11 @@ function add_admin_menu_separator( $position ) {
 		}
 		if ( $offset >= $position ) {
 			$menu[ $position ] = array(
-				'',
-				'read',
-				"separator$index",
-				'',
-				'wp-menu-separator'
+					'',
+					'read',
+					"separator$index",
+					'',
+					'wp-menu-separator'
 			);
 			break;
 		}
@@ -359,26 +359,26 @@ function xlt_rearrange_admin_menu() {
 	remove_menu_page( 'edit-comments.php' );
 
 	add_menu_page(
-		'Twitter',
-		'Twitter',
-		'manage_options',
-		'wp-tweets-pro',
-		'',
-		'dashicons-twitter',
-		34
+			'Twitter',
+			'Twitter',
+			'manage_options',
+			'wp-tweets-pro',
+			'',
+			'dashicons-twitter',
+			34
 	);
 
 	add_submenu_page(
-		'edit.php',
-		'Commenti',
-		'Commenti',
-		'edit_posts',
-		'edit-comments.php',
-		'',
-		22
+			'edit.php',
+			'Commenti',
+			'Commenti',
+			'edit_posts',
+			'edit-comments.php',
+			'',
+			22
 	);
 
-	add_admin_menu_separator( 24 );
+	xlt_add_admin_menu_separator( 24 );
 }
 
 add_action( 'admin_menu', 'xlt_rearrange_admin_menu' );

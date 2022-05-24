@@ -61,7 +61,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 
 		$home_url  = home_url( '/' );
-		$parent_id = $post->post_parent??0;
+		$parent_id = $post->post_parent ?? 0;
 		$title     = ( 'en' === $lang ) ? get_title_en() : get_the_title();
 
 
@@ -620,7 +620,7 @@ if ( ! function_exists( 'xlt_get_file_content' ) ) {
 	}
 }
 
-if ( ! function_exists( 'xl_get_sticky_img' ) ) {
+if ( ! function_exists( 'xlt_get_sticky_img' ) ) {
 	/**
 	 * Returns the HTML for the sticky image.
 	 *
@@ -629,7 +629,7 @@ if ( ! function_exists( 'xl_get_sticky_img' ) ) {
 	 *
 	 * @return string
 	 */
-	function xl_get_sticky_img( $id, $alt ) {
+	function xlt_get_sticky_img( $id, $alt ) {
 		return wp_get_attachment_image( $id, array( '437', '225' ), false,
 			array( "class" => "img-fluid grey_img", "alt" => $alt, "loading" => false ) );
 	}
@@ -646,7 +646,7 @@ if ( ! function_exists( 'xlt_get_url_from_href' ) ) {
 	function xlt_get_url_from_href( $string ) {
 
 		$re = '/href="(.*?)"/i';
-		preg_match($re, $string, $matches, PREG_OFFSET_CAPTURE);
+		preg_match( $re, $string, $matches, PREG_OFFSET_CAPTURE );
 
 		return $matches[1][0];
 	}

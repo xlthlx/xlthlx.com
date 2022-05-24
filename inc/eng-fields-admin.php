@@ -111,7 +111,7 @@ function xlt_eng_posts_columns( $defaults ) {
 			unset( $defaults['comments'] );
 		}
 
-		$defaults['eng']    = __( 'Eng' );
+		$defaults['eng'] = __( 'Eng' );
 	}
 
 	return $defaults;

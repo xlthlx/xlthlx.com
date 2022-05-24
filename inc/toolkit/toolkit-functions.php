@@ -53,8 +53,9 @@ function wt_update_attachment_title( $attachment_id ) {
 	$original_filename = get_transient( '_clean_image_filenames_original_filename' );
 
 	if ( $original_filename ) {
-		wp_update_post( array( 'ID'         => $attachment_id,
-		                       'post_title' => $original_filename
+		wp_update_post( array(
+			'ID'         => $attachment_id,
+			'post_title' => $original_filename
 		) );
 		delete_transient( '_clean_image_filenames_original_filename' );
 	}
@@ -198,7 +199,7 @@ function wt_disable_links() {
 function wt_remove_comments_style() {
 	global $wp_widget_factory;
 
-	$widget_recent_comments = $wp_widget_factory->widgets['WP_Widget_Recent_Comments']??null;
+	$widget_recent_comments = $wp_widget_factory->widgets['WP_Widget_Recent_Comments'] ?? null;
 
 	if ( ! empty( $widget_recent_comments ) ) {
 		remove_action( 'wp_head', [
