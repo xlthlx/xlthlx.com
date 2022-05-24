@@ -290,12 +290,18 @@ function get_lang() {
  */
 function get_url_trans() {
 
-	$link = get_abs_url();
-	$pos  = strpos( $link, '/en/' );
+	$link     = get_abs_url();
+	$pos      = strpos( $link, '/en/' );
+	$pos_page = strpos( $link, '/page/' );
 
 	if ( is_front_page() ) {
 		if ( $pos === false ) {
-			$link = str_replace( '/page/', '/en/page/', $link );
+			if ( $pos_page === false ) {
+				$link .= 'en/';
+			} else {
+				$link = str_replace( '/page/', '/en/page/', $link );
+			}
+
 		} else {
 			$link = str_replace( 'en/', '', $link );
 		}
@@ -315,7 +321,12 @@ function get_url_trans() {
 
 	if ( is_search() ) {
 		if ( $pos === false ) {
-			$link = str_replace( '/page/', '/en/page/', $link );
+			if ( $pos_page === false ) {
+				$link .= 'en/';
+			} else {
+				$link = str_replace( '/page/', '/en/page/', $link );
+			}
+
 		} else {
 			$link = str_replace( 'en/', '', $link );
 		}
