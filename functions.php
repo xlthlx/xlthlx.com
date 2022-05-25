@@ -17,10 +17,7 @@ require_once __DIR__ . '/vendor.phar';
 $timber              = new Timber\Timber();
 $timber::$dirname    = array( 'views' );
 $timber::$autoescape = false;
-$timber::$twig_cache = true;
-if ( 'http://localhost' === home_url() ) {
-	$timber::$twig_cache = false;
-}
+$timber::$twig_cache = false;
 
 /**
  * Subclass of Timber\Site to init the theme.
@@ -34,13 +31,9 @@ class xlthlxSite extends Timber\Site {
 		add_filter( 'timber/context', array( $this, 'add_to_context' ) );
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 		add_action( 'after_setup_theme', array( $this, 'add_image_size' ) );
-		add_action( 'enqueue_block_editor_assets',
-			array( $this, 'enqueue_editor_scripts' ) );
-		add_filter( 'image_size_names_choose',
-			array( $this, 'custom_size_name' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_scripts' ) );
+		add_filter( 'image_size_names_choose', array( $this, 'custom_size_name' ) );
 		add_filter( 'login_display_language_dropdown', '__return_false' );
-		add_filter( 'timber/cache/location',
-			array( $this, 'custom_change_twig_cache_dir' ) );
 		parent::__construct();
 	}
 
@@ -200,14 +193,6 @@ class xlthlxSite extends Timber\Site {
 			[ 'wp-blocks', 'wp-dom' ],
 			filemtime( get_template_directory() . '/assets/js/admin/editor.min.js' ),
 			true );
-	}
-
-	/**
-	 * Change Timber's cache folder.
-	 * We want to use wp-content/cache/timber
-	 */
-	public function custom_change_twig_cache_dir() {
-		return WP_CONTENT_DIR . '/cache/timber';
 	}
 
 	public function set_en_menu_title( $items ) {
