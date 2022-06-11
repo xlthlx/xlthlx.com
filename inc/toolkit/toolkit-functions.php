@@ -2,8 +2,7 @@
 /**
  * Functions for all options.
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
 
 add_action( 'wp_head', 'ob_start', 1, 0 );

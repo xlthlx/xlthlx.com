@@ -1,9 +1,18 @@
 {
   "name": "xlthlx",
   "version": "1.0.0",
-  "description": "xlthlx.com theme.",
-  "main": "Gruntfile.js",
+  "description": "Theme based on Bootstrap 5.",
   "author": "xlthlx",
+  "main": "Gruntfile.js",
+  "keywords": [
+    "WordPress",
+    "Theme"
+  ],
+  "homepage": "https://xlthlx.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xlthlx/xlthlx"
+  },
   "devDependencies": {
     "grunt": "^1.4.1",
     "grunt-contrib-cssmin": "^4.0.0",

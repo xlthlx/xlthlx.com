@@ -2,8 +2,7 @@
 /**
  * Toolkit.
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
 
 /**

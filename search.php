@@ -1,27 +1,40 @@
 <?php
 /**
- * Search results page
+ * The template for displaying search results.
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
 
-$templates = array( 'search.twig' );
-$context   = Timber::context();
+global $lang, $wp_query;
+get_header();
 
-$context['title'] = ( 'en' === $context['lang'] ) ? 'Search results for: ' . get_query_var( 's' ) : 'Risultati della ricerca per: ' . get_query_var( 's' );
-
+$title = ( 'en' === $lang ) ? 'Search results for: ' . get_query_var( 's' ) : 'Risultati della ricerca per: ' . get_query_var( 's' );
 $paged = ( get_query_var( 'paged' ) ) ?: 1;
 
-$context['posts'] = new Timber\PostQuery( array(
-	'paged' => $paged,
-	's'     => get_query_var( 's' )
+$wp_query = new WP_Query( array(
+	'paged'   => $paged,
+	's'       => get_query_var( 's' ),
+	'order'   => 'DESC',
+	'orderby' => 'date',
 ) );
+?>
+<?php if ( have_posts() ) { ?>
 
-foreach ( $context['posts'] as $context['post'] ) {
-	$context['post']->title_en   = get_title_en();
-	$context['post']->date_en    = get_date_en();
-	$context['post']->preview_en = xlt_get_excerpt( get_content_en() );
+	<h2 class="display-5 pb-3"><?php echo $title; ?></h2>
+	<hr class="pt-0 mt-0 mb-4"/>
+
+	<?php
+	while ( have_posts() ) {
+		the_post();
+
+		get_template_part( 'parts/tease', 'post' );
+
+	}
+
+	xlt_pagination( $wp_query, $paged );
+
+} else {
+	get_template_part( 'parts/no-content' );
 }
 
-Timber::render( $templates, $context );
+get_footer();

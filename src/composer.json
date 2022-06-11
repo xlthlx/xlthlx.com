@@ -5,6 +5,6 @@
   "type":"css",
   "minimum-stability" : "stable",
   "require": {
-    "twbs/bootstrap": "5.0.0"
+    "twbs/bootstrap": ">=5.1"
   }
 }

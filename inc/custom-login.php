@@ -2,8 +2,6 @@
 /**
  * Custom login.
  *
- * @package  WordPress
- * @subpackage  Xlthlx
  */
 
 remove_filter( 'authenticate', 'wp_authenticate_username_password', 20 );

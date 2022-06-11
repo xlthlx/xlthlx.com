@@ -1,40 +1,38 @@
-<?php return array (
-  'root' => 
-  array (
-    'pretty_version' => 'dev-main',
-    'version' => 'dev-main',
-    'aliases' => 
-    array (
+<?php return array(
+    'root' => array(
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'type' => 'css',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'reference' => NULL,
+        'name' => 'xlthlx/com',
+        'dev' => true,
     ),
-    'reference' => 'c9c38474e6fe40e1c0cf06ffe73741acec292c65',
-    'name' => 'xlthlx/com',
-  ),
-  'versions' => 
-  array (
-    'twbs/bootstrap' => 
-    array (
-      'pretty_version' => 'v5.0.0',
-      'version' => '5.0.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'bf0936748602c8109fd916c64b4560799fa1c3f8',
+    'versions' => array(
+        'twbs/bootstrap' => array(
+            'pretty_version' => 'v5.1.3',
+            'version' => '5.1.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../twbs/bootstrap',
+            'aliases' => array(),
+            'reference' => '1a6fdfae6be09b09eaced8f0e442ca6f7680a61e',
+            'dev_requirement' => false,
+        ),
+        'twitter/bootstrap' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => 'v5.1.3',
+            ),
+        ),
+        'xlthlx/com' => array(
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'type' => 'css',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'reference' => NULL,
+            'dev_requirement' => false,
+        ),
     ),
-    'twitter/bootstrap' => 
-    array (
-      'replaced' => 
-      array (
-        0 => 'v5.0.0',
-      ),
-    ),
-    'xlthlx/com' => 
-    array (
-      'pretty_version' => 'dev-main',
-      'version' => 'dev-main',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'c9c38474e6fe40e1c0cf06ffe73741acec292c65',
-    ),
-  ),
 );

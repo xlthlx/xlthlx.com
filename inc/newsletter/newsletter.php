@@ -4,8 +4,7 @@
  *
  * E.g. https://xlthlx.com/newsletter/?act=confirm&cod=Kr%QxyX)F172(4P7VFWPIeGl$b&lan=en
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
 
 require_once( __DIR__ . '/news-admin.php' );

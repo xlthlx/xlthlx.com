@@ -1,12 +1,11 @@
-# xlthlx.com
+# xlthlx
 
-WordPress Theme for xlthlx.com based on: 
+WordPress Theme for xlthlx.com.
 
-- [the official Timber starter theme](https://github.com/timber/starter-theme)
+Uses:
 
 - [John Billion's Extended CPTS library](https://github.com/johnbillion/extended-cpts)
 
 - [CMB2](https://github.com/CMB2/CMB2)
 
-- [Bootstrap 5](https://github.com/twbs/bootstrap/tree/v5.0.0-beta1)
-
+- [Bootstrap 5](https://github.com/twbs/bootstrap/releases/tag/v5.1.3)

@@ -2,17 +2,21 @@
 /**
  * Footer.
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
 
-use Timber\Timber;
+?>
+</div>
+</div>
+</main>
+<footer class="bg-dark">
+	<div class="container pt-4 pb-3 navbar-dark">
+		<?php get_template_part( 'parts/footer' ); ?>
+		<?php wp_footer(); ?>
+	</div>
+</footer>
 
-$context = $GLOBALS['timberContext'];
-if ( ! isset( $timberContext ) ) {
-	throw new RuntimeException( 'Timber context not set in footer.' );
-}
-$context['content'] = ob_get_clean();
+<span id="db3bd4a3c96f1fe80cd12d8df05e6320"></span>
 
-$templates = array( 'footer.twig' );
-Timber::render( $templates, $context );
+</body>
+</html>

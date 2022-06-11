@@ -2,24 +2,18 @@
 /**
  * Template Name: Newsletter
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
+global $lang;
+get_header();
 
-$context = Timber::context();
-
-$timber_post     = new Timber\Post();
-$context['post'] = $timber_post;
-
-$context['post']->title_en   = get_title_en();
-$context['post']->content_en = get_content_en();
-
-$lan = get_query_var( 'lan', false );
+$lan     = get_query_var( 'lan', false );
+$title   = '';
+$content = '';
 
 if ( $lan ) {
-	$act             = get_query_var( 'act' );
-	$cod             = get_query_var( 'cod' );
-	$context['lang'] = $lan;
+	$act = get_query_var( 'act' );
+	$cod = get_query_var( 'cod' );
 
 	$args = array(
 		'nopaging'   => true,
@@ -57,33 +51,67 @@ if ( $lan ) {
 
 		}
 
-	} else {
-		$act = 'error';
 	}
-
-	wp_reset_postdata();
-
-	$img = '<p><img class="img-fluid d-block" src="' . get_template_directory_uri() . '/assets/img/404.gif" alt="Error"></p>';
-
-	switch ( $act ) {
-		case 'confirm':
-			$context['post']->title      = 'Email verificata';
-			$context['post']->content    = '<p>Grazie per aver verificato il tuo indirizzo email.</p>';
-			$context['post']->title_en   = 'Email verified';
-			$context['post']->content_en = '<p>Thank you for verifying your email address.</p>';
-			break;
-		case 'unsubscribe':
-			$context['post']->title      = 'Email cancellata';
-			$context['post']->content    = '<p>Non riceverai più email da noi.</p><p>Arrivederci!</p>';
-			$context['post']->title_en   = 'Email deleted';
-			$context['post']->content_en = '<p>You will no longer receive emails from us.</p><p>See you!</p>';
-			break;
-		case 'error':
-			$context['post']->title      = 'Oh-oh';
-			$context['post']->content    = "<p>C'è stato un problema, i criceti che gestiscono il sito sono perplessi.</p>" . $img;
-			$context['post']->title_en   = 'Uh-oh';
-			$context['post']->content_en = '<p>There was a problem, the hamsters who run the site are perplexed.</p>' . $img;
-	}
+} else {
+	$act = 'error';
 }
 
-Timber::render( 'page-newsletter.twig', $context );
+wp_reset_postdata();
+
+switch ( $act ) {
+	case 'confirm':
+		$title   = ( 'en' === $lang ) ? 'Email verified' : 'Email verificata';
+		$content = ( 'en' === $lang ) ? '<p>Thank you for verifying your email address.</p>' : '<p>Grazie per aver verificato il tuo indirizzo email.</p>';
+		break;
+	case 'unsubscribe':
+		$title   = ( 'en' === $lang ) ? 'Email deleted' : 'Email cancellata';
+		$content = ( 'en' === $lang ) ? '<p>You will no longer receive emails from us.</p><p>See you!</p>' : '<p>Non riceverai più email da noi.</p><p>Arrivederci!</p>';
+		break;
+	case 'error':
+		$img     = '<p><img class="img-fluid d-block" src="' . get_template_directory_uri() . '/assets/img/404.gif" alt="Error"></p>';
+		$title   = ( 'en' === $lang ) ? 'Oh-oh' : 'Uh-oh';
+		$content = ( 'en' === $lang ) ? '<p>There was a problem, the hamsters who run the site are perplexed.</p>' : "<p>C'è stato un problema, i criceti che gestiscono il sito sono perplessi.</p>";
+		$content .= $img;
+		break;
+}
+?>
+
+<?php while ( have_posts() ) :
+	the_post(); ?>
+
+	<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
+
+		<div class="row">
+			<div class="col-md-8">
+
+				<div class="row">
+
+					<div class="col-12 d-flex">
+						<div class="col-md-12 d-flex">
+							<h2 class="display-4 pb-3 shadows"><?php echo $title; ?></h2>
+						</div>
+					</div>
+
+					<div class="col-md-12 text-break">
+
+						<section class="page-content mb-4">
+							<hr class="pt-0 mt-0 mb-4"/>
+							<?php echo $content; ?>
+						</section>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-md-4">
+				<aside class="sidebar mt-md-0 mt-4 ps-md-4 ps-0">
+					<?php dynamic_sidebar( 'page_sidebar' ); ?>
+				</aside>
+			</div>
+		</div>
+
+	</article>
+
+<?php endwhile; ?>
+<?php
+get_footer();

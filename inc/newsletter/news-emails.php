@@ -3,8 +3,7 @@
  * Functions to manage the newsletter emails.
  * Requires Flamingo and Contact Form 7 plugins.
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
 
 /**

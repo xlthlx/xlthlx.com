@@ -2,25 +2,19 @@
 /**
  * Template Name: Referral
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
+global $lang;
+get_header();
 
-$context = Timber::context();
-
-$timber_post     = new Timber\Post();
-$context['post'] = $timber_post;
-
-$context['post']->title_en   = get_title_en();
-$context['post']->content_en = get_content_en();
+$ref    = '';
+$coffee = '';
 
 $bookmarks = get_bookmarks( array(
 	'orderby'       => 'name',
 	'order'         => 'ASC',
 	'category_name' => 'Referral'
 ) );
-
-$ref = '';
 
 foreach ( $bookmarks as $bookmark ) {
 	$ref .= '<p>';
@@ -31,15 +25,11 @@ foreach ( $bookmarks as $bookmark ) {
 	$ref .= '</p>';
 }
 
-$context['referral'] = $ref;
-
 $money = get_bookmarks( array(
 	'orderby'       => 'name',
 	'order'         => 'ASC',
 	'category_name' => 'Money'
 ) );
-
-$coffee = '';
 
 foreach ( $money as $send ) {
 	$coffee .= '<p>';
@@ -49,6 +39,50 @@ foreach ( $money as $send ) {
 	}
 	$coffee .= '</p>';
 }
+?>
 
-$context['coffee'] = $coffee;
-Timber::render( array( 'page-referral.twig' ), $context );
+<?php while ( have_posts() ) :
+	the_post(); ?>
+
+	<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
+
+		<div class="row">
+			<div class="col-md-8">
+
+				<div class="row">
+
+					<div class="col-12 d-flex">
+						<div class="col-md-12 d-flex">
+							<h2 class="display-4 pb-3 shadows"><?php echo get_the_title(); ?></h2>
+						</div>
+					</div>
+
+					<div class="col-md-12 text-break">
+
+						<section class="page-content mb-4">
+							<hr class="pt-0 mt-0 mb-4"/>
+							<?php echo $ref; ?>
+							<h4 class="display-6 mt-4 shadows">
+								<?php echo ( 'en' === $lang ) ? 'Buy me a coffee' : 'Offrimi un caffè'; ?>
+							</h4>
+							<hr class="mt-4 mb-4">
+							<?php echo $coffee; ?>
+							<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() ); ?>
+						</section>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-md-4">
+				<aside class="sidebar mt-md-0 mt-4 ps-md-4 ps-0">
+					<?php dynamic_sidebar( 'page_sidebar' ); ?>
+				</aside>
+			</div>
+		</div>
+
+	</article>
+
+<?php endwhile; ?>
+<?php
+get_footer();
