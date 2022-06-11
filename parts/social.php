@@ -3,8 +3,8 @@ global $lang;
 $label = ( 'en' === $lang ) ? 'Share on' : 'Condividi su';
 ?>
 <div class="pt-3">
-	<a title="<?php echo $label; ?> Facebook"
-	   href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode( get_permalink() ); ?>&amp;t=<?php echo urlencode( get_the_title() ); ?>"
+	<a target="_blank" title="<?php echo $label; ?> Facebook"
+	   href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode( get_permalink() ); ?>"
 	   class="btn btn-fb btn-sm rounded-0 px-5 py-1 me-2 social-btn s-facebook" rel="nofollow">
 		<svg style="width:20px;height:20px" aria-label="Share on Facebook" role="img" xmlns="http://www.w3.org/2000/svg"
 			 viewBox="0 0 320 512">
@@ -12,7 +12,7 @@ $label = ( 'en' === $lang ) ? 'Share on' : 'Condividi su';
 				  d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path>
 		</svg>
 	</a>
-	<a title="<?php echo $label; ?> Twitter"
+	<a target="_blank" title="<?php echo $label; ?> Twitter"
 	   href="https://twitter.com/intent/tweet?text=<?php echo urlencode( get_the_title() ); ?>&amp;url=<?php echo urlencode( get_permalink() ); ?>"
 	   class="btn btn-tw btn-sm rounded-0 px-5 py-1 social-btn s-twitter" rel="nofollow">
 		<svg style="width:20px;height:20px" aria-label="Share on Twitter" role="img" xmlns="http://www.w3.org/2000/svg"
