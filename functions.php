@@ -270,3 +270,11 @@ require_once 'inc/newsletter/newsletter.php';
  * Minify HTML.
  */
 require_once 'inc/minify-html.php';
+
+
+function add_to_globals() {
+	global $lang;
+	$lang = get_lang();
+}
+
+add_action( 'after_setup_theme', 'add_to_globals' );
