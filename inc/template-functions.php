@@ -2,8 +2,7 @@
 /**
  * Functions which enhance the theme by hooking into WordPress.
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
 
 use Highlight\Highlighter;

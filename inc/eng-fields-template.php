@@ -2,8 +2,7 @@
 /**
  * Template (rewrite) functions for English translation.
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
 
 /**
@@ -54,7 +53,7 @@ function xlt_template_redirect() {
 		set_query_var( 'paged', (int) $page[1] );
 	}
 
-	if ( is_single() ) {
+	if ( is_single() || is_preview() ) {
 		$template = '/single.php';
 	}
 
@@ -82,6 +81,10 @@ function xlt_template_redirect() {
 		$template = '/page-referral.php';
 	}
 
+	if ( is_404() ) {
+		$template = '/404.php';
+	}
+
 	if ( is_archive() ) {
 		$template = '/archive.php';
 	}
@@ -106,10 +109,8 @@ add_action( 'template_redirect', 'xlt_template_redirect' );
  * Add rewrite endpoints.
  */
 function xlt_rewrite_tags_lang() {
-
 	add_rewrite_endpoint( 'en', EP_ALL, 'en' );
 	add_rewrite_endpoint( 'search', EP_SEARCH, 's' );
-
 }
 
 add_action( 'init', 'xlt_rewrite_tags_lang' );
@@ -131,24 +132,66 @@ add_action( 'pre_get_posts', 'xlt_home_posts_per_page' );
 /**
  * Set up an excerpt from $content.
  *
- * @param $content
  * @param int $length
  *
  * @return string
+ * @throws Exception
  */
-function xlt_get_excerpt( $content, $length = false ) {
+function xlt_get_excerpt( $length = 50 ) {
 
-	if ( '' !== $content ) {
-		$length  = ( ! $length ) ? 50 : $length;
-		$content = strip_shortcodes( $content );
-		$content = excerpt_remove_blocks( $content );
-		$content = apply_filters( 'the_content', $content );
-		$content = str_replace( ']]>', ']]&gt;', $content );
-		$content = wp_trim_words( $content, $length, '...' );
+	global $lang, $post;
+	$content = get_the_content();
+
+	if ( isset( $post ) && 'en' === $lang ) {
+		$content = get_content_en( $post->ID );
+	}
+
+	$content = strip_shortcodes( $content );
+	$content = excerpt_remove_blocks( $content );
+	$content = apply_filters( 'the_content', $content );
+	$content = str_replace( ']]>', ']]&gt;', $content );
+	$content = wp_trim_words( $content, $length, '...' );
+
+	if ( '' === trim( $content ) ) {
+		$content = ( 'en' === $lang ) ? get_trans( get_the_excerpt() ) : get_the_excerpt();
 	}
 
 	return $content;
 }
+
+/**
+ * Filters the title.
+ *
+ * @param $title
+ * @param $id
+ *
+ * @return mixed|string
+ */
+function xlt_set_title_en( $title, $id ) {
+	global $lang;
+
+	if ( is_admin() ) {
+		return $title;
+	}
+
+	$post = get_post( $id );
+
+	if ( ! isset( $post ) ) {
+		return $title;
+	}
+
+	if ( 'post' !== $post->post_type ) {
+		return $title;
+	}
+
+	if ( isset( $post ) && 'en' === $lang ) {
+		$title = get_title_en( $post->ID );
+	}
+
+	return $title;
+}
+
+add_filter( 'the_title', 'xlt_set_title_en', 10, 2 );
 
 /**
  * Filters a taxonomy term object.
@@ -160,11 +203,15 @@ function xlt_get_excerpt( $content, $length = false ) {
  */
 function xlt_filter_term_name( $term, $taxonomy ) {
 
+	global $lang;
+
 	if ( is_admin() ) {
 		return $term;
 	}
 
-	$lang = get_lang();
+	if ( 'category' !== $taxonomy ) {
+		return $term;
+	}
 
 	if ( 'en' === $lang ) {
 
@@ -191,6 +238,8 @@ add_filter( 'get_term', 'xlt_filter_term_name', 10, 2 );
  */
 function xlt_term_link_filter( $termlink, $term, $taxonomy ) {
 
+	global $lang;
+
 	if ( null === $term ) {
 		return $termlink;
 	}
@@ -199,7 +248,11 @@ function xlt_term_link_filter( $termlink, $term, $taxonomy ) {
 		return $termlink;
 	}
 
-	if ( 'en' === get_lang() ) {
+	if ( 'category' !== $taxonomy ) {
+		return $termlink;
+	}
+
+	if ( 'en' === $lang ) {
 		$termlink = str_replace( '/cat/', '/cat/en/', $termlink );
 	}
 
@@ -219,6 +272,8 @@ add_filter( 'term_link', 'xlt_term_link_filter', 10, 3 );
  */
 function xlt_search_link_filter( $link, $search ) {
 
+	global $lang;
+
 	if ( null === $search ) {
 		return $link;
 	}
@@ -227,7 +282,7 @@ function xlt_search_link_filter( $link, $search ) {
 		return $link;
 	}
 
-	if ( 'en' === get_lang() ) {
+	if ( 'en' === $lang ) {
 		$link = str_replace( '/page/', '/en/page/', $link );
 	}
 
@@ -246,7 +301,9 @@ add_filter( 'search_link', 'xlt_search_link_filter', 10, 2 );
  */
 function xlt_set_title_en_pages( $pages, $args ) {
 
-	if ( ! is_admin() && 'en' === get_lang() ) {
+	global $lang;
+
+	if ( ! is_admin() && 'en' === $lang ) {
 		foreach ( $pages as $page ) {
 			$page->post_title = get_title_en( $page->ID );
 		}
@@ -258,7 +315,7 @@ function xlt_set_title_en_pages( $pages, $args ) {
 add_filter( 'get_pages', 'xlt_set_title_en_pages', 10, 2 );
 
 /**
- * Filters the permalink for a page.
+ * Filters the permalink for page/post.
  *
  * @param string $link The page's permalink.
  * @param int $post_id The ID of the page.
@@ -266,7 +323,9 @@ add_filter( 'get_pages', 'xlt_set_title_en_pages', 10, 2 );
  *
  * @return string
  */
-function xlt_set_url_en_pages( $link, $post_id, $sample ) {
+function xlt_set_url_en( $link, $post_id, $sample ) {
+
+	global $lang;
 
 	if ( empty( $post_id ) ) {
 		return $link;
@@ -276,17 +335,18 @@ function xlt_set_url_en_pages( $link, $post_id, $sample ) {
 		return $link;
 	}
 
-	if ( 'en' === get_lang() ) {
+	if ( 'en' === $lang ) {
 		return $link . 'en/';
 	}
 
 	return $link;
 }
 
-add_filter( 'page_link', 'xlt_set_url_en_pages', 10, 3 );
+add_filter( 'page_link', 'xlt_set_url_en', 10, 3 );
+add_filter( 'post_link', 'xlt_set_url_en', 10, 3 );
 
 /**
- * Change widget title.
+ * Filters the widget title.
  *
  * @param string $title The widget title.
  * @param array $instance Array of settings for the current widget.
@@ -296,11 +356,13 @@ add_filter( 'page_link', 'xlt_set_url_en_pages', 10, 3 );
  */
 function xlt_change_widget_title( $title, $instance, $id_base ) {
 
-	if ( isset( $instance['nav_menu'] ) && 963 === $instance['nav_menu'] && 'it' === get_lang() ) {
+	global $lang;
+
+	if ( isset( $instance['nav_menu'] ) && 963 === $instance['nav_menu'] && 'it' === $lang ) {
 		$title = 'Argomenti';
 	}
 
-	if ( isset( $instance['title'] ) && 'Pages' === $instance['title'] && 'it' === get_lang() ) {
+	if ( isset( $instance['title'] ) && 'Pages' === $instance['title'] && 'it' === $lang ) {
 		$title = 'Pagine';
 	}
 
@@ -318,13 +380,11 @@ add_filter( 'widget_title', 'xlt_change_widget_title', 10, 3 );
  */
 function xlt_filter_next_post_link( $link ) {
 
+	global $lang;
 	$title = 'Post successivo';
 
-	if ( 'en' === get_lang() ) {
+	if ( 'en' === $lang ) {
 		$title = 'Next post';
-		$url   = xlt_get_url_from_href( $link );
-
-		$link = str_replace( $url, $url . 'en/', $link );
 	}
 
 	return str_replace( "rel=",
@@ -342,13 +402,11 @@ add_filter( 'next_post_link', 'xlt_filter_next_post_link' );
  */
 function xlt_filter_previous_post_link( $link ) {
 
+	global $lang;
 	$title = 'Post precedente';
 
-	if ( 'en' === get_lang() ) {
+	if ( 'en' === $lang ) {
 		$title = 'Previous post';
-		$url   = xlt_get_url_from_href( $link );
-
-		$link = str_replace( $url, $url . 'en/', $link );
 	}
 
 	return str_replace( "rel=",
@@ -358,7 +416,7 @@ function xlt_filter_previous_post_link( $link ) {
 add_filter( 'previous_post_link', 'xlt_filter_previous_post_link' );
 
 /**
- * Change the meta title based on language.
+ * Filters the meta title.
  *
  * @param $title
  *
@@ -366,7 +424,7 @@ add_filter( 'previous_post_link', 'xlt_filter_previous_post_link' );
  */
 function xlt_en_title( $title ) {
 
-	$lang = get_lang();
+	global $lang, $post;
 
 	if ( 'en' === $lang ) {
 
@@ -374,8 +432,8 @@ function xlt_en_title( $title ) {
 			$title = get_bloginfo( 'name' ) . ' | ' . 'Better than a cyber duck in the ass.';
 		}
 
-		if ( is_singular() ) {
-			$title = get_title_en() . ' | ' . get_bloginfo( 'name' );
+		if ( is_singular() && ! is_preview() ) {
+			$title = get_title_en( $post->ID ) . ' | ' . get_bloginfo( 'name' );
 		}
 
 		if ( is_search() ) {
@@ -386,6 +444,10 @@ function xlt_en_title( $title ) {
 			$title = 'Search results for: ' . get_search_query() . ' | Page ' . get_query_var( 'paged' ) . ' | xlthlx';
 		}
 
+		if ( is_404() ) {
+			$title = 'Page not found | xlthlx';
+		}
+
 	}
 
 	return $title;
@@ -394,7 +456,7 @@ function xlt_en_title( $title ) {
 add_filter( 'slim_seo_meta_title', 'xlt_en_title' );
 
 /**
- * Change the meta description based on language.
+ * Filters the meta description.
  *
  * @param $description
  *
@@ -403,7 +465,7 @@ add_filter( 'slim_seo_meta_title', 'xlt_en_title' );
  */
 function xlt_en_description( $description ) {
 
-	$lang = get_lang();
+	global $lang;
 
 	if ( 'en' === $lang ) {
 
@@ -522,10 +584,9 @@ function xlt_search_url_rewrite() {
 add_action( 'template_redirect', 'xlt_search_url_rewrite' );
 
 /**
- * Fires after the query variable object is created,
- * but before the actual query is run.
+ * Filters the search results.
  *
- * @param object $query The WP_Query instance (passed by reference).
+ * @param object $query The WP_Query instance.
  */
 function xlt_exclude_pages_from_search_results( $query ) {
 	if ( $query->is_search() && ! is_admin() ) {

@@ -2,8 +2,7 @@
 /**
  * Backend functions for English translation.
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
 
 /**

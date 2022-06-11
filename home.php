@@ -1,60 +1,63 @@
 <?php
 /**
- * Homepage template.
+ * Home page template.
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
 
-$context = Timber::context();
+get_header();
+global $lang;
 
 $paged = ( get_query_var( 'paged' ) ) ?: 1;
-if ( 'en' === $context['lang'] ) {
+if ( 'en' === $lang ) {
 	$paged = ( get_query_var( 'page' ) ) ?: 1;
 }
 
-$sticky = get_option( 'sticky_posts' );
-$first  = array_slice( $sticky, 0, 1 );
+$first            = xlt_get_first_post();
+$offset           = $first['offset'];
+$first_post_query = $first['first_post_query'];
 
-$offset = array();
-
-if ( count( $first ) === 1 ) {
-	$context['first_posts'] = new Timber\PostQuery( array(
-		'post__in'            => $first,
-		'ignore_sticky_posts' => 1
-	) );
-
-	$offset = $first;
-} else {
-	$context['first_posts'] = new Timber\PostQuery( array( 'posts_per_page' => 1 ) );
-	$offset[0]              = $context['first_posts'][0]->ID;
-}
-
-foreach ( $context['first_posts'] as $context['first_post'] ) {
-	$context['first_post']->title_en   = get_title_en();
-	$context['first_post']->date_en    = get_date_en();
-	$context['first_post']->preview_en = xlt_get_excerpt( get_content_en(),
-		40 );
-}
-
-if ( count( $first ) === 1 ) {
-	$offset = array_slice( $sticky, 0, 3 );
-}
-
-$context['posts'] = new Timber\PostQuery( array(
+$args = array(
 	'post__not_in' => $offset,
 	'paged'        => $paged
-) );
+);
 
-foreach ( $context['posts'] as $context['post'] ) {
-	$context['post']->title_en   = get_title_en();
-	$context['post']->date_en    = get_date_en();
-	$context['post']->preview_en = xlt_get_excerpt( get_content_en() );
+$wp_query = new WP_Query( $args );
+
+if ( $first_post_query && 1 === $paged ) {
+	?>
+	<div class="bg-violet grey-sticky">
+
+		<?php
+		foreach ( $first_post_query as $post ) {
+			setup_postdata( $post );
+			get_template_part( 'parts/sticky' );
+
+		}
+		wp_reset_postdata(); ?>
+
+	</div>
+	<?php
 }
 
-$context['category'] = Timber::get_terms( [
-	'taxonomy'   => 'category',
-	'hide_empty' => 1,
-] );
+if ( $wp_query->have_posts() ) { ?>
+	<div class="row mb-2">
+	<?php while ( $wp_query->have_posts() ) {
+		$wp_query->the_post();
+		get_template_part( 'parts/tease', 'home' );
+		if ( ( $wp_query->current_post % 2 !== 0 ) && ( $wp_query->post_count !== $wp_query->current_post + 1 ) ) { ?>
+			</div>
+			<hr class="pt-0 mt-0 mb-4"/>
+			<div class="row mb-2">
+		<?php }
+	}
+	?>
+	</div>
+	<?php
 
-Timber::render( array( 'home.twig' ), $context );
+} else {
+	get_template_part( 'parts/no-content' );
+}
+
+xlt_pagination( $wp_query, $paged );
+get_footer();

@@ -2,12 +2,11 @@
 /**
  * Frontend functions for English translation.
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
 
-use simplehtmldom\HtmlDocument;
 use Highlight\Highlighter;
+use simplehtmldom\HtmlDocument;
 
 /**
  * Gets absolute url.
@@ -15,7 +14,7 @@ use Highlight\Highlighter;
  * @return string
  */
 function get_abs_url() {
-	if ( isset($_SERVER['HTTP_HOST']) && ! is_admin()) {
+	if ( isset( $_SERVER['HTTP_HOST'] ) && ! is_admin() ) {
 		return ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? "https" : "http" ) . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 	}
 }
@@ -55,6 +54,10 @@ function get_date_en( $post_id = 0 ) {
 		$post_id = $post->ID;
 	}
 
+	if ( is_preview() ) {
+		$post_id = get_query_var('p');
+	}
+
 	$post_type = get_post_type( $post_id );
 
 	if ( 'post' === $post_type ) {
@@ -82,23 +85,29 @@ function get_date_en( $post_id = 0 ) {
  * @return string
  */
 function get_title_en( $post_id = 0 ) {
-	if ( $post_id === 0 ) {
-		global $post;
-		$post_id = $post->ID;
-	}
 
-	$post_type = get_post_type( $post_id );
-
-	if ( 'post' === $post_type || 'page' === $post_type ) {
-		if ( ! get_post_meta( $post_id, 'title_en', true )
-		     || get_post_meta( $post_id, 'title_en', true ) === '' ) {
-
-			$title = get_trans( get_the_title( $post_id ) );
-			update_post_meta( $post_id, 'title_en', $title );
+		if ( $post_id === 0 ) {
+			global $post;
+			$post_id = $post->ID;
 		}
-	}
 
-	return get_post_meta( $post_id, 'title_en', true );
+		if ( is_preview() ) {
+			$post_id = get_query_var('p');
+		}
+
+		$post_type = get_post_type( $post_id );
+
+		if ( 'post' === $post_type || 'page' === $post_type ) {
+			if ( ! get_post_meta( $post_id, 'title_en', true )
+			     || get_post_meta( $post_id, 'title_en', true ) === '' ) {
+
+				$title = get_trans( get_the_title( $post_id ) );
+				update_post_meta( $post_id, 'title_en', $title );
+			}
+		}
+
+		return get_post_meta( $post_id, 'title_en', true );
+
 }
 
 /**
@@ -114,6 +123,10 @@ function get_content_en( $post_id = 0 ) {
 	if ( $post_id === 0 ) {
 		global $post;
 		$post_id = $post->ID;
+	}
+
+	if ( is_preview() ) {
+		$post_id = get_query_var('p');
 	}
 
 	$post_type = get_post_type( $post_id );
@@ -342,6 +355,13 @@ function get_url_trans() {
 		$link = str_replace( 'en/', '', $link );
 	}
 
+	if ( is_preview() ) {
+		if ( $pos === false ) {
+			$link = get_home_url() . '/en/?p=' . get_query_var( 'p' ) . '&preview=true';
+		} else {
+			$link = str_replace( '/en/', '/?p=' . get_query_var( 'p' ) . '&preview=true', $link );
+		}
+	}
+
 	return $link;
 }
-

@@ -2,8 +2,7 @@
 /**
  * Minify HTML.
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
 
 function xlt_init_minify_html() {

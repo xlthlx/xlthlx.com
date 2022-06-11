@@ -2,8 +2,7 @@
 /**
  * Custom Widgets.
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
 
 /**

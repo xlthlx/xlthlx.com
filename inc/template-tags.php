@@ -2,8 +2,7 @@
 /**
  * Custom template tags.
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
 
 if ( ! function_exists( 'xlt_get_link' ) ) {
@@ -37,8 +36,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 	 */
 	function xlt_breadcrumbs() {
 
-		global $post;
-		$lang = get_lang();
+		global $post, $lang;
 
 		$args = array(
 			'before'        => '<li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">',
@@ -62,8 +60,11 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 		$home_url  = home_url( '/' );
 		$parent_id = $post->post_parent ?? 0;
-		$title     = ( 'en' === $lang ) ? get_title_en() : get_the_title();
-
+		if ( is_404() ) {
+			$title = ( 'en' === $lang ) ? 'Error 404' : get_the_title();
+		} else {
+			$title     = ( 'en' === $lang ) ? get_title_en($post->ID) : get_the_title();
+		}
 
 		$home_link = xlt_get_link( $args, $home_url, $args['text']['home'], 1 );
 
@@ -436,40 +437,6 @@ if ( ! function_exists( 'xlt_comment_form_en' ) ) {
 	}
 }
 
-if ( ! function_exists( 'xlt_countdown' ) ) {
-	/**
-	 * Countdown.
-	 *
-	 * @return string
-	 * @throws Exception
-	 */
-	function xlt_countdown() {
-
-		$start_date = '2021-12-30 23:59:59';
-		$end_date   = date( 'Y-m-d H:i:s' );
-
-		$datetime1 = new DateTime( $start_date );
-		$datetime2 = new DateTime( $end_date );
-		$interval  = $datetime1->diff( $datetime2 );
-		$days      = $interval->days;
-
-		if ( $datetime1 <= $datetime2 ) {
-			$count_down = '';
-
-		} else {
-			$count_down = '<div class="container bg-white pt-4 mt-0 pb-0 px-4">';
-			$count_down .= '<div class="alert alert-secondary text-center mb-0 rounded-0 border-0 pink" role="alert">';
-			$link       = "the Year of the Tiger";
-			$text       = ( (string) $days === '1' ) ? ' day to ' : ' days to ';
-			$count_down .= $days . $text . $link;
-			$count_down .= '</div>';
-			$count_down .= '</div>';
-		}
-
-		return $count_down;
-	}
-}
-
 if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 	/**
 	 * Old posts warning.
@@ -651,3 +618,270 @@ if ( ! function_exists( 'xlt_get_url_from_href' ) ) {
 		return $matches[1][0];
 	}
 }
+
+if ( ! function_exists( 'xlt_get_menu_items' ) ) {
+	/**
+	 * Get a menu as array from location.
+	 *
+	 * @param $theme_location
+	 *
+	 * @return array
+	 */
+	function xlt_get_menu_items( $theme_location ) {
+
+		$locations = get_nav_menu_locations();
+		if ( ( $locations ) && isset( $locations[ $theme_location ] ) ) {
+
+			$menu       = get_term( $locations[ $theme_location ], 'nav_menu' );
+			$menu_items = wp_get_nav_menu_items( $menu->term_id );
+			$menu_list  = [];
+			$bool       = false;
+
+			$i = 0;
+			foreach ( $menu_items as $menu_item ) {
+				if ( (int) $menu_item->menu_item_parent === 0 ) {
+
+					$parent     = $menu_item->ID;
+					$menu_array = [];
+					$y          = 0;
+
+					foreach ( $menu_items as $submenu ) {
+						if ( isset( $submenu ) && (int) $submenu->menu_item_parent === (int) $parent ) {
+							$bool       = true;
+							$menu_array = xlt_get_arr( $submenu, $menu_array, $y );
+							$y ++;
+						}
+					}
+
+					$menu_list = xlt_get_arr( $menu_item, $menu_list, $i );
+
+					if ( $bool === true && count( $menu_array ) > 0 ) {
+						$menu_list[ $i ]['submenu'] = $menu_array;
+					}
+					$i ++;
+				}
+			}
+
+		} else {
+			$menu_list[] = '';
+		}
+
+		return $menu_list;
+	}
+
+	/**
+	 * Set up the menu array.
+	 *
+	 * @param $menu
+	 * @param array $menu_array
+	 * @param int $i
+	 *
+	 * @return array
+	 */
+	function xlt_get_arr( $menu, array $menu_array, int $i ): array {
+		global $lang;
+
+		$menu_array[ $i ]['url']     = $menu->url;
+		$title_en                    = ( '' !== get_title_en( $menu->object_id ) ) ? get_title_en( $menu->object_id ) : $menu->title;
+		$menu_array[ $i ]['title']   = ( 'it' === $lang ) ? $menu->title : $title_en;
+		$menu_array[ $i ]['target']  = ! empty( $menu->target ) ? ' target="' . $menu->target . '"' : '';
+		$menu_array[ $i ]['classes'] = implode( ' ', $menu->classes );
+
+		return $menu_array;
+	}
+}
+
+if ( ! function_exists( 'xlt_get_first_post' ) ) {
+	/**
+	 * Get the first or the sticky post.
+	 *
+	 * @return array
+	 */
+	function xlt_get_first_post() {
+
+		$sticky = get_option( 'sticky_posts' );
+		$first  = array_slice( $sticky, 0, 1 );
+
+		$offset = array();
+
+		if ( count( $first ) === 1 ) {
+			$args             = array(
+				'post__in'            => $first,
+				'ignore_sticky_posts' => 1
+			);
+			$first_post_query = get_posts( $args );
+			$offset           = $first;
+		} else {
+			$args             = array( 'numberposts' => 1 );
+			$first_post_query = get_posts( $args );
+
+			if ( $first_post_query ) {
+				foreach ( $first_post_query as $post ) {
+					$offset[0] = $post->ID;
+				}
+			}
+		}
+
+		if ( count( $first ) === 1 ) {
+			$offset = array_slice( $sticky, 0, 3 );
+		}
+
+		$return['first_post_query'] = $first_post_query;
+		$return['offset']           = $offset;
+
+		return $return;
+	}
+}
+
+if ( ! function_exists( 'xlt_pagination' ) ) {
+	/**
+	 * Pagination.
+	 *
+	 * @param $wp_query
+	 * @param $paged
+	 *
+	 * @return void
+	 */
+	function xlt_pagination( $wp_query, $paged ) {
+		global $lang;
+
+		$first    = 'Primo';
+		$last     = 'Ultimo';
+		$previous = 'Precedente';
+		$next     = 'Successivo';
+
+		if ( 'en' === $lang ) {
+			$first    = 'First';
+			$last     = 'Last';
+			$previous = 'Previous';
+			$next     = 'Next';
+		}
+
+		$return   = '';
+		$max_page = $wp_query->max_num_pages;
+
+		$pages_to_show         = 8;
+		$pages_to_show_minus_1 = $pages_to_show - 1;
+		$half_page_start       = floor( $pages_to_show_minus_1 / 2 );
+		$half_page_end         = ceil( $pages_to_show_minus_1 / 2 );
+		$start_page            = $paged - $half_page_start;
+
+		if ( $start_page <= 0 ) {
+			$start_page = 1;
+		}
+
+		$end_page = $paged + $half_page_end;
+		if ( ( $end_page - $start_page ) !== $pages_to_show_minus_1 ) {
+			$end_page = $start_page + $pages_to_show_minus_1;
+		}
+
+		if ( $end_page > $max_page ) {
+			$start_page = $max_page - $pages_to_show_minus_1;
+			$end_page   = $max_page;
+		}
+
+		if ( $start_page <= 0 ) {
+			$start_page = 1;
+		}
+
+		if ( $max_page > 1 ) {
+
+			$return = '<nav class="mt-1 mb-5">' . "\n";
+			$return .= '<ul class="pagination flex-wrap">' . "\n";
+
+			if ( 1 < (int) $paged ) {
+				$return .= '<li class="page-item">' . "\n";
+				$return .= '<a href="' . esc_url( get_pagenum_link() ) . '" class="page-link" title="' . $first . '">&laquo;</a>' . "\n";
+				$return .= '</li>' . "\n";
+			}
+
+			$return .= '<li class="page-item">' . "\n";
+			$return .= str_replace( '<a href="', '<a class="page-link" title="' . $previous . '" href="', get_previous_posts_link( '&lsaquo;' ) );
+			$return .= '</li>' . "\n";
+
+			if ( (int) $start_page >= 2 && $pages_to_show < $max_page ) {
+				$return .= '<li class="page-item">' . "\n";
+				$return .= '<a href="' . esc_url( get_pagenum_link() ) . '" class="page-link" title="1">1</a>' . "\n";
+				$return .= '</li>' . "\n";
+				$return .= '<li class="page-item active" aria-current="page">
+					<span class="page-link dots">...<span class="visually-hidden">(current)</span></span>
+				  </li>';
+			}
+
+			for ( $i = $start_page; $i <= $end_page; $i ++ ) {
+				if ( (int) $i === (int) $paged ) {
+					$return .= '<li class="page-item active" aria-current="page">
+						<span class="page-link page-number page-numbers current">' . number_format_i18n( $i ) . ' <span class="visually-hidden">(current)</span></span>
+					</li>';
+				} else {
+					$return .= '<li class="page-item">' . "\n";
+					$return .= '<a href="' . esc_url( get_pagenum_link( $i ) ) . '" class="page-link" title="' . number_format_i18n( $i ) . '">' . number_format_i18n( $i ) . '</a>';
+					$return .= '</li>' . "\n";
+				}
+			}
+
+			if ( (int) $end_page < $max_page ) {
+				$return .= '<li class="page-item active" aria-current="page">
+							<span class="page-link dots">...<span class="visually-hidden">(current)</span></span>
+						  </li>';
+				$return .= '<li class="page-item">' . "\n";
+				$return .= '<a href="' . esc_url( get_pagenum_link( $max_page ) ) . '" class="page-link" title="' . $max_page . '">' . $max_page . '</a>';
+				$return .= '</li>' . "\n";
+			}
+
+			$return .= '<li class="page-item">' . "\n";
+			$return .= str_replace( '<a href="', '<a class="page-link" title="' . $next . '" href="', get_next_posts_link( '&rsaquo;', $max_page ) );
+			$return .= '</li>' . "\n";
+
+			if ( (int) $max_page > (int) $paged ) {
+				$return .= '<li class="page-item">' . "\n";
+				$return .= '<a href="' . esc_url( get_pagenum_link( $max_page ) ) . '" class="page-link" title="' . $last . '">&raquo;</a>';
+				$return .= '</li>' . "\n";
+			}
+			$return .= '</ul>' . "\n";
+			$return .= '</nav>' . "\n";
+		}
+
+		echo $return;
+	}
+}
+
+if ( ! function_exists( 'xlt_get_the_terms' ) ) {
+
+	/**
+	 * Function to return list of the terms.
+	 *
+	 * @param string 'taxonomy'
+	 *
+	 * @return string Returns the list of elements.
+	 */
+
+	function xlt_get_the_terms( $taxonomy, $cut = false ) {
+
+		$all_terms = '';
+		$terms     = get_the_terms( get_the_ID(), $taxonomy );
+
+		if ( $terms && ! is_wp_error( $terms ) ) {
+
+			$term_links = array();
+
+			foreach ( $terms as $term ) {
+				$term_links[] = '<li class="d-inline fw-bold"><a href="' . esc_attr( get_term_link( $term->slug, $taxonomy ) ) . '">' . esc_html( $term->name ) . '</a></li>';
+			}
+
+			if ( $cut ) {
+				$term_links    = [];
+				$key           = count( $terms ) - 1;
+				$term_links[0] = '<li class="d-inline fw-bold"><a href="' . esc_attr( get_term_link( $terms[ $key ]->slug, $taxonomy ) ) . '">' . esc_html( $terms[ $key ]->name ) . '</a></li>';
+			}
+
+			$all_terms = implode( ', ', $term_links );
+		}
+
+		return $all_terms;
+
+	}
+
+}
+
+

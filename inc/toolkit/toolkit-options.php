@@ -2,8 +2,7 @@
 /**
  * Sets the correct function when an option is activated
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
 
 require_once( __DIR__ . '/toolkit-functions.php' );

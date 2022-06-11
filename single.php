@@ -1,21 +1,63 @@
 <?php
 /**
- * The Template for displaying all single posts.
+ * The template for displaying all single posts.
  *
- * @package  WordPress
- * @subpackage  Xlthlx
+ * @package  xlthlx
  */
+global $lang;
+get_header();
+?>
 
-$context         = Timber::context();
-$timber_post     = Timber::query_post();
-$context['post'] = $timber_post;
+<?php while ( have_posts() ) :
+	the_post(); ?>
 
-$context['post']->title_en   = get_title_en();
-$context['post']->date_en    = get_date_en();
-$context['post']->content_en = get_content_en();
+	<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
 
-if ( post_password_required( $timber_post->ID ) ) {
-	Timber::render( 'single-password.twig', $context );
-} else {
-	Timber::render( 'single.twig', $context );
-}
+		<div class="row">
+			<div class="col-md-8">
+
+				<div class="row">
+
+					<div class="d-flex">
+						<div class="col-12 d-flex">
+							<h2 class="display-5 pb-3 shadows"><?php echo get_the_title(); ?></h2>
+						</div>
+					</div>
+
+					<div class="col-md-12 text-break">
+						<section class="article-content mb-4">
+							<hr class="pt-0 mt-0 mb-2"/>
+							<p class="mb-0"><?php echo ( 'en' === $lang ) ? get_date_en() : get_the_date(); ?></p>
+
+							<div class="article-body pr-4">
+								<?php echo xlt_old_posts_warning( $lang ); ?>
+								<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() ); ?>
+							</div>
+
+							<?php get_template_part( 'parts/social' ); ?>
+
+							<div class="pt-4">
+								<?php get_template_part( 'parts/terms' ); ?>
+							</div>
+
+							<hr class="mt-4 mb-0"/>
+							<?php get_template_part( 'parts/navigation' ); ?>
+						</section>
+
+						<?php comments_template(); ?>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<aside class="sidebar mt-md-0 mt-4 ps-md-4 ps-0">
+					<?php get_template_part( 'parts/newsletter' ); ?>
+					<?php dynamic_sidebar( 'sidebar' ); ?>
+				</aside>
+			</div>
+
+		</div>
+	</article>
+<?php endwhile; ?>
+<?php
+get_footer();
