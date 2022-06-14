@@ -3,48 +3,6 @@ Fonts
 _______*/
 
 @font-face {
-	font-family: 'Titillium Web';
-	font-style: normal;
-	font-weight: 400;
-	font-display: swap;
-	src: local('Titillium Web Regular'), local('TitilliumWeb-Regular'),
-	url('../../fonts/titillium-web-v6-latin-ext_latin-regular.woff2') format('woff2'),
-	url('../../fonts/titillium-web-v6-latin-ext_latin-regular.woff') format('woff');
-}
-
-@font-face {
-	font-family: 'Titillium Web';
-	font-style: italic;
-	font-weight: 400;
-	font-display: swap;
-	src: local('Titillium Web Italic'), local('TitilliumWeb-Italic'),
-	url('../../fonts/titillium-web-v6-latin-ext_latin-italic.woff2') format('woff2'),
-	url('../../fonts/titillium-web-v6-latin-ext_latin-italic.woff') format('woff');
-}
-
-
-@font-face {
-	font-family: 'Titillium Web';
-	font-style: normal;
-	font-weight: 700;
-	font-display: swap;
-	src: local('Titillium Web Bold'), local('TitilliumWeb-Bold'),
-	url('../../fonts/titillium-web-v6-latin-ext_latin-700.woff2') format('woff2'),
-	url('../../fonts/titillium-web-v6-latin-ext_latin-700.woff') format('woff');
-}
-
-
-@font-face {
-	font-family: 'Titillium Web';
-	font-style: italic;
-	font-weight: 700;
-	font-display: swap;
-	src: local('Titillium Web Bold Italic'), local('TitilliumWeb-BoldItalic'),
-	url('../../fonts/titillium-web-v6-latin-ext_latin-700italic.woff2') format('woff2'),
-	url('../../fonts/titillium-web-v6-latin-ext_latin-700italic.woff') format('woff');
-}
-
-@font-face {
 	font-family: 'Shadows';
 	src: local('Shadows Into Light'), local('ShadowsIntoLight'),
 	url('../../fonts/ShadowsIntoLight.woff2') format('woff2'),
@@ -62,8 +20,8 @@ body {
 }
 
 body {
-	font-family: 'Titillium Web', Tahoma, Arial, serif !important;
-	font-size: 1.125rem;
+	font-family: Geneva, Verdana, sans-serif !important;
+	font-size: 1.1rem;
 	background-color: #6667ab !important;
 }
 
