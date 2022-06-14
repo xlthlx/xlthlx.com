@@ -9,7 +9,7 @@
 	<link rel="preload" href="<?php echo get_template_directory_uri();?>/assets/fonts/titillium-web-v6-latin-ext_latin-700.woff2" as="font" type="font/woff2" crossorigin />
 	<link rel="preload" href="<?php echo get_template_directory_uri();?>/assets/fonts/titillium-web-v6-latin-ext_latin-italic.woff2" as="font" type="font/woff2" crossorigin />
 	<link rel="preload" href="<?php echo get_template_directory_uri();?>/assets/fonts/ShadowsIntoLight.woff2" as="font" type="font/woff2" crossorigin />
-	<link rel="preload" href="<?php echo get_template_directory_uri();?>/assets/js/main.min.js?ver=<?php filemtime(get_template_directory().'/assets/js/main.min.js');?>" as="script" crossorigin />
+	<link rel="preload" href="<?php echo get_template_directory_uri();?>/assets/js/main.min.js?ver=<?php echo filemtime(get_template_directory().'/assets/js/main.min.js');?>" as="script" crossorigin />
 	<meta name="theme-color" content="#6667ab"/>
 	<link rel="manifest" href="<?php echo get_template_directory_uri();?>/assets/manifest/manifest.json"/>
 	<?php wp_head(); ?>
