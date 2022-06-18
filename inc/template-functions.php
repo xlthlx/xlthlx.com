@@ -67,10 +67,10 @@ function xlt_render_code( string $content ) {
 	$hl->setAutodetectLanguages( array( 'php', 'javascript', 'html' ) );
 
 	$content = str_replace( array(
-			'<pre class="wp-block-code">',
-			'<code>',
-			'</code>',
-			'</pre>'
+		'<pre class="wp-block-code">',
+		'<code>',
+		'</code>',
+		'</pre>'
 	), '', html_entity_decode( $content ) );
 
 	$highlighted = $hl->highlightAuto( trim( $content ) );
@@ -156,12 +156,12 @@ add_filter( 'comment_post_redirect', 'xlt_en_comment_redirect', 10, 2 );
  */
 function xlt_enqueue_admin_css_js() {
 	wp_enqueue_style( 'admin',
-			get_template_directory_uri() . '/assets/css/admin/admin.min.css', [],
-			filemtime( get_template_directory() . '/assets/css/admin/admin.min.css' ) );
+		get_template_directory_uri() . '/assets/css/admin/admin.min.css', [],
+		filemtime( get_template_directory() . '/assets/css/admin/admin.min.css' ) );
 	wp_enqueue_script( 'admin',
-			get_template_directory_uri() . '/assets/js/admin/admin.min.js', [],
-			filemtime( get_template_directory() . '/assets/js/admin/admin.min.js' ),
-			true );
+		get_template_directory_uri() . '/assets/js/admin/admin.min.js', [],
+		filemtime( get_template_directory() . '/assets/js/admin/admin.min.js' ),
+		true );
 }
 
 add_action( 'admin_enqueue_scripts', 'xlt_enqueue_admin_css_js' );
@@ -207,14 +207,14 @@ add_action( 'init', 'xlt_unregister_tags' );
  */
 function xlt_youtube_oembed_filters( $html, $data, $url ) {
 	if ( false === $html || ! in_array( $data->type, [ 'rich', 'video' ],
-					true ) ) {
+			true ) ) {
 		return $html;
 	}
 
 	if ( false !== strpos( $html, 'youtube' ) || false !== strpos( $html,
-					'youtu.be' ) ) {
+			'youtu.be' ) ) {
 		$html = str_replace( 'youtube.com/embed', 'youtube-nocookie.com/embed',
-				$html );
+			$html );
 	}
 
 	return $html;
@@ -261,8 +261,8 @@ add_filter( 'embed_oembed_discover', 'xlt_restore_oembed_cache' );
 function xlt_insert_css() {
 	$file  = get_template_directory() . '/assets/css/main.min.css';
 	$style = str_replace( '../fonts/',
-			get_template_directory_uri() . '/assets/fonts/',
-			xlt_get_file_content( $file ) );
+		get_template_directory_uri() . '/assets/fonts/',
+		xlt_get_file_content( $file ) );
 
 	echo '<style id="all-styles-inline">' . $style . '</style>';
 }
@@ -308,13 +308,13 @@ function xlt_admin_color_scheme() {
 	$theme_dir = get_stylesheet_directory_uri();
 
 	wp_admin_css_color( 'xlthlx', __( 'Xlthlx' ),
-			$theme_dir . '/assets/css/admin/color-scheme.min.css',
-			array( '#1e2327', '#fff', '#92285e', '#6667ab' ),
-			array(
-					'base'    => '#ffffff',
-					'focus'   => '#92285e',
-					'current' => '#ffffff'
-			)
+		$theme_dir . '/assets/css/admin/color-scheme.min.css',
+		array( '#1e2327', '#fff', '#92285e', '#6667ab' ),
+		array(
+			'base'    => '#ffffff',
+			'focus'   => '#92285e',
+			'current' => '#ffffff'
+		)
 	);
 }
 
@@ -336,11 +336,11 @@ function xlt_add_admin_menu_separator( $position ) {
 		}
 		if ( $offset >= $position ) {
 			$menu[ $position ] = array(
-					'',
-					'read',
-					"separator$index",
-					'',
-					'wp-menu-separator'
+				'',
+				'read',
+				"separator$index",
+				'',
+				'wp-menu-separator'
 			);
 			break;
 		}
@@ -358,23 +358,23 @@ function xlt_rearrange_admin_menu() {
 	remove_menu_page( 'edit-comments.php' );
 
 	add_menu_page(
-			'Twitter',
-			'Twitter',
-			'manage_options',
-			'wp-tweets-pro',
-			'',
-			'dashicons-twitter',
-			34
+		'Twitter',
+		'Twitter',
+		'manage_options',
+		'wp-tweets-pro',
+		'',
+		'dashicons-twitter',
+		34
 	);
 
 	add_submenu_page(
-			'edit.php',
-			'Commenti',
-			'Commenti',
-			'edit_posts',
-			'edit-comments.php',
-			'',
-			22
+		'edit.php',
+		'Commenti',
+		'Commenti',
+		'edit_posts',
+		'edit-comments.php',
+		'',
+		22
 	);
 
 	xlt_add_admin_menu_separator( 24 );
@@ -397,3 +397,97 @@ function xlt_hide_seo_columns( $columns ) {
 
 add_filter( 'manage_post_posts_columns', 'xlt_hide_seo_columns', 20 );
 add_filter( 'manage_edit-category_columns', 'xlt_hide_seo_columns', 20 );
+
+
+/** Add sources with webp.
+ *
+ * @param $attachment_id
+ * @param $size
+ * @param $type
+ * @param $html
+ *
+ * @return string
+ */
+function xlt_get_sources_for_image( $attachment_id, $size, $type, $html ) {
+	$img_src  = wp_get_attachment_image_url( $attachment_id, $size );
+	$webp_src = preg_replace( '/(?:jpg|png|jpeg)$/i', 'webp', $img_src );
+
+	return '<picture>
+			  <source srcset="' . $webp_src . '" type="image/webp">
+			  <source srcset="' . $img_src . '" type="' . $type . '">
+			  ' . $html . '
+			</picture>';
+}
+
+/**
+ * Wrap the image with picture tag to support webp.
+ *
+ * @param $html
+ * @param $attachment_id
+ * @param $size
+ * @param $icon
+ * @param $attr
+ *
+ * @return mixed|string
+ */
+function xlt_wrap_image_with_picture( $html, $attachment_id, $size, $icon, $attr ) {
+	if ( is_admin() ) {
+		return $html;
+	}
+
+	$type = get_post_mime_type( $attachment_id );
+
+	if ( $type !== 'image/gif' ) {
+		$html = xlt_get_sources_for_image( $attachment_id, $size, $type, $html );
+	}
+
+	return $html;
+}
+
+add_filter( 'wp_get_attachment_image', 'xlt_wrap_image_with_picture', 10, 5 );
+
+/**
+ * Wrap the image with picture tag to support webp.
+ *
+ * @param $html
+ * @param $context
+ * @param $attachment_id
+ *
+ * @return mixed|string
+ */
+function xlt_image_with_picture( $html, $context, $attachment_id ) {
+	if ( is_admin() ) {
+		return $html;
+	}
+
+	$type = get_post_mime_type( $attachment_id );
+
+	if ( $type !== 'image/gif' ) {
+
+		preg_match( '/width="([^"]+)/i', $html, $width, PREG_OFFSET_CAPTURE );
+		preg_match( '/height="([^"]+)/i', $html, $height, PREG_OFFSET_CAPTURE );
+		$size = [ $width[1][0], $height[1][0] ];
+
+		$html = xlt_get_sources_for_image( $attachment_id, $size, $type, $html );
+	}
+
+	return $html;
+}
+
+add_filter( 'wp_content_img_tag', 'xlt_image_with_picture', 10, 3 );
+
+/**
+ * Add icons into admin.
+ *
+ * @return void
+ */
+function xlt_add_admin_icons() { ?>
+	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/favicon.ico"
+		  sizes="any"><!-- 32×32 -->
+	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/icon.svg" type="image/svg+xml">
+	<link rel="apple-touch-icon"
+		  href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/apple-touch-icon.png">
+<?php }
+
+add_action( 'login_head', 'xlt_add_admin_icons' );
+add_action( 'admin_head', 'xlt_add_admin_icons' );
