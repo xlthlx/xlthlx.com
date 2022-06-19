@@ -103,10 +103,6 @@ function xlthlx_scripts() {
 	}
 
 	wp_deregister_script( 'wp-embed' );
-	wp_enqueue_script( 'main',
-		get_template_directory_uri() . '/assets/js/main.min.js', [],
-		filemtime( get_template_directory() . '/assets/js/main.min.js' ),
-		true );
 
 	if ( is_singular( 'post' ) ) {
 		wp_enqueue_script( 'comment-reply' );

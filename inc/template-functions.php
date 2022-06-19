@@ -270,6 +270,20 @@ function xlt_insert_css() {
 add_action( 'wp_head', 'xlt_insert_css' );
 
 /**
+ * Insert minified JS into footer.
+ *
+ * @return void
+ */
+function xlt_insert_scripts() {
+	$file  = get_template_directory() . '/assets/js/main.min.js';
+	$script = xlt_get_file_content( $file );
+
+	echo '<script type="text/javascript">' . $script . '</script>';
+}
+
+add_action( 'wp_footer', 'xlt_insert_scripts' );
+
+/**
  * Add a class to previous/next links.
  *
  * @param $html
