@@ -6,7 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="author" href="<?php echo get_template_directory_uri();?>/humans.txt"/>
 	<link rel="preload" href="<?php echo get_template_directory_uri();?>/assets/fonts/ShadowsIntoLight.woff2" as="font" type="font/woff2" crossorigin />
-	<link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/js/main.min.js?ver=<?php echo filemtime( get_template_directory() . '/assets/js/main.min.js' ); ?>" as="script"/>
 	<meta name="theme-color" content="#6667ab"/>
 	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/favicon.ico" sizes="any"><!-- 32×32 -->
 	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/icon.svg" type="image/svg+xml">
