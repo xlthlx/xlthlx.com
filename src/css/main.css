@@ -1,19 +1,5 @@
-/*-------
-Fonts
-_______*/
-
-@font-face {
-    font-family: 'Shadows';
-    src: local('Shadows Into Light'), local('ShadowsIntoLight'),
-    url('../fonts/ShadowsIntoLight.woff2') format('woff2'),
-    url('../fonts/ShadowsIntoLight.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-
 body {
-    font-family: Geneva, Verdana, sans-serif !important;
+	font-family: 'Titillium Web', Geneva, Verdana, sans-serif !important;
     font-size: 1.1rem;
     position: relative;
 }
@@ -520,7 +506,7 @@ table.wp-inci td {
 }
 
 .shadows {
-    font-family: 'Shadows', sans-serif;
+	font-family: 'Shadows Into Light', cursive;
     font-weight: 300;
     font-style: normal;
 }

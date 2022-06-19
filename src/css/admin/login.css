@@ -1,17 +1,3 @@
-/*-------
-Fonts
-_______*/
-
-@font-face {
-	font-family: 'Shadows';
-	src: local('Shadows Into Light'), local('ShadowsIntoLight'),
-	url('../../fonts/ShadowsIntoLight.woff2') format('woff2'),
-	url('../../fonts/ShadowsIntoLight.woff') format('woff');
-	font-weight: 300;
-	font-style: normal;
-	font-display: swap;
-}
-
 html,
 body {
 	height: 100%;
@@ -20,7 +6,7 @@ body {
 }
 
 body {
-	font-family: Geneva, Verdana, sans-serif !important;
+	font-family: 'Titillium Web', Geneva, Verdana, sans-serif !important;
 	font-size: 1.1rem;
 	background-color: #6667ab !important;
 }
@@ -69,7 +55,7 @@ p {
 	outline: none;
 	overflow: hidden;
 	display: block;
-	font-family: 'Shadows';
+	font-family: 'Shadows Into Light', cursive;
 }
 
 .login h1 a:hover {
@@ -96,7 +82,7 @@ p {
 	margin-top: 0;
 	margin-bottom: 1rem;
 	padding: 0 24px;
-	font-family: 'Shadows';
+	font-family: 'Shadows Into Light', cursive;
 	font-size: 1.6rem;
 	color: #ffffff;
 }
