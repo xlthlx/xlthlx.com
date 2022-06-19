@@ -11,6 +11,9 @@
 	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/icon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/apple-touch-icon.png"><!-- 180×180 -->
 	<link rel="manifest" href="<?php echo get_template_directory_uri();?>/assets/manifest/manifest.json"/>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Shadows+Into+Light&family=Titillium+Web&display=swap" rel="stylesheet">
 	<?php wp_head(); ?>
 
 	<?php if('http://localhost' !== home_url()) { ?>
