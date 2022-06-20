@@ -79,13 +79,20 @@ function xlt_gettext( $translation, $login_texts, $domain ) {
 }
 
 /**
- * Init filter strings.
+ * Init filter strings and add fonts.
  */
 function xlt_login_head() {
 	add_filter( 'gettext', 'xlt_gettext', 20, 3 );
+	?>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Shadows+Into+Light&family=Titillium+Web&display=swap" rel="stylesheet">
+	<?php
 }
 
 add_action( 'login_head', 'xlt_login_head' );
+
+
 
 /**
  * Change login title.
