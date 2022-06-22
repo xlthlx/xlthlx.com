@@ -601,6 +601,14 @@ footer:after {
     color: white!important;
 }
 
+.wp-block-image.alignleft {
+	float: left;
+}
+
+.wp-block-image.alignleft img {
+	margin: 0.5rem 1.5rem 1rem 0;
+}
+
 /*-------
 Colors
 _______*/
