@@ -61,24 +61,13 @@ function xlt_template_redirect() {
 		$template = '/page.php';
 	}
 
-	if ( is_page_template( 'page-friends.php' ) ) {
-		$template = '/page-friends.php';
-	}
+	$current_theme  = wp_get_theme();
+	$page_templates = $current_theme->get_page_templates();
 
-	if ( is_page_template( 'page-links.php' ) ) {
-		$template = '/page-links.php';
-	}
-
-	if ( is_page_template( 'page-makeup.php' ) ) {
-		$template = '/page-makeup.php';
-	}
-
-	if ( is_page_template( 'page-newsletter.php' ) ) {
-		$template = '/page-newsletter.php';
-	}
-
-	if ( is_page_template( 'page-referral.php' ) ) {
-		$template = '/page-referral.php';
+	foreach ( $page_templates as $key => $value ) {
+		if ( is_page_template( $key ) ) {
+			$template = '/' . $key;
+		}
 	}
 
 	if ( is_404() ) {
