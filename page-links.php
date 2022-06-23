@@ -30,19 +30,19 @@ get_header();
 							<hr class="pt-0 mt-0 mb-4"/>
 							<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() ); ?>
 							<ul class="list-unstyled">
-								<?php wp_list_bookmarks( 'title_li=&categorize=0&category=664' ); ?>
+								<?php wp_list_bookmarks( 'title_li=&categorize=0&category_name=Music' ); ?>
 							</ul>
 
 							<ul class="list-unstyled">
-								<?php wp_list_bookmarks( 'title_li=&categorize=0&category=665' ); ?>
+								<?php wp_list_bookmarks( 'title_li=&categorize=0&category_name=Organizations' ); ?>
 							</ul>
 
 							<ul class="list-unstyled">
-								<?php wp_list_bookmarks( 'title_li=&categorize=0&category=666' ); ?>
+								<?php wp_list_bookmarks( 'title_li=&categorize=0&category_name=Fun' ); ?>
 							</ul>
 
 							<ul class="list-unstyled">
-								<?php wp_list_bookmarks( 'title_li=&categorize=0&category=667' ); ?>
+								<?php wp_list_bookmarks( 'title_li=&categorize=0&category_name=Recommended' ); ?>
 							</ul>
 						</section>
 					</div>

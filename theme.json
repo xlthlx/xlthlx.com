@@ -9,7 +9,7 @@
 		"customGradient": false,
 		"defaultGradients": false,
 		"defaultPalette": false,
-		"gradients": {},
+		"gradients": [],
 		"link": true,
 		"palette": [
 			{
@@ -63,7 +63,7 @@
 		  "textDecoration": false,
 		  "textTransform": false,
 		  "dropCap": false,
-		  "fontSizes": {}
+		  "fontSizes": []
 	  }
 	}
 }

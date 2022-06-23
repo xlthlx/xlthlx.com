@@ -29,7 +29,7 @@ get_header();
 						<section class="page-content mb-4">
 							<hr class="pt-0 mt-0 mb-4"/>
 							<ul class="list-unstyled">
-								<?php wp_list_bookmarks( 'title_li=&categorize=0&category=133' ); ?>
+								<?php wp_list_bookmarks( 'title_li=&categorize=0&category_name=Friends' ); ?>
 							</ul>
 							<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() ); ?>
 						</section>
