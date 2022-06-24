@@ -73,8 +73,8 @@ function xlthlx_widgets_init() {
 		'description'   => esc_html__( 'Sidebar', 'xlthlx' ),
 		'before_widget' => '<div id="%1$s" class="widget widget_grey %2$s p-4 mb-4 rounded-0">',
 		'after_widget'  => '</div>',
-		'before_title'  => '<h4 class="font-italic pb-2">',
-		'after_title'   => '</h4>',
+		'before_title'  => '<h3 class="h2 pb-2 shadows">',
+		'after_title'   => '</h3>',
 	) );
 
 	register_sidebar( array(
@@ -83,8 +83,8 @@ function xlthlx_widgets_init() {
 		'description'   => esc_html__( 'Page Sidebar', 'xlthlx' ),
 		'before_widget' => '<div id="%1$s" class="widget widget_grey %2$s p-4 mb-4 rounded-0">',
 		'after_widget'  => '</div>',
-		'before_title'  => '<h4 class="font-italic pb-2">',
-		'after_title'   => '</h4>',
+		'before_title'  => '<h3 class="h2 pb-2 shadows">',
+		'after_title'   => '</h3>',
 	) );
 }
 
