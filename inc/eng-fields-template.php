@@ -169,11 +169,11 @@ function xlt_set_title_en( $title, $id ) {
 		return $title;
 	}
 
-	if ( 'post' !== $post->post_type ) {
+	if ( ('post' !== $post->post_type) && ('page' !== $post->post_type )) {
 		return $title;
 	}
 
-	if ( isset( $post ) && 'en' === $lang ) {
+	if ( 'en' === $lang ) {
 		$title = get_title_en( $post->ID );
 	}
 

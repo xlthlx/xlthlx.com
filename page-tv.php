@@ -41,10 +41,11 @@ get_header();
 							foreach ( $bookmarks as $bookmark ) {
 								$series .= '<p>';
 								if ( '' !== $bookmark->link_image ) {
+									$webp_src = preg_replace( '/(?:jpg|png|jpeg)$/i', 'webp', $bookmark->link_image );
 									$series .= '<figure class="wp-block-image alignleft is-style-default">
 									<a title="' . $bookmark->link_name . '" target="_blank" href="' . $bookmark->link_url . '">
 									<picture>
-										<source srcset="' . $bookmark->link_image . '" type="image/webp">
+										<source srcset="' . $webp_src . '" type="image/webp">
 										<source srcset="' . $bookmark->link_image . '" type="image/jpeg">
 										<img src="' . $bookmark->link_image . '" alt="' . $bookmark->link_name . '" class="img-fluid">
 									</picture>
