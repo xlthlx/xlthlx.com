@@ -9,10 +9,15 @@ global $lang, $wp_query;
 get_header();
 $title = ( 'en' === $lang ) ? 'Archive' : 'Archivio';
 
+$month = get_the_time( 'F' );
+if ( 'en' === $lang ) {
+	$month = get_trans( $month );
+}
+
 if ( is_day() ) {
-	$title = get_the_date( 'D M Y' );
+	$title = get_the_date( 'd' ) . ' ' . $month . ' ' . get_the_date( 'Y' );
 } elseif ( is_month() ) {
-	$title = get_the_date( 'M Y' );
+	$title = $month . ' ' . get_the_date( 'Y' );
 } elseif ( is_year() ) {
 	$title = get_the_date( 'Y' );
 } elseif ( is_tag() ) {
