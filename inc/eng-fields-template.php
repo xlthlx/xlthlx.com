@@ -169,7 +169,7 @@ function xlt_set_title_en( $title, $id ) {
 		return $title;
 	}
 
-	if ( ('post' !== $post->post_type) && ('page' !== $post->post_type )) {
+	if ( ( 'post' !== $post->post_type ) && ( 'page' !== $post->post_type ) ) {
 		return $title;
 	}
 
@@ -347,7 +347,7 @@ function xlt_change_widget_title( $title, $instance, $id_base ) {
 
 	global $lang;
 
-	if ( isset( $instance['nav_menu'] ) && 963 === $instance['nav_menu'] && 'it' === $lang ) {
+	if ( isset( $instance['nav_menu'] ) && 'Topics' === $instance['title'] && 'it' === $lang ) {
 		$title = 'Argomenti';
 	}
 
@@ -435,6 +435,11 @@ function xlt_en_title( $title ) {
 
 		if ( is_404() ) {
 			$title = 'Page not found | xlthlx';
+		}
+
+		if ( is_month() ) {
+			$datetime = get_the_time( 'm' ) . '/01/' . get_the_time( 'Y' );
+			$title    = date( 'F', strtotime( $datetime ) ) . ' ' . get_the_time( 'Y' ) . ' | xlthlx';
 		}
 
 	}

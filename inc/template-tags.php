@@ -63,7 +63,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 		if ( is_404() ) {
 			$title = ( 'en' === $lang ) ? 'Error 404' : get_the_title();
 		} else {
-			$title     = ( 'en' === $lang ) ? get_title_en($post->ID) : get_the_title();
+			$title = ( 'en' === $lang ) ? get_title_en( $post->ID ) : get_the_title();
 		}
 
 		$home_link = xlt_get_link( $args, $home_url, $args['text']['home'], 1 );
@@ -894,4 +894,73 @@ if ( ! function_exists( 'xlt_get_the_terms' ) ) {
 
 }
 
+if ( ! function_exists( 'xlt_get_years' ) ) {
+	/**
+	 * Returns a list of years excluding $actual_year.
+	 *
+	 * @param $actual_year
+	 *
+	 * @return void
+	 */
+	function xlt_get_years( $actual_year = null ) {
+		global $wpdb, $lang;
 
+		$array = [];
+
+		$years = $wpdb->get_results( "SELECT DISTINCT YEAR( post_date ) AS year FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now( ) and post_type = 'post' GROUP BY YEAR( post_date ) ORDER BY post_date DESC" );
+
+		$url = '/';
+		if ( 'en' === $lang ) {
+			$url .= 'en/';
+		}
+
+		foreach ( $years as $year ) {
+			if ( ( isset( $actual_year ) ) && $year->year === $actual_year ) {
+				$array[] = '<span class="text-black">' . $year->year . '</span>';
+			} else {
+				$array[] = '<a href="' . home_url( '/' ) . $year->year . $url . '">' . $year->year . '</a>';
+			}
+		}
+
+		echo implode( ' | ', $array );
+	}
+
+}
+
+if ( ! function_exists( 'xlt_get_months' ) ) {
+	/**
+	 * Returns a list of months archives based on $year.
+	 *
+	 * @param $year
+	 * @param $actual_month
+	 *
+	 * @return void
+	 */
+	function xlt_get_months( $year, $actual_month = null ) {
+		global $wpdb, $lang;
+
+		$array = [];
+
+		$months = $wpdb->get_results( "SELECT DISTINCT MONTH( post_date ) AS month FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now( ) and post_type = 'post' and YEAR( post_date ) = $year GROUP BY MONTH( post_date ) ORDER BY post_date ASC" );
+
+		$url = '/';
+		if ( 'en' === $lang ) {
+			$url .= 'en/';
+		}
+
+		foreach ( $months as $month ) {
+			$l_month    = sprintf( "%02d", $month->month );
+			$datetime   = $year . '-' . $l_month . '-01';
+			$month_name = ( 'en' === $lang ) ? date( 'F', strtotime( $datetime ) ) : date_i18n( 'F', strtotime( $datetime ) );
+
+			if ( ( isset( $actual_month ) ) && $actual_month === $month->month ) {
+				$array[] = '<li><span class="text-black">' . $month_name . '</span></li>';
+			} else {
+				$array[] = '<li><a href="' . home_url( '/' ) . $year . '/' . $l_month . $url . '">' . $month_name . '</a></li>';
+			}
+
+		}
+
+		echo implode( ' ', $array );
+	}
+}
