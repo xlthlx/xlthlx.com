@@ -20,7 +20,7 @@ class Archive_Widget extends WP_Widget {
 			'xlthlx-archive', // ID.
 			esc_html__( 'Archives by year', 'xlthlx' ), // Name.
 			array(
-				'description' => esc_html__( 'Displays a post archive by year.', 'xlthlx' ),
+				'description'                 => esc_html__( 'Displays a post archive by year.', 'xlthlx' ),
 				'customize_selective_refresh' => true,
 			) // Args.
 		);
@@ -32,7 +32,7 @@ class Archive_Widget extends WP_Widget {
 	 * @param array $args / Parameters from widget area created with register_sidebar().
 	 * @param array $instance / Settings for this widget instance.
 	 *
-	 *@uses this->render()
+	 * @uses this->render()
 	 *
 	 */
 	public function widget( $args, $instance ) {
@@ -44,14 +44,14 @@ class Archive_Widget extends WP_Widget {
 		$settings = wp_parse_args( $instance, $this->default_settings() );
 		// Output.
 		echo $args['before_widget'];
- 		// Display Title.
-			$this->widget_title( $args, $settings ); ?>
+		// Display Title.
+		$this->widget_title( $args, $settings ); ?>
 
-			<div class="textwidget light">
+		<div class="textwidget light">
 
-				<?php $this->render(); ?>
+			<?php $this->render(); ?>
 
-			</div>
+		</div>
 
 		<?php
 		echo $args['after_widget'];
@@ -66,7 +66,7 @@ class Archive_Widget extends WP_Widget {
 	private function default_settings() {
 
 		return array(
-			'title'    => esc_html__( 'Archives', 'xlthlx' ),
+			'title' => esc_html__( 'Archives', 'xlthlx' ),
 		);
 	}
 
@@ -78,15 +78,15 @@ class Archive_Widget extends WP_Widget {
 	 */
 	public function widget_title( $args, $settings ) {
 
-        $widget_title = 'Archivi';
-        if ( 'en' === get_lang() ) {
-            $widget_title = 'Archives';
-        }
+		$widget_title = 'Archivi';
+		if ( 'en' === get_lang() ) {
+			$widget_title = 'Archives';
+		}
 
 		if ( ! empty( $widget_title ) ) :
-            // Display Widget Title.
+			// Display Widget Title.
 			echo '<h3 class="h2 pb-2 shadows">';
-            echo $widget_title;
+			echo $widget_title;
 			echo '</h3>';
 		endif;
 	}
@@ -95,22 +95,7 @@ class Archive_Widget extends WP_Widget {
 	 * Renders the Widget Content.
 	 */
 	public function render() {
-		global $wpdb, $lang;
-
-		$array = [];
-
-		$years = $wpdb->get_results( "SELECT DISTINCT YEAR( post_date ) AS year FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now( ) and post_type = 'post' GROUP BY year ORDER BY post_date DESC" );
-
-		$url = '/';
-		if('en'===$lang) {
-			$url .= 'en/';
-		}
-
-		foreach ( $years as $year ) {
-			$array[] = '<a href="'.home_url( '/' ) . $year->year. $url.'">'.$year->year.'</a>';
-		}
-
-		echo implode(' | ', $array);
+		xlt_get_years();
 	}
 
 	/**
@@ -123,7 +108,7 @@ class Archive_Widget extends WP_Widget {
 	 */
 	function update( $new_instance, $old_instance ) {
 
-		$instance = $old_instance;
+		$instance          = $old_instance;
 		$instance['title'] = sanitize_text_field( $new_instance['title'] );
 
 		return $instance;
@@ -142,7 +127,9 @@ class Archive_Widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'xlthlx' ); ?>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $settings['title'] ); ?>" />
+				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>"
+					   name="<?php echo $this->get_field_name( 'title' ); ?>" type="text"
+					   value="<?php echo esc_attr( $settings['title'] ); ?>"/>
 			</label>
 		</p>
 
@@ -164,7 +151,7 @@ class Related_Widget extends WP_Widget {
 			'xlthlx-related', // ID.
 			esc_html__( 'Related articles', 'xlthlx' ), // Name.
 			array(
-				'description' => esc_html__( 'Displays related articles.', 'xlthlx' ),
+				'description'                 => esc_html__( 'Displays related articles.', 'xlthlx' ),
 				'customize_selective_refresh' => true,
 			) // Args.
 		);
@@ -176,7 +163,7 @@ class Related_Widget extends WP_Widget {
 	 * @param array $args
 	 * @param array $instance
 	 *
-	 *@uses this->render()
+	 * @uses this->render()
 	 *
 	 */
 	public function widget( $args, $instance ) {
@@ -188,14 +175,14 @@ class Related_Widget extends WP_Widget {
 		$settings = wp_parse_args( $instance, $this->default_settings() );
 		// Output.
 		echo $args['before_widget'];
- 		// Display Title.
-			$this->widget_title( $args, $settings ); ?>
+		// Display Title.
+		$this->widget_title( $args, $settings ); ?>
 
-			<div class="textwidget">
+		<div class="textwidget">
 
-				<?php $this->render(); ?>
+			<?php $this->render(); ?>
 
-			</div>
+		</div>
 
 		<?php
 		echo $args['after_widget'];
@@ -210,7 +197,7 @@ class Related_Widget extends WP_Widget {
 	private function default_settings() {
 
 		return array(
-			'title'    => esc_html__( 'Related articles', 'xlthlx' ),
+			'title' => esc_html__( 'Related articles', 'xlthlx' ),
 		);
 	}
 
@@ -222,12 +209,12 @@ class Related_Widget extends WP_Widget {
 	 */
 	public function widget_title( $args, $settings ) {
 
-        $widget_title = 'Articoli correlati';
-        if ( 'en' === get_lang() ) {
-            $widget_title = 'Related articles';
-        }
+		$widget_title = 'Articoli correlati';
+		if ( 'en' === get_lang() ) {
+			$widget_title = 'Related articles';
+		}
 
-        echo $args['before_title'] . $widget_title . $args['after_title'];
+		echo $args['before_title'] . $widget_title . $args['after_title'];
 	}
 
 	/**
@@ -257,24 +244,24 @@ class Related_Widget extends WP_Widget {
 				$show_posts = $num_posts - $count;
 
 				$args = array(
-						'category__in'        => $catIDs,
-						'post__not_in'        => $postIDs,
-						'showposts'           => $show_posts,
-						'ignore_sticky_posts' => 1,
-						'orderby'             => 'rand',
-						'tax_query'           => array(
-								array(
-										'taxonomy' => 'post_format',
-										'field'    => 'slug',
-										'terms'    => array(
-												'post-format-link',
-												'post-format-status',
-												'post-format-aside',
-												'post-format-quote'
-										),
-										'operator' => 'NOT IN'
-								)
+					'category__in'        => $catIDs,
+					'post__not_in'        => $postIDs,
+					'showposts'           => $show_posts,
+					'ignore_sticky_posts' => 1,
+					'orderby'             => 'rand',
+					'tax_query'           => array(
+						array(
+							'taxonomy' => 'post_format',
+							'field'    => 'slug',
+							'terms'    => array(
+								'post-format-link',
+								'post-format-status',
+								'post-format-aside',
+								'post-format-quote'
+							),
+							'operator' => 'NOT IN'
 						)
+					)
 				);
 
 				$cat_query = new WP_Query( $args );
@@ -285,8 +272,8 @@ class Related_Widget extends WP_Widget {
 
 						$cat_query->the_post();
 
-                        $title = ( 'en' === get_lang() ) ? get_title_en() : get_the_title();
-                        $link = ( 'en' === get_lang() ) ? get_permalink().'en/' : get_permalink();
+						$title = ( 'en' === get_lang() ) ? get_title_en() : get_the_title();
+						$link  = ( 'en' === get_lang() ) ? get_permalink() . 'en/' : get_permalink();
 
 						$related .= '<li><a href="' . $link . '" rel="bookmark" title="' . $title . '">' . $title . '</a></li>';
 					}
@@ -315,7 +302,7 @@ class Related_Widget extends WP_Widget {
 	 */
 	function update( $new_instance, $old_instance ) {
 
-		$instance = $old_instance;
+		$instance          = $old_instance;
 		$instance['title'] = sanitize_text_field( $new_instance['title'] );
 
 		return $instance;
@@ -334,7 +321,9 @@ class Related_Widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'xlthlx' ); ?>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $settings['title'] ); ?>" />
+				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>"
+					   name="<?php echo $this->get_field_name( 'title' ); ?>" type="text"
+					   value="<?php echo esc_attr( $settings['title'] ); ?>"/>
 			</label>
 		</p>
 
