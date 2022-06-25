@@ -112,7 +112,7 @@ class Archive_Widget extends WP_Widget {
 				} ?>
 				<div class="accordion-item rounded-0">
 				<h2 class="accordion-header rounded-0" id="year-<?php echo $month->year; ?>">
-					<button class="accordion-button rounded-0 widget_grey collapsed" type="button" data-bs-toggle="collapse"
+					<button class="accordion-button rounded-0 collapsed" type="button" data-bs-toggle="collapse"
 							data-bs-target="#collapse-<?php echo $month->year; ?>" aria-expanded="false"
 							aria-controls="collapse-<?php echo $month->year; ?>">
 						<?php echo $month->year; ?>
