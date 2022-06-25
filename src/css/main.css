@@ -627,6 +627,11 @@ footer:after {
 	}
 }
 
+.widget_outline_grey {
+	border: 5px solid #e0e1ee!important;
+	background-color: white!important;
+}
+
 /*-------
 Colors
 _______*/
