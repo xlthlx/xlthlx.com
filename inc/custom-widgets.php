@@ -43,7 +43,7 @@ class Archive_Widget extends WP_Widget {
 		// Get Widget Settings.
 		$settings = wp_parse_args( $instance, $this->default_settings() );
 		// Output.
-		echo $args['before_widget'];
+		echo '<div id="xlthlx-archive" class="widget widget_xlthlx-archive mb-4 rounded-0">';
  		// Display Title.
 			$this->widget_title( $args, $settings ); ?>
 
