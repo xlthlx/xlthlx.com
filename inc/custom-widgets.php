@@ -85,7 +85,7 @@ class Archive_Widget extends WP_Widget {
 
 		if ( ! empty( $widget_title ) ) :
             // Display Widget Title.
-			echo '<h3 class="h2 shadows">';
+			echo '<h3 class="h2 pb-2 shadows">';
             echo $widget_title;
 			echo '</h3>';
 		endif;
@@ -99,16 +99,19 @@ class Archive_Widget extends WP_Widget {
 		global $wpdb;
 
 		$year_prev = null;
-		$months    = $wpdb->get_results( "SELECT DISTINCT MONTH( post_date ) AS month ,  YEAR( post_date ) AS year, COUNT( id ) as post_count FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now( ) and post_type = 'post' GROUP BY month , year ORDER BY post_date DESC" );
+		$months    = $wpdb->get_results( "SELECT DISTINCT MONTH( post_date ) AS month ,  YEAR( post_date ) AS year, COUNT( id ) as post_count FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now( ) and post_type = 'post' GROUP BY month , year ORDER BY post_date ASC" );
 		foreach ( $months as $month ) :
 			$year_current = $month->year;
 
 			if ( $year_current !== $year_prev ) {
 				if ( $year_prev !== null ) {
-					echo '</ul></div></div></div>';
+								echo '</ul>';
+							echo '</div>';
+						echo '</div>';
+					echo '</div>';
 				} ?>
-				<div class="accordion-item">
-				<h2 class="accordion-header" id="year-<?php echo $month->year; ?>">
+				<div class="accordion-item rounded-0">
+				<h2 class="accordion-header widget_grey" id="year-<?php echo $month->year; ?>">
 					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 							data-bs-target="#collapse-<?php echo $month->year; ?>" aria-expanded="false"
 							aria-controls="collapse-<?php echo $month->year; ?>">
@@ -127,7 +130,12 @@ class Archive_Widget extends WP_Widget {
 			<?php $year_prev = $year_current;
 
 		endforeach;
-        echo '</ul></div></div></div></div></div>';
+							echo '</ul>';
+						echo '</div>';
+					echo '</div>';
+				echo '</div>';
+			echo '</div>';
+		echo '</div>';
 
     }
 
