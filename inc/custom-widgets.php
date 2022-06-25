@@ -43,11 +43,11 @@ class Archive_Widget extends WP_Widget {
 		// Get Widget Settings.
 		$settings = wp_parse_args( $instance, $this->default_settings() );
 		// Output.
-		echo '<div id="xlthlx-archive" class="widget widget_xlthlx-archive mb-4 rounded-0">';
+		echo $args['before_widget'];
  		// Display Title.
 			$this->widget_title( $args, $settings ); ?>
 
-			<div class="textwidget">
+			<div class="textwidget light">
 
 				<?php $this->render(); ?>
 
@@ -95,49 +95,23 @@ class Archive_Widget extends WP_Widget {
 	 * Renders the Widget Content.
 	 */
 	public function render() {
+		global $wpdb, $lang;
 
-		global $wpdb;
+		$array = [];
 
-		$year_prev = null;
-		$months    = $wpdb->get_results( "SELECT DISTINCT MONTH( post_date ) AS month ,  YEAR( post_date ) AS year, COUNT( id ) as post_count FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now( ) and post_type = 'post' GROUP BY month , year ORDER BY post_date ASC" );
-		foreach ( $months as $month ) :
-			$year_current = $month->year;
+		$years = $wpdb->get_results( "SELECT DISTINCT YEAR( post_date ) AS year FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now( ) and post_type = 'post' GROUP BY year ORDER BY post_date DESC" );
 
-			if ( $year_current !== $year_prev ) {
-				if ( $year_prev !== null ) {
-								echo '</ul>';
-							echo '</div>';
-						echo '</div>';
-					echo '</div>';
-				} ?>
-				<div class="accordion-item rounded-0">
-				<h2 class="accordion-header rounded-0" id="year-<?php echo $month->year; ?>">
-					<button class="accordion-button rounded-0 collapsed" type="button" data-bs-toggle="collapse"
-							data-bs-target="#collapse-<?php echo $month->year; ?>" aria-expanded="false"
-							aria-controls="collapse-<?php echo $month->year; ?>">
-						<?php echo $month->year; ?>
-					</button>
-				</h2>
-				<div id="collapse-<?php echo $month->year; ?>" class="accordion-collapse collapse" aria-labelledby="year-<?php echo $month->year; ?>" data-bs-parent="#archives">
-				<div class="accordion-body months-container">
-				<ul>
-				<?php } ?>
-					<li>
-						<a href="<?php bloginfo( 'url' ) ?>/<?php echo $month->year; ?>/<?php echo date( "m", mktime( 0, 0, 0, $month->month, 1, $month->year ) ) ?>/">
-							<?php echo date_i18n( "m", mktime( 0, 0, 0, $month->month, 1, $month->year ) ) ?>
-						</a>
-					</li>
-			<?php $year_prev = $year_current;
+		$url = '/';
+		if('en'===$lang) {
+			$url .= 'en/';
+		}
 
-		endforeach;
-							echo '</ul>';
-						echo '</div>';
-					echo '</div>';
-				echo '</div>';
-			echo '</div>';
-		echo '</div>';
+		foreach ( $years as $year ) {
+			$array[] = '<a href="'.home_url( '/' ) . $year->year. $url.'">'.$year->year.'</a>';
+		}
 
-    }
+		echo implode(' | ', $array);
+	}
 
 	/**
 	 * Update Widget Settings.

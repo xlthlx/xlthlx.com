@@ -621,6 +621,12 @@ footer:after {
 	margin: 0.5rem 0 1rem 1.5rem;
 }
 
+@media (min-width: 992px) {
+	.fill {
+		min-height: 38vw;
+	}
+}
+
 /*-------
 Colors
 _______*/

@@ -132,6 +132,11 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 			} elseif ( is_month() ) {
 
+				$month = get_the_time( 'F' );
+				if ( 'en' === $lang ) {
+					$month = get_trans( $month );
+				}
+
 				$position ++;
 				echo xlt_get_link( $args, get_year_link( get_the_time( 'Y' ) ),
 					get_the_time( 'Y' ), $position );
@@ -139,10 +144,15 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				$position ++;
 				echo $args['before_active'] . sprintf( $args['active'],
 						get_permalink(),
-						get_the_time( 'F' ) ) . sprintf( $args['position'],
+						$month ) . sprintf( $args['position'],
 						$position );
 
 			} elseif ( is_day() ) {
+
+				$month = get_the_time( 'F' );
+				if ( 'en' === $lang ) {
+					$month = get_trans( $month );
+				}
 
 				$position ++;
 				echo xlt_get_link( $args, get_year_link( get_the_time( 'Y' ) ),
@@ -151,7 +161,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				$position ++;
 				echo xlt_get_link( $args,
 					get_month_link( get_the_time( 'Y' ), get_the_time( 'm' ) ),
-					get_the_time( 'F' ), $position );
+					$month, $position );
 
 
 				$position ++;
