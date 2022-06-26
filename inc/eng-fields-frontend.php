@@ -45,35 +45,12 @@ function get_trans( $element ) {
 /**
  * Translate the month of the date.
  *
- * @param int $post_id
- *
- * @return mixed
+ * @return string
  */
-function get_date_en( $post_id = 0 ) {
-	if ( $post_id === 0 ) {
-		global $post;
-		$post_id = $post->ID;
-	}
+function get_date_en() {
 
-	if ( is_preview() ) {
-		$post_id = get_query_var( 'p' );
-	}
-
-	$post_type = get_post_type( $post_id );
-
-	if ( 'post' === $post_type ) {
-		if ( ! is_home() || ! is_archive() ) {
-			if ( ! get_post_meta( $post_id, 'date_en',
-					true ) || get_post_meta( $post_id, 'date_en',
-					true ) === '' ) {
-				$month = get_trans( get_the_time( 'F', $post_id ) );
-				$date  = get_the_time( 'd', $post_id ) . ' ' . ucfirst( $month ) . ' ' . get_the_time( 'Y', $post_id );
-				update_post_meta( $post_id, 'date_en', $date );
-			}
-		}
-	}
-
-	return get_post_meta( $post_id, 'date_en', true );
+	$datetime = get_the_time( 'm' ) . '/01/' . get_the_time( 'Y' );
+	return get_the_time( 'd' ) . ' ' . date( 'F', strtotime( $datetime ) ) . ' ' . get_the_time( 'Y' );
 }
 
 /**
