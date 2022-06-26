@@ -18,18 +18,9 @@ function xlt_add_metabox() {
 	) );
 
 	$cmb_post->add_field( array(
-		'name'         => 'Data',
-		'id'           => 'date_en',
-		'type'         => 'text',
-		'classes'      => [ 'half-width' ],
-		'show_in_rest' => WP_REST_Server::ALLMETHODS,
-	) );
-
-	$cmb_post->add_field( array(
 		'name'         => 'Titolo',
 		'id'           => 'title_en',
-		'type'         => 'text',
-		'classes'      => [ 'half-width' ],
+		'type'         => 'text_medium',
 		'show_in_rest' => WP_REST_Server::ALLMETHODS,
 	) );
 
@@ -52,9 +43,9 @@ function xlt_add_metabox() {
 	) );
 
 	$cmb_page->add_field( array(
-		'name'         => '',
+		'name'         => 'Titolo',
 		'id'           => 'title_en',
-		'type'         => 'text',
+		'type'         => 'text_medium',
 		'show_in_rest' => WP_REST_Server::ALLMETHODS,
 	) );
 

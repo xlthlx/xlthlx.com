@@ -96,7 +96,6 @@ add_action( 'widgets_init', 'xlthlx_widgets_init' );
 function xlthlx_scripts() {
 	// Styles.
 	wp_dequeue_style( 'wp-block-library' );
-	wp_dequeue_style( 'wpt-twitter-feed' );
 	// Scripts.
 	if ( 'http://localhost' !== home_url() && ! is_admin() ) {
 		wp_deregister_script( 'jquery' );
