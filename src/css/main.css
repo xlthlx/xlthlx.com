@@ -642,13 +642,16 @@ footer:after {
 }
 
 .kb-club a:hover {
-	background: #BBDEFB;
+	background-color: #BBDEFB;
 }
 
 .kb-club-bg,
 .kb-club-no-bg {
-	border: 2px solid #64B5F6;
 	padding: .25rem .5rem;
+}
+
+.kb-club-no-bg {
+	background-color: white;
 }
 
 .kb-club-bg {
