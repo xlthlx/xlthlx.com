@@ -640,7 +640,7 @@ footer:after {
 	transition: .4s;
 }
 
-.kb-club a:hover {
+.kb-club:hover {
 	background: #BBDEFB!important;
 }
 
