@@ -635,13 +635,13 @@ footer:after {
 .kb-club a {
 	text-decoration: none;
 	color: #212121;
-	font-weight: bold!important;
+	font-weight: bold !important;
 	padding: .25rem 0;
 	transition: .4s;
 }
 
-.kb-club:hover {
-	background: #BBDEFB!important;
+.kb-club-bg:hover, .kb-club-no-bg:hover {
+	background: #BBDEFB !important;
 }
 
 .kb-club-bg,
