@@ -636,11 +636,12 @@ footer:after {
 	text-decoration: none;
 	color: #212121;
 	font-weight: bold !important;
+	font-family: sans-serif;
 	padding: .25rem 0;
 	transition: .4s;
 }
 
-.kb-club-bg:hover, .kb-club-no-bg:hover {
+.kb-club a:hover span {
 	background: #BBDEFB !important;
 }
 
