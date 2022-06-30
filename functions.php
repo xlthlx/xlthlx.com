@@ -196,3 +196,8 @@ require_once 'inc/newsletter/newsletter.php';
  * Minify HTML.
  */
 require_once 'inc/minify-html.php';
+
+/**
+ * 
+ */
+require_once 'inc/link-manager.php';

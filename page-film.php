@@ -31,15 +31,15 @@ get_header();
 							<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() ); ?>
 							<hr class="pt-0 mt-0 mb-4"/>
 							<?php $bookmarks = get_bookmarks( array(
-								'orderby'       => 'name',
-								'order'         => 'ASC',
+								'orderby'       => 'notes',
+								'order'         => 'DESC',
 								'category_name' => 'Film'
 							) );
 
 							$film = '';
 
 							foreach ( $bookmarks as $bookmark ) {
-								$film .= '<p>';
+								$film .= '<div class="clearfix">';
 								if ( '' !== $bookmark->link_image ) {
 									$webp_src = preg_replace( '/(?:jpg|png|jpeg)$/i', 'webp', $bookmark->link_image );
 									$film .= '<figure class="wp-block-image alignleft is-style-default">
@@ -52,6 +52,7 @@ get_header();
 									</a>
 								</figure>';
 								}
+								$film .= '<p>';
 								$film .= '<a title="' . $bookmark->link_name . '" target="_blank" href="' . $bookmark->link_url . '">' . $bookmark->link_name . '</a>';
 								if ( '' !== $bookmark->link_notes ) {
 									$film .= '<br />' . nl2br( $bookmark->link_notes );
@@ -60,7 +61,8 @@ get_header();
 									$film .= '</p><p>' . $bookmark->link_description;
 								}
 								$film .= '</p>';
-
+								$film .= '</div>';
+								$film .= '<hr class="pt-0 mt-4 mb-4"/>';
 							}
 
 							echo $film;
