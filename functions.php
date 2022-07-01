@@ -198,6 +198,6 @@ require_once 'inc/newsletter/newsletter.php';
 require_once 'inc/minify-html.php';
 
 /**
- * 
+ * Functions for custom link manager.
  */
 require_once 'inc/link-manager.php';
