@@ -31,7 +31,7 @@ get_header();
 							<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() ); ?>
 							<hr class="pt-0 mt-0 mb-4"/>
 							<?php $bookmarks = get_bookmarks( array(
-								'orderby'       => 'notes',
+								'orderby'       => 'rand',
 								'order'         => 'DESC',
 								'category_name' => 'TV Series'
 							) );
@@ -54,12 +54,27 @@ get_header();
 								}
 								$series .= '<p>';
 								$series .= '<a title="' . $bookmark->link_name . '" target="_blank" href="' . $bookmark->link_url . '">' . $bookmark->link_name . '</a>';
-								if ( '' !== $bookmark->link_notes ) {
-									$series .= '<br />' . nl2br( $bookmark->link_notes );
+								$link_year = get_post_meta( $bookmark->link_id, 'link_year', true );
+								if ( '' !== $link_year ) {
+									$series .= '<br/><em><strong>' . $link_year . '</strong></em>';
 								}
+
+								$link_directors = get_post_meta( $bookmark->link_id, 'link_directors', true );
+								if ( '' !== $link_directors ) {
+									$series .= '<br/><em>Director(s)</em>';
+									$series .= '<br/>' . $link_directors;
+								}
+
+								$link_starring = get_post_meta( $bookmark->link_id, 'link_starring', true );
+								if ( '' !== $link_starring ) {
+									$series .= '<br/><em>Starring</em>';
+									$series .= '<br/>' . $link_starring;
+								}
+
 								if ( '' !== $bookmark->link_description ) {
 									$series .= '</p><p>' . $bookmark->link_description;
 								}
+
 								$series .= '</p>';
 								$series .= '</div>';
 								$series .= '<hr class="pt-0 mt-4 mb-4"/>';
