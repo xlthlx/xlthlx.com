@@ -201,3 +201,8 @@ require_once 'inc/minify-html.php';
  * Functions for custom link manager.
  */
 require_once 'inc/link-manager.php';
+
+/**
+ * Dashboard widgets.
+ */
+require_once 'inc/dashboard-widgets.php';
