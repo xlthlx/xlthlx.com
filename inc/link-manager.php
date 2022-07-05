@@ -14,9 +14,7 @@ add_action( 'load-link-manager.php', 'xlt_setup_columns' );
  */
 function xlt_add_meta_boxes() {
 	add_action( 'add_meta_boxes', 'xlt_add_link_meta_boxes' );
-	add_action( 'edit_link', 'xlt_save_link_meta_box_year' );
-	add_action( 'edit_link', 'xlt_save_link_meta_box_directors' );
-	add_action( 'edit_link', 'xlt_save_link_meta_box_starring' );
+	add_action( 'edit_link', 'xlt_save_link_meta_box' );
 }
 
 /**
@@ -36,8 +34,8 @@ function xlt_add_remove_link_columns( $link_columns ) {
 
 	$link_columns['link_description'] = 'Descrizione';
 	$link_columns['year']             = 'Anno';
-	$link_columns['directors']             = 'Director(s)';
-	$link_columns['starring']             = 'Starring';
+	$link_columns['directors']        = 'Regia';
+	$link_columns['starring']         = 'Attori';
 
 	unset( $link_columns['rel'], $link_columns['rating'], $link_columns['visible'] );
 
@@ -99,9 +97,9 @@ function xlt_add_link_columns_data( $column_name, $id ) {
  * @return string
  */
 function xlt_register_sortable_columns( $columns ) {
-	$columns['year'] = 'year';
+	$columns['year']      = 'year';
 	$columns['directors'] = 'directors';
-	$columns['starring'] = 'starring';
+	$columns['starring']  = 'starring';
 
 	return $columns;
 }
@@ -129,25 +127,9 @@ function xlt_order_by_column_year( $vars ) {
  */
 function xlt_add_link_meta_boxes() {
 	add_meta_box(
-		'link_year',
-		'Year',
-		'xlt_render_meta_box_year',
-		'link',
-		'side'
-	);
-
-	add_meta_box(
-		'link_directors',
-		'Director(s)',
-		'xlt_render_meta_box_directors',
-		'link',
-		'side'
-	);
-
-	add_meta_box(
-		'link_starring',
-		'Starring',
-		'xlt_render_meta_box_starring',
+		'link_custom',
+		'Film/TV Series',
+		'xlt_render_meta_box',
 		'link',
 		'side'
 	);
@@ -156,39 +138,29 @@ function xlt_add_link_meta_boxes() {
 /**
  * Render meta box.
  */
-function xlt_render_meta_box_year() {
+function xlt_render_meta_box() {
 
 	global $link;
-	wp_nonce_field( plugin_basename( __FILE__ ), 'xlt_year_nonce' );
+	wp_nonce_field( plugin_basename( __FILE__ ), 'xlt_custom_nonce' );
 
-	$value = get_post_meta( $link->link_id, 'link_year', true );
-	echo '<label for="link_year">';
-	echo "Year";
+	$link_year = get_post_meta( $link->link_id, 'link_year', true );
+	echo '<label style="padding-right:10px;vertical-align:top" for="link_year">';
+	echo "Anno";
 	echo '</label> ';
-	echo '<input type="text" id="link_year" name="link_year" value="' . esc_attr( $value ) . '"  />';
-}
+	echo '<input style="vertical-align:top" type="text" id="link_year" name="link_year" value="' . esc_attr( $link_year ) . '"  />';
 
-function xlt_render_meta_box_directors() {
-	global $link;
-	wp_nonce_field( plugin_basename( __FILE__ ), 'xlt_directors_nonce' );
-
-	$value = get_post_meta( $link->link_id, 'link_directors', true );
-	echo '<label for="link_directors">';
-	echo "Director(s)";
+	$link_directors = get_post_meta( $link->link_id, 'link_directors', true );
+	echo '<label style="padding-left:10px;padding-right:10px;vertical-align:top" for="link_directors">';
+	echo "Regia";
 	echo '</label> ';
-	echo '<input type="text" id="link_directors" name="link_directors" value="' . esc_attr( $value ) . '"  />';
-}
+	echo '<input style="vertical-align:top" type="text" id="link_directors" name="link_directors" value="' . esc_attr( $link_directors ) . '"  />';
 
-function xlt_render_meta_box_starring() {
-	global $link;
-	wp_nonce_field( plugin_basename( __FILE__ ), 'xlt_starring_nonce' );
-
-	$value = get_post_meta( $link->link_id, 'link_starring', true );
-	echo '<label for="link_starring">';
-	echo "Starring";
-	echo '</label><br/>';
-	echo '<textarea name="link_starring" id="link_starring" rows="5" spellcheck="false">';
-	echo esc_attr( $value );
+	$link_starring = get_post_meta( $link->link_id, 'link_starring', true );
+	echo '<label style="padding-left:10px;padding-right:10px;vertical-align:top" for="link_starring">';
+	echo "Attori";
+	echo '</label>';
+	echo '<textarea style="height: 70px;" name="link_starring" id="link_starring" cols="60" rows="2" spellcheck="false">';
+	echo esc_attr( $link_starring );
 	echo '</textarea>';
 }
 
@@ -200,57 +172,22 @@ function xlt_render_meta_box_starring() {
  *
  * @return void
  */
-function xlt_save_link_meta_box_year( $post_id ) {
+function xlt_save_link_meta_box( $post_id ) {
 
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 		return;
 	}
 
-	if ( ! isset( $_POST['xlt_year_nonce'] ) || ! wp_verify_nonce( $_POST['xlt_year_nonce'], plugin_basename( __FILE__ ) ) ) {
+	if ( ! isset( $_POST['xlt_custom_nonce'] ) || ! wp_verify_nonce( $_POST['xlt_custom_nonce'], plugin_basename( __FILE__ ) ) ) {
 		return;
 	}
 
 	$link_year = sanitize_text_field( $_POST['link_year'] );
 	update_post_meta( $post_id, 'link_year', $link_year );
-}
 
-/**
- * Save meta box.
- *
- * @param $post_id
- *
- * @return void
- */
-function xlt_save_link_meta_box_directors( $post_id ) {
-
-	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-		return;
-	}
-
-	if ( ! isset( $_POST['xlt_directors_nonce'] ) || ! wp_verify_nonce( $_POST['xlt_directors_nonce'], plugin_basename( __FILE__ ) ) ) {
-		return;
-	}
 
 	$link_directors = sanitize_text_field( $_POST['link_directors'] );
 	update_post_meta( $post_id, 'link_directors', $link_directors );
-}
-
-/**
- * Save meta box.
- *
- * @param $post_id
- *
- * @return void
- */
-function xlt_save_link_meta_box_starring( $post_id ) {
-
-	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-		return;
-	}
-
-	if ( ! isset( $_POST['xlt_starring_nonce'] ) || ! wp_verify_nonce( $_POST['xlt_starring_nonce'], plugin_basename( __FILE__ ) ) ) {
-		return;
-	}
 
 	$link_starring = sanitize_text_field( $_POST['link_starring'] );
 	update_post_meta( $post_id, 'link_starring', $link_starring );
