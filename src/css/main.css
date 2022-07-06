@@ -279,7 +279,7 @@ iframe {
 }
 
 .letter-avatar {
-	background-color: #b73275;
+	background-color: #6667ab;
 	text-align: center;
 	border-radius: 0 !important;
 	line-height: 64px;
@@ -659,10 +659,13 @@ footer:after {
 	color: #212121;
 }
 
+.comment-date span.text-muted {
+	color: #b73275;
+}
+
 /*-------
 Colors
 _______*/
-
 .white {
 	color: #ffffff;
 }
