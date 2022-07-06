@@ -659,7 +659,7 @@ footer:after {
 	color: #212121;
 }
 
-.comment-date span.text-muted {
+.comment-date small.text-muted {
 	color: #b73275 !important;
 }
 
