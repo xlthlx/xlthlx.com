@@ -660,7 +660,9 @@ footer:after {
 }
 
 .comment-date small.text-muted {
-	color: #b73275 !important;
+	color: black !important;
+	background-color: #e0e1ee !important;
+	padding: 0 5px;
 }
 
 /*-------
