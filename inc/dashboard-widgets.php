@@ -78,16 +78,18 @@ function plausible_widget_callback( $post, $callback_args ) {
  * @return void
  */
 function flamingo_widget_callback( $post, $callback_args ) {
-	$the_query = new WP_Query( [ 'post_type' => 'flamingo_inbound' ] );
+	$the_query = new WP_Query( [ 'post_type' => 'flamingo_inbound', 'posts_per_page' => 4 ] );
 
 	if ( $the_query->have_posts() ) {
 
 		?>
+		<style>.fixed .column-date {
+				width: 30%;
+			}</style>
 		<table class="wp-list-table widefat fixed striped table-view-list posts">
 			<thead>
 			<tr>
 				<th scope="col" id="subject" class="manage-column column-subject column-primary"><span>Oggetto</span></th>
-				<th scope="col" id="from" class="manage-column column-from"><span>Da</span></th>
 				<th scope="col" id="date" class="manage-column column-date"><span>Data</span></th>
 			</tr>
 			</thead>
@@ -107,7 +109,6 @@ function flamingo_widget_callback( $post, $callback_args ) {
 							</a>
 						</strong>
 					</td>
-					<td class="from column-from" data-colname="Da">Rick@themaxplane.win &lt;Rick@themaxplane.win&gt;</td>
 					<td class="date column-date" data-colname="Data"><?php echo get_the_date(); ?></td>
 				</tr>
 			<?php } ?>

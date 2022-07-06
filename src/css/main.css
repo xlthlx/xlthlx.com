@@ -665,6 +665,12 @@ footer:after {
 	padding: 0 5px;
 }
 
+.card-title.comment-author {
+	margin: 0.2rem 0;
+	padding-bottom: 0.5rem;
+	color: #b73275;
+}
+
 /*-------
 Colors
 _______*/
