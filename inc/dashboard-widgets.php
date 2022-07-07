@@ -14,6 +14,7 @@
 function xlt_add_dashboard_widgets() {
 	wp_add_dashboard_widget( 'plausible_widget', 'Plausible statistics', 'plausible_widget_callback' );
 	wp_add_dashboard_widget( 'flamingo_widget', 'Messaggi in arrivo', 'flamingo_widget_callback' );
+	wp_add_dashboard_widget( 'latest_comments_widget', 'Ultimi commenti', 'latest_comments_widget_callback' );
 }
 
 add_action( 'wp_dashboard_setup', 'xlt_add_dashboard_widgets' );
@@ -21,12 +22,9 @@ add_action( 'wp_dashboard_setup', 'xlt_add_dashboard_widgets' );
 /**
  * Output the contents of the dashboard widget.
  *
- * @param $post
- * @param $callback_args
- *
  * @return void
  */
-function plausible_widget_callback( $post, $callback_args ) {
+function plausible_widget_callback() {
 	?>
 	<div>
 		<p>Click the button below to toggle your exclusion in analytics for this site.</p>
@@ -36,8 +34,8 @@ function plausible_widget_callback( $post, $callback_args ) {
 	</div>
 
 	<script>
-		window.addEventListener('load', function (e) {
-			var exclusionState = window.localStorage.plausible_ignore == "true"
+		window.addEventListener('load', function () {
+			let exclusionState = window.localStorage.plausible_ignore == "true"
 
 			if ( exclusionState ) {
 				document.getElementById("plausible_not").style.display = "none"
@@ -50,8 +48,8 @@ function plausible_widget_callback( $post, $callback_args ) {
 			}
 		});
 
-		function toggleExclusion(e) {
-			var exclusionState = window.localStorage.plausible_ignore == "true"
+		function toggleExclusion() {
+			let exclusionState = window.localStorage.plausible_ignore == "true"
 
 			if ( exclusionState ) {
 				delete window.localStorage.plausible_ignore
@@ -72,12 +70,9 @@ function plausible_widget_callback( $post, $callback_args ) {
 /**
  * Output the contents of the dashboard widget.
  *
- * @param $post
- * @param $callback_args
- *
  * @return void
  */
-function flamingo_widget_callback( $post, $callback_args ) {
+function flamingo_widget_callback() {
 	$the_query = new WP_Query( [ 'post_type' => 'flamingo_inbound', 'posts_per_page' => 4 ] );
 
 	if ( $the_query->have_posts() ) {
@@ -104,7 +99,7 @@ function flamingo_widget_callback( $post, $callback_args ) {
 						<strong>
 							<a class="row-title"
 							   href="https://xlthlx.com/wp-admin/admin.php?page=flamingo_inbound&amp;post=<?php echo get_the_ID(); ?>&amp;action=edit"
-							   aria-label="Modifica">
+							   aria-label="Modifica" title="Modifica">
 								<?php echo get_the_title(); ?>
 							</a>
 						</strong>
@@ -120,4 +115,50 @@ function flamingo_widget_callback( $post, $callback_args ) {
 
 	}
 	wp_reset_postdata();
+}
+
+function latest_comments_widget_callback() {
+	$args = array(
+		'orderby' => 'comment_date',
+		'order'   => 'DESC',
+		'number'  => 6
+	);
+
+	$comments_query = new WP_Comment_Query( $args );
+	$comments       = $comments_query->comments;
+
+	?>
+	<style>.fixed .column-author {
+			width: 20%;
+		}</style>
+	<table class="wp-list-table widefat fixed striped table-view-list posts">
+		<thead>
+		<tr>
+			<th scope="col" id="author" class="manage-column column-author column-primary"><span>Autore</span></th>
+			<th scope="col" id="comment" class="manage-column column-comment"><span>Commento</span></th>
+		</tr>
+		</thead>
+
+		<tbody id="the-list" data-wp-lists="list:post">
+		<?php
+		foreach ( $comments as $comment ) {
+			?>
+			<tr>
+				<td class="author column-author column-primary" data-colname="Autore">
+					<strong>
+						<a class="row-title"
+						   href="<?php echo get_home_url(); ?>/wp-admin/comment.php?action=editcomment&c=<?php echo $comment->comment_ID; ?>"
+						   aria-label="Modifica" title="Modifica">
+							<?php echo $comment->comment_author; ?>
+						</a>
+					</strong>
+				</td>
+				<td class="comment column-comment" data-colname="Commento"><?php echo $comment->comment_content; ?></td>
+			</tr>
+		<?php } ?>
+		</tbody>
+
+	</table>
+	<?php
+
 }

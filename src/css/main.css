@@ -281,7 +281,7 @@ iframe {
 .letter-avatar {
 	background-color: #6667ab;
 	text-align: center;
-	border-radius: 0 !important;
+	border-radius: 30% 5% !important;
 	line-height: 64px;
 	height: 64px;
 	width: 64px;
