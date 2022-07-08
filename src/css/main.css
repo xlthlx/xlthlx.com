@@ -701,3 +701,47 @@ _______*/
 .dark {
 	color: #333456;
 }
+
+/*-------
+Dark mode
+_______*/
+
+body {
+	--text-color: #222;
+	--bkg-color: #fff;
+}
+
+body.dark-theme {
+	--text-color: #eee;
+	--bkg-color: #121212;
+}
+
+@media (prefers-color-scheme: dark) {
+
+	body {
+		--text-color: #eee;
+		--bkg-color: #121212;
+	}
+
+	body.light-theme {
+		--text-color: #222;
+		--bkg-color: #fff;
+	}
+}
+
+body {
+	background: var(--bkg-color);
+}
+
+h1,
+p {
+	color: var(--text-color);
+}
+
+body.dark-theme img {
+	filter: brightness(.8) contrast(1.2);
+}
+
+:root {
+	color-scheme: light dark;
+}
