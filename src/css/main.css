@@ -750,3 +750,8 @@ body.dark-theme .widget_grey, body.dark-theme .widget_pages {
 	background-color: #6667AB !important;
 	color: #FFFFFF;
 }
+
+.btn-toggle {
+	color: #FFFFFF;
+	cursor: pointer;
+}
