@@ -706,31 +706,35 @@ _______*/
 Dark mode
 _______*/
 
+:root {
+	color-scheme: light dark;
+}
+
 body {
-	--text-color: #222;
-	--bkg-color: #fff;
+	--text-color: #333456;
+	--bkg-color: #FFFFFF;
 }
 
 body.dark-theme {
-	--text-color: #eee;
-	--bkg-color: #121212;
+	--text-color: #E5E5E5;
+	--bkg-color: #161616;
 }
 
 @media (prefers-color-scheme: dark) {
 
 	body {
-		--text-color: #eee;
-		--bkg-color: #121212;
+		--text-color: #E5E5E5;
+		--bkg-color: #161616;
 	}
 
 	body.light-theme {
-		--text-color: #222;
-		--bkg-color: #fff;
+		--text-color: #333456;
+		--bkg-color: #FFFFFF;
 	}
 }
 
 body {
-	background: var(--bkg-color);
+	background-color: var(--bkg-color);
 }
 
 h1,
@@ -742,6 +746,7 @@ body.dark-theme img {
 	filter: brightness(.8) contrast(1.2);
 }
 
-:root {
-	color-scheme: light dark;
+body.dark-theme .widget_grey, body.dark-theme .widget_pages {
+	background-color: #6667AB !important;
+	color: #FFFFFF;
 }

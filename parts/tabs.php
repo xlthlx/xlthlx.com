@@ -1,6 +1,6 @@
 <?php global $lang, $post; ?>
 <div class="col-auto d-flex justify-content-end ms-auto">
-	<button class="btn-toggle">Toggle Dark-Mode</button>
+	<a class="btn-toggle">Toggle Dark Mode</a>
 	<?php if ( 'en' === $lang ) { ?>
 		<button title="English" type="button" class="btn btn-secondary rounded-0 pe-none lang active">EN</button>
 		<a href="<?php echo get_url_trans(); ?>" title="Italiano"
