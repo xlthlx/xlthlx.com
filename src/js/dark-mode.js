@@ -7,7 +7,8 @@ if ( currentTheme === "dark" ) {
 	btn.innerHTML = '☼';
 }
 
-btn.addEventListener("click", function () {
+btn.addEventListener("click", function (e) {
+	e.preventDefault();
 	document.body.classList.toggle("dark-theme");
 	let theme = "light";
 	btn.innerHTML = '☾';
