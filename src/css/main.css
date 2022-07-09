@@ -763,6 +763,7 @@ body.dark-theme a {
 	font-size: 1.9rem;
 	padding: 0 10px;
 	cursor: pointer;
+	color: #E5E5E5;
 }
 
 body.dark-theme .textwidget a {
