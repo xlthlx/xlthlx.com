@@ -758,3 +758,10 @@ body.dark-theme .widget_grey, body.dark-theme .widget_pages {
 body.dark-theme a {
 	color: #f1469c;
 }
+
+
+#btn-toggle {
+	font-size: 1.9rem;
+	padding: 0 10px;
+	cursor: pointer;
+}
