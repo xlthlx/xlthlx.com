@@ -1,5 +1,5 @@
 // Dark mode
-const btn = document.querySelector(".btn-toggle");
+const btn = document.querySelector("#btn-toggle");
 const currentTheme = localStorage.getItem("theme");
 
 if ( currentTheme === "dark" ) {

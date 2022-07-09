@@ -751,11 +751,6 @@ body.dark-theme .widget_grey, body.dark-theme .widget_pages {
 	color: #FFFFFF;
 }
 
-.btn-toggle {
-	color: #FFFFFF;
-	cursor: pointer;
-}
-
 .display-5 {
 	color: var(--text-color);
 }
