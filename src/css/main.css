@@ -755,3 +755,11 @@ body.dark-theme .widget_grey, body.dark-theme .widget_pages {
 	color: #FFFFFF;
 	cursor: pointer;
 }
+
+.display-5 {
+	color: var(--text-color);
+}
+
+body.dark-theme a {
+	color: #f1469c;
+}
