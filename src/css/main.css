@@ -766,6 +766,10 @@ body.dark-theme a {
 	color: #E5E5E5;
 }
 
-body.dark-theme .textwidget a {
+body.dark-theme .widget a {
 	color: #E5E5E5;
+}
+
+body.dark-theme .widget a:hover {
+	text-decoration: underline;
 }
