@@ -825,3 +825,8 @@ body.dark-theme .widget_outline_grey {
 body.dark-theme .widget_grey .btn.bg-white {
 	background-color: var(--bkg-color) !important;
 }
+
+body.dark-theme .card {
+	background-color: var(--bkg-color);
+	color: var(--text-color);
+}
