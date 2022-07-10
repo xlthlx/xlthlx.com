@@ -830,3 +830,33 @@ body.dark-theme .card {
 	background-color: var(--bkg-color);
 	color: var(--text-color);
 }
+
+body.dark-theme .comment-date small.text-muted, body.dark-theme .alert {
+	color: #FFFFFF !important;
+	background-color: #333456 !important;
+}
+
+body.dark-theme .card-title.comment-author {
+	color: #f1469c;
+}
+
+
+element.style {
+}
+
+.page-item:not(:first-child) .page-link {
+	margin-left: -1px;
+}
+
+body.dark-theme a {
+	color: #f1469c;
+}
+
+body.dark-theme .pagination .page-link {
+	background-color: transparent;
+}
+
+body.dark-theme .page-item.active .page-link.dots {
+	color: #FFFFFF;
+	background-color: transparent;
+}
