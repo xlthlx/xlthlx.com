@@ -856,7 +856,11 @@ body.dark-theme .pagination .page-link {
 	background-color: transparent;
 }
 
-body.dark-theme .page-item.active .page-link.dots {
+body.dark-theme .pagination .page-link.dots {
 	color: #FFFFFF;
 	background-color: transparent;
+}
+
+body.dark-theme .dropdown-item a {
+	color: #FFFFFF;
 }
