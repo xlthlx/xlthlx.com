@@ -840,25 +840,22 @@ body.dark-theme .card-title.comment-author {
 	color: #f1469c;
 }
 
-
-element.style {
-}
-
-.page-item:not(:first-child) .page-link {
-	margin-left: -1px;
-}
-
 body.dark-theme a {
 	color: #f1469c;
 }
 
 body.dark-theme .pagination .page-link {
 	background-color: transparent;
+	color: #f1469c;
+}
+
+.page-link:hover {
+	color: #FFFFFF;
+	background-color: #525289;
 }
 
 body.dark-theme .pagination .page-link.dots {
 	color: #FFFFFF;
-	background-color: transparent;
 }
 
 body.dark-theme .dropdown-item a {
