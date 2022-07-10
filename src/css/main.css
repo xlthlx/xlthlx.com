@@ -779,9 +779,17 @@ body.dark-theme .widget a:hover {
 }
 
 body.dark-theme #primary-nav {
-	background-color: #333456;
+	background-color: #333456 !important;
 }
 
 body.dark-theme #primary-nav:after {
 	box-shadow: 0 0 0 120px #333456;
+}
+
+body.dark-theme footer {
+	background-color: #23243b !important;
+}
+
+footer:after {
+	box-shadow: 0 90px 0 120px #23243b;
 }
