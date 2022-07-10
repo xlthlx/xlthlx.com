@@ -823,5 +823,5 @@ body.dark-theme .widget_outline_grey {
 }
 
 body.dark-theme .widget_grey .btn.bg-white {
-	background-color: var(--bkg-color);
+	background-color: var(--bkg-color) !important;
 }
