@@ -20,7 +20,7 @@ get_header();
 
 					<div class="d-flex">
 						<div class="col-12 d-flex">
-							<h2 class="display-5 pb-3 shadows"><?php echo get_the_title(); ?></h2>
+							<h2 class="display-5 pb-3 shadows text-dark"><?php echo get_the_title(); ?></h2>
 						</div>
 					</div>
 
@@ -31,7 +31,7 @@ get_header();
 
 							<div class="article-body pr-4">
 								<?php echo xlt_old_posts_warning( $lang ); ?>
-								<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() ); ?>
+								<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content',get_the_content() ); ?>
 							</div>
 
 							<?php get_template_part( 'parts/social' ); ?>
