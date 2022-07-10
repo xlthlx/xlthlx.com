@@ -845,8 +845,8 @@ body.dark-theme a {
 }
 
 body.dark-theme .pagination .page-link {
-	background-color: transparent;
 	color: #f1469c;
+	background-color: transparent;
 }
 
 body.dark-theme .pagination .page-link:hover, body.dark-theme .pagination .page-link.current {
@@ -856,6 +856,7 @@ body.dark-theme .pagination .page-link:hover, body.dark-theme .pagination .page-
 
 body.dark-theme .pagination .page-link.dots {
 	color: #FFFFFF;
+	background-color: transparent;
 }
 
 body.dark-theme .dropdown-item a {
