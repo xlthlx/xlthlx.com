@@ -766,10 +766,22 @@ body.dark-theme a {
 	color: #E5E5E5;
 }
 
+body.dark-theme #btn-toggle {
+	background-color: #333456;
+}
+
 body.dark-theme .widget a {
 	color: #E5E5E5;
 }
 
 body.dark-theme .widget a:hover {
 	text-decoration: underline;
+}
+
+body.dark-theme #primary-nav {
+	background-color: #333456;
+}
+
+body.dark-theme #primary-nav:after {
+	box-shadow: 0 0 0 120px #333456;
 }
