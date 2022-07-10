@@ -753,6 +753,10 @@ body.dark-theme .widget_grey, body.dark-theme .widget_pages, body.dark-theme .bg
 	color: #E5E5E5;
 }
 
+body.dark-theme .widget_grey .btn, body.dark-theme .widget_grey .form-control {
+	border: 3px dashed white;
+}
+
 .display-5 {
 	color: var(--text-color);
 }
@@ -800,7 +804,7 @@ body.dark-theme footer:after {
 	box-shadow: 0 90px 0 120px #202136;
 }
 
-body.dark-theme input, body.dark-theme textarea, body.dark-theme .form-control:focus {
+body.dark-theme input, body.dark-theme textarea, body.dark-theme .form-control:focus, body.dark-theme checkbox {
 	background-color: var(--bkg-color);
 	color: var(--text-color);
 }
@@ -816,4 +820,8 @@ body.dark-theme .form-floating > .form-control::placeholder {
 body.dark-theme .widget_outline_grey {
 	border: 5px solid #525289 !important;
 	background-color: #000000 !important;
+}
+
+body.dark-theme .widget_grey .btn .bg-white {
+	background-color: var(--bkg-color);
 }
