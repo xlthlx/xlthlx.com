@@ -849,7 +849,7 @@ body.dark-theme .pagination .page-link {
 	color: #f1469c;
 }
 
-.page-link:hover {
+body.dark-theme .pagination .page-link:hover, body.dark-theme .pagination .page-link.current {
 	color: #FFFFFF;
 	background-color: #525289;
 }
