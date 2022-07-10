@@ -822,6 +822,6 @@ body.dark-theme .widget_outline_grey {
 	background-color: #000000 !important;
 }
 
-body.dark-theme .widget_grey .btn .bg-white {
+body.dark-theme .widget_grey .btn.bg-white {
 	background-color: var(--bkg-color);
 }
