@@ -751,12 +751,6 @@ body.dark-theme a {
 	color: #f1469c;
 }
 
-#btn-toggle {
-	padding: 0 10px;
-	cursor: pointer;
-	color: #E5E5E5;
-}
-
 body.dark-theme #btn-toggle {
 	background-color: #333456;
 }
