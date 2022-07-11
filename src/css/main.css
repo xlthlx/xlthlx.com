@@ -721,20 +721,6 @@ body.dark-theme {
 	--bs-body-color: #E5E5E5;
 }
 
-@media (prefers-color-scheme: dark) {
-
-	body {
-		--text-color: #E5E5E5;
-		--bkg-color: #161616;
-		--bs-body-color: #E5E5E5;
-	}
-
-	body.light-theme {
-		--text-color: #333456;
-		--bkg-color: #FFFFFF;
-	}
-}
-
 body {
 	background-color: var(--bkg-color);
 }
@@ -766,7 +752,6 @@ body.dark-theme a {
 }
 
 #btn-toggle {
-	font-size: 1.9rem;
 	padding: 0 10px;
 	cursor: pointer;
 	color: #E5E5E5;
