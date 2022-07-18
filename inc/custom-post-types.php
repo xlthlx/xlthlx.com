@@ -59,11 +59,19 @@ function xlt_film_init() {
 				'title'   => 'Film',
 				'default' => 'ASC',
 			],
+			'year'  => [
+				'title'    => 'Anno',
+				'taxonomy' => 'year'
+			],
 			'date'  => [
 				'title' => 'Data',
 			],
 		],
 		'admin_filters'      => [
+			'year' => [
+				'title'    => 'Anno',
+				'taxonomy' => 'year'
+			],
 		],
 	],[
 
@@ -166,11 +174,19 @@ function xlt_tv_series_init() {
 				'title'   => 'TV Series',
 				'default' => 'ASC',
 			],
+			'year'  => [
+				'title'    => 'Anno',
+				'taxonomy' => 'year'
+			],
 			'date'  => [
 				'title' => 'Data',
 			],
 		],
 		'admin_filters'      => [
+			'year' => [
+				'title'    => 'Anno',
+				'taxonomy' => 'year'
+			],
 		],
 	],[
 
