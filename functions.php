@@ -15,8 +15,9 @@ add_filter( 'login_display_language_dropdown','__return_false' );
 /*
  * Set theme supports and image sizes.
  */
-function xlthlx_support_image_size() {
+function xlthlx_add_supports() {
 
+	add_theme_support( 'block-templates' );
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'align-wide' );
@@ -36,18 +37,14 @@ function xlthlx_support_image_size() {
 
 	remove_theme_support( 'automatic-feed-links' );
 	remove_theme_support( 'widgets-block-editor' );
-	//remove_theme_support( 'core-block-patterns' );
+
 	remove_action( 'wp_head','feed_links_extra',3 );
 
-	add_image_size( 'extra_large',1536,1536 );
-	add_image_size( 'extra_extra_large',2048,2048 );
-	add_image_size( 'featured',1200,900,true );
+	add_image_size( 'featured',1200,675,true );
 	add_image_size( 'sticky',437,225,true );
-	remove_image_size( '1536x1536' );
-	remove_image_size( '2048x2048' );
 }
 
-add_action( 'after_setup_theme','xlthlx_support_image_size' );
+add_action( 'init','xlthlx_add_supports' );
 
 /**
  * Register main and footer menu.
@@ -180,16 +177,7 @@ require_once 'inc/template-functions.php';
 /**
  * Post types.
  */
-require_once 'inc/post-types/film.php';
-require_once 'inc/post-types/tv-series.php';
-
-function xlt_rewrite_flush() {
-	xlt_tv_series_init();
-	xlt_film_init();
-	flush_rewrite_rules();
-}
-
-add_action( 'after_switch_theme','xlt_rewrite_flush' );
+require_once 'inc/custom-post-types.php';
 
 /**
  * Custom template tags.
