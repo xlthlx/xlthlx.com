@@ -180,6 +180,11 @@ require_once 'inc/template-functions.php';
 require_once 'inc/custom-post-types.php';
 
 /**
+ * Taxonomies.
+ */
+require_once 'inc/custom-taxonomies.php';
+
+/**
  * Custom template tags.
  */
 require_once 'inc/template-tags.php';
