@@ -14,31 +14,31 @@ function xlt_film_init() {
 
 
 	$labels = [
-		'name'                  => __( 'Films','xlthlx' ),
-		'singular_name'         => __( 'Film','xlthlx' ),
-		'all_items'             => __( 'All Films','xlthlx' ),
-		'archives'              => __( 'Film Archives','xlthlx' ),
-		'attributes'            => __( 'Film Attributes','xlthlx' ),
-		'insert_into_item'      => __( 'Insert in Film','xlthlx' ),
-		'uploaded_to_this_item' => __( 'Uploaded to this Film','xlthlx' ),
-		'featured_image'        => _x( 'Featured Image','film','xlthlx' ),
-		'set_featured_image'    => _x( 'Set featured image','film','xlthlx' ),
-		'remove_featured_image' => _x( 'Remove featured image','film','xlthlx' ),
-		'use_featured_image'    => _x( 'Use as featured image','film','xlthlx' ),
-		'filter_items_list'     => __( 'Filter Films list','xlthlx' ),
-		'items_list_navigation' => __( 'Films list navigation','xlthlx' ),
-		'items_list'            => __( 'Films list','xlthlx' ),
-		'new_item'              => __( 'New Film','xlthlx' ),
-		'add_new'               => __( 'Add New','xlthlx' ),
-		'add_new_item'          => __( 'Add New Film','xlthlx' ),
-		'edit_item'             => __( 'Edit Film','xlthlx' ),
-		'view_item'             => __( 'View Film','xlthlx' ),
-		'view_items'            => __( 'View Films','xlthlx' ),
-		'search_items'          => __( 'Search Films','xlthlx' ),
-		'not_found'             => __( 'No Films found','xlthlx' ),
-		'not_found_in_trash'    => __( 'No Films found in trash','xlthlx' ),
-		'parent_item_colon'     => __( 'Parent Film:','xlthlx' ),
-		'menu_name'             => __( 'Films','xlthlx' ),
+		'name'                  => 'Films',
+		'singular_name'         => 'Film',
+		'all_items'             => 'All Films',
+		'archives'              => 'Film Archives',
+		'attributes'            => 'Film Attributes',
+		'insert_into_item'      => 'Insert in Film',
+		'uploaded_to_this_item' => 'Uploaded to this Film',
+		'featured_image'        => 'Featured Image',
+		'set_featured_image'    => 'Set featured image',
+		'remove_featured_image' => 'Remove featured image',
+		'use_featured_image'    => 'Use as featured image',
+		'filter_items_list'     => 'Filter Films list',
+		'items_list_navigation' => 'Films list navigation',
+		'items_list'            => 'Films list',
+		'new_item'              => 'New Film',
+		'add_new'               => 'Add New',
+		'add_new_item'          => 'Add New Film',
+		'edit_item'             => 'Edit Film',
+		'view_item'             => 'View Film',
+		'view_items'            => 'View Films',
+		'search_items'          => 'Search Films',
+		'not_found'             => 'No Films found',
+		'not_found_in_trash'    => 'No Films found in trash',
+		'parent_item_colon'     => 'Parent Film:',
+		'menu_name'             => 'Films',
 	];
 
 
@@ -75,9 +75,9 @@ function xlt_film_init() {
 		],
 	],[
 
-		'singular' => __( 'Film','xlthlx' ),
-		'plural'   => __( 'Films','xlthlx' ),
-		'slug'     => __( 'film','xlthlx' )
+		'singular' => 'Film',
+		'plural'   => 'Films',
+		'slug'     => 'film'
 
 	] );
 
@@ -99,17 +99,17 @@ function xlt_film_updated_messages( $messages ) {
 
 	$messages['film'] = [
 		0  => '',
-		1  => sprintf( __( 'Film updated. <a target="_blank" href="%s">View Film</a>','xlthlx' ),esc_url( $permalink ) ),
-		2  => __( 'Custom field updated.','xlthlx' ),
-		3  => __( 'Custom field deleted.','xlthlx' ),
-		4  => __( 'Film updated.','xlthlx' ),
-		5  => isset( $_GET['revision'] ) ? sprintf( __( 'Film restored to revision from %s','xlthlx' ),wp_post_revision_title( (int) $_GET['revision'],false ) ) : false,
-		6  => sprintf( __( 'Film published. <a href="%s">View Film</a>','xlthlx' ),esc_url( $permalink ) ),
-		7  => __( 'Film saved.','xlthlx' ),
-		8  => sprintf( __( 'Film submitted. <a target="_blank" href="%s">Preview Film</a>','xlthlx' ),esc_url( add_query_arg( 'preview','true',$permalink ) ) ),
-		9  => sprintf( __( 'Film scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview Film</a>','xlthlx' ),
-			date_i18n( __( 'M j, Y @ G:i','xlthlx' ),strtotime( $post->post_date ) ),esc_url( $permalink ) ),
-		10 => sprintf( __( 'Film draft updated. <a target="_blank" href="%s">Preview Film</a>','xlthlx' ),esc_url( add_query_arg( 'preview','true',$permalink ) ) ),
+		1  => sprintf( 'Film updated. <a target="_blank" href="%s">View Film</a>',esc_url( $permalink ) ),
+		2  => 'Custom field updated.',
+		3  => 'Custom field deleted.',
+		4  => 'Film updated.',
+		5  => isset( $_GET['revision'] ) ? sprintf( 'Film restored to revision from %s',wp_post_revision_title( (int) $_GET['revision'],false ) ) : false,
+		6  => sprintf( 'Film published. <a href="%s">View Film</a>',esc_url( $permalink ) ),
+		7  => 'Film saved.',
+		8  => sprintf( 'Film submitted. <a target="_blank" href="%s">Preview Film</a>',esc_url( add_query_arg( 'preview','true',$permalink ) ) ),
+		9  => sprintf( 'Film scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview Film</a>',
+			date_i18n( 'M j, Y @ G:i',strtotime( $post->post_date ) ),esc_url( $permalink ) ),
+		10 => sprintf( 'Film draft updated. <a target="_blank" href="%s">Preview Film</a>',esc_url( add_query_arg( 'preview','true',$permalink ) ) ),
 	];
 
 	return $messages;
@@ -130,31 +130,31 @@ function xlt_tv_series_init() {
 
 
 	$labels = [
-		'name'                  => __( 'TV Series','xlthlx' ),
-		'singular_name'         => __( 'TV Series','xlthlx' ),
-		'all_items'             => __( 'All TV Series','xlthlx' ),
-		'archives'              => __( 'TV Series Archives','xlthlx' ),
-		'attributes'            => __( 'TV Series Attributes','xlthlx' ),
-		'insert_into_item'      => __( 'Insert in TV Series','xlthlx' ),
-		'uploaded_to_this_item' => __( 'Uploaded to this TV Series','xlthlx' ),
-		'featured_image'        => _x( 'Featured Image','tv-series','xlthlx' ),
-		'set_featured_image'    => _x( 'Set featured image','tv-series','xlthlx' ),
-		'remove_featured_image' => _x( 'Remove featured image','tv-series','xlthlx' ),
-		'use_featured_image'    => _x( 'Use as featured image','tv-series','xlthlx' ),
-		'filter_items_list'     => __( 'Filter TV Series list','xlthlx' ),
-		'items_list_navigation' => __( 'TV Series list navigation','xlthlx' ),
-		'items_list'            => __( 'TV Series list','xlthlx' ),
-		'new_item'              => __( 'New TV Series','xlthlx' ),
-		'add_new'               => __( 'Add New','xlthlx' ),
-		'add_new_item'          => __( 'Add New TV Series','xlthlx' ),
-		'edit_item'             => __( 'Edit TV Series','xlthlx' ),
-		'view_item'             => __( 'View TV Series','xlthlx' ),
-		'view_items'            => __( 'View TV Series','xlthlx' ),
-		'search_items'          => __( 'Search TV Series','xlthlx' ),
-		'not_found'             => __( 'No TV Series found','xlthlx' ),
-		'not_found_in_trash'    => __( 'No TV Series found in trash','xlthlx' ),
-		'parent_item_colon'     => __( 'Parent TV Series:','xlthlx' ),
-		'menu_name'             => __( 'TV Series','xlthlx' ),
+		'name'                  => 'TV Series',
+		'singular_name'         => 'TV Series',
+		'all_items'             => 'All TV Series',
+		'archives'              => 'TV Series Archives',
+		'attributes'            => 'TV Series Attributes',
+		'insert_into_item'      => 'Insert in TV Series',
+		'uploaded_to_this_item' => 'Uploaded to this TV Series',
+		'featured_image'        => 'Featured Image',
+		'set_featured_image'    => 'Set featured image',
+		'remove_featured_image' => 'Remove featured image',
+		'use_featured_image'    => 'Use as featured image',
+		'filter_items_list'     => 'Filter TV Series list',
+		'items_list_navigation' => 'TV Series list navigation',
+		'items_list'            => 'TV Series list',
+		'new_item'              => 'New TV Series',
+		'add_new'               => 'Add New',
+		'add_new_item'          => 'Add New TV Series',
+		'edit_item'             => 'Edit TV Series',
+		'view_item'             => 'View TV Series',
+		'view_items'            => 'View TV Series',
+		'search_items'          => 'Search TV Series',
+		'not_found'             => 'No TV Series found',
+		'not_found_in_trash'    => 'No TV Series found in trash',
+		'parent_item_colon'     => 'Parent TV Series:',
+		'menu_name'             => 'TV Series',
 	];
 
 	register_extended_post_type( 'tvseries',[
@@ -190,9 +190,9 @@ function xlt_tv_series_init() {
 		],
 	],[
 
-		'singular' => __( 'TV Series','xlthlx' ),
-		'plural'   => __( 'TV Series','xlthlx' ),
-		'slug'     => __( 'tvseries','xlthlx' )
+		'singular' => 'TV Series',
+		'plural'   => 'TV Series',
+		'slug'     => 'tvseries'
 
 	] );
 }
@@ -213,17 +213,17 @@ function xlt_tv_series_updated_messages( $messages ) {
 
 	$messages['tv-series'] = [
 		0  => '',
-		1  => sprintf( __( 'TV Series updated. <a target="_blank" href="%s">View TV Series</a>','xlthlx' ),esc_url( $permalink ) ),
-		2  => __( 'Custom field updated.','xlthlx' ),
-		3  => __( 'Custom field deleted.','xlthlx' ),
-		4  => __( 'TV Series updated.','xlthlx' ),
-		5  => isset( $_GET['revision'] ) ? sprintf( __( 'TV Series restored to revision from %s','xlthlx' ),wp_post_revision_title( (int) $_GET['revision'],false ) ) : false,
-		6  => sprintf( __( 'TV Series published. <a href="%s">View TV Series</a>','xlthlx' ),esc_url( $permalink ) ),
-		7  => __( 'TV Series saved.','xlthlx' ),
-		8  => sprintf( __( 'TV Series submitted. <a target="_blank" href="%s">Preview TV Series</a>','xlthlx' ),esc_url( add_query_arg( 'preview','true',$permalink ) ) ),
-		9  => sprintf( __( 'TV Series scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview TV Series</a>','xlthlx' ),
-			date_i18n( __( 'M j, Y @ G:i','xlthlx' ),strtotime( $post->post_date ) ),esc_url( $permalink ) ),
-		10 => sprintf( __( 'TV Series draft updated. <a target="_blank" href="%s">Preview TV Series</a>','xlthlx' ),esc_url( add_query_arg( 'preview','true',$permalink ) ) ),
+		1  => sprintf( 'TV Series updated. <a target="_blank" href="%s">View TV Series</a>',esc_url( $permalink ) ),
+		2  => 'Custom field updated.',
+		3  => 'Custom field deleted.',
+		4  => 'TV Series updated.',
+		5  => isset( $_GET['revision'] ) ? sprintf( 'TV Series restored to revision from %s',wp_post_revision_title( (int) $_GET['revision'],false ) ) : false,
+		6  => sprintf( 'TV Series published. <a href="%s">View TV Series</a>',esc_url( $permalink ) ),
+		7  => 'TV Series saved.',
+		8  => sprintf( 'TV Series submitted. <a target="_blank" href="%s">Preview TV Series</a>',esc_url( add_query_arg( 'preview','true',$permalink ) ) ),
+		9  => sprintf( 'TV Series scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview TV Series</a>',
+			date_i18n( 'M j, Y @ G:i',strtotime( $post->post_date ) ),esc_url( $permalink ) ),
+		10 => sprintf( 'TV Series draft updated. <a target="_blank" href="%s">Preview TV Series</a>',esc_url( add_query_arg( 'preview','true',$permalink ) ) ),
 	];
 
 	return $messages;
