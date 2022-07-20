@@ -55,22 +55,38 @@ function xlt_film_init() {
 		'block_editor'       => true,
 		'supports'           => [ 'title','editor','thumbnail','revisions','convert-to-blocks' ],
 		'admin_cols'         => [
-			'title' => [
+			'title'    => [
 				'title'   => 'Film',
 				'default' => 'ASC',
 			],
-			'year'  => [
+			'year'     => [
 				'title'    => 'Anno',
 				'taxonomy' => 'year'
 			],
-			'date'  => [
+			'director' => [
+				'title'    => 'Regista',
+				'taxonomy' => 'director'
+			],
+			'actor'    => [
+				'title'    => 'Attori',
+				'taxonomy' => 'actor'
+			],
+			'date'     => [
 				'title' => 'Data',
 			],
 		],
 		'admin_filters'      => [
-			'year' => [
+			'year'     => [
 				'title'    => 'Anno',
 				'taxonomy' => 'year'
+			],
+			'director' => [
+				'title'    => 'Regista',
+				'taxonomy' => 'director'
+			],
+			'actor'    => [
+				'title'    => 'Attori',
+				'taxonomy' => 'actor'
 			],
 		],
 	],[
@@ -170,22 +186,38 @@ function xlt_tv_series_init() {
 		'block_editor'       => true,
 		'supports'           => [ 'title','editor','thumbnail','revisions','convert-to-blocks' ],
 		'admin_cols'         => [
-			'title' => [
+			'title'    => [
 				'title'   => 'TV Series',
 				'default' => 'ASC',
 			],
-			'year'  => [
+			'year'     => [
 				'title'    => 'Anno',
 				'taxonomy' => 'year'
 			],
-			'date'  => [
+			'director' => [
+				'title'    => 'Regista',
+				'taxonomy' => 'director'
+			],
+			'actor'    => [
+				'title'    => 'Attori',
+				'taxonomy' => 'actor'
+			],
+			'date'     => [
 				'title' => 'Data',
 			],
 		],
 		'admin_filters'      => [
-			'year' => [
+			'year'     => [
 				'title'    => 'Anno',
 				'taxonomy' => 'year'
+			],
+			'director' => [
+				'title'    => 'Regista',
+				'taxonomy' => 'director'
+			],
+			'actor'    => [
+				'title'    => 'Attori',
+				'taxonomy' => 'actor'
 			],
 		],
 	],[
