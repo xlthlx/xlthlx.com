@@ -667,7 +667,7 @@ footer:after {
 Colors
 _______*/
 .white {
-	color: #ffffff;
+	color: #ffffff !important;
 }
 
 .black {
