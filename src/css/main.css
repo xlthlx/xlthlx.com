@@ -743,6 +743,10 @@ body.dark-theme a {
 	color: #f1469c;
 }
 
+body.dark-theme a:hover {
+	color: #f1469c !important;
+}
+
 body.dark-theme #btn-toggle {
 	background-color: #333456;
 }
