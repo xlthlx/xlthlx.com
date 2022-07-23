@@ -16,7 +16,7 @@ module.exports = function (grunt) {
 			},
 			build: {
 				files: {
-					'assets/js/main.min.js': ['src/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js', 'src/js/sw.js', 'src/js/badge.js', 'src/js/single.js', 'src/js/dark-mode.js', '../../../wp-includes/js/wp-embed.min.js'],
+					'assets/js/main.min.js': ['src/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js', 'src/js/sw.js', 'src/js/badge.js', 'src/js/single.js', 'src/js/dark-mode.js', '../../../wp-includes/js/wp-embed.min.js', '../../../wp-includes/js/comment-reply.js'],
 					'assets/js/admin/admin.min.js': ['src/js/admin/admin.js'],
 					'assets/js/admin/editor.min.js': ['src/js/admin/editor.js'],
 					'assets/js/admin/login.min.js': ['src/js/admin/login.js', 'src/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js']

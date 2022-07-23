@@ -159,12 +159,12 @@ ol.breadcrumb {
 }
 
 .widget, .grey_box {
-	border-radius: 0 25% !important;
-	padding: 40px 50px 60px 50px !important;
+	border-radius: 0 25% 0 18% !important;
+	padding: 40px 50px 55px 50px !important;
 }
 
 .grey-sticky {
-	border-radius: 0 25% !important;
+	border-radius: 0 25% 0 18% !important;
 }
 
 .arrow:hover, .arrow:active {
