@@ -109,14 +109,6 @@ ol.breadcrumb {
 	margin-bottom: 0;
 }
 
-.accordion-button:not(.collapsed):not(.widget_grey) {
-	background-color: white !important;
-}
-
-.accordion-button.widget_grey {
-	color: black !important;
-}
-
 .btn {
 	border-radius: 30% 5% !important;
 }
