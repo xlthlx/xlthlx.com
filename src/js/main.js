@@ -1,6 +1,14 @@
-import '../assets/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js';
 import 'sw.js';
 import 'badge.js';
 import 'single.js';
 import 'dark-mode.js';
+import 'bootstrap/js/dist/alert';
+import 'bootstrap/js/dist/button';
+import 'bootstrap/js/dist/collapse';
+import 'bootstrap/js/dist/dropdown';
+import 'bootstrap/js/dist/modal';
+import 'bootstrap/js/dist/offcanvas';
+import 'bootstrap/js/dist/scrollspy';
+import 'bootstrap/js/dist/tab';
 import '../../wp-includes/js/comment-reply.js';
+import '../../wp-includes/js/wp-embed.min.js';

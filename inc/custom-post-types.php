@@ -276,3 +276,7 @@ function xlt_rewrite_flush() {
 }
 
 add_action( 'after_switch_theme','xlt_rewrite_flush' );
+
+/**
+ * Add url custom field.
+ */
