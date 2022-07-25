@@ -17,16 +17,21 @@ jobs:
           command: 'apt-get update -y && apt-get install -y rsync'
       - run:
           name: Build
-          command: 'rm -rf ./build && mkdir ./build && rsync -az --exclude-from=.distignore ./ ./build'
+          command: 'rm -rf ./build && mkdir ./build && rsync -az
+            --exclude-from=.distignore ./ ./build'
       - add_ssh_keys:
           fingerprints:
             - "3a:5f:5a:03:af:68:66:bd:f0:d3:ce:0c:ef:d0:c8:d8"
       - run:
           name: SSH
-          command: 'ssh -o StrictHostKeyChecking=no xlthlxcotb@ssh.cluster026.hosting.ovh.net exit'
+          command: 'ssh -o StrictHostKeyChecking=no
+            xlthlxcotb@ssh.cluster026.hosting.ovh.net exit'
       - run:
           name: Deploy
-          command: 'cd ./build && rsync -avz --delete . xlthlxcotb@ssh.cluster026.hosting.ovh.net:/home/xlthlxcotb/xlthlx.com/wp-content/themes/xlthlx.com'
+          command: 'cd ./build && rsync -avz --delete .
+            xlthlxcotb@ssh.cluster026.hosting.ovh.net:/home/xlthlxcotb/xlthlx.com/wp-content/themes/xlthlx.com'
+    # The resource_class feature allows configuring CPU and RAM resources for each job. Different resource classes are available for different executors. https://circleci.com/docs/2.0/configuration-reference/#resourceclass
+    resource_class: large
 workflows:
   version: 2.1
   deploy:
