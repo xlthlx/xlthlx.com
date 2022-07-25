@@ -40,7 +40,7 @@ get_header();
 							if ( ! empty( $years ) && ! is_wp_error( $years ) ) {
 								foreach ( $years as $year ) {
 									$args = [
-										'post_type' => 'film',
+										'post_type' => 'tvseries',
 										'tax_query' => [
 											[
 												'taxonomy' => 'year',
