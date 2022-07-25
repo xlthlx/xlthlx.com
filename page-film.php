@@ -28,57 +28,77 @@ get_header();
 
 						<section class="page-content mb-4">
 							<hr class="pt-0 mt-0 mb-4"/>
-							<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() ); ?>
+							<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content',get_the_content() ); ?>
 							<hr class="pt-0 mt-0 mb-4"/>
-							<?php $bookmarks = get_bookmarks( array(
-								'orderby'       => 'rand',
-								'order'         => 'DESC',
-								'category_name' => 'Film'
-							) );
+							<?php
+							$years = get_terms( [
+								'taxonomy' => 'year',
+								'orderby'  => 'name',
+								'order'    => 'DESC',
+							] );
 
-							$film = '';
+							if ( ! empty( $years ) && ! is_wp_error( $years ) ) {
+								foreach ( $years as $year ) {
+									$args = [
+										'post_type' => 'film',
+										'tax_query' => [
+											[
+												'taxonomy' => 'year',
+												'field'    => 'slug',
+												'terms'    => [ $year->slug ],
+												'operator' => 'IN'
+											]
+										]
+									];
 
-							foreach ( $bookmarks as $bookmark ) {
-								$film .= '<div class="clearfix">';
-								if ( '' !== $bookmark->link_image ) {
-									$webp_src = preg_replace( '/(?:jpg|png|jpeg)$/i', 'webp', $bookmark->link_image );
-									$film .= '<figure class="wp-block-image alignleft is-style-default">
-									<a title="' . $bookmark->link_name . '" target="_blank" href="' . $bookmark->link_url . '">
-									<picture>
-										<source srcset="' . $webp_src . '" type="image/webp">
-										<source srcset="' . $bookmark->link_image . '" type="image/jpeg">
-										<img src="' . $bookmark->link_image . '" alt="' . $bookmark->link_name . '" class="img-fluid">
-									</picture>
-									</a>
-								</figure>';
-								}
-								$film .= '<p>';
-								$film .= '<a title="' . $bookmark->link_name . '" target="_blank" href="' . $bookmark->link_url . '">' . $bookmark->link_name . '</a>';
-								$link_year = get_post_meta( $bookmark->link_id, 'link_year', true );
-								if ( '' !== $link_year ) {
-									$film .= '<br/><em><strong>' . $link_year . '</strong></em>';
-								}
+									$the_query = new WP_Query( $args );
 
-								$link_directors = get_post_meta( $bookmark->link_id, 'link_directors', true );
-								if ( '' !== $link_directors ) {
-									$film .= '<br/><em>Director(s)</em>';
-									$film .= '<br/>' . $link_directors;
-								}
+									if ( $the_query->have_posts() ) {
 
-								$link_starring = get_post_meta( $bookmark->link_id, 'link_starring', true );
-								if ( '' !== $link_starring ) {
-									$film .= '<br/><em>Starring</em>';
-									$film .= '<br/>' . $link_starring;
+										while ( $the_query->have_posts() ) {
+											$the_query->the_post();
+											echo '<div class="clearfix">';
+
+											if ( get_post_thumbnail_id( get_the_ID() ) ) {
+												echo xlt_get_thumb_img( get_post_thumbnail_id( get_the_ID() ),get_the_title() );
+											}
+
+											echo '<p>';
+											echo '<a title="' . get_the_title() . '" target="_blank" href="' . get_post_meta( get_the_ID(),'link',true ) . '">' . get_the_title() . '</a>';
+											echo '<br/><em><strong>' . $year->name . '</strong></em>';
+											$directors = get_terms( [
+												'taxonomy' => 'director',
+											] );
+
+											if ( ! empty( $directors ) && ! is_wp_error( $directors ) ) {
+												echo '<br/><em>Director(s)</em>';
+
+												$directors = wp_list_pluck( $directors,'name' );
+												echo '<br/>' . implode( ', ',$directors );
+											}
+
+											$starring = get_terms( [
+												'taxonomy' => 'actor',
+											] );
+
+											if ( ! empty( $starring ) && ! is_wp_error( $starring ) ) {
+												echo '<br/><em>Starring</em>';
+
+												$starring = wp_list_pluck( $starring,'name' );
+												echo '<br/>' . implode( ', ',$starring );
+											}
+
+											echo '</p>';
+											echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content',get_the_content() );
+											echo '</div>';
+											echo '<hr class="pt-0 mt-4 mb-4"/>';
+										}
+
+									}
+
+									wp_reset_postdata();
 								}
-								if ( '' !== $bookmark->link_description ) {
-									$film .= '</p><p>' . $bookmark->link_description;
-								}
-								$film .= '</p>';
-								$film .= '</div>';
-								$film .= '<hr class="pt-0 mt-4 mb-4"/>';
 							}
-
-							echo $film;
 							?>
 
 						</section>

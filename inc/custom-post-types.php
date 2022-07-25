@@ -298,3 +298,19 @@ function xlt_add_film_metabox() {
 }
 
 add_action( 'cmb2_init','xlt_add_film_metabox' );
+
+
+if ( ! function_exists( 'xlt_get_thumb_img' ) ) {
+	/**
+	 * Returns the HTML for the film and tv series image.
+	 *
+	 * @param int $id
+	 * @param string $alt
+	 *
+	 * @return string
+	 */
+	function xlt_get_thumb_img( $id,$alt ) {
+		return wp_get_attachment_image( $id,[ '250','370' ],false,
+			[ "class" => "img-fluid grey_img","alt" => $alt,"loading" => false ] );
+	}
+}
