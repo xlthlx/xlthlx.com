@@ -42,6 +42,7 @@ function xlthlx_add_supports() {
 
 	add_image_size( 'featured',1200,675,true );
 	add_image_size( 'sticky',437,225,true );
+	add_image_size( 'cover',250,370,true );
 }
 
 add_action( 'init','xlthlx_add_supports' );
