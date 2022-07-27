@@ -66,9 +66,7 @@ get_header();
 											echo '<p>';
 											echo '<h3><a title="' . get_the_title() . '" target="_blank" href="' . get_post_meta( get_the_ID(),'link',true ) . '">' . get_the_title() . '</a></h3>';
 											echo '<em><strong>' . $year->name . '</strong></em>';
-											$directors = get_terms( [
-												'taxonomy' => 'director',
-											] );
+											$directors = get_the_terms( get_the_ID(),'director' );
 
 											$created = ( 'en' === $lang ) ? 'Created by' : 'Ideatore(i)';
 
@@ -79,9 +77,7 @@ get_header();
 												echo '<br/>' . implode( ', ',$directors );
 											}
 
-											$starring = get_terms( [
-												'taxonomy' => 'actor',
-											] );
+											$starring = get_the_terms( get_the_ID(),'actor' );
 
 											$stars = ( 'en' === $lang ) ? 'Starring' : 'Interpreti';
 
