@@ -64,14 +64,16 @@ get_header();
 											}
 
 											echo '<p>';
-											echo '<a title="' . get_the_title() . '" target="_blank" href="' . get_post_meta( get_the_ID(),'link',true ) . '">' . get_the_title() . '</a>';
-											echo '<br/><em><strong>' . $year->name . '</strong></em>';
+											echo '<h3><a title="' . get_the_title() . '" target="_blank" href="' . get_post_meta( get_the_ID(),'link',true ) . '">' . get_the_title() . '</a></h3>';
+											echo '<em><strong>' . $year->name . '</strong></em>';
 											$directors = get_terms( [
 												'taxonomy' => 'director',
 											] );
 
+											$created = ( 'en' === $lang ) ? 'Created by' : 'Ideatore(i)';
+
 											if ( ! empty( $directors ) && ! is_wp_error( $directors ) ) {
-												echo '<br/><em>Director(s)</em>';
+												echo '<br/><em>' . $created . '</em>';
 
 												$directors = wp_list_pluck( $directors,'name' );
 												echo '<br/>' . implode( ', ',$directors );
@@ -81,8 +83,10 @@ get_header();
 												'taxonomy' => 'actor',
 											] );
 
+											$stars = ( 'en' === $lang ) ? 'Starring' : 'Interpreti';
+
 											if ( ! empty( $starring ) && ! is_wp_error( $starring ) ) {
-												echo '<br/><em>Starring</em>';
+												echo '<br/><em>' . $stars . '</em>';
 
 												$starring = wp_list_pluck( $starring,'name' );
 												echo '<br/>' . implode( ', ',$starring );

@@ -311,6 +311,6 @@ if ( ! function_exists( 'xlt_get_thumb_img' ) ) {
 	 */
 	function xlt_get_thumb_img( $id,$alt ) {
 		return wp_get_attachment_image( $id,[ '250','370' ],false,
-			[ "class" => "img-fluid grey_img","alt" => $alt,"loading" => false ] );
+			[ "class" => "img-fluid float-start me-4","alt" => $alt,"loading" => false ] );
 	}
 }
