@@ -61,10 +61,10 @@ get_header();
 									echo $serie['content'];
 
 									if ( '' !== $serie['internal'] ) {
-										$review = ( 'en' === $lang ) ? 'What had I written about it' : 'Cosa ne avevo scritto';
+										$review = ( 'en' === $lang ) ? 'What I had written about it' : 'Cosa ne avevo scritto';
 										echo '<p><a title="' . $serie['title'] . '" target="_blank" href="' . $serie['internal'] . '">' . $review . '</a></p>';
 									}
-									
+
 									echo '</div>';
 									echo '<hr class="pt-0 mt-4 mb-4"/>';
 								}
