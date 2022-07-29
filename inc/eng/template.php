@@ -88,7 +88,7 @@ function xlt_template_redirect() {
 
 	set_query_var( 'template',$template );
 
-	include eng - fields - template . phpget_template_directory();
+	include get_template_directory() . $template;
 	exit;
 }
 
