@@ -31,72 +31,42 @@ get_header();
 							<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content',get_the_content() ); ?>
 							<hr class="pt-0 mt-0 mb-4"/>
 							<?php
-							$years = get_terms( [
-								'taxonomy' => 'year',
-								'orderby'  => 'name',
-								'order'    => 'DESC',
-							] );
+							$series = xlt_get_all_film_tv( 'tvseries',$lang );
 
-							if ( ! empty( $years ) && ! is_wp_error( $years ) ) {
-								foreach ( $years as $year ) {
-									$args = [
-										'post_type' => 'tvseries',
-										'tax_query' => [
-											[
-												'taxonomy' => 'year',
-												'field'    => 'slug',
-												'terms'    => [ $year->slug ],
-												'operator' => 'IN'
-											]
-										]
-									];
+							if ( ! empty( $series ) ) {
+								foreach ( $series as $serie ) {
+									echo '<div class="clearfix">';
 
-									$the_query = new WP_Query( $args );
-
-									if ( $the_query->have_posts() ) {
-
-										while ( $the_query->have_posts() ) {
-											$the_query->the_post();
-											echo '<div class="clearfix">';
-
-											if ( get_post_thumbnail_id( get_the_ID() ) ) {
-												echo xlt_get_thumb_img( get_post_thumbnail_id( get_the_ID() ),get_the_title() );
-											}
-
-											echo '<p>';
-											echo '<h3><a title="' . get_the_title() . '" target="_blank" href="' . get_post_meta( get_the_ID(),'link',true ) . '">' . get_the_title() . '</a></h3>';
-											echo '<em><strong>' . $year->name . '</strong></em>';
-											$directors = get_the_terms( get_the_ID(),'director' );
-
-											$created = ( 'en' === $lang ) ? 'Created by' : 'Ideatore(i)';
-
-											if ( ! empty( $directors ) && ! is_wp_error( $directors ) ) {
-												echo '<br/><em>' . $created . '</em>';
-
-												$directors = wp_list_pluck( $directors,'name' );
-												echo '<br/>' . implode( ', ',$directors );
-											}
-
-											$starring = get_the_terms( get_the_ID(),'actor' );
-
-											$stars = ( 'en' === $lang ) ? 'Starring' : 'Interpreti';
-
-											if ( ! empty( $starring ) && ! is_wp_error( $starring ) ) {
-												echo '<br/><em>' . $stars . '</em>';
-
-												$starring = wp_list_pluck( $starring,'name' );
-												echo '<br/>' . implode( ', ',$starring );
-											}
-
-											echo '</p>';
-											echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content',get_the_content() );
-											echo '</div>';
-											echo '<hr class="pt-0 mt-4 mb-4"/>';
-										}
-
+									if ( $serie['image'] ) {
+										echo $serie['image'];
 									}
 
-									wp_reset_postdata();
+									echo '<p>';
+									echo '<h3><a title="' . $serie['title'] . '" target="_blank" href="' . $serie['link'] . '">' . $serie['title'] . '</a></h3>';
+									echo '<em><strong>' . $serie['year'] . '</strong></em>';
+
+									if ( $serie['directors'] ) {
+										$created = ( 'en' === $lang ) ? 'Created by' : 'Ideatore(i)';
+										echo '<br/><em>' . $created . '</em>';
+										echo '<br/>' . $serie['directors'];
+									}
+
+									if ( $serie['starring'] ) {
+										$stars = ( 'en' === $lang ) ? 'Starring' : 'Interpreti';
+										echo '<br/><em>' . $stars . '</em>';
+										echo '<br/>' . $serie['starring'];
+									}
+
+									echo '</p>';
+									echo $serie['content'];
+
+									if ( '' !== $serie['internal'] ) {
+										$review = ( 'en' === $lang ) ? 'What had I written about it' : 'Cosa ne avevo scritto';
+										echo '<p><a title="' . $serie['title'] . '" target="_blank" href="' . $serie['internal'] . '">' . $review . '</a></p>';
+									}
+									
+									echo '</div>';
+									echo '<hr class="pt-0 mt-4 mb-4"/>';
 								}
 							}
 							?>
