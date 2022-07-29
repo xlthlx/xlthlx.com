@@ -17,6 +17,7 @@ function get_abs_url() {
 	if ( isset( $_SERVER['HTTP_HOST'] ) && ! is_admin() ) {
 		return ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? "https" : "http" ) . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 	}
+
 	return false;
 }
 
@@ -33,7 +34,7 @@ function get_trans( $element ) {
 	$trc = new Dejurin\GoogleTranslateForFree();
 
 	try {
-		$trans_content = $trc::translate( 'it', 'en', $element );
+		$trans_content = $trc::translate( 'it','en',$element );
 
 	} catch ( Exception $ex ) {
 		error_log( $ex );
@@ -50,7 +51,8 @@ function get_trans( $element ) {
 function get_date_en() {
 
 	$datetime = get_the_time( 'm' ) . '/01/' . get_the_time( 'Y' );
-	return get_the_time( 'd' ) . ' ' . date( 'F', strtotime( $datetime ) ) . ' ' . get_the_time( 'Y' );
+
+	return get_the_time( 'd' ) . ' ' . date( 'F',strtotime( $datetime ) ) . ' ' . get_the_time( 'Y' );
 }
 
 /**
@@ -74,16 +76,16 @@ function get_title_en( $post_id = 0 ) {
 	$post_type = get_post_type( $post_id );
 
 	if ( 'post' === $post_type || 'page' === $post_type ) {
-		if ( ! get_post_meta( $post_id, 'title_en', true )
-		     || get_post_meta( $post_id, 'title_en', true ) === '' ) {
+		if ( ! get_post_meta( $post_id,'title_en',true )
+		     || get_post_meta( $post_id,'title_en',true ) === '' ) {
 
 			$post  = get_post( $post_id );
 			$title = get_trans( $post->post_title );
-			update_post_meta( $post_id, 'title_en', $title );
+			update_post_meta( $post_id,'title_en',$title );
 		}
 	}
 
-	return get_post_meta( $post_id, 'title_en', true );
+	return get_post_meta( $post_id,'title_en',true );
 
 }
 
@@ -110,8 +112,8 @@ function get_content_en( $post_id = 0 ) {
 
 	if ( 'post' === $post_type || 'page' === $post_type ) {
 
-		if ( ! get_post_meta( $post_id, 'content_en', true )
-		     || get_post_meta( $post_id, 'content_en', true ) === '' ) {
+		if ( ! get_post_meta( $post_id,'content_en',true )
+		     || get_post_meta( $post_id,'content_en',true ) === '' ) {
 
 			global $post;
 			$blocks = parse_blocks( $post->post_content );
@@ -120,7 +122,7 @@ function get_content_en( $post_id = 0 ) {
 
 			foreach ( $blocks as $block ) {
 
-				$block_types = array(
+				$block_types = [
 					'core/paragraph',
 					'core/heading',
 					'core/freeform',
@@ -131,10 +133,10 @@ function get_content_en( $post_id = 0 ) {
 					'core/table',
 					'core/text-columns',
 					'core/code'
-				);
+				];
 
 				if ( isset( $block['blockName'] ) && $block['blockName'] !== '' && in_array( $block['blockName'],
-						$block_types, true ) ) {
+						$block_types,true ) ) {
 
 					if ( $block['blockName'] === 'core/code' ) {
 						$code = $doc->load( $block['innerHTML'] );
@@ -142,18 +144,18 @@ function get_content_en( $post_id = 0 ) {
 						if ( $code ) {
 
 							$hl = new Highlighter();
-							$hl->setAutodetectLanguages( array(
+							$hl->setAutodetectLanguages( [
 								'php',
 								'javascript',
 								'html'
-							) );
+							] );
 
-							$code = str_replace( array(
+							$code = str_replace( [
 								'<pre class="wp-block-code">',
 								'<code>',
 								'</code>',
 								'</pre>'
-							), '', html_entity_decode( $code ) );
+							],'',html_entity_decode( $code ) );
 
 							$highlighted = $hl->highlightAuto( $code );
 
@@ -168,13 +170,13 @@ function get_content_en( $post_id = 0 ) {
 						$html = $doc->load( $block['innerHTML'] );
 						$p    = $html->find( "p" );
 
-						$to_remove = array();
+						$to_remove = [];
 
 						if ( $p ) {
 
 							foreach ( $p as $pg ) {
 
-								$tags = array(
+								$tags = [
 									"em",
 									"strong",
 									"h1",
@@ -184,7 +186,7 @@ function get_content_en( $post_id = 0 ) {
 									"h5",
 									"h6",
 									"li"
-								);
+								];
 
 								foreach ( $tags as $tag ) {
 									$plain_tag = $pg->find( $tag );
@@ -216,22 +218,22 @@ function get_content_en( $post_id = 0 ) {
 								$i = 0;
 								foreach ( $to_remove as $remove ) {
 									$plain_p = str_replace( $remove,
-										'{' . $i . '}', $plain_p );
+										'{' . $i . '}',$plain_p );
 									$i ++;
 								}
 
 
-								$plain_p = str_replace( array(
+								$plain_p = str_replace( [
 									'<p>',
 									'</p>'
-								), '', $plain_p );
+								],'',$plain_p );
 
 								$trans_p = get_trans( $plain_p );
 
 								$i = 0;
 								foreach ( $to_remove as $remove ) {
 									$trans_p = str_replace( '{' . $i . '}',
-										$remove, $trans_p );
+										$remove,$trans_p );
 									$i ++;
 								}
 
@@ -249,12 +251,12 @@ function get_content_en( $post_id = 0 ) {
 
 			$output .= '<!-- GT -->';
 
-			update_post_meta( $post_id, 'content_en', $output );
+			update_post_meta( $post_id,'content_en',$output );
 		}
 	}
 
 	return apply_filters( 'the_content',
-		get_post_meta( $post_id, 'content_en', true ) );
+		get_post_meta( $post_id,'content_en',true ) );
 }
 
 /**
@@ -266,7 +268,7 @@ function get_lang() {
 	$link = get_abs_url();
 
 	$lang = 'it';
-	$pos  = strpos( $link, '/en/' );
+	$pos  = strpos( $link,'/en/' );
 
 	if ( $pos !== false ) {
 		$lang = 'en';
@@ -283,19 +285,19 @@ function get_lang() {
 function get_url_trans() {
 
 	$link     = get_abs_url();
-	$pos      = strpos( $link, '/en/' );
-	$pos_page = strpos( $link, '/page/' );
+	$pos      = strpos( $link,'/en/' );
+	$pos_page = strpos( $link,'/page/' );
 
 	if ( is_front_page() ) {
 		if ( $pos === false ) {
 			if ( $pos_page === false ) {
 				$link .= 'en/';
 			} else {
-				$link = str_replace( '/page/', '/en/page/', $link );
+				$link = str_replace( '/page/','/en/page/',$link );
 			}
 
 		} else {
-			$link = str_replace( 'en/', '', $link );
+			$link = str_replace( 'en/','',$link );
 		}
 
 		return $link;
@@ -303,9 +305,9 @@ function get_url_trans() {
 
 	if ( is_category() ) {
 		if ( $pos === false ) {
-			$link = str_replace( '/cat/', '/cat/en/', $link );
+			$link = str_replace( '/cat/','/cat/en/',$link );
 		} else {
-			$link = str_replace( 'en/', '', $link );
+			$link = str_replace( 'en/','',$link );
 		}
 
 		return $link;
@@ -316,11 +318,11 @@ function get_url_trans() {
 			if ( $pos_page === false ) {
 				$link .= 'en/';
 			} else {
-				$link = str_replace( '/page/', '/en/page/', $link );
+				$link = str_replace( '/page/','/en/page/',$link );
 			}
 
 		} else {
-			$link = str_replace( 'en/', '', $link );
+			$link = str_replace( 'en/','',$link );
 		}
 
 		return $link;
@@ -329,14 +331,14 @@ function get_url_trans() {
 	if ( $pos === false ) {
 		$link .= 'en/';
 	} else {
-		$link = str_replace( 'en/', '', $link );
+		$link = str_replace( 'en/','',$link );
 	}
 
 	if ( is_preview() ) {
 		if ( $pos === false ) {
 			$link = get_home_url() . '/en/?p=' . get_query_var( 'p' ) . '&preview=true';
 		} else {
-			$link = str_replace( '/en/', '/?p=' . get_query_var( 'p' ) . '&preview=true', $link );
+			$link = str_replace( '/en/','/?p=' . get_query_var( 'p' ) . '&preview=true',$link );
 		}
 	}
 

@@ -156,19 +156,9 @@ require_once 'inc/custom-login.php';
 require_once 'inc/custom-widgets.php';
 
 /**
- * Custom fields for English.
- */
-require_once 'inc/eng-fields-admin.php';
-
-/**
  * Frontend functions for English translation.
  */
-require_once 'inc/eng-fields-frontend.php';
-
-/**
- * Template (rewrite) functions for English translation.
- */
-require_once 'inc/eng-fields-template.php';
+require_once 'inc/eng/index.php';
 
 /**
  * Functions which enhance the theme by hooking into WordPress.
@@ -176,14 +166,9 @@ require_once 'inc/eng-fields-template.php';
 require_once 'inc/template-functions.php';
 
 /**
- * Post types.
+ * Film and TV Series.
  */
-require_once 'inc/custom-post-types.php';
-
-/**
- * Taxonomies.
- */
-require_once 'inc/custom-taxonomies.php';
+require_once 'inc/film-tv/index.php';
 
 /**
  * Custom template tags.
@@ -193,12 +178,12 @@ require_once 'inc/template-tags.php';
 /**
  * Toolkit.
  */
-require_once 'inc/toolkit/toolkit.php';
+require_once 'inc/toolkit/index.php';
 
 /**
  * Newsletter.
  */
-require_once 'inc/newsletter/newsletter.php';
+require_once 'inc/newsletter/index.php';
 
 /**
  * Minify HTML.
