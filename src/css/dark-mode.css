@@ -140,11 +140,7 @@ body.dark-theme .pagination .page-link.dots {
 	background-color: transparent;
 }
 
-body.dark-theme #logo a:hover, body.dark-theme .dropdown-item a {
-	color: #FFFFFF;
-}
-
-body.dark-theme .btn-outline-secondary:hover {
+body.dark-theme h1#logo a:hover, body.dark-theme .dropdown-item a, body.dark-theme .btn-outline-secondary:hover {
 	color: #FFFFFF !important;
-	text-decoration: none;
+	text-decoration: none !important;
 }
