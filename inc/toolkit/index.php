@@ -5,7 +5,7 @@
  * @package  xlthlx
  */
 
-require_once ABSPATH . WPINC . '/file.php';
+require_once get_home_path() . WPINC . '/file.php';
 
 $folder = get_template_directory() . '/inc/toolkit/inc/';
 $files  = list_files( $folder,2 );
