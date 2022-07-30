@@ -178,7 +178,7 @@ require_once 'inc/template-tags.php';
 /**
  * Toolkit.
  */
-require_once 'inc/toolkit/index.php';
+//require_once 'inc/toolkit/index.php';
 
 /**
  * Newsletter.
