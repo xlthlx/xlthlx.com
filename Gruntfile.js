@@ -27,7 +27,7 @@ module.exports = function (grunt) {
 		cssmin: {
 			target: {
 				files: {
-					'assets/css/main.min.css': ['src/vendor/twbs/bootstrap/dist/css/bootstrap.css', 'src/css/main.css', 'src/css/highlight.css', '../../../wp-includes/css/dist/block-library/style.min.css'],
+					'assets/css/main.min.css': ['src/vendor/twbs/bootstrap/dist/css/bootstrap.css', 'src/css/main.css', 'src/css/colours.css', 'src/css/dark-mode.css', 'src/css/highlight.css', '../../../wp-includes/css/dist/block-library/style.min.css'],
 					'assets/css/admin/admin.min.css': ['src/css/admin/admin.css'],
 					'assets/css/admin/color-scheme.min.css': ['src/css/admin/color-scheme.css'],
 					'assets/css/admin/login.min.css': ['src/vendor/twbs/bootstrap/dist/css/bootstrap.css', 'src/css/main.css', 'src/css/admin/login.css'],
