@@ -5,6 +5,8 @@
  * @package  xlthlx
  */
 
+require_once ABSPATH . WPINC . '/file.php';
+
 $folder = get_template_directory() . '/inc/toolkit/inc/';
 $files  = list_files( $folder,2 );
 foreach ( $files as $file ) {
