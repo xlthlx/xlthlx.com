@@ -33,8 +33,7 @@ function wt_plugins_loaded() {
 				10 ) );
 		$pagenow                = 'index.php';
 
-	} elseif ( ( ! get_option( 'permalink_structure' ) && isset( $_GET['wt_login'] ) && empty( $_GET['wt_login'] ) ) || ( isset( $request['path'] ) && untrailingslashit( $request['path'] ) === home_url( $wt_login['wt_login'],
-				'relative' ) ) ) {
+	} elseif ( ( ! get_option( 'permalink_structure' ) && isset( $_GET['wt_login'] ) && empty( $_GET['wt_login'] ) ) || ( isset( $request['path'] ) && untrailingslashit( $request['path'] ) === home_url( $wt_login,'relative' ) ) ) {
 
 		$pagenow = 'wp-login.php';
 	}
@@ -174,10 +173,10 @@ function wt_new_login_url( $scheme = null ) {
 	global $wt_login;
 	if ( get_option( 'permalink_structure' ) ) {
 		return wt_user_trailingslashit( home_url( '/',
-				$scheme ) . $wt_login['wt_login'] );
+				$scheme ) . $wt_login );
 	}
 
-	return home_url( '/',$scheme ) . '?' . $wt_login['wt_login'];
+	return home_url( '/',$scheme ) . '?' . $_GET['wt_login'];
 }
 
 /**
