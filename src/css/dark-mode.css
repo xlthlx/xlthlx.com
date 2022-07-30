@@ -146,4 +146,5 @@ body.dark-theme .dropdown-item a {
 
 body.dark-theme .btn-outline-secondary:hover {
 	color: #FFFFFF !important;
+	text-decoration: none;
 }
