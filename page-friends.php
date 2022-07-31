@@ -20,7 +20,7 @@ get_header();
 
 					<div class="col-12 d-flex">
 						<div class="col-md-12 d-flex">
-							<h2 class="display-4 pb-3 shadows"><?php echo get_the_title(); ?></h2>
+							<h2 class="display-4 pb-3 shadows"><?php echo ( 'en' === $lang ) ? 'Friends' : 'Amici'; ?></h2>
 						</div>
 					</div>
 
@@ -28,12 +28,12 @@ get_header();
 
 						<section class="page-content mb-4">
 							<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content',get_the_content() ); ?>
-							<hr class="pt-0 mt-0 mb-4"/>
+							<hr class="pt-0 mt-4 mb-4"/>
 							<ul class="list-unstyled">
 								<?php wp_list_bookmarks( 'title_li=&categorize=0&category_name=Friends' ); ?>
 							</ul>
-							<hr class="pt-0 mt-0 mb-4"/>
-							<h2 class="display-4 pb-3 shadows">Altri links</h2>
+							<hr class="pt-0 mt-4 mb-4"/>
+							<h2 class="display-4 pb-3 shadows"><?php echo ( 'en' === $lang ) ? 'Others' : 'Altri'; ?></h2>
 							<ul class="list-unstyled">
 								<?php wp_list_bookmarks( 'title_li=&categorize=0&category_name=Music' ); ?>
 							</ul>
