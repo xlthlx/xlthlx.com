@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Friends
+ * Template Name: Friends & Others
  *
  * @package  xlthlx
  */
@@ -27,11 +27,28 @@ get_header();
 					<div class="col-md-12 text-break">
 
 						<section class="page-content mb-4">
+							<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content',get_the_content() ); ?>
 							<hr class="pt-0 mt-0 mb-4"/>
 							<ul class="list-unstyled">
 								<?php wp_list_bookmarks( 'title_li=&categorize=0&category_name=Friends' ); ?>
 							</ul>
-							<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() ); ?>
+							<hr class="pt-0 mt-0 mb-4"/>
+							<h2 class="display-4 pb-3 shadows">Altri links</h2>
+							<ul class="list-unstyled">
+								<?php wp_list_bookmarks( 'title_li=&categorize=0&category_name=Music' ); ?>
+							</ul>
+
+							<ul class="list-unstyled">
+								<?php wp_list_bookmarks( 'title_li=&categorize=0&category_name=Organizations' ); ?>
+							</ul>
+
+							<ul class="list-unstyled">
+								<?php wp_list_bookmarks( 'title_li=&categorize=0&category_name=Fun' ); ?>
+							</ul>
+
+							<ul class="list-unstyled">
+								<?php wp_list_bookmarks( 'title_li=&categorize=0&category_name=Recommended' ); ?>
+							</ul>
 						</section>
 					</div>
 				</div>
