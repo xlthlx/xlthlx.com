@@ -21,7 +21,8 @@
     "dejurin/php-google-translate-for-free": "^1.0",
     "scrivo/highlight.php": "^9.18.1.9",
     "simplehtmldom/simplehtmldom": "dev-master",
-    "johnbillion/extended-cpts": "^5.0.2"
+    "johnbillion/extended-cpts": "^5.0.2",
+    "rosell-dk/webp-convert": "^2.9"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",

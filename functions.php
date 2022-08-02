@@ -194,3 +194,8 @@ require_once 'inc/minify-html.php';
  * Dashboard widgets.
  */
 require_once 'inc/dashboard-widgets.php';
+
+/**
+ * WebP converter.
+ */
+require_once 'inc/convert-to-webp.php';
