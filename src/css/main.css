@@ -664,7 +664,5 @@ footer:after {
 }
 
 .dropdown-item:focus, .dropdown-item:hover {
-	text-decoration: none;
-	background-color: #e0e1ee;
-	color: #333456;
+	color: #333456 !important;
 }

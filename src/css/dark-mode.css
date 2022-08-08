@@ -147,4 +147,5 @@ body.dark-theme h1#logo a:hover, body.dark-theme .dropdown-item a, body.dark-the
 
 body.dark-theme .dropdown-item:focus, body.dark-theme .dropdown-item:hover {
 	text-decoration: none !important;
+	font-weight: bold;
 }
