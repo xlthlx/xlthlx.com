@@ -662,3 +662,9 @@ footer:after {
 	padding-bottom: 0.5rem;
 	color: #b73275;
 }
+
+.dropdown-item:focus, .dropdown-item:hover {
+	text-decoration: none;
+	background-color: #e0e1ee;
+	color: #333456;
+}
