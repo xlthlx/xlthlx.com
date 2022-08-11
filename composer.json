@@ -16,13 +16,12 @@
   ],
   "require": {
     "php": ">=7.4",
-    "cmb2/cmb2": "^v2.10.1",
-    "composer/installers": "^2.1.1",
-    "dejurin/php-google-translate-for-free": "^1.0",
-    "scrivo/highlight.php": "^9.18.1.9",
-    "simplehtmldom/simplehtmldom": "dev-master",
-    "johnbillion/extended-cpts": "^5.0.2",
-    "rosell-dk/webp-convert": "^2.9"
+    "rosell-dk/webp-convert": "^2.9",
+    "deeplcom/deepl-php": "^0.4.0",
+    "cmb2/cmb2": "^2.10",
+    "johnbillion/extended-cpts": "^5.0",
+    "scrivo/highlight.php": "v9.18.1.9",
+    "composer/installers": "^2.1"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
@@ -39,8 +38,8 @@
   },
   "config": {
     "allow-plugins": {
-      "composer/installers": true,
-      "dealerdirect/phpcodesniffer-composer-installer": true
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "composer/installers": true
     }
   },
   "extra": {

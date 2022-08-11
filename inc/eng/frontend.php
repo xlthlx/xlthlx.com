@@ -6,7 +6,8 @@
  */
 
 use Highlight\Highlighter;
-use simplehtmldom\HtmlDocument;
+use DeepL\DeepLException;
+use DeepL\Translator;
 
 /**
  * Gets absolute url.
@@ -30,14 +31,24 @@ function get_abs_url() {
  */
 function get_trans( $element ) {
 	$trans_content = '';
-
-	$trc = new Dejurin\GoogleTranslateForFree();
+	$authKey       = "c8fbc4ef-5992-9e4b-09c9-7adc92be34fe:fx";
 
 	try {
-		$trans_content = $trc::translate( 'it','en',$element );
+		$translator = new Translator( $authKey );
+	} catch ( DeepLException $e ) {
+		$trans_content = $e->getMessage();
+	}
 
-	} catch ( Exception $ex ) {
-		error_log( $ex );
+	if ( isset( $translator ) ) {
+		try {
+			$options       = [
+				'preserve_formatting' => true,
+				'tag_handling'        => 'html'
+			];
+			$trans_content = $translator->translateText( $element,'it','en-GB',$options );
+		} catch ( DeepLException $e ) {
+			$trans_content = $e->getMessage();
+		}
 	}
 
 	return $trans_content;
@@ -112,151 +123,55 @@ function get_content_en( $post_id = 0 ) {
 
 	if ( 'post' === $post_type || 'page' === $post_type ) {
 
-		if ( ! get_post_meta( $post_id,'content_en',true )
-		     || get_post_meta( $post_id,'content_en',true ) === '' ) {
+		if ( ! get_post_meta( $post_id,'content_en',true ) || get_post_meta( $post_id,'content_en',true ) === '' ) {
 
 			global $post;
 			$blocks = parse_blocks( $post->post_content );
-			$doc    = new HtmlDocument();
 			$output = '';
 
 			foreach ( $blocks as $block ) {
 
-				$block_types = [
-					'core/paragraph',
-					'core/heading',
-					'core/freeform',
-					'core/list',
-					'core/quote',
-					'core/pullquote',
-					'core/html',
-					'core/table',
-					'core/text-columns',
-					'core/code'
-				];
+				if ( $block['blockName'] === 'core/code' ) {
+					$code = $block['innerHTML'];
 
-				if ( isset( $block['blockName'] ) && $block['blockName'] !== '' && in_array( $block['blockName'],
-						$block_types,true ) ) {
+					if ( $code ) {
 
-					if ( $block['blockName'] === 'core/code' ) {
-						$code = $doc->load( $block['innerHTML'] );
+						$hl = new Highlighter();
+						$hl->setAutodetectLanguages( [
+							'php',
+							'javascript',
+							'html'
+						] );
 
-						if ( $code ) {
+						$code = str_replace( [
+							'<pre class="wp-block-code">',
+							'<code>',
+							'</code>',
+							'</pre>'
+						],'',html_entity_decode( $code ) );
 
-							$hl = new Highlighter();
-							$hl->setAutodetectLanguages( [
-								'php',
-								'javascript',
-								'html'
-							] );
+						$highlighted = $hl->highlightAuto( $code );
 
-							$code = str_replace( [
-								'<pre class="wp-block-code">',
-								'<code>',
-								'</code>',
-								'</pre>'
-							],'',html_entity_decode( $code ) );
+						$code            = '<pre class="wp-block-code"><code class="hljs ' . $highlighted->language . '">' . $highlighted->value . '</code></pre>';
+						$code->outertext = apply_filters( 'the_content',$code );
 
-							$highlighted = $hl->highlightAuto( $code );
-
-							$code            = '<pre class="wp-block-code"><code class="hljs ' . $highlighted->language . '">' . $highlighted->value . '</code></pre>';
-							$code->outertext = apply_filters( 'the_content',
-								$code );
-
-						}
-
-						$output .= $code;
-					} else {
-						$html = $doc->load( $block['innerHTML'] );
-						$p    = $html->find( "p" );
-
-						$to_remove = [];
-
-						if ( $p ) {
-
-							foreach ( $p as $pg ) {
-
-								$tags = [
-									"em",
-									"strong",
-									"h1",
-									"h2",
-									"h3",
-									"h4",
-									"h5",
-									"h6",
-									"li"
-								];
-
-								foreach ( $tags as $tag ) {
-									$plain_tag = $pg->find( $tag );
-									if ( $plain_tag ) {
-										foreach ( $plain_tag as $pt ) {
-											$trans_tag     = get_trans( $pt->innertext );
-											$pt->innertext = $trans_tag;
-											$to_remove[]   = $pt->outertext;
-										}
-									}
-								}
-
-								$plain_a = $pg->find( "a" );
-
-								if ( $plain_a ) {
-									foreach ( $plain_a as $pa ) {
-										$trans_a       = get_trans( $pa->innertext );
-										$pa->innertext = $trans_a;
-										if ( $pa->title ) {
-											$title_a   = get_trans( $pa->title );
-											$pa->title = $title_a;
-										}
-										$to_remove[] = $pa->outertext;
-									}
-								}
-
-								$plain_p = $pg;
-
-								$i = 0;
-								foreach ( $to_remove as $remove ) {
-									$plain_p = str_replace( $remove,
-										'{' . $i . '}',$plain_p );
-									$i ++;
-								}
-
-
-								$plain_p = str_replace( [
-									'<p>',
-									'</p>'
-								],'',$plain_p );
-
-								$trans_p = get_trans( $plain_p );
-
-								$i = 0;
-								foreach ( $to_remove as $remove ) {
-									$trans_p = str_replace( '{' . $i . '}',
-										$remove,$trans_p );
-									$i ++;
-								}
-
-								$pg->outertext = '<p>' . $trans_p . '</p>';
-							}
-						}
-
-						$output .= $html;
 					}
 
+					$output .= $code;
 				} else {
-					$output .= $block['innerHTML'];
+					$html   = $block['innerHTML'];
+					$output .= get_trans( $html );
 				}
-			}
 
+			}
 			$output .= '<!-- GT -->';
 
 			update_post_meta( $post_id,'content_en',$output );
 		}
+
 	}
 
-	return apply_filters( 'the_content',
-		get_post_meta( $post_id,'content_en',true ) );
+	return apply_filters( 'the_content',get_post_meta( $post_id,'content_en',true ) );
 }
 
 /**
