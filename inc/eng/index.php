@@ -1,15 +1,16 @@
 <?php
 /**
- * Custom fields for English.
+ * Functions for English translation.
+ *
+ * @package  xlthlx
  */
-require_once 'custom-fields.php';
 
-/**
- * Frontend functions for English translation.
- */
-require_once 'frontend.php';
+require_once ABSPATH . 'wp-admin/includes/file.php';
 
-/**
- * Template (rewrite) functions for English translation.
- */
-require_once 'template.php';
+$folder = get_template_directory() . '/inc/eng/inc/';
+$files  = list_files( $folder,2 );
+foreach ( $files as $file ) {
+	if ( is_file( $file ) ) {
+		require_once $file;
+	}
+}

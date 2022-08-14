@@ -439,7 +439,7 @@ function xlt_en_title( $title ) {
 
 		if ( is_month() ) {
 			$datetime = get_the_time( 'm' ) . '/01/' . get_the_time( 'Y' );
-			$title    = date( 'F',strtotime( $datetime ) ) . ' ' . get_the_time( 'Y' ) . ' | xlthlx';
+			$title    = date( 'F',strtotime( $datetime ) ) . ' template.php' . get_the_time( 'Y' ) . ' | xlthlx';
 		}
 
 	}

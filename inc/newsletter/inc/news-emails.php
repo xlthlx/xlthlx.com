@@ -16,10 +16,10 @@
 function xlt_trim( $text ) {
 	$text = strip_shortcodes( $text );
 	$text = excerpt_remove_blocks( $text );
-	$text = apply_filters( 'the_content', $text );
-	$text = str_replace( ']]>', ']]&gt;', $text );
+	$text = apply_filters( 'the_content',$text );
+	$text = str_replace( ']]>',']]&gt;',$text );
 
-	return wp_trim_words( $text, 30, '...' );
+	return wp_trim_words( $text,30,'...' );
 }
 
 /**
@@ -29,7 +29,7 @@ function xlt_trim( $text ) {
  * @param $to
  * @param $_code
  */
-function xlt_send_confirmation( $lang, $to, $_code ) {
+function xlt_send_confirmation( $lang,$to,$_code ) {
 
 	if ( $lang === 'en' ) {
 		$subject = "Confirm your subscription to xlthlx.com";
@@ -40,16 +40,16 @@ function xlt_send_confirmation( $lang, $to, $_code ) {
 	ob_start();
 	$email = $to;
 	$code  = $_code;
-	include __DIR__ . '/email/confirm-' . $lang . '.php';
+	include sprintf( "%s/email/confirm-%s.php",__DIR__,$lang );
 	$body = ob_get_clean();
 
-	xlt_send_email( $to, $subject, $body );
+	xlt_send_email( $to,$subject,$body );
 }
 
 /**
  * @throws Exception
  */
-function xlt_post_published_notification( $new_status, $old_status, $post ) {
+function xlt_post_published_notification( $new_status,$old_status,$post ) {
 
 	if ( 'publish' === $new_status && 'publish' !== $old_status && $post->post_type === 'post' ) {
 
@@ -60,12 +60,12 @@ function xlt_post_published_notification( $new_status, $old_status, $post ) {
 		$_permalink_en = get_permalink( $post->ID ) . 'en/';
 		$_excerpt_en   = xlt_trim( get_content_en( $post->ID ) );
 
-		$args = array(
+		$args = [
 			'numberposts' => - 1,
 			'post_type'   => 'flamingo_contact',
 			'meta_key'    => '_active',
 			'meta_value'  => 'si',
-		);
+		];
 
 		$query = new WP_Query( $args );
 
@@ -75,31 +75,29 @@ function xlt_post_published_notification( $new_status, $old_status, $post ) {
 				$query->the_post();
 
 				$contact_id = get_the_ID();
-				$to         = get_post_meta( $contact_id, '_email', true );
-				$_lang      = get_post_meta( $contact_id, '_lang', true );
-				$_code      = get_post_meta( $contact_id, '_code', true );
+				$to         = get_post_meta( $contact_id,'_email',true );
+				$_lang      = get_post_meta( $contact_id,'_lang',true );
+				$_code      = get_post_meta( $contact_id,'_code',true );
+
+				ob_start();
+				$code = $_code;
 
 				if ( $_lang === 'en' ) {
-					$subject = 'New post on xlthlx.com';
-					ob_start();
+					$subject   = 'New post on xlthlx.com';
 					$title     = $_title_en;
 					$permalink = $_permalink_en;
 					$excerpt   = $_excerpt_en;
-					$code      = $_code;
 					include __DIR__ . '/email/post-en.php';
-					$body = ob_get_clean();
 				} else {
-					$subject = 'Nuovo post su xlthlx.com';
-					ob_start();
+					$subject   = 'Nuovo post su xlthlx.com';
 					$title     = $_title;
 					$permalink = $_permalink;
 					$excerpt   = $_excerpt;
-					$code      = $_code;
 					include __DIR__ . '/email/post-it.php';
-					$body = ob_get_clean();
 				}
+				$body = ob_get_clean();
 
-				xlt_send_email( $to, $subject, $body );
+				xlt_send_email( $to,$subject,$body );
 
 				$contact_id = '';
 				$to         = '';
@@ -112,7 +110,7 @@ function xlt_post_published_notification( $new_status, $old_status, $post ) {
 	}
 }
 
-add_action( 'transition_post_status', 'xlt_post_published_notification', 10, 3 );
+add_action( 'transition_post_status','xlt_post_published_notification',10,3 );
 
 /**
  * Send HTML email.
@@ -121,9 +119,9 @@ add_action( 'transition_post_status', 'xlt_post_published_notification', 10, 3 )
  * @param $subject
  * @param $body
  */
-function xlt_send_email( $to, $subject, $body ) {
-	$headers = array( 'Content-Type: text/html; charset=UTF-8', 'From: xlthlx.com <noreply@xlthlx.com>' );
-	wp_mail( $to, $subject, $body, $headers );
+function xlt_send_email( $to,$subject,$body ) {
+	$headers = [ 'Content-Type: text/html; charset=UTF-8','From: xlthlx.com <noreply@xlthlx.com>' ];
+	wp_mail( $to,$subject,$body,$headers );
 }
 
 /**
@@ -133,8 +131,8 @@ function xlt_send_email( $to, $subject, $body ) {
  */
 function xlt_log_mail_error( $wp_error ) {
 
-	$result = print_r( $wp_error, true );
+	$result = print_r( $wp_error,true );
 	error_log( "<pre>" . $result . "</pre>" );
 }
 
-add_action( 'wp_mail_failed', 'xlt_log_mail_error', 10, 1 );
+add_action( 'wp_mail_failed','xlt_log_mail_error',10,1 );

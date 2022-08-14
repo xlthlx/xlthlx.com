@@ -666,3 +666,8 @@ footer:after {
 .dropdown-item:focus, .dropdown-item:hover {
 	color: #333456 !important;
 }
+
+.mode {
+	font-size: 1.8rem;
+	line-height: 1;
+}

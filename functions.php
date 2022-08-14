@@ -146,24 +146,14 @@ if ( file_exists( __DIR__ . '/inc/cmb2/cmb2/init.php' ) ) {
 }
 
 /**
- * Custom login.
+ * Theme functions and tags.
  */
-require_once 'inc/custom-login.php';
+require_once 'inc/theme/index.php';
 
 /**
- * Custom widgets.
- */
-require_once 'inc/custom-widgets.php';
-
-/**
- * Frontend functions for English translation.
+ * Functions for English translation.
  */
 require_once 'inc/eng/index.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
-require_once 'inc/template-functions.php';
 
 /**
  * Film and TV Series.
@@ -171,31 +161,11 @@ require_once 'inc/template-functions.php';
 require_once 'inc/film-tv/index.php';
 
 /**
- * Custom template tags.
- */
-require_once 'inc/template-tags.php';
-
-/**
  * Toolkit.
  */
-require_once 'inc/toolkit/toolkit.php';
+require_once 'inc/toolkit/index.php';
 
 /**
  * Newsletter.
  */
 require_once 'inc/newsletter/index.php';
-
-/**
- * Minify HTML.
- */
-require_once 'inc/minify-html.php';
-
-/**
- * Dashboard widgets.
- */
-require_once 'inc/dashboard-widgets.php';
-
-/**
- * WebP converter.
- */
-require_once 'inc/convert-to-webp.php';

@@ -131,42 +131,59 @@ function get_content_en( $post_id = 0 ) {
 
 			foreach ( $blocks as $block ) {
 
-				if ( $block['blockName'] === 'core/code' ) {
-					$code = $block['innerHTML'];
+				$block_types = [
+					'core/paragraph',
+					'core/heading',
+					'core/freeform',
+					'core/list',
+					'core/quote',
+					'core/pullquote',
+					'core/html',
+					'core/table',
+					'core/code'
+				];
 
-					if ( $code ) {
+				if ( isset( $block['blockName'] ) && $block['blockName'] !== '' && in_array( $block['blockName'],
+						$block_types,true ) ) {
 
-						$hl = new Highlighter();
-						$hl->setAutodetectLanguages( [
-							'php',
-							'javascript',
-							'html'
-						] );
+					if ( $block['blockName'] === 'core/code' ) {
 
-						$code = str_replace( [
-							'<pre class="wp-block-code">',
-							'<code>',
-							'</code>',
-							'</pre>'
-						],'',html_entity_decode( $code ) );
+						$code = $block['innerHTML'];
 
-						$highlighted = $hl->highlightAuto( $code );
+						if ( $code ) {
 
-						$code            = '<pre class="wp-block-code"><code class="hljs ' . $highlighted->language . '">' . $highlighted->value . '</code></pre>';
-						$code->outertext = apply_filters( 'the_content',$code );
+							$hl = new Highlighter();
+							$hl->setAutodetectLanguages( [
+								'php',
+								'javascript',
+								'html'
+							] );
 
+							$code = str_replace( [
+								'<pre class="wp-block-code">',
+								'<code>',
+								'</code>',
+								'</pre>'
+							],'',html_entity_decode( $code ) );
+
+							$highlighted = $hl->highlightAuto( $code );
+
+							$code            = '<pre class="wp-block-code"><code class="hljs ' . $highlighted->language . '">' . $highlighted->value . '</code></pre>';
+							$code->outertext = apply_filters( 'the_content',$code );
+
+						}
+
+						$output .= $code;
+					} else {
+						$html   = $block['innerHTML'];
+						$output .= get_trans( $html );
 					}
 
-					$output .= $code;
-				} else {
-					$html   = $block['innerHTML'];
-					$output .= get_trans( $html );
 				}
+				$output .= '<!-- GT -->';
 
+				update_post_meta( $post_id,'content_en',$output );
 			}
-			$output .= '<!-- GT -->';
-
-			update_post_meta( $post_id,'content_en',$output );
 		}
 
 	}
