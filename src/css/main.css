@@ -667,6 +667,10 @@ footer:after {
 	color: #333456 !important;
 }
 
+.dark-mode {
+	border: 1px solid #ffffff !important;
+}
+
 .mode {
 	font-size: 1.8rem;
 	line-height: 1;
@@ -674,7 +678,6 @@ footer:after {
 
 .moon {
 	padding: 6px 0 6px 6px !important;
-	border: 1px solid #ffffff !important;
 }
 
 .open-new {
