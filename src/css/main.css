@@ -677,7 +677,8 @@ footer:after {
 }
 
 .moon {
-	padding: 6px 0 6px 6px !important;
+	padding: 0 !important;
+	margin-right: -9px !important;
 }
 
 .open-new {
