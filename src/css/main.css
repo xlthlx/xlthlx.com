@@ -667,21 +667,6 @@ footer:after {
 	color: #333456 !important;
 }
 
-.dark-mode {
-	border: 1px solid #ffffff !important;
-	padding: 6px 0 0 0 !important;
-}
-
-.mode {
-	font-size: 1.8rem;
-	line-height: 1;
-}
-
-.moon {
-	padding: 0 !important;
-	margin-right: -9px !important;
-}
-
 .open-new {
 	margin-bottom: 5px;
 	margin-left: 5px;

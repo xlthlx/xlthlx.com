@@ -1,7 +1,7 @@
 <?php global $lang,$post,$site_url; ?>
 <div class="col-auto d-flex justify-content-end ms-auto">
 	<a href="<?php echo $site_url; ?>mode/" title="Dark mode" id="btn-toggle" class="btn btn-outline-secondary lang pink-hover">
-		<svg style="width:40px;height:40px" aria-label="Twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168.29 168.29">
+		<svg style="width:25px;height:25px;margin-top:-6px" aria-label="Dark mode" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168.29 168.29">
 			<path fill="currentColor" d="M159.81,127.909c-1.025-2.473-3.289-4.212-5.942-4.565c-24.423-3.241-45.44-19.364-54.848-42.078
 	c-9.409-22.715-5.95-48.978,9.028-68.539c1.628-2.125,1.999-4.957,0.975-7.43c-1.024-2.473-3.289-4.212-5.942-4.565
 	C99.416,0.247,95.69,0,92.005,0C80.957,0,70.152,2.155,59.889,6.406c-20.764,8.601-36.935,24.772-45.533,45.536
