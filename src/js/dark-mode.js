@@ -13,7 +13,7 @@ btn.addEventListener("click", function (e) {
 
 	document.body.classList.toggle("dark-theme");
 	let theme = "light";
-	btn.innerHTML = '<span class="mode">&#9790;</span>';
+	btn.innerHTML = '<span class="mode moon">&#9790;</span>';
 	btn.title = 'Dark mode';
 
 	if (document.body.classList.contains("dark-theme")) {

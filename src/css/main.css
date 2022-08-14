@@ -672,6 +672,11 @@ footer:after {
 	line-height: 1;
 }
 
+.moon {
+	padding: 6px 0 6px 6px !important;
+	border: 1px solid #ffffff !important;
+}
+
 .open-new {
 	margin-bottom: 5px;
 	margin-left: 5px;
