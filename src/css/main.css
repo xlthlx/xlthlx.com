@@ -674,6 +674,7 @@ footer:after {
 .mode {
 	font-size: 1.8rem;
 	line-height: 1;
+	padding: 6px 0 0 0 !important;
 }
 
 .moon {
