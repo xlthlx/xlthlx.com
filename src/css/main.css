@@ -673,10 +673,6 @@ footer:after {
 	margin-left: 5px;
 }
 
-.white-border {
-	border: 1px solid white !important;
-}
-
-.moon {
+.dark-mode {
 	margin-top: -5px;
 }
