@@ -17,4 +17,5 @@
 			(window.plausible.q = window.plausible.q || []).push(arguments)
 		}</script>
 	<?php wp_head(); ?>
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Shadows+Into+Light&family=Titillium+Web&display=swap" rel="stylesheet">
 </head>

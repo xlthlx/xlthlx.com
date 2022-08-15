@@ -13,7 +13,6 @@
 	<div class="container pt-4 pb-3 navbar-dark">
 		<?php get_template_part( 'parts/footer' ); ?>
 		<?php wp_footer(); ?>
-		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Shadows+Into+Light&family=Titillium+Web&display=swap" rel="stylesheet">
 	</div>
 </footer>
 
