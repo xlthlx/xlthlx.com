@@ -676,3 +676,7 @@ footer:after {
 .white-border {
 	border: 1px solid white !important;
 }
+
+.moon {
+	margin-top: -5px;
+}
