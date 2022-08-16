@@ -206,15 +206,12 @@ add_action( 'init','xlt_unregister_tags' );
  * @return string
  */
 function xlt_youtube_oembed_filters( $html,$data,$url ) {
-	if ( false === $html || ! in_array( $data->type,[ 'rich','video' ],
-			true ) ) {
+	if ( false === $html || ! in_array( $data->type,[ 'rich','video' ],true ) ) {
 		return $html;
 	}
 
-	if ( false !== strpos( $html,'youtube' ) || false !== strpos( $html,
-			'youtu.be' ) ) {
-		$html = str_replace( 'youtube.com/embed','youtube-nocookie.com/embed',
-			$html );
+	if ( false !== strpos( $html,'youtube' ) || false !== strpos( $html,'youtu.be' ) ) {
+		$html = str_replace( 'youtube.com/embed','youtube-nocookie.com/embed',$html );
 	}
 
 	return $html;
@@ -480,8 +477,8 @@ function xlt_image_with_picture( $html,$context,$attachment_id ) {
 
 		preg_match( '/width="([^"]+)/i',$html,$width,PREG_OFFSET_CAPTURE );
 		preg_match( '/height="([^"]+)/i',$html,$height,PREG_OFFSET_CAPTURE );
-		if ( isset( $width[1], $height[1] ) ) {
-			$size = [ $width[1][0], $height[1][0] ];
+		if ( isset( $width[1],$height[1] ) ) {
+			$size = [ $width[1][0],$height[1][0] ];
 		} else {
 			$size = 'full';
 		}

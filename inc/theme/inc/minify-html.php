@@ -20,8 +20,7 @@ function xlt_minify_html_output( $buffer ) {
 
 	$mod = '/u';
 
-	$buffer = str_replace( [ chr( 13 ),chr( 9 ) ],
-		[ chr( 10 ),'' ],$buffer );
+	$buffer = str_replace( [ chr( 13 ),chr( 9 ) ],[ chr( 10 ),'' ],$buffer );
 	$buffer = str_ireplace( [
 		'<script',
 		'/script>',
