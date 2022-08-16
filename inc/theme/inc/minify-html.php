@@ -9,7 +9,7 @@ function xlt_init_minify_html() {
 	ob_start( 'xlt_minify_html_output' );
 }
 
-if ( ! ( defined( 'WP_CLI' ) && WP_CLI ) && ! is_admin() && ! is_user_logged_in() ) {
+if ( ! ( wp_doing_cron() ) && ! ( defined( 'WP_CLI' ) && WP_CLI ) && ! is_admin() && ! is_user_logged_in() ) {
 	add_action( 'init','xlt_init_minify_html',1 );
 }
 
@@ -20,7 +20,7 @@ function xlt_minify_html_output( $buffer ) {
 
 	$mod = '/u';
 
-	$buffer = str_replace( [ minify - html . phpchr( 13 ),chr( 9 ) ],
+	$buffer = str_replace( [ chr( 13 ),chr( 9 ) ],
 		[ chr( 10 ),'' ],$buffer );
 	$buffer = str_ireplace( [
 		'<script',
@@ -53,7 +53,7 @@ function xlt_minify_html_output( $buffer ) {
 				$asis   = '';
 				foreach ( $split2 as $iiiValue ) {
 					if ( $iiiValue ) {
-						$asis .= minify - html . phptrim( $iiiValue );
+						$asis .= trim( $iiiValue );
 					}
 					if ( strpos( $iiiValue,
 							'//' ) !== false && substr( trim( $iiiValue ),
