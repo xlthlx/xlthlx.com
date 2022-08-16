@@ -480,7 +480,11 @@ function xlt_image_with_picture( $html,$context,$attachment_id ) {
 
 		preg_match( '/width="([^"]+)/i',$html,$width,PREG_OFFSET_CAPTURE );
 		preg_match( '/height="([^"]+)/i',$html,$height,PREG_OFFSET_CAPTURE );
-		$size = [ $width[1][0],$height[1][0] ];
+		if ( isset( $width[1], $height[1] ) ) {
+			$size = [ $width[1][0], $height[1][0] ];
+		} else {
+			$size = 'full';
+		}
 
 		$html = xlt_get_sources_for_image( $attachment_id,$size,$type,$html );
 	}
