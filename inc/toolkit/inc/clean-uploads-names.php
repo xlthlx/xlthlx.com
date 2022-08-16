@@ -12,15 +12,9 @@ function wt_upload_filter( $file ) {
 	set_transient( '_clean_image_filenames_original_filename',
 		$original_filename['filename'],60 );
 
-	$input = [
-		'ß',
-		'·',
-	];
+	$input = [ 'ß','·', ];
 
-	$output = [
-		'ss',
-		'.'
-	];
+	$output = [ 'ss','.' ];
 
 	$path         = pathinfo( $file['name'] );
 	$new_filename = preg_replace( '/.' . $path['extension'] . '$/','',
