@@ -163,9 +163,9 @@ require_once 'inc/film-tv/index.php';
 /**
  * Toolkit.
  */
-//require_once 'inc/toolkit/index.php';
+require_once 'inc/toolkit/index.php';
 
 /**
  * Newsletter.
  */
-//require_once 'inc/newsletter/index.php';
+require_once 'inc/newsletter/index.php';
