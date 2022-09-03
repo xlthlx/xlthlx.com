@@ -13,13 +13,8 @@ function xlt_enqueue_login() {
 	wp_dequeue_style( 'login' );
 	wp_deregister_style( 'login' );
 
-	wp_enqueue_style( 'custom-login',
-		get_template_directory_uri() . '/assets/css/admin/login.min.css', [],
-		filemtime( get_template_directory() . '/assets/css/admin/login.min.css' ) );
-	wp_enqueue_script( 'custom-login',
-		get_template_directory_uri() . '/assets/js/admin/login.min.js', [],
-		filemtime( get_template_directory() . '/assets/js/admin/login.min.js' ),
-		true );
+	wp_enqueue_style( 'custom-login', get_template_directory_uri() . '/assets/css/admin/login.min.css', [], filemtime( get_template_directory() . '/assets/css/admin/login.min.css' ) );
+	wp_enqueue_script( 'custom-login', get_template_directory_uri() . '/assets/js/admin/login.min.js', [], filemtime( get_template_directory() . '/assets/js/admin/login.min.js' ), true );
 }
 
 add_action( 'login_enqueue_scripts', 'xlt_enqueue_login', 10 );
