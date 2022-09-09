@@ -4,7 +4,7 @@ body {
 	position: relative;
 }
 
-body.admin-bar #primary-nav {
+body.admin-bar nav.fixed-top {
 	margin-top: 44px !important;
 }
 
@@ -13,7 +13,7 @@ body.admin-bar .offcanvas {
 }
 
 @media (min-width: 992px) {
-	body.admin-bar #primary-nav {
+	body.admin-bar nav.fixed-top {
 		margin-top: 32px !important;
 	}
 
