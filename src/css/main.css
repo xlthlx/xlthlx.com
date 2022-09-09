@@ -676,3 +676,23 @@ footer:after {
 .dark-mode {
 	margin-top: -5px;
 }
+
+/* Banner */
+
+.banner_container {
+	padding: 15px 0 15px 0;
+	width: 100%;
+	position: relative;
+	z-index: 10000;
+	border: none;
+	display: block;
+	background-color: #000000;
+	min-height: 30px;
+}
+
+.banner {
+	padding: 5px 20px;
+	font-size: 1em;
+	color: #ffffff;
+	text-align: center;
+}
