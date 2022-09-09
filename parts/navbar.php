@@ -1,5 +1,5 @@
-<?php global $site_url, $site_name, $site_desc; ?>
-<nav id="primary-nav" class="navbar navbar-dark bg-primary fixed-top">
+<?php global $site_url,$site_name,$site_desc; ?>
+<nav id="primary-nav" class="navbar navbar-dark bg-primary">
 	<div class="container-fluid min-container">
 		<h1 id="logo" class="display-2 font-italic text-start m-0 ps-3 py-1">
 			<a title="<?php echo $site_desc; ?>" class="text-white text-decoration-none shadows"
