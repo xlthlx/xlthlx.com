@@ -134,7 +134,7 @@ function xlthlx_add_to_globals() {
 
 	if ( 'en' === $lang ) {
 		$site_url  .= 'en/';
-		$site_desc = 'Better than a cyber duck in the ass.';
+		$site_desc = 'Better than a cyber duck.';
 	}
 
 }
