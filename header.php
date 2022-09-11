@@ -15,7 +15,7 @@ global $lang;
 
 <body <?php body_class(); ?>>
 <div class="banner">
-	<h2>Her Majesty Queen Elizabeth II</h2>
+	<p class="h2">Her Majesty Queen Elizabeth II</p>
 	<p>21 April 1926 &nbsp;&mdash;&nbsp; 8 September 2022</p>
 </div>
 <header>
