@@ -25,3 +25,9 @@ btn.addEventListener("click", function (e) {
 
 	localStorage.setItem("theme", theme);
 });
+
+window.addEventListener('DOMContentLoaded', (e) => {
+	if (currentTheme === '') {
+		localStorage.setItem("theme", "dark");
+	}
+});
