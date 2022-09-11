@@ -27,5 +27,6 @@ btn.addEventListener("click", function (e) {
 });
 
 if (currentTheme === null) {
+	document.body.classList.toggle("dark-theme");
 	localStorage.setItem("theme", "dark");
 }
