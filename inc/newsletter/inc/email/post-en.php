@@ -46,7 +46,8 @@
 											<td valign="top"
 												style="border-collapse:collapse;padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:20px;word-break:break-word;word-wrap:break-word">
 												<h1 style="mso-ansi-font-size:30px;color:#111111;font-size:30px;line-height:48px;mso-line-height-alt:48px;margin: 0;text-align:center;padding:0;font-style:normal;font-weight:normal">
-													<a href="https://xlthlx.com" style="color:#ffffff;text-decoration:none!important" target="_blank">xlthlx.com</a></h1>
+													<a href="https://xlthlx.com" style="color:#ffffff;text-decoration:none!important" target="_blank">xlthlx.com</a>
+												</h1>
 											</td>
 										</tr>
 										<tr>
@@ -125,7 +126,8 @@
 															   style="border-collapse:collapse;border-spacing:0;mso-table-lspace:0;mso-table-rspace:0">
 															<tbody>
 															<tr>
-																<td style="border-collapse:collapse;text-align:center"><!--[if mso]>
+																<td style="border-collapse:collapse;text-align:center">
+																	<!--[if mso]>
 																  <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
 																	href="<?php echo $permalink; ?>"
 																	style="height:36px;
@@ -155,7 +157,7 @@
 											</tbody>
 										</table>
 									</div>
-									</td>
+								</td>
 							</tr>
 							</tbody>
 						</table>
@@ -186,7 +188,7 @@
 													The hamsters who run the <a target="_blank" href="https://xlthlx.com/" style="color:#ffffff">xlthlx.com</a> site say that <br/>
 													you receive this email because you subscribed to the newsletter.<br/>
 													If you no longer wish to receive it, click on the link below.<br/><br/>
-													<a target="_blank" href="https://xlthlx.com/newsletter/?act=unsubscribe&lan=en&cod=<?php echo $code; ?>" style="color:#ffffff">
+													<a target="_blank" href="https://xlthlx.com/newsletter/en/?act=unsubscribe&cod=<?php echo $code; ?>" style="color:#ffffff">
 														Unsubscribe
 													</a>
 													<br/><br/>This is an automatically generated email; the address does not accept replies.

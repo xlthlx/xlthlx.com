@@ -46,7 +46,8 @@
 											<td valign="top"
 												style="border-collapse:collapse;padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:20px;word-break:break-word;word-wrap:break-word">
 												<h1 style="mso-ansi-font-size:30px;color:#111111;font-size:30px;line-height:48px;mso-line-height-alt:48px;margin: 0;text-align:center;padding:0;font-style:normal;font-weight:normal">
-													<a href="https://xlthlx.com" style="color:#ffffff;text-decoration:none!important" target="_blank">xlthlx.com</a></h1>
+													<a href="https://xlthlx.com" style="color:#ffffff;text-decoration:none!important" target="_blank">xlthlx.com</a>
+												</h1>
 											</td>
 										</tr>
 										<tr>
@@ -110,7 +111,8 @@
 														<tbody>
 														<tr>
 															<td style="border-collapse:collapse;mso-ansi-font-size:15px;color:#000000;font-size:15px;line-height:24px;mso-line-height-alt:24px;word-break:break-word;word-wrap:break-word;text-align:left">
-																Solo un ultimo passaggio prima di poter ricevere una email quando viene pubblicato un nuovo post:
+																Solo un ultimo passaggio prima di poter ricevere una
+																email quando viene pubblicato un nuovo post:
 															</td>
 														</tr>
 														</tbody>
@@ -125,9 +127,10 @@
 															   style="border-collapse:collapse;border-spacing:0;mso-table-lspace:0;mso-table-rspace:0">
 															<tbody>
 															<tr>
-																<td style="border-collapse:collapse;text-align:center"><!--[if mso]>
+																<td style="border-collapse:collapse;text-align:center">
+																	<!--[if mso]>
 																  <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
-																	href="https://xlthlx.com/newsletter/?act=confirm&lan=it&cod=<?php echo $code; ?>"
+																	href="https://xlthlx.com/newsletter/?act=confirm&cod=<?php echo $code; ?>"
 																	style="height:36px;
 																		   width:288px;
 																		   v-text-anchor:middle;"
@@ -141,7 +144,7 @@
 																	font-weight:bold;">CONFERMA EMAIL
 																  </center>
 																  </v:roundrect>
-																  <![endif]--><a href="https://xlthlx.com/newsletter/?act=confirm&lan=it&cod=<?php echo $code; ?>" style="color:#ffffff;text-decoration:none !important;display:inline-block;-webkit-text-size-adjust:none;mso-hide:all;text-align:center;background-color:#6667ab;border-color:#000000;border-width:0px;border-radius:0px;border-style:solid;width:288px;line-height:36px;font-size:16px;font-weight:normal">
+																  <![endif]--><a href="https://xlthlx.com/newsletter/?act=confirm&cod=<?php echo $code; ?>" style="color:#ffffff;text-decoration:none !important;display:inline-block;-webkit-text-size-adjust:none;mso-hide:all;text-align:center;background-color:#6667ab;border-color:#000000;border-width:0px;border-radius:0px;border-style:solid;width:288px;line-height:36px;font-size:16px;font-weight:normal">
 																		CONFERMA EMAIL</a>
 																</td>
 															</tr>
@@ -153,7 +156,7 @@
 											</tbody>
 										</table>
 									</div>
-									</td>
+								</td>
 							</tr>
 							</tbody>
 						</table>

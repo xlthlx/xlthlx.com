@@ -2,7 +2,7 @@
 /**
  * Functions to manage the newsletter.
  *
- * E.g. https://xlthlx.com/newsletter/?act=confirm&cod=Kr%QxyX)F172(4P7VFWPIeGl$b&lan=en
+ * E.g. https://xlthlx.com/newsletter/en/?act=confirm&cod=Kr%QxyX)F172(4P7VFWPIeGl$b
  *
  * @package  xlthlx
  */

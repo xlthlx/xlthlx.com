@@ -10,11 +10,11 @@
  * Removes default function and replace it with a custom one.
  */
 function xlt_remove_flamingo_save() {
-	remove_action( 'wpcf7_submit', 'wpcf7_flamingo_submit' );
-	add_action( 'wpcf7_submit', 'xlt_flamingo_submit', 10, 2 );
+	remove_action( 'wpcf7_submit','wpcf7_flamingo_submit' );
+	add_action( 'wpcf7_submit','xlt_flamingo_submit',10,2 );
 }
 
-add_action( 'init', 'xlt_remove_flamingo_save' );
+add_action( 'init','xlt_remove_flamingo_save' );
 
 /**
  * Save forms submissions.
@@ -22,7 +22,7 @@ add_action( 'init', 'xlt_remove_flamingo_save' );
  * @param $contact_form
  * @param $result
  */
-function xlt_flamingo_submit( $contact_form, $result ) {
+function xlt_flamingo_submit( $contact_form,$result ) {
 	if ( ! class_exists( 'Flamingo_Contact' )
 	     || ! class_exists( 'Flamingo_Inbound_Message' ) ) {
 		return;
@@ -33,10 +33,10 @@ function xlt_flamingo_submit( $contact_form, $result ) {
 	}
 
 	$cases = (array) apply_filters( 'wpcf7_flamingo_submit_if',
-		array( 'mail_sent' ) );
+		[ 'mail_sent' ] );
 
 	if ( empty( $result['status'] )
-	     || ! in_array( $result['status'], $cases, true ) ) {
+	     || ! in_array( $result['status'],$cases,true ) ) {
 		return;
 	}
 
@@ -51,32 +51,32 @@ function xlt_flamingo_submit( $contact_form, $result ) {
 		return;
 	}
 
-	$email   = wpcf7_flamingo_get_value( 'email', $contact_form );
-	$name    = wpcf7_flamingo_get_value( 'name', $contact_form );
-	$subject = wpcf7_flamingo_get_value( 'subject', $contact_form );
+	$email   = wpcf7_flamingo_get_value( 'email',$contact_form );
+	$name    = wpcf7_flamingo_get_value( 'name',$contact_form );
+	$subject = wpcf7_flamingo_get_value( 'subject',$contact_form );
 
-	$meta = array();
+	$meta = [];
 
-	$special_mail_tags = array(
+	$special_mail_tags = [
 		'serial_number',
 		'remote_ip',
 		'user_agent',
 		'url',
 		'date',
 		'time',
-	);
+	];
 
 	foreach ( $special_mail_tags as $smt ) {
-		$tag_name = sprintf( '_%s', $smt );
+		$tag_name = sprintf( '_%s',$smt );
 
 		$mail_tag = new WPCF7_MailTag(
-			sprintf( '[%s]', $tag_name ),
+			sprintf( '[%s]',$tag_name ),
 			$tag_name,
 			''
 		);
 
-		$meta[ $smt ] = apply_filters( 'wpcf7_special_mail_tags', null,
-			$tag_name, false, $mail_tag
+		$meta[ $smt ] = apply_filters( 'wpcf7_special_mail_tags',null,
+			$tag_name,false,$mail_tag
 		);
 	}
 
@@ -93,29 +93,29 @@ function xlt_flamingo_submit( $contact_form, $result ) {
 	}
 
 	if ( 'mail_sent' == $result['status'] ) {
-		$flamingo_contact = Flamingo_Contact::add( array(
+		$flamingo_contact = Flamingo_Contact::add( [
 			'email'          => $email,
 			'name'           => $name,
 			'last_contacted' => $last_contacted,
-		) );
+		] );
 	}
 
-	$post_meta = get_post_meta( $contact_form->id(), '_flamingo', true );
+	$post_meta = get_post_meta( $contact_form->id(),'_flamingo',true );
 
 	$channel_id = isset( $post_meta['channel'] )
 		? (int) $post_meta['channel']
 		: wpcf7_flamingo_add_channel(
-			$contact_form->name(), $contact_form->title() );
+			$contact_form->name(),$contact_form->title() );
 
 	if ( $channel_id ) {
 		if ( ! isset( $post_meta['channel'] )
 		     or $post_meta['channel'] !== $channel_id ) {
-			$post_meta = empty( $post_meta ) ? array() : (array) $post_meta;
-			$post_meta = array_merge( $post_meta, array(
+			$post_meta = empty( $post_meta ) ? [] : (array) $post_meta;
+			$post_meta = array_merge( $post_meta,[
 				'channel' => $channel_id,
-			) );
+			] );
 
-			update_post_meta( $contact_form->id(), '_flamingo', $post_meta );
+			update_post_meta( $contact_form->id(),'_flamingo',$post_meta );
 		}
 
 		$channel = get_term( $channel_id,
@@ -130,11 +130,11 @@ function xlt_flamingo_submit( $contact_form, $result ) {
 		$channel = 'contact-form-7';
 	}
 
-	$args = array(
+	$args = [
 		'channel'          => $channel,
 		'status'           => $submission->get_status(),
 		'subject'          => $subject,
-		'from'             => trim( sprintf( '%s <%s>', $name, $email ) ),
+		'from'             => trim( sprintf( '%s <%s>',$name,$email ) ),
 		'from_name'        => $name,
 		'from_email'       => $email,
 		'fields'           => $posted_data,
@@ -144,7 +144,7 @@ function xlt_flamingo_submit( $contact_form, $result ) {
 		'consent'          => $submission->collect_consent(),
 		'timestamp'        => $timestamp,
 		'posted_data_hash' => $submission->get_posted_data_hash(),
-	);
+	];
 
 	if ( $args['spam'] ) {
 		$args['spam_log'] = $submission->get_spam_log();
@@ -158,7 +158,7 @@ function xlt_flamingo_submit( $contact_form, $result ) {
 
 	if ( empty( $flamingo_contact ) ) {
 		$flamingo_contact_id = 0;
-	} elseif ( method_exists( $flamingo_contact, 'id' ) ) {
+	} elseif ( method_exists( $flamingo_contact,'id' ) ) {
 		$flamingo_contact_id = $flamingo_contact->id();
 	} else {
 		$flamingo_contact_id = $flamingo_contact->id;
@@ -166,35 +166,35 @@ function xlt_flamingo_submit( $contact_form, $result ) {
 
 	if ( null === $flamingo_inbound ) {
 		$flamingo_inbound_id = 0;
-	} elseif ( method_exists( $flamingo_inbound, 'id' ) ) {
+	} elseif ( method_exists( $flamingo_inbound,'id' ) ) {
 		$flamingo_inbound_id = $flamingo_inbound->id();
 	} else {
 		$flamingo_inbound_id = $flamingo_inbound->id;
 	}
 
-	$result += array(
+	$result += [
 		'flamingo_contact_id' => absint( $flamingo_contact_id ),
 		'flamingo_inbound_id' => absint( $flamingo_inbound_id ),
-	);
+	];
 
-	do_action( 'wpcf7_after_flamingo', $result );
+	do_action( 'wpcf7_after_flamingo',$result );
 
 	/**
 	 * Additional fields.
 	 */
 	$form_id = (string) $contact_form->id();
 	if ( ( $form_id === '34396' ) || ( $form_id === '34503' ) ) {
-		$_code  = wp_generate_password( 64, false );
-		$_lang  = get_post_meta( $flamingo_inbound_id, '_field_lang', true );
-		$_name  = explode( '@', get_post_meta( $flamingo_contact_id, '_name', true ) );
-		$_email = get_post_meta( $flamingo_contact_id, '_email', true );
+		$_code  = wp_generate_password( 64,false );
+		$_lang  = get_post_meta( $flamingo_inbound_id,'_field_lang',true );
+		$_name  = explode( '@',get_post_meta( $flamingo_contact_id,'_name',true ) );
+		$_email = get_post_meta( $flamingo_contact_id,'_email',true );
 
-		update_post_meta( $flamingo_contact_id, '_code', $_code );
-		update_post_meta( $flamingo_contact_id, '_lang', $_lang );
-		update_post_meta( $flamingo_contact_id, '_active', 'no' );
-		update_post_meta( $flamingo_contact_id, '_name', ucfirst( $_name[0] ) );
+		update_post_meta( $flamingo_contact_id,'_code',$_code );
+		update_post_meta( $flamingo_contact_id,'_lang',$_lang );
+		update_post_meta( $flamingo_contact_id,'_active','no' );
+		update_post_meta( $flamingo_contact_id,'_name',ucfirst( $_name[0] ) );
 
-		xlt_send_confirmation( $_lang, $_email, $_code );
+		xlt_send_confirmation( $_lang,$_email,$_code );
 	}
 }
 
@@ -208,9 +208,8 @@ function xlt_flamingo_submit( $contact_form, $result ) {
 function xlt_newsletter_query_vars( $vars ) {
 	$vars[] .= 'act';
 	$vars[] .= 'cod';
-	$vars[] .= 'lan';
 
 	return $vars;
 }
 
-add_filter( 'query_vars', 'xlt_newsletter_query_vars' );
+add_filter( 'query_vars','xlt_newsletter_query_vars' );

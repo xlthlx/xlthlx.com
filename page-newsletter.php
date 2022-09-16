@@ -7,25 +7,24 @@
 global $lang;
 get_header();
 
-$lan     = get_query_var( 'lan', false );
+$cod     = get_query_var( 'cod',false );
+$act     = get_query_var( 'act',false );
 $title   = '';
 $content = '';
 
-if ( $lan ) {
-	$act = get_query_var( 'act' );
-	$cod = get_query_var( 'cod' );
+if ( $cod && $act ) {
 
-	$args = array(
+	$args = [
 		'nopaging'   => true,
 		'post_type'  => 'flamingo_contact',
-		'meta_query' => array(
-			array(
+		'meta_query' => [
+			[
 				'key'     => '_code',
 				'value'   => $cod,
 				'compare' => '=',
-			),
-		),
-	);
+			],
+		],
+	];
 
 	$query = new WP_Query( $args );
 
@@ -37,15 +36,15 @@ if ( $lan ) {
 			switch ( $act ) {
 				case 'confirm':
 					$post_id = get_the_ID();
-					update_post_meta( $post_id, '_active', 'si' );
-					$_code = wp_generate_password( 64, false );
-					update_post_meta( $post_id, '_code', $_code );
+					update_post_meta( $post_id,'_active','si' );
+					$_code = wp_generate_password( 64,false );
+					update_post_meta( $post_id,'_code',$_code );
 					break;
 				case 'unsubscribe':
 					$post_id = get_the_ID();
-					wp_delete_post( $post_id, true );
+					wp_delete_post( $post_id,true );
 					$other_post_id = get_the_ID() + 1;
-					wp_delete_post( $other_post_id, true );
+					wp_delete_post( $other_post_id,true );
 					break;
 			}
 
@@ -53,7 +52,7 @@ if ( $lan ) {
 
 	}
 } else {
-	$act = 'error';
+	$act = 'subscribe';
 }
 
 wp_reset_postdata();
@@ -67,11 +66,11 @@ switch ( $act ) {
 		$title   = ( 'en' === $lang ) ? 'Email deleted' : 'Email cancellata';
 		$content = ( 'en' === $lang ) ? '<p>You will no longer receive emails from us.</p><p>See you!</p>' : '<p>Non riceverai più email da noi.</p><p>Arrivederci!</p>';
 		break;
-	case 'error':
-		$img     = '<p><img class="img-fluid d-block" src="' . get_template_directory_uri() . '/assets/img/404.gif" alt="Error"></p>';
-		$title   = ( 'en' === $lang ) ? 'Oh-oh' : 'Uh-oh';
-		$content = ( 'en' === $lang ) ? '<p>There was a problem, the hamsters who run the site are perplexed.</p>' : "<p>C'è stato un problema, i criceti che gestiscono il sito sono perplessi.</p>";
-		$content .= $img;
+	case 'subscribe':
+		$title   = 'Newsletter';
+		$form_id = ( 'en' === $lang ) ? 34503 : 34396;
+		$content = ( 'en' === $lang ) ? '<p>Do you want to receive an email when a new article is published?</p>' : "<p>Vuoi ricevere una email quando viene pubblicato un nuovo post?</p>";
+		$content .= do_shortcode( '[contact-form-7 id="' . $form_id . '"]' );
 		break;
 }
 ?>
