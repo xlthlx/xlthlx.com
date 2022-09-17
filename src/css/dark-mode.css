@@ -97,7 +97,7 @@ body.dark-theme .widget_outline_grey {
 	background-color: #000000 !important;
 }
 
-body.dark-theme .widget_grey .btn.bg-white {
+body.dark-theme .widget_grey .btn.bg-white:not(:hover) {
 	background-color: var(--bkg-color) !important;
 }
 
@@ -152,11 +152,15 @@ body.dark-theme .dropdown-item:focus, body.dark-theme .dropdown-item:hover {
 }
 
 body.dark-theme .page-content .btn.bg-white:not(:hover) {
-	background-color: transparent !important;
+	background-color: var(--bkg-color) !important;
 }
 
 body.dark-theme .tease:hover a.arrow, body.dark-theme .tease:hover h2 a {
 	color: #6667ab;
 	text-decoration: underline;
 	text-decoration-color: #6667ab;
+}
+
+body.dark-theme a.arrow:hover {
+	color: #6667ab;
 }
