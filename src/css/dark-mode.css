@@ -162,5 +162,5 @@ body.dark-theme .tease:hover a.arrow, body.dark-theme .tease:hover h2 a {
 }
 
 body.dark-theme a.arrow:hover {
-	color: #6667ab;
+	color: #6667ab !important;
 }
