@@ -79,7 +79,7 @@ body.dark-theme footer:after {
 	box-shadow: 0 90px 0 120px #202136;
 }
 
-body.dark-theme input, body.dark-theme textarea, body.dark-theme .form-control:focus, body.dark-theme checkbox {
+body.dark-theme input, body.dark-theme textarea, body.dark-theme .form-control:focus {
 	background-color: var(--bkg-color);
 	color: var(--text-color);
 }
@@ -133,6 +133,7 @@ body.dark-theme .pagination .page-link {
 body.dark-theme .pagination .page-link:hover, body.dark-theme .pagination .page-link.current {
 	color: #FFFFFF;
 	background-color: #525289;
+	text-decoration: none !important;
 }
 
 body.dark-theme .pagination .page-link.dots {
@@ -148,4 +149,14 @@ body.dark-theme h1#logo a:hover, body.dark-theme .dropdown-item a, body.dark-the
 body.dark-theme .dropdown-item:focus, body.dark-theme .dropdown-item:hover {
 	text-decoration: none !important;
 	font-weight: bold;
+}
+
+body.dark-theme .page-content .btn.bg-white {
+	background-color: transparent !important;
+}
+
+body.dark-theme .tease:hover li a, body.dark-theme .tease:hover h2 a {
+	color: #6667ab;
+	text-decoration: underline;
+	text-decoration-color: #6667ab;
 }
