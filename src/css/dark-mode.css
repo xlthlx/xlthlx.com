@@ -151,11 +151,11 @@ body.dark-theme .dropdown-item:focus, body.dark-theme .dropdown-item:hover {
 	font-weight: bold;
 }
 
-body.dark-theme .page-content .btn.bg-white {
+body.dark-theme .page-content .btn.bg-white:not(:hover) {
 	background-color: transparent !important;
 }
 
-body.dark-theme .tease:hover li a, body.dark-theme .tease:hover h2 a {
+body.dark-theme .tease:hover a.arrow, body.dark-theme .tease:hover h2 a {
 	color: #6667ab;
 	text-decoration: underline;
 	text-decoration-color: #6667ab;
