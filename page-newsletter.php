@@ -39,6 +39,7 @@ if ( $cod && $act ) {
 					update_post_meta( $post_id,'_active','si' );
 					$_code = wp_generate_password( 64,false );
 					update_post_meta( $post_id,'_code',$_code );
+					wp_set_object_terms( $post_id,2954,'flamingo_contact_tag' );
 					break;
 				case 'unsubscribe':
 					$post_id = get_the_ID();
