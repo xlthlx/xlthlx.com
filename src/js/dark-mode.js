@@ -25,8 +25,3 @@ btn.addEventListener("click", function (e) {
 
 	localStorage.setItem("theme", theme);
 });
-
-if (currentTheme === null) {
-	document.body.classList.toggle("dark-theme");
-	localStorage.setItem("theme", "dark");
-}
