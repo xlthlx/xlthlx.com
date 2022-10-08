@@ -1,7 +1,6 @@
 <?php
 /**
  * Custom login.
- *
  */
 
 remove_filter( 'authenticate', 'wp_authenticate_username_password', 20 );
@@ -13,8 +12,8 @@ function xlt_enqueue_login() {
 	wp_dequeue_style( 'login' );
 	wp_deregister_style( 'login' );
 
-	wp_enqueue_style( 'custom-login', get_template_directory_uri() . '/assets/css/admin/login.min.css', [], filemtime( get_template_directory() . '/assets/css/admin/login.min.css' ) );
-	wp_enqueue_script( 'custom-login', get_template_directory_uri() . '/assets/js/admin/login.min.js', [], filemtime( get_template_directory() . '/assets/js/admin/login.min.js' ), true );
+	wp_enqueue_style( 'custom-login', get_template_directory_uri() . '/assets/css/admin/login.min.css', array(), filemtime( get_template_directory() . '/assets/css/admin/login.min.css' ) );
+	wp_enqueue_script( 'custom-login', get_template_directory_uri() . '/assets/js/admin/login.min.js', array(), filemtime( get_template_directory() . '/assets/js/admin/login.min.js' ), true );
 }
 
 add_action( 'login_enqueue_scripts', 'xlt_enqueue_login', 10 );
@@ -122,8 +121,11 @@ function xlt_authenticate( $user, $username, $password ) {
 			if ( 0 === (int) $user->user_status ) {
 				$username = $user->user_login;
 
-				return wp_authenticate_username_password( null, $username,
-					$password );
+				return wp_authenticate_username_password(
+					null,
+					$username,
+					$password 
+				);
 			}
 		}
 	}
@@ -132,7 +134,7 @@ function xlt_authenticate( $user, $username, $password ) {
 		return false;
 	}
 
-	return wp_authenticate_username_password( null, "", "" );
+	return wp_authenticate_username_password( null, '', '' );
 }
 
 add_filter( 'authenticate', 'xlt_authenticate', 20, 3 );

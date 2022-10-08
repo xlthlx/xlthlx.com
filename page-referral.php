@@ -10,11 +10,13 @@ get_header();
 $ref    = '';
 $coffee = '';
 
-$bookmarks = get_bookmarks( array(
-	'orderby'       => 'name',
-	'order'         => 'ASC',
-	'category_name' => 'Referral'
-) );
+$bookmarks = get_bookmarks(
+	array(
+		'orderby'       => 'name',
+		'order'         => 'ASC',
+		'category_name' => 'Referral',
+	) 
+);
 
 foreach ( $bookmarks as $bookmark ) {
 	$ref .= '<p>';
@@ -25,11 +27,13 @@ foreach ( $bookmarks as $bookmark ) {
 	$ref .= '</p>';
 }
 
-$money = get_bookmarks( array(
-	'orderby'       => 'name',
-	'order'         => 'ASC',
-	'category_name' => 'Money'
-) );
+$money = get_bookmarks(
+	array(
+		'orderby'       => 'name',
+		'order'         => 'ASC',
+		'category_name' => 'Money',
+	) 
+);
 
 foreach ( $money as $send ) {
 	$coffee .= '<p>';
@@ -41,8 +45,10 @@ foreach ( $money as $send ) {
 }
 ?>
 
-<?php while ( have_posts() ) :
-	the_post(); ?>
+<?php 
+while ( have_posts() ) :
+	the_post(); 
+	?>
 
 	<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
 

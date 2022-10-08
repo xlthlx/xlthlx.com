@@ -22,8 +22,9 @@ if ( 'en' === $lang ) {
 			</a></p>
 	</div>
 	<div class="col-auto d-flex pb-md-0 pb-3">
-		<?php if ( get_post_thumbnail_id( $post ) ) {
-			echo xlt_get_sticky_img( get_post_thumbnail_id( $post ),get_the_title() );
+		<?php 
+		if ( get_post_thumbnail_id( $post ) ) {
+			echo xlt_get_sticky_img( get_post_thumbnail_id( $post ), get_the_title() );
 		}
 		?>
 	</div>

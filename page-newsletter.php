@@ -7,24 +7,24 @@
 global $lang;
 get_header();
 
-$cod     = get_query_var( 'cod',false );
-$act     = get_query_var( 'act',false );
+$cod     = get_query_var( 'cod', false );
+$act     = get_query_var( 'act', false );
 $title   = '';
 $content = '';
 
 if ( $cod && $act ) {
 
-	$args = [
+	$args = array(
 		'nopaging'   => true,
 		'post_type'  => 'flamingo_contact',
-		'meta_query' => [
-			[
+		'meta_query' => array(
+			array(
 				'key'     => '_code',
 				'value'   => $cod,
 				'compare' => '=',
-			],
-		],
-	];
+			),
+		),
+	);
 
 	$query = new WP_Query( $args );
 
@@ -36,21 +36,19 @@ if ( $cod && $act ) {
 			switch ( $act ) {
 				case 'confirm':
 					$post_id = get_the_ID();
-					update_post_meta( $post_id,'_active','si' );
-					$_code = wp_generate_password( 64,false );
-					update_post_meta( $post_id,'_code',$_code );
-					wp_set_object_terms( $post_id,2954,'flamingo_contact_tag' );
+					update_post_meta( $post_id, '_active', 'si' );
+					$_code = wp_generate_password( 64, false );
+					update_post_meta( $post_id, '_code', $_code );
+					wp_set_object_terms( $post_id, 2954, 'flamingo_contact_tag' );
 					break;
 				case 'unsubscribe':
 					$post_id = get_the_ID();
-					wp_delete_post( $post_id,true );
+					wp_delete_post( $post_id, true );
 					$other_post_id = get_the_ID() + 1;
-					wp_delete_post( $other_post_id,true );
+					wp_delete_post( $other_post_id, true );
 					break;
-			}
-
-		}
-
+			}       
+		}   
 	}
 } else {
 	$act = 'subscribe';
@@ -68,16 +66,18 @@ switch ( $act ) {
 		$content = ( 'en' === $lang ) ? '<p>You will no longer receive emails from us.</p><p>See you!</p>' : '<p>Non riceverai più email da noi.</p><p>Arrivederci!</p>';
 		break;
 	case 'subscribe':
-		$title   = 'Newsletter';
-		$form_id = ( 'en' === $lang ) ? 34503 : 34396;
-		$content = ( 'en' === $lang ) ? '<p>Do you want to receive an email when a new article is published?</p>' : "<p>Vuoi ricevere una email quando viene pubblicato un nuovo post?</p>";
+		$title    = 'Newsletter';
+		$form_id  = ( 'en' === $lang ) ? 34503 : 34396;
+		$content  = ( 'en' === $lang ) ? '<p>Do you want to receive an email when a new article is published?</p>' : '<p>Vuoi ricevere una email quando viene pubblicato un nuovo post?</p>';
 		$content .= do_shortcode( '[contact-form-7 id="' . $form_id . '"]' );
 		break;
 }
 ?>
 
-<?php while ( have_posts() ) :
-	the_post(); ?>
+<?php 
+while ( have_posts() ) :
+	the_post(); 
+	?>
 
 	<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
 

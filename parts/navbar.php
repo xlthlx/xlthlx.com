@@ -24,7 +24,8 @@
 
 					<?php
 					$menu_items = xlt_get_menu_items( 'primary' );
-					foreach ( $menu_items as $menu_item ) { ?>
+					foreach ( $menu_items as $menu_item ) { 
+						?>
 						<?php if ( isset( $menu_item['submenu'] ) ) { ?>
 							<li class="nav-item dropdown pink<?php echo $menu_item['classes']; ?>">
 								<a class="nav-link dropdown-toggle pink show"<?php echo $menu_item['target']; ?>

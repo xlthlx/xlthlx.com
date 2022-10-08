@@ -75,7 +75,8 @@ $paged = ( get_query_var( 'paged' ) ) ?: 1;
 		</div>
 	<?php } ?>
 	</div>
-	<?php xlt_pagination( $wp_query, $paged );
+	<?php 
+	xlt_pagination( $wp_query, $paged );
 
 } else {
 	get_template_part( 'parts/no-content' );

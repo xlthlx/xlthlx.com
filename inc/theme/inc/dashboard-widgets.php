@@ -73,7 +73,12 @@ function plausible_widget_callback() {
  * @return void
  */
 function flamingo_widget_callback() {
-	$the_query = new WP_Query( [ 'post_type' => 'flamingo_inbound', 'posts_per_page' => 4 ] );
+	$the_query = new WP_Query(
+		array(
+			'post_type'      => 'flamingo_inbound',
+			'posts_per_page' => 4,
+		) 
+	);
 
 	if ( $the_query->have_posts() ) {
 
@@ -121,7 +126,7 @@ function latest_comments_widget_callback() {
 	$args = array(
 		'orderby' => 'comment_date',
 		'order'   => 'DESC',
-		'number'  => 6
+		'number'  => 6,
 	);
 
 	$comments_query = new WP_Comment_Query( $args );

@@ -14,9 +14,9 @@
  * @return mixed
  */
 function xlt_flamingo_contact_columns( $columns ) {
-	$columns['code']   = "Codice";
-	$columns['lang']   = "Lingua";
-	$columns['active'] = "Conferma";
+	$columns['code']   = 'Codice';
+	$columns['lang']   = 'Lingua';
+	$columns['active'] = 'Conferma';
 
 	unset( $columns['subscribe-reloaded'] );
 
@@ -68,7 +68,7 @@ function xlt_change_post_type_args( $args, $post_type ) {
 		$args['publicly_queryable']      = false;
 		$args['menu_position']           = 27;
 		$args['menu_icon']               = 'dashicons-phone';
-		$args['supports']                = [ 'title', 'editor', 'revisions' ];
+		$args['supports']                = array( 'title', 'editor', 'revisions' );
 	}
 
 	return $args;
@@ -132,7 +132,8 @@ function xlt_change_admin() {
 	add_action(
 		'load-' . $inbound_admin,
 		'flamingo_load_inbound_admin',
-		10, 0
+		10,
+		0
 	);
 
 	global $menu;
@@ -148,70 +149,84 @@ add_action( 'admin_menu', 'xlt_change_admin' );
  */
 function xlt_add_flamingo_metabox() {
 
-	$cmb = new_cmb2_box( array(
-		'id'           => 'group_contacts',
-		'title'        => __( 'Contatti', 'xlthlx' ),
-		'object_types' => array( 'flamingo_contact' ),
-		'context'      => 'normal',
-		'priority'     => 'high',
-	) );
+	$cmb = new_cmb2_box(
+		array(
+			'id'           => 'group_contacts',
+			'title'        => __( 'Contatti', 'xlthlx' ),
+			'object_types' => array( 'flamingo_contact' ),
+			'context'      => 'normal',
+			'priority'     => 'high',
+		) 
+	);
 
-	$cmb->add_field( array(
-		'name'    => __( 'Nome', 'xlthlx' ),
-		'id'      => '_name',
-		'type'    => 'text_medium',
-		'classes' => [ 'half-width' ],
-	) );
+	$cmb->add_field(
+		array(
+			'name'    => __( 'Nome', 'xlthlx' ),
+			'id'      => '_name',
+			'type'    => 'text_medium',
+			'classes' => array( 'half-width' ),
+		) 
+	);
 
-	$cmb->add_field( array(
-		'name'    => __( 'Email', 'xlthlx' ),
-		'id'      => '_email',
-		'type'    => 'text_email',
-		'classes' => [ 'half-width' ],
-	) );
+	$cmb->add_field(
+		array(
+			'name'    => __( 'Email', 'xlthlx' ),
+			'id'      => '_email',
+			'type'    => 'text_email',
+			'classes' => array( 'half-width' ),
+		) 
+	);
 
-	$cmb->add_field( array(
-		'name'             => __( 'Conferma', 'xlthlx' ),
-		'id'               => '_active',
-		'type'             => 'select',
-		'show_option_none' => false,
-		'default'          => 'no',
-		'options'          => array(
-			'no' => __( 'No', 'xlthlx' ),
-			'si' => __( 'Si', 'xlthlx' ),
-		),
-		'classes'          => [ 'half-width' ],
-	) );
+	$cmb->add_field(
+		array(
+			'name'             => __( 'Conferma', 'xlthlx' ),
+			'id'               => '_active',
+			'type'             => 'select',
+			'show_option_none' => false,
+			'default'          => 'no',
+			'options'          => array(
+				'no' => __( 'No', 'xlthlx' ),
+				'si' => __( 'Si', 'xlthlx' ),
+			),
+			'classes'          => array( 'half-width' ),
+		) 
+	);
 
-	$cmb->add_field( array(
-		'name'             => __( 'Lingua', 'xlthlx' ),
-		'id'               => '_lang',
-		'type'             => 'select',
-		'show_option_none' => false,
-		'default'          => 'it',
-		'options'          => array(
-			'it' => __( 'Italiano', 'xlthlx' ),
-			'en' => __( 'English', 'xlthlx' ),
-		),
-		'classes'          => [ 'half-width' ],
-	) );
+	$cmb->add_field(
+		array(
+			'name'             => __( 'Lingua', 'xlthlx' ),
+			'id'               => '_lang',
+			'type'             => 'select',
+			'show_option_none' => false,
+			'default'          => 'it',
+			'options'          => array(
+				'it' => __( 'Italiano', 'xlthlx' ),
+				'en' => __( 'English', 'xlthlx' ),
+			),
+			'classes'          => array( 'half-width' ),
+		) 
+	);
 
-	$cmb->add_field( array(
-		'name'    => __( 'Codice', 'xlthlx' ),
-		'id'      => '_code',
-		'type'    => 'text_medium',
-		'classes' => 'half-width',
-	) );
+	$cmb->add_field(
+		array(
+			'name'    => __( 'Codice', 'xlthlx' ),
+			'id'      => '_code',
+			'type'    => 'text_medium',
+			'classes' => 'half-width',
+		) 
+	);
 
-	$cmb->add_field( array(
-		'name'       => __( 'Ultima modifica', 'xlthlx' ),
-		'id'         => '_last_contacted',
-		'type'       => 'text_medium',
-		'attributes' => array(
-			'readonly' => 'readonly',
-		),
-		'classes'    => [ 'half-width' ],
-	) );
+	$cmb->add_field(
+		array(
+			'name'       => __( 'Ultima modifica', 'xlthlx' ),
+			'id'         => '_last_contacted',
+			'type'       => 'text_medium',
+			'attributes' => array(
+				'readonly' => 'readonly',
+			),
+			'classes'    => array( 'half-width' ),
+		) 
+	);
 
 }
 

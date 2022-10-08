@@ -35,7 +35,7 @@ $post_id = get_the_ID();
 							'respond_id' => 'respond',
 							'reply_text' => ( 'en' === $lang ) ? 'Reply &raquo;' : 'Rispondi &raquo;',
 							'depth'      => 1,
-							'max_depth'  => get_option( 'thread_comments_depth' )
+							'max_depth'  => get_option( 'thread_comments_depth' ),
 						);
 						?>
 						<small><?php comment_reply_link( $default, $args['comment']->comment_ID, $post_id ); ?></small>
@@ -50,7 +50,7 @@ $post_id = get_the_ID();
 	<?php $comments = $args['comment']->get_children(); ?>
 	<?php foreach ( $comments as $comment ) { ?>
 		<div class="comments ml-5 children">
-			<?php get_template_part( 'parts/comment', null, [ 'comment' => $comment ] ); ?>
+			<?php get_template_part( 'parts/comment', null, array( 'comment' => $comment ) ); ?>
 		</div>
 	<?php } ?>
 <?php } ?>

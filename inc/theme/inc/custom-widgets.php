@@ -33,7 +33,6 @@ class Archive_Widget extends WP_Widget {
 	 * @param array $instance / Settings for this widget instance.
 	 *
 	 * @uses this->render()
-	 *
 	 */
 	public function widget( $args, $instance ) {
 
@@ -164,7 +163,6 @@ class Related_Widget extends WP_Widget {
 	 * @param array $instance
 	 *
 	 * @uses this->render()
-	 *
 	 */
 	public function widget( $args, $instance ) {
 
@@ -176,7 +174,8 @@ class Related_Widget extends WP_Widget {
 		// Output.
 		echo $args['before_widget'];
 		// Display Title.
-		$this->widget_title( $args, $settings ); ?>
+		$this->widget_title( $args, $settings ); 
+		?>
 
 		<div class="textwidget">
 
@@ -257,11 +256,11 @@ class Related_Widget extends WP_Widget {
 								'post-format-link',
 								'post-format-status',
 								'post-format-aside',
-								'post-format-quote'
+								'post-format-quote',
 							),
-							'operator' => 'NOT IN'
-						)
-					)
+							'operator' => 'NOT IN',
+						),
+					),
 				);
 
 				$cat_query = new WP_Query( $args );

@@ -9,4 +9,5 @@ if ( '' !== $cats ) { ?>
 	<ul class="list-unstyled ml-0 pl-0 mb-0">
 		<?php echo $cats; ?>
 	</ul>
-<?php }
+	<?php 
+}

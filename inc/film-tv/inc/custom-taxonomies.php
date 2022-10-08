@@ -1,7 +1,7 @@
 <?php
 
 function xlt_year_init() {
-	$years_labels = [
+	$years_labels = array(
 		'name'                       => 'Anni',
 		'singular_name'              => 'Anno',
 		'search_items'               => 'Cerca Anni',
@@ -23,33 +23,38 @@ function xlt_year_init() {
 		'items_list_navigation'      => 'Navigazione Lista Anni',
 		'items_list'                 => 'Lista Anni',
 		'most_used'                  => 'Piu utilizzati',
-		'back_to_items'              => '&larr; Torna a Anni'
-	];
+		'back_to_items'              => '&larr; Torna a Anni',
+	);
 
-	register_extended_taxonomy( 'year','film',[
-		'hierarchical'     => true,
-		'labels'           => $years_labels,
-		'public'           => false,
-		'show_in_rest'     => true,
-		'rewrite'          => false,
-		'dashboard_glance' => true,
+	register_extended_taxonomy(
+		'year', 
+		'film', 
+		array(
+			'hierarchical'     => true,
+			'labels'           => $years_labels,
+			'public'           => false,
+			'show_in_rest'     => true,
+			'rewrite'          => false,
+			'dashboard_glance' => true,
 
-	],[
+		), 
+		array(
 
-		'singular' => 'Anno',
-		'plural'   => 'Anni',
-		'slug'     => 'year'
+			'singular' => 'Anno',
+			'plural'   => 'Anni',
+			'slug'     => 'year',
 
-	] );
+		) 
+	);
 
-	register_taxonomy_for_object_type( 'year','tvseries' );
+	register_taxonomy_for_object_type( 'year', 'tvseries' );
 }
 
-add_action( 'init','xlt_year_init' );
+add_action( 'init', 'xlt_year_init' );
 
 
 function xlt_director_init() {
-	$director_labels = [
+	$director_labels = array(
 		'name'                       => 'Registi',
 		'singular_name'              => 'Regista',
 		'search_items'               => 'Cerca Registi',
@@ -71,32 +76,37 @@ function xlt_director_init() {
 		'items_list_navigation'      => 'Navigazione Lista Registi',
 		'items_list'                 => 'Lista Registi',
 		'most_used'                  => 'Piu utilizzati',
-		'back_to_items'              => '&larr; Torna a Registi'
-	];
+		'back_to_items'              => '&larr; Torna a Registi',
+	);
 
-	register_extended_taxonomy( 'director','film',[
-		'hierarchical'     => true,
-		'labels'           => $director_labels,
-		'public'           => false,
-		'show_in_rest'     => true,
-		'rewrite'          => false,
-		'dashboard_glance' => true,
+	register_extended_taxonomy(
+		'director', 
+		'film', 
+		array(
+			'hierarchical'     => true,
+			'labels'           => $director_labels,
+			'public'           => false,
+			'show_in_rest'     => true,
+			'rewrite'          => false,
+			'dashboard_glance' => true,
 
-	],[
+		), 
+		array(
 
-		'singular' => 'Regista',
-		'plural'   => 'Registi',
-		'slug'     => 'director'
+			'singular' => 'Regista',
+			'plural'   => 'Registi',
+			'slug'     => 'director',
 
-	] );
+		) 
+	);
 
-	register_taxonomy_for_object_type( 'director','tvseries' );
+	register_taxonomy_for_object_type( 'director', 'tvseries' );
 }
 
-add_action( 'init','xlt_director_init' );
+add_action( 'init', 'xlt_director_init' );
 
 function xlt_starring_init() {
-	$director_labels = [
+	$director_labels = array(
 		'name'                       => 'Attori',
 		'singular_name'              => 'Attore',
 		'search_items'               => 'Cerca Attori',
@@ -118,26 +128,31 @@ function xlt_starring_init() {
 		'items_list_navigation'      => 'Navigazione Lista Attori',
 		'items_list'                 => 'Lista Attori',
 		'most_used'                  => 'Piu utilizzati',
-		'back_to_items'              => '&larr; Torna a Attori'
-	];
+		'back_to_items'              => '&larr; Torna a Attori',
+	);
 
-	register_extended_taxonomy( 'actor','film',[
-		'hierarchical'     => true,
-		'labels'           => $director_labels,
-		'public'           => false,
-		'show_in_rest'     => true,
-		'rewrite'          => false,
-		'dashboard_glance' => true,
+	register_extended_taxonomy(
+		'actor', 
+		'film', 
+		array(
+			'hierarchical'     => true,
+			'labels'           => $director_labels,
+			'public'           => false,
+			'show_in_rest'     => true,
+			'rewrite'          => false,
+			'dashboard_glance' => true,
 
-	],[
+		), 
+		array(
 
-		'singular' => 'Attore',
-		'plural'   => 'Attori',
-		'slug'     => 'actor'
+			'singular' => 'Attore',
+			'plural'   => 'Attori',
+			'slug'     => 'actor',
 
-	] );
+		) 
+	);
 
-	register_taxonomy_for_object_type( 'actor','tvseries' );
+	register_taxonomy_for_object_type( 'actor', 'tvseries' );
 }
 
-add_action( 'init','xlt_starring_init' );
+add_action( 'init', 'xlt_starring_init' );

@@ -8,8 +8,10 @@ global $lang;
 get_header();
 ?>
 
-<?php while ( have_posts() ) :
-	the_post(); ?>
+<?php 
+while ( have_posts() ) :
+	the_post(); 
+	?>
 
 	<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
 
@@ -28,10 +30,10 @@ get_header();
 
 						<section class="page-content mb-4">
 							<hr class="pt-0 mt-0 mb-4"/>
-							<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content',get_the_content() ); ?>
+							<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() ); ?>
 							<hr class="pt-0 mt-0 mb-4"/>
 							<?php
-							$series = xlt_get_all_film_tv( 'tvseries',$lang );
+							$series = xlt_get_all_film_tv( 'tvseries', $lang );
 
 							if ( ! empty( $series ) ) {
 								foreach ( $series as $serie ) {

@@ -32,4 +32,5 @@
 			</a>
 		</figure>
 	</div>
-<?php }
+	<?php 
+}

@@ -11,12 +11,14 @@ get_header();
 $title = ( 'en' === $lang ) ? 'Search results for: ' . get_query_var( 's' ) : 'Risultati della ricerca per: ' . get_query_var( 's' );
 $paged = ( get_query_var( 'paged' ) ) ?: 1;
 
-$wp_query = new WP_Query( array(
-	'paged'   => $paged,
-	's'       => get_query_var( 's' ),
-	'order'   => 'DESC',
-	'orderby' => 'date',
-) );
+$wp_query = new WP_Query(
+	array(
+		'paged'   => $paged,
+		's'       => get_query_var( 's' ),
+		'order'   => 'DESC',
+		'orderby' => 'date',
+	) 
+);
 ?>
 <?php if ( have_posts() ) { ?>
 

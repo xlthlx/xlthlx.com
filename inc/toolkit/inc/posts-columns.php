@@ -11,8 +11,13 @@ function wt_posts_columns( $columns ) {
 	if ( $post_type === 'post' ) {
 		unset( $columns['date'] );
 
-		$columns = array_merge( $columns,
-			[ 'thumbs' => __( 'Thumbnail' ),'date' => __( 'Date' ) ] );
+		$columns = array_merge(
+			$columns,
+			array(
+				'thumbs' => __( 'Thumbnail' ), 
+				'date'   => __( 'Date' ),
+			) 
+		);
 	}
 
 	return $columns;
@@ -22,11 +27,11 @@ function wt_posts_columns( $columns ) {
  * Sets content for Thumbnail column and date
  *
  * @param string $column_name
- * @param int $id
+ * @param int    $id
  */
-function wt_posts_custom_columns( $column_name,$id ) {
+function wt_posts_custom_columns( $column_name, $id ) {
 	if ( $column_name === 'thumbs' ) {
-		echo get_the_post_thumbnail( $id,'thumbnail' );
+		echo get_the_post_thumbnail( $id, 'thumbnail' );
 	}
 	if ( $column_name === 'date' ) {
 		echo get_the_date( $id );
@@ -34,6 +39,6 @@ function wt_posts_custom_columns( $column_name,$id ) {
 }
 
 if ( is_admin() ) {
-	add_filter( 'manage_posts_columns','wt_posts_columns',9999 );
-	add_action( 'manage_posts_custom_column','wt_posts_custom_columns',9999,2 );
+	add_filter( 'manage_posts_columns', 'wt_posts_columns', 9999 );
+	add_action( 'manage_posts_custom_column', 'wt_posts_custom_columns', 9999, 2 );
 }

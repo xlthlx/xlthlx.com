@@ -35,12 +35,12 @@ function xlt_get_mime_type( $filename ) {
  * @throws ConversionFailedException
  */
 function xlt_check_mime_type( $filename ) {
-	$allowedMimeTypes   = [];
+	$allowedMimeTypes   = array();
 	$allowedMimeTypes[] = 'image/jpeg';
 	$allowedMimeTypes[] = 'image/jpg';
 	$allowedMimeTypes[] = 'image/png';
 
-	if ( ! in_array( xlt_get_mime_type( $filename ),$allowedMimeTypes ) ) {
+	if ( ! in_array( xlt_get_mime_type( $filename ), $allowedMimeTypes ) ) {
 		return;
 	}
 
@@ -56,12 +56,16 @@ function xlt_check_mime_type( $filename ) {
  * @throws ConversionFailedException
  */
 function xlt_convert_to_webp( $source ) {
-	$destination = preg_replace( '/(?:jpg|png|jpeg)$/i','webp',$source );
+	$destination = preg_replace( '/(?:jpg|png|jpeg)$/i', 'webp', $source );
 
-	WebPConvert::convert( $source,$destination,[
-		'fail'        => 'original',
-		'show-report' => false
-	] );
+	WebPConvert::convert(
+		$source, 
+		$destination, 
+		array(
+			'fail'        => 'original',
+			'show-report' => false,
+		) 
+	);
 }
 
 /**
@@ -90,7 +94,7 @@ function xlt_convert_other_sizes( $filename ) {
  * @return array
  * @throws ConversionFailedException
  */
-function xlt_convert_on_upload( $file_array,$context ) {
+function xlt_convert_on_upload( $file_array, $context ) {
 
 	if ( isset( $file_array['file'] ) ) {
 		xlt_check_mime_type( $file_array['file'] );
@@ -100,17 +104,17 @@ function xlt_convert_on_upload( $file_array,$context ) {
 }
 
 function xlt_delete_webp( $filename ) {
-	$allowedMimeTypes   = [];
+	$allowedMimeTypes   = array();
 	$allowedMimeTypes[] = 'image/jpeg';
 	$allowedMimeTypes[] = 'image/jpg';
 	$allowedMimeTypes[] = 'image/png';
 
-	if ( ! in_array( xlt_get_mime_type( $filename ),$allowedMimeTypes ) ) {
+	if ( ! in_array( xlt_get_mime_type( $filename ), $allowedMimeTypes ) ) {
 		return $filename;
 	}
 
 
-	$destination = preg_replace( '/(?:jpg|png|jpeg)$/i','webp',$filename );
+	$destination = preg_replace( '/(?:jpg|png|jpeg)$/i', 'webp', $filename );
 	if ( @file_exists( $destination ) ) {
 		if ( @unlink( $destination ) ) {
 			return $filename;
@@ -122,6 +126,6 @@ function xlt_delete_webp( $filename ) {
 	return $filename;
 }
 
-add_filter( 'wp_handle_upload','xlt_convert_on_upload',10,2 );
-add_filter( 'image_make_intermediate_size','xlt_convert_other_sizes',10,1 );
-add_filter( 'wp_delete_file','xlt_delete_webp',10,1 );
+add_filter( 'wp_handle_upload', 'xlt_convert_on_upload', 10, 2 );
+add_filter( 'image_make_intermediate_size', 'xlt_convert_other_sizes', 10, 1 );
+add_filter( 'wp_delete_file', 'xlt_delete_webp', 10, 1 );

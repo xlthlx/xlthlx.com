@@ -27,7 +27,7 @@ if ( $comments ) { ?>
 	<section id="post-comments" class="comment-box mb-5">
 		<h3 class="mb-4"><?php echo ( 'en' === $lang ) ? 'Comments' : 'Commenti'; ?></h3>
 		<?php foreach ( $comments as $comment ) { ?>
-			<?php get_template_part( 'parts/comment', null, [ 'comment' => $comment ] ); ?>
+			<?php get_template_part( 'parts/comment', null, array( 'comment' => $comment ) ); ?>
 		<?php } ?>
 	</section>
 <?php } ?>

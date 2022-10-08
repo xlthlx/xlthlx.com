@@ -19,7 +19,7 @@ $first_post_query = $first['first_post_query'];
 
 $args = array(
 	'post__not_in' => $offset,
-	'paged'        => $paged
+	'paged'        => $paged,
 );
 
 $wp_query = new WP_Query( $args );
@@ -34,22 +34,27 @@ if ( $first_post_query && 1 === $paged ) {
 			get_template_part( 'parts/sticky' );
 
 		}
-		wp_reset_postdata(); ?>
+		wp_reset_postdata(); 
+		?>
 
 	</div>
 	<?php
 }
 
-if ( $wp_query->have_posts() ) { ?>
+if ( $wp_query->have_posts() ) { 
+	?>
 	<div class="row mb-2">
-	<?php while ( $wp_query->have_posts() ) {
+	<?php 
+	while ( $wp_query->have_posts() ) {
 		$wp_query->the_post();
 		get_template_part( 'parts/tease', 'home' );
-		if ( ( $wp_query->current_post % 2 !== 0 ) && ( $wp_query->post_count !== $wp_query->current_post + 1 ) ) { ?>
+		if ( ( $wp_query->current_post % 2 !== 0 ) && ( $wp_query->post_count !== $wp_query->current_post + 1 ) ) { 
+			?>
 			</div>
 			<hr class="pt-0 mt-0 mb-4"/>
 			<div class="row mb-2">
-		<?php }
+			<?php 
+		}
 	}
 	?>
 	</div>
