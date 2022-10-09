@@ -1,6 +1,6 @@
 {
   "name": "xlthlx",
-  "version": "2.0",
+  "version": "2.0.0",
   "description": "xlthlx theme",
   "author": "xlthlx",
   "keywords": [
@@ -13,37 +13,25 @@
     "url": "git+https://github.com/xlthlx/xlthlx.com"
   },
   "scripts": {
-    "concat:css:main": "concat -o src/css/all.css src/vendor/twbs/bootstrap/dist/css/bootstrap.css src/css/main.css src/css/colours.css src/css/dark-mode.css ../../../../wordpress/wp-includes/css/dist/block-library/style.min.css",
-    "concat:css:login": "concat -o src/css/admin/login-all.css src/vendor/twbs/bootstrap/dist/css/bootstrap.css src/css/main.css src/css/admin/login.css",
-    "concat:css": "npm run concat:css:main && npm run concat:css:login",
-    "concat:js:login": "concat -o src/js/admin/login-all.js src/js/admin/login.js src/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js",
-    "concat:js": "concat -o src/js/all.js src/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js src/js/sw.js src/js/badge.js src/js/single.js src/js/dark-mode.js ../../../../wordpress/wp-includes/js/wp-embed.min.js ../../../../wordpress/wp-includes/js/comment-reply.js",
-    "concat": "npm run concat:css && npm run concat:js && npm run concat:js:login",
-    "minify:js:main": "uglifyjs src/js/all.js --compress --mangle --warn --output assets/js/main.min.js",
+    "minify:js:main": "uglifyjs src/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js src/js/sw.js src/js/badge.js src/js/single.js src/js/dark-mode.js ../../../../wordpress/wp-includes/js/wp-embed.min.js ../../../../wordpress/wp-includes/js/comment-reply.js --compress --mangle --warn --output assets/js/main.min.js",
     "minify:js:admin": "uglifyjs src/js/admin/admin.js --compress --mangle --warn --output assets/js/admin/admin.min.js",
     "minify:js:editor": "uglifyjs src/js/admin/editor.js --compress --mangle --warn --output assets/js/admin/editor.min.js",
-    "minify:js:login": "uglifyjs src/js/admin/login.js --compress --mangle --warn --output assets/js/admin/login.min.js",
+    "minify:js:login": "uglifyjs src/js/admin/login.js src/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js --compress --mangle --warn --output assets/js/admin/login.min.js",
     "minify:js": "npm run minify:js:main && npm run minify:js:admin && npm run minify:js:editor && npm run minify:js:login",
-    "minify:css:main": "cleancss -o assets/css/main.min.css src/css/all.css",
+    "minify:css:main": "cleancss -o assets/css/main.min.css src/vendor/twbs/bootstrap/dist/css/bootstrap.css src/css/main.css src/css/colours.css src/css/dark-mode.css ../../../../wordpress/wp-includes/css/dist/block-library/style.min.css",
     "minify:css:admin": "cleancss -o assets/css/admin/admin.min.css src/css/admin/admin.css",
     "minify:css:color": "cleancss -o assets/css/admin/color-scheme.min.css src/css/admin/color-scheme.css",
-    "minify:css:login": "cleancss -o assets/css/admin/login.min.css src/css/admin/login-all.css",
+    "minify:css:login": "cleancss -o assets/css/admin/login.min.css src/vendor/twbs/bootstrap/dist/css/bootstrap.css src/css/main.css src/css/admin/login.css",
     "minify:css": "npm run minify:css:main && npm run minify:css:admin && npm run minify:css:color && npm run minify:css:login",
-    "minify": "npm run minify:js && npm run minify:css",
-    "build:css": "npm run concat:css && npm run minify:css",
-    "build:js": "npm run concat:js && npm run minify:js",
-    "build:img": "npm run minify:img",
-    "build": "npm run build:css && npm run build:js && npm run build:img",
-    "watch:css": "onchange 'src/css/*.css' -- npm run build:css",
-    "watch:js": "onchange 'src/js/*.js' -- npm run build:js",
-    "watch": "npm-run-all --parallel watch:*"
+    "watch:css": "onchange 'src/css/*.css' -- npm run minify:css",
+    "watch:js": "onchange 'src/js/*.js' -- npm run minify:js",
+    "watch": "run-p watch:*",
+    "build": "npm run minify:css && npm run minify:js"
   },
   "devDependencies": {
     "clean-css-cli": "^5.6.1",
-    "concat": "^1.0.3",
     "npm-run-all": "^4.1.5",
     "onchange": "^7.1.0",
-    "postcss-import": "^15.0.0",
     "uglify-js": "^3.17.2"
   }
 }
