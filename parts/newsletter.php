@@ -11,7 +11,7 @@
 <?php if ( ( 'en' === $lang ) ) { ?>
 	<div id="xlthlx-fix" class="widget widget_outline_grey widget_block p-4 mb-4 rounded-0">
 		<figure class="wp-block-image size-full is-style-default">
-			<a title="#FixTheDigitalStatus!" href="https://www.the3million.org.uk/fix-the-digital-status" target="_blank">
+			<a title="#FixTheDigitalStatus!" href="https://the3million.org.uk/fix-the-digital-status" target="_blank">
 				<picture>
 					<source srcset="<?php echo get_template_directory_uri(); ?>/assets/img/fix-digital-status.webp" type="image/webp">
 					<source srcset="<?php echo get_template_directory_uri(); ?>/assets/img/fix-digital-status.jpg" type="image/jpeg">
@@ -32,5 +32,5 @@
 			</a>
 		</figure>
 	</div>
-	<?php 
+	<?php
 }
