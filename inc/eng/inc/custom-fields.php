@@ -82,12 +82,18 @@ add_action( 'cmb2_init', 'xlt_add_category_metabox' );
 function xlt_eng_posts_columns( $defaults ) {
 	$post_type = get_post_type();
 	if ( ( $post_type === 'post' ) || ( $post_type === 'page' ) ) {
+
+		$defaults['eng'] = __( 'Eng' );
+	}
+	if ( $post_type === 'post' ) {
+		$defaults['comments-open'] = __( 'Commenti' );
+		$defaults['pings-open'] = __( 'Trackback' );
+	}
+
+	if ( $post_type === 'page' ) {
 		if ( isset( $defaults['comments'] ) ) {
 			unset( $defaults['comments'] );
 		}
-
-		$defaults['eng'] = __( 'Eng' );
-		$defaults['comments-open'] = __( 'Open comments?' );
 	}
 
 	return $defaults;
@@ -122,7 +128,10 @@ function xlt_eng_posts_custom_columns( $column_name, $id ) {
 		}
 	}
 	if ( $column_name === 'comments-open' ) {
-		echo (comments_open($id))?'Yes':'No';
+		echo (comments_open($id))?'':'Chiusi';
+	}
+	if ( $column_name === 'pings-open' ) {
+		echo (pings_open($id))?'':'Chiusi';
 	}
 }
 
