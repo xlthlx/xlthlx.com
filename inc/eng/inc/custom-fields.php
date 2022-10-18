@@ -16,7 +16,7 @@ function xlt_add_metabox() {
 			'object_types' => array( 'post', 'page', 'film', 'tvseries' ),
 			'context'      => 'normal',
 			'priority'     => 'high',
-		) 
+		)
 	);
 
 	$cmb_post->add_field(
@@ -25,7 +25,7 @@ function xlt_add_metabox() {
 			'id'           => 'title_en',
 			'type'         => 'text_medium',
 			'show_in_rest' => WP_REST_Server::ALLMETHODS,
-		) 
+		)
 	);
 
 	$cmb_post->add_field(
@@ -37,7 +37,7 @@ function xlt_add_metabox() {
 				'media_buttons' => false,
 			),
 			'show_in_rest' => WP_REST_Server::ALLMETHODS,
-		) 
+		)
 	);
 }
 
@@ -53,7 +53,7 @@ function xlt_add_category_metabox() {
 			'priority'         => 'high',
 			'show_in_rest'     => WP_REST_Server::ALLMETHODS,
 			'mb_callback_args' => array( '__block_editor_compatible_meta_box' => true ),
-		) 
+		)
 	);
 
 	$cmb_category->add_field(
@@ -66,7 +66,7 @@ function xlt_add_category_metabox() {
 				'name'     => 'Name',
 			),
 			'show_in_rest' => WP_REST_Server::ALLMETHODS,
-		) 
+		)
 	);
 }
 
@@ -87,6 +87,7 @@ function xlt_eng_posts_columns( $defaults ) {
 		}
 
 		$defaults['eng'] = __( 'Eng' );
+		$defaults['comments-open'] = __( 'Open comments?' );
 	}
 
 	return $defaults;
@@ -109,16 +110,19 @@ function xlt_eng_posts_custom_columns( $column_name, $id ) {
 		}
 		if ( $content_en !== '' && strpos(
 			$content_en,
-			'<!-- GT -->' 
+			'<!-- GT -->'
 		) !== false ) {
 			echo 'Check';
 		}
 		if ( $content_en !== '' && strpos(
 			$content_en,
-			'<!-- GT -->' 
+			'<!-- GT -->'
 		) === false ) {
 			echo '';
 		}
+	}
+	if ( $column_name === 'comments-open' ) {
+		echo (comments_open($id))?'Yes':'No';
 	}
 }
 
@@ -135,7 +139,7 @@ function xlt_register_comment_language() {
 			'id'           => 'xlt_comment_metabox',
 			'title'        => 'Altre opzioni',
 			'object_types' => array( 'comment' ),
-		) 
+		)
 	);
 
 	$cmb->add_field(
@@ -154,7 +158,7 @@ function xlt_register_comment_language() {
 				'position' => 4,
 				'name'     => 'Lingua',
 			),
-		) 
+		)
 	);
 }
 
