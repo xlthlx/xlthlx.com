@@ -82,18 +82,13 @@ add_action( 'cmb2_init', 'xlt_add_category_metabox' );
 function xlt_eng_posts_columns( $defaults ) {
 	$post_type = get_post_type();
 	if ( ( $post_type === 'post' ) || ( $post_type === 'page' ) ) {
-
-		$defaults['eng'] = __( 'Eng' );
-	}
-	if ( $post_type === 'post' ) {
-		$defaults['comments-open'] = __( 'Commenti' );
-		$defaults['pings-open'] = __( 'Trackback' );
-	}
-
-	if ( $post_type === 'page' ) {
 		if ( isset( $defaults['comments'] ) ) {
 			unset( $defaults['comments'] );
 		}
+		$defaults['eng'] = __( 'Eng' );
+	}
+	if ( $post_type === 'post' ) {
+		$defaults['comments-number'] = __( 'Commenti' );
 	}
 
 	return $defaults;
@@ -127,11 +122,26 @@ function xlt_eng_posts_custom_columns( $column_name, $id ) {
 			echo '';
 		}
 	}
-	if ( $column_name === 'comments-open' ) {
-		echo (comments_open($id))?'':'Chiusi';
-	}
-	if ( $column_name === 'pings-open' ) {
-		echo (pings_open($id))?'':'Chiusi';
+	if ( $column_name === 'comments-number' ) {
+		$comments_number = ( get_comments_number( $id ) === '0' ) ? '' : get_comments_number( $id );
+		$comments_open   = ( comments_open( $id ) ) ? '' : 'Commenti chiusi';
+		$pings_open   = ( pings_open( $id ) ) ? '' : 'Trackback chiusi';
+
+		if ( $comments_number !== '' ) {
+			echo $comments_number;
+		}
+		if ( ( $comments_number !== '' ) && ( $comments_open !== '' ) ) {
+			echo '<br/>';
+		}
+		if ( $comments_open !== '' ) {
+			echo $comments_open;
+		}
+		if ( ( $comments_open !== '' ) && ( $pings_open !== '' ) ) {
+			echo '<br/>';
+		}
+		if ( $pings_open !== '' ) {
+			echo $pings_open;
+		}
 	}
 }
 
