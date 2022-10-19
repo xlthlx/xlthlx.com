@@ -72,9 +72,9 @@ function xlt_render_code( string $content ) {
 			'<code>',
 			'</code>',
 			'</pre>',
-		), 
-		'', 
-		html_entity_decode( $content ) 
+		),
+		'',
+		html_entity_decode( $content )
 	);
 
 	$highlighted = $hl->highlightAuto( trim( $content ) );
@@ -161,16 +161,16 @@ add_filter( 'comment_post_redirect', 'xlt_en_comment_redirect', 10, 2 );
 function xlt_enqueue_admin_css_js() {
 	wp_enqueue_style(
 		'admin',
-		get_template_directory_uri() . '/assets/css/admin/admin.min.css', 
+		get_template_directory_uri() . '/assets/css/admin/admin.min.css',
 		array(),
-		filemtime( get_template_directory() . '/assets/css/admin/admin.min.css' ) 
+		filemtime( get_template_directory() . '/assets/css/admin/admin.min.css' )
 	);
 	wp_enqueue_script(
 		'admin',
-		get_template_directory_uri() . '/assets/js/admin/admin.min.js', 
+		get_template_directory_uri() . '/assets/js/admin/admin.min.js',
 		array(),
 		filemtime( get_template_directory() . '/assets/js/admin/admin.min.js' ),
-		true 
+		true
 	);
 }
 
@@ -270,7 +270,7 @@ function xlt_insert_css() {
 	$style = str_replace(
 		'../fonts/',
 		get_template_directory_uri() . '/assets/fonts/',
-		xlt_get_file_content( $file ) 
+		xlt_get_file_content( $file )
 	);
 
 	echo '<style id="all-styles-inline">' . $style . '</style>';
@@ -331,7 +331,7 @@ function xlt_admin_color_scheme() {
 	$theme_dir = get_stylesheet_directory_uri();
 
 	wp_admin_css_color(
-		'xlthlx', 
+		'xlthlx',
 		__( 'Xlthlx' ),
 		$theme_dir . '/assets/css/admin/color-scheme.min.css',
 		array( '#1e2327', '#fff', '#92285e', '#6667ab' ),
@@ -415,11 +415,12 @@ add_action( 'admin_menu', 'xlt_rearrange_admin_menu' );
  * @return mixed
  */
 function xlt_hide_seo_columns( $columns ) {
-	unset( $columns['meta_title'], $columns['meta_description'], $columns['description'] );
+	unset( $columns['meta_title'], $columns['meta_description'], $columns['description'], $columns['noindex'] );
 
 	return $columns;
 }
 
+add_filter( 'manage_page_posts_columns', 'xlt_hide_seo_columns', 20 );
 add_filter( 'manage_post_posts_columns', 'xlt_hide_seo_columns', 20 );
 add_filter( 'manage_edit-category_columns', 'xlt_hide_seo_columns', 20 );
 
@@ -510,14 +511,14 @@ add_filter( 'wp_content_img_tag', 'xlt_image_with_picture', 10, 3 );
  *
  * @return void
  */
-function xlt_add_admin_icons() { 
+function xlt_add_admin_icons() {
 	?>
 	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/favicon.ico"
 		  sizes="any"><!-- 32×32 -->
 	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/icon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon"
 		  href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/apple-touch-icon.png">
-	<?php 
+	<?php
 }
 
 add_action( 'login_head', 'xlt_add_admin_icons' );

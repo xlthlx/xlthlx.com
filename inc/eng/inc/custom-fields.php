@@ -85,7 +85,7 @@ function xlt_eng_posts_columns( $defaults ) {
 		if ( isset( $defaults['comments'] ) ) {
 			unset( $defaults['comments'] );
 		}
-		$defaults['eng'] = __( 'Eng' );
+		$defaults['eng'] = 'English';
 	}
 	if ( $post_type === 'post' ) {
 		$defaults['comments-number'] = __( 'Commenti' );
@@ -94,8 +94,8 @@ function xlt_eng_posts_columns( $defaults ) {
 	return $defaults;
 }
 
-add_filter( 'manage_posts_columns', 'xlt_eng_posts_columns', 15 );
-add_filter( 'manage_pages_columns', 'xlt_eng_posts_columns', 15 );
+add_filter( 'manage_posts_columns', 'xlt_eng_posts_columns', 20 );
+add_filter( 'manage_pages_columns', 'xlt_eng_posts_columns', 20 );
 
 /**
  * Sets columns values.
@@ -113,7 +113,7 @@ function xlt_eng_posts_custom_columns( $column_name, $id ) {
 			$content_en,
 			'<!-- GT -->'
 		) !== false ) {
-			echo 'Check';
+			echo 'To check';
 		}
 		if ( $content_en !== '' && strpos(
 			$content_en,
@@ -122,13 +122,14 @@ function xlt_eng_posts_custom_columns( $column_name, $id ) {
 			echo '';
 		}
 	}
+
 	if ( $column_name === 'comments-number' ) {
 		$comments_number = ( get_comments_number( $id ) === '0' ) ? '' : get_comments_number( $id );
 		$comments_open   = ( comments_open( $id ) ) ? '' : 'Commenti chiusi';
 		$pings_open   = ( pings_open( $id ) ) ? '' : 'Trackback chiusi';
 
 		if ( $comments_number !== '' ) {
-			echo $comments_number;
+			echo '<a title="Visualizza commenti" href="/wp-admin/edit-comments.php?p='.$id.'&comment_status=approved">'.$comments_number.' &raquo;</a>';
 		}
 		if ( ( $comments_number !== '' ) && ( $comments_open !== '' ) ) {
 			echo '<br/>';
@@ -145,8 +146,8 @@ function xlt_eng_posts_custom_columns( $column_name, $id ) {
 	}
 }
 
-add_action( 'manage_posts_custom_column', 'xlt_eng_posts_custom_columns', 15, 2 );
-add_action( 'manage_pages_custom_column', 'xlt_eng_posts_custom_columns', 15, 2 );
+add_action( 'manage_posts_custom_column', 'xlt_eng_posts_custom_columns', 20, 2 );
+add_action( 'manage_pages_custom_column', 'xlt_eng_posts_custom_columns', 20, 2 );
 
 /**
  * Hook in and register a metabox for the admin comment edit page.

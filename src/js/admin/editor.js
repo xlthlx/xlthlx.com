@@ -21,7 +21,6 @@ wp.domReady(() => {
 		// 'core/heading',
 		// 'core/html',
 		// 'core/image',
-		// 'core/legacy-widget',
 		'core/latest-comments',
 		'core/latest-posts',
 		'core/loginout',

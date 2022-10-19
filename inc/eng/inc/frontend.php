@@ -132,21 +132,22 @@ function get_content_en( $post_id = 0 ) {
 			foreach ( $blocks as $block ) {
 
 				$block_types = array(
-					'core/paragraph',
-					'core/heading',
-					'core/freeform',
-					'core/list',
-					'core/quote',
-					'core/pullquote',
-					'core/html',
-					'core/table',
 					'core/code',
+					'core/freeform',
+					'core/heading',
+					'core/html',
+					'core/list',
+					'core/paragraph',
+					'core/pullquote',
+					'core/quote',
+					'core/shortcode',
+					'core/table'
 				);
 
 				if ( isset( $block['blockName'] ) && $block['blockName'] !== '' && in_array(
 					$block['blockName'],
-					$block_types, 
-					true 
+					$block_types,
+					true
 				) ) {
 
 					if ( $block['blockName'] === 'core/code' ) {
@@ -161,7 +162,7 @@ function get_content_en( $post_id = 0 ) {
 									'php',
 									'javascript',
 									'html',
-								) 
+								)
 							);
 
 							$code = str_replace(
@@ -170,9 +171,9 @@ function get_content_en( $post_id = 0 ) {
 									'<code>',
 									'</code>',
 									'</pre>',
-								), 
-								'', 
-								html_entity_decode( $code ) 
+								),
+								'',
+								html_entity_decode( $code )
 							);
 
 							$highlighted = $hl->highlightAuto( $code );
@@ -186,13 +187,17 @@ function get_content_en( $post_id = 0 ) {
 					} else {
 						$html    = $block['innerHTML'];
 						$output .= get_trans( $html );
-					}               
+					}
 				}
-				$output .= '<!-- GT -->';
-
-				update_post_meta( $post_id, 'content_en', $output );
+				else {
+					$output .= $block['innerHTML'];
+				}
 			}
-		}   
+
+			$output .= '<!-- GT -->';
+
+			update_post_meta( $post_id, 'content_en', $output );
+		}
 	}
 
 	return apply_filters( 'the_content', get_post_meta( $post_id, 'content_en', true ) );
@@ -233,7 +238,7 @@ function get_url_trans() {
 				$link .= 'en/';
 			} else {
 				$link = str_replace( '/page/', '/en/page/', $link );
-			}       
+			}
 		} else {
 			$link = str_replace( 'en/', '', $link );
 		}
@@ -257,7 +262,7 @@ function get_url_trans() {
 				$link .= 'en/';
 			} else {
 				$link = str_replace( '/page/', '/en/page/', $link );
-			}       
+			}
 		} else {
 			$link = str_replace( 'en/', '', $link );
 		}
