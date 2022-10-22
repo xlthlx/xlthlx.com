@@ -2,8 +2,7 @@
 	-webkit-font-feature-settings: "liga" on, "calt" on;
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
-	font-family: 'JetBrains Mono', monospace;
-	font-size: .875em;
+	font-family: 'JetBrains Mono', monospace!important;
 }
 
 .hljs {
@@ -12,11 +11,6 @@
 	padding: 0.5em;
 	background: #000;
 	color: #f8f8f8;
-	-webkit-font-feature-settings: "liga" on, "calt" on;
-	-webkit-font-smoothing: antialiased;
-	text-rendering: optimizeLegibility;
-	font-family: 'JetBrains Mono', monospace;
-	font-size: .875em;
 }
 
 .hljs-comment,
