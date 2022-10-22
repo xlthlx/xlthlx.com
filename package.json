@@ -13,12 +13,12 @@
     "url": "git+https://github.com/xlthlx/xlthlx.com"
   },
   "scripts": {
-    "minify:js:main": "uglifyjs src/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js src/js/sw.js src/js/badge.js src/js/single.js src/js/dark-mode.js ../../../../wordpress/wp-includes/js/wp-embed.min.js ../../../../wordpress/wp-includes/js/comment-reply.js --compress --mangle --warn --output assets/js/main.min.js",
+    "minify:js:main": "uglifyjs src/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js src/js/sw.js src/js/code.js src/js/single.js src/js/dark-mode.js ../../../../wordpress/wp-includes/js/wp-embed.min.js ../../../../wordpress/wp-includes/js/comment-reply.js --compress --mangle --warn --output assets/js/main.min.js",
     "minify:js:admin": "uglifyjs src/js/admin/admin.js --compress --mangle --output assets/js/admin/admin.min.js",
     "minify:js:editor": "uglifyjs src/js/admin/editor.js --compress --mangle --output assets/js/admin/editor.min.js",
     "minify:js:login": "uglifyjs src/js/admin/login.js src/vendor/twbs/bootstrap/dist/js/bootstrap.bundle.js --compress --mangle --output assets/js/admin/login.min.js",
     "minify:js": "npm run minify:js:main && npm run minify:js:admin && npm run minify:js:editor && npm run minify:js:login",
-    "minify:css:main": "cleancss -o assets/css/main.min.css src/vendor/twbs/bootstrap/dist/css/bootstrap.css src/css/main.css src/css/colours.css src/css/dark-mode.css ../../../../wordpress/wp-includes/css/dist/block-library/style.min.css",
+    "minify:css:main": "cleancss -o assets/css/main.min.css src/vendor/twbs/bootstrap/dist/css/bootstrap.css src/css/main.css src/css/colours.css src/css/dark-mode.css src/css/code.css ../../../../wordpress/wp-includes/css/dist/block-library/style.min.css",
     "minify:css:admin": "cleancss -o assets/css/admin/admin.min.css src/css/admin/admin.css",
     "minify:css:color": "cleancss -o assets/css/admin/color-scheme.min.css src/css/admin/color-scheme.css",
     "minify:css:login": "cleancss -o assets/css/admin/login.min.css src/vendor/twbs/bootstrap/dist/css/bootstrap.css src/css/main.css src/css/admin/login.css",
