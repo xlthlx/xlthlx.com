@@ -678,5 +678,5 @@ footer:after {
 }
 
 .wp-block-image .aligncenter, .wp-block-image .alignleft, .wp-block-image .alignright, .wp-block-image.aligncenter, .wp-block-image.alignleft, .wp-block-image.alignright {
-	display: block;
+	display: block!important;
 }
