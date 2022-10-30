@@ -1,18 +1,18 @@
-<?php global $site_url,$site_name,$site_desc; ?>
-<nav id="primary-nav" class="navbar navbar-dark bg-primary">
-	<div class="container-fluid min-container">
-		<h1 id="logo" class="display-2 font-italic text-start m-0 ps-3 py-1">
+<?php global $site_url,$site_name,$site_desc,$lang,$post; ?>
+<nav class="navbar navbar-expand-lg bg-dark">
+	<div class="container-fluid">
+
+		<h1 id="logo" class="display-2 font-italic text-start m-0 ps-3 py-1 d-flex align-items-center col text-decoration-none">
 			<a title="<?php echo $site_desc; ?>" class="text-white text-decoration-none shadows"
 			   href="<?php echo $site_url; ?>"><?php echo $site_name; ?></a>
 		</h1>
 
-		<nav class="navbar navbar-expand-lg">
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarToggler">
-				<?php get_template_part( 'parts/tabs' ); ?>
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0 pe-4">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarPrimary">
+			<div class="col d-flex flex-wrap align-items-center justify-content-center py-3" id="navbarPrimary">
+				<ul class="nav col-auto mb-2 justify-content-center">
 					<?php
 					$menu_items = xlt_get_menu_items( 'primary' );
 					foreach ( $menu_items as $menu_item ) {
@@ -45,11 +45,18 @@
 						<?php } ?>
 					<?php } ?>
 				</ul>
-				<div class="my-3">
-					<?php get_template_part( 'parts/search-form' ); ?>
-				</div>
+
 			</div>
-		</nav>
+			<div class="col d-flex flex-wrap align-items-end justify-content-end text-end">
+
+				<a href="<?php echo $site_url; ?>mode/" title="Dark mode" id="btn-toggle" class="btn btn-outline-secondary lang pink-hover">
+					<svg class="dark-mode" aria-label="Dark mode" role="img" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+					</svg>
+				</a>
+
+				<?php get_template_part( 'parts/search-form' ); ?>
+			</div>
+		</div>
 	</div>
 </nav>
-
