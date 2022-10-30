@@ -292,22 +292,22 @@ iframe {
 	min-height: 200px;
 }
 
-table.wp-inci {
+.wp-inci {
 	max-width: 100% !important;
 	margin-bottom: 1em !important;
 	border: 0 !important
 }
 
-table.wp-inci th {
+.wp-inci th {
 	text-align: left;
 	padding: 5px;
 }
 
-table.wp-inci tr {
+.wp-inci tr {
 	line-height: initial;
 }
 
-table.wp-inci td {
+.wp-inci td {
 	padding: 5px 5px 0;
 	vertical-align: middle;
 	min-width: 60px;
@@ -315,27 +315,27 @@ table.wp-inci td {
 	word-break: break-all;
 }
 
-table.wp-inci td:first-child {
+.wp-inci td:first-child {
 	width: 60px;
 	line-height: initial;
 }
 
-table.wp-inci td.nofirst {
+.wp-inci td.nofirst {
 	min-width: 100% !important;
 	width: 100% !important;
 	padding-bottom: 10px
 }
 
-table.wp-inci .disclaimer {
+.wp-inci .disclaimer {
 	font-size: small;
 }
 
-table.wp-inci .first {
+.wp-inci .first {
 	margin-right: 5px;
 	margin-bottom: 5px;
 }
 
-table.wp-inci div {
+.wp-inci div {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
@@ -347,22 +347,22 @@ table.wp-inci div {
 	display: inline-table;
 }
 
-table.wp-inci div.g {
+.wp-inci div.g {
 	background-color: #32cd32;
 	color: #32cd32;
 }
 
-table.wp-inci div.r {
+.wp-inci div.r {
 	background-color: #dc143c;
 	color: #dc143c;
 }
 
-table.wp-inci div.y {
+.wp-inci div.y {
 	background-color: #ffd700;
 	color: #ffd700;
 }
 
-table.wp-inci div.w {
+.wp-inci div.w {
 	background-color: #eee;
 	color: #eee;
 }
@@ -374,11 +374,11 @@ table.wp-inci div.w {
 	color: #6c757d !important;
 }
 
-table.wp-inci td:first-child {
+.wp-inci td:first-child {
 	display: table-row;
 }
 
-table.wp-inci td {
+.wp-inci td {
 	float: left;
 	font-size: 14px;
 }
