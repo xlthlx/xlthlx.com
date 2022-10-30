@@ -687,11 +687,12 @@ footer:after {
 
 a.nav-link {
 	color: white;
+	border-top: 3px solid transparent;
+	border-bottom: 3px solid transparent;
 }
 
 a.nav-link:hover, a.nav-link:focus {
 	color: white;
-	border-bottom: 2px dashed white;
 }
 
 a.nav-link:before {
@@ -701,11 +702,12 @@ a.nav-link:before {
 	left: 0;
 	width: 100%;
 	height: 3px;
-	background-color: #37D631;
+	background-color: white;
 	transform: scaleX(0);
 	transform-origin: top left;
 	transition: transform 0.3s;
 }
+
 a.nav-link:after {
 	content: '';
 	position: absolute;
@@ -713,14 +715,16 @@ a.nav-link:after {
 	right: 0;
 	width: 100%;
 	height: 3px;
-	background-color: #37D631;
+	background-color: white;
 	transform: scaleX(0);
 	transform-origin: bottom right;
 	transition: transform 0.3s;
 }
+
 a.nav-link:hover:before {
 	transform: scaleX(1);
 }
+
 a.nav-link:hover:after {
 	transform: scaleX(1);
 }
