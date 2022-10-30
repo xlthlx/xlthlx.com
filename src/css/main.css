@@ -681,10 +681,6 @@ footer:after {
 	display: block !important;
 }
 
-.dropdown-toggle::after {
-	border: 0 !important
-}
-
 a.nav-link {
 	color: white;
 	border-top: 3px solid transparent;
@@ -701,7 +697,7 @@ a.nav-link:before {
 	top: 0;
 	left: 0;
 	width: 100%;
-	border: 3px dotted white;
+	border-bottom: 2px dotted white;
 	transform: scaleX(0);
 	transform-origin: top left;
 	transition: transform 0.3s;
@@ -713,7 +709,7 @@ a.nav-link:after {
 	bottom: 0;
 	right: 0;
 	width: 100%;
-	border: 3px dotted white;
+	border: 2px dotted white;
 	transform: scaleX(0);
 	transform-origin: bottom right;
 	transition: transform 0.3s;
