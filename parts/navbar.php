@@ -7,14 +7,7 @@
 			   href="<?php echo $site_url; ?>"><?php echo $site_name; ?></a>
 		</h1>
 
-		<div class="hamburger">
-			<div class="hamburger__container">
-				<div class="hamburger__inner"></div>
-				<div class="hamburger__hidden"></div>
-			</div>
-		</div>
-
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbarPrimary" aria-controls="navbarPrimary" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarPrimary">
