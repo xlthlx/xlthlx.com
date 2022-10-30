@@ -590,10 +590,6 @@ footer:after {
 	border: 3px dashed #6667ab;
 }
 
-.btn-outline-secondary {
-	color: white !important;
-}
-
 .wp-block-image {
 	margin: 0 !important;
 }
@@ -726,4 +722,5 @@ a.nav-link:hover:after {
 .dropdown-toggle::after {
 	border-right: 0;
 	border-left: 0;
+	border-top: 0;
 }
