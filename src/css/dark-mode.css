@@ -168,3 +168,8 @@ body.dark-theme a.arrow:hover {
 body.dark-theme .btn-outline-secondary {
 	color: white !important;
 }
+
+body.dark-theme #primary a.nav-link, body.dark-theme #primary a.nav-link:hover, body.dark-theme #primary a.nav-link:focus {
+	color: white;
+	text-decoration: none;
+}
