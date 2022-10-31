@@ -1,5 +1,5 @@
 <?php global $site_url,$site_name,$site_desc,$lang,$post; ?>
-<nav id="primary" class="navbar navbar-expand-lg bg-dark">
+<nav id="primary" class="navbar navbar-dark navbar-expand-lg bg-dark">
 	<div class="container-fluid">
 
 		<h1 id="logo" class="display-2 font-italic text-start m-0 ps-3 py-1 d-flex align-items-center col text-decoration-none">
