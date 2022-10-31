@@ -730,3 +730,7 @@ footer:after {
 	padding-top: 2px;
 	margin-right: 5px;
 }
+
+#btn-toggle:focus {
+	box-shadow: none;
+}
