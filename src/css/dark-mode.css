@@ -173,3 +173,7 @@ body.dark-theme #primary a.nav-link, body.dark-theme #primary a.nav-link:hover, 
 	color: white !important;
 	text-decoration: none;
 }
+
+body.dark-theme #footer a:hover, body.dark-theme #footer a:focus {
+	text-decoration: none;
+}
