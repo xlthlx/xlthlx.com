@@ -170,6 +170,6 @@ body.dark-theme .btn-outline-secondary {
 }
 
 body.dark-theme #primary a.nav-link, body.dark-theme #primary a.nav-link:hover, body.dark-theme #primary a.nav-link:focus {
-	color: white;
+	color: white !important;
 	text-decoration: none;
 }
