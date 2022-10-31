@@ -1,5 +1,5 @@
 <?php global $site_url,$site_name,$site_desc,$lang,$post; ?>
-<nav class="navbar navbar-expand-lg bg-dark">
+<nav id="primary" class="navbar navbar-expand-lg bg-dark">
 	<div class="container-fluid">
 
 		<h1 id="logo" class="display-2 font-italic text-start m-0 ps-3 py-1 d-flex align-items-center col text-decoration-none">
@@ -7,9 +7,10 @@
 			   href="<?php echo $site_url; ?>"><?php echo $site_name; ?></a>
 		</h1>
 
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbarPrimary" aria-controls="navbarPrimary" aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrimary" aria-controls="navbarPrimary" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
+
 		<div class="collapse navbar-collapse" id="navbarPrimary">
 			<div class="col d-flex flex-wrap align-items-center justify-content-center py-3" id="navbarPrimary">
 				<ul class="nav col-auto mb-2 justify-content-center">

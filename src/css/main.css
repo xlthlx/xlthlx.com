@@ -724,3 +724,8 @@ a.nav-link:hover:after {
 	border-left: 0;
 	border-top: 0;
 }
+
+#btn-toggle {
+	color: white;
+	margin-right: 5px;
+}
