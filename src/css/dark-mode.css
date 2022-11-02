@@ -51,8 +51,13 @@ body.dark-theme #btn-toggle {
 	background-color: #333456;
 }
 
-body.dark-theme .text-dark {
+body.dark-theme a.text-dark {
 	color: #FFFFFF !important;
+}
+
+body.dark-theme a.text-dark:hover {
+	color: #FFFFFF!important;
+	text-decoration-color: #FFFFFF!important;
 }
 
 body.dark-theme .widget a {
