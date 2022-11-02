@@ -700,19 +700,19 @@ footer:after {
 }
 
 .btn-outline-secondary {
-	color: #b73275!important;
+	color: #b73275 !important;
 }
 
-.btn-outline-secondary.active {
-	background-color: #6667ab!important;
+.btn-secondary.active {
+	background-color: #6667ab !important;
 }
 
 .page-item:last-child .page-link {
-	border-top-right-radius: 5%!important;
-	border-bottom-right-radius: 30%!important
+	border-top-right-radius: 5% !important;
+	border-bottom-right-radius: 30% !important
 }
 
 .page-item:first-child .page-link {
-	border-top-left-radius: 30%!important;
-	border-bottom-left-radius: 5%!important;
+	border-top-left-radius: 30% !important;
+	border-bottom-left-radius: 5% !important;
 }
