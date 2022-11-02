@@ -676,3 +676,7 @@ footer:after {
 #primary.bg-dark {
 	background-color: #6667ab !important;
 }
+
+.dropdown-menu {
+	background-color: #6667ab !important;
+}
