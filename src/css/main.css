@@ -88,11 +88,7 @@ a:hover {
 	opacity: 1;
 }
 
-a.dropdown-item.text-light:hover {
-	color: #e0e1ee !important;
-}
-
-.dropdown-item:focus, .dropdown-item:hover {
+a.dropdown-item:focus, a.dropdown-item:hover {
 	color: #b73275 !important;
 }
 
