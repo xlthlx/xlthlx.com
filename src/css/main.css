@@ -680,3 +680,12 @@ footer:after {
 .dropdown-menu {
 	background-color: #6667ab !important;
 }
+
+.btn-50 {
+	padding: 5px 10px;
+	font-size: 1.3rem;
+	max-width: 50px;
+	min-width: 50px;
+	max-height: 50px;
+	text-align: center;
+}
