@@ -81,10 +81,10 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				foreach ( array_reverse( $parents ) as $cat ) {
 					$position ++;
 					echo xlt_get_link(
-						$args, 
+						$args,
 						get_category_link( $cat ),
-						get_cat_name( $cat ), 
-						$position 
+						get_cat_name( $cat ),
+						$position
 					);
 				}
 				if ( get_query_var( 'paged' ) ) {
@@ -92,32 +92,32 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 					echo xlt_get_link(
 						$args,
 						get_category_link( get_query_var( 'cat' ) ),
-						get_cat_name( get_query_var( 'cat' ) ), 
-						$position 
+						get_cat_name( get_query_var( 'cat' ) ),
+						$position
 					);
 					echo $args['before'] . sprintf(
 						$args['text']['page'],
-						get_query_var( 'paged' ) 
+						get_query_var( 'paged' )
 					);
 
 				} else {
 					$position ++;
 					echo $args['before_active'] . sprintf(
 						$args['active'],
-						get_permalink(), 
+						get_permalink(),
 						sprintf(
 							$args['name'],
 							sprintf(
 								$args['text']['category'],
 								single_cat_title(
 									'',
-									false 
-								) 
-							) 
-						) 
+									false
+								)
+							)
+						)
 					) . sprintf(
 						$args['position'],
-						$position 
+						$position
 					);
 				}
 			} elseif ( is_search() ) {
@@ -128,11 +128,11 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 						$args,
 						$home_url . '?s=' . get_search_query(),
 						sprintf( $args['text']['search'], get_search_query() ),
-						$position 
+						$position
 					);
 					echo $args['before'] . sprintf(
 						$args['text']['page'],
-						get_query_var( 'paged' ) 
+						get_query_var( 'paged' )
 					);
 
 				} else {
@@ -140,14 +140,14 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 					$position ++;
 					echo $args['before_active'] . sprintf(
 						$args['active'],
-						get_permalink(), 
+						get_permalink(),
 						sprintf(
 							$args['text']['search'],
-							get_search_query() 
-						) 
+							get_search_query()
+						)
 					) . sprintf(
 						$args['position'],
-						$position 
+						$position
 					);
 
 
@@ -158,10 +158,10 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				echo $args['before_active'] . sprintf(
 					$args['active'],
 					get_permalink(),
-					get_the_time( 'Y' ) 
+					get_the_time( 'Y' )
 				) . sprintf(
 					$args['position'],
-					$position 
+					$position
 				);
 
 
@@ -174,20 +174,20 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 				$position ++;
 				echo xlt_get_link(
-					$args, 
+					$args,
 					get_year_link( get_the_time( 'Y' ) ),
-					get_the_time( 'Y' ), 
-					$position 
+					get_the_time( 'Y' ),
+					$position
 				);
 
 				$position ++;
 				echo $args['before_active'] . sprintf(
 					$args['active'],
 					get_permalink(),
-					$month 
+					$month
 				) . sprintf(
 					$args['position'],
-					$position 
+					$position
 				);
 
 			} elseif ( is_day() ) {
@@ -199,18 +199,18 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 				$position ++;
 				echo xlt_get_link(
-					$args, 
+					$args,
 					get_year_link( get_the_time( 'Y' ) ),
-					get_the_time( 'Y' ), 
-					$position 
+					get_the_time( 'Y' ),
+					$position
 				);
 
 				$position ++;
 				echo xlt_get_link(
 					$args,
 					get_month_link( get_the_time( 'Y' ), get_the_time( 'm' ) ),
-					$month, 
-					$position 
+					$month,
+					$position
 				);
 
 
@@ -218,10 +218,10 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				echo $args['before_active'] . sprintf(
 					$args['active'],
 					get_permalink(),
-					get_the_time( 'd' ) 
+					get_the_time( 'd' )
 				) . sprintf(
 					$args['position'],
-					$position 
+					$position
 				);
 
 			} elseif ( is_single() && ! is_attachment() ) {
@@ -231,17 +231,17 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 					echo xlt_get_link(
 						$args,
 						get_post_type_archive_link( $post_type->name ),
-						$post_type->labels->name, 
-						$position 
+						$post_type->labels->name,
+						$position
 					);
 					$position ++;
 					$args['before_active'] . sprintf(
 						$args['active'],
-						get_permalink(), 
-						$title 
+						get_permalink(),
+						$title
 					) . sprintf(
 						$args['position'],
-						$position 
+						$position
 					);
 
 				} else {
@@ -253,20 +253,20 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 					foreach ( $parents as $cat ) {
 						$position ++;
 						echo xlt_get_link(
-							$args, 
+							$args,
 							get_category_link( $cat ),
-							get_cat_name( $cat ), 
-							$position 
+							get_cat_name( $cat ),
+							$position
 						);
 					}
 
 					if ( get_query_var( 'cpage' ) ) {
 						$position ++;
 						echo xlt_get_link(
-							$args, 
-							get_permalink(), 
+							$args,
+							get_permalink(),
 							$title,
-							$position 
+							$position
 						);
 
 						$position ++;
@@ -275,25 +275,25 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 							get_permalink(),
 							sprintf(
 								$args['text']['cpage'],
-								get_query_var( 'cpage' ) 
-							) 
+								get_query_var( 'cpage' )
+							)
 						) . sprintf(
 							$args['position'],
-							$position 
+							$position
 						);
 
 					} else {
 						$position ++;
 						echo $args['before_active'] . sprintf(
 							$args['active'],
-							get_permalink(), 
+							get_permalink(),
 							sprintf(
 								$args['name'],
-								$title 
-							) 
+								$title
+							)
 						) . sprintf(
 							$args['position'],
-							$position 
+							$position
 						);
 
 					}
@@ -306,21 +306,21 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 					echo xlt_get_link(
 						$args,
 						get_post_type_archive_link( $post_type->name ),
-						$post_type->label, 
-						$position 
+						$post_type->label,
+						$position
 					);
 
 					$position ++;
 					echo $args['before_active'] . sprintf(
 						$args['active'],
-						get_permalink(), 
+						get_permalink(),
 						sprintf(
 							$args['text']['page'],
-							get_query_var( 'paged' ) 
-						) 
+							get_query_var( 'paged' )
+						)
 					) . sprintf(
 						$args['position'],
-						$position 
+						$position
 					);
 				} else {
 
@@ -328,13 +328,13 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 					echo $args['before_active'] . sprintf(
 						$args['active'],
 						get_permalink(),
-						$post_type->label 
+						$post_type->label
 					) . sprintf(
 						$args['position'],
-						$position 
+						$position
 					);
 
-				}           
+				}
 			} elseif ( is_attachment() ) {
 				$parent    = get_post( $parent_id );
 				$cat       = get_the_category( $parent->ID );
@@ -342,36 +342,36 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				$parents   = array_reverse(
 					get_ancestors(
 						$catID,
-						'category' 
-					) 
+						'category'
+					)
 				);
 				$parents[] = $catID;
 				foreach ( $parents as $cat ) {
 					$position ++;
 					echo xlt_get_link(
-						$args, 
+						$args,
 						get_category_link( $cat ),
-						get_cat_name( $cat ), 
-						$position 
+						get_cat_name( $cat ),
+						$position
 					);
 				}
 
 				$position ++;
 				echo xlt_get_link(
-					$args, 
+					$args,
 					get_permalink( $parent ),
-					$parent->post_title, 
-					$position 
+					$parent->post_title,
+					$position
 				);
 
 				$position ++;
 				echo $args['before_active'] . sprintf(
 					$args['active'],
-					get_permalink(), 
-					$title 
+					get_permalink(),
+					$title
 				) . sprintf(
 					$args['position'],
-					$position 
+					$position
 				);
 
 			} elseif ( ! $parent_id && is_page() ) {
@@ -379,11 +379,11 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				$position ++;
 				echo $args['before_active'] . sprintf(
 					$args['active'],
-					get_permalink(), 
-					$title 
+					get_permalink(),
+					$title
 				) . sprintf(
 					$args['position'],
-					$position 
+					$position
 				);
 
 
@@ -392,21 +392,21 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				foreach ( array_reverse( $parents ) as $pageID ) {
 					$position ++;
 					echo xlt_get_link(
-						$args, 
+						$args,
 						get_page_link( $pageID ),
-						get_the_title( $pageID ), 
-						$position 
+						get_the_title( $pageID ),
+						$position
 					);
 				}
 
 				$position ++;
 				echo $args['before_active'] . sprintf(
 					$args['active'],
-					get_permalink(), 
-					$title 
+					get_permalink(),
+					$title
 				) . sprintf(
 					$args['position'],
-					$position 
+					$position
 				);
 
 			} elseif ( is_tag() ) {
@@ -414,40 +414,40 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 					$position ++;
 					$tagID = get_query_var( 'tag_id' );
 					echo xlt_get_link(
-						$args, 
+						$args,
 						get_tag_link( $tagID ),
-						single_tag_title( '', false ), 
-						$position 
+						single_tag_title( '', false ),
+						$position
 					);
 
 					$position ++;
 					echo $args['before_active'] . sprintf(
 						$args['active'],
-						get_permalink(), 
+						get_permalink(),
 						sprintf(
 							$args['text']['page'],
-							get_query_var( 'paged' ) 
-						) 
+							get_query_var( 'paged' )
+						)
 					) . sprintf(
 						$args['position'],
-						$position 
+						$position
 					);
 				} else {
 
 					$position ++;
 					echo $args['before_active'] . sprintf(
 						$args['active'],
-						get_permalink(), 
+						get_permalink(),
 						sprintf(
 							$args['text']['tag'],
 							single_tag_title(
 								'',
-								false 
-							) 
-						) 
+								false
+							)
+						)
 					) . sprintf(
 						$args['position'],
-						$position 
+						$position
 					);
 
 				}
@@ -461,22 +461,22 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 						get_author_posts_url( $author->ID ),
 						sprintf(
 							$args['text']['author'],
-							$author->display_name 
-						), 
-						$position 
+							$author->display_name
+						),
+						$position
 					);
 
 					$position ++;
 					echo $args['before_active'] . sprintf(
 						$args['active'],
-						get_permalink(), 
+						get_permalink(),
 						sprintf(
 							$args['text']['page'],
-							get_query_var( 'paged' ) 
-						) 
+							get_query_var( 'paged' )
+						)
 					) . sprintf(
 						$args['position'],
-						$position 
+						$position
 					);
 
 				} else {
@@ -484,14 +484,14 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 					$position ++;
 					echo $args['before_active'] . sprintf(
 						$args['active'],
-						get_permalink(), 
+						get_permalink(),
 						sprintf(
 							$args['text']['author'],
-							$author->display_name 
-						) 
+							$author->display_name
+						)
 					) . sprintf(
 						$args['position'],
-						$position 
+						$position
 					);
 
 				}
@@ -501,10 +501,10 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				echo $args['before_active'] . sprintf(
 					$args['active'],
 					get_permalink(),
-					$args['text']['404'] 
+					$args['text']['404']
 				) . sprintf(
 					$args['position'],
-					$position 
+					$position
 				);
 
 			} elseif ( has_post_format() && ! is_singular() ) {
@@ -636,7 +636,7 @@ if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 
 		$post_categories = wp_get_post_categories(
 			$post_id,
-			array( 'fields' => 'slugs' ) 
+			array( 'fields' => 'slugs' )
 		);
 
 		$cats = array(
@@ -779,14 +779,14 @@ if ( ! function_exists( 'xlt_get_sticky_img' ) ) {
 	 */
 	function xlt_get_sticky_img( $id, $alt ) {
 		return wp_get_attachment_image(
-			$id, 
-			array( '437', '225' ), 
+			$id,
+			array( '437', '225' ),
 			false,
 			array(
-				'class'   => 'img-fluid grey_img', 
-				'alt'     => $alt, 
+				'class'   => 'img-fluid grey_img',
+				'alt'     => $alt,
 				'loading' => false,
-			) 
+			)
 		);
 	}
 }
@@ -849,7 +849,7 @@ if ( ! function_exists( 'xlt_get_menu_items' ) ) {
 					}
 					$i ++;
 				}
-			}       
+			}
 		} else {
 			$menu_list[] = '';
 		}
@@ -979,17 +979,17 @@ if ( ! function_exists( 'xlt_pagination' ) ) {
 
 			if ( 1 < (int) $paged ) {
 				$return .= '<li class="page-item">' . "\n";
-				$return .= '<a href="' . esc_url( get_pagenum_link() ) . '" class="page-link" title="' . $first . '">&laquo;</a>' . "\n";
+				$return .= '<a href="' . esc_url( get_pagenum_link() ) . '" class="page-link btn-50" title="' . $first . '">&laquo;</a>' . "\n";
 				$return .= '</li>' . "\n";
 			}
 
 			$return .= '<li class="page-item">' . "\n";
-			$return .= str_replace( '<a href="', '<a class="page-link" title="' . $previous . '" href="', get_previous_posts_link( '&lsaquo;' ) );
+			$return .= str_replace( '<a href="', '<a class="page-link btn-50" title="' . $previous . '" href="', get_previous_posts_link( '&lsaquo;' ) );
 			$return .= '</li>' . "\n";
 
 			if ( (int) $start_page >= 2 && $pages_to_show < $max_page ) {
 				$return .= '<li class="page-item">' . "\n";
-				$return .= '<a href="' . esc_url( get_pagenum_link() ) . '" class="page-link" title="1">1</a>' . "\n";
+				$return .= '<a href="' . esc_url( get_pagenum_link() ) . '" class="page-link btn-50" title="1">1</a>' . "\n";
 				$return .= '</li>' . "\n";
 				$return .= '<li class="page-item active" aria-current="page">
 					<span class="page-link dots">...<span class="visually-hidden">(current)</span></span>
@@ -999,11 +999,11 @@ if ( ! function_exists( 'xlt_pagination' ) ) {
 			for ( $i = $start_page; $i <= $end_page; $i ++ ) {
 				if ( (int) $i === (int) $paged ) {
 					$return .= '<li class="page-item active" aria-current="page">
-						<span class="page-link page-number page-numbers current">' . number_format_i18n( $i ) . ' <span class="visually-hidden">(current)</span></span>
+						<span class="page-link page-number page-numbers current btn-50">' . number_format_i18n( $i ) . ' <span class="visually-hidden">(current)</span></span>
 					</li>';
 				} else {
 					$return .= '<li class="page-item">' . "\n";
-					$return .= '<a href="' . esc_url( get_pagenum_link( $i ) ) . '" class="page-link" title="' . number_format_i18n( $i ) . '">' . number_format_i18n( $i ) . '</a>';
+					$return .= '<a href="' . esc_url( get_pagenum_link( $i ) ) . '" class="page-link btn-50" title="' . number_format_i18n( $i ) . '">' . number_format_i18n( $i ) . '</a>';
 					$return .= '</li>' . "\n";
 				}
 			}
@@ -1013,17 +1013,17 @@ if ( ! function_exists( 'xlt_pagination' ) ) {
 							<span class="page-link dots">...<span class="visually-hidden">(current)</span></span>
 						  </li>';
 				$return .= '<li class="page-item">' . "\n";
-				$return .= '<a href="' . esc_url( get_pagenum_link( $max_page ) ) . '" class="page-link" title="' . $max_page . '">' . $max_page . '</a>';
+				$return .= '<a href="' . esc_url( get_pagenum_link( $max_page ) ) . '" class="page-link btn-50" title="' . $max_page . '">' . $max_page . '</a>';
 				$return .= '</li>' . "\n";
 			}
 
 			$return .= '<li class="page-item">' . "\n";
-			$return .= str_replace( '<a href="', '<a class="page-link" title="' . $next . '" href="', get_next_posts_link( '&rsaquo;', $max_page ) );
+			$return .= str_replace( '<a href="', '<a class="page-link btn-50" title="' . $next . '" href="', get_next_posts_link( '&rsaquo;', $max_page ) );
 			$return .= '</li>' . "\n";
 
 			if ( (int) $max_page > (int) $paged ) {
 				$return .= '<li class="page-item">' . "\n";
-				$return .= '<a href="' . esc_url( get_pagenum_link( $max_page ) ) . '" class="page-link" title="' . $last . '">&raquo;</a>';
+				$return .= '<a href="' . esc_url( get_pagenum_link( $max_page ) ) . '" class="page-link btn-50" title="' . $last . '">&raquo;</a>';
 				$return .= '</li>' . "\n";
 			}
 			$return .= '</ul>' . "\n";
@@ -1133,7 +1133,7 @@ if ( ! function_exists( 'xlt_get_months' ) ) {
 				$array[] = '<li><span class="text-black">' . $month_name . '</span></li>';
 			} else {
 				$array[] = '<li><a href="' . home_url( '/' ) . $year . '/' . $l_month . $url . '">' . $month_name . '</a></li>';
-			}       
+			}
 		}
 
 		echo implode( ' ', $array );

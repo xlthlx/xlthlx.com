@@ -678,7 +678,6 @@ footer:after {
 }
 
 .dropdown-menu {
-	border-radius: 30% 5%!important;
 	background-color: #6667ab !important;
 }
 
@@ -706,4 +705,14 @@ footer:after {
 
 .btn-secondary.active {
 	color: #b73275;
+}
+
+.page-item:last-child .page-link {
+	border-top-right-radius: 5%!important;
+	border-bottom-right-radius: 30%!important
+}
+
+.page-item:first-child .page-link {
+	border-top-left-radius: 30%!important;
+	border-bottom-left-radius: 5%!important;
 }

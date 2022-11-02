@@ -192,6 +192,9 @@ body.dark-theme .btn-secondary.active {
 }
 
 body.dark-theme .dropdown-menu {
-	border-radius: 30% 5%!important;
 	background-color: #333456!important;
+}
+
+.btn-outline-secondary .dark-mode{
+	color: #fff!important;
 }
