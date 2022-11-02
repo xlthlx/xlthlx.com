@@ -42,10 +42,6 @@ a:hover {
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-/*main {*/
-/*	margin-top: 90px;*/
-/*}*/
-
 .breadcrumb-item.active {
 	padding-top: 1px;
 }
@@ -669,10 +665,6 @@ footer:after {
 	margin-left: 5px;
 }
 
-.dark-mode {
-	margin-top: -5px;
-}
-
 .wp-block-image .aligncenter, .wp-block-image .alignleft, .wp-block-image .alignright, .wp-block-image.aligncenter, .wp-block-image.alignleft, .wp-block-image.alignright {
 	display: block !important;
 }
@@ -734,4 +726,8 @@ footer:after {
 
 #btn-toggle:focus {
 	box-shadow: none;
+}
+
+.bg-dark {
+	background-color: #6667ab;
 }
