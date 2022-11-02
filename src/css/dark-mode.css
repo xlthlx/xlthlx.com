@@ -63,11 +63,11 @@ body.dark-theme .widget a:hover {
 	text-decoration: underline;
 }
 
-body.dark-theme #primary-nav {
+body.dark-theme #primary {
 	background-color: #333456 !important;
 }
 
-body.dark-theme #primary-nav:after {
+body.dark-theme #primary:after {
 	box-shadow: 0 0 0 120px #333456;
 }
 
