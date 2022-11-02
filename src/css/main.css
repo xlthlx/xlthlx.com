@@ -698,3 +698,11 @@ footer:after {
 .btn-dark:hover {
 	background-color: #b73275;
 }
+
+.btn-outline-secondary {
+	color: #b73275!important;
+}
+
+.btn-secondary.active {
+	color: #b73275;
+}

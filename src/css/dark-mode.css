@@ -186,3 +186,7 @@ body.dark-theme .btn-dark {
 body.dark-theme .btn-dark:hover {
 	background-color: #f1469c;
 }
+
+body.dark-theme .btn-secondary.active {
+	color: #fff;
+}
