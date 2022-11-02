@@ -703,8 +703,8 @@ footer:after {
 	color: #b73275!important;
 }
 
-.btn-secondary.active {
-	color: #b73275;
+.btn-outline-secondary.active {
+	background-color: #6667ab!important;
 }
 
 .page-item:last-child .page-link {

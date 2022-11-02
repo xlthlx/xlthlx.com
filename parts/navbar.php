@@ -12,8 +12,8 @@
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarPrimary">
-			<div class="col d-flex flex-wrap align-items-center justify-content-center py-3" id="navbarPrimary">
-				<ul class="nav col-auto mb-2 justify-content-center">
+			<div class="col d-flex flex-wrap align-items-lg-center justify-content-lg-center py-lg-3" id="navbarPrimary">
+				<ul class="nav col-auto mb-2 mb-lg-0 justify-content-lg-center">
 					<?php
 					$menu_items = xlt_get_menu_items( 'primary' );
 					foreach ( $menu_items as $menu_item ) {
@@ -48,7 +48,7 @@
 				</ul>
 
 			</div>
-			<div class="col d-flex flex-wrap align-items-end justify-content-end text-end">
+			<div class="col d-flex flex-wrap align-items-lg-end justify-content-lg-end text-lg-end pb-3 pb-lg-0">
 
 				<a href="<?php echo $site_url; ?>mode/" title="Dark mode" id="btn-toggle" class="btn btn-outline-secondary lang pink-hover">
 					<svg class="dark-mode" aria-label="Dark mode" role="img" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">

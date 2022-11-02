@@ -198,3 +198,7 @@ body.dark-theme .dropdown-menu {
 .btn-outline-secondary .dark-mode{
 	color: #fff!important;
 }
+
+body.dark-theme .btn-outline-secondary.active {
+	background-color: #333456!important;
+}
