@@ -194,6 +194,7 @@ body.dark-theme .btn-dark:hover {
 
 body.dark-theme .btn-secondary.active {
 	color: #fff;
+	background-color: #333456!important;
 }
 
 body.dark-theme .dropdown-menu {
