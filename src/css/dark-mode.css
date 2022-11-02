@@ -183,6 +183,6 @@ body.dark-theme .btn-dark {
 	background-color: #2b2c49;
 }
 
-.btn-dark:hover {
+body.dark-theme .btn-dark:hover {
 	background-color: #f1469c;
 }
