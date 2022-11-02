@@ -678,6 +678,7 @@ footer:after {
 }
 
 .dropdown-menu {
+	border-radius: 30% 5%!important;
 	background-color: #6667ab !important;
 }
 

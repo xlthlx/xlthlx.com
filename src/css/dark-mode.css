@@ -190,3 +190,8 @@ body.dark-theme .btn-dark:hover {
 body.dark-theme .btn-secondary.active {
 	color: #fff;
 }
+
+body.dark-theme .dropdown-menu {
+	border-radius: 30% 5%!important;
+	background-color: #333456!important;
+}
