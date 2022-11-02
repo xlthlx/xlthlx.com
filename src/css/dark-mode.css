@@ -177,3 +177,12 @@ body.dark-theme #primary a.nav-link, body.dark-theme #primary a.nav-link:hover, 
 body.dark-theme footer a:hover, body.dark-theme footer a:focus {
 	text-decoration: none !important;
 }
+
+body.dark-theme .btn-dark {
+	color: #fff;
+	background-color: #2b2c49;
+}
+
+.btn-dark:hover {
+	background-color: #f1469c;
+}

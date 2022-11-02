@@ -689,3 +689,12 @@ footer:after {
 	max-height: 50px;
 	text-align: center;
 }
+
+.btn-dark {
+	color: #fff;
+	background-color: #333456;
+}
+
+.btn-dark:hover {
+	background-color: #b73275;
+}
