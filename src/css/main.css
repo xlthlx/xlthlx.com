@@ -701,6 +701,8 @@ footer:after {
 
 .btn-outline-secondary {
 	color: #b73275 !important;
+	border: 2px dashed #b73275 !important;
+	margin-left: 5px;
 }
 
 .btn-secondary.active {

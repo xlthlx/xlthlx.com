@@ -52,8 +52,8 @@ body.dark-theme a.text-dark, body.dark-theme h2.text-dark {
 }
 
 body.dark-theme a.text-dark:hover {
-	color: #FFFFFF!important;
-	text-decoration-color: #FFFFFF!important;
+	color: #FFFFFF !important;
+	text-decoration-color: #FFFFFF !important;
 }
 
 body.dark-theme .widget a {
@@ -167,7 +167,8 @@ body.dark-theme a.arrow:hover {
 }
 
 body.dark-theme .btn-outline-secondary {
-	color: white !important;
+	color: #FFFFFF !important;
+	border: 2px dashed #FFFFFF !important;
 }
 
 body.dark-theme #primary a.nav-link, body.dark-theme #primary a.nav-link:hover, body.dark-theme #primary a.nav-link:focus {
@@ -190,13 +191,13 @@ body.dark-theme .btn-dark:hover {
 
 body.dark-theme .btn-secondary.active {
 	color: #fff;
-	background-color: #333456!important;
+	background-color: #333456 !important;
 }
 
 body.dark-theme .dropdown-menu {
-	background-color: #333456!important;
+	background-color: #333456 !important;
 }
 
 body.dark-theme .btn-outline-secondary.active {
-	background-color: #333456!important;
+	background-color: #333456 !important;
 }
