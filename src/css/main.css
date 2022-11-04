@@ -716,3 +716,7 @@ footer:after {
 	border-top-left-radius: 30% !important;
 	border-bottom-left-radius: 5% !important;
 }
+
+.nav-item {
+	margin-right: 1.5rem;
+}
