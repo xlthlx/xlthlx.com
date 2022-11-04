@@ -13,7 +13,7 @@
 
 		<div class="collapse navbar-collapse" id="navbarPrimary">
 			<div class="col d-flex flex-wrap align-items-lg-center justify-content-lg-center py-lg-3" id="navbarPrimary">
-				<ul class="nav col-auto mb-2 mb-lg-0 justify-content-lg-center">
+				<ul class="nav navbar-nav navbar-nav-scroll col-auto mb-2 mb-lg-0 justify-content-lg-center">
 					<?php
 					$menu_items = xlt_get_menu_items( 'primary' );
 					foreach ( $menu_items as $menu_item ) {
@@ -49,13 +49,6 @@
 
 			</div>
 			<div class="col d-flex flex-wrap align-items-lg-end justify-content-lg-end text-lg-end pb-3 pb-lg-0">
-
-				<a href="<?php echo $site_url; ?>mode/" title="Dark mode" id="btn-toggle" class="btn btn-outline-secondary lang pink-hover">
-					<svg class="dark-mode" aria-label="Dark mode" role="img" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-						<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-					</svg>
-				</a>
-
 				<?php get_template_part( 'parts/search-form' ); ?>
 			</div>
 		</div>
