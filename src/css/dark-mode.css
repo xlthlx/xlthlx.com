@@ -145,6 +145,7 @@ body.dark-theme .pagination .page-link.dots {
 body.dark-theme h1#logo a:hover, body.dark-theme .dropdown-item a, body.dark-theme .btn-outline-secondary:hover {
 	color: #FFFFFF !important;
 	text-decoration: none !important;
+	border: 2px solid transparent !important;
 }
 
 body.dark-theme .dropdown-item:focus, body.dark-theme .dropdown-item:hover {
