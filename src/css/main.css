@@ -229,6 +229,7 @@ iframe {
 	max-height: 50px;
 	text-align: center;
 	border: 1px solid transparent !important;
+	margin-right: 7px;
 }
 
 .navbar-toggler {
@@ -666,7 +667,6 @@ footer:after {
 #btn-toggle {
 	color: white;
 	padding-top: 2px;
-	margin-right: 5px;
 }
 
 #btn-toggle:focus {
@@ -702,7 +702,6 @@ footer:after {
 .btn-outline-secondary {
 	color: #b73275 !important;
 	border: 2px dashed #b73275 !important;
-	margin-left: 7px;
 }
 
 .btn-secondary.active {
