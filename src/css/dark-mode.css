@@ -202,3 +202,12 @@ body.dark-theme .dropdown-menu {
 body.dark-theme .btn-outline-secondary.active {
 	background-color: #333456 !important;
 }
+
+body.dark-theme a.bmc-btn:hover {
+	color: #FFFFFF !important;
+	text-decoration: none !important;
+}
+
+body.dark-theme .logo-outline {
+	fill: #FFFFFF !important;
+}

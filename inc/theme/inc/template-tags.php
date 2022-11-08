@@ -1142,19 +1142,13 @@ if ( ! function_exists( 'xlt_get_months' ) ) {
 
 if ( ! function_exists( 'xlt_print_svg' ) ) {
 	/**
-	 * @param $svg
+	 * @param string $svg
 	 *
-	 * @return false|string
+	 * @return string
 	 */
 	function xlt_print_svg( $svg ) {
 		$file    = get_template_directory() . $svg;
-		$content = xlt_get_file_content( $file );
-
-		if ( '' === $content ) {
-			return $content;
-		} else {
-			return false;
-		}
+		return xlt_get_file_content( $file );
 	}
 }
 

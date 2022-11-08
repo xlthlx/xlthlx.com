@@ -733,11 +733,6 @@ footer:after {
 	display: inline !important;
 }
 
-body.dark-theme a.bmc-btn:hover {
-	color: #FFFFFF !important;
-	text-decoration: none !important;
-}
-
 .bmc-btn-text {
 	margin-left: 8px;
 	font-weight: bold !important;
@@ -745,7 +740,7 @@ body.dark-theme a.bmc-btn:hover {
 }
 
 .logo-outline {
-	fill: #000000;
+	fill: #000000 !important;
 }
 
 .logo-coffee {
