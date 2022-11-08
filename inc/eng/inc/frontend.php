@@ -137,6 +137,7 @@ function get_content_en( $post_id = 0 ) {
 					'core/heading',
 					'core/html',
 					'core/list',
+					'core/list-item',
 					'core/paragraph',
 					'core/pullquote',
 					'core/quote',
