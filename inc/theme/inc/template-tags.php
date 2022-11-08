@@ -1152,9 +1152,9 @@ if ( ! function_exists( 'xlt_print_svg' ) ) {
 
 		if ( '' === $content ) {
 			return $content;
+		} else {
+			return false;
 		}
-
-		return false;
 	}
 }
 

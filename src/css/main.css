@@ -733,7 +733,7 @@ footer:after {
 	display: inline !important;
 }
 
-a.bmc-btn:hover {
+body.dark-theme a.bmc-btn:hover {
 	color: #FFFFFF !important;
 	text-decoration: none !important;
 }
