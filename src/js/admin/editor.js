@@ -74,7 +74,7 @@ wp.domReady(() => {
 	 * Remove blocks included in blacklist.
 	 */
 	for (let i = 0, len = restrictedBlocks.length; i < len; i++) {
-		wp.blocks.unregisterBlockType(restrictedBlocks[i])
+		//wp.blocks.unregisterBlockType(restrictedBlocks[i])
 	}
 	;
 
