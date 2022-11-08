@@ -721,3 +721,33 @@ footer:after {
 .nav-item {
 	margin-right: 1.5rem;
 }
+
+/** Buy me a coffee **/
+
+.bmc-btn svg {
+	height: 32px !important;
+	vertical-align: middle !important;
+}
+
+.bmc-btn {
+	display: inline !important;
+}
+
+a.bmc-btn:hover {
+	color: #FFFFFF !important;
+	text-decoration: none !important;
+}
+
+.bmc-btn-text {
+	margin-left: 8px;
+	font-weight: bold !important;
+	vertical-align: bottom !important;
+}
+
+.logo-outline {
+	fill: #000000;
+}
+
+.logo-coffee {
+	fill: #FFDD00;
+}
