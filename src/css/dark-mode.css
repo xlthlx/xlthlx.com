@@ -215,6 +215,6 @@ body.dark-theme .logo-outline {
 	fill: #FFFFFF !important;
 }
 
-body.dark-theme .three-columns ul li a {
-	color: #e5e5e5;
+body.dark-theme ul.three-columns li a {
+	color: #e5e5e5 !important;
 }
