@@ -26,7 +26,7 @@ $wp_query = new WP_Query( $args );
 
 if ( $first_post_query && 1 === $paged ) {
 	?>
-	<div class="dots my-4 px-4 py-5">
+	<div class="dots mt-5 mb-4 p-4">
 
 		<?php
 		foreach ( $first_post_query as $post ) {
