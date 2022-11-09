@@ -750,3 +750,9 @@ a.bmc-btn:hover {
 .logo-coffee {
 	fill: #FFDD00;
 }
+
+.two-columns {
+	columns: 2;
+	-webkit-columns: 2;
+	-moz-columns: 2;
+}
