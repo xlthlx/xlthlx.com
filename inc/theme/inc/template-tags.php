@@ -1146,9 +1146,83 @@ if ( ! function_exists( 'xlt_print_svg' ) ) {
 	 *
 	 * @return string
 	 */
-	function xlt_print_svg( $svg ) {
+	function xlt_print_svg( $svg ): string {
 		$file    = get_template_directory() . $svg;
 		return xlt_get_file_content( $file );
+	}
+}
+
+if ( ! function_exists( 'xlt_get_related' ) ) {
+	/**
+	 * @param $post
+	 *
+	 * @return string
+	 */
+	function xlt_get_related( $post ): string {
+		$related_links = '';
+		global $lang;
+
+		$num_posts = 6;
+		$count     = 0;
+		$postIDs   = [ $post->ID ];
+		$related   = '';
+		$cats      = wp_get_post_categories( $post->ID );
+
+		if ( $count <= ( $num_posts - 1 ) ) {
+
+			$catIDs = [];
+			foreach ( $cats as $cat ) {
+				$catIDs[] = $cat;
+			}
+
+			$show_posts = $num_posts - $count;
+
+			$args = [
+				'category__in'        => $catIDs,
+				'post__not_in'        => $postIDs,
+				'showposts'           => $show_posts,
+				'ignore_sticky_posts' => 1,
+				'orderby'             => 'rand',
+				'tax_query'           => [
+					[
+						'taxonomy' => 'post_format',
+						'field'    => 'slug',
+						'terms'    => [
+							'post-format-link',
+							'post-format-status',
+							'post-format-aside',
+							'post-format-quote',
+						],
+						'operator' => 'NOT IN',
+					],
+				],
+			];
+
+			$cat_query = new WP_Query( $args );
+
+			if ( $cat_query->have_posts() ) {
+
+				while ( $cat_query->have_posts() ) {
+
+					$cat_query->the_post();
+
+					$title = ( 'en' === $lang ) ? get_title_en() : get_the_title();
+					$link  = ( 'en' === $lang ) ? get_permalink() . 'en/' : get_permalink();
+					$more  = ( 'en' === $lang ) ? "Keep reading: '" : "Continua a leggere: '";
+
+					$related .= '<li><a href="' . $link . '" rel="bookmark" title="' . $more . $title . '">' . $title . '</a></li>';
+				}
+			}
+		}
+
+		if ( $related ) {
+
+			$related_links = '<ul class="two-columns">' . $related . '</ul>';
+		}
+
+		wp_reset_query();
+
+		return $related_links;
 	}
 }
 
