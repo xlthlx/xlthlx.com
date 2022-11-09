@@ -458,10 +458,6 @@ iframe {
 	border: 2px dashed #6667ab;
 }
 
-#s {
-	border: 2px dashed #333456;
-}
-
 hr {
 	height: initial !important;
 	margin: initial !important;
@@ -751,14 +747,14 @@ a.bmc-btn:hover {
 }
 
 .dots {
-	border-width: 2px 0 2px 0!important;
-	border-style: dashed!important;
-	border-color: #e0e1ee!important;
+	border-width: 2px 0 2px 0 !important;
+	border-style: dashed !important;
+	border-color: #e0e1ee !important;
 }
 
 @media (min-width: 1200px) {
 	.main-spacing {
-		padding-right: 2.8rem!important;
-		padding-left: 2.8rem!important;
+		padding-right: 2.8rem !important;
+		padding-left: 2.8rem !important;
 	}
 }
