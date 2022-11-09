@@ -5,7 +5,7 @@ if ( 'en' === $lang ) {
 	$more = "Keep reading: '";
 }
 ?>
-<div class="row g-0 rounded-0 overflow-hidden flex-lg-row flex-column-reverse mb-4 p-5">
+<div class="row g-0 rounded-0 overflow-hidden flex-lg-row flex-column-reverse">
 	<div class="col d-flex flex-column position-static">
 		<h2 class="display-4 font-italic shadows">
 			<a class="text-dark" href="<?php echo get_the_permalink(); ?>"
@@ -22,7 +22,7 @@ if ( 'en' === $lang ) {
 			</a></p>
 	</div>
 	<div class="col-auto d-flex pb-md-0 pb-3">
-		<?php 
+		<?php
 		if ( get_post_thumbnail_id( $post ) ) {
 			echo xlt_get_sticky_img( get_post_thumbnail_id( $post ), get_the_title() );
 		}

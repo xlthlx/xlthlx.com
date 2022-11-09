@@ -15,8 +15,8 @@ while ( have_posts() ) :
 
 	<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
 
-		<div class="row flex-row-reverse">
-			<div class="col-md-8">
+		<div class="row">
+			<div class="col-md-9">
 
 				<div class="row">
 
@@ -31,7 +31,7 @@ while ( have_posts() ) :
 							<hr class="pt-0 mt-0 mb-2"/>
 							<p class="mb-0"><?php echo ( 'en' === $lang ) ? get_date_en() : get_the_date(); ?></p>
 
-							<div class="article-body pr-4">
+							<div class="article-body">
 								<?php echo xlt_old_posts_warning( $lang ); ?>
 								<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content',get_the_content() ); ?>
 							</div>
@@ -48,9 +48,9 @@ while ( have_posts() ) :
 
 						<?php comments_template(); ?>
 
-						<section id="related">
-							<div class="p-2 mb-4 rounded-0">
-								<h3 class="h2 pb-2 shadows"><?php echo ( 'en' === $lang ) ? 'Related articles' : 'Articoli correlati'; ?></h3>
+						<section id="related dots">
+							<div class="p-2 my-4">
+								<h3 class="pb-2"><?php echo ( 'en' === $lang ) ? 'Related articles' : 'Articoli correlati'; ?></h3>
 								<?php echo xlt_get_related( $post ); ?>
 							</div>
 					</section>

@@ -53,8 +53,8 @@ a:hover {
 	margin-top: 0 !important;
 }
 
-.widget_grey, .widget_pages {
-	background-color: #e0e1ee !important;
+.widget {
+	border-top: 2px dashed #e0e1ee;
 }
 
 .page-link {
@@ -144,11 +144,6 @@ ol.breadcrumb {
 
 .grey_img {
 	border-radius: 0 25% !important;
-}
-
-.widget, .grey_box {
-	border-radius: 0 25% 0 18% !important;
-	padding: 40px 50px 55px 50px !important;
 }
 
 .grey-sticky {
@@ -444,10 +439,6 @@ iframe {
 	margin: 0 10px;
 }
 
-.bg-violet {
-	background-color: #e0e1ee !important;
-}
-
 .shadows {
 	font-family: 'Shadows Into Light', cursive;
 	font-weight: 300;
@@ -459,12 +450,16 @@ iframe {
 }
 
 .box-dashed {
-	border-right: 3px dashed #e0e1ee;
-	border-left: 3px dashed #e0e1ee;
+	border-right: 2px dashed #e0e1ee;
+	border-left: 2px dashed #e0e1ee;
 }
 
 .form-control, .btn {
-	border: 3px dashed #6667ab;
+	border: 2px dashed #6667ab;
+}
+
+#s {
+	border: 2px dashed #333456;
 }
 
 hr {
@@ -473,7 +468,7 @@ hr {
 	color: inherit !important;
 	background-color: initial !important;
 	opacity: initial !important;
-	border-width: 3px 0 0 0 !important;
+	border-width: 2px 0 0 0 !important;
 	border-style: dashed !important;
 	border-color: #e0e1ee !important;
 }
@@ -529,7 +524,7 @@ footer:after {
 }
 
 .form-check-input[type=checkbox] {
-	border: 3px dashed #6667ab;
+	border: 2px dashed #6667ab;
 }
 
 .wp-block-image {
@@ -556,11 +551,6 @@ footer:after {
 	.fill {
 		min-height: 38vw;
 	}
-}
-
-.widget_outline_grey {
-	border: 5px solid #e0e1ee !important;
-	background-color: white !important;
 }
 
 .kb-club a {
@@ -758,4 +748,17 @@ a.bmc-btn:hover {
 	columns: 2;
 	-webkit-columns: 2;
 	-moz-columns: 2;
+}
+
+.dots {
+	border-width: 2px 0 2px 0!important;
+	border-style: dashed!important;
+	border-color: #e0e1ee!important;
+}
+
+@media (min-width: 1200px) {
+	.main-spacing {
+		padding-right: 2.8rem!important;
+		padding-left: 2.8rem!important;
+	}
 }

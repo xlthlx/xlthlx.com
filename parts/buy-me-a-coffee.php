@@ -1,7 +1,7 @@
 <?php global $lang;
 $text = ( 'en' === $lang ) ? 'Buy me a coffee' : 'Offrimi un caffè';
 ?>
-<div id="xlthlx-bmc" class="widget widget_grey widget_block p-4 mb-4 rounded-0">
+<div id="xlthlx-bmc" class="widget p-4">
 	<div class="textwidget">
 		<ul>
 			<li>

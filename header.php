@@ -19,7 +19,7 @@ global $lang, $site_url;
 </header>
 <main class="pb-0 mb-0">
 	<a class="visually-hidden" href="#content">Skip to content</a>
-	<div class="container pb-5 px-3 px-xl-5 mb-0 box-dashed fill">
+	<div class="container pb-5 px-3 main-spacing mb-0 box-dashed fill">
 		<div class="nav pt-3 mb-3">
 			<?php if ( 'en' === $lang ) { ?>
 				<a href="<?php echo get_url_trans(); ?>" title="Italiano"

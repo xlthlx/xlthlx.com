@@ -52,7 +52,7 @@ $paged = ( get_query_var( 'paged' ) ) ?: 1;
 	<?php if ( ( is_year() || is_month() ) ) { ?>
 		<div class="col-md-4">
 			<aside class="sidebar mt-md-0 mt-4 ps-md-4 ps-0">
-				<div id="xlthlx-months" class="widget widget_grey widget_xlthlx-archive p-4 mb-4 rounded-0">
+				<div id="xlthlx-months" class="widget widget_xlthlx-archive p-4">
 					<h3 class="h2 pb-2 shadows">
 						<?php echo ( 'en' === $lang ) ? 'Months' : 'Mesi'; ?>
 					</h3>
@@ -63,7 +63,7 @@ $paged = ( get_query_var( 'paged' ) ) ?: 1;
 						</ul>
 					</div>
 				</div>
-				<div id="xlthlx-archive" class="widget widget_grey widget_xlthlx-archive p-4 mb-4 rounded-0">
+				<div id="xlthlx-archive" class="widget widget_xlthlx-archive p-4">
 					<h3 class="h2 pb-2 shadows">
 						<?php echo ( 'en' === $lang ) ? 'Years' : 'Anni'; ?>
 					</h3>
@@ -75,7 +75,7 @@ $paged = ( get_query_var( 'paged' ) ) ?: 1;
 		</div>
 	<?php } ?>
 	</div>
-	<?php 
+	<?php
 	xlt_pagination( $wp_query, $paged );
 
 } else {

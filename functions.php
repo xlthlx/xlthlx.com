@@ -26,7 +26,7 @@ function xlthlx_add_supports() {
 	add_theme_support( 'custom-spacing' );
 	add_theme_support( 'responsive-embeds' );
 	add_theme_support(
-		'html5', 
+		'html5',
 		array(
 			'comment-list',
 			'comment-form',
@@ -35,7 +35,7 @@ function xlthlx_add_supports() {
 			'caption',
 			'style',
 			'script',
-		) 
+		)
 	);
 
 	remove_theme_support( 'automatic-feed-links' );
@@ -73,11 +73,11 @@ function xlthlx_widgets_init() {
 			'name'          => esc_html__( 'Sidebar', 'xlthlx' ),
 			'id'            => 'sidebar',
 			'description'   => esc_html__( 'Sidebar', 'xlthlx' ),
-			'before_widget' => '<div id="%1$s" class="widget widget_grey %2$s p-4 mb-4 rounded-0">',
+			'before_widget' => '<div id="%1$s" class="widget %2$s p-4">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h3 class="h2 pb-2 shadows">',
 			'after_title'   => '</h3>',
-		) 
+		)
 	);
 
 	register_sidebar(
@@ -85,11 +85,11 @@ function xlthlx_widgets_init() {
 			'name'          => esc_html__( 'Page Sidebar', 'xlthlx' ),
 			'id'            => 'page_sidebar',
 			'description'   => esc_html__( 'Page Sidebar', 'xlthlx' ),
-			'before_widget' => '<div id="%1$s" class="widget widget_grey %2$s p-4 mb-4 rounded-0">',
+			'before_widget' => '<div id="%1$s" class="widget %2$s p-4">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h3 class="h2 pb-2 shadows">',
 			'after_title'   => '</h3>',
-		) 
+		)
 	);
 }
 
@@ -122,7 +122,7 @@ function enqueue_editor_scripts() {
 		get_template_directory_uri() . '/assets/js/admin/editor.min.js',
 		array( 'wp-blocks', 'wp-dom' ),
 		filemtime( get_template_directory() . '/assets/js/admin/editor.min.js' ),
-		true 
+		true
 	);
 }
 

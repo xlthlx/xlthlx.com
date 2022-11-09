@@ -27,12 +27,11 @@ body.dark-theme img {
 }
 
 body.dark-theme .widget_grey, body.dark-theme .widget_pages, body.dark-theme .bg-violet {
-	background-color: #525289 !important;
 	color: #E5E5E5;
 }
 
 body.dark-theme .widget_grey .btn, body.dark-theme .widget_grey .form-control {
-	border: 3px dashed white;
+	border: 2px dashed white;
 }
 
 .display-5 {
