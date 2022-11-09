@@ -48,7 +48,7 @@ while ( have_posts() ) :
 
 						<?php comments_template(); ?>
 
-						<section id="related dots">
+						<section id="related" class="dots">
 							<div class="p-2 my-4">
 								<h3 class="pb-2"><?php echo ( 'en' === $lang ) ? 'Related articles' : 'Articoli correlati'; ?></h3>
 								<?php echo xlt_get_related( $post ); ?>

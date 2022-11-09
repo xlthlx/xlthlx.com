@@ -737,13 +737,17 @@ a.bmc-btn:hover {
 	fill: #FFDD00;
 }
 
-.two-columns {
+.three-columns {
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	columns: 2;
-	-webkit-columns: 2;
-	-moz-columns: 2;
+	columns: 3;
+	-webkit-columns: 3;
+	-moz-columns: 3;
+}
+
+.three-columns ul li a {
+	color: #e5e5e5;
 }
 
 .dots {

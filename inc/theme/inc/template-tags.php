@@ -1217,7 +1217,7 @@ if ( ! function_exists( 'xlt_get_related' ) ) {
 
 		if ( $related ) {
 
-			$related_links = '<ul class="two-columns">' . $related . '</ul>';
+			$related_links = '<ul class="three-columns">' . $related . '</ul>';
 		}
 
 		wp_reset_query();
