@@ -174,7 +174,7 @@ class Related_Widget extends WP_Widget {
 		// Output.
 		echo $args['before_widget'];
 		// Display Title.
-		$this->widget_title( $args, $settings ); 
+		$this->widget_title( $args, $settings );
 		?>
 
 		<div class="textwidget">
@@ -227,7 +227,7 @@ class Related_Widget extends WP_Widget {
 
 			global $post;
 
-			$num_posts = 5;
+			$num_posts = 6;
 			$count     = 0;
 			$postIDs   = array( $post->ID );
 			$related   = '';
