@@ -1,5 +1,5 @@
 <?php global $lang; ?>
-<div id="xlthlx-newsletter" class="widget widget_xlthlx-newsletter px-2 pb-4">
+<div id="xlthlx-newsletter" class="widget widget_xlthlx-newsletter p-4">
 	<h3 class="h2 pb-2 shadows">Newsletter</h3>
 	<div class="textwidget">
 		<?php echo ( 'en' === $lang ) ? 'Do you want to receive an email when a new article is published?' : 'Vuoi ricevere una email quando viene pubblicato un nuovo post?'; ?>
@@ -8,4 +8,3 @@
 		<?php echo do_shortcode( '[contact-form-7 id="' . $form_id . '"]' ); ?>
 	</div>
 </div>
-
