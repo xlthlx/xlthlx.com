@@ -8,16 +8,16 @@ global $lang;
 get_header();
 ?>
 
-		<?php 
+		<?php
 		while ( have_posts() ) :
-			the_post(); 
+			the_post();
 			?>
 
 			<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
 
 
 				<div class="row">
-					<div class="col-md-8">
+					<div class="col-md-9">
 
 						<div class="row">
 

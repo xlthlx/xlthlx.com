@@ -47,8 +47,8 @@ if ( $cod && $act ) {
 					$other_post_id = get_the_ID() + 1;
 					wp_delete_post( $other_post_id, true );
 					break;
-			}       
-		}   
+			}
+		}
 	}
 } else {
 	$act = 'subscribe';
@@ -74,15 +74,15 @@ switch ( $act ) {
 }
 ?>
 
-<?php 
+<?php
 while ( have_posts() ) :
-	the_post(); 
+	the_post();
 	?>
 
 	<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
 
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-9">
 
 				<div class="row">
 
