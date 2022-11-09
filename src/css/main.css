@@ -746,10 +746,6 @@ a.bmc-btn:hover {
 	-moz-columns: 3;
 }
 
-.three-columns ul li a {
-	color: #e5e5e5;
-}
-
 .dots {
 	border-width: 2px 0 2px 0 !important;
 	border-style: dashed !important;

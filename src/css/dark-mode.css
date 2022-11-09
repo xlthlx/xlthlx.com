@@ -214,3 +214,7 @@ body.dark-theme a.bmc-btn:hover {
 body.dark-theme .logo-outline {
 	fill: #FFFFFF !important;
 }
+
+body.dark-theme .three-columns ul li a {
+	color: #e5e5e5;
+}
