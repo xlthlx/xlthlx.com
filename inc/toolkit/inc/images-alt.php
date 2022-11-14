@@ -1,12 +1,14 @@
 <?php
 /**
- * Add post title in image alt attribute.
+ * Add image alt attribute.
+ * It search into the content for images, and add the alt tag
+ * with the alt content, or with the title content, or it just add it empty.
  *
- * @param $content
+ * @param string $content The post content.
  *
- * @return mixed
+ * @return string The post content filtered.
  */
-function wt_add_image_alt( $content ) {
+function xlt_add_image_alt( string $content ): string {
 	global $post;
 
 	if ( $post === null ) {
@@ -14,24 +16,39 @@ function wt_add_image_alt( $content ) {
 	}
 
 	$old_content = $content;
-
 	preg_match_all( '/<img[^>]+>/', $content, $images );
 
 	if ( $images !== null ) {
 		foreach ( $images[0] as $index => $value ) {
 			if ( ! preg_match( '/alt=/', $value ) ) {
-				$new_img = str_replace(
-					'<img', 
-					'<img alt="' . esc_attr( $post->post_title ) . '"',
-					$images[0][ $index ] 
-				);
-				$content = str_replace( $images[0][ $index ], $new_img, $content );
-			} elseif ( preg_match( '/alt=[\s"\']{2,3}/', $value ) ) {
-				$new_img = preg_replace(
-					'/alt=[\s"\']{2,3}/', 
-					'alt="' . esc_attr( $post->post_title ) . '"',
-					$images[0][ $index ] 
-				);
+				global $wpdb;
+
+				preg_match_all( '/<img [^>]*src="([^"]+)"[^>]*>/m', $value, $urls, PREG_SET_ORDER );
+
+				$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid='%s';",
+					$urls[0][1] ) );
+				$attachment = get_post( $attachment[0] );
+				$alt        = get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true );
+				$title      = $attachment->post_title;
+
+				$new_img = str_replace( '<img', '<img alt=""', $images[0][ $index ] );
+
+				if ( '' !== $alt ) {
+					$new_img = str_replace(
+						'<img',
+						'<img alt="' . $alt . '"',
+						$images[0][ $index ]
+					);
+				}
+
+				if ( '' === $alt && '' !== $title ) {
+					$new_img = str_replace(
+						'<img',
+						'<img alt="' . $title . '"',
+						$images[0][ $index ]
+					);
+				}
+
 				$content = str_replace( $images[0][ $index ], $new_img, $content );
 			}
 		}
@@ -43,6 +60,8 @@ function wt_add_image_alt( $content ) {
 
 	return $content;
 }
+
+add_filter( 'the_content', 'xlt_add_image_alt', 9999 );
 
 /**
  * Setting attributes for post thumbnails.
