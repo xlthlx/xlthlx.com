@@ -565,3 +565,30 @@ function xlt_setup_columns() {
 }
 
 add_action( 'load-link-manager.php', 'xlt_setup_columns' );
+
+/**
+ * Add a link to the WP Toolbar for the English version.
+ *
+ * @param $wp_admin_bar
+ *
+ * @return void
+ */
+function xlt_en_toolbar_link( $wp_admin_bar ) {
+
+	global $pagenow;
+
+	if ( is_admin() && $pagenow == 'post.php' ) {
+		$args = [
+			'id'    => 'view-english',
+			'title' => 'Visualizza Inglese',
+			'href'  => get_permalink( get_query_var( 'post' ) ) . 'en/',
+			'meta'  => [
+				'class' => 'ab-item',
+				'title' => 'Visualizza versione Inglese'
+			]
+		];
+		$wp_admin_bar->add_node( $args );
+	}
+}
+
+add_action( 'admin_bar_menu','xlt_en_toolbar_link',999 );
