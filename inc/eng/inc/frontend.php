@@ -139,6 +139,8 @@ function get_content_en( $post_id = 0 ) {
 					'core/list',
 					'core/list-item',
 					'core/paragraph',
+					'core/pullquote',
+					'core/quote',
 					'core/shortcode',
 					'core/table'
 				);
@@ -184,8 +186,15 @@ function get_content_en( $post_id = 0 ) {
 
 						$output .= $code;
 					} else {
-						$html    = $block['innerHTML'];
-						$output .= get_trans( $html );
+
+						if ( $block['blockName'] === 'core/quote' ) {
+							$html   = preg_replace( "~<blockquote(.*?)>(.*)</blockquote>~si","",$block['innerHTML'] );
+							$trans  = get_trans( $html );
+							$output .= '<blockquote class="wp-block-quote">' . $trans . '</blockquote>';
+						} else {
+							$html   = $block['innerHTML'];
+							$output .= get_trans( $html );
+						}
 					}
 				}
 				else {
