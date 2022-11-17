@@ -139,8 +139,6 @@ function get_content_en( $post_id = 0 ) {
 					'core/list',
 					'core/list-item',
 					'core/paragraph',
-					'core/pullquote',
-					'core/quote',
 					'core/shortcode',
 					'core/table'
 				);

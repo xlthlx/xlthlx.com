@@ -580,11 +580,11 @@ function xlt_en_toolbar_link( $wp_admin_bar ) {
 	if ( is_admin() && $pagenow == 'post.php' ) {
 		$args = [
 			'id'    => 'view-english',
-			'title' => 'Visualizza Inglese',
+			'title' => 'Visualizza articolo in Inglese',
 			'href'  => get_permalink( get_query_var( 'post' ) ) . 'en/',
 			'meta'  => [
 				'class' => 'ab-item',
-				'title' => 'Visualizza versione Inglese'
+				'title' => 'Visualizza articolo in Inglese'
 			]
 		];
 		$wp_admin_bar->add_node( $args );
