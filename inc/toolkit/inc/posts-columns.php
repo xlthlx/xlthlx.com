@@ -14,8 +14,8 @@ function wt_posts_columns( $columns ) {
 		$columns = array_merge(
 			$columns,
 			array(
-				'thumbs' => __( 'Thumbnail' ),
-				'date'   => __( 'Date' ),
+				'xlt_thumbs' => __( 'Thumbnail' ),
+				'xlt_date'   => __( 'Date' ),
 			)
 		);
 	}
@@ -30,10 +30,10 @@ function wt_posts_columns( $columns ) {
  * @param int    $id
  */
 function wt_posts_custom_columns( $column_name, $id ) {
-	if ( $column_name === 'thumbs' ) {
+	if ( $column_name === 'xlt_thumbs' ) {
 		echo get_the_post_thumbnail( $id, 'thumbnail' );
 	}
-	if ( $column_name === 'date' ) {
+	if ( $column_name === 'xlt_date' ) {
 		echo get_the_modified_time( 'D, d M Y H:i:s', $id );
 	}
 }
