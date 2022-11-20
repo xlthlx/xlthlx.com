@@ -12,9 +12,9 @@ function wt_page_column_views( $columns ) {
 	return array_merge(
 		$columns,
 		array(
-			'page-layout' => __( 'Template' ), 
+			'page-layout' => __( 'Template' ),
 			'date'        => __( 'Date' ),
-		) 
+		)
 	);
 
 }
@@ -28,9 +28,9 @@ function wt_page_column_views( $columns ) {
 function wt_page_custom_column_views( $column_name, $id ) {
 	if ( $column_name === 'page-layout' ) {
 		$set_template = get_post_meta(
-			get_the_ID(), 
+			get_the_ID(),
 			'_wp_page_template',
-			true 
+			true
 		);
 		if ( ( $set_template === 'default' ) || ( $set_template === '' ) ) {
 			$set_template = 'Default';
@@ -45,7 +45,7 @@ function wt_page_custom_column_views( $column_name, $id ) {
 		echo $set_template;
 	}
 	if ( $column_name === 'date' ) {
-		echo get_the_date( $id );
+		echo get_the_modified_time( 'D, d M Y H:i:s', $id );
 	}
 }
 
