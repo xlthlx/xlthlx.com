@@ -15,7 +15,7 @@ function wt_posts_columns( $columns ) {
 			$columns,
 			array(
 				'xlt_thumbs' => __( 'Thumbnail' ),
-				'xlt_date'   => __( 'Date Modified' ),
+				'xlt_date'   => __( 'Data Modifica' ),
 			)
 		);
 	}
@@ -34,7 +34,7 @@ function wt_posts_custom_columns( $column_name, $id ) {
 		echo get_the_post_thumbnail( $id, 'thumbnail' );
 	}
 	if ( $column_name === 'xlt_date' ) {
-		echo get_the_modified_time( 'l, d F Y H:i:s', $id );
+		echo ucfirst( get_the_modified_time( 'l, d F Y H:i',$id ) );
 	}
 }
 
