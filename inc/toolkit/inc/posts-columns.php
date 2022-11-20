@@ -15,7 +15,7 @@ function wt_posts_columns( $columns ) {
 			$columns,
 			array(
 				'thumbs'   => __( 'Thumbnail' ),
-				'modified' => __( 'Data modifica' ),
+				'modified' => __( 'Data ultima modifica' ),
 				'date'     => __( 'Date' ),
 			)
 		);

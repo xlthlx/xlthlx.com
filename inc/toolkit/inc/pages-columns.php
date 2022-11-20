@@ -13,6 +13,7 @@ function wt_page_column_views( $columns ) {
 		$columns,
 		array(
 			'page-layout' => __( 'Template' ),
+			'modified'    => __( 'Data ultima modifica' ),
 			'date'        => __( 'Date' ),
 		)
 	);
@@ -43,6 +44,9 @@ function wt_page_custom_column_views( $column_name, $id ) {
 		endforeach;
 
 		echo $set_template;
+	}
+	if ( $column_name === 'modified' ) {
+		echo ucfirst( get_the_modified_time( 'd/m/Y',$id ) ) . ' alle ' . get_the_modified_time( 'H:i',$id );
 	}
 	if ( $column_name === 'date' ) {
 		echo get_the_modified_time( 'D, d M Y H:i:s', $id );
