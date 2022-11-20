@@ -33,7 +33,7 @@ while ( have_posts() ) :
 
 							<div class="article-body">
 								<?php echo xlt_old_posts_warning( $lang ); ?>
-								<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content',get_the_content() ); ?>
+								<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() ); ?>
 							</div>
 
 							<?php get_template_part( 'parts/social' ); ?>

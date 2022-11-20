@@ -1147,7 +1147,7 @@ if ( ! function_exists( 'xlt_print_svg' ) ) {
 	 * @return string
 	 */
 	function xlt_print_svg( $svg ): string {
-		$file    = get_template_directory() . $svg;
+		$file = get_template_directory() . $svg;
 		return xlt_get_file_content( $file );
 	}
 }
@@ -1164,39 +1164,39 @@ if ( ! function_exists( 'xlt_get_related' ) ) {
 
 		$num_posts = 6;
 		$count     = 0;
-		$postIDs   = [ $post->ID ];
+		$postIDs   = array( $post->ID );
 		$related   = '';
 		$cats      = wp_get_post_categories( $post->ID );
 
 		if ( $count <= ( $num_posts - 1 ) ) {
 
-			$catIDs = [];
+			$catIDs = array();
 			foreach ( $cats as $cat ) {
 				$catIDs[] = $cat;
 			}
 
 			$show_posts = $num_posts - $count;
 
-			$args = [
+			$args = array(
 				'category__in'        => $catIDs,
 				'post__not_in'        => $postIDs,
 				'showposts'           => $show_posts,
 				'ignore_sticky_posts' => 1,
 				'orderby'             => 'rand',
-				'tax_query'           => [
-					[
+				'tax_query'           => array(
+					array(
 						'taxonomy' => 'post_format',
 						'field'    => 'slug',
-						'terms'    => [
+						'terms'    => array(
 							'post-format-link',
 							'post-format-status',
 							'post-format-aside',
 							'post-format-quote',
-						],
+						),
 						'operator' => 'NOT IN',
-					],
-				],
-			];
+					),
+				),
+			);
 
 			$cat_query = new WP_Query( $args );
 
@@ -1217,7 +1217,7 @@ if ( ! function_exists( 'xlt_get_related' ) ) {
 
 		if ( $related ) {
 
-			$related_links = '<ul class="three-columns">' . $related . '</ul>';
+			$related_links = '<ul class="two-columns">' . $related . '</ul>';
 		}
 
 		wp_reset_query();

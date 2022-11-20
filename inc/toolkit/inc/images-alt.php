@@ -14,19 +14,23 @@ function wt_add_image_alt( string $content ): string {
 	}
 
 	$old_content = $content;
-	preg_match_all( '/<img[^>]+>/',$content,$images );
+	preg_match_all( '/<img[^>]+>/', $content, $images );
 
 	if ( $images !== null ) {
 		foreach ( $images[0] as $index => $value ) {
-			if ( ! preg_match( '/alt=/',$value ) ) {
+			if ( ! preg_match( '/alt=/', $value ) ) {
 				global $wpdb;
 
-				preg_match_all( '/<img [^>]*src="([^"]+)"[^>]*>/m',$value,$urls,PREG_SET_ORDER );
+				preg_match_all( '/<img [^>]*src="([^"]+)"[^>]*>/m', $value, $urls, PREG_SET_ORDER );
 
-				$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid='%s';",
-					$urls[0][1] ) );
+				$attachment = $wpdb->get_col(
+					$wpdb->prepare(
+						"SELECT ID FROM $wpdb->posts WHERE guid='%s';",
+						$urls[0][1] 
+					) 
+				);
 				$attachment = get_post( $attachment[0] );
-				$alt        = get_post_meta( $attachment->ID,'_wp_attachment_image_alt',true );
+				$alt        = get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true );
 				$title      = $attachment->post_title;
 
 				if ( '' !== $alt ) {
@@ -53,7 +57,7 @@ function wt_add_image_alt( string $content ): string {
 					}
 				}
 
-				$content = str_replace( $images[0][ $index ],$new_img,$content );
+				$content = str_replace( $images[0][ $index ], $new_img, $content );
 			}
 		}
 	}
@@ -65,32 +69,31 @@ function wt_add_image_alt( string $content ): string {
 	return $content;
 }
 
-add_filter( 'the_content','wt_add_image_alt',9999 );
+add_filter( 'the_content', 'wt_add_image_alt', 9999 );
 
 /**
  * Sets alt attribute for post thumbnails.
  *
- * @param array $attr Array of attribute values for the image markup, keyed by attribute name.
+ * @param array   $attr Array of attribute values for the image markup, keyed by attribute name.
  * @param WP_Post $attachment Image attachment post.
  *
  * @return array $attr The attributes filtered.
  */
-function wt_change_image_attr( $attr,$attachment ) {
+function wt_change_image_attr( $attr, $attachment ) {
 
-	$parent = get_post_field( 'post_parent',$attachment );
-	$title  = get_post_field( 'post_title',$parent );
+	$parent = get_post_field( 'post_parent', $attachment );
+	$title  = get_post_field( 'post_title', $parent );
 
 	if ( '' === $attr['alt'] ) {
 		if ( '' !== $attr['title'] ) {
 			$attr['alt'] = $attr['title'];
 		} else {
 			$attr['alt'] = $title;
-		}
-
+		}   
 	}
 
 
 	return $attr;
 }
 
-add_filter( 'wp_get_attachment_image_attributes','wt_change_image_attr',20,2 );
+add_filter( 'wp_get_attachment_image_attributes', 'wt_change_image_attr', 20, 2 );

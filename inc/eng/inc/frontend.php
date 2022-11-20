@@ -51,7 +51,7 @@ function get_trans( $element ) {
 		}
 	}
 
-	return $trans_content;
+	return $trans_content->text;
 }
 
 /**
@@ -142,7 +142,7 @@ function get_content_en( $post_id = 0 ) {
 					'core/pullquote',
 					'core/quote',
 					'core/shortcode',
-					'core/table'
+					'core/table',
 				);
 
 				if ( isset( $block['blockName'] ) && $block['blockName'] !== '' && in_array(
@@ -151,64 +151,124 @@ function get_content_en( $post_id = 0 ) {
 					true
 				) ) {
 
-					if ( $block['blockName'] === 'core/code' ) {
+					$name = $block['blockName'];
 
-						$code = $block['innerHTML'];
-
-						if ( $code ) {
-
-							$hl = new Highlighter();
-							$hl->setAutodetectLanguages(
-								array(
-									'php',
-									'javascript',
-									'html',
-								)
-							);
-
-							$code = str_replace(
-								array(
-									'<pre class="wp-block-code">',
-									'<code>',
-									'</code>',
-									'</pre>',
-								),
-								'',
-								html_entity_decode( $code )
-							);
-
-							$highlighted = $hl->highlightAuto( $code );
-
-							$code            = '<pre class="wp-block-code"><code class="hljs ' . $highlighted->language . '">' . $highlighted->value . '</code></pre>';
-							$code->outertext = apply_filters( 'the_content', $code );
-
-						}
-
-						$output .= $code;
-					} else {
-
-						if ( $block['blockName'] === 'core/quote' ) {
-							$html   = preg_replace( "~<blockquote(.*?)>(.*)</blockquote>~si","",$block['innerHTML'] );
-							$trans  = get_trans( $html );
-							$output .= '<blockquote class="wp-block-quote">' . $trans . '</blockquote>';
-						} else {
-							$html   = $block['innerHTML'];
-							$output .= get_trans( $html );
-						}
+					switch ( $name ) {
+						case 'core/code':
+							$block['innerHTML']       = xlt_trans_code( $block['innerHTML'] );
+							$block['innerContent'][0] = $block['innerHTML'];
+							break;
+						case 'core/quote':
+							$block = xlt_trans_quote( $block );
+							break;
+						case 'core/list':
+							$block['innerHTML'] = xlt_trans_list( $block );
+							break;
+						default:
+							$block['innerHTML']       = get_trans( $block['innerHTML'] );
+							$block['innerContent'][0] = $block['innerHTML'];
+							break;
 					}
-				}
-				else {
-					$output .= $block['innerHTML'];
+
+					$output .= apply_filters( 'the_content', render_block( $block ) );
+
+				} else {
+					$output .= render_block( $block );
 				}
 			}
 
 			$output .= '<!-- GT -->';
-
 			update_post_meta( $post_id, 'content_en', $output );
+		}
+
+		return apply_filters( 'the_content', get_post_meta( $post_id, 'content_en', true ) );
+	}
+}
+
+function xlt_trans_code( $code ) {
+
+	if ( '' === $code ) {
+		$hl = new Highlighter();
+		$hl->setAutodetectLanguages(
+			array(
+				'php',
+				'javascript',
+				'html',
+			)
+		);
+
+		$code = str_replace(
+			array(
+				'<pre class="wp-block-code">',
+				'<code>',
+				'</code>',
+				'</pre>',
+			),
+			'',
+			html_entity_decode( $code )
+		);
+
+		$highlighted = $hl->highlightAuto( $code );
+
+		$code            = '<pre class="wp-block-code"><code class="hljs ' . $highlighted->language . '">' . $highlighted->value . '</code></pre>';
+		$code->outertext = apply_filters( 'the_content', $code );
+
+	}
+
+	return $code;
+}
+
+/**
+ * @param $block
+ *
+ * @return array
+ */
+function xlt_trans_quote( $block ) {
+
+	if ( isset( $block['innerBlocks'] ) ) {
+		$i = 0;
+		foreach ( $block['innerBlocks'] as $inner ) {
+
+			if ( $inner['blockName'] === 'core/paragraph' ) {
+				$block['innerBlocks'][ $i ]['innerHTML']       = get_trans( $inner['innerHTML'] );
+				$block['innerBlocks'][ $i ]['innerContent'][0] = $block['innerBlocks'][ $i ]['innerHTML'];
+			}
+
+			$y = 0;
+			if ( $inner['blockName'] === 'core/list' ) {
+				foreach ( $inner['innerBlocks'] as $sub_inner ) {
+					$block['innerBlocks'][ $i ]['innerBlocks'][ $y ]['innerHTML']       = get_trans( $sub_inner['innerHTML'] );
+					$block['innerBlocks'][ $i ]['innerBlocks'][ $y ]['innerContent'][0] = $block['innerBlocks'][ $i ]['innerBlocks'][ $y ]['innerHTML'];
+					$y ++;
+				}
+			}
+			$i ++;
+
+		}
+	} else {
+		$block['innerHTML']      .= get_trans( $block['innerHTML'] );
+		$block['innerContent'][0] = $block['innerHTML'];
+	}
+
+	return $block;
+}
+
+/**
+ * @param $block
+ *
+ * @return array
+ */
+function xlt_trans_list( $block ) {
+	if ( isset( $block['innerBlocks'] ) ) {
+		$y = 0;
+		foreach ( $block['innerBlocks'] as $inner ) {
+			$block['innerBlocks'][ $y ]['innerHTML']       = get_trans( $inner['innerHTML'] );
+			$block['innerBlocks'][ $y ]['innerContent'][0] = $block['innerBlocks'][ $y ]['innerHTML'];
+			$y ++;
 		}
 	}
 
-	return apply_filters( 'the_content', get_post_meta( $post_id, 'content_en', true ) );
+	return $block;
 }
 
 /**

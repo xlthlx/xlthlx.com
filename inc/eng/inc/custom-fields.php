@@ -126,10 +126,10 @@ function xlt_eng_posts_custom_columns( $column_name, $id ) {
 	if ( $column_name === 'comments-number' ) {
 		$comments_number = ( get_comments_number( $id ) === '0' ) ? '' : get_comments_number( $id );
 		$comments_open   = ( comments_open( $id ) ) ? '' : 'Commenti chiusi';
-		$pings_open   = ( pings_open( $id ) ) ? '' : 'Trackback chiusi';
+		$pings_open      = ( pings_open( $id ) ) ? '' : 'Trackback chiusi';
 
 		if ( $comments_number !== '' ) {
-			echo '<a title="Visualizza commenti" href="/wp-admin/edit-comments.php?p='.$id.'&comment_status=approved">'.$comments_number.' &raquo;</a>';
+			echo '<a title="Visualizza commenti" href="/wp-admin/edit-comments.php?p=' . $id . '&comment_status=approved">' . $comments_number . ' &raquo;</a>';
 		}
 		if ( ( $comments_number !== '' ) && ( $comments_open !== '' ) ) {
 			echo '<br/>';

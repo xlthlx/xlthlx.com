@@ -1,4 +1,11 @@
-<?php global $lang;
+<?php
+/**
+ * Template part for displaying the 'buy me a coffee' on sidebar .
+ *
+ * @package  xlthlx
+ */
+
+global $lang;
 $text = ( 'en' === $lang ) ? 'Buy me a coffee' : 'Offrimi un caffè';
 ?>
 <div id="xlthlx-bmc" class="widget p-4">

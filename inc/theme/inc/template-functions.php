@@ -578,17 +578,17 @@ function xlt_en_toolbar_link( $wp_admin_bar ) {
 	global $pagenow;
 
 	if ( is_admin() && $pagenow == 'post.php' ) {
-		$args = [
+		$args = array(
 			'id'    => 'view-english',
 			'title' => 'Visualizza articolo in Inglese',
 			'href'  => get_permalink( get_query_var( 'post' ) ) . 'en/',
-			'meta'  => [
+			'meta'  => array(
 				'class' => 'ab-item',
-				'title' => 'Visualizza articolo in Inglese'
-			]
-		];
+				'title' => 'Visualizza articolo in Inglese',
+			),
+		);
 		$wp_admin_bar->add_node( $args );
 	}
 }
 
-add_action( 'admin_bar_menu','xlt_en_toolbar_link',999 );
+add_action( 'admin_bar_menu', 'xlt_en_toolbar_link', 999 );
