@@ -39,6 +39,6 @@ function wt_posts_custom_columns( $column_name, $id ) {
 }
 
 if ( is_admin() ) {
-	add_filter( 'manage_posts_columns', 'wt_posts_columns', 9999 );
-	add_action( 'manage_posts_custom_column', 'wt_posts_custom_columns', 9999, 2 );
+	add_filter( 'manage_posts_columns', 'wt_posts_columns', 999999 );
+	add_action( 'manage_posts_custom_column', 'wt_posts_custom_columns', 999999, 2 );
 }
