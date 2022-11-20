@@ -35,7 +35,7 @@ function wt_posts_custom_columns( $column_name, $id ) {
 		echo get_the_post_thumbnail( $id, 'thumbnail' );
 	}
 	if ( $column_name === 'modified' ) {
-		echo ucfirst( get_the_modified_time( 'd/m/Y alle H:i',$id ) );
+		echo ucfirst( get_the_modified_time( 'd/m/Y',$id ) ) . ' alle ' . get_the_modified_time( 'H:i',$id );
 	}
 	if ( $column_name === 'date' ) {
 		echo get_the_date( $id );
