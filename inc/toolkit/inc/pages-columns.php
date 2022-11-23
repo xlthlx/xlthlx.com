@@ -46,7 +46,7 @@ function wt_page_custom_column_views( $column_name, $id ) {
 		echo $set_template;
 	}
 	if ( $column_name === 'modified' ) {
-		echo ucfirst( get_the_modified_time( 'd/m/Y',$id ) ) . ' alle ' . get_the_modified_time( 'H:i',$id );
+		echo ucfirst( get_the_modified_time( 'd/m/Y', $id ) ) . ' alle ' . get_the_modified_time( 'H:i', $id );
 	}
 	if ( $column_name === 'date' ) {
 		echo get_the_modified_time( 'D, d M Y H:i:s', $id );

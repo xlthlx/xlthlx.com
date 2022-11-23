@@ -1,4 +1,9 @@
 <?php
+/**
+ * Custom tags form film/tv.
+ *
+ * @package  xlthlx
+ */
 
 if ( ! function_exists( 'xlt_get_thumb_img' ) ) {
 	/**
@@ -11,14 +16,14 @@ if ( ! function_exists( 'xlt_get_thumb_img' ) ) {
 	 */
 	function xlt_get_thumb_img( $id, $alt ) {
 		return wp_get_attachment_image(
-			$id, 
-			array( '250', '370' ), 
+			$id,
+			array( '250', '370' ),
 			false,
 			array(
-				'class'   => 'img-fluid float-start me-4', 
-				'alt'     => $alt, 
+				'class'   => 'img-fluid float-start me-4',
+				'alt'     => $alt,
 				'loading' => false,
-			) 
+			)
 		);
 	}
 }
@@ -43,7 +48,7 @@ if ( ! function_exists( 'xlt_get_all_film_tv' ) ) {
 				'taxonomy' => 'year',
 				'orderby'  => 'name',
 				'order'    => 'DESC',
-			) 
+			)
 		);
 
 		if ( ! empty( $years ) && ! is_wp_error( $years ) ) {
@@ -97,7 +102,7 @@ if ( ! function_exists( 'xlt_get_all_film_tv' ) ) {
 						$output[ $i ]['content'] = ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() );
 
 						$i ++;
-					}               
+					}
 				}
 
 				wp_reset_postdata();

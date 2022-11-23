@@ -1,4 +1,10 @@
 <?php
+/**
+ * Social sharing.
+ *
+ * @package  xlthlx
+ */
+
 global $lang;
 $label = ( 'en' === $lang ) ? 'Share on' : 'Condividi su';
 ?>

@@ -61,9 +61,14 @@
 		 Multiple valid text domains can be provided as a comma-delimited list. -->
 	<rule ref="WordPress.WP.I18n">
 		<properties>
-			<property name="text_domain" type="array" value="_s"/>
+			<property name="text_domain" type="array" value="xlthlx"/>
 		</properties>
 	</rule>
+
+	<!-- Removes check for deregister jquery. -->
+	<rule ref="WPThemeReview.CoreFunctionality.NoDeregisterCoreScript">
+       <severity>0</severity>
+     </rule>
 
 	<!-- Allow for theme specific exceptions to the file name rules based
 		 on the theme hierarchy. -->

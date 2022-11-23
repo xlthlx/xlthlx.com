@@ -1,6 +1,6 @@
 <?php
 /**
- * xlthlx functions and definitions.
+ * Theme functions and definitions.
  *
  * @package  xlthlx
  */
@@ -8,12 +8,14 @@
 /**
  * Load vendors.
  */
-require_once __DIR__ . '/vendor.phar';
+require_once dirname( __FILE__ ) . '/vendor.phar';
 
 add_filter( 'login_display_language_dropdown', '__return_false' );
 
-/*
+/**
  * Set theme supports and image sizes.
+ *
+ * @return void
  */
 function xlthlx_add_supports() {
 
@@ -150,8 +152,8 @@ function xlthlx_add_to_globals() {
 
 add_action( 'after_setup_theme', 'xlthlx_add_to_globals' );
 
-if ( file_exists( __DIR__ . '/inc/cmb2/cmb2/init.php' ) ) {
-	require_once __DIR__ . '/inc/cmb2/cmb2/init.php';
+if ( file_exists( dirname( __FILE__ ) . '/inc/cmb2/cmb2/init.php' ) ) {
+	require_once dirname( __FILE__ ) . '/inc/cmb2/cmb2/init.php';
 }
 
 /**

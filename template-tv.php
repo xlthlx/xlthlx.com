@@ -4,6 +4,7 @@
  *
  * @package  xlthlx
  */
+
 global $lang;
 get_header();
 ?>
