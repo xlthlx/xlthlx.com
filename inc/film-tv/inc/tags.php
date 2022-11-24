@@ -9,14 +9,14 @@ if ( ! function_exists( 'xlt_get_thumb_img' ) ) {
 	/**
 	 * Returns the HTML for the film and tv series image.
 	 *
-	 * @param int    $id
-	 * @param string $alt
+	 * @param int    $attachment_id Image attachment ID.
+	 * @param string $alt Image alt text.
 	 *
 	 * @return string
 	 */
-	function xlt_get_thumb_img( $id, $alt ) {
+	function xlt_get_thumb_img( $attachment_id, $alt ) {
 		return wp_get_attachment_image(
-			$id,
+			$attachment_id,
 			array( '250', '370' ),
 			false,
 			array(
@@ -32,11 +32,11 @@ if ( ! function_exists( 'xlt_get_all_film_tv' ) ) {
 	/**
 	 * Returns an array with years and objects.
 	 *
-	 * @param $post_type
-	 * @param $lang
+	 * @param string $post_type Post type.
+	 * @param string $lang Language.
 	 *
 	 * @return array
-	 * @throws Exception
+	 * @throws Exception Getting english content.
 	 */
 	function xlt_get_all_film_tv( $post_type, $lang ) {
 

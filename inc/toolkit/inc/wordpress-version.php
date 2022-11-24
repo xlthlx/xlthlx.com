@@ -1,6 +1,14 @@
 <?php
 /**
+ * Remove WordPress version.
  *
+ * @package  xlthlx
+ */
+
+/**
+ * Starts.
+ *
+ * @return void
  */
 function wt_clean_meta_generators() {
 	ob_start( 'wt_replace_meta_generators' );
@@ -8,9 +16,9 @@ function wt_clean_meta_generators() {
 
 /**
  * Replace <meta .* name="generator"> like tags
- * which may contain version of
+ * which may contain version of.
  *
- * @param $html
+ * @param string $html Meta HTML.
  *
  * @return string
  */
@@ -29,6 +37,8 @@ function wt_replace_meta_generators( $html ) {
 
 /**
  * Remove WordPress version.
+ *
+ * @return void
  */
 function wt_remove_wordpress_version() {
 

@@ -1,6 +1,12 @@
 <?php
 /**
- * Disable all dashboard widgets, also Yoast SEO and Gravity Forms
+ * Disable all dashboard widgets.
+ *
+ * @package  xlthlx
+ */
+
+/**
+ * Disable all dashboard widgets, also Yoast SEO and Gravity Forms.
  */
 function wt_disable_dashboard_widgets() {
 	global $wp_meta_boxes;

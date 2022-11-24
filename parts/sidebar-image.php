@@ -1,4 +1,10 @@
 <?php
+/**
+ * Sidebar image.
+ *
+ * @package  xlthlx
+ */
+
 global $lang;
 if ( ( 'en' === $lang ) ) { ?>
 	<div id="xlthlx-fix" class="widget p-4">

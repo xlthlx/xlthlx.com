@@ -5,6 +5,9 @@
  * @package  xlthlx
  */
 
+/**
+ * Includes all files from inc directory.
+ */
 require_once ABSPATH . 'wp-admin/includes/file.php';
 
 $folder = get_template_directory() . '/inc/film-tv/inc/';

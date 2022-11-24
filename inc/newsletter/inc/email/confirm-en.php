@@ -1,3 +1,4 @@
+<?php // @codingStandardsIgnoreStart ?>
 <html lang="en" style="margin:0;padding:0">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -216,3 +217,4 @@
 
 </body>
 </html>
+<?php // @codingStandardsIgnoreEnd ?>
