@@ -609,4 +609,4 @@ function xlt_add_plausible_to_header() {
 <?php
 }
 
-add_action( 'wp_head', 'xlt_add_plausible_to_header', 100 );
+add_action( 'wp_head', 'xlt_add_plausible_to_header' );
