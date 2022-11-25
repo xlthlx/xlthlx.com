@@ -1,5 +1,11 @@
 <?php
 /**
+ * Remove emoji support.
+ *
+ * @package  xlthlx
+ */
+
+/**
  * Remove emoji CDN hostname from DNS prefetch hints.
  *
  * @param array  $urls URLs to print for resource hints.

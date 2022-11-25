@@ -1,4 +1,9 @@
 <?php
+/**
+ * Custom taxonomies for film/tv.
+ *
+ * @package  xlthlx
+ */
 
 function xlt_year_init() {
 	$years_labels = array(
@@ -27,8 +32,8 @@ function xlt_year_init() {
 	);
 
 	register_extended_taxonomy(
-		'year', 
-		'film', 
+		'year',
+		'film',
 		array(
 			'hierarchical'     => true,
 			'labels'           => $years_labels,
@@ -37,14 +42,14 @@ function xlt_year_init() {
 			'rewrite'          => false,
 			'dashboard_glance' => true,
 
-		), 
+		),
 		array(
 
 			'singular' => 'Anno',
 			'plural'   => 'Anni',
 			'slug'     => 'year',
 
-		) 
+		)
 	);
 
 	register_taxonomy_for_object_type( 'year', 'tvseries' );
@@ -80,8 +85,8 @@ function xlt_director_init() {
 	);
 
 	register_extended_taxonomy(
-		'director', 
-		'film', 
+		'director',
+		'film',
 		array(
 			'hierarchical'     => true,
 			'labels'           => $director_labels,
@@ -90,14 +95,14 @@ function xlt_director_init() {
 			'rewrite'          => false,
 			'dashboard_glance' => true,
 
-		), 
+		),
 		array(
 
 			'singular' => 'Regista',
 			'plural'   => 'Registi',
 			'slug'     => 'director',
 
-		) 
+		)
 	);
 
 	register_taxonomy_for_object_type( 'director', 'tvseries' );
@@ -132,8 +137,8 @@ function xlt_starring_init() {
 	);
 
 	register_extended_taxonomy(
-		'actor', 
-		'film', 
+		'actor',
+		'film',
 		array(
 			'hierarchical'     => true,
 			'labels'           => $director_labels,
@@ -142,14 +147,14 @@ function xlt_starring_init() {
 			'rewrite'          => false,
 			'dashboard_glance' => true,
 
-		), 
+		),
 		array(
 
 			'singular' => 'Attore',
 			'plural'   => 'Attori',
 			'slug'     => 'actor',
 
-		) 
+		)
 	);
 
 	register_taxonomy_for_object_type( 'actor', 'tvseries' );

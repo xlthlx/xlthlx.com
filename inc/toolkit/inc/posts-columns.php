@@ -1,5 +1,11 @@
 <?php
 /**
+ * Post columns.
+ *
+ * @package  xlthlx
+ */
+
+/**
  * Adds Thumbnail column for posts
  *
  * @param array $columns

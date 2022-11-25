@@ -2,6 +2,12 @@
 /**
  * Remove archive title.
  *
+ * @package  xlthlx
+ */
+
+/**
+ * Remove archive title.
+ *
  * @param $title
  *
  * @return string

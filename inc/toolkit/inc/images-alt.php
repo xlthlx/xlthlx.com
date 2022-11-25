@@ -2,6 +2,12 @@
 /**
  * Sets images alt attribute.
  *
+ * @package  xlthlx
+ */
+
+/**
+ * Sets images alt attribute.
+ *
  * @param string $content The post content.
  *
  * @return string The post content filtered.
@@ -26,8 +32,8 @@ function wt_add_image_alt( string $content ): string {
 				$attachment = $wpdb->get_col(
 					$wpdb->prepare(
 						"SELECT ID FROM $wpdb->posts WHERE guid='%s';",
-						$urls[0][1] 
-					) 
+						$urls[0][1]
+					)
 				);
 				$attachment = get_post( $attachment[0] );
 				$alt        = get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true );
@@ -89,7 +95,7 @@ function wt_change_image_attr( $attr, $attachment ) {
 			$attr['alt'] = $attr['title'];
 		} else {
 			$attr['alt'] = $title;
-		}   
+		}
 	}
 
 

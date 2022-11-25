@@ -1,5 +1,11 @@
 <?php
 /**
+ * Adds last modified into header.
+ *
+ * @package  xlthlx
+ */
+
+/**
  * Return Last-Modified Header.
  */
 function wt_last_mod_header() {

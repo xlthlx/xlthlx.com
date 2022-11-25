@@ -1,4 +1,10 @@
 <?php
+/**
+ * Custom login.
+ *
+ * @package  xlthlx
+ */
+
 add_action( 'wp_head', 'ob_start', 1, 0 );
 $wp_login_php = false;
 $wt_login     = 'entra';
@@ -32,8 +38,8 @@ function wt_plugins_loaded() {
 		$_SERVER['REQUEST_URI'] = wt_user_trailingslashit(
 			'/' . str_repeat(
 				'-/',
-				10 
-			) 
+				10
+			)
 		);
 		$pagenow                = 'index.php';
 
@@ -114,8 +120,8 @@ function wt_wp_template_loader() {
 	if ( $_SERVER['REQUEST_URI'] === wt_user_trailingslashit(
 		str_repeat(
 			'-/',
-			10 
-		) 
+			10
+		)
 	) ) {
 		$_SERVER['REQUEST_URI'] = wt_user_trailingslashit( '/wp-login-php/' );
 	}
@@ -183,8 +189,8 @@ function wt_new_login_url( $scheme = null ) {
 		return wt_user_trailingslashit(
 			home_url(
 				'/',
-				$scheme 
-			) . $wt_login 
+				$scheme
+			) . $wt_login
 		);
 	}
 
@@ -202,7 +208,7 @@ function wt_welcome_email( $value ) {
 	return str_replace(
 		'wp-login.php',
 		trailingslashit( $wt_login['wt_login'] ),
-		$value 
+		$value
 	);
 }
 

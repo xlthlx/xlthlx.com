@@ -606,7 +606,7 @@ function xlt_add_plausible_to_header() {
 			(window.plausible.q = window.plausible.q || []).push(arguments)
 		}
 	</script>
-<?php
+	<?php
 }
 
 add_action( 'wp_head', 'xlt_add_plausible_to_header' );

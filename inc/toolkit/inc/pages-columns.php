@@ -1,5 +1,11 @@
 <?php
 /**
+ * Page columns.
+ *
+ * @package  xlthlx
+ */
+
+/**
  * Remove comments column and adds Template column for pages
  *
  * @param array $columns

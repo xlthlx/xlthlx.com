@@ -1,5 +1,11 @@
 <?php
 /**
+ * Remove header links.
+ *
+ * @package  xlthlx
+ */
+
+/**
  * Remove default style for comments widget.
  */
 function wt_remove_comments_style() {
@@ -9,11 +15,11 @@ function wt_remove_comments_style() {
 
 	if ( ! empty( $widget_recent_comments ) ) {
 		remove_action(
-			'wp_head', 
+			'wp_head',
 			array(
 				$wp_widget_factory->widgets['WP_Widget_Recent_Comments'],
 				'recent_comments_style',
-			) 
+			)
 		);
 	}
 }

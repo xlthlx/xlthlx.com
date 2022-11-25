@@ -1,5 +1,11 @@
 <?php
 /**
+ * Redirect author archive.
+ *
+ * @package  xlthlx
+ */
+
+/**
  * Redirect archives author.
  */
 function wt_redirect_archives_author() {

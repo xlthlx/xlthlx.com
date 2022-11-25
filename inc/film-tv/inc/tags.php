@@ -1,6 +1,6 @@
 <?php
 /**
- * Custom tags form film/tv.
+ * Custom tags for film/tv.
  *
  * @package  xlthlx
  */

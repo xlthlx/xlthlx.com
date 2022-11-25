@@ -1,5 +1,11 @@
 <?php
 /**
+ * Clean uploads names.
+ *
+ * @package  xlthlx
+ */
+
+/**
  * Clean the filename.
  *
  * @param array The file information including the filename in $file['name'].
@@ -11,8 +17,8 @@ function wt_upload_filter( $file ) {
 	$original_filename = pathinfo( $file['name'] );
 	set_transient(
 		'_clean_image_filenames_original_filename',
-		$original_filename['filename'], 
-		60 
+		$original_filename['filename'],
+		60
 	);
 
 	$input = array( 'ß', '·' );
@@ -21,9 +27,9 @@ function wt_upload_filter( $file ) {
 
 	$path         = pathinfo( $file['name'] );
 	$new_filename = preg_replace(
-		'/.' . $path['extension'] . '$/', 
+		'/.' . $path['extension'] . '$/',
 		'',
-		$file['name'] 
+		$file['name']
 	);
 	$new_filename = str_replace( $input, $output, $new_filename );
 	$file['name'] = sanitize_title( $new_filename ) . '.' . $path['extension'];
@@ -48,7 +54,7 @@ function wt_update_attachment_title( $attachment_id ) {
 			array(
 				'ID'         => $attachment_id,
 				'post_title' => $original_filename,
-			) 
+			)
 		);
 		delete_transient( '_clean_image_filenames_original_filename' );
 	}

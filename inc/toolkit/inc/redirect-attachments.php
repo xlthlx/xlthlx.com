@@ -1,5 +1,11 @@
 <?php
 /**
+ * Redirect attachment pages.
+ *
+ * @package  xlthlx
+ */
+
+/**
  * Attachment pages redirect.
  */
 function wt_attachment_pages_redirect() {
