@@ -21,13 +21,5 @@ global $charset; ?>
 	<link rel="manifest" href="<?php echo get_template_directory_uri(); ?>/assets/manifest/manifest.json"/>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<?php // @codingStandardsIgnoreStart ?>
-	<script id="stats" defer data-domain="xlthlx.com" data-api="https://plausible.io/api/event" src="/stats/js/script.outbound-links.file-downloads.hash.js"></script>
-	<script>
-		window.plausible = window.plausible || function () {
-			(window.plausible.q = window.plausible.q || []).push(arguments)
-		}
-	</script>
-	<?php // @codingStandardsIgnoreEnd ?>
 	<?php wp_head(); ?>
 </head>

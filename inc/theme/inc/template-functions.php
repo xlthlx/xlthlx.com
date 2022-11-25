@@ -272,9 +272,8 @@ function xlt_insert_css() {
 		get_template_directory_uri() . '/assets/fonts/',
 		xlt_get_file_content( $file )
 	);
-	$fonts = xlt_get_url_content('https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Shadows+Into+Light&family=Titillium+Web');
 
-	echo '<style id="all-styles-inline">' . $fonts . $style . '</style>';
+	echo '<style id="all-styles-inline">' . $style . '</style>';
 }
 
 add_action( 'wp_head', 'xlt_insert_css' );
@@ -593,3 +592,21 @@ function xlt_en_toolbar_link( $wp_admin_bar ) {
 }
 
 add_action( 'admin_bar_menu', 'xlt_en_toolbar_link', 999 );
+
+/**
+ * Adds the plausible scripts to header.
+ *
+ * @return void
+ */
+function xlt_add_plausible_to_header() {
+	?>
+	<script id="stats" defer data-domain="xlthlx.com" data-api="https://plausible.io/api/event" src="/stats/js/script.outbound-links.file-downloads.hash.js"></script>
+	<script>
+		window.plausible = window.plausible || function () {
+			(window.plausible.q = window.plausible.q || []).push(arguments)
+		}
+	</script>
+<?php
+}
+
+add_action( 'wp_head', 'xlt_add_plausible_to_header', 100 );
