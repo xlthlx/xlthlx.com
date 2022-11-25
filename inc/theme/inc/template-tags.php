@@ -16,15 +16,15 @@ if ( ! function_exists( 'xlt_get_link' ) ) {
 	 *
 	 * @return string
 	 */
-	function xlt_get_link( $args, $link, $name, $position ) {
-		$return  = $args['before'];
+	function xlt_get_link( $args,$link,$name,$position ) {
+		$return = $args['before'];
 		$return .= sprintf(
 			$args['link'],
 			$link,
 			$name,
-			sprintf( $args['name'], $name )
+			sprintf( $args['name'],$name )
 		);
-		$return .= sprintf( $args['position'], $position );
+		$return .= sprintf( $args['position'],$position );
 
 		return $return;
 	}
@@ -38,14 +38,14 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 		global $post,$lang;
 
-		$args = array(
+		$args = [
 			'before'        => '<li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">',
 			'before_active' => '<li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">',
 			'link'          => '<a href="%1$s" title="%2$s" itemscope itemtype="https://schema.org/Thing" itemprop="item" itemid="%1$s">%3$s</a>',
 			'active'        => '<span itemscope itemtype="https://schema.org/Thing" itemprop="name" itemid="%1$s">%2$s</span>',
 			'name'          => '<span itemprop="name">%1$s</span>',
 			'position'      => '<meta itemprop="position" content="%1$s">',
-			'text'          => array(
+			'text'          => [
 				'home'     => 'Home',
 				'category' => '%s',
 				'search'   => ( 'en' === $lang ) ? 'Search results for "%s"' : 'Risultati della ricerca per "%s"',
@@ -54,8 +54,8 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				'404'      => ( 'en' === $lang ) ? 'Error 404' : 'Errore 404',
 				'page'     => ( 'en' === $lang ) ? 'Page %s' : 'Pagina %s',
 				'cpage'    => ( 'en' === $lang ) ? 'Comments page %s' : 'Commenti pagina %s',
-			),
-		);
+			],
+		];
 
 
 		$home_url  = home_url( '/' );
@@ -66,7 +66,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 			$title = ( 'en' === $lang ) ? get_title_en( $post->ID ) : get_the_title();
 		}
 
-		$home_link = xlt_get_link( $args, $home_url, $args['text']['home'], 1 );
+		$home_link = xlt_get_link( $args,$home_url,$args['text']['home'],1 );
 
 		if ( ! is_home() && ! is_front_page() ) {
 
@@ -77,7 +77,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 			echo $home_link;
 
 			if ( is_category() ) {
-				$parents = get_ancestors( get_query_var( 'cat' ), 'category' );
+				$parents = get_ancestors( get_query_var( 'cat' ),'category' );
 				foreach ( array_reverse( $parents ) as $cat ) {
 					$position ++;
 					echo xlt_get_link(
@@ -96,29 +96,29 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 						$position
 					);
 					echo $args['before'] . sprintf(
-						$args['text']['page'],
-						get_query_var( 'paged' )
-					);
+							$args['text']['page'],
+							get_query_var( 'paged' )
+						);
 
 				} else {
 					$position ++;
 					echo $args['before_active'] . sprintf(
-						$args['active'],
-						get_permalink(),
-						sprintf(
-							$args['name'],
+							$args['active'],
+							get_permalink(),
 							sprintf(
-								$args['text']['category'],
-								single_cat_title(
-									'',
-									false
+								$args['name'],
+								sprintf(
+									$args['text']['category'],
+									single_cat_title(
+										'',
+										false
+									)
 								)
 							)
-						)
-					) . sprintf(
-						$args['position'],
-						$position
-					);
+						) . sprintf(
+						     $args['position'],
+						     $position
+					     );
 				}
 			} elseif ( is_search() ) {
 				if ( get_query_var( 'paged' ) ) {
@@ -127,28 +127,28 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 					echo xlt_get_link(
 						$args,
 						$home_url . '?s=' . get_search_query(),
-						sprintf( $args['text']['search'], get_search_query() ),
+						sprintf( $args['text']['search'],get_search_query() ),
 						$position
 					);
 					echo $args['before'] . sprintf(
-						$args['text']['page'],
-						get_query_var( 'paged' )
-					);
+							$args['text']['page'],
+							get_query_var( 'paged' )
+						);
 
 				} else {
 
 					$position ++;
 					echo $args['before_active'] . sprintf(
-						$args['active'],
-						get_permalink(),
-						sprintf(
-							$args['text']['search'],
-							get_search_query()
-						)
-					) . sprintf(
-						$args['position'],
-						$position
-					);
+							$args['active'],
+							get_permalink(),
+							sprintf(
+								$args['text']['search'],
+								get_search_query()
+							)
+						) . sprintf(
+						     $args['position'],
+						     $position
+					     );
 
 
 				}
@@ -156,13 +156,13 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 				$position ++;
 				echo $args['before_active'] . sprintf(
-					$args['active'],
-					get_permalink(),
-					get_the_time( 'Y' )
-				) . sprintf(
-					$args['position'],
-					$position
-				);
+						$args['active'],
+						get_permalink(),
+						get_the_time( 'Y' )
+					) . sprintf(
+					     $args['position'],
+					     $position
+				     );
 
 
 			} elseif ( is_month() ) {
@@ -182,13 +182,13 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 				$position ++;
 				echo $args['before_active'] . sprintf(
-					$args['active'],
-					get_permalink(),
-					$month
-				) . sprintf(
-					$args['position'],
-					$position
-				);
+						$args['active'],
+						get_permalink(),
+						$month
+					) . sprintf(
+					     $args['position'],
+					     $position
+				     );
 
 			} elseif ( is_day() ) {
 
@@ -208,7 +208,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				$position ++;
 				echo xlt_get_link(
 					$args,
-					get_month_link( get_the_time( 'Y' ), get_the_time( 'm' ) ),
+					get_month_link( get_the_time( 'Y' ),get_the_time( 'm' ) ),
 					$month,
 					$position
 				);
@@ -216,13 +216,13 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 				$position ++;
 				echo $args['before_active'] . sprintf(
-					$args['active'],
-					get_permalink(),
-					get_the_time( 'd' )
-				) . sprintf(
-					$args['position'],
-					$position
-				);
+						$args['active'],
+						get_permalink(),
+						get_the_time( 'd' )
+					) . sprintf(
+					     $args['position'],
+					     $position
+				     );
 
 			} elseif ( is_single() && ! is_attachment() ) {
 				$post_type = get_post_type_object( get_post_type() );
@@ -247,7 +247,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 				} else {
 					$cat       = get_the_category();
 					$catID     = $cat[0]->cat_ID;
-					$parents   = array_reverse( get_ancestors( $catID, 'category' ) );
+					$parents   = array_reverse( get_ancestors( $catID,'category' ) );
 					$parents[] = $catID;
 
 					foreach ( $parents as $cat ) {
@@ -271,30 +271,30 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 						$position ++;
 						echo $args['before_active'] . sprintf(
-							$args['active'],
-							get_permalink(),
-							sprintf(
-								$args['text']['cpage'],
-								get_query_var( 'cpage' )
-							)
-						) . sprintf(
-							$args['position'],
-							$position
-						);
+								$args['active'],
+								get_permalink(),
+								sprintf(
+									$args['text']['cpage'],
+									get_query_var( 'cpage' )
+								)
+							) . sprintf(
+							     $args['position'],
+							     $position
+						     );
 
 					} else {
 						$position ++;
 						echo $args['before_active'] . sprintf(
-							$args['active'],
-							get_permalink(),
-							sprintf(
-								$args['name'],
-								$title
-							)
-						) . sprintf(
-							$args['position'],
-							$position
-						);
+								$args['active'],
+								get_permalink(),
+								sprintf(
+									$args['name'],
+									$title
+								)
+							) . sprintf(
+							     $args['position'],
+							     $position
+						     );
 
 					}
 				}
@@ -312,27 +312,27 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 					$position ++;
 					echo $args['before_active'] . sprintf(
-						$args['active'],
-						get_permalink(),
-						sprintf(
-							$args['text']['page'],
-							get_query_var( 'paged' )
-						)
-					) . sprintf(
-						$args['position'],
-						$position
-					);
+							$args['active'],
+							get_permalink(),
+							sprintf(
+								$args['text']['page'],
+								get_query_var( 'paged' )
+							)
+						) . sprintf(
+						     $args['position'],
+						     $position
+					     );
 				} else {
 
 					$position ++;
 					echo $args['before_active'] . sprintf(
-						$args['active'],
-						get_permalink(),
-						$post_type->label
-					) . sprintf(
-						$args['position'],
-						$position
-					);
+							$args['active'],
+							get_permalink(),
+							$post_type->label
+						) . sprintf(
+						     $args['position'],
+						     $position
+					     );
 
 				}
 			} elseif ( is_attachment() ) {
@@ -366,25 +366,25 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 				$position ++;
 				echo $args['before_active'] . sprintf(
-					$args['active'],
-					get_permalink(),
-					$title
-				) . sprintf(
-					$args['position'],
-					$position
-				);
+						$args['active'],
+						get_permalink(),
+						$title
+					) . sprintf(
+					     $args['position'],
+					     $position
+				     );
 
 			} elseif ( ! $parent_id && is_page() ) {
 
 				$position ++;
 				echo $args['before_active'] . sprintf(
-					$args['active'],
-					get_permalink(),
-					$title
-				) . sprintf(
-					$args['position'],
-					$position
-				);
+						$args['active'],
+						get_permalink(),
+						$title
+					) . sprintf(
+					     $args['position'],
+					     $position
+				     );
 
 
 			} elseif ( $parent_id && is_page() ) {
@@ -401,13 +401,13 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 				$position ++;
 				echo $args['before_active'] . sprintf(
-					$args['active'],
-					get_permalink(),
-					$title
-				) . sprintf(
-					$args['position'],
-					$position
-				);
+						$args['active'],
+						get_permalink(),
+						$title
+					) . sprintf(
+					     $args['position'],
+					     $position
+				     );
 
 			} elseif ( is_tag() ) {
 				if ( get_query_var( 'paged' ) ) {
@@ -416,39 +416,39 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 					echo xlt_get_link(
 						$args,
 						get_tag_link( $tagID ),
-						single_tag_title( '', false ),
+						single_tag_title( '',false ),
 						$position
 					);
 
 					$position ++;
 					echo $args['before_active'] . sprintf(
-						$args['active'],
-						get_permalink(),
-						sprintf(
-							$args['text']['page'],
-							get_query_var( 'paged' )
-						)
-					) . sprintf(
-						$args['position'],
-						$position
-					);
+							$args['active'],
+							get_permalink(),
+							sprintf(
+								$args['text']['page'],
+								get_query_var( 'paged' )
+							)
+						) . sprintf(
+						     $args['position'],
+						     $position
+					     );
 				} else {
 
 					$position ++;
 					echo $args['before_active'] . sprintf(
-						$args['active'],
-						get_permalink(),
-						sprintf(
-							$args['text']['tag'],
-							single_tag_title(
-								'',
-								false
+							$args['active'],
+							get_permalink(),
+							sprintf(
+								$args['text']['tag'],
+								single_tag_title(
+									'',
+									false
+								)
 							)
-						)
-					) . sprintf(
-						$args['position'],
-						$position
-					);
+						) . sprintf(
+						     $args['position'],
+						     $position
+					     );
 
 				}
 			} elseif ( is_author() ) {
@@ -468,44 +468,44 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 					$position ++;
 					echo $args['before_active'] . sprintf(
-						$args['active'],
-						get_permalink(),
-						sprintf(
-							$args['text']['page'],
-							get_query_var( 'paged' )
-						)
-					) . sprintf(
-						$args['position'],
-						$position
-					);
+							$args['active'],
+							get_permalink(),
+							sprintf(
+								$args['text']['page'],
+								get_query_var( 'paged' )
+							)
+						) . sprintf(
+						     $args['position'],
+						     $position
+					     );
 
 				} else {
 
 					$position ++;
 					echo $args['before_active'] . sprintf(
-						$args['active'],
-						get_permalink(),
-						sprintf(
-							$args['text']['author'],
-							$author->display_name
-						)
-					) . sprintf(
-						$args['position'],
-						$position
-					);
+							$args['active'],
+							get_permalink(),
+							sprintf(
+								$args['text']['author'],
+								$author->display_name
+							)
+						) . sprintf(
+						     $args['position'],
+						     $position
+					     );
 
 				}
 			} elseif ( is_404() ) {
 
 				$position ++;
 				echo $args['before_active'] . sprintf(
-					$args['active'],
-					get_permalink(),
-					$args['text']['404']
-				) . sprintf(
-					$args['position'],
-					$position
-				);
+						$args['active'],
+						get_permalink(),
+						$args['text']['404']
+					) . sprintf(
+					     $args['position'],
+					     $position
+				     );
 
 			} elseif ( has_post_format() && ! is_singular() ) {
 
@@ -523,12 +523,12 @@ if ( ! function_exists( 'xlt_comment_form' ) ) {
 	 */
 	function xlt_comment_form( $post_id = false ) {
 
-		$comments_args = array(
+		$comments_args = [
 			'format'               => 'xhtml',
 			'label_submit'         => 'Invia',
 			'comment_notes_before' => '<p>Il tuo indirizzo email non sarà pubblicato.</p>',
 			'class_submit'         => 'btn btn-outline-primary btn-lg py-1 px-5 pink-hover rounded-0',
-			'fields'               => array(
+			'fields'               => [
 				'author' => '<div class="form-floating mb-3">
 							<input placeholder="Nome" class="form-control rounded-0" type="text" id="author" name="author" required>
 							<label for="author">Nome</label>
@@ -541,7 +541,7 @@ if ( ! function_exists( 'xlt_comment_form' ) ) {
 							<input placeholder="Url" class="form-control rounded-0" type="url" id="url" name="url">
 							<label for="url">Url</label>
 						</div>',
-			),
+			],
 			'comment_field'        => '<div class="form-floating mb-3">
 								<textarea placeholder="Commento" class="form-control rounded-0" id="comment" name="comment" style="height: 150px" required></textarea>
 								<label for="comment">Commento</label>
@@ -553,10 +553,10 @@ if ( ! function_exists( 'xlt_comment_form' ) ) {
 								  </label>
 								</div>
 								</div>',
-		);
+		];
 
 		if ( $post_id ) {
-			comment_form( $comments_args, $post_id );
+			comment_form( $comments_args,$post_id );
 		} else {
 			comment_form( $comments_args );
 		}
@@ -571,7 +571,7 @@ if ( ! function_exists( 'xlt_comment_form_en' ) ) {
 	 */
 	function xlt_comment_form_en( $post_id = false ) {
 
-		$comments_args = array(
+		$comments_args = [
 			'format'               => 'xhtml',
 			'label_submit'         => 'Send',
 			'title_reply'          => 'Leave a comment',
@@ -579,7 +579,7 @@ if ( ! function_exists( 'xlt_comment_form_en' ) ) {
 			'cancel_reply_link'    => 'Cancel reply',
 			'comment_notes_before' => '<p>Your email address will not be published.</p>',
 			'class_submit'         => 'btn btn-outline-primary btn-lg py-1 px-5 pink-hover rounded-0',
-			'fields'               => array(
+			'fields'               => [
 				'author' => '<div class="form-floating mb-3">
 							<input placeholder="Name" class="form-control rounded-0" type="text" id="author" name="author" required>
 							<label for="author">Name</label>
@@ -592,7 +592,7 @@ if ( ! function_exists( 'xlt_comment_form_en' ) ) {
 							<input placeholder="Url" class="form-control rounded-0" type="url" id="url" name="url">
 							<label for="url">Url</label>
 						</div>',
-			),
+			],
 			'comment_field'        => '<div class="form-floating mb-3">
 								<textarea placeholder="Comment" class="form-control rounded-0" id="comment" name="comment" style="height: 150px" required></textarea>
 								<label for="comment">Comment</label>
@@ -605,10 +605,10 @@ if ( ! function_exists( 'xlt_comment_form_en' ) ) {
 								  </label>
 								</div>
 								</div>',
-		);
+		];
 
 		if ( $post_id ) {
-			comment_form( $comments_args, $post_id );
+			comment_form( $comments_args,$post_id );
 		} else {
 			comment_form( $comments_args );
 		}
@@ -625,7 +625,7 @@ if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 	 *
 	 * @return string
 	 */
-	function xlt_old_posts_warning( $lang, $post_id = null ) {
+	function xlt_old_posts_warning( $lang,$post_id = null ) {
 
 		$warning = '<hr class="mt-2 mb-4 pt-0"/>';
 
@@ -636,10 +636,10 @@ if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 
 		$post_categories = wp_get_post_categories(
 			$post_id,
-			array( 'fields' => 'slugs' )
+			[ 'fields' => 'slugs' ]
 		);
 
-		$cats = array(
+		$cats = [
 			'analytics',
 			'android',
 			'android-apps',
@@ -651,13 +651,13 @@ if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 			'plugin',
 			'trucco',
 			'wordpress',
-		);
+		];
 
-		$intersect = array_intersect( $post_categories, $cats );
+		$intersect = array_intersect( $post_categories,$cats );
 
 		if ( ! empty( $intersect ) ) {
 			$today_str     = strtotime( current_time( 'Y-m-d' ) );
-			$post_date_str = strtotime( get_the_date( 'Y-m-d', $post_id ) );
+			$post_date_str = strtotime( get_the_date( 'Y-m-d',$post_id ) );
 			$diff          = ( $today_str - $post_date_str ) / 60 / 60 / 24;
 			$days          = 365;
 			$years         = floor( $diff / $days );
@@ -687,16 +687,16 @@ if ( ! function_exists( 'xlt_get_avatar' ) ) {
 	 *
 	 * @return string
 	 */
-	function xlt_get_avatar( $comment, $author_name ) {
-		$args = array(
+	function xlt_get_avatar( $comment,$author_name ) {
+		$args = [
 			'size'    => '64',
 			'default' => '404',
-		);
+		];
 
-		$url = get_avatar_url( $comment, $args );
+		$url = get_avatar_url( $comment,$args );
 
 		if ( ! xlt_gravatar_exists( $url ) ) {
-			$first_letter = substr( xlt_clean( $author_name ), 0, 1 );
+			$first_letter = substr( xlt_clean( $author_name ),0,1 );
 			$avatar       = '<div class="letter-avatar">
 							    <span>' . $first_letter . '</span>
 							</div>';
@@ -717,9 +717,9 @@ if ( ! function_exists( 'xlt_clean' ) ) {
 	 * @return string|string[]|null
 	 */
 	function xlt_clean( $string ) {
-		$string = str_replace( ' ', '', $string );
+		$string = str_replace( ' ','',$string );
 
-		return preg_replace( '/[^A-Za-z0-9\-]/', '', $string );
+		return preg_replace( '/[^A-Za-z0-9\-]/','',$string );
 	}
 }
 
@@ -733,7 +733,7 @@ if ( ! function_exists( 'xlt_gravatar_exists' ) ) {
 	 */
 	function xlt_gravatar_exists( $url ) {
 		$headers = @get_headers( $url );
-		if ( false === strpos( $headers[0], '200' ) ) {
+		if ( false === strpos( $headers[0],'200' ) ) {
 			$has_valid_avatar = false;
 		} else {
 			$has_valid_avatar = true;
@@ -768,25 +768,68 @@ if ( ! function_exists( 'xlt_get_file_content' ) ) {
 	}
 }
 
+if ( ! function_exists( 'xlt_download_url' ) ) {
+	/**
+	 * Download a file from the url.
+	 *
+	 * @param string $file_url File url.
+	 * @param string $filepath File path with extension.
+	 *
+	 * @return void
+	 */
+	function xlt_download_url( $file_url,$filepath ) {
+
+		global $wp_filesystem;
+		require_once ABSPATH . '/wp-admin/includes/file.php';
+
+		WP_Filesystem();
+
+		$tmp_file = $wp_filesystem->download_url( $file_url );
+
+		copy( $tmp_file,$filepath );
+		@unlink( $tmp_file );
+	}
+}
+
+if ( ! function_exists( 'xlt_get_url_content' ) ) {
+	/**
+	 * Get contents from a url.
+	 *
+	 * @param string $url The url to get the content from.
+	 *
+	 * @return false|mixed
+	 */
+	function xlt_get_url_content( $url ) {
+
+		$response = wp_remote_get( $url );
+
+		if ( is_array( $response ) && ! is_wp_error( $response ) ) {
+			return $response['body'];
+		}
+
+		return false;
+	}
+}
+
 if ( ! function_exists( 'xlt_get_sticky_img' ) ) {
 	/**
 	 * Returns the HTML for the sticky image.
 	 *
-	 * @param int    $id
+	 * @param int $id
 	 * @param string $alt
 	 *
 	 * @return string
 	 */
-	function xlt_get_sticky_img( $id, $alt ) {
+	function xlt_get_sticky_img( $id,$alt ) {
 		return wp_get_attachment_image(
 			$id,
-			array( '437', '225' ),
+			[ '437','225' ],
 			false,
-			array(
+			[
 				'class'   => 'img-fluid grey_img',
 				'alt'     => $alt,
 				'loading' => false,
-			)
+			]
 		);
 	}
 }
@@ -802,7 +845,7 @@ if ( ! function_exists( 'xlt_get_url_from_href' ) ) {
 	function xlt_get_url_from_href( $string ) {
 
 		$re = '/href="(.*?)"/i';
-		preg_match( $re, $string, $matches, PREG_OFFSET_CAPTURE );
+		preg_match( $re,$string,$matches,PREG_OFFSET_CAPTURE );
 
 		return $matches[1][0];
 	}
@@ -821,9 +864,9 @@ if ( ! function_exists( 'xlt_get_menu_items' ) ) {
 		$locations = get_nav_menu_locations();
 		if ( ( $locations ) && isset( $locations[ $theme_location ] ) ) {
 
-			$menu       = get_term( $locations[ $theme_location ], 'nav_menu' );
+			$menu       = get_term( $locations[ $theme_location ],'nav_menu' );
 			$menu_items = wp_get_nav_menu_items( $menu->term_id );
-			$menu_list  = array();
+			$menu_list  = [];
 			$bool       = false;
 
 			$i = 0;
@@ -831,18 +874,18 @@ if ( ! function_exists( 'xlt_get_menu_items' ) ) {
 				if ( (int) $menu_item->menu_item_parent === 0 ) {
 
 					$parent     = $menu_item->ID;
-					$menu_array = array();
+					$menu_array = [];
 					$y          = 0;
 
 					foreach ( $menu_items as $submenu ) {
 						if ( isset( $submenu ) && (int) $submenu->menu_item_parent === (int) $parent ) {
 							$bool       = true;
-							$menu_array = xlt_get_arr( $submenu, $menu_array, $y );
+							$menu_array = xlt_get_arr( $submenu,$menu_array,$y );
 							$y ++;
 						}
 					}
 
-					$menu_list = xlt_get_arr( $menu_item, $menu_list, $i );
+					$menu_list = xlt_get_arr( $menu_item,$menu_list,$i );
 
 					if ( $bool === true && count( $menu_array ) > 0 ) {
 						$menu_list[ $i ]['submenu'] = $menu_array;
@@ -862,18 +905,18 @@ if ( ! function_exists( 'xlt_get_menu_items' ) ) {
 	 *
 	 * @param $menu
 	 * @param array $menu_array
-	 * @param int   $i
+	 * @param int $i
 	 *
 	 * @return array
 	 */
-	function xlt_get_arr( $menu, array $menu_array, int $i ): array {
+	function xlt_get_arr( $menu,array $menu_array,int $i ): array {
 		global $lang;
 
 		$menu_array[ $i ]['url']     = $menu->url;
 		$title_en                    = ( '' !== get_title_en( $menu->object_id ) ) ? get_title_en( $menu->object_id ) : $menu->title;
 		$menu_array[ $i ]['title']   = ( 'it' === $lang ) ? $menu->title : $title_en;
 		$menu_array[ $i ]['target']  = ! empty( $menu->target ) ? ' target="' . $menu->target . '"' : '';
-		$menu_array[ $i ]['classes'] = implode( ' ', $menu->classes );
+		$menu_array[ $i ]['classes'] = implode( ' ',$menu->classes );
 
 		return $menu_array;
 	}
@@ -888,19 +931,19 @@ if ( ! function_exists( 'xlt_get_first_post' ) ) {
 	function xlt_get_first_post() {
 
 		$sticky = get_option( 'sticky_posts' );
-		$first  = array_slice( $sticky, 0, 1 );
+		$first  = array_slice( $sticky,0,1 );
 
-		$offset = array();
+		$offset = [];
 
 		if ( count( $first ) === 1 ) {
-			$args             = array(
+			$args             = [
 				'post__in'            => $first,
 				'ignore_sticky_posts' => 1,
-			);
+			];
 			$first_post_query = get_posts( $args );
 			$offset           = $first;
 		} else {
-			$args             = array( 'numberposts' => 1 );
+			$args             = [ 'numberposts' => 1 ];
 			$first_post_query = get_posts( $args );
 
 			if ( $first_post_query ) {
@@ -911,7 +954,7 @@ if ( ! function_exists( 'xlt_get_first_post' ) ) {
 		}
 
 		if ( count( $first ) === 1 ) {
-			$offset = array_slice( $sticky, 0, 3 );
+			$offset = array_slice( $sticky,0,3 );
 		}
 
 		$return['first_post_query'] = $first_post_query;
@@ -930,7 +973,7 @@ if ( ! function_exists( 'xlt_pagination' ) ) {
 	 *
 	 * @return void
 	 */
-	function xlt_pagination( $wp_query, $paged ) {
+	function xlt_pagination( $wp_query,$paged ) {
 		global $lang;
 
 		$first    = 'Primo';
@@ -974,7 +1017,7 @@ if ( ! function_exists( 'xlt_pagination' ) ) {
 
 		if ( $max_page > 1 ) {
 
-			$return  = '<nav class="mt-1 mb-5">' . "\n";
+			$return = '<nav class="mt-1 mb-5">' . "\n";
 			$return .= '<ul class="pagination flex-wrap">' . "\n";
 
 			if ( 1 < (int) $paged ) {
@@ -984,7 +1027,7 @@ if ( ! function_exists( 'xlt_pagination' ) ) {
 			}
 
 			$return .= '<li class="page-item">' . "\n";
-			$return .= str_replace( '<a href="', '<a class="page-link btn-50" title="' . $previous . '" href="', get_previous_posts_link( '&lsaquo;' ) );
+			$return .= str_replace( '<a href="','<a class="page-link btn-50" title="' . $previous . '" href="',get_previous_posts_link( '&lsaquo;' ) );
 			$return .= '</li>' . "\n";
 
 			if ( (int) $start_page >= 2 && $pages_to_show < $max_page ) {
@@ -1018,7 +1061,7 @@ if ( ! function_exists( 'xlt_pagination' ) ) {
 			}
 
 			$return .= '<li class="page-item">' . "\n";
-			$return .= str_replace( '<a href="', '<a class="page-link btn-50" title="' . $next . '" href="', get_next_posts_link( '&rsaquo;', $max_page ) );
+			$return .= str_replace( '<a href="','<a class="page-link btn-50" title="' . $next . '" href="',get_next_posts_link( '&rsaquo;',$max_page ) );
 			$return .= '</li>' . "\n";
 
 			if ( (int) $max_page > (int) $paged ) {
@@ -1044,26 +1087,26 @@ if ( ! function_exists( 'xlt_get_the_terms' ) ) {
 	 * @return string Returns the list of elements.
 	 */
 
-	function xlt_get_the_terms( $taxonomy, $cut = false ) {
+	function xlt_get_the_terms( $taxonomy,$cut = false ) {
 
 		$all_terms = '';
-		$terms     = get_the_terms( get_the_ID(), $taxonomy );
+		$terms     = get_the_terms( get_the_ID(),$taxonomy );
 
 		if ( $terms && ! is_wp_error( $terms ) ) {
 
-			$term_links = array();
+			$term_links = [];
 
 			foreach ( $terms as $term ) {
-				$term_links[] = '<li class="d-inline fw-bold"><a href="' . esc_attr( get_term_link( $term->slug, $taxonomy ) ) . '">' . esc_html( $term->name ) . '</a></li>';
+				$term_links[] = '<li class="d-inline fw-bold"><a href="' . esc_attr( get_term_link( $term->slug,$taxonomy ) ) . '">' . esc_html( $term->name ) . '</a></li>';
 			}
 
 			if ( $cut ) {
-				$term_links    = array();
+				$term_links    = [];
 				$key           = count( $terms ) - 1;
-				$term_links[0] = '<li class="d-inline fw-bold"><a href="' . esc_attr( get_term_link( $terms[ $key ]->slug, $taxonomy ) ) . '">' . esc_html( $terms[ $key ]->name ) . '</a></li>';
+				$term_links[0] = '<li class="d-inline fw-bold"><a href="' . esc_attr( get_term_link( $terms[ $key ]->slug,$taxonomy ) ) . '">' . esc_html( $terms[ $key ]->name ) . '</a></li>';
 			}
 
-			$all_terms = implode( ', ', $term_links );
+			$all_terms = implode( ', ',$term_links );
 		}
 
 		return $all_terms;
@@ -1082,7 +1125,7 @@ if ( ! function_exists( 'xlt_get_years' ) ) {
 	function xlt_get_years( $actual_year = null ) {
 		global $wpdb,$lang;
 
-		$array = array();
+		$array = [];
 
 		$years = $wpdb->get_results( "SELECT DISTINCT YEAR( post_date ) AS year FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now( ) and post_type = 'post' GROUP BY YEAR( post_date ) ORDER BY post_date DESC" );
 
@@ -1099,7 +1142,7 @@ if ( ! function_exists( 'xlt_get_years' ) ) {
 			}
 		}
 
-		echo implode( ' | ', $array );
+		echo implode( ' | ',$array );
 	}
 }
 
@@ -1112,10 +1155,10 @@ if ( ! function_exists( 'xlt_get_months' ) ) {
 	 *
 	 * @return void
 	 */
-	function xlt_get_months( $year, $actual_month = null ) {
+	function xlt_get_months( $year,$actual_month = null ) {
 		global $wpdb,$lang;
 
-		$array = array();
+		$array = [];
 
 		$months = $wpdb->get_results( "SELECT DISTINCT MONTH( post_date ) AS month FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now( ) and post_type = 'post' and YEAR( post_date ) = $year GROUP BY MONTH( post_date ) ORDER BY post_date ASC" );
 
@@ -1125,9 +1168,9 @@ if ( ! function_exists( 'xlt_get_months' ) ) {
 		}
 
 		foreach ( $months as $month ) {
-			$l_month    = sprintf( '%02d', $month->month );
+			$l_month    = sprintf( '%02d',$month->month );
 			$datetime   = $year . '-' . $l_month . '-01';
-			$month_name = ( 'en' === $lang ) ? date( 'F', strtotime( $datetime ) ) : date_i18n( 'F', strtotime( $datetime ) );
+			$month_name = ( 'en' === $lang ) ? date( 'F',strtotime( $datetime ) ) : date_i18n( 'F',strtotime( $datetime ) );
 
 			if ( ( isset( $actual_month ) ) && $actual_month === $month->month ) {
 				$array[] = '<li><span class="text-black">' . $month_name . '</span></li>';
@@ -1136,7 +1179,7 @@ if ( ! function_exists( 'xlt_get_months' ) ) {
 			}
 		}
 
-		echo implode( ' ', $array );
+		echo implode( ' ',$array );
 	}
 }
 
@@ -1148,6 +1191,7 @@ if ( ! function_exists( 'xlt_print_svg' ) ) {
 	 */
 	function xlt_print_svg( $svg ): string {
 		$file = get_template_directory() . $svg;
+
 		return xlt_get_file_content( $file );
 	}
 }
@@ -1164,39 +1208,39 @@ if ( ! function_exists( 'xlt_get_related' ) ) {
 
 		$num_posts = 6;
 		$count     = 0;
-		$postIDs   = array( $post->ID );
+		$postIDs   = [ $post->ID ];
 		$related   = '';
 		$cats      = wp_get_post_categories( $post->ID );
 
 		if ( $count <= ( $num_posts - 1 ) ) {
 
-			$catIDs = array();
+			$catIDs = [];
 			foreach ( $cats as $cat ) {
 				$catIDs[] = $cat;
 			}
 
 			$show_posts = $num_posts - $count;
 
-			$args = array(
+			$args = [
 				'category__in'        => $catIDs,
 				'post__not_in'        => $postIDs,
 				'showposts'           => $show_posts,
 				'ignore_sticky_posts' => 1,
 				'orderby'             => 'rand',
-				'tax_query'           => array(
-					array(
+				'tax_query'           => [
+					[
 						'taxonomy' => 'post_format',
 						'field'    => 'slug',
-						'terms'    => array(
+						'terms'    => [
 							'post-format-link',
 							'post-format-status',
 							'post-format-aside',
 							'post-format-quote',
-						),
+						],
 						'operator' => 'NOT IN',
-					),
-				),
-			);
+					],
+				],
+			];
 
 			$cat_query = new WP_Query( $args );
 

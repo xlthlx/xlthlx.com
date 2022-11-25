@@ -272,8 +272,9 @@ function xlt_insert_css() {
 		get_template_directory_uri() . '/assets/fonts/',
 		xlt_get_file_content( $file )
 	);
+	$fonts = xlt_get_url_content('https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Shadows+Into+Light&family=Titillium+Web');
 
-	echo '<style id="all-styles-inline">' . $style . '</style>';
+	echo '<style id="all-styles-inline">' . $fonts . $style . '</style>';
 }
 
 add_action( 'wp_head', 'xlt_insert_css' );
