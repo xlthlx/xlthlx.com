@@ -55,7 +55,7 @@ p {
 	outline: none;
 	overflow: hidden;
 	display: block;
-	font-family: 'Shadows Into Light', cursive;
+	font-family: 'Shadows Into Light', Geneva, Verdana, sans-serif;
 }
 
 .login h1 a:hover {
@@ -82,7 +82,7 @@ p {
 	margin-top: 0;
 	margin-bottom: 1rem;
 	padding: 0 24px;
-	font-family: 'Shadows Into Light', cursive;
+	font-family: 'Shadows Into Light', Geneva, Verdana, sans-serif;
 	font-size: 1.6rem;
 	color: #ffffff;
 }

@@ -440,7 +440,7 @@ iframe {
 }
 
 .shadows {
-	font-family: 'Shadows Into Light', cursive;
+	font-family: 'Shadows Into Light', Geneva, Verdana, sans-serif;
 	font-weight: 300;
 	font-style: normal;
 }
