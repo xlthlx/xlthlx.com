@@ -1,4 +1,11 @@
-<?php global $lang; ?>
+<?php
+/**
+ * Template part for displaying the newsletter form on sidebar.
+ *
+ * @package  xlthlx
+ */
+
+global $lang; ?>
 <div id="xlthlx-newsletter" class="widget widget_xlthlx-newsletter p-4">
 	<h3 class="h2 pb-2 shadows">Newsletter</h3>
 	<div class="textwidget">

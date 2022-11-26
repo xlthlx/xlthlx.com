@@ -1,4 +1,10 @@
 <?php
+/**
+ * Template part for post navigation.
+ *
+ * @package  xlthlx
+ */
+
 global $lang;
 $prev = ( 'en' === $lang ) ? 'Previous post' : 'Post precedente';
 $next = ( 'en' === $lang ) ? 'Next post' : 'Post successivo';

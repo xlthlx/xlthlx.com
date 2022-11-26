@@ -1,6 +1,6 @@
 <?php
 /**
- * Template part for displaying the 'buy me a coffee' on sidebar .
+ * Template part for displaying the 'buy me a coffee' on sidebar.
  *
  * @package  xlthlx
  */

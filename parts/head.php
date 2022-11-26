@@ -1,6 +1,6 @@
 <?php
 /**
- * Global header.
+ * Template part for header.
  *
  * @package  xlthlx
  */

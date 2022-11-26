@@ -7,7 +7,6 @@
  * @package  xlthlx
  */
 
-
 /**
  * Includes all files from inc directory.
  */

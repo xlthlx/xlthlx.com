@@ -1,4 +1,11 @@
-<?php global $lang;
+<?php
+/**
+ * Template part for comment.
+ *
+ * @package  xlthlx
+ */
+
+global $lang;
 $post_id = get_the_ID();
 ?>
 <section

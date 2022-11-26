@@ -1,4 +1,10 @@
 <?php
+/**
+ * Sticky post.
+ *
+ * @package  xlthlx
+ */
+
 global $lang,$post;
 $more = "Continua a leggere: '";
 if ( 'en' === $lang ) {

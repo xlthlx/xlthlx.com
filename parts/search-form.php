@@ -1,4 +1,11 @@
-<?php global $lang, $site_url;
+<?php
+/**
+ * Template part for search form.
+ *
+ * @package  xlthlx
+ */
+
+global $lang, $site_url;
 $label = ( 'en' === $lang ) ? 'Search' : 'Cerca'; ?>
 <form action="<?php echo $site_url; ?>" method="get" id="searchform" class="d-flex">
 	<label for="s" class="visually-hidden"><?php echo $label; ?></label>

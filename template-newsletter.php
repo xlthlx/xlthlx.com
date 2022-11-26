@@ -4,13 +4,14 @@
  *
  * @package  xlthlx
  */
+
 global $lang;
 get_header();
 
-$cod     = get_query_var( 'cod', false );
-$act     = get_query_var( 'act', false );
-$title   = '';
-$content = '';
+$cod        = get_query_var( 'cod', false );
+$act        = get_query_var( 'act', false );
+$news_title = '';
+$content    = '';
 
 if ( $cod && $act ) {
 
@@ -35,15 +36,15 @@ if ( $cod && $act ) {
 
 			switch ( $act ) {
 				case 'confirm':
-					$post_id = get_the_ID();
-					update_post_meta( $post_id, '_active', 'si' );
+					$news_id = get_the_ID();
+					update_post_meta( $news_id, '_active', 'si' );
 					$_code = wp_generate_password( 64, false );
-					update_post_meta( $post_id, '_code', $_code );
-					wp_set_object_terms( $post_id, 2954, 'flamingo_contact_tag' );
+					update_post_meta( $news_id, '_code', $_code );
+					wp_set_object_terms( $news_id, 2954, 'flamingo_contact_tag' );
 					break;
 				case 'unsubscribe':
-					$post_id = get_the_ID();
-					wp_delete_post( $post_id, true );
+					$news_id = get_the_ID();
+					wp_delete_post( $news_id, true );
 					$other_post_id = get_the_ID() + 1;
 					wp_delete_post( $other_post_id, true );
 					break;
@@ -58,18 +59,18 @@ wp_reset_postdata();
 
 switch ( $act ) {
 	case 'confirm':
-		$title   = ( 'en' === $lang ) ? 'Email verified' : 'Email verificata';
-		$content = ( 'en' === $lang ) ? '<p>Thank you for verifying your email address.</p>' : '<p>Grazie per aver verificato il tuo indirizzo email.</p>';
+		$news_title = ( 'en' === $lang ) ? 'Email verified' : 'Email verificata';
+		$content    = ( 'en' === $lang ) ? '<p>Thank you for verifying your email address.</p>' : '<p>Grazie per aver verificato il tuo indirizzo email.</p>';
 		break;
 	case 'unsubscribe':
-		$title   = ( 'en' === $lang ) ? 'Email deleted' : 'Email cancellata';
-		$content = ( 'en' === $lang ) ? '<p>You will no longer receive emails from us.</p><p>See you!</p>' : '<p>Non riceverai più email da noi.</p><p>Arrivederci!</p>';
+		$news_title = ( 'en' === $lang ) ? 'Email deleted' : 'Email cancellata';
+		$content    = ( 'en' === $lang ) ? '<p>You will no longer receive emails from us.</p><p>See you!</p>' : '<p>Non riceverai più email da noi.</p><p>Arrivederci!</p>';
 		break;
 	case 'subscribe':
-		$title    = 'Newsletter';
-		$form_id  = ( 'en' === $lang ) ? 34503 : 34396;
-		$content  = ( 'en' === $lang ) ? '<p>Do you want to receive an email when a new article is published?</p>' : '<p>Vuoi ricevere una email quando viene pubblicato un nuovo post?</p>';
-		$content .= do_shortcode( '[contact-form-7 id="' . $form_id . '"]' );
+		$news_title = 'Newsletter';
+		$form_id    = ( 'en' === $lang ) ? 34503 : 34396;
+		$content    = ( 'en' === $lang ) ? '<p>Do you want to receive an email when a new article is published?</p>' : '<p>Vuoi ricevere una email quando viene pubblicato un nuovo post?</p>';
+		$content   .= do_shortcode( '[contact-form-7 id="' . $form_id . '"]' );
 		break;
 }
 ?>
@@ -88,7 +89,7 @@ while ( have_posts() ) :
 
 					<div class="col-12 d-flex">
 						<div class="col-md-12 d-flex">
-							<h2 class="display-4 pb-3 shadows"><?php echo $title; ?></h2>
+							<h2 class="display-4 pb-3 shadows"><?php echo $news_title; ?></h2>
 						</div>
 					</div>
 

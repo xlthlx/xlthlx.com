@@ -1,6 +1,6 @@
 <?php
 /**
- * Footer navbar.
+ * Template part for footer navbar.
  *
  * @package  xlthlx
  */

@@ -1,4 +1,11 @@
-<?php global $site_url,$site_name,$site_desc; ?>
+<?php
+/**
+ * Template part for main navbar.
+ *
+ * @package  xlthlx
+ */
+
+global $site_url,$site_name,$site_desc; ?>
 <nav id="primary" class="navbar navbar-dark navbar-expand-lg bg-dark">
 	<div class="container-fluid">
 

@@ -1,4 +1,11 @@
-<?php global $site_url, $site_name; ?>
+<?php
+/**
+ * Template part for footer.
+ *
+ * @package  xlthlx
+ */
+
+global $site_url, $site_name; ?>
 <div class="container">
 	<div class="row">
 		<div class="navbar-nav col-md-4 d-inline" prefix="dct: https://purl.org/dc/terms/ cc: https://creativecommons.org/ns#">

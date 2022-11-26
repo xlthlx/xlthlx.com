@@ -1,6 +1,6 @@
 <?php
 /**
- * Sidebar image.
+ * Template part for displaying an image on sidebar.
  *
  * @package  xlthlx
  */
