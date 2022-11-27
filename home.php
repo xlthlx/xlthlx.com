@@ -8,9 +8,9 @@
 get_header();
 global $lang;
 
-$paging = ( get_query_var( 'paged' ) !== null ) ? get_query_var( 'paged' ) : 1;
+$paging = ( 0 !== get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 if ( 'en' === $lang ) {
-	$paging = ( get_query_var( 'page' ) !== null ) ? get_query_var( 'page' ) : 1;
+	$paging = (0 !==  get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
 }
 
 $first            = xlt_get_first_post();

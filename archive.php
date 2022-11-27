@@ -28,7 +28,7 @@ if ( is_day() ) {
 	$archive_title = post_type_archive_title( '', false );
 }
 
-$paging = ( get_query_var( 'paged' ) !== null ) ? get_query_var( 'paged' ) : 1;
+$paging = ( 0 !== get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 ?>
 
 <?php if ( have_posts() ) { ?>
