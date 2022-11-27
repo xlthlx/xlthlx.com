@@ -177,7 +177,9 @@ add_action( 'wp_head', 'xlt_add_to_header' );
  * @return void
  */
 function xlt_add_to_footer() {
-	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?' . urlencode_deep( 'family=JetBrains+Mono&family=Shadows+Into+Light&family=Titillium+Web&display=swap' ), array(), '1.0' );
+	// @codingStandardsIgnoreStart ?>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Shadows+Into+Light&family=Titillium+Web&display=swap" rel="stylesheet">
+<?php // @codingStandardsIgnoreEnd
 }
 
 add_action( 'wp_footer', 'xlt_add_to_footer', 100 );

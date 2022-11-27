@@ -218,3 +218,7 @@ body.dark-theme .logo-outline {
 body.dark-theme ul.two-columns li a {
 	color: #e5e5e5 !important;
 }
+
+body.dark-theme .text-black {
+	color: #f1469c !important;
+}
