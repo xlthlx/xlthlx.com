@@ -5,7 +5,6 @@
  * @package  xlthlx
  */
 
-
 /**
  * Add a new dashboard widget.
  *
@@ -77,7 +76,7 @@ function flamingo_widget_callback() {
 		array(
 			'post_type'      => 'flamingo_inbound',
 			'posts_per_page' => 4,
-		) 
+		)
 	);
 
 	if ( $the_query->have_posts() ) {
@@ -122,6 +121,11 @@ function flamingo_widget_callback() {
 	wp_reset_postdata();
 }
 
+/**
+ * Widget callback.
+ *
+ * @return void
+ */
 function latest_comments_widget_callback() {
 	$args = array(
 		'orderby' => 'comment_date',

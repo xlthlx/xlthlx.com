@@ -11,7 +11,7 @@
 function wt_remove_comments_style() {
 	global $wp_widget_factory;
 
-	$widget_recent_comments = $wp_widget_factory->widgets['WP_Widget_Recent_Comments'] ?? null;
+	$widget_recent_comments = isset( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'] ) ? $wp_widget_factory->widgets['WP_Widget_Recent_Comments'] : null;
 
 	if ( ! empty( $widget_recent_comments ) ) {
 		remove_action(

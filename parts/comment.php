@@ -6,7 +6,7 @@
  */
 
 global $lang;
-$post_id = get_the_ID();
+$parent_id = get_the_ID();
 ?>
 <section
 	class="blog-comment <?php echo $args['comment']->comment_type . '-' . $lang; ?>"
@@ -45,7 +45,7 @@ $post_id = get_the_ID();
 							'max_depth'  => get_option( 'thread_comments_depth' ),
 						);
 						?>
-						<small><?php comment_reply_link( $default, $args['comment']->comment_ID, $post_id ); ?></small>
+						<small><?php comment_reply_link( $default, $args['comment']->comment_ID, $parent_id ); ?></small>
 					</p>
 				</div>
 			</div>
@@ -53,11 +53,11 @@ $post_id = get_the_ID();
 	</div>
 </section>
 
-<?php if ( ! empty( $args['comment']->get_children() ) ) { ?>
-	<?php $comments = $args['comment']->get_children(); ?>
-	<?php foreach ( $comments as $comment ) { ?>
+<?php if ( null !== $args['comment']->get_children() ) { ?>
+	<?php $all_comments = $args['comment']->get_children(); ?>
+	<?php foreach ( $all_comments as $single_comment ) { ?>
 		<div class="comments ml-5 children">
-			<?php get_template_part( 'parts/comment', null, array( 'comment' => $comment ) ); ?>
+			<?php get_template_part( 'parts/comment', null, array( 'comment' => $single_comment ) ); ?>
 		</div>
 	<?php } ?>
 <?php } ?>

@@ -8,9 +8,9 @@
 /**
  * Remove archive title.
  *
- * @param $title
+ * @param string $title The title.
  *
- * @return string
+ * @return string The modified title.
  */
 function wt_remove_archive_title_prefix( $title ) {
 

@@ -151,6 +151,37 @@ function xlthlx_add_to_globals() {
 
 add_action( 'after_setup_theme', 'xlthlx_add_to_globals' );
 
+/**
+ * Adds the plausible scripts to header.
+ *
+ * @return void
+ */
+function xlt_add_to_header() {
+	?>
+	<?php // @codingStandardsIgnoreStart ?>
+	<script id="stats" defer data-domain="xlthlx.com" src="https://plausible.io/js/script.outbound-links.file-downloads.hash.js"></script>
+	<script>
+		window.plausible = window.plausible || function () {
+			(window.plausible.q = window.plausible.q || []).push(arguments)
+		}
+	</script>
+	<?php // @codingStandardsIgnoreEnd ?>
+	<?php
+}
+
+add_action( 'wp_head', 'xlt_add_to_header' );
+
+/**
+ * Adds to wp_footer.
+ *
+ * @return void
+ */
+function xlt_add_to_footer() {
+	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?' . urlencode_deep( 'family=JetBrains+Mono&family=Shadows+Into+Light&family=Titillium+Web&display=swap' ), array(), '1.0' );
+}
+
+add_action( 'wp_footer', 'xlt_add_to_footer', 100 );
+
 if ( file_exists( dirname( __FILE__ ) . '/inc/cmb2/cmb2/init.php' ) ) {
 	require_once dirname( __FILE__ ) . '/inc/cmb2/cmb2/init.php';
 }

@@ -5,9 +5,9 @@
  * @package  xlthlx
  */
 
-global $lang, $wp_query;
+global $lang, $archive_query;
 get_header();
-$title = ( 'en' === $lang ) ? 'Archive' : 'Archivio';
+$archive_title = ( 'en' === $lang ) ? 'Archive' : 'Archivio';
 
 $month = get_the_time( 'F' );
 if ( 'en' === $lang ) {
@@ -15,20 +15,20 @@ if ( 'en' === $lang ) {
 }
 
 if ( is_day() ) {
-	$title = get_the_date( 'd' ) . ' ' . $month . ' ' . get_the_date( 'Y' );
+	$archive_title = get_the_date( 'd' ) . ' ' . $month . ' ' . get_the_date( 'Y' );
 } elseif ( is_month() ) {
-	$title = $month . ' ' . get_the_date( 'Y' );
+	$archive_title = $month . ' ' . get_the_date( 'Y' );
 } elseif ( is_year() ) {
-	$title = get_the_date( 'Y' );
+	$archive_title = get_the_date( 'Y' );
 } elseif ( is_tag() ) {
-	$title = single_tag_title( '', false );
+	$archive_title = single_tag_title( '', false );
 } elseif ( is_category() ) {
-	$title = single_cat_title( '', false );
+	$archive_title = single_cat_title( '', false );
 } elseif ( is_post_type_archive() ) {
-	$title = post_type_archive_title( '', false );
+	$archive_title = post_type_archive_title( '', false );
 }
 
-$paged = ( get_query_var( 'paged' ) ) ?: 1;
+$paging = ( get_query_var( 'paged' ) !== null ) ? get_query_var( 'paged' ) : 1;
 ?>
 
 <?php if ( have_posts() ) { ?>
@@ -37,7 +37,7 @@ $paged = ( get_query_var( 'paged' ) ) ?: 1;
 		<?php
 		echo ( is_year() || is_month() ) ? '<div class="col-md-8">' : '<div class="col-md-12">';
 		?>
-		<h2 class="display-5 pb-3"><?php echo $title; ?></h2>
+		<h2 class="display-5 pb-3"><?php echo $archive_title; ?></h2>
 		<hr class="pt-0 mt-0 mb-4"/>
 
 		<?php
@@ -76,7 +76,7 @@ $paged = ( get_query_var( 'paged' ) ) ?: 1;
 	<?php } ?>
 	</div>
 	<?php
-	xlt_pagination( $wp_query, $paged );
+	xlt_pagination( $archive_query, $paging );
 
 } else {
 	get_template_part( 'parts/no-content' );

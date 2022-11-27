@@ -1,6 +1,8 @@
 <?php
 /**
  * Custom login.
+ *
+ * @package  xlthlx
  */
 
 remove_filter( 'authenticate', 'wp_authenticate_username_password', 20 );
@@ -124,7 +126,7 @@ function xlt_authenticate( $user, $username, $password ) {
 				return wp_authenticate_username_password(
 					null,
 					$username,
-					$password 
+					$password
 				);
 			}
 		}

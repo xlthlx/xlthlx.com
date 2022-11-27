@@ -10,24 +10,24 @@ if ( post_password_required() ) {
 }
 
 global $lang;
-$post_id = get_the_ID();
+$single_id = get_the_ID();
 
 $args = array(
 	'meta_key'     => 'comment_lang',
 	'meta_value'   => $lang,
 	'orderby'      => 'comment_date',
 	'order'        => 'ASC',
-	'post_id'      => $post_id,
+	'post_id'      => $single_id,
 	'type'         => 'comment',
 	'hierarchical' => 'threaded',
 );
 
-$comments = get_comments( $args );
-if ( $comments ) { ?>
+$all_comments = get_comments( $args );
+if ( $all_comments ) { ?>
 	<section id="post-comments" class="comment-box mb-5">
 		<h3 class="mb-4"><?php echo ( 'en' === $lang ) ? 'Comments' : 'Commenti'; ?></h3>
-		<?php foreach ( $comments as $comment ) { ?>
-			<?php get_template_part( 'parts/comment', null, array( 'comment' => $comment ) ); ?>
+		<?php foreach ( $all_comments as $single_comment ) { ?>
+			<?php get_template_part( 'parts/comment', null, array( 'comment' => $single_comment ) ); ?>
 		<?php } ?>
 	</section>
 <?php } ?>

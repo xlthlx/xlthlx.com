@@ -8,9 +8,9 @@
 get_header();
 global $lang;
 
-$paged = ( get_query_var( 'paged' ) ) ?: 1;
+$paging = ( get_query_var( 'paged' ) !== null ) ? get_query_var( 'paged' ) : 1;
 if ( 'en' === $lang ) {
-	$paged = ( get_query_var( 'page' ) ) ?: 1;
+	$paging = ( get_query_var( 'page' ) !== null ) ? get_query_var( 'page' ) : 1;
 }
 
 $first            = xlt_get_first_post();
@@ -19,18 +19,18 @@ $first_post_query = $first['first_post_query'];
 
 $args = array(
 	'post__not_in' => $offset,
-	'paged'        => $paged,
+	'paged'        => $paging,
 );
 
-$wp_query = new WP_Query( $args );
+$main_query = new WP_Query( $args );
 
-if ( $first_post_query && 1 === $paged ) {
+if ( $first_post_query && 1 === $paging ) {
 	?>
 	<div class="dots mt-5 mb-4 px-4 py-5">
 
 		<?php
-		foreach ( $first_post_query as $post ) {
-			setup_postdata( $post );
+		foreach ( $first_post_query as $first_post ) {
+			setup_postdata( $first_post );
 			get_template_part( 'parts/sticky' );
 
 		}
@@ -41,14 +41,14 @@ if ( $first_post_query && 1 === $paged ) {
 	<?php
 }
 
-if ( $wp_query->have_posts() ) {
+if ( $main_query->have_posts() ) {
 	?>
 	<div class="row mb-2">
 	<?php
-	while ( $wp_query->have_posts() ) {
-		$wp_query->the_post();
+	while ( $main_query->have_posts() ) {
+		$main_query->the_post();
 		get_template_part( 'parts/tease', 'home' );
-		if ( ( $wp_query->current_post % 2 !== 0 ) && ( $wp_query->post_count !== $wp_query->current_post + 1 ) ) {
+		if ( ( 0 !== $main_query->current_post % 2 ) && ( $main_query->post_count !== $main_query->current_post + 1 ) ) {
 			?>
 			</div>
 			<hr class="pt-0 mt-0 mb-4"/>
@@ -64,5 +64,5 @@ if ( $wp_query->have_posts() ) {
 	get_template_part( 'parts/no-content' );
 }
 
-xlt_pagination( $wp_query, $paged );
+xlt_pagination( $main_query, $paging );
 get_footer();

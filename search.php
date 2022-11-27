@@ -5,24 +5,24 @@
  * @package  xlthlx
  */
 
-global $lang, $wp_query;
+global $lang, $search_query;
 get_header();
 
-$title = ( 'en' === $lang ) ? 'Search results for: ' . get_query_var( 's' ) : 'Risultati della ricerca per: ' . get_query_var( 's' );
-$paged = ( get_query_var( 'paged' ) ) ?: 1;
+$search_title = ( 'en' === $lang ) ? 'Search results for: ' . get_query_var( 's' ) : 'Risultati della ricerca per: ' . get_query_var( 's' );
+$paging       = ( get_query_var( 'paged' ) !== null ) ? get_query_var( 'paged' ) : 1;
 
-$wp_query = new WP_Query(
+$search_query = new WP_Query(
 	array(
-		'paged'   => $paged,
+		'paged'   => $paging,
 		's'       => get_query_var( 's' ),
 		'order'   => 'DESC',
 		'orderby' => 'date',
-	) 
+	)
 );
 ?>
 <?php if ( have_posts() ) { ?>
 
-	<h2 class="display-5 pb-3"><?php echo $title; ?></h2>
+	<h2 class="display-5 pb-3"><?php echo $search_title; ?></h2>
 	<hr class="pt-0 mt-0 mb-4"/>
 
 	<?php
@@ -33,7 +33,7 @@ $wp_query = new WP_Query(
 
 	}
 
-	xlt_pagination( $wp_query, $paged );
+	xlt_pagination( $search_query, $paging );
 
 } else {
 	get_template_part( 'parts/no-content' );

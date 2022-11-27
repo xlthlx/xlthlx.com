@@ -592,21 +592,3 @@ function xlt_en_toolbar_link( $wp_admin_bar ) {
 }
 
 add_action( 'admin_bar_menu', 'xlt_en_toolbar_link', 999 );
-
-/**
- * Adds the plausible scripts to header.
- *
- * @return void
- */
-function xlt_add_plausible_to_header() {
-	?>
-	<script id="stats" defer data-domain="xlthlx.com" data-api="https://plausible.io/api/event" src="/stats/js/script.outbound-links.file-downloads.hash.js"></script>
-	<script>
-		window.plausible = window.plausible || function () {
-			(window.plausible.q = window.plausible.q || []).push(arguments)
-		}
-	</script>
-	<?php
-}
-
-add_action( 'wp_head', 'xlt_add_plausible_to_header' );

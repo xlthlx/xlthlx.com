@@ -8,8 +8,8 @@
 global $lang;
 get_header();
 
-$title   = ( 'en' === $lang ) ? 'Not found' : 'Non trovato';
-$content = ( 'en' === $lang ) ? 'The hamsters running this website have not found what you are looking for.' : 'I criceti che gestiscono questo sito non hanno trovato quello che stavi cercando.';
+$not_found_title = ( 'en' === $lang ) ? 'Not found' : 'Non trovato';
+$content         = ( 'en' === $lang ) ? 'The hamsters running this website have not found what you are looking for.' : 'I criceti che gestiscono questo sito non hanno trovato quello che stavi cercando.';
 ?>
 
 	<article class="post-type-404" id="post-404">
@@ -21,7 +21,7 @@ $content = ( 'en' === $lang ) ? 'The hamsters running this website have not foun
 
 					<div class="col-12 d-flex">
 						<div class="col-md-12 d-flex">
-							<h2 class="display-4 pb-3 shadows"><?php echo $title; ?></h2>
+							<h2 class="display-4 pb-3 shadows"><?php echo $not_found_title; ?></h2>
 						</div>
 					</div>
 
