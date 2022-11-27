@@ -10,7 +10,7 @@ global $lang;
 
 $paging = ( 0 !== get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 if ( 'en' === $lang ) {
-	$paging = (0 !==  get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
+	$paging = ( '' !== get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
 }
 
 $first            = xlt_get_first_post();

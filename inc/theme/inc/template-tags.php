@@ -1166,7 +1166,7 @@ if ( ! function_exists( 'xlt_get_months' ) ) {
 
 		$array = array();
 
-		$months = $wpdb->get_results( $wpdb->prepare("SELECT DISTINCT MONTH( post_date ) AS month FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now( ) and post_type = 'post' and YEAR( post_date ) = %s GROUP BY MONTH( post_date ) ORDER BY post_date ASC", $year ) );
+		$months = $wpdb->get_results( $wpdb->prepare( "SELECT DISTINCT MONTH( post_date ) AS month FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now( ) and post_type = 'post' and YEAR( post_date ) = %s GROUP BY MONTH( post_date ) ORDER BY post_date ASC", $year ) );
 
 		$url = '/';
 		if ( 'en' === $lang ) {
