@@ -8,7 +8,7 @@
 /**
  * Clean the filename.
  *
- * @param array The file information including the filename in $file['name'].
+ * @param array $file The file information including the filename in $file['name'].
  *
  * @return array The file information with the cleaned or original filename.
  */
@@ -41,9 +41,9 @@ function wt_upload_filter( $file ) {
 /**
  * Set attachment title to original filename.
  *
- * @param int Attachment post ID.
+ * @param int $attachment_id Attachment post ID.
  *
- * @since 1.2
+ * @return void
  */
 function wt_update_attachment_title( $attachment_id ) {
 

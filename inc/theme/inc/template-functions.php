@@ -5,10 +5,14 @@
  * @package  xlthlx
  */
 
+// @codingStandardsIgnoreStart
 use Highlight\Highlighter;
+// @codingStandardsIgnoreEnd
 
 /**
  * Removes WP Logo and comments in the admin bar.
+ *
+ * @return void
  */
 function xlt_remove_admin_bar_wp_logo() {
 	global $wp_admin_bar;
@@ -36,11 +40,11 @@ add_filter( 'wpcf7_load_css', '__return_false' );
 /**
  * Modify the rendering of code Gutenberg block.
  *
- * @param $block_content
- * @param $block
+ * @param string $block_content The block content.
+ * @param array  $block The full block, including name and attributes.
  *
  * @return string
- * @throws Exception
+ * @throws Exception Exception.
  */
 function xlt_render_code_block( $block_content, $block ) {
 	if ( 'core/code' !== $block['blockName'] ) {
@@ -58,10 +62,9 @@ add_filter( 'render_block', 'xlt_render_code_block', 10, 2 );
  * @param string $content Optional. Block content. Default empty string.
  *
  * @return string Rendered block type output.
- * @throws Exception
- * @since 5.0.0
+ * @throws Exception Exception.
  */
-function xlt_render_code( string $content ) {
+function xlt_render_code( $content ) {
 
 	$hl = new Highlighter();
 	$hl->setAutodetectLanguages( array( 'php', 'javascript', 'html' ) );
@@ -74,7 +77,7 @@ function xlt_render_code( string $content ) {
 			'</pre>',
 		),
 		'',
-		html_entity_decode( $content )
+		html_entity_decode( $content, ENT_COMPAT, 'UTF-8' )
 	);
 
 	$highlighted = $hl->highlightAuto( trim( $content ) );
@@ -89,6 +92,8 @@ function xlt_render_code( string $content ) {
 
 /**
  * Removes the comment-reply script.
+ *
+ * @return void
  */
 function xlt_remove_comment_reply() {
 	wp_deregister_script( 'comment-reply' );
@@ -98,6 +103,8 @@ add_action( 'init', 'xlt_remove_comment_reply' );
 
 /**
  * Remove the very annoying jQuery Migrate notice.
+ *
+ * @return void
  */
 function xlt_remove_jquery_migrate_notice() {
 	$m                    = $GLOBALS['wp_scripts']->registered['jquery-migrate'];
@@ -110,7 +117,7 @@ add_action( 'init', 'xlt_remove_jquery_migrate_notice', 5 );
 /**
  * Comment Field Order.
  *
- * @param $fields
+ * @param array $fields The comment fields.
  *
  * @return array
  */
@@ -136,19 +143,21 @@ add_filter( 'comment_form_fields', 'xlt_comment_fields_custom_order' );
 /**
  * Redirect en comments to the correct url.
  *
- * @param $location
- * @param $comment_data
+ * @param string $location The 'redirect_to' URI sent via $_POST.
+ * @param object $comment Comment object.
  *
- * @return mixed
+ * @return string
  */
-function xlt_en_comment_redirect( $location, $comment_data ) {
-	if ( ! isset( $comment_data ) || empty( $comment_data->comment_post_ID ) ) {
+function xlt_en_comment_redirect( $location, $comment ) {
+	if ( ! isset( $comment ) || empty( $comment->comment_post_ID ) ) {
 		return $location;
 	}
 
+	// @codingStandardsIgnoreStart
 	if ( isset( $_POST['en_redirect_to'] ) ) {
-		$location = get_permalink( $comment_data->comment_post_ID ) . 'en/#comment-' . $comment_data->comment_ID;
+		$location = get_permalink( $comment->comment_post_ID ) . 'en/#comment-' . $comment->comment_ID;
 	}
+	// @codingStandardsIgnoreEnd
 
 	return $location;
 }
@@ -157,6 +166,8 @@ add_filter( 'comment_post_redirect', 'xlt_en_comment_redirect', 10, 2 );
 
 /**
  * Enqueue js and css into admin.
+ *
+ * @return void
  */
 function xlt_enqueue_admin_css_js() {
 	wp_enqueue_style(
@@ -178,6 +189,8 @@ add_action( 'admin_enqueue_scripts', 'xlt_enqueue_admin_css_js' );
 
 /**
  * Hide SEO settings meta box for posts.
+ *
+ * @return void
  */
 function xlt_hide_slim_seo_meta_box() {
 	$context = apply_filters( 'slim_seo_meta_box_context', 'normal' );
@@ -199,6 +212,8 @@ add_filter( 'document_title_separator', 'xlt_document_title_separator' );
 
 /**
  * Removes tags from blog posts.
+ *
+ * @return void
  */
 function xlt_unregister_tags() {
 	unregister_taxonomy_for_object_type( 'post_tag', 'post' );
@@ -209,25 +224,24 @@ add_action( 'init', 'xlt_unregister_tags' );
 /**
  * Replace YouTube.com with the no cookie version.
  *
- * @param $html
- * @param $data
- * @param $url
+ * @param string $return The returned oEmbed HTML.
+ * @param object $data A data object result from an oEmbed provider.
  *
  * @return string
  */
-function xlt_youtube_oembed_filters( $html, $data, $url ) {
-	if ( false === $html || ! in_array( $data->type, array( 'rich', 'video' ), true ) ) {
-		return $html;
+function xlt_youtube_oembed_filters( $return, $data ) {
+	if ( false === $return || ! in_array( $data->type, array( 'rich', 'video' ), true ) ) {
+		return $return;
 	}
 
-	if ( false !== strpos( $html, 'youtube' ) || false !== strpos( $html, 'youtu.be' ) ) {
-		$html = str_replace( 'youtube.com/embed', 'youtube-nocookie.com/embed', $html );
+	if ( false !== strpos( $return, 'youtube' ) || false !== strpos( $return, 'youtu.be' ) ) {
+		$return = str_replace( 'youtube.com/embed', 'youtube-nocookie.com/embed', $return );
 	}
 
-	return $html;
+	return $return;
 }
 
-add_filter( 'oembed_dataparse', 'xlt_youtube_oembed_filters', 99, 3 );
+add_filter( 'oembed_dataparse', 'xlt_youtube_oembed_filters', 99, 2 );
 
 /**
  * Clean the oembed cache.
@@ -246,16 +260,16 @@ add_filter( 'oembed_ttl', 'xlt_clean_oembed_cache' );
 /**
  * Restore the oembed cache.
  *
- * @param $discover
+ * @param bool $enable Whether to enable <link> tag discovery. Default true.
  *
- * @return mixed
+ * @return bool
  */
-function xlt_restore_oembed_cache( $discover ) {
+function xlt_restore_oembed_cache( $enable ) {
 	if ( 1 === did_action( 'wpse_do_cleanup' ) ) {
 		$GLOBALS['wp_embed']->usecache = 1;
 	}
 
-	return $discover;
+	return $enable;
 }
 
 add_filter( 'embed_oembed_discover', 'xlt_restore_oembed_cache' );
@@ -295,12 +309,12 @@ add_action( 'wp_footer', 'xlt_insert_scripts' );
 /**
  * Add a class to previous/next links.
  *
- * @param $html
+ * @param string $output The post link.
  *
  * @return array|string|string[]
  */
-function xlt_add_post_link( $html ) {
-	return str_replace( '<a ', '<a class="text-decoration-none" ', $html );
+function xlt_add_post_link( $output ) {
+	return str_replace( '<a ', '<a class="text-decoration-none" ', $output );
 }
 
 add_filter( 'next_post_link', 'xlt_add_post_link' );
@@ -332,7 +346,7 @@ function xlt_admin_color_scheme() {
 
 	wp_admin_css_color(
 		'xlthlx',
-		__( 'Xlthlx' ),
+		__( 'Xlthlx', 'xlthlx' ),
 		$theme_dir . '/assets/css/admin/color-scheme.min.css',
 		array( '#1e2327', '#fff', '#92285e', '#6667ab' ),
 		array(
@@ -348,13 +362,15 @@ add_action( 'admin_init', 'xlt_admin_color_scheme' );
 /**
  * Create a menu separator.
  *
- * @param $position
+ * @param int $position Menu position.
  *
  * @return void
  */
 function xlt_add_admin_menu_separator( $position ) {
 	global $menu;
 	$index = 0;
+
+	// @codingStandardsIgnoreStart
 	foreach ( $menu as $offset => $section ) {
 		if ( 0 === strpos( $section[2], 'separator' ) ) {
 			$index ++;
@@ -370,7 +386,9 @@ function xlt_add_admin_menu_separator( $position ) {
 			break;
 		}
 	}
+
 	ksort( $menu );
+	// @codingStandardsIgnoreEnd
 }
 
 /**
@@ -382,6 +400,7 @@ function xlt_rearrange_admin_menu() {
 	remove_menu_page( 'wp-tweets-pro' );
 	remove_menu_page( 'edit-comments.php' );
 
+	// @codingStandardsIgnoreStart
 	add_menu_page(
 		'Twitter',
 		'Twitter',
@@ -401,6 +420,7 @@ function xlt_rearrange_admin_menu() {
 		'',
 		22
 	);
+	// @codingStandardsIgnoreEnd
 
 	xlt_add_admin_menu_separator( 24 );
 }
@@ -410,9 +430,9 @@ add_action( 'admin_menu', 'xlt_rearrange_admin_menu' );
 /**
  * Hide SEO and description columns.
  *
- * @param $columns
+ * @param string[] $columns An associative array of column headings.
  *
- * @return mixed
+ * @return string[]
  */
 function xlt_hide_seo_columns( $columns ) {
 	unset( $columns['meta_title'], $columns['meta_description'], $columns['description'], $columns['noindex'] );
@@ -427,10 +447,10 @@ add_filter( 'manage_edit-category_columns', 'xlt_hide_seo_columns', 20 );
 
 /** Add sources with webp.
  *
- * @param $attachment_id
- * @param $size
- * @param $type
- * @param $html
+ * @param int    $attachment_id Image attachment ID.
+ * @param string $size Image size.
+ * @param string $type Image type.
+ * @param string $html HTML img element or empty string on failure.
  *
  * @return string
  */
@@ -448,47 +468,44 @@ function xlt_get_sources_for_image( $attachment_id, $size, $type, $html ) {
 /**
  * Wrap the image with picture tag to support webp.
  *
- * @param $html
- * @param $attachment_id
- * @param $size
- * @param $icon
- * @param $attr
+ * @param string $html HTML img element or empty string on failure.
+ * @param int    $attachment_id Image attachment ID.
+ * @param string $size Image size.
  *
- * @return mixed|string
+ * @return string
  */
-function xlt_wrap_image_with_picture( $html, $attachment_id, $size, $icon, $attr ) {
+function xlt_wrap_image_with_picture( $html, $attachment_id, $size ) {
 	if ( is_admin() ) {
 		return $html;
 	}
 
 	$type = get_post_mime_type( $attachment_id );
 
-	if ( $type !== 'image/gif' ) {
+	if ( 'image/gif' !== $type ) {
 		$html = xlt_get_sources_for_image( $attachment_id, $size, $type, $html );
 	}
 
 	return $html;
 }
 
-add_filter( 'wp_get_attachment_image', 'xlt_wrap_image_with_picture', 10, 5 );
+add_filter( 'wp_get_attachment_image', 'xlt_wrap_image_with_picture', 10, 3 );
 
 /**
  * Wrap the image with picture tag to support webp.
  *
- * @param $html
- * @param $context
- * @param $attachment_id
+ * @param string $html HTML img element or empty string on failure.
+ * @param int    $attachment_id Image attachment ID.
  *
- * @return mixed|string
+ * @return string
  */
-function xlt_image_with_picture( $html, $context, $attachment_id ) {
+function xlt_image_with_picture( $html, $attachment_id ) {
 	if ( is_admin() ) {
 		return $html;
 	}
 
 	$type = get_post_mime_type( $attachment_id );
 
-	if ( $type !== 'image/gif' ) {
+	if ( 'image/gif' !== $type ) {
 
 		preg_match( '/width="([^"]+)/i', $html, $width, PREG_OFFSET_CAPTURE );
 		preg_match( '/height="([^"]+)/i', $html, $height, PREG_OFFSET_CAPTURE );
@@ -512,6 +529,7 @@ add_filter( 'wp_content_img_tag', 'xlt_image_with_picture', 10, 3 );
  * @return void
  */
 function xlt_add_admin_icons() {
+	// @codingStandardsIgnoreStart
 	?>
 	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/favicon.ico"
 		  sizes="any"><!-- 32×32 -->
@@ -519,6 +537,7 @@ function xlt_add_admin_icons() {
 	<link rel="apple-touch-icon"
 		  href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/apple-touch-icon.png">
 	<?php
+	// @codingStandardsIgnoreEnd
 }
 
 add_action( 'login_head', 'xlt_add_admin_icons' );
@@ -526,28 +545,32 @@ add_action( 'admin_head', 'xlt_add_admin_icons' );
 
 /**
  * Add column Description.
+ *
+ * @param string[] $post_columns An associative array of column headings.
+ *
+ * @return string[]
  */
-function xlt_add_remove_link_columns( $link_columns ) {
+function xlt_add_remove_link_columns( $post_columns ) {
 
-	$link_columns['link_description'] = 'Descrizione';
+	$post_columns['link_description'] = 'Descrizione';
 
-	unset( $link_columns['rel'], $link_columns['rating'], $link_columns['visible'] );
+	unset( $post_columns['rel'], $post_columns['rating'], $post_columns['visible'] );
 
-	return $link_columns;
+	return $post_columns;
 }
 
 /**
  * Display column content.
  *
- * @param $column_name
- * @param $id
+ * @param string $column_name The name of the column to display.
+ * @param int    $post_id The current post ID.
  *
  * @return void
  */
-function xlt_add_link_columns_data( $column_name, $id ) {
+function xlt_add_link_columns_data( $column_name, $post_id ) {
 
-	if ( $column_name === 'link_description' ) {
-		$val = get_bookmark_field( 'link_description', $id );
+	if ( 'link_description' === $column_name ) {
+		$val = get_bookmark_field( 'link_description', $post_id );
 		if ( empty( $val ) ) {
 			return;
 		}
@@ -569,7 +592,7 @@ add_action( 'load-link-manager.php', 'xlt_setup_columns' );
 /**
  * Add a link to the WP Toolbar for the English version.
  *
- * @param $wp_admin_bar
+ * @param object $wp_admin_bar The WP_Admin_Bar instance, passed by reference.
  *
  * @return void
  */
@@ -577,7 +600,7 @@ function xlt_en_toolbar_link( $wp_admin_bar ) {
 
 	global $pagenow;
 
-	if ( is_admin() && $pagenow == 'post.php' ) {
+	if ( is_admin() && 'post.php' == $pagenow ) {
 		$args = array(
 			'id'    => 'view-english',
 			'title' => 'Visualizza articolo in Inglese',

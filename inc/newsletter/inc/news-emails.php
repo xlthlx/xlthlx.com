@@ -9,7 +9,7 @@
 /**
  * Create an excerpt from any text.
  *
- * @param $text
+ * @param string $text Text.
  *
  * @return string
  */
@@ -25,13 +25,13 @@ function xlt_trim( $text ) {
 /**
  * Send confirmation email.
  *
- * @param $lang
- * @param $to
- * @param $_code
+ * @param string $lang Language.
+ * @param string $to Email to.
+ * @param string $_code Unique code.
  */
 function xlt_send_confirmation( $lang, $to, $_code ) {
 
-	if ( $lang === 'en' ) {
+	if ( 'en' === $lang ) {
 		$subject = 'Confirm your subscription to xlthlx.com';
 	} else {
 		$subject = 'Conferma la tua iscrizione a xlthlx.com';
@@ -40,18 +40,25 @@ function xlt_send_confirmation( $lang, $to, $_code ) {
 	ob_start();
 	$email = $to;
 	$code  = $_code;
-	include sprintf( '%s/email/confirm-%s.php', __DIR__, $lang );
+	include sprintf( '%s/email/confirm-%s.php', dirname( __FILE__ ), $lang );
 	$body = ob_get_clean();
 
 	xlt_send_email( $to, $subject, $body );
 }
 
 /**
- * @throws Exception
+ * Send an email when a post is published.
+ *
+ * @param string $new_status New post status.
+ * @param string $old_status Old post status.
+ * @param object $post Post object.
+ *
+ * @return void
+ * @throws Exception Exception.
  */
 function xlt_post_published_notification( $new_status, $old_status, $post ) {
 
-	if ( 'publish' === $new_status && 'publish' !== $old_status && $post->post_type === 'post' ) {
+	if ( 'publish' === $new_status && 'publish' !== $old_status && 'post' === $post->post_type ) {
 
 		$_title        = $post->post_title;
 		$_permalink    = get_permalink( $post->ID );
@@ -82,18 +89,18 @@ function xlt_post_published_notification( $new_status, $old_status, $post ) {
 				ob_start();
 				$code = $_code;
 
-				if ( $_lang === 'en' ) {
+				if ( 'en' === $_lang ) {
 					$subject   = 'New post on xlthlx.com';
 					$title     = $_title_en;
 					$permalink = $_permalink_en;
 					$excerpt   = $_excerpt_en;
-					include __DIR__ . '/email/post-en.php';
+					include dirname( __FILE__ ) . '/email/post-en.php';
 				} else {
 					$subject   = 'Nuovo post su xlthlx.com';
 					$title     = $_title;
 					$permalink = $_permalink;
 					$excerpt   = $_excerpt;
-					include __DIR__ . '/email/post-it.php';
+					include dirname( __FILE__ ) . '/email/post-it.php';
 				}
 				$body = ob_get_clean();
 
@@ -115,9 +122,9 @@ add_action( 'transition_post_status', 'xlt_post_published_notification', 10, 3 )
 /**
  * Send HTML email.
  *
- * @param $to
- * @param $subject
- * @param $body
+ * @param string $to Email to.
+ * @param string $subject Email subject.
+ * @param string $body Email body.
  */
 function xlt_send_email( $to, $subject, $body ) {
 	$headers = array( 'Content-Type: text/html; charset=UTF-8', 'From: xlthlx.com <noreply@xlthlx.com>' );
@@ -127,7 +134,7 @@ function xlt_send_email( $to, $subject, $body ) {
 /**
  * Logs the email errors.
  *
- * @param $wp_error
+ * @param array $wp_error Email error.
  */
 function xlt_log_mail_error( $wp_error ) {
 

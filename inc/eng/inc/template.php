@@ -8,10 +8,14 @@
 /**
  * Save comment meta lang.
  *
- * @param $comment_id
+ * @param int $comment_id The comment ID.
+ *
+ * @return void
  */
 function xlt_save_comment_lang( $comment_id ) {
-	update_comment_meta( $comment_id, 'comment_lang', $_POST['comment_lang'] );
+	// @codingStandardsIgnoreStart
+		update_comment_meta( $comment_id, 'comment_lang', $_POST['comment_lang'] );
+	// @codingStandardsIgnoreEnd
 }
 
 add_action( 'comment_post', 'xlt_save_comment_lang' );
@@ -19,9 +23,9 @@ add_action( 'comment_post', 'xlt_save_comment_lang' );
 /**
  * Add query var.
  *
- * @param $vars
+ * @param array $vars Query vars.
  *
- * @return mixed
+ * @return array
  */
 function xlt_query_vars_lang( $vars ) {
 	$vars[] = 'en';
@@ -33,6 +37,8 @@ add_filter( 'query_vars', 'xlt_query_vars_lang' );
 
 /**
  * Template redirect for en.
+ *
+ * @return void
  */
 function xlt_template_redirect() {
 	global $wp_query;
@@ -96,6 +102,8 @@ add_action( 'template_redirect', 'xlt_template_redirect' );
 
 /**
  * Add rewrite endpoints.
+ *
+ * @return void
  */
 function xlt_rewrite_tags_lang() {
 	add_rewrite_endpoint( 'en', EP_ALL, 'en' );
@@ -107,7 +115,7 @@ add_action( 'init', 'xlt_rewrite_tags_lang' );
 /**
  * Controls the number of search results.
  *
- * @param $query
+ * @param object $query The WP_Query instance.
  */
 function xlt_home_posts_per_page( $query ) {
 
@@ -121,10 +129,10 @@ add_action( 'pre_get_posts', 'xlt_home_posts_per_page' );
 /**
  * Set up an excerpt from $content.
  *
- * @param int $length
+ * @param int $length Excerpt length.
  *
  * @return string
- * @throws Exception
+ * @throws Exception Exception.
  */
 function xlt_get_excerpt( $length = 50 ) {
 
@@ -151,8 +159,8 @@ function xlt_get_excerpt( $length = 50 ) {
 /**
  * Filters the title.
  *
- * @param $title
- * @param $id
+ * @param string $title The title.
+ * @param int    $id The post ID.
  *
  * @return mixed|string
  */
@@ -284,11 +292,10 @@ add_filter( 'search_link', 'xlt_search_link_filter', 10, 2 );
  * Filters the retrieved list of pages.
  *
  * @param array $pages Array of page objects.
- * @param array $args Array of get_pages() arguments.
  *
  * @return array
  */
-function xlt_set_title_en_pages( $pages, $args ) {
+function xlt_set_title_en_pages( $pages ) {
 
 	global $lang;
 
@@ -301,18 +308,17 @@ function xlt_set_title_en_pages( $pages, $args ) {
 	return $pages;
 }
 
-add_filter( 'get_pages', 'xlt_set_title_en_pages', 10, 2 );
+add_filter( 'get_pages', 'xlt_set_title_en_pages' );
 
 /**
  * Filters the permalink for page/post.
  *
  * @param string $link The page's permalink.
  * @param int    $post_id The ID of the page.
- * @param bool   $sample Is it a sample permalink.
  *
  * @return string
  */
-function xlt_set_url_en( $link, $post_id, $sample ) {
+function xlt_set_url_en( $link, $post_id ) {
 
 	global $lang;
 
@@ -331,19 +337,18 @@ function xlt_set_url_en( $link, $post_id, $sample ) {
 	return $link;
 }
 
-add_filter( 'page_link', 'xlt_set_url_en', 10, 3 );
-add_filter( 'post_link', 'xlt_set_url_en', 10, 3 );
+add_filter( 'page_link', 'xlt_set_url_en', 10, 2 );
+add_filter( 'post_link', 'xlt_set_url_en', 10, 2 );
 
 /**
  * Filters the widget title.
  *
  * @param string $title The widget title.
  * @param array  $instance Array of settings for the current widget.
- * @param mixed  $id_base The widget ID.
  *
  * @return string
  */
-function xlt_change_widget_title( $title, $instance, $id_base ) {
+function xlt_change_widget_title( $title, $instance ) {
 
 	global $lang;
 
@@ -358,12 +363,12 @@ function xlt_change_widget_title( $title, $instance, $id_base ) {
 	return $title;
 }
 
-add_filter( 'widget_title', 'xlt_change_widget_title', 10, 3 );
+add_filter( 'widget_title', 'xlt_change_widget_title', 10, 2 );
 
 /**
  * Add attributes to next post link.
  *
- * @param $link
+ * @param string $link Next post link.
  *
  * @return string
  */
@@ -378,8 +383,8 @@ function xlt_filter_next_post_link( $link ) {
 
 	return str_replace(
 		'rel=',
-		'title="' . $title . '" class="display-5 arrow" rel=', 
-		$link 
+		'title="' . $title . '" class="display-5 arrow" rel=',
+		$link
 	);
 }
 
@@ -388,7 +393,7 @@ add_filter( 'next_post_link', 'xlt_filter_next_post_link' );
 /**
  * Add attributes to previous post link.
  *
- * @param $link
+ * @param string $link Previous post link.
  *
  * @return string
  */
@@ -403,8 +408,8 @@ function xlt_filter_previous_post_link( $link ) {
 
 	return str_replace(
 		'rel=',
-		'title="' . $title . '" class="display-5 arrow" rel=', 
-		$link 
+		'title="' . $title . '" class="display-5 arrow" rel=',
+		$link
 	);
 }
 
@@ -413,9 +418,9 @@ add_filter( 'previous_post_link', 'xlt_filter_previous_post_link' );
 /**
  * Filters the meta title.
  *
- * @param $title
+ * @param string $title The title.
  *
- * @return mixed|string
+ * @return string
  */
 function xlt_en_title( $title ) {
 
@@ -424,7 +429,7 @@ function xlt_en_title( $title ) {
 	if ( 'en' === $lang ) {
 
 		if ( is_home() || is_front_page() ) {
-			$title = get_bloginfo( 'name' ) . ' | ' . 'Better than a cyber duck.';
+			$title = get_bloginfo( 'name' ) . ' | Better than a cyber duck.';
 		}
 
 		if ( is_singular() && ! is_preview() ) {
@@ -446,7 +451,7 @@ function xlt_en_title( $title ) {
 		if ( is_month() ) {
 			$datetime = get_the_time( 'm' ) . '/01/' . get_the_time( 'Y' );
 			$title    = date( 'F', strtotime( $datetime ) ) . ' template.php' . get_the_time( 'Y' ) . ' | xlthlx';
-		}   
+		}
 	}
 
 	return $title;
@@ -457,10 +462,10 @@ add_filter( 'slim_seo_meta_title', 'xlt_en_title' );
 /**
  * Filters the meta description.
  *
- * @param $description
+ * @param string $description The meta description.
  *
- * @return mixed|string
- * @throws Exception
+ * @return string
+ * @throws Exception Exception.
  */
 function xlt_en_description( $description ) {
 
@@ -489,12 +494,11 @@ add_filter( 'slim_seo_meta_description', 'xlt_en_description' );
 /**
  * Join posts and post meta tables for the search results.
  *
- * @param string   $join The JOIN clause of the query.
- * @param WP_Query $query The WP_Query instance (passed by reference).
+ * @param string $join The JOIN clause of the query.
  *
  * @return string
  */
-function xlt_search_join_post_meta( $join, $query ) {
+function xlt_search_join_post_meta( $join ) {
 	global $wpdb;
 
 	if ( is_search() ) {
@@ -504,41 +508,39 @@ function xlt_search_join_post_meta( $join, $query ) {
 	return $join;
 }
 
-add_filter( 'posts_join', 'xlt_search_join_post_meta', 10, 2 );
+add_filter( 'posts_join', 'xlt_search_join_post_meta' );
 
 /**
  * Modify the search query to add post meta.
  *
- * @param string   $where The WHERE clause of the query.
- * @param WP_Query $query The WP_Query instance (passed by reference).
+ * @param string $where The WHERE clause of the query.
  *
  * @return string
  */
-function xlt_search_where_post_meta( $where, $query ) {
+function xlt_search_where_post_meta( $where ) {
 	global $wpdb;
 
 	if ( is_search() ) {
 		$where = preg_replace(
 			'/\(\s*' . $wpdb->posts . ".post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
 			'(' . $wpdb->posts . '.post_title LIKE $1) OR (' . $wpdb->postmeta . '.meta_value LIKE $1)',
-			$where 
+			$where
 		);
 	}
 
 	return $where;
 }
 
-add_filter( 'posts_where', 'xlt_search_where_post_meta', 10, 2 );
+add_filter( 'posts_where', 'xlt_search_where_post_meta' );
 
 /**
  * Prevent duplicates in the search results.
  *
- * @param string   $distinct The DISTINCT clause of the query.
- * @param WP_Query $query The WP_Query instance (passed by reference).
+ * @param string $distinct The DISTINCT clause of the query.
  *
  * @return string
  */
-function xlt_search_distinct( $distinct, $query ) {
+function xlt_search_distinct( $distinct ) {
 
 	if ( is_search() ) {
 		return 'DISTINCT';
@@ -547,10 +549,12 @@ function xlt_search_distinct( $distinct, $query ) {
 	return $distinct;
 }
 
-add_filter( 'posts_distinct', 'xlt_search_distinct', 10, 2 );
+add_filter( 'posts_distinct', 'xlt_search_distinct' );
 
 /**
  * Pretty permalink for search.
+ *
+ * @return void.
  */
 function xlt_search_url_rewrite() {
 	global $wp_rewrite;
@@ -564,14 +568,14 @@ function xlt_search_url_rewrite() {
 
 	if ( strpos( $uri, $needle ) === false && strpos(
 		$uri,
-		'&lang=en' 
+		'&lang=en'
 	) !== false ) {
 
 		$search = urlencode( get_query_var( 's' ) );
 		$search = str_replace(
-			'%2F', 
+			'%2F',
 			'/',
-			$search 
+			$search
 		); // %2F(/) is not valid within a URL, send it un-encoded.
 
 		wp_redirect( home_url() . '/search/' . $search . '/en/' );
@@ -580,7 +584,7 @@ function xlt_search_url_rewrite() {
 
 	if ( is_search() && strpos( $uri, $needle ) === false && strpos(
 		$uri,
-		'&' 
+		'&'
 	) === false ) {
 		wp_redirect( get_search_link() );
 		exit();
@@ -594,6 +598,8 @@ add_action( 'template_redirect', 'xlt_search_url_rewrite' );
  * Filters the search results.
  *
  * @param object $query The WP_Query instance.
+ *
+ * @return void.
  */
 function xlt_exclude_pages_from_search_results( $query ) {
 	if ( $query->is_search() && ! is_admin() ) {
@@ -612,8 +618,8 @@ add_action( 'pre_get_posts', 'xlt_exclude_pages_from_search_results' );
 function xlt_rewrite_search_pages_en() {
 	add_rewrite_rule(
 		'^search/([^/]+)/en/page/([0-9]+)/?$',
-		'index.php?s=$matches[1]&lang=en&paged=$matches[2]', 
-		'top' 
+		'index.php?s=$matches[1]&lang=en&paged=$matches[2]',
+		'top'
 	);
 }
 

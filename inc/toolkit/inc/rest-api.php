@@ -8,7 +8,7 @@
 /**
  * Disable REST API only for non-logged-in users.
  *
- * @param $access
+ * @param string $access No idea.
  *
  * @return WP_Error
  */
@@ -17,7 +17,7 @@ function wt_disable_wp_rest_api( $access ) {
 	if ( ! is_user_logged_in() ) {
 		$message = apply_filters(
 			'disable_wp_rest_api_error',
-			__( 'REST API restricted to authenticated users.', 'disable-wp-rest-api' )
+			__( 'REST API restricted to authenticated users.', 'xlthlx' )
 		);
 
 		return new WP_Error(
@@ -32,6 +32,8 @@ function wt_disable_wp_rest_api( $access ) {
 
 /**
  * Disable WordPress REST API.
+ *
+ * @return void
  */
 function wt_disable_rest_api() {
 

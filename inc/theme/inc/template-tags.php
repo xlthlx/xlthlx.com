@@ -9,10 +9,10 @@ if ( ! function_exists( 'xlt_get_link' ) ) {
 	/**
 	 * Set up the single link.
 	 *
-	 * @param $args
-	 * @param $link
-	 * @param $name
-	 * @param $position
+	 * @param array  $args Link args.
+	 * @param string $link Link.
+	 * @param string $name Link name.
+	 * @param string $position Link position.
 	 *
 	 * @return string
 	 */
@@ -59,7 +59,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 
 		$home_url  = home_url( '/' );
-		$parent_id = $post->post_parent ?? 0;
+		$parent_id = ( isset( $post->post_parent ) ) ? $post->post_parent : 0;
 		if ( is_404() ) {
 			$title = ( 'en' === $lang ) ? 'Error 404' : get_the_title();
 		} else {
@@ -226,7 +226,7 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 			} elseif ( is_single() && ! is_attachment() ) {
 				$post_type = get_post_type_object( get_post_type() );
-				if ( $post_type && get_post_type() !== 'post' ) {
+				if ( $post_type && 'post' !== get_post_type() ) {
 					$position ++;
 					echo xlt_get_link(
 						$args,
@@ -246,9 +246,9 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 				} else {
 					$cat       = get_the_category();
-					$catID     = $cat[0]->cat_ID;
-					$parents   = array_reverse( get_ancestors( $catID, 'category' ) );
-					$parents[] = $catID;
+					$cat_id    = $cat[0]->cat_ID;
+					$parents   = array_reverse( get_ancestors( $cat_id, 'category' ) );
+					$parents[] = $cat_id;
 
 					foreach ( $parents as $cat ) {
 						$position ++;
@@ -338,14 +338,14 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 			} elseif ( is_attachment() ) {
 				$parent    = get_post( $parent_id );
 				$cat       = get_the_category( $parent->ID );
-				$catID     = $cat[0]->cat_ID;
+				$cat_id    = $cat[0]->cat_ID;
 				$parents   = array_reverse(
 					get_ancestors(
-						$catID,
+						$cat_id,
 						'category'
 					)
 				);
-				$parents[] = $catID;
+				$parents[] = $cat_id;
 				foreach ( $parents as $cat ) {
 					$position ++;
 					echo xlt_get_link(
@@ -389,12 +389,12 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 
 			} elseif ( $parent_id && is_page() ) {
 				$parents = get_post_ancestors( get_the_ID() );
-				foreach ( array_reverse( $parents ) as $pageID ) {
+				foreach ( array_reverse( $parents ) as $page_id ) {
 					$position ++;
 					echo xlt_get_link(
 						$args,
-						get_page_link( $pageID ),
-						get_the_title( $pageID ),
+						get_page_link( $page_id ),
+						get_the_title( $page_id ),
 						$position
 					);
 				}
@@ -412,10 +412,10 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 			} elseif ( is_tag() ) {
 				if ( get_query_var( 'paged' ) ) {
 					$position ++;
-					$tagID = get_query_var( 'tag_id' );
+					$tag_id = get_query_var( 'tag_id' );
 					echo xlt_get_link(
 						$args,
-						get_tag_link( $tagID ),
+						get_tag_link( $tag_id ),
 						single_tag_title( '', false ),
 						$position
 					);
@@ -520,6 +520,10 @@ if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
 if ( ! function_exists( 'xlt_comment_form' ) ) {
 	/**
 	 * Custom comments form.
+	 *
+	 * @param int|bool $post_id The post ID.
+	 *
+	 * @return void
 	 */
 	function xlt_comment_form( $post_id = false ) {
 
@@ -567,7 +571,9 @@ if ( ! function_exists( 'xlt_comment_form_en' ) ) {
 	/**
 	 * Custom english comments form.
 	 *
-	 * @param bool $post_id
+	 * @param int|bool $post_id The post ID.
+	 *
+	 * @return void
 	 */
 	function xlt_comment_form_en( $post_id = false ) {
 
@@ -620,8 +626,8 @@ if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 	/**
 	 * Old posts warning.
 	 *
-	 * @param $lang
-	 * @param null $post_id
+	 * @param string   $lang Language.
+	 * @param int|bool $post_id The post ID.
 	 *
 	 * @return string
 	 */
@@ -661,11 +667,11 @@ if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 			$diff          = ( $today_str - $post_date_str ) / 60 / 60 / 24;
 			$days          = 365;
 			$years         = floor( $diff / $days );
-			$ay_label      = ( $lang !== 'en' ) ? 'un anno' : 'one year';
-			$ys_label      = ( $lang !== 'en' ) ? 'anni' : 'years';
+			$ay_label      = ( 'en' !== $lang ) ? 'un anno' : 'one year';
+			$ys_label      = ( 'en' !== $lang ) ? 'anni' : 'years';
 			$when          = ( 1 === (int) $years ) ? $ay_label : $years . ' ' . $ys_label;
 			if ( $diff > $days ) {
-				if ( $lang !== 'en' ) {
+				if ( 'en' !== $lang ) {
 					$warning = '<div class="alert alert-primary rounded-0 border-0 mt-2 black" role="alert"><small>Attenzione: questo articolo è stato scritto più di ' . $when . ' fa, alcune informazioni potrebbero essere obsolete.</small></div>';
 				} else {
 					$warning = '<div class="alert alert-primary rounded-0 border-0 mt-2 black" role="alert"><small>Warning: this article was written over ' . $when . ' ago, some information may be out of date.</small></div>';
@@ -682,8 +688,8 @@ if ( ! function_exists( 'xlt_get_avatar' ) ) {
 	/**
 	 * Get the gravatar or set a first letter avatar.
 	 *
-	 * @param $comment
-	 * @param $author_name
+	 * @param object $comment The comment object.
+	 * @param string $author_name The comment author name.
 	 *
 	 * @return string
 	 */
@@ -712,7 +718,7 @@ if ( ! function_exists( 'xlt_clean' ) ) {
 	/**
 	 * Clean a string from all the special chars.
 	 *
-	 * @param $string
+	 * @param string $string Any string.
 	 *
 	 * @return string|string[]|null
 	 */
@@ -727,12 +733,12 @@ if ( ! function_exists( 'xlt_gravatar_exists' ) ) {
 	/**
 	 * Check if the url is a valid gravatar.
 	 *
-	 * @param $url
+	 * @param string $url Any url.
 	 *
 	 * @return bool
 	 */
 	function xlt_gravatar_exists( $url ) {
-		$headers = @get_headers( $url );
+		$headers = get_headers( $url );
 		if ( false === strpos( $headers[0], '200' ) ) {
 			$has_valid_avatar = false;
 		} else {
@@ -747,7 +753,7 @@ if ( ! function_exists( 'xlt_get_file_content' ) ) {
 	/**
 	 * This method gets the content of a given file.
 	 *
-	 * @param string $file_path
+	 * @param string $file_path The file path.
 	 *
 	 * @return  string Content of $file_path
 	 */
@@ -787,7 +793,7 @@ if ( ! function_exists( 'xlt_download_url' ) ) {
 		$tmp_file = $wp_filesystem->download_url( $file_url );
 
 		copy( $tmp_file, $filepath );
-		@unlink( $tmp_file );
+		unlink( $tmp_file );
 	}
 }
 
@@ -815,8 +821,8 @@ if ( ! function_exists( 'xlt_get_sticky_img' ) ) {
 	/**
 	 * Returns the HTML for the sticky image.
 	 *
-	 * @param int    $id
-	 * @param string $alt
+	 * @param int    $id Image ID.
+	 * @param string $alt Image alt text.
 	 *
 	 * @return string
 	 */
@@ -838,7 +844,7 @@ if ( ! function_exists( 'xlt_get_url_from_href' ) ) {
 	/**
 	 * Returns a url from an HTML link.
 	 *
-	 * @param string $string
+	 * @param string $string The HTML link.
 	 *
 	 * @return string
 	 */
@@ -855,7 +861,7 @@ if ( ! function_exists( 'xlt_get_menu_items' ) ) {
 	/**
 	 * Get a menu as array from location.
 	 *
-	 * @param $theme_location
+	 * @param string $theme_location Theme location.
 	 *
 	 * @return array
 	 */
@@ -871,7 +877,7 @@ if ( ! function_exists( 'xlt_get_menu_items' ) ) {
 
 			$i = 0;
 			foreach ( $menu_items as $menu_item ) {
-				if ( (int) $menu_item->menu_item_parent === 0 ) {
+				if ( 0 === (int) $menu_item->menu_item_parent ) {
 
 					$parent     = $menu_item->ID;
 					$menu_array = array();
@@ -887,7 +893,7 @@ if ( ! function_exists( 'xlt_get_menu_items' ) ) {
 
 					$menu_list = xlt_get_arr( $menu_item, $menu_list, $i );
 
-					if ( $bool === true && count( $menu_array ) > 0 ) {
+					if ( true === $bool && count( $menu_array ) > 0 ) {
 						$menu_list[ $i ]['submenu'] = $menu_array;
 					}
 					$i ++;
@@ -903,13 +909,13 @@ if ( ! function_exists( 'xlt_get_menu_items' ) ) {
 	/**
 	 * Set up the menu array.
 	 *
-	 * @param $menu
-	 * @param array $menu_array
-	 * @param int   $i
+	 * @param object $menu The menu object.
+	 * @param array  $menu_array The menu array.
+	 * @param int    $i The menu position.
 	 *
 	 * @return array
 	 */
-	function xlt_get_arr( $menu, array $menu_array, int $i ): array {
+	function xlt_get_arr( $menu, $menu_array, $i ) {
 		global $lang;
 
 		$menu_array[ $i ]['url']     = $menu->url;
@@ -935,7 +941,7 @@ if ( ! function_exists( 'xlt_get_first_post' ) ) {
 
 		$offset = array();
 
-		if ( count( $first ) === 1 ) {
+		if ( 1 === count( $first ) ) {
 			$args             = array(
 				'post__in'            => $first,
 				'ignore_sticky_posts' => 1,
@@ -953,7 +959,7 @@ if ( ! function_exists( 'xlt_get_first_post' ) ) {
 			}
 		}
 
-		if ( count( $first ) === 1 ) {
+		if ( 1 === count( $first ) ) {
 			$offset = array_slice( $sticky, 0, 3 );
 		}
 
@@ -968,8 +974,8 @@ if ( ! function_exists( 'xlt_pagination' ) ) {
 	/**
 	 * Pagination.
 	 *
-	 * @param $wp_query
-	 * @param $paged
+	 * @param object $wp_query Query object.
+	 * @param string $paged Page number.
 	 *
 	 * @return void
 	 */
@@ -1001,7 +1007,7 @@ if ( ! function_exists( 'xlt_pagination' ) ) {
 			$start_page = 1;
 		}
 
-		$end_page = $paged + $half_page_end;
+		$end_page = (int) $paged + (int) $half_page_end;
 		if ( ( $end_page - $start_page ) !== $pages_to_show_minus_1 ) {
 			$end_page = $start_page + $pages_to_show_minus_1;
 		}
@@ -1082,11 +1088,11 @@ if ( ! function_exists( 'xlt_get_the_terms' ) ) {
 	/**
 	 * Function to return list of the terms.
 	 *
-	 * @param string 'taxonomy'
+	 * @param string $taxonomy The taxonomy.
+	 * @param bool   $cut No idea.
 	 *
 	 * @return string Returns the list of elements.
 	 */
-
 	function xlt_get_the_terms( $taxonomy, $cut = false ) {
 
 		$all_terms = '';
@@ -1118,7 +1124,7 @@ if ( ! function_exists( 'xlt_get_years' ) ) {
 	/**
 	 * Returns a list of years excluding $actual_year.
 	 *
-	 * @param $actual_year
+	 * @param string $actual_year The current year.
 	 *
 	 * @return void
 	 */
@@ -1150,8 +1156,8 @@ if ( ! function_exists( 'xlt_get_months' ) ) {
 	/**
 	 * Returns a list of months archives based on $year.
 	 *
-	 * @param $year
-	 * @param $actual_month
+	 * @param string $year The year.
+	 * @param string $actual_month The current month.
 	 *
 	 * @return void
 	 */
@@ -1160,7 +1166,7 @@ if ( ! function_exists( 'xlt_get_months' ) ) {
 
 		$array = array();
 
-		$months = $wpdb->get_results( "SELECT DISTINCT MONTH( post_date ) AS month FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now( ) and post_type = 'post' and YEAR( post_date ) = $year GROUP BY MONTH( post_date ) ORDER BY post_date ASC" );
+		$months = $wpdb->prepare( $wpdb->get_results( "SELECT DISTINCT MONTH( post_date ) AS month FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now( ) and post_type = 'post' and YEAR( post_date ) = %s GROUP BY MONTH( post_date ) ORDER BY post_date ASC" ), $year );
 
 		$url = '/';
 		if ( 'en' === $lang ) {
@@ -1185,11 +1191,13 @@ if ( ! function_exists( 'xlt_get_months' ) ) {
 
 if ( ! function_exists( 'xlt_print_svg' ) ) {
 	/**
-	 * @param string $svg
+	 * Print an svg into the HTML.
+	 *
+	 * @param string $svg The SVG url.
 	 *
 	 * @return string
 	 */
-	function xlt_print_svg( $svg ): string {
+	function xlt_print_svg( $svg ) {
 		$file = get_template_directory() . $svg;
 
 		return xlt_get_file_content( $file );
@@ -1198,32 +1206,34 @@ if ( ! function_exists( 'xlt_print_svg' ) ) {
 
 if ( ! function_exists( 'xlt_get_related' ) ) {
 	/**
-	 * @param $post
+	 * Gets related posts.
+	 *
+	 * @param object $post The current post.
 	 *
 	 * @return string
 	 */
-	function xlt_get_related( $post ): string {
+	function xlt_get_related( $post ) {
 		$related_links = '';
 		global $lang;
 
 		$num_posts = 6;
 		$count     = 0;
-		$postIDs   = array( $post->ID );
+		$post_ids  = array( $post->ID );
 		$related   = '';
 		$cats      = wp_get_post_categories( $post->ID );
 
 		if ( $count <= ( $num_posts - 1 ) ) {
 
-			$catIDs = array();
+			$cat_ids = array();
 			foreach ( $cats as $cat ) {
-				$catIDs[] = $cat;
+				$cat_ids[] = $cat;
 			}
 
 			$show_posts = $num_posts - $count;
 
 			$args = array(
-				'category__in'        => $catIDs,
-				'post__not_in'        => $postIDs,
+				'category__in'        => $cat_ids,
+				'post__not_in'        => $post_ids,
 				'showposts'           => $show_posts,
 				'ignore_sticky_posts' => 1,
 				'orderby'             => 'rand',

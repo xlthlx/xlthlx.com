@@ -7,6 +7,8 @@
 
 /**
  * Adds the English fields.
+ *
+ * @return void
  */
 function xlt_add_metabox() {
 	$cmb_post = new_cmb2_box(
@@ -43,6 +45,11 @@ function xlt_add_metabox() {
 
 add_action( 'cmb2_init', 'xlt_add_metabox' );
 
+/**
+ * Adds category English field.
+ *
+ * @return void
+ */
 function xlt_add_category_metabox() {
 	$cmb_category = new_cmb2_box(
 		array(
@@ -75,20 +82,20 @@ add_action( 'cmb2_init', 'xlt_add_category_metabox' );
 /**
  * Add columns in the admin list.
  *
- * @param array $defaults
+ * @param array $defaults Default columns.
  *
  * @return array $defaults
  */
 function xlt_eng_posts_columns( $defaults ) {
 	$post_type = get_post_type();
-	if ( ( $post_type === 'post' ) || ( $post_type === 'page' ) ) {
+	if ( ( 'post' === $post_type ) || ( 'page' === $post_type ) ) {
 		if ( isset( $defaults['comments'] ) ) {
 			unset( $defaults['comments'] );
 		}
 		$defaults['eng'] = 'English';
 	}
-	if ( $post_type === 'post' ) {
-		$defaults['comments-number'] = __( 'Commenti' );
+	if ( 'post' === $post_type ) {
+		$defaults['comments-number'] = __( 'Commenti', 'xlthlx' );
 	}
 
 	return $defaults;
@@ -100,47 +107,43 @@ add_filter( 'manage_pages_columns', 'xlt_eng_posts_columns', 20 );
 /**
  * Sets columns values.
  *
- * @param string $column_name
- * @param int    $id
+ * @param string $column_name Column name.
+ * @param int    $id Post ID.
+ *
+ * @return void
  */
 function xlt_eng_posts_custom_columns( $column_name, $id ) {
-	if ( $column_name === 'eng' ) {
+	if ( 'eng' === $column_name ) {
 		$content_en = get_post_meta( $id, 'content_en', true );
-		if ( $content_en === '' ) {
+		if ( '' === $content_en ) {
 			echo 'No';
 		}
-		if ( $content_en !== '' && strpos(
-			$content_en,
-			'<!-- GT -->'
-		) !== false ) {
+		if ( '' !== $content_en && false !== strpos( $content_en, '<!-- GT -->' ) ) {
 			echo 'To check';
 		}
-		if ( $content_en !== '' && strpos(
-			$content_en,
-			'<!-- GT -->'
-		) === false ) {
+		if ( '' !== $content_en && false === strpos( $content_en, '<!-- GT -->' ) ) {
 			echo '';
 		}
 	}
 
-	if ( $column_name === 'comments-number' ) {
+	if ( 'comments-number' === $column_name ) {
 		$comments_number = ( get_comments_number( $id ) === '0' ) ? '' : get_comments_number( $id );
 		$comments_open   = ( comments_open( $id ) ) ? '' : 'Commenti chiusi';
 		$pings_open      = ( pings_open( $id ) ) ? '' : 'Trackback chiusi';
 
-		if ( $comments_number !== '' ) {
+		if ( '' !== $comments_number ) {
 			echo '<a title="Visualizza commenti" href="/wp-admin/edit-comments.php?p=' . $id . '&comment_status=approved">' . $comments_number . ' &raquo;</a>';
 		}
-		if ( ( $comments_number !== '' ) && ( $comments_open !== '' ) ) {
+		if ( ( '' !== $comments_number ) && ( '' !== $comments_open ) ) {
 			echo '<br/>';
 		}
-		if ( $comments_open !== '' ) {
+		if ( '' !== $comments_open ) {
 			echo $comments_open;
 		}
-		if ( ( $comments_open !== '' ) && ( $pings_open !== '' ) ) {
+		if ( ( '' !== $comments_open ) && ( '' !== $pings_open ) ) {
 			echo '<br/>';
 		}
-		if ( $pings_open !== '' ) {
+		if ( '' !== $pings_open ) {
 			echo $pings_open;
 		}
 	}
@@ -151,6 +154,8 @@ add_action( 'manage_pages_custom_column', 'xlt_eng_posts_custom_columns', 20, 2 
 
 /**
  * Hook in and register a metabox for the admin comment edit page.
+ *
+ * @return void
  */
 function xlt_register_comment_language() {
 

@@ -5,6 +5,11 @@
  * @package  xlthlx
  */
 
+/**
+ * Custom taxonomy year.
+ *
+ * @return void
+ */
 function xlt_year_init() {
 	$years_labels = array(
 		'name'                       => 'Anni',
@@ -52,12 +57,18 @@ function xlt_year_init() {
 		)
 	);
 
+	// @codingStandardsIgnoreStart
 	register_taxonomy_for_object_type( 'year', 'tvseries' );
+	// @codingStandardsIgnoreEnd
 }
 
 add_action( 'init', 'xlt_year_init' );
 
-
+/**
+ * Custom taxonomy director.
+ *
+ * @return void
+ */
 function xlt_director_init() {
 	$director_labels = array(
 		'name'                       => 'Registi',
@@ -104,12 +115,18 @@ function xlt_director_init() {
 
 		)
 	);
-
+	// @codingStandardsIgnoreStart
 	register_taxonomy_for_object_type( 'director', 'tvseries' );
+	// @codingStandardsIgnoreEnd
 }
 
 add_action( 'init', 'xlt_director_init' );
 
+/**
+ * Custom taxonomy starring.
+ *
+ * @return void
+ */
 function xlt_starring_init() {
 	$director_labels = array(
 		'name'                       => 'Attori',
@@ -156,8 +173,9 @@ function xlt_starring_init() {
 
 		)
 	);
-
+	// @codingStandardsIgnoreStart
 	register_taxonomy_for_object_type( 'actor', 'tvseries' );
+	// @codingStandardsIgnoreEnd
 }
 
 add_action( 'init', 'xlt_starring_init' );

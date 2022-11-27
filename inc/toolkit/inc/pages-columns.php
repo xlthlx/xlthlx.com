@@ -8,7 +8,7 @@
 /**
  * Remove comments column and adds Template column for pages
  *
- * @param array $columns
+ * @param array $columns The pages columns.
  *
  * @return array $columns
  */
@@ -18,9 +18,9 @@ function wt_page_column_views( $columns ) {
 	return array_merge(
 		$columns,
 		array(
-			'page-layout' => __( 'Template' ),
-			'modified'    => __( 'Data ultima modifica' ),
-			'date'        => __( 'Date' ),
+			'page-layout' => __( 'Template', 'xlthlx' ),
+			'modified'    => __( 'Data ultima modifica', 'xlthlx' ),
+			'date'        => __( 'Date', 'xlthlx' ),
 		)
 	);
 
@@ -29,32 +29,32 @@ function wt_page_column_views( $columns ) {
 /**
  * Sets content for Template column and date
  *
- * @param string $column_name
- * @param int    $id
+ * @param string $column_name The column name.
+ * @param int    $id The post ID.
  */
 function wt_page_custom_column_views( $column_name, $id ) {
-	if ( $column_name === 'page-layout' ) {
+	if ( 'page-layout' === $column_name ) {
 		$set_template = get_post_meta(
 			get_the_ID(),
 			'_wp_page_template',
 			true
 		);
-		if ( ( $set_template === 'default' ) || ( $set_template === '' ) ) {
+		if ( ( 'default' === $set_template ) || ( '' === $set_template ) ) {
 			$set_template = 'Default';
 		}
 		$templates = wp_get_theme()->get_page_templates();
 		foreach ( $templates as $key => $value ) :
-			if ( ( $set_template === $key ) && ( $set_template !== '' ) ) {
+			if ( ( $set_template === $key ) && ( '' === $set_template ) ) {
 				$set_template = $value;
 			}
 		endforeach;
 
 		echo $set_template;
 	}
-	if ( $column_name === 'modified' ) {
+	if ( 'modified' === $column_name ) {
 		echo ucfirst( get_the_modified_time( 'd/m/Y', $id ) ) . ' alle ' . get_the_modified_time( 'H:i', $id );
 	}
-	if ( $column_name === 'date' ) {
+	if ( 'date' === $column_name ) {
 		echo get_the_modified_time( 'D, d M Y H:i:s', $id );
 	}
 }

@@ -12,17 +12,17 @@
  *
  * @return string The post content filtered.
  */
-function wt_add_image_alt( string $content ): string {
+function wt_add_image_alt( $content ) {
 	global $post;
 
-	if ( $post === null ) {
+	if ( null === $post ) {
 		return $content;
 	}
 
 	$old_content = $content;
 	preg_match_all( '/<img[^>]+>/', $content, $images );
 
-	if ( $images !== null ) {
+	if ( null !== $images ) {
 		foreach ( $images[0] as $index => $value ) {
 			if ( ! preg_match( '/alt=/', $value ) ) {
 				global $wpdb;
@@ -31,7 +31,7 @@ function wt_add_image_alt( string $content ): string {
 
 				$attachment = $wpdb->get_col(
 					$wpdb->prepare(
-						"SELECT ID FROM $wpdb->posts WHERE guid='%s';",
+						"SELECT ID FROM $wpdb->posts WHERE guid=%s;",
 						$urls[0][1]
 					)
 				);
@@ -83,7 +83,7 @@ add_filter( 'the_content', 'wt_add_image_alt', 9999 );
  * @param array   $attr Array of attribute values for the image markup, keyed by attribute name.
  * @param WP_Post $attachment Image attachment post.
  *
- * @return array $attr The attributes filtered.
+ * @return array The attributes filtered.
  */
 function wt_change_image_attr( $attr, $attachment ) {
 

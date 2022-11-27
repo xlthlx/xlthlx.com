@@ -10,6 +10,8 @@ $wp_login_php = false;
 $wt_login     = 'entra';
 
 /**
+ * Check if an url uses trailing slashes.
+ *
  * @return bool
  */
 function wt_use_trailing_slashes() {
@@ -17,7 +19,9 @@ function wt_use_trailing_slashes() {
 }
 
 /**
- * @param $string
+ * Adds trailing slashes to url.
+ *
+ * @param string $string The url.
  *
  * @return string
  */
@@ -26,7 +30,9 @@ function wt_user_trailingslashit( $string ) {
 }
 
 /**
+ * No idea.
  *
+ * @return void
  */
 function wt_plugins_loaded() {
 	global $pagenow,$wt_login,$wp_login_php;
@@ -41,16 +47,24 @@ function wt_plugins_loaded() {
 				10
 			)
 		);
-		$pagenow                = 'index.php';
+		// @codingStandardsIgnoreStart
+		$pagenow = 'index.php';
+		// @codingStandardsIgnoreEnd
 
 	} elseif ( ( ! get_option( 'permalink_structure' ) && isset( $_GET['wt_login'] ) && empty( $_GET['wt_login'] ) ) || ( isset( $request['path'] ) && untrailingslashit( $request['path'] ) === home_url( $wt_login, 'relative' ) ) ) {
 
+		// @codingStandardsIgnoreStart
 		$pagenow = 'wp-login.php';
+		// @codingStandardsIgnoreEnd
 	}
 }
 
+add_action( 'after_setup_theme', 'wt_plugins_loaded', 1 );
+
 /**
+ * Redirects to 404 the wp-admin folder if user is not logged in.
  *
+ * @return void
  */
 function wt_wp_loaded() {
 	global $pagenow,$wp_login_php;
@@ -65,28 +79,20 @@ function wt_wp_loaded() {
 
 	$request = parse_url( $_SERVER['REQUEST_URI'] );
 
-	if ( $pagenow === 'wp-login.php' &&
-		 $request['path'] !== wt_user_trailingslashit( $request['path'] ) &&
-		 get_option( 'permalink_structure' ) ) {
+	if ( 'wp-login.php' === $pagenow && wt_user_trailingslashit( $request['path'] ) !== $request['path'] && get_option( 'permalink_structure' ) ) {
 		wp_safe_redirect( wt_user_trailingslashit( wt_new_login_url() ) . ( ! empty( $_SERVER['QUERY_STRING'] ) ? '?' . $_SERVER['QUERY_STRING'] : '' ) );
 		die;
 	}
 
-	if (
-		$wp_login_php
-	) {
-		if (
-			( $referer = wp_get_referer() ) &&
-			strpos( $referer, 'wp-activate.php' ) !== false &&
-			( $referer = parse_url( $referer ) ) &&
-			! empty( $referer['query'] )
+	if ( $wp_login_php ) {
+		$referer   = wp_get_referer();
+		$i_referer = parse_url( $referer );
+		if ( false !== strpos( $referer, 'wp-activate.php' ) && ! empty( $i_referer['query'] )
 		) {
 			parse_str( $referer['query'], $referer );
 
-			if (
-				! empty( $referer['key'] ) &&
-				( $result = wpmu_activate_signup( $referer['key'] ) ) &&
-				is_wp_error( $result ) && (
+			$result = wpmu_activate_signup( $referer['key'] );
+			if ( ! empty( $referer['key'] ) && is_wp_error( $result ) && (
 					$result->get_error_code() === 'already_active' ||
 					$result->get_error_code() === 'blog_taken'
 				) ) {
@@ -96,20 +102,26 @@ function wt_wp_loaded() {
 		}
 
 		wt_wp_template_loader();
-	} elseif ( $pagenow === 'wp-login.php' ) {
+	} elseif ( 'wp-login.php' === $pagenow ) {
 
-		@require ABSPATH . 'wp-login.php';
+		require ABSPATH . 'wp-login.php';
 		die;
 	}
 }
 
+add_action( 'wp_loaded', 'wt_wp_loaded' );
+
 /**
+ * No idea.
  *
+ * @return void
  */
 function wt_wp_template_loader() {
 	global $pagenow;
 
+	// @codingStandardsIgnoreStart
 	$pagenow = 'index.php';
+	// @codingStandardsIgnoreEnd
 
 	if ( ! defined( 'WP_USE_THEMES' ) ) {
 		define( 'WP_USE_THEMES', true );
@@ -117,12 +129,7 @@ function wt_wp_template_loader() {
 
 	wp();
 
-	if ( $_SERVER['REQUEST_URI'] === wt_user_trailingslashit(
-		str_repeat(
-			'-/',
-			10
-		)
-	) ) {
+	if ( wt_user_trailingslashit( str_repeat( '-/', 10 ) ) === $_SERVER['REQUEST_URI'] ) {
 		$_SERVER['REQUEST_URI'] = wt_user_trailingslashit( '/wp-login-php/' );
 	}
 
@@ -132,30 +139,10 @@ function wt_wp_template_loader() {
 }
 
 /**
- * @param $url
- * @param $path
- * @param $scheme
- * @param $blog_id
+ * Filter login.
  *
- * @return string
- */
-function wt_site_url( $url, $path, $scheme, $blog_id ) {
-	return wt_filter_wp_login_php( $url, $scheme );
-}
-
-/**
- * @param $location
- * @param $status
- *
- * @return string
- */
-function wt_wp_redirect( $location, $status ) {
-	return wt_filter_wp_login_php( $location );
-}
-
-/**
- * @param $url
- * @param null $scheme
+ * @param string      $url The complete site URL including scheme and path.
+ * @param string|null $scheme Scheme to give the site URL context. Accepts 'http', 'https', 'login', 'login_post', 'admin', 'relative' or null.
  *
  * @return string
  */
@@ -179,7 +166,37 @@ function wt_filter_wp_login_php( $url, $scheme = null ) {
 }
 
 /**
- * @param null $scheme
+ * Filters the site URL.
+ *
+ * @param string      $url The complete site URL including scheme and path.
+ * @param string      $path Path relative to the site URL. Blank string if no path is specified.
+ * @param string|null $scheme Scheme to give the site URL context. Accepts 'http', 'https', 'login', 'login_post', 'admin', 'relative' or null.
+ *
+ * @return string
+ */
+function wt_site_url( $url, $path, $scheme ) {
+	return wt_filter_wp_login_php( $url, $scheme );
+}
+
+add_filter( 'site_url', 'wt_site_url', 10, 4 );
+
+/**
+ * Redirects to the login.
+ *
+ * @param string $location The path or URL to redirect to.
+ *
+ * @return string
+ */
+function wt_wp_redirect( $location ) {
+	return wt_filter_wp_login_php( $location );
+}
+
+add_filter( 'wp_redirect', 'wt_wp_redirect' );
+
+/**
+ * Sets new login url.
+ *
+ * @param string|null $scheme Scheme to give the site URL context.
  *
  * @return string
  */
@@ -198,7 +215,9 @@ function wt_new_login_url( $scheme = null ) {
 }
 
 /**
- * @param $value
+ * Replace the url into the welcome email.
+ *
+ * @param string $value Value of network option.
  *
  * @return string|string[]
  */
@@ -212,9 +231,13 @@ function wt_welcome_email( $value ) {
 	);
 }
 
+add_filter( 'site_option_welcome_email', 'wt_welcome_email' );
+
 /**
- * @param $wp_classes
- * @param $extra_classes
+ * Removes the 'admin-bar' class from body.
+ *
+ * @param string[] $wp_classes An array of body class names.
+ * @param string[] $extra_classes An array of additional class names added to the body.
  *
  * @return array
  */
@@ -223,7 +246,7 @@ function wt_admin_bar_body_class( $wp_classes, $extra_classes ) {
 	if ( ( is_404() ) && ( ! is_user_logged_in() ) ) {
 		$wp_nobar_classes = array_diff( $wp_classes, array( 'admin-bar' ) );
 
-		// Add the extra classes back untouched
+		// Add the extra classes back untouched.
 		return array_merge( $wp_nobar_classes, (array) $extra_classes );
 	}
 
@@ -231,11 +254,6 @@ function wt_admin_bar_body_class( $wp_classes, $extra_classes ) {
 
 }
 
-add_action( 'after_setup_theme', 'wt_plugins_loaded', 1 );
-add_action( 'wp_loaded', 'wt_wp_loaded' );
-add_filter( 'site_url', 'wt_site_url', 10, 4 );
-add_filter( 'wp_redirect', 'wt_wp_redirect', 10, 2 );
-add_filter( 'site_option_welcome_email', 'wt_welcome_email' );
 add_filter( 'body_class', 'wt_admin_bar_body_class', 10, 2 );
 
 remove_action( 'template_redirect', 'wp_redirect_admin_locations', 1000 );

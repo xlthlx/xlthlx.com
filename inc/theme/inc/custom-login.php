@@ -9,6 +9,8 @@ remove_filter( 'authenticate', 'wp_authenticate_username_password', 20 );
 
 /**
  * Enqueue login CSS.
+ *
+ * @return void
  */
 function xlt_enqueue_login() {
 	wp_dequeue_style( 'login' );
@@ -45,30 +47,29 @@ add_filter( 'login_headertext', 'xlt_login_title' );
 /**
  * Change some text strings into login.
  *
- * @param $translation
- * @param $login_texts
- * @param $domain
+ * @param string $translation Translated text.
+ * @param string $text Text to translate.
  *
  * @return string
  */
-function xlt_gettext( $translation, $login_texts, $domain ) {
+function xlt_gettext( $translation, $text ) {
 
-	// Login Main Page
-	if ( 'Username or Email Address' === $login_texts ) {
+	// Login Main Page.
+	if ( 'Username or Email Address' === $text ) {
 		return 'Email';
-	} // Username Label
-	if ( 'Log In' === $login_texts ) {
+	} // Username Label.
+	if ( 'Log In' === $text ) {
 		return 'Entra';
-	} // Login Button
-	if ( 'Lost your password?' === $login_texts ) {
+	} // Login Button.
+	if ( 'Lost your password?' === $text ) {
 		return 'Ho dimenticato la password';
-	} // Lost Password Link
-	if ( 'Get New Password' === $login_texts ) {
+	} // Lost Password Link.
+	if ( 'Get New Password' === $text ) {
 		return 'Invia';
-	} // Button
-	if ( 'Reset Password' === $login_texts ) {
+	} // Button.
+	if ( 'Reset Password' === $text ) {
 		return 'Cambia';
-	} // Button
+	} // Button.
 
 	return $translation;
 
@@ -78,11 +79,10 @@ function xlt_gettext( $translation, $login_texts, $domain ) {
  * Init filter strings and add fonts.
  */
 function xlt_login_head() {
-	add_filter( 'gettext', 'xlt_gettext', 20, 3 );
+	add_filter( 'gettext', 'xlt_gettext', 20, 2 );
 	?>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Shadows+Into+Light&family=Titillium+Web&display=swap" rel="stylesheet">
 	<?php
 }
 
@@ -106,9 +106,9 @@ add_filter( 'login_title', 'xlt_login_page_title', 99 );
 /**
  * Force the login with email.
  *
- * @param $user
- * @param $username
- * @param $password
+ * @param null|WP_User|WP_Error $user WP_User if the user is authenticated. WP_Error or null otherwise.
+ * @param string                $username Username or email address.
+ * @param string                $password User password.
  *
  * @return bool|WP_Error|WP_User
  */

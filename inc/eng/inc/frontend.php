@@ -5,9 +5,11 @@
  * @package  xlthlx
  */
 
+// @codingStandardsIgnoreStart
 use Highlight\Highlighter;
 use DeepL\DeepLException;
 use DeepL\Translator;
+// @codingStandardsIgnoreEnd
 
 /**
  * Gets absolute url.
@@ -16,7 +18,7 @@ use DeepL\Translator;
  */
 function get_abs_url() {
 	if ( isset( $_SERVER['HTTP_HOST'] ) && ! is_admin() ) {
-		return ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http' ) . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+		return ( isset( $_SERVER['HTTPS'] ) && 'on' === $_SERVER['HTTPS'] ? 'https' : 'http' ) . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 	}
 
 	return false;
@@ -25,16 +27,16 @@ function get_abs_url() {
 /**
  * Translate a piece of string.
  *
- * @param $element
+ * @param string $element The string to translate.
  *
  * @return array|string
  */
 function get_trans( $element ) {
 	$trans_content = '';
-	$authKey       = 'c8fbc4ef-5992-9e4b-09c9-7adc92be34fe:fx';
+	$auth_key      = 'c8fbc4ef-5992-9e4b-09c9-7adc92be34fe:fx';
 
 	try {
-		$translator = new Translator( $authKey );
+		$translator = new Translator( $auth_key );
 	} catch ( DeepLException $e ) {
 		$trans_content = $e->getMessage();
 	}
@@ -69,13 +71,13 @@ function get_date_en() {
 /**
  * Translate the title.
  *
- * @param int $post_id
+ * @param int $post_id The post ID.
  *
  * @return string
  */
 function get_title_en( $post_id = 0 ) {
 
-	if ( $post_id === 0 ) {
+	if ( 0 === $post_id ) {
 		global $post;
 		$post_id = $post->ID;
 	}
@@ -90,9 +92,9 @@ function get_title_en( $post_id = 0 ) {
 		if ( ! get_post_meta( $post_id, 'title_en', true )
 			 || get_post_meta( $post_id, 'title_en', true ) === '' ) {
 
-			$post  = get_post( $post_id );
-			$title = get_trans( $post->post_title );
-			update_post_meta( $post_id, 'title_en', $title );
+			$this_post  = get_post( $post_id );
+			$this_title = get_trans( $this_post->post_title );
+			update_post_meta( $post_id, 'title_en', $this_title );
 		}
 	}
 
@@ -103,14 +105,14 @@ function get_title_en( $post_id = 0 ) {
 /**
  * Translate the content.
  *
- * @param int $post_id
+ * @param int $post_id The post ID.
  *
  * @return string
- * @throws Exception
+ * @throws Exception Exception.
  */
 function get_content_en( $post_id = 0 ) {
 
-	if ( $post_id === 0 ) {
+	if ( 0 === $post_id ) {
 		global $post;
 		$post_id = $post->ID;
 	}
@@ -145,7 +147,7 @@ function get_content_en( $post_id = 0 ) {
 					'core/table',
 				);
 
-				if ( isset( $block['blockName'] ) && $block['blockName'] !== '' && in_array(
+				if ( isset( $block['blockName'] ) && '' !== $block['blockName'] && in_array(
 					$block['blockName'],
 					$block_types,
 					true
@@ -185,6 +187,14 @@ function get_content_en( $post_id = 0 ) {
 	}
 }
 
+/**
+ * Translate a code block.
+ *
+ * @param string $code The code content.
+ *
+ * @return string
+ * @throws Exception Exception.
+ */
 function xlt_trans_code( $code ) {
 
 	if ( '' === $code ) {
@@ -205,7 +215,7 @@ function xlt_trans_code( $code ) {
 				'</pre>',
 			),
 			'',
-			html_entity_decode( $code )
+			html_entity_decode( $code, ENT_COMPAT, 'UTF-8' )
 		);
 
 		$highlighted = $hl->highlightAuto( $code );
@@ -219,7 +229,9 @@ function xlt_trans_code( $code ) {
 }
 
 /**
- * @param $block
+ * Translate a quote block.
+ *
+ * @param array $block The quote block.
  *
  * @return array
  */
@@ -229,13 +241,13 @@ function xlt_trans_quote( $block ) {
 		$i = 0;
 		foreach ( $block['innerBlocks'] as $inner ) {
 
-			if ( $inner['blockName'] === 'core/paragraph' ) {
+			if ( 'core/paragraph' === $inner['blockName'] ) {
 				$block['innerBlocks'][ $i ]['innerHTML']       = get_trans( $inner['innerHTML'] );
 				$block['innerBlocks'][ $i ]['innerContent'][0] = $block['innerBlocks'][ $i ]['innerHTML'];
 			}
 
 			$y = 0;
-			if ( $inner['blockName'] === 'core/list' ) {
+			if ( 'core/list' === $inner['blockName'] ) {
 				foreach ( $inner['innerBlocks'] as $sub_inner ) {
 					$block['innerBlocks'][ $i ]['innerBlocks'][ $y ]['innerHTML']       = get_trans( $sub_inner['innerHTML'] );
 					$block['innerBlocks'][ $i ]['innerBlocks'][ $y ]['innerContent'][0] = $block['innerBlocks'][ $i ]['innerBlocks'][ $y ]['innerHTML'];
@@ -254,7 +266,9 @@ function xlt_trans_quote( $block ) {
 }
 
 /**
- * @param $block
+ * Translate list block.
+ *
+ * @param array $block The list block.
  *
  * @return array
  */
@@ -282,7 +296,7 @@ function get_lang() {
 	$lang = 'it';
 	$pos  = strpos( $link, '/en/' );
 
-	if ( $pos !== false ) {
+	if ( false !== $pos ) {
 		$lang = 'en';
 	}
 
@@ -301,8 +315,8 @@ function get_url_trans() {
 	$pos_page = strpos( $link, '/page/' );
 
 	if ( is_front_page() ) {
-		if ( $pos === false ) {
-			if ( $pos_page === false ) {
+		if ( false === $pos ) {
+			if ( false === $pos_page ) {
 				$link .= 'en/';
 			} else {
 				$link = str_replace( '/page/', '/en/page/', $link );
@@ -315,7 +329,7 @@ function get_url_trans() {
 	}
 
 	if ( is_category() ) {
-		if ( $pos === false ) {
+		if ( false === $pos ) {
 			$link = str_replace( '/cat/', '/cat/en/', $link );
 		} else {
 			$link = str_replace( 'en/', '', $link );
@@ -325,8 +339,8 @@ function get_url_trans() {
 	}
 
 	if ( is_search() ) {
-		if ( $pos === false ) {
-			if ( $pos_page === false ) {
+		if ( false === $pos ) {
+			if ( false === $pos_page ) {
 				$link .= 'en/';
 			} else {
 				$link = str_replace( '/page/', '/en/page/', $link );
@@ -338,14 +352,14 @@ function get_url_trans() {
 		return $link;
 	}
 
-	if ( $pos === false ) {
+	if ( false === $pos ) {
 		$link .= 'en/';
 	} else {
 		$link = str_replace( 'en/', '', $link );
 	}
 
 	if ( is_preview() ) {
-		if ( $pos === false ) {
+		if ( false === $pos ) {
 			$link = get_home_url() . '/en/?p=' . get_query_var( 'p' ) . '&preview=true';
 		} else {
 			$link = str_replace( '/en/', '/?p=' . get_query_var( 'p' ) . '&preview=true', $link );
