@@ -5,8 +5,6 @@
  * @package  xlthlx
  */
 
-remove_filter( 'authenticate', 'wp_authenticate_username_password', 20 );
-
 /**
  * Enqueue login CSS.
  *
@@ -83,6 +81,9 @@ function xlt_login_head() {
 	?>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<?php // @codingStandardsIgnoreStart ?>
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Shadows+Into+Light&family=Titillium+Web&display=swap" rel="stylesheet">
+	<?php // @codingStandardsIgnoreEnd ?>
 	<?php
 }
 
@@ -139,4 +140,5 @@ function xlt_authenticate( $user, $username, $password ) {
 	return wp_authenticate_username_password( null, '', '' );
 }
 
+remove_filter( 'authenticate', 'wp_authenticate_username_password', 20 );
 add_filter( 'authenticate', 'xlt_authenticate', 20, 3 );

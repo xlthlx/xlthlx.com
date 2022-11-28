@@ -67,4 +67,5 @@ Thumbs.db
 /assets/vendor/twbs/bootstrap/package.json
 /_root/
 /vendor/
+phpcs.xml.dist
 package-lock.json

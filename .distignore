@@ -16,6 +16,7 @@ composer.lock
 Gruntfile.js
 package.json
 package-lock.json
+phpcs.xml.dist
 *.sql
 *.tar.gz
 *.zip
