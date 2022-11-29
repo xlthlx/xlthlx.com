@@ -70,7 +70,7 @@ a:hover {
 	pointer-events: none;
 	cursor: auto;
 	background-color: #fff;
-	border-color: #dee2e6;
+	border-width: 0 !important;
 }
 
 .page-item:last-child .page-link {

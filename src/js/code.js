@@ -1,23 +1,23 @@
 (function (global, factory) {
 
-    if ( typeof module === "object" && typeof module.exports === "object" ) {
+	if (typeof module === "object" && typeof module.exports === "object") {
 
-        module.exports = global.document ?
-            factory(global, true) :
-            function (w) {
-                if ( !w.document ) {
-                    throw new Error("A window with a document is required");
-                }
-                return factory(w);
-            };
-    } else {
-        factory(global);
-    }
+		module.exports = global.document ?
+			factory(global, true) :
+			function (w) {
+				if (!w.document) {
+					throw new Error("A window with a document is required");
+				}
+				return factory(w);
+			};
+	} else {
+		factory(global);
+	}
 
 
 }(typeof window !== "undefined" ? window : this, function (window, noGlobal) {
 
-    function highlightJsBadge(opt) {
+	function highlightJsBadge(opt) {
 		const options = {
 			templateSelector: "#CodeBadgeTemplate",
 			contentSelector: "body",
@@ -30,84 +30,84 @@
 		};
 
 		function initialize(opt) {
-            Object.assign(options, opt);
+			Object.assign(options, opt);
 
-            if ( document.readyState === 'loading' )
-                document.addEventListener("DOMContentLoaded", load);
-            else
-                load();
-        }
+			if (document.readyState === 'loading')
+				document.addEventListener("DOMContentLoaded", load);
+			else
+				load();
+		}
 
 
-        function load() {
-            if ( options.loadDelay )
-                setTimeout(addCodeBadge, loadDelay);
-            else
-                addCodeBadge();
-        }
+		function load() {
+			if (options.loadDelay)
+				setTimeout(addCodeBadge, loadDelay);
+			else
+				addCodeBadge();
+		}
 
-        function addCodeBadge() {
-            // first make sure the template exists - if not we embed it
-            if ( !document.querySelector(options.templateSelector) ) {
+		function addCodeBadge() {
+			// first make sure the template exists - if not we embed it
+			if (!document.querySelector(options.templateSelector)) {
 				const node = document.createElement("div");
 				node.innerHTML = getTemplate();
 				const style = node.querySelector("style");
 				const template = node.querySelector(options.templateSelector);
 				document.body.appendChild(style);
-                document.body.appendChild(template);
-            }
+				document.body.appendChild(template);
+			}
 
 			const hudText = document.querySelector(options.templateSelector).innerHTML;
 
 			const $codes = document.querySelectorAll("pre>code.hljs");
 			for (let index = 0; index < $codes.length; index++) {
 				const el = $codes[index];
-				if ( el.querySelector(".code-badge") )
-                    continue; // already exists
+				if (el.querySelector(".code-badge"))
+					continue; // already exists
 
 				let lang = "";
 
 				for (let i = 0; i < el.classList.length; i++) {
 					const cl = el.classList[i];
 					// class="hljs language-csharp"
-                    if ( cl.substr(0, 9) === 'language-' ) {
-                        lang = el.classList[i].replace('language-', '');
-                        break;
-                    }
-                    // class="hljs lang-cs"  // docFx
-                    else if ( cl.substr(0, 5) === 'lang-' ) {
-                        lang = el.classList[i].replace('lang-', '');
-                        break;
-                    }
-                    // class="kotlin hljs"   (auto detected)
-                    if ( !lang ) {
-                        for (let j = 0; j < el.classList.length; j++) {
-                            if ( el.classList[j] === 'hljs' )
-                                continue;
-                            lang = el.classList[j];
-                            break;
-                        }
-                    }
-                }
+					if (cl.substr(0, 9) === 'language-') {
+						lang = el.classList[i].replace('language-', '');
+						break;
+					}
+					// class="hljs lang-cs"  // docFx
+					else if (cl.substr(0, 5) === 'lang-') {
+						lang = el.classList[i].replace('lang-', '');
+						break;
+					}
+					// class="kotlin hljs"   (auto detected)
+					if (!lang) {
+						for (let j = 0; j < el.classList.length; j++) {
+							if (el.classList[j] === 'hljs')
+								continue;
+							lang = el.classList[j];
+							break;
+						}
+					}
+				}
 
-                if ( lang )
-                    lang = lang.toLowerCase();
-                else
-                    lang = "text";
+				if (lang)
+					lang = lang.toLowerCase();
+				else
+					lang = "text";
 
-                // Language Name overrides so it displays nicer
-                if ( lang === "ps" )
-                    lang = "powershell";
-                else if ( lang === "cs" )
-                    lang = "csharp";
-                else if ( lang === "js" )
-                    lang = "javascript";
-                else if ( lang === "ts" )
-                    lang = "typescript";
-                else if ( lang === "fox" )
-                    lang = "foxpro";
-                else if ( lang === "txt" )
-                    lang = "text";
+				// Language Name overrides so it displays nicer
+				if (lang === "ps")
+					lang = "powershell";
+				else if (lang === "cs")
+					lang = "csharp";
+				else if (lang === "js")
+					lang = "javascript";
+				else if (lang === "ts")
+					lang = "typescript";
+				else if (lang === "fox")
+					lang = "foxpro";
+				else if (lang === "txt")
+					lang = "text";
 
 
 				const html = hudText.replace("{{language}}", lang)
@@ -117,93 +117,93 @@
 				// insert the Hud panel
 				let $newHud = document.createElement("div");
 				$newHud.innerHTML = html;
-                $newHud = $newHud.querySelector(".code-badge");
+				$newHud = $newHud.querySelector(".code-badge");
 
-                // make <pre> tag position:relative so positioning keeps pinned right
-                // even with scroll bar scrolled
+				// make <pre> tag position:relative so positioning keeps pinned right
+				// even with scroll bar scrolled
 				const pre = el.parentElement;
 				pre.classList.add("code-badge-pre");
 
-                if ( options.copyIconContent )
-                    $newHud.querySelector(".code-badge-copy-icon").innerText = options.copyIconContent;
+				if (options.copyIconContent)
+					$newHud.querySelector(".code-badge-copy-icon").innerText = options.copyIconContent;
 
-                pre.insertBefore($newHud, el);
-            }
+				pre.insertBefore($newHud, el);
+			}
 
 			const $content = document.querySelector(options.contentSelector);
 
 			// single copy click handler
-            $content.addEventListener("click",
-                function (e) {
+			$content.addEventListener("click",
+				function (e) {
 					const $clicked = e.srcElement;
-					if ( $clicked.classList.contains("code-badge-copy-icon") ) {
-                        e.preventDefault();
-                        e.cancelBubble = true;
-                        copyCodeToClipboard(e);
-                    }
-                    return false;
-                });
-        }
+					if ($clicked.classList.contains("code-badge-copy-icon")) {
+						e.preventDefault();
+						e.cancelBubble = true;
+						copyCodeToClipboard(e);
+					}
+					return false;
+				});
+		}
 
 
-        function copyCodeToClipboard(e) {
-            // walk back up to <pre> tag
+		function copyCodeToClipboard(e) {
+			// walk back up to <pre> tag
 			const $origCode = e.srcElement.parentElement.parentElement.parentElement;
 
 			// select the <code> tag and grab text
 			const $code = $origCode.querySelector("pre>code");
 			let text = $code.textContent || $code.innerText;
 
-			if ( options.onBeforeCodeCopied )
-                text = options.onBeforeCodeCopied(text, $code);
+			if (options.onBeforeCodeCopied)
+				text = options.onBeforeCodeCopied(text, $code);
 
-            // Create a textblock and assign the text and add to document
+			// Create a textblock and assign the text and add to document
 			const el = document.createElement('textarea');
 			el.value = text.trim();
-            document.body.appendChild(el);
-            el.style.display = "block";
+			document.body.appendChild(el);
+			el.style.display = "block";
 
-            // select the entire textblock
-            if ( window.document.documentMode )
-                el.setSelectionRange(0, el.value.length);
-            else
-                el.select();
+			// select the entire textblock
+			if (window.document.documentMode)
+				el.setSelectionRange(0, el.value.length);
+			else
+				el.select();
 
-            // copy to clipboard
-            document.execCommand('copy');
+			// copy to clipboard
+			document.execCommand('copy');
 
-            // clean up element
-            document.body.removeChild(el);
+			// clean up element
+			document.body.removeChild(el);
 
-            // show the check icon (copied) briefly
-            swapIcons($origCode);
-        }
+			// show the check icon (copied) briefly
+			swapIcons($origCode);
+		}
 
-        function swapIcons($code) {
+		function swapIcons($code) {
 			const copyIcons = options.copyIconClass.split(' ');
 			const checkIcons = options.checkIconClass.split(' ');
 
 			const $fa = $code.querySelector(".code-badge-copy-icon");
 			$fa.innerText = options.checkIconContent;
 
-            for (let i = 0; i < copyIcons.length; i++)
-                $fa.classList.remove(copyIcons[i]);
+			for (let i = 0; i < copyIcons.length; i++)
+				$fa.classList.remove(copyIcons[i]);
 
-            for (let y = 0; y < checkIcons.length; y++)
-                $fa.classList.add(checkIcons[y]);
+			for (let y = 0; y < checkIcons.length; y++)
+				$fa.classList.add(checkIcons[y]);
 
 
-            setTimeout(function () {
-                $fa.innerText = options.copyIconContent;
+			setTimeout(function () {
+				$fa.innerText = options.copyIconContent;
 
-                for (let i = 0; i < checkIcons.length; i++)
-                    $fa.classList.remove(checkIcons[i]);
-                for (let y = 0; y < copyIcons.length; y++)
-                    $fa.classList.add(copyIcons[y]);
-            }, 2000);
-        }
+				for (let i = 0; i < checkIcons.length; i++)
+					$fa.classList.remove(checkIcons[i]);
+				for (let y = 0; y < copyIcons.length; y++)
+					$fa.classList.add(copyIcons[y]);
+			}, 2000);
+		}
 
-        function getTemplate() {
+		function getTemplate() {
 			const stringArray =
 				[
 					"<style>",
@@ -267,19 +267,19 @@
 
 			let t = "";
 			for (let i = 0; i < stringArray.length; i++)
-                t += stringArray[i] + "\n";
+				t += stringArray[i] + "\n";
 
-            return t;
-        }
+			return t;
+		}
 
-        initialize(opt);
-    }
+		initialize(opt);
+	}
 
 	// global reference Window
-    window.highlightJsBadge = highlightJsBadge;
+	window.highlightJsBadge = highlightJsBadge;
 
 	// module export
-    if ( window.module && window.module.exports )
-        window.module.exports.highlightJsBadge = highlightJsBadge;
+	if (window.module && window.module.exports)
+		window.module.exports.highlightJsBadge = highlightJsBadge;
 
 }));
