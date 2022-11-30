@@ -15,8 +15,8 @@
 	</div>
 </footer>
 <?php wp_footer(); ?>
-<script async defer src="https://scripts.withcabin.com/hello.js"></script>
 <span id="db3bd4a3c96f1fe80cd12d8df05e6320"></span>
 
+<script async defer src="https://scripts.withcabin.com/hello.js"></script>
 </body>
 </html>
