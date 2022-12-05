@@ -109,6 +109,7 @@ function xlthlx_scripts() {
 	wp_deregister_script( 'wp-embed' );
 	if ( 'http://localhost' !== home_url() && ! is_admin() ) {
 		wp_deregister_script( 'jquery' );
+		wp_deregister_script( 'wp-polyfill' );
 	}
 }
 
