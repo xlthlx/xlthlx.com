@@ -33,7 +33,7 @@ function get_abs_url() {
  */
 function get_trans( $element ) {
 	$trans_content = '';
-	$auth_key      = 'c8fbc4ef-5992-9e4b-09c9-7adc92be34fe:fx';
+	$auth_key      = get_option( 'deepl_auth_key' );
 
 	try {
 		$translator = new Translator( $auth_key );

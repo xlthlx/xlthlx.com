@@ -103,8 +103,8 @@ add_action( 'widgets_init', 'xlthlx_widgets_init' );
 function xlthlx_scripts() {
 	// Styles.
 	wp_dequeue_style( 'wp-block-library' );
-	wp_deregister_style('classic-theme-styles');
-	wp_dequeue_style('classic-theme-styles');
+	wp_deregister_style( 'classic-theme-styles' );
+	wp_dequeue_style( 'classic-theme-styles' );
 	// Scripts.
 	wp_deregister_script( 'wp-embed' );
 	if ( 'http://localhost' !== home_url() && ! is_admin() ) {

@@ -17,7 +17,5 @@
 <?php wp_footer(); ?>
 <span id="db3bd4a3c96f1fe80cd12d8df05e6320"></span>
 
-<!-- Cabin analytics. -->
-<script async defer src="https://scripts.withcabin.com/hello.js"></script>
 </body>
 </html>

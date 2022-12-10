@@ -36,6 +36,7 @@ add_action( 'admin_menu', 'xlt_admin_footer_remove' );
 add_filter( 'pre_option_link_manager_enabled', '__return_true' );
 add_filter( 'wpcf7_load_js', '__return_false' );
 add_filter( 'wpcf7_load_css', '__return_false' );
+add_filter( 'enable_post_by_email_configuration', '__return_false' );
 
 /**
  * Modify the rendering of code Gutenberg block.
@@ -615,3 +616,49 @@ function xlt_en_toolbar_link( $wp_admin_bar ) {
 }
 
 add_action( 'admin_bar_menu', 'xlt_en_toolbar_link', 999 );
+
+/**
+ * Callback function for DeepL Auth Key Field.
+ *
+ * @param array $val Field Options.
+ *
+ * @return void
+ */
+function xlt_deepl_auth_key_callback_function( $val ) {
+	$id          = $val['id'];
+	$option_name = $val['option_name'];
+	?>
+	<input type="password" name="<?php echo esc_attr( $option_name ); ?>"
+		   id="<?php echo esc_attr( $id ); ?>" value="<?php echo esc_attr( get_option( $option_name ) ); ?>" />
+	<?php
+}
+
+/**
+ * Add DeepL Auth Key to Writing Settings Admin.
+ *
+ * @return void
+ */
+function xlt_deepl_auth_key_field_to_writing_admin_page() {
+
+	register_setting(
+		'writing',
+		'deepl_auth_key',
+		array(
+			'show_in_rest'      => true,
+		) 
+	);
+
+	add_settings_field(
+		'deepl_auth_key_settings',
+		'DeepL Auth Key',
+		'xlt_deepl_auth_key_callback_function',
+		'writing',
+		'default',
+		array(
+			'id'          => 'deepl_auth_key',
+			'option_name' => 'deepl_auth_key',
+		)
+	);
+}
+
+add_action( 'admin_menu', 'xlt_deepl_auth_key_field_to_writing_admin_page' );
