@@ -38,12 +38,8 @@ body.dark-theme .widget_grey .btn, body.dark-theme .widget_grey .form-control {
 	color: var(--text-color);
 }
 
-body.dark-theme a {
+body.dark-theme a, body.dark-theme a:hover {
 	color: #f1469c;
-}
-
-body.dark-theme a:hover {
-	color: #f1469c !important;
 }
 
 body.dark-theme a.text-dark, body.dark-theme h2.text-dark {
@@ -221,8 +217,4 @@ body.dark-theme ul.two-columns li a {
 
 body.dark-theme .text-black {
 	color: #f1469c !important;
-}
-
-body.dark-theme a.social-btn, body.dark-theme a.social-btn:hover {
-	color: white;
 }
