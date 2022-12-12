@@ -758,3 +758,7 @@ a.bmc-btn:hover {
 		padding-left: 2.8rem !important;
 	}
 }
+
+a.social-btn, a.social-btn:hover {
+	color: white;
+}
