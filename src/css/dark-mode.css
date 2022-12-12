@@ -218,3 +218,7 @@ body.dark-theme ul.two-columns li a {
 body.dark-theme .text-black {
 	color: #f1469c !important;
 }
+
+body.dark-theme a.social-btn, body.dark-theme a.social-btn:hover {
+	color: white;
+}
