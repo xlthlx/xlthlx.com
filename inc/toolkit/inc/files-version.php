@@ -12,7 +12,7 @@
  *
  * @return string
  */
-function wt_change_version_from_style_js( $src ) {
+function xlt_change_version_from_style_js( $src ) {
 
 	if ( ! is_admin() ) {
 
@@ -81,6 +81,6 @@ function wt_change_version_from_style_js( $src ) {
 }
 
 if ( ! is_admin() ) {
-	add_filter( 'style_loader_src', 'wt_change_version_from_style_js', 9999, 1 );
-	add_filter( 'script_loader_src', 'wt_change_version_from_style_js', 9999, 1 );
+	add_filter( 'style_loader_src', 'xlt_change_version_from_style_js', 9999, 1 );
+	add_filter( 'script_loader_src', 'xlt_change_version_from_style_js', 9999, 1 );
 }

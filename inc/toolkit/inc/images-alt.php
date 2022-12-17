@@ -12,7 +12,7 @@
  *
  * @return string The post content filtered.
  */
-function wt_add_image_alt( $content ) {
+function xlt_add_image_alt( $content ) {
 	global $post;
 
 	if ( null === $post ) {
@@ -75,7 +75,7 @@ function wt_add_image_alt( $content ) {
 	return $content;
 }
 
-add_filter( 'the_content', 'wt_add_image_alt', 9999 );
+add_filter( 'the_content', 'xlt_add_image_alt', 9999 );
 
 /**
  * Sets alt attribute for post thumbnails.
@@ -85,7 +85,7 @@ add_filter( 'the_content', 'wt_add_image_alt', 9999 );
  *
  * @return array The attributes filtered.
  */
-function wt_change_image_attr( $attr, $attachment ) {
+function xlt_change_image_attr( $attr, $attachment ) {
 
 	$parent = get_post_field( 'post_parent', $attachment );
 	$title  = get_post_field( 'post_title', $parent );
@@ -102,4 +102,4 @@ function wt_change_image_attr( $attr, $attachment ) {
 	return $attr;
 }
 
-add_filter( 'wp_get_attachment_image_attributes', 'wt_change_image_attr', 20, 2 );
+add_filter( 'wp_get_attachment_image_attributes', 'xlt_change_image_attr', 20, 2 );

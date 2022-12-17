@@ -8,7 +8,7 @@
 /**
  * Attachment pages redirect.
  */
-function wt_attachment_pages_redirect() {
+function xlt_attachment_pages_redirect() {
 	global $post;
 
 	if ( is_attachment() ) {
@@ -21,4 +21,4 @@ function wt_attachment_pages_redirect() {
 	}
 }
 
-add_action( 'template_redirect', 'wt_attachment_pages_redirect' );
+add_action( 'template_redirect', 'xlt_attachment_pages_redirect' );

@@ -12,7 +12,7 @@
  *
  * @return array
  */
-function wt_posts_columns( $columns ) {
+function xlt_posts_columns( $columns ) {
 	$post_type = get_post_type();
 	if ( 'post' === $post_type ) {
 		unset( $columns['date'] );
@@ -36,7 +36,7 @@ function wt_posts_columns( $columns ) {
  * @param string $column_name The column name.
  * @param int    $id The post ID.
  */
-function wt_posts_custom_columns( $column_name, $id ) {
+function xlt_posts_custom_columns( $column_name, $id ) {
 	if ( 'thumbs' === $column_name ) {
 		echo get_the_post_thumbnail( $id, 'thumbnail' );
 	}
@@ -49,6 +49,6 @@ function wt_posts_custom_columns( $column_name, $id ) {
 }
 
 if ( is_admin() ) {
-	add_filter( 'manage_posts_columns', 'wt_posts_columns', 999999 );
-	add_action( 'manage_posts_custom_column', 'wt_posts_custom_columns', 999999, 2 );
+	add_filter( 'manage_posts_columns', 'xlt_posts_columns', 999999 );
+	add_action( 'manage_posts_custom_column', 'xlt_posts_custom_columns', 999999, 2 );
 }

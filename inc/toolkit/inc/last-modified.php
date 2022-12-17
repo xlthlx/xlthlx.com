@@ -8,7 +8,7 @@
 /**
  * Return Last-Modified Header.
  */
-function wt_last_mod_header() {
+function xlt_last_mod_header() {
 	if ( is_singular() ) {
 		$post_id = get_queried_object_id();
 		if ( $post_id ) {
@@ -17,4 +17,4 @@ function wt_last_mod_header() {
 	}
 }
 
-add_action( 'wp_headers', 'wt_last_mod_header' );
+add_action( 'wp_headers', 'xlt_last_mod_header' );

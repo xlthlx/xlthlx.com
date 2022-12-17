@@ -12,7 +12,7 @@
  *
  * @return array The file information with the cleaned or original filename.
  */
-function wt_upload_filter( $file ) {
+function xlt_upload_filter( $file ) {
 
 	$original_filename = pathinfo( $file['name'] );
 	set_transient(
@@ -45,7 +45,7 @@ function wt_upload_filter( $file ) {
  *
  * @return void
  */
-function wt_update_attachment_title( $attachment_id ) {
+function xlt_update_attachment_title( $attachment_id ) {
 
 	$original_filename = get_transient( '_clean_image_filenames_original_filename' );
 
@@ -61,6 +61,6 @@ function wt_update_attachment_title( $attachment_id ) {
 }
 
 if ( is_admin() ) {
-	add_action( 'wp_handle_upload_prefilter', 'wt_upload_filter' );
-	add_action( 'add_attachment', 'wt_update_attachment_title' );
+	add_action( 'wp_handle_upload_prefilter', 'xlt_upload_filter' );
+	add_action( 'add_attachment', 'xlt_update_attachment_title' );
 }

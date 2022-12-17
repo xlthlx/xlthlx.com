@@ -18,7 +18,7 @@ add_filter( 'wpcf7_load_js', '__return_false' );
  *
  * @return void
  */
-function xlthlx_add_supports() {
+function xlt_add_supports() {
 
 	add_theme_support( 'block-templates' );
 	add_theme_support( 'title-tag' );
@@ -51,12 +51,12 @@ function xlthlx_add_supports() {
 	add_image_size( 'cover', 250, 370, true );
 }
 
-add_action( 'init', 'xlthlx_add_supports' );
+add_action( 'init', 'xlt_add_supports' );
 
 /**
  * Register main and footer menu.
  */
-function xlthlx_register_menus() {
+function xlt_register_menus() {
 	register_nav_menus(
 		array(
 			'primary' => 'Main',
@@ -65,12 +65,12 @@ function xlthlx_register_menus() {
 	);
 }
 
-add_action( 'init', 'xlthlx_register_menus' );
+add_action( 'init', 'xlt_register_menus' );
 
 /**
  * Register widget area.
  */
-function xlthlx_widgets_init() {
+function xlt_widgets_init() {
 	register_sidebar(
 		array(
 			'name'          => esc_html__( 'Sidebar', 'xlthlx' ),
@@ -96,12 +96,12 @@ function xlthlx_widgets_init() {
 	);
 }
 
-add_action( 'widgets_init', 'xlthlx_widgets_init' );
+add_action( 'widgets_init', 'xlt_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
  */
-function xlthlx_scripts() {
+function xlt_scripts() {
 	// Styles.
 	wp_dequeue_style( 'wp-block-library' );
 	wp_deregister_style( 'classic-theme-styles' );
@@ -114,7 +114,7 @@ function xlthlx_scripts() {
 	}
 }
 
-add_action( 'wp_enqueue_scripts', 'xlthlx_scripts' );
+add_action( 'wp_enqueue_scripts', 'xlt_scripts' );
 
 /**
  * Enqueue editor scripts.
@@ -138,7 +138,7 @@ add_action( 'enqueue_block_editor_assets', 'enqueue_editor_scripts' );
  *
  * @return void
  */
-function xlthlx_add_to_globals() {
+function xlt_add_to_globals() {
 	global $lang,$charset,$site_url,$site_name,$site_desc;
 	$lang      = get_lang();
 	$charset   = get_bloginfo( 'charset' );
@@ -153,7 +153,7 @@ function xlthlx_add_to_globals() {
 
 }
 
-add_action( 'after_setup_theme', 'xlthlx_add_to_globals' );
+add_action( 'after_setup_theme', 'xlt_add_to_globals' );
 
 /**
  * Adds the plausible scripts to header.

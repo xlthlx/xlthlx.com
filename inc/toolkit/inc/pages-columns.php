@@ -12,7 +12,7 @@
  *
  * @return array $columns
  */
-function wt_page_column_views( $columns ) {
+function xlt_page_column_views( $columns ) {
 	unset( $columns['comments'], $columns['date'] );
 
 	return array_merge(
@@ -32,7 +32,7 @@ function wt_page_column_views( $columns ) {
  * @param string $column_name The column name.
  * @param int    $id The post ID.
  */
-function wt_page_custom_column_views( $column_name, $id ) {
+function xlt_page_custom_column_views( $column_name, $id ) {
 	if ( 'page-layout' === $column_name ) {
 		$set_template = get_post_meta(
 			get_the_ID(),
@@ -60,6 +60,6 @@ function wt_page_custom_column_views( $column_name, $id ) {
 }
 
 if ( is_admin() ) {
-	add_filter( 'manage_pages_columns', 'wt_page_column_views', 9999 );
-	add_action( 'manage_pages_custom_column', 'wt_page_custom_column_views', 9999, 2 );
+	add_filter( 'manage_pages_columns', 'xlt_page_column_views', 9999 );
+	add_action( 'manage_pages_custom_column', 'xlt_page_custom_column_views', 9999, 2 );
 }

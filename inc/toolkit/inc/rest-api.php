@@ -12,7 +12,7 @@
  *
  * @return WP_Error
  */
-function wt_disable_wp_rest_api( $access ) {
+function xlt_disable_wp_rest_api( $access ) {
 
 	if ( ! is_user_logged_in() ) {
 		$message = apply_filters(
@@ -35,15 +35,15 @@ function wt_disable_wp_rest_api( $access ) {
  *
  * @return void
  */
-function wt_disable_rest_api() {
+function xlt_disable_rest_api() {
 
 	remove_action( 'template_redirect', 'rest_output_link_header', 11 );
 	remove_action( 'wp_head', 'rest_output_link_wp_head' );
 	remove_action( 'xmlrpc_rsd_apis', 'rest_output_rsd' );
 
-	add_filter( 'rest_authentication_errors', 'wt_disable_wp_rest_api' );
+	add_filter( 'rest_authentication_errors', 'xlt_disable_wp_rest_api' );
 }
 
 if ( ! is_admin() ) {
-	add_action( 'init', 'wt_disable_rest_api' );
+	add_action( 'init', 'xlt_disable_rest_api' );
 }
