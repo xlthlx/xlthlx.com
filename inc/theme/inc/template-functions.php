@@ -33,11 +33,6 @@ function xlt_admin_footer_remove() {
 
 add_action( 'admin_menu', 'xlt_admin_footer_remove' );
 
-add_filter( 'pre_option_link_manager_enabled', '__return_true' );
-add_filter( 'wpcf7_load_js', '__return_false' );
-add_filter( 'wpcf7_load_css', '__return_false' );
-add_filter( 'enable_post_by_email_configuration', '__return_false' );
-
 /**
  * Modify the rendering of code Gutenberg block.
  *
@@ -645,7 +640,7 @@ function xlt_deepl_auth_key_field_to_writing_admin_page() {
 		'deepl_auth_key',
 		array(
 			'show_in_rest'      => true,
-		) 
+		)
 	);
 
 	add_settings_field(
