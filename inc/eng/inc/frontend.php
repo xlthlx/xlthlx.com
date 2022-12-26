@@ -179,7 +179,7 @@ function get_content_en( $post_id = 0 ) {
 				}
 			}
 
-			$output .= '<!-- GT -->';
+			$output .= '<!-- Automagically translated. -->';
 			update_post_meta( $post_id, 'content_en', $output );
 		}
 
