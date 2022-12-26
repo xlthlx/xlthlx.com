@@ -5,7 +5,7 @@
  * @package  xlthlx
  */
 
-global $lang, $search_query;
+global $lang;
 get_header();
 
 $search_title = ( 'en' === $lang ) ? 'Search results for: ' . get_query_var( 's' ) : 'Risultati della ricerca per: ' . get_query_var( 's' );
