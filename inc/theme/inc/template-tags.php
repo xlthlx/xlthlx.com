@@ -832,6 +832,7 @@ if ( ! function_exists( 'xlt_get_sticky_img' ) ) {
 			array( '437', '225' ),
 			false,
 			array(
+				'src'     => wp_get_attachment_image_url( $id, array( '437', '225' ) ),
 				'class'   => 'img-fluid grey_img',
 				'alt'     => $alt,
 				'loading' => false,
