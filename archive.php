@@ -5,7 +5,7 @@
  * @package  xlthlx
  */
 
-global $lang, $archive_query;
+global $lang, $wp_query;
 get_header();
 $archive_title = ( 'en' === $lang ) ? 'Archive' : 'Archivio';
 
@@ -76,7 +76,7 @@ $paging = ( 0 !== get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 	<?php } ?>
 	</div>
 	<?php
-	xlt_pagination( $archive_query, $paging );
+	xlt_pagination( $wp_query, $paging );
 
 } else {
 	get_template_part( 'parts/no-content' );
