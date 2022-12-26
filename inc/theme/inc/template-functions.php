@@ -471,7 +471,7 @@ function xlt_wrap_image_with_picture( $html, $attachment_id, $size, $icon, $attr
 	return $html;
 }
 
-add_filter( 'wp_get_attachment_image', 'xlt_wrap_image_with_picture', 10, 3 );
+add_filter( 'wp_get_attachment_image', 'xlt_wrap_image_with_picture', 10, 5 );
 
 /**
  * Wrap the image with picture tag to support webp.
