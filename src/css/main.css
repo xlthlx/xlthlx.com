@@ -523,10 +523,6 @@ footer:after {
 	border: 2px dashed #6667ab;
 }
 
-.wp-block-image {
-	margin: 0 !important;
-}
-
 .wp-block-image.alignleft {
 	float: left;
 }
