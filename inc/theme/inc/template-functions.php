@@ -440,26 +440,6 @@ add_filter( 'manage_page_posts_columns', 'xlt_hide_seo_columns', 20 );
 add_filter( 'manage_post_posts_columns', 'xlt_hide_seo_columns', 20 );
 add_filter( 'manage_edit-category_columns', 'xlt_hide_seo_columns', 20 );
 
-
-/**
- * Add sources with webp.
- *
- * @param string $type Image type.
- * @param string $html HTML img element or empty string on failure.
- * @param string $src Attributes for the image markup.
- *
- * @return string
- */
-function xlt_get_sources_for_image( $type, $html, $src ) {
-	$webp_src = preg_replace( '/(?:jpg|png|jpeg)$/i', 'webp', $src );
-
-	return '<picture>
-			  <source srcset="' . $webp_src . '" type="image/webp">
-			  <source srcset="' . $src . '" type="' . $type . '">
-			  ' . $html . '
-			</picture>';
-}
-
 /**
  * Wrap the image with picture tag to support webp.
  *
@@ -479,7 +459,13 @@ function xlt_wrap_image_with_picture( $html, $attachment_id, $size, $icon, $attr
 	$type = get_post_mime_type( $attachment_id );
 
 	if ( ( ! $icon ) && ( 'image/gif' !== $type ) ) {
-		$html = xlt_get_sources_for_image( $type, $html, $attr['src'] );
+		$webp_src = preg_replace( '/(?:jpg|png|jpeg)$/i', 'webp', $attr['src'] );
+
+		$html = '<picture>
+			  <source srcset="' . $webp_src . '" type="image/webp">
+			  <source srcset="' . $attr['src'] . '" type="' . $type . '">
+			  ' . $html . '
+			</picture>';
 	}
 
 	return $html;
@@ -490,35 +476,43 @@ add_filter( 'wp_get_attachment_image', 'xlt_wrap_image_with_picture', 10, 3 );
 /**
  * Wrap the image with picture tag to support webp.
  *
- * @param string $html HTML img element or empty string on failure.
+ * @param string $filtered_image Full img tag with attributes that will replace the source img tag.
+ * @param string $context Additional context, like the current filter name or the function name from where this was called.
  * @param int    $attachment_id Image attachment ID.
  *
  * @return string
  */
-function xlt_image_with_picture( $html, $attachment_id ) {
+function xlt_image_with_picture( $filtered_image, $context, $attachment_id ) {
 	if ( is_admin() ) {
-		return $html;
+		return $filtered_image;
 	}
 
 	$type = get_post_mime_type( $attachment_id );
 
 	if ( 'image/gif' !== $type ) {
 
-		preg_match( '/width="([^"]+)/i', $html, $width, PREG_OFFSET_CAPTURE );
-		preg_match( '/height="([^"]+)/i', $html, $height, PREG_OFFSET_CAPTURE );
+		preg_match( '/width="([^"]+)/i', $filtered_image, $width, PREG_OFFSET_CAPTURE );
+		preg_match( '/height="([^"]+)/i', $filtered_image, $height, PREG_OFFSET_CAPTURE );
 		if ( isset( $width[1], $height[1] ) ) {
 			$size = array( $width[1][0], $height[1][0] );
 		} else {
 			$size = 'full';
 		}
 
-		$html = xlt_get_sources_for_image( $attachment_id, $size, $type, $html );
+		$img_src  = wp_get_attachment_image_url( $attachment_id, $size );
+		$webp_src = preg_replace( '/(?:jpg|png|jpeg)$/i', 'webp', $img_src );
+
+		$filtered_image = '<picture>
+			  <source srcset="' . $webp_src . '" type="image/webp">
+			  <source srcset="' . $img_src . '" type="' . $type . '">
+			  ' . $filtered_image . '
+			</picture>';
 	}
 
-	return $html;
+	return $filtered_image;
 }
 
-//add_filter( 'wp_content_img_tag', 'xlt_image_with_picture', 10, 3 );
+add_filter( 'wp_content_img_tag', 'xlt_image_with_picture', 10, 3 );
 
 /**
  * Add icons into admin.
