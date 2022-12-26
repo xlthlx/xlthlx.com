@@ -441,22 +441,21 @@ add_filter( 'manage_post_posts_columns', 'xlt_hide_seo_columns', 20 );
 add_filter( 'manage_edit-category_columns', 'xlt_hide_seo_columns', 20 );
 
 
-/** Add sources with webp.
+/**
+ * Add sources with webp.
  *
- * @param int    $attachment_id Image attachment ID.
- * @param string $size Image size.
  * @param string $type Image type.
  * @param string $html HTML img element or empty string on failure.
+ * @param string $src Attributes for the image markup.
  *
  * @return string
  */
-function xlt_get_sources_for_image( $attachment_id, $size, $type, $html ) {
-	$img_src  = wp_get_attachment_image_url( $attachment_id, $size );
-	$webp_src = preg_replace( '/(?:jpg|png|jpeg)$/i', 'webp', $img_src );
+function xlt_get_sources_for_image( $type, $html, $src ) {
+	$webp_src = preg_replace( '/(?:jpg|png|jpeg)$/i', 'webp', $src );
 
 	return '<picture>
 			  <source srcset="' . $webp_src . '" type="image/webp">
-			  <source srcset="' . $img_src . '" type="' . $type . '">
+			  <source srcset="' . $src . '" type="' . $type . '">
 			  ' . $html . '
 			</picture>';
 }
@@ -464,21 +463,23 @@ function xlt_get_sources_for_image( $attachment_id, $size, $type, $html ) {
 /**
  * Wrap the image with picture tag to support webp.
  *
- * @param string $html HTML img element or empty string on failure.
- * @param int    $attachment_id Image attachment ID.
- * @param string $size Image size.
+ * @param string   $html HTML img element or empty string on failure.
+ * @param int      $attachment_id Image attachment ID.
+ * @param string   $size Requested image size.
+ * @param bool     $icon Whether the image should be treated as an icon.
+ * @param string[] $attr Attributes for the image markup.
  *
  * @return string
  */
-function xlt_wrap_image_with_picture( $html, $attachment_id, $size ) {
+function xlt_wrap_image_with_picture( $html, $attachment_id, $size, $icon, $attr ) {
 	if ( is_admin() ) {
 		return $html;
 	}
 
 	$type = get_post_mime_type( $attachment_id );
 
-	if ( 'image/gif' !== $type ) {
-		$html = xlt_get_sources_for_image( $attachment_id, $size, $type, $html );
+	if ( ( ! $icon ) && ( 'image/gif' !== $type ) ) {
+		$html = xlt_get_sources_for_image( $type, $html, $attr['src'] );
 	}
 
 	return $html;
@@ -517,7 +518,7 @@ function xlt_image_with_picture( $html, $attachment_id ) {
 	return $html;
 }
 
-add_filter( 'wp_content_img_tag', 'xlt_image_with_picture', 10, 3 );
+//add_filter( 'wp_content_img_tag', 'xlt_image_with_picture', 10, 3 );
 
 /**
  * Add icons into admin.

@@ -7,7 +7,7 @@
 
 add_action( 'wp_head', 'ob_start', 1, 0 );
 $wp_login_php = false;
-$xlt_login     = 'entra';
+$xlt_login    = 'entra';
 
 /**
  * Check if an url uses trailing slashes.
