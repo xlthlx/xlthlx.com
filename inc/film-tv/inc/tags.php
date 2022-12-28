@@ -69,13 +69,7 @@ if ( ! function_exists( 'xlt_get_all_film_tv' ) ) {
 				$output[ $i ]['link']     = ( 'en' === $lang ) ? get_post_meta( get_the_ID(), 'link_en', true ) : get_post_meta( get_the_ID(), 'link', true );
 				$output[ $i ]['internal'] = get_post_meta( get_the_ID(), 'internal', true );
 
-				$years                = get_the_terms( get_the_ID(), 'year' );
-				$output[ $i ]['year'] = false;
-
-				if ( ! empty( $years ) && ! is_wp_error( $years ) ) {
-					$years                = wp_list_pluck( $years, 'name' );
-					$output[ $i ]['year'] = implode( ', ', $years );
-				}
+				$output[ $i ]['year'] = get_post_meta( get_the_ID(), 'year', true );
 
 				$directors                 = get_the_terms( get_the_ID(), 'director' );
 				$output[ $i ]['directors'] = false;
