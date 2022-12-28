@@ -439,6 +439,8 @@ function xlt_hide_seo_columns( $columns ) {
 add_filter( 'manage_page_posts_columns', 'xlt_hide_seo_columns', 20 );
 add_filter( 'manage_post_posts_columns', 'xlt_hide_seo_columns', 20 );
 add_filter( 'manage_edit-category_columns', 'xlt_hide_seo_columns', 20 );
+add_filter( 'manage_film_posts_columns', 'xlt_hide_seo_columns', 20 );
+add_filter( 'manage_tvseries_posts_columns', 'xlt_hide_seo_columns', 20 );
 
 /**
  * Wrap the image with picture tag to support webp.

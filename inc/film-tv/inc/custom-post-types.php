@@ -70,7 +70,7 @@ function xlt_film_init() {
 				),
 				'year'     => array(
 					'title'    => 'Anno',
-					'taxonomy' => 'year',
+					'meta_key' => 'year',
 				),
 				'director' => array(
 					'title'    => 'Regista',
@@ -85,10 +85,6 @@ function xlt_film_init() {
 				),
 			),
 			'admin_filters'      => array(
-				'year'     => array(
-					'title'    => 'Anno',
-					'taxonomy' => 'year',
-				),
 				'director' => array(
 					'title'    => 'Regista',
 					'taxonomy' => 'director',
@@ -210,7 +206,7 @@ function xlt_tv_series_init() {
 				),
 				'year'     => array(
 					'title'    => 'Anno',
-					'taxonomy' => 'year',
+					'meta_key' => 'year',
 				),
 				'director' => array(
 					'title'    => 'Regista',
@@ -225,10 +221,6 @@ function xlt_tv_series_init() {
 				),
 			),
 			'admin_filters'      => array(
-				'year'     => array(
-					'title'    => 'Anno',
-					'taxonomy' => 'year',
-				),
 				'director' => array(
 					'title'    => 'Regista',
 					'taxonomy' => 'director',

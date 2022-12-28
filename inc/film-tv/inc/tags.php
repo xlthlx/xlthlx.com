@@ -41,32 +41,14 @@ if ( ! function_exists( 'xlt_get_all_film_tv' ) ) {
 	function xlt_get_all_film_tv( $post_type, $lang ) {
 
 		$output = array();
-		$years  = array();
 		$i      = 0;
-
-		$terms = get_terms(
-			array(
-				'taxonomy' => 'year',
-				'order'    => 'DESC',
-			) 
-		);
-
-		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
-			$years = wp_list_pluck( $terms, 'term_id' );
-		}
-
 
 		$args = array(
 			'post_type'      => $post_type,
-			'posts_per_page' => - 1,
-			'tax_query'      => array(
-				array(
-					'taxonomy' => 'year',
-					'field'    => 'term_id',
-					'terms'    => $years,
-					'operator' => 'IN',
-				),
-			),
+			'posts_per_page' => -1,
+			'meta_key' => 'year',
+			'orderby' => 'meta_value',
+			'order' => 'DESC'
 		);
 
 

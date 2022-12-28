@@ -24,7 +24,7 @@ function xlt_add_film_metabox() {
 	$cmb_post = new_cmb2_box(
 		array(
 			'id'           => 'group_link',
-			'title'        => 'Altro',
+			'title'        => 'Links',
 			'object_types' => array( 'film', 'tvseries' ),
 			'context'      => 'side',
 			'priority'     => 'high',
@@ -54,6 +54,25 @@ function xlt_add_film_metabox() {
 			'name'         => 'Recensione',
 			'id'           => 'internal',
 			'type'         => 'text_url',
+			'show_in_rest' => WP_REST_Server::ALLMETHODS,
+		)
+	);
+
+	$cmb_year = new_cmb2_box(
+		array(
+			'id'           => 'group_year',
+			'title'        => 'Anno',
+			'object_types' => array( 'film', 'tvseries' ),
+			'context'      => 'side',
+			'priority'     => 'high',
+		)
+	);
+
+	$cmb_year->add_field(
+		array(
+			'name'         => 'Anno',
+			'id'           => 'year',
+			'type'         => 'text',
 			'show_in_rest' => WP_REST_Server::ALLMETHODS,
 		)
 	);

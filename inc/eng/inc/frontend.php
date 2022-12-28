@@ -88,7 +88,7 @@ function get_title_en( $post_id = 0 ) {
 
 	$post_type = get_post_type( $post_id );
 
-	if ( 'post' === $post_type || 'page' === $post_type ) {
+	if ( 'post' === $post_type || 'page' === $post_type || 'film' === $post_type || 'tvseries' === $post_type ) {
 		if ( ! get_post_meta( $post_id, 'title_en', true )
 			 || get_post_meta( $post_id, 'title_en', true ) === '' ) {
 
