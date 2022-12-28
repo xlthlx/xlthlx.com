@@ -46,9 +46,9 @@ if ( ! function_exists( 'xlt_get_all_film_tv' ) ) {
 		$args = array(
 			'post_type'      => $post_type,
 			'posts_per_page' => -1,
-			'meta_key' => 'year',
-			'orderby' => 'meta_value',
-			'order' => 'DESC'
+			'meta_key'       => 'year',
+			'orderby'        => 'meta_value',
+			'order'          => 'DESC',
 		);
 
 

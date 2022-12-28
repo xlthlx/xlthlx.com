@@ -177,7 +177,7 @@ function xlt_set_title_en( $title, $id ) {
 		return $title;
 	}
 
-	if ( ( 'post' !== $post->post_type ) && ( 'page' !== $post->post_type ) ) {
+	if ( ( 'post' !== $post->post_type ) && ( 'page' !== $post->post_type ) && ( 'film' !== $post->post_type ) && ( 'tvseries' !== $post->post_type ) ) {
 		return $title;
 	}
 
