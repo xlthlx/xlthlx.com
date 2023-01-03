@@ -25,7 +25,7 @@ $parent_id = get_the_ID();
 							</small>
 						</time>
 					</div>
-					<h5 class="card-title comment-author"><?php echo $args['comment']->comment_author; ?></h5>
+					<h5 class="card-title comment-author"><?php echo xlt_get_author( $args['comment'] ); ?></h5>
 					<div class="card-text comment-content">
 						<?php echo wpautop( $args['comment']->comment_content ); ?>
 					</div>

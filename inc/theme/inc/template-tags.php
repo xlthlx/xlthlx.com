@@ -687,6 +687,7 @@ if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 if ( ! function_exists( 'xlt_get_avatar' ) ) {
 	/**
 	 * Get the gravatar or set a first letter avatar.
+	 * Adds the comment author url if inserted.
 	 *
 	 * @param object $comment The comment object.
 	 * @param string $author_name The comment author name.
@@ -715,6 +716,26 @@ if ( ! function_exists( 'xlt_get_avatar' ) ) {
 		}
 
 		return $avatar;
+	}
+}
+
+if ( ! function_exists( 'xlt_get_author' ) ) {
+	/**
+	 * Gets the comment author with the url if inserted.
+	 *
+	 * @param object $comment The comment object.
+	 *
+	 * @return string
+	 */
+	function xlt_get_author( $comment ) {
+
+		$author = $comment->comment_author;
+
+		if ( '' !== $comment->comment_author_url ) {
+			$author = '<a class="hover-none" title="' . $comment->comment_author_url . '" target="_blank" href="' . $comment->comment_author_url . '">' . $author . '</a>';
+		}
+
+		return $author;
 	}
 }
 
