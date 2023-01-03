@@ -710,8 +710,8 @@ if ( ! function_exists( 'xlt_get_avatar' ) ) {
 			$avatar = '<img class="img-fluid p-1" src="' . $url . '" alt="' . $author_name . '">';
 		}
 
-		if ( isset( $comment['comment_author_url'] ) ) {
-			$avatar = '<a title="'.$comment['comment_author_url'].'" target="_blank" href="'.$comment['comment_author_url'].'">'.$avatar.'</a>';
+		if ( '' !== $comment->comment_author_url ) {
+			$avatar = '<a title="' . $comment->comment_author_url . '" target="_blank" href="' . $comment->comment_author_url . '">' . $avatar . '</a>';
 		}
 
 		return $avatar;
