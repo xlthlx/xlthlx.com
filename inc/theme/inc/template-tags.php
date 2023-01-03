@@ -732,7 +732,7 @@ if ( ! function_exists( 'xlt_get_author' ) ) {
 		$author = $comment->comment_author;
 
 		if ( '' !== $comment->comment_author_url ) {
-			$author = '<a class="hover-none" title="' . $comment->comment_author_url . '" target="_blank" href="' . $comment->comment_author_url . '">' . $author . '</a>';
+			$author = '<a title="' . $comment->comment_author_url . '" target="_blank" href="' . $comment->comment_author_url . '">' . $comment->comment_author . '</a>';
 		}
 
 		return $author;
