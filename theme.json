@@ -79,8 +79,8 @@
       }
     },
     "layout": {
-      "contentSize": "840px",
-      "wideSize": "1100px"
+      "contentSize": "1200px",
+      "wideSize": "1400px"
     },
     "spacing": {
       "blockGap": false,
@@ -104,16 +104,36 @@
           "name": "System Font"
         },
         {
-          "fontFamily": "Helvetica Neue, Helvetica, Arial, sans-serif",
-          "slug": "helvetica-arial",
-          "name": "Helvetica or Arial"
+          "fontFamily": "'Titillium Web', Geneva, Verdana, sans-serif",
+          "slug": "titillium-web",
+          "name": "Titillium Web"
+        },
+        {
+          "fontFamily": "'Shadows Into Light', Geneva, Verdana, sans-serif",
+          "slug": "shadows-into-light",
+          "name": "Shadows Into Light"
+        },
+        {
+          "fontFamily": "'JetBrains Mono', monospace",
+          "slug": "monospace",
+          "name": "JetBrains Mono"
         }
       ],
       "fontSizes": [
         {
+          "name": "Small",
+          "size": "1rem",
+          "slug": "small"
+        },
+        {
           "name": "Normal",
           "size": "1.2rem",
           "slug": "normal"
+        },
+        {
+          "name": "Big",
+          "size": "2rem",
+          "slug": "big"
         }
       ],
       "fontStyle": true,
