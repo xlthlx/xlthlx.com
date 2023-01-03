@@ -8,8 +8,7 @@
 global $lang;
 $parent_id = get_the_ID();
 ?>
-<section
-	class="blog-comment <?php echo $args['comment']->comment_type . '-' . $lang; ?>"
+<section class="blog-comment <?php echo $args['comment']->comment_type . '-' . $lang; ?>"
 	id="comment-<?php echo $args['comment']->comment_ID; ?>">
 	<hr class="mb-4"/>
 	<div class="card mb-3 rounded-0 border-0">
@@ -21,13 +20,15 @@ $parent_id = get_the_ID();
 				<div class="card-body py-0">
 					<div class="card-text comment-date pb-2">
 						<time datetime="<?php echo $args['comment']->comment_date_gmt; ?>">
-							<small
-								class="text-muted"><?php echo date( 'd/m/Y', strtotime( $args['comment']->comment_date ) ); ?></small>
+							<small class="text-muted">
+								<?php echo date( 'd/m/Y', strtotime( $args['comment']->comment_date ) ); ?>
+							</small>
 						</time>
 					</div>
 					<h5 class="card-title comment-author"><?php echo $args['comment']->comment_author; ?></h5>
-					<div
-						class="card-text comment-content"><?php echo wpautop( $args['comment']->comment_content ); ?></div>
+					<div class="card-text comment-content">
+						<?php echo wpautop( $args['comment']->comment_content ); ?>
+					</div>
 					<p class="card-text">
 						<?php if ( is_user_logged_in() ) { ?>
 							<small class="pe-3">
