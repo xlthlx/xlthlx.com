@@ -754,3 +754,7 @@ a.bmc-btn:hover {
 		padding-left: 2.8rem !important;
 	}
 }
+
+a.hover-none:hover {
+	text-decoration: none !important;
+}

@@ -711,7 +711,7 @@ if ( ! function_exists( 'xlt_get_avatar' ) ) {
 		}
 
 		if ( '' !== $comment->comment_author_url ) {
-			$avatar = '<a title="' . $comment->comment_author_url . '" target="_blank" href="' . $comment->comment_author_url . '">' . $avatar . '</a>';
+			$avatar = '<a class="hover-none" title="' . $comment->comment_author_url . '" target="_blank" href="' . $comment->comment_author_url . '">' . $avatar . '</a>';
 		}
 
 		return $avatar;
