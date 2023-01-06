@@ -84,8 +84,8 @@ function xlt_change_image_attr( $attr, $attachment ) {
 	$parent = get_post_field( 'post_parent', $attachment );
 	$title  = get_post_field( 'post_title', $parent );
 
-	if ( '' === $attr['alt'] ) {
-		if ( '' !== $attr['title'] ) {
+	if ( ! isset( $attr['alt'] ) || '' === $attr['alt'] ) {
+		if ( isset( $attr['title'] ) && '' !== $attr['title'] ) {
 			$attr['alt'] = $attr['title'];
 		} else {
 			$attr['alt'] = $title;

@@ -226,7 +226,7 @@ function xlt_welcome_email( $value ) {
 
 	return str_replace(
 		'wp-login.php',
-		trailingslashit( $xlt_login['xlt_login'] ),
+		trailingslashit( $xlt_login ),
 		$value
 	);
 }
