@@ -599,9 +599,8 @@ footer:after {
 
 #primary a.nav-link {
 	color: white;
-	border-top: 3px solid transparent;
-	border-bottom: 3px solid transparent;
 	font-size: 1.4rem;
+	padding: 0 1rem .5rem 1rem;
 }
 
 #primary a.nav-link:hover, #primary a.nav-link:focus {
