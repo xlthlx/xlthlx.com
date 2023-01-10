@@ -608,18 +608,6 @@ footer:after {
 	color: white;
 }
 
-#primary a.nav-link:before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	border-top: 2px dashed white;
-	transform: scaleX(0);
-	transform-origin: top left;
-	transition: transform 0.3s;
-}
-
 #primary a.nav-link:after {
 	content: '';
 	position: absolute;
@@ -628,12 +616,8 @@ footer:after {
 	width: 100%;
 	border-bottom: 2px dashed white;
 	transform: scaleX(0);
-	transform-origin: bottom right;
+	transform-origin: bottom left;
 	transition: transform 0.3s;
-}
-
-#primary a.nav-link:hover:before {
-	transform: scaleX(1);
 }
 
 #primary a.nav-link:hover:after {

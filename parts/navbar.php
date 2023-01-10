@@ -9,7 +9,7 @@ global $site_url,$site_name,$site_desc; ?>
 <nav id="primary" class="navbar navbar-dark navbar-expand-lg bg-dark">
 	<div class="container-fluid">
 
-		<h1 id="logo" class="display-2 font-italic text-start m-0 ps-3 py-1 d-flex align-items-center col text-decoration-none">
+		<h1 id="logo" class="col-8 display-2 font-italic text-start m-0 ps-3 py-1 d-flex align-items-center text-decoration-none">
 			<a title="<?php echo $site_desc; ?>" class="text-white text-decoration-none shadows"
 			   href="<?php echo $site_url; ?>"><?php echo $site_name; ?></a>
 		</h1>
@@ -19,8 +19,8 @@ global $site_url,$site_name,$site_desc; ?>
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarPrimary">
-			<div class="col d-flex flex-wrap align-items-lg-center justify-content-lg-center py-lg-3" id="navbarPrimary">
-				<ul class="nav navbar-nav navbar-nav-scroll col-auto mb-2 mb-lg-0 justify-content-lg-center">
+			<div class="col-7 d-flex flex-wrap align-items-lg-end justify-content-lg-end py-lg-3" id="navbarPrimary">
+				<ul class="nav navbar-nav navbar-nav-scroll col-auto mb-2 mb-lg-0 justify-content-lg-end">
 					<?php
 					$menu_items = xlt_get_menu_items( 'primary' );
 					foreach ( $menu_items as $menu_item ) {
