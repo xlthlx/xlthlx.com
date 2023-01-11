@@ -13,6 +13,12 @@ global $site_url,$site_name,$site_desc; ?>
 			<a title="<?php echo $site_desc; ?>" class="text-white text-decoration-none shadows"
 			   href="<?php echo $site_url; ?>"><?php echo $site_name; ?></a>
 		</h1>
+		
+		<style>
+		.nav-item {
+			margin-top: -1px;
+			}
+		</style>
 
 		<button class="navbar-toggler rounded-0 border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrimary" aria-controls="navbarPrimary" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
