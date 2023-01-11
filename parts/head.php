@@ -21,7 +21,7 @@ global $charset; ?>
 	<link rel="manifest" href="<?php echo get_template_directory_uri(); ?>/assets/manifest/manifest.json"/>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<?php wp_head(); ?>
 	<meta name="twitter:site" content="@xlthlx">
     <meta name="twitter:creator" content="@xlthlx">
+	<?php wp_head(); ?>
 </head>
