@@ -2,7 +2,7 @@ body {
 	font-family: 'Titillium Web', Geneva, Verdana, sans-serif !important;
 	font-size: 1.2rem;
 	position: relative;
-	background-color: #f0f1ff !important;
+	background-color: #f0f1ff;
 }
 
 body.admin-bar nav.fixed-top {
@@ -70,7 +70,6 @@ a:hover {
 	color: #6c757d;
 	pointer-events: none;
 	cursor: auto;
-	background-color: #fff;
 	border-width: 0 !important;
 }
 
