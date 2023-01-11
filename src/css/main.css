@@ -2,6 +2,7 @@ body {
 	font-family: 'Titillium Web', Geneva, Verdana, sans-serif !important;
 	font-size: 1.2rem;
 	position: relative;
+	background-color: #f0f1ff !important;
 }
 
 body.admin-bar nav.fixed-top {
@@ -54,7 +55,7 @@ a:hover {
 }
 
 .widget {
-	border-top: 2px dashed #e0e1ee;
+	border-top: 2px dashed #b0b1bb;
 }
 
 .page-link {
@@ -450,8 +451,8 @@ iframe {
 }
 
 .box-dashed {
-	border-right: 2px dashed #e0e1ee;
-	border-left: 2px dashed #e0e1ee;
+	border-right: 2px dashed #b0b1bb;
+	border-left: 2px dashed #b0b1bb;
 }
 
 .form-control, .btn {
@@ -466,7 +467,7 @@ hr {
 	opacity: initial !important;
 	border-width: 2px 0 0 0 !important;
 	border-style: dashed !important;
-	border-color: #e0e1ee !important;
+	border-color: #b0b1bb !important;
 }
 
 footer {
@@ -510,7 +511,7 @@ footer:after {
 .navbar-dark .navbar-nav .nav-link.white-text:focus, .navbar-dark .navbar-nav .nav-link.white-text:hover {
 	color: #2e2f4d !important;
 	text-decoration: none;
-	background-color: #e0e1ee;
+	background-color: #b0b1bb;
 }
 
 .tease:hover li a, .tease:hover h2 a {
@@ -574,7 +575,7 @@ footer:after {
 
 .comment-date small.text-muted {
 	color: black !important;
-	background-color: #e0e1ee !important;
+	background-color: #b0b1bb !important;
 	padding: 0 5px;
 }
 
@@ -732,7 +733,7 @@ a.bmc-btn:hover {
 .dots {
 	border-width: 2px 0 2px 0 !important;
 	border-style: dashed !important;
-	border-color: #e0e1ee !important;
+	border-color: #b0b1bb !important;
 }
 
 @media (min-width: 1200px) {
