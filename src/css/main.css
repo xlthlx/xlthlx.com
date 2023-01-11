@@ -683,6 +683,10 @@ footer:after {
 	border-bottom-left-radius: 5% !important;
 }
 
+.nav-item {
+	margin-top: -1px;
+}
+
 .nav-item:last-child {
 	margin-right: 1.5rem;
 }

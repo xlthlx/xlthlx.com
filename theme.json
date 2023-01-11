@@ -126,14 +126,14 @@
           "slug": "small"
         },
         {
-          "name": "Normal",
+          "name": "Medium",
           "size": "1.2rem",
-          "slug": "normal"
+          "slug": "medium"
         },
         {
-          "name": "Big",
+          "name": "Large",
           "size": "2rem",
-          "slug": "big"
+          "slug": "large"
         }
       ],
       "fontStyle": true,
