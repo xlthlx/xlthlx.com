@@ -22,4 +22,6 @@ global $charset; ?>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<?php wp_head(); ?>
+	<meta name="twitter:site" content="@xlthlx">
+    <meta name="twitter:creator" content="@xlthlx">
 </head>
