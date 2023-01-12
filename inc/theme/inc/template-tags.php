@@ -1066,7 +1066,7 @@ if ( ! function_exists( 'xlt_pagination' ) ) {
 				$return .= '<li class="page-item">' . "\n";
 				$return .= '<a href="' . esc_url( get_pagenum_link() ) . '" class="page-link btn-50" title="1">1</a>' . "\n";
 				$return .= '</li>' . "\n";
-				$return .= '<li class="page-item active" aria-current="page">
+				$return .= '<li class="page-item">
 					<span class="page-link dots">...<span class="visually-hidden">(current)</span></span>
 				  </li>';
 			}
@@ -1084,7 +1084,7 @@ if ( ! function_exists( 'xlt_pagination' ) ) {
 			}
 
 			if ( (int) $end_page < $max_page ) {
-				$return .= '<li class="page-item active" aria-current="page">
+				$return .= '<li class="page-item">
 							<span class="page-link dots">...<span class="visually-hidden">(current)</span></span>
 						  </li>';
 				$return .= '<li class="page-item">' . "\n";
