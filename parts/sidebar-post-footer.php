@@ -6,8 +6,6 @@
  */
 
 ?>
-<div class="col-md-3">
-	<aside class="sidebar mt-md-0 mt-4 ps-md-3 ps-0">
-		<?php dynamic_sidebar( 'post-footer' ); ?>
-	</aside>
-</div>
+<section id="post-footer" class="widget">
+	<?php dynamic_sidebar( 'post-footer' ); ?>
+</section>
