@@ -49,7 +49,7 @@ class Related_Widget extends WP_Widget {
 		$this->widget_title( $args, $settings );
 		?>
 
-			<?php $this->render(); ?>
+			<?php $this->render( $args['title'] ); ?>
 
 		<?php
 		echo $args['after_widget'];
@@ -89,11 +89,13 @@ class Related_Widget extends WP_Widget {
 	}
 
 	/**
-	 * Renders the Widget Content.
+	 *  Renders the Widget Content.
+	 *
+	 * @param string $title The Widget title.
 	 *
 	 * @return void
 	 */
-	public function render() {
+	public function render( $title ) {
 
 		$related_links = '';
 
@@ -155,7 +157,13 @@ class Related_Widget extends WP_Widget {
 
 			if ( $related ) {
 
-				$related_links = '<ul class="two-columns">' . $related . '</ul>';
+				$class = 'menu';
+
+				if ( 'Related articles' !== $title ) {
+					$class = 'two-columns';
+				}
+
+				$related_links = '<ul class="' . $class . '">' . $related . '</ul>';
 			}
 
 			wp_reset_query();

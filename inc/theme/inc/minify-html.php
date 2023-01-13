@@ -198,7 +198,7 @@ function xlt_minify_html_output( $buffer ) {
 		$buffer = str_replace( ' />', '>', $buffer );
 	}
 
-/*	$buffer = str_replace(
+	$buffer = str_replace(
 		array(
 			'https://' . $_SERVER['HTTP_HOST'] . '/',
 			'http://' . $_SERVER['HTTP_HOST'] . '/',
@@ -206,7 +206,19 @@ function xlt_minify_html_output( $buffer ) {
 		),
 		array( '/', '/', '/' ),
 		$buffer
-	);*/
+	);
+
+	$buffer = str_replace(
+		array(
+			'<meta property="og:image" content="/',
+			'<meta name="twitter:image" content="/',
+		),
+		array(
+			'<meta property="og:image" content="https://xlthlx.com/',
+			'<meta name="twitter:image" content="https://xlthlx.com/',
+		),
+		$buffer 
+	);
 
 	return ( $buffer );
 }
