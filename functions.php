@@ -76,9 +76,21 @@ add_action( 'init', 'xlt_register_menus' );
 function xlt_widgets_init() {
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Sidebar', 'xlthlx' ),
-			'id'            => 'sidebar',
-			'description'   => esc_html__( 'Sidebar', 'xlthlx' ),
+			'name'          => esc_html__( 'Post Sidebar', 'xlthlx' ),
+			'id'            => 'post-sidebar',
+			'description'   => esc_html__( 'Post Sidebar', 'xlthlx' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s p-4">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="h2 pb-2 shadows">',
+			'after_title'   => '</h3>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Post Sidebar', 'xlthlx' ),
+			'id'            => 'post-footer',
+			'description'   => esc_html__( 'Footer Post Sidebar', 'xlthlx' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s p-4">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h3 class="h2 pb-2 shadows">',
@@ -89,7 +101,7 @@ function xlt_widgets_init() {
 	register_sidebar(
 		array(
 			'name'          => esc_html__( 'Page Sidebar', 'xlthlx' ),
-			'id'            => 'page_sidebar',
+			'id'            => 'page-sidebar',
 			'description'   => esc_html__( 'Page Sidebar', 'xlthlx' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s p-4">',
 			'after_widget'  => '</div>',

@@ -11,6 +11,6 @@
 		<?php get_template_part( 'parts/newsletter' ); ?>
 		<?php get_template_part( 'parts/buy-me-a-coffee' ); ?>
 		<?php get_template_part( 'parts/sidebar-image' ); ?>
-		<?php dynamic_sidebar( 'sidebar' ); ?>
+		<?php dynamic_sidebar( 'post-sidebar' ); ?>
 	</aside>
 </div>

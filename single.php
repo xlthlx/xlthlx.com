@@ -49,12 +49,8 @@ while ( have_posts() ) :
 
 						<?php comments_template(); ?>
 
-						<section id="related" class="widget">
-							<div class="p-2 my-4">
-								<h3 class="h2 pb-2 shadows"><?php echo ( 'en' === $lang ) ? 'Related articles' : 'Articoli correlati'; ?></h3>
-								<?php echo xlt_get_related( $post ); ?>
-							</div>
-					</section>
+						<?php get_template_part( 'parts/sidebar-post-footer' ); ?>
+
 				</div>
 			</div>
 		</div>
