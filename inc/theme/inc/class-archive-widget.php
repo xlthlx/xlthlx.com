@@ -131,18 +131,7 @@ class Archive_Widget extends WP_Widget {
 	 */
 	public function form( $instance ) {
 
-		// Get Widget Settings.
-		$settings = wp_parse_args( $instance, $this->default_settings() );
 		?>
-
-		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'xlthlx' ); ?>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>"
-					   name="<?php echo $this->get_field_name( 'title' ); ?>" type="text"
-					   value="<?php echo esc_attr( $settings['title'] ); ?>"/>
-			</label>
-		</p>
-
 		<?php
 	}
 }

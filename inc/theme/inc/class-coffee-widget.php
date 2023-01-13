@@ -90,9 +90,6 @@ class Coffee_Widget extends WP_Widget {
 	 */
 	public function form( $instance ) {
 		?>
-
-		<p>No settings for this widget.</p>
-
 		<?php
 	}
 }

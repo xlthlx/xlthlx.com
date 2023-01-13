@@ -12,6 +12,7 @@ function xlt_register_widget() {
 
 	register_widget( 'Archive_Widget' );
 	register_widget( 'Related_Widget' );
+	register_widget( 'Coffee_Widget' );
 
 }
 
