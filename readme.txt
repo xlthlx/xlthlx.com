@@ -3,18 +3,28 @@ Contributors: xlthlx
 Requires at least: 6.1
 Tested up to: 6.1
 Requires PHP: 7.4
-Stable tag: 1.0
+Stable tag: 2.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 == Description ==
 
-xlthlx is the theme used by xlthlx.com website.
+xlthlx is the theme used by [xlthlx.com](https://xlthlx.com) website.
 
 == Changelog ==
 
+= 2.0 =
+* Latest release
+
 = 1.0 =
 * First release
+
+== Credits ==
+
+- [Bootstrap 5](https://github.com/twbs/bootstrap/releases/tag/v5.1.3)
+- [CMB2](https://github.com/CMB2/CMB2)
+- [John Billion's Extended CPTS library](https://github.com/johnbillion/extended-cpts)
+
 
 == Copyright ==
 
