@@ -19,7 +19,7 @@ class Related_Widget extends WP_Widget {
 		// Setup Widget.
 		parent::__construct(
 			'xlthlx-related', // ID.
-			esc_html__( '04 Related articles', 'xlthlx' ), // Name.
+			esc_html__( '05 Related articles', 'xlthlx' ), // Name.
 			array(
 				'description'                 => esc_html__( 'Displays related articles.', 'xlthlx' ),
 				'customize_selective_refresh' => true,

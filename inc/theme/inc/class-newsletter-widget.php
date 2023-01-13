@@ -20,7 +20,7 @@ class Newsletter_Widget extends WP_Widget {
 		// Setup Widget.
 		parent::__construct(
 			'xlthlx-newsletter', // ID.
-			esc_html__( '03 Newsletter', 'xlthlx' ), // Name.
+			esc_html__( '04 Newsletter', 'xlthlx' ), // Name.
 			array(
 				'description'                 => esc_html__( 'Displays the newsletter form to subscribe.', 'xlthlx' ),
 				'customize_selective_refresh' => true,
@@ -88,7 +88,7 @@ class Newsletter_Widget extends WP_Widget {
 	 */
 	public function form( $instance ) {
 		?>
-		<p>&nbsp;</p>
+		<p>Newsletter Widget.</p>
 		<?php
 	}
 }

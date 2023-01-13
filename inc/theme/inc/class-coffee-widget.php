@@ -90,7 +90,7 @@ class Coffee_Widget extends WP_Widget {
 	 */
 	public function form( $instance ) {
 		?>
-		<p>&nbsp;</p>
+		<p>Buy Me a Coffee Widget.</p>
 		<?php
 	}
 }

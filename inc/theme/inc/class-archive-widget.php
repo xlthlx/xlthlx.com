@@ -132,7 +132,7 @@ class Archive_Widget extends WP_Widget {
 	public function form( $instance ) {
 
 		?>
-		<p>&nbsp;</p>
+		<p>Archives Widget.</p>
 		<?php
 	}
 }
