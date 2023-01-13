@@ -20,7 +20,7 @@ class Coffee_Widget extends WP_Widget {
 		// Setup Widget.
 		parent::__construct(
 			'xlthlx-coffee', // ID.
-			esc_html__( 'Buy me a coffee', 'xlthlx' ), // Name.
+			esc_html__( '_xlt Buy me a coffee', 'xlthlx' ), // Name.
 			array(
 				'description'                 => esc_html__( 'Displays the Buy me a coffee link.', 'xlthlx' ),
 				'customize_selective_refresh' => true,
@@ -90,6 +90,7 @@ class Coffee_Widget extends WP_Widget {
 	 */
 	public function form( $instance ) {
 		?>
+		<p>&nbsp;</p>
 		<?php
 	}
 }
