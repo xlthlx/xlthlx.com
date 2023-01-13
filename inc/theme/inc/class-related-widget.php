@@ -49,7 +49,7 @@ class Related_Widget extends WP_Widget {
 		$this->widget_title( $args, $settings );
 		?>
 
-			<?php $this->render( $args['title'] ); ?>
+			<?php $this->render( $settings['title'] ); ?>
 
 		<?php
 		echo $args['after_widget'];
@@ -91,11 +91,11 @@ class Related_Widget extends WP_Widget {
 	/**
 	 *  Renders the Widget Content.
 	 *
-	 * @param string $title The Widget title.
+	 * @param string $widget_title The Widget title.
 	 *
 	 * @return void
 	 */
-	public function render( $title ) {
+	public function render( $widget_title ) {
 
 		$related_links = '';
 
@@ -159,7 +159,7 @@ class Related_Widget extends WP_Widget {
 
 				$class = 'menu';
 
-				if ( 'Related articles' !== $title ) {
+				if ( 'Related articles' !== $widget_title ) {
 					$class = 'two-columns';
 				}
 
