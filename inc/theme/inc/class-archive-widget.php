@@ -20,7 +20,7 @@ class Archive_Widget extends WP_Widget {
 		// Setup Widget.
 		parent::__construct(
 			'xlthlx-archive', // ID.
-			esc_html__( '_xlt Archives by year', 'xlthlx' ), // Name.
+			esc_html__( '01 Archives by year', 'xlthlx' ), // Name.
 			array(
 				'description'                 => esc_html__( 'Displays a post archive by year.', 'xlthlx' ),
 				'customize_selective_refresh' => true,

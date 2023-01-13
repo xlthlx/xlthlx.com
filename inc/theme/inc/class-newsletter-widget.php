@@ -1,14 +1,14 @@
 <?php
 /**
- * Buy Me a Coffee Widget.
+ * Newsletter Widget.
  *
  * @package  xlthlx
  */
 
 /**
- * Coffee Widget Class.
+ * Newsletter Widget Class.
  */
-class Coffee_Widget extends WP_Widget {
+class Newsletter_Widget extends WP_Widget {
 
 	/**
 	 * Widget Constructor.
@@ -19,10 +19,10 @@ class Coffee_Widget extends WP_Widget {
 
 		// Setup Widget.
 		parent::__construct(
-			'xlthlx-coffee', // ID.
-			esc_html__( '02 Buy me a coffee', 'xlthlx' ), // Name.
+			'xlthlx-newsletter', // ID.
+			esc_html__( '03 Newsletter', 'xlthlx' ), // Name.
 			array(
-				'description'                 => esc_html__( 'Displays the Buy me a coffee link.', 'xlthlx' ),
+				'description'                 => esc_html__( 'Displays the newsletter form to subscribe.', 'xlthlx' ),
 				'customize_selective_refresh' => true,
 			) // Args.
 		);
@@ -44,6 +44,8 @@ class Coffee_Widget extends WP_Widget {
 
 		// Output.
 		echo $args['before_widget'];
+		// Display Title.
+		echo '<h3 class="h2 pb-2 shadows">Newsletter</h3>';
 		?>
 
 		<div class="textwidget light">
@@ -67,17 +69,13 @@ class Coffee_Widget extends WP_Widget {
 	public function render() {
 
 		global $lang;
-		$text = ( 'en' === $lang ) ? 'Buy me a coffee' : 'Offrimi un caffè';
+		$content = ( 'en' === $lang ) ? 'Do you want to receive an email when a new article is published?' : 'Vuoi ricevere una email quando viene pubblicato un nuovo post?';
+		$form_id = ( 'en' === $lang ) ? 34503 : 34396;
 
 		?>
-		<ul>
-			<li>
-				<a class="bmc-btn" target="_blank" href="https://buymeacoffee.com/xlthlx">
-					<?php echo xlt_print_svg( '/assets/img/bmc.svg' ); ?>
-					<span class="bmc-btn-text"><?php echo $text; ?></span>
-				</a>
-			</li>
-		</ul>
+		<?php echo $content; ?>
+		<br/>
+		<?php echo do_shortcode( '[contact-form-7 id="' . $form_id . '"]' ); ?>
 		<?php
 	}
 
