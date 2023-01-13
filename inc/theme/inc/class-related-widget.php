@@ -49,11 +49,7 @@ class Related_Widget extends WP_Widget {
 		$this->widget_title( $args, $settings );
 		?>
 
-		<div class="textwidget">
-
 			<?php $this->render(); ?>
-
-		</div>
 
 		<?php
 		echo $args['after_widget'];
@@ -159,7 +155,7 @@ class Related_Widget extends WP_Widget {
 
 			if ( $related ) {
 
-				$related_links = '<ul class="menu">' . $related . '</ul>';
+				$related_links = '<ul class="two-columns">' . $related . '</ul>';
 			}
 
 			wp_reset_query();

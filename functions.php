@@ -91,7 +91,7 @@ function xlt_widgets_init() {
 			'name'          => esc_html__( 'Footer Post Sidebar', 'xlthlx' ),
 			'id'            => 'post-footer',
 			'description'   => esc_html__( 'Footer Post Sidebar', 'xlthlx' ),
-			'before_widget' => '<div id="%1$s" class="widget %2$s p-4">',
+			'before_widget' => '<div class="p-2 my-4">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h3 class="h2 pb-2 shadows">',
 			'after_title'   => '</h3>',
