@@ -33,7 +33,7 @@ xlthlx is the theme used by [xlthlx.com](https://xlthlx.com) website.
 
 ## Copyright
 
-xlthlx Theme, (C) 2020-2023 xlthlx.com
+xlthlx Theme, (&copy;) 2020-2023 xlthlx.com. \
 xlthlx is distributed under the terms of the GNU GPL.
 
 This program is free software: you can redistribute it and/or modify
