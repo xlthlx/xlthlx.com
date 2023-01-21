@@ -118,10 +118,13 @@ function xlt_eng_posts_custom_columns( $column_name, $id ) {
 		if ( '' === $content_en ) {
 			echo 'No';
 		}
-		if ( '' !== $content_en && ( false !== strpos( $content_en, '<!-- GT -->' ) || false !== strpos( $content_en, '<!-- Automagically translated. -->' ) ) ) {
+		if ( '' !== $content_en && ( false !== strpos( $content_en, '<!-- GT -->' ) ) ) {
+			echo 'Something is wrong';
+		}
+		if ( '' !== $content_en && ( false !== strpos( $content_en, '<!-- Automagically translated. -->' ) ) ) {
 			echo 'To check';
 		}
-		if ( '' !== $content_en && false === strpos( $content_en, '<!-- GT -->' ) ) {
+		if ( '' !== $content_en && false === strpos( $content_en, '<!-- Automagically translated. -->' ) ) {
 			echo '';
 		}
 	}

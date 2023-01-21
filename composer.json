@@ -15,13 +15,11 @@
     }
   ],
   "require": {
-    "php": ">=7.4",
     "rosell-dk/webp-convert": "^2.9",
     "deeplcom/deepl-php": "^0.4.0",
     "cmb2/cmb2": "^2.10",
     "johnbillion/extended-cpts": "^5.0",
-    "scrivo/highlight.php": "v9.18.1.9",
-    "composer/installers": "^2.1"
+    "scrivo/highlight.php": "v9.18.1.9"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
