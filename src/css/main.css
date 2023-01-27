@@ -282,6 +282,8 @@ iframe {
 .wp-inci td:first-child {
 	width: 60px;
 	line-height: initial;
+	display: table-row;
+	font-size: 14px;
 }
 
 .wp-inci td.nofirst {
@@ -336,10 +338,6 @@ iframe {
 	font-weight: 400;
 	line-height: normal;
 	color: #6c757d !important;
-}
-
-.wp-inci td:first-child {
-	display: table-row;
 }
 
 .wp-inci td {
