@@ -550,9 +550,10 @@ if ( ! function_exists( 'xlt_comment_form' ) ) {
 								<textarea placeholder="Commento" class="form-control rounded-0" id="comment" name="comment" style="height: 150px" required></textarea>
 								<label for="comment">Commento</label>
 								<input id="comment_lang" name="comment_lang" type="hidden" value="it" />
-								<div id="lstc-comment-subscription" class="form-check mt-3">
-								  <input class="form-check-input" type="checkbox" type="checkbox" value="1" name="lstc_subscribe" id="lstc_subscribe">
-								  <label class="form-check-label" id="cnns-label" for="lstc_subscribe">
+								<div id="comment-subscribe" class="form-check mt-3">
+								'. wp_nonce_field( 'nonce_comment', 'nonce_comment', true, false ) .'
+								  <input class="form-check-input" type="checkbox" value="1" name="comment_subscribe" id="comment_subscribe">
+								  <label class="form-check-label" for="comment_subscribe">
 								    Avvisami quando vengono aggiunti nuovi commenti
 								  </label>
 								</div>
@@ -604,9 +605,10 @@ if ( ! function_exists( 'xlt_comment_form_en' ) ) {
 								<label for="comment">Comment</label>
 								<input id="comment_lang" name="comment_lang" type="hidden" value="en" />
 								<input id="en_redirect_to" name="en_redirect_to" type="hidden" value="true" />
-								<div id="lstc-comment-subscription" class="form-check mt-3">
-								  <input class="form-check-input" type="checkbox" type="checkbox" value="1" name="lstc_subscribe" id="lstc_subscribe">
-								  <label class="form-check-label" id="cnns-label" for="lstc_subscribe">
+								<div id="comment-subscribe" class="form-check mt-3">
+								'. wp_nonce_field( 'nonce_comment', 'nonce_comment', true, false ) .'
+								  <input class="form-check-input" type="checkbox" value="1" name="comment_subscribe" id="comment_subscribe">
+								  <label class="form-check-label" for="comment_subscribe">
 								    Notify me when new comments are added
 								  </label>
 								</div>
