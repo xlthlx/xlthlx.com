@@ -273,7 +273,6 @@ iframe {
 }
 
 .wp-inci td {
-	padding: 5px 5px 0;
 	vertical-align: middle;
 	min-width: 60px;
 	border: 0;
@@ -345,7 +344,6 @@ iframe {
 
 .wp-inci td {
 	float: left;
-	font-size: 14px;
 }
 
 .wpcf7 form .wpcf7-response-output {
