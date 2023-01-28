@@ -74,21 +74,21 @@ while ( have_posts() ) :
 
 									echo '</div>';
 									echo '<hr class="pt-0 mt-4 mb-4"/>';
-
-									$args = array(
-										'post_type' => 'film',
-										'paged'     => $paging,
-										'meta_key'  => 'year',
-										'orderby'   => 'meta_value',
-										'order'     => 'DESC',
-									);
-
-
-									$the_query = new WP_Query( $args );
-
-									xlt_pagination( $the_query, $paging );
 								}
 							}
+
+							$args = array(
+								'post_type' => 'film',
+								'paged'     => $paging,
+								'meta_key'  => 'year',
+								'orderby'   => 'meta_value',
+								'order'     => 'DESC',
+							);
+
+
+							$the_query = new WP_Query( $args );
+
+							xlt_pagination( $the_query, $paging );
 							?>
 
 						</section>
