@@ -474,7 +474,7 @@ function xlt_en_description( $description ) {
 	if ( 'en' === $lang ) {
 
 		if ( is_home() || is_front_page() ) {
-			$description = 'xlthlx. Better than a cyber duck. Maybe.';
+			$description = 'xlthlx. Better than a cyber duck.';
 		}
 
 		if ( is_singular() ) {
@@ -624,3 +624,18 @@ function xlt_rewrite_search_pages_en() {
 }
 
 add_action( 'init', 'xlt_rewrite_search_pages_en' );
+
+/**
+ * Adds rewrite rule for English paginated pages.
+ *
+ * @return void
+ */
+function xlt_rewrite_paged_pages_en() {
+	add_rewrite_rule(
+		'^/([^/]+)/en/page/([0-9]+)/?$',
+		'index.php?p=$matches[1]&lang=en&paged=$matches[2]',
+		'top'
+	);
+}
+
+add_action( 'init', 'xlt_rewrite_paged_pages_en' );
