@@ -38,16 +38,14 @@ add_filter( 'query_vars', 'xlt_query_vars_lang' );
 /**
  * Template redirect for en.
  *
- * @return void
+ * @return string
  */
-function xlt_template_redirect() {
+function xlt_template_redirect( $template ) {
 	global $wp_query;
 
 	if ( ! isset( $wp_query->query_vars['en'] ) ) {
-		return;
+		return $template;
 	}
-
-	$template = '/index.php';
 
 	$url = get_abs_url();
 	$url = str_replace( get_home_url() . '/en/', '', $url );
@@ -76,6 +74,14 @@ function xlt_template_redirect() {
 		}
 	}
 
+	if ( is_page_template( 'template-film.php' ) ) {
+		$template = '/template-film.php';
+	}
+
+	if ( is_page_template( 'template-tv.php' ) ) {
+		$template = '/template-tv.php';
+	}
+
 	if ( is_404() ) {
 		$template = '/404.php';
 	}
@@ -93,12 +99,10 @@ function xlt_template_redirect() {
 	}
 
 	set_query_var( 'template', $template );
-
-	include get_template_directory() . $template;
-	exit;
+	return get_template_directory() . $template;
 }
 
-add_action( 'template_redirect', 'xlt_template_redirect' );
+add_filter( 'template_include', 'xlt_template_redirect' );
 
 /**
  * Add rewrite endpoints.
@@ -162,7 +166,7 @@ function xlt_get_excerpt( $length = 50 ) {
  * @param string $title The title.
  * @param int    $id The post ID.
  *
- * @return mixed|string
+ * @return string
  */
 function xlt_set_title_en( $title, $id ) {
 	global $lang;
@@ -621,21 +625,18 @@ function xlt_rewrite_search_pages_en() {
 		'index.php?s=$matches[1]&lang=en&paged=$matches[2]',
 		'top'
 	);
-}
 
-add_action( 'init', 'xlt_rewrite_search_pages_en' );
-
-/**
- * Adds rewrite rule for English paginated pages.
- *
- * @return void
- */
-function xlt_rewrite_paged_pages_en() {
 	add_rewrite_rule(
-		'^/([^/]+)/en/page/([0-9]+)/?$',
-		'index.php?p=$matches[1]&lang=en&paged=$matches[2]',
+		'^film/en/page/([0-9]+)/?$',
+		'index.php?pagename=film&lang=en&paged=$matches[1]',
+		'top'
+	);
+
+	add_rewrite_rule(
+		'^tv-series/en/page/([0-9]+)/?$',
+		'index.php?pagename=tv-series&lang=en&paged=$matches[1]',
 		'top'
 	);
 }
 
-add_action( 'init', 'xlt_rewrite_paged_pages_en' );
+add_action( 'init', 'xlt_rewrite_search_pages_en' );

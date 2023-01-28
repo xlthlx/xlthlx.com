@@ -9,9 +9,9 @@ global $lang;
 get_header();
 ?>
 
-<?php 
+<?php
 while ( have_posts() ) :
-	the_post(); 
+	the_post();
 	?>
 
 	<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
@@ -35,9 +35,6 @@ while ( have_posts() ) :
 							<hr class="pt-0 mt-0 mb-4"/>
 							<?php
 							$paging = ( 0 !== get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-							if ( 'en' === $lang ) {
-								$paging = ( '' !== get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
-							}
 							$films = xlt_get_all_film_tv( 'film', $lang, $paging );
 
 							if ( ! empty( $films ) ) {
@@ -77,7 +74,7 @@ while ( have_posts() ) :
 								}
 							}
 
-							xlt_pagination( xlt_get_query_film_tv( 'film', $paging ), $paging ); 
+							xlt_pagination( xlt_get_query_film_tv( 'film', $paging ), $paging );
 							?>
 						</section>
 					</div>
