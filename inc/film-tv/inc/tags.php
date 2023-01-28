@@ -44,16 +44,7 @@ if ( ! function_exists( 'xlt_get_all_film_tv' ) ) {
 		$output = array();
 		$i      = 0;
 
-		$args = array(
-			'post_type' => $post_type,
-			'paged'     => $paging,
-			'meta_key'  => 'year',
-			'orderby'   => 'meta_value',
-			'order'     => 'DESC',
-		);
-
-
-		$the_query = new WP_Query( $args );
+		$the_query = xlt_get_query_film_tv( $post_type, $paging );
 
 		if ( $the_query->have_posts() ) {
 
@@ -97,5 +88,27 @@ if ( ! function_exists( 'xlt_get_all_film_tv' ) ) {
 		wp_reset_postdata();
 		return $output;
 
+	}
+}
+
+if ( ! function_exists( 'xlt_get_query_film_tv' ) ) {
+	/**
+	 * Returns an array with years and objects.
+	 *
+	 * @param string $post_type Post type.
+	 * @param string $paging Page number.
+	 *
+	 * @return WP_Query
+	 */
+	function xlt_get_query_film_tv( $post_type, $paging ) {
+		$args = array(
+			'post_type' => $post_type,
+			'paged'     => $paging,
+			'meta_key'  => 'year',
+			'orderby'   => 'meta_value',
+			'order'     => 'DESC',
+		);
+
+		return new WP_Query( $args );
 	}
 }

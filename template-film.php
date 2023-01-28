@@ -9,9 +9,9 @@ global $lang;
 get_header();
 ?>
 
-<?php
+<?php 
 while ( have_posts() ) :
-	the_post();
+	the_post(); 
 	?>
 
 	<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
@@ -38,7 +38,7 @@ while ( have_posts() ) :
 							if ( 'en' === $lang ) {
 								$paging = ( '' !== get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
 							}
-							$films  = xlt_get_all_film_tv( 'film', $lang, $paging );
+							$films = xlt_get_all_film_tv( 'film', $lang, $paging );
 
 							if ( ! empty( $films ) ) {
 								foreach ( $films as $film ) {
@@ -77,24 +77,11 @@ while ( have_posts() ) :
 								}
 							}
 
-							$args = array(
-								'post_type' => 'film',
-								'paged'     => $paging,
-								'meta_key'  => 'year',
-								'orderby'   => 'meta_value',
-								'order'     => 'DESC',
-							);
-
-
-							$the_query = new WP_Query( $args );
-
-							xlt_pagination( $the_query, $paging );
+							xlt_pagination( xlt_get_query_film_tv( 'film', $paging ), $paging ); 
 							?>
-
 						</section>
 					</div>
 				</div>
-
 			</div>
 
 			<?php get_template_part( 'parts/sidebar-page' ); ?>

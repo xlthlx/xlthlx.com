@@ -9,9 +9,9 @@ global $lang;
 get_header();
 ?>
 
-<?php
+<?php 
 while ( have_posts() ) :
-	the_post();
+	the_post(); 
 	?>
 
 	<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
@@ -76,11 +76,12 @@ while ( have_posts() ) :
 									echo '<hr class="pt-0 mt-4 mb-4"/>';
 								}
 							}
+
+							xlt_pagination( xlt_get_query_film_tv( 'tvseries', $paging ), $paging ); 
 							?>
 						</section>
 					</div>
 				</div>
-
 			</div>
 
 			<?php get_template_part( 'parts/sidebar-page' ); ?>
