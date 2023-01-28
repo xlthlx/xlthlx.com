@@ -34,7 +34,11 @@ while ( have_posts() ) :
 							<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() ); ?>
 							<hr class="pt-0 mt-0 mb-4"/>
 							<?php
-							$series = xlt_get_all_film_tv( 'tvseries', $lang );
+							$paging = ( 0 !== get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+							if ( 'en' === $lang ) {
+								$paging = ( '' !== get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
+							}
+							$series = xlt_get_all_film_tv( 'tvseries', $lang, $paging );
 
 							if ( ! empty( $series ) ) {
 								foreach ( $series as $serie ) {

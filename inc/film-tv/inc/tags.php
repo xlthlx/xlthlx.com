@@ -34,21 +34,22 @@ if ( ! function_exists( 'xlt_get_all_film_tv' ) ) {
 	 *
 	 * @param string $post_type Post type.
 	 * @param string $lang Language.
+	 * @param string $paging Page number.
 	 *
 	 * @return array
 	 * @throws Exception Getting english content.
 	 */
-	function xlt_get_all_film_tv( $post_type, $lang ) {
+	function xlt_get_all_film_tv( $post_type, $lang, $paging ) {
 
 		$output = array();
 		$i      = 0;
 
 		$args = array(
-			'post_type'      => $post_type,
-			'posts_per_page' => -1,
-			'meta_key'       => 'year',
-			'orderby'        => 'meta_value',
-			'order'          => 'DESC',
+			'post_type' => $post_type,
+			'paged'     => $paging,
+			'meta_key'  => 'year',
+			'orderby'   => 'meta_value',
+			'order'     => 'DESC',
 		);
 
 
