@@ -46,7 +46,7 @@ class Coffee_Widget extends WP_Widget {
 		echo $args['before_widget'];
 		?>
 
-		<div class="textwidget light">
+		<div class="text-widget">
 
 			<?php $this->render(); ?>
 

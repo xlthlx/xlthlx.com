@@ -48,7 +48,7 @@ class Newsletter_Widget extends WP_Widget {
 		echo '<h3 class="h2 pb-2 shadows">Newsletter</h3>';
 		?>
 
-		<div class="textwidget light">
+		<div class="text-widget">
 
 			<?php $this->render(); ?>
 

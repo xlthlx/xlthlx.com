@@ -49,7 +49,7 @@ class Archive_Widget extends WP_Widget {
 		// Display Title.
 		$this->widget_title( $args, $settings ); ?>
 
-		<div class="textwidget light">
+		<div class="text-widget">
 
 			<?php $this->render(); ?>
 

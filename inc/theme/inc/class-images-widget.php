@@ -46,7 +46,7 @@ class Images_Widget extends WP_Widget {
 		echo $args['before_widget'];
 		?>
 
-		<div class="textwidget light">
+		<div class="text-widget">
 
 			<?php $this->render(); ?>
 
@@ -66,7 +66,7 @@ class Images_Widget extends WP_Widget {
 	 */
 	public function render() {
 		global $lang;
-		if ( ( 'en' === $lang ) ) { 
+		if ( ( 'en' === $lang ) ) {
 			?>
 				<figure class="wp-block-image size-full is-style-default">
 					<a title="#FixTheDigitalStatus!" href="https://the3million.org.uk/fix-the-digital-status" target="_blank">

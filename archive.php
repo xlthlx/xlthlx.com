@@ -56,7 +56,7 @@ $paging = ( 0 !== get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 					<h3 class="h2 pb-2 shadows">
 						<?php echo ( 'en' === $lang ) ? 'Months' : 'Mesi'; ?>
 					</h3>
-					<div class="textwidget light">
+					<div class="text-widget">
 						<?php $month = ( is_year() ) ? '' : get_the_time( 'n' ); ?>
 						<ul>
 							<?php xlt_get_months( get_the_time( 'Y' ), $month ); ?>
@@ -67,7 +67,7 @@ $paging = ( 0 !== get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 					<h3 class="h2 pb-2 shadows">
 						<?php echo ( 'en' === $lang ) ? 'Years' : 'Anni'; ?>
 					</h3>
-					<div class="textwidget light">
+					<div class="text-widget">
 						<?php xlt_get_years( get_the_time( 'Y' ) ); ?>
 					</div>
 				</div>
