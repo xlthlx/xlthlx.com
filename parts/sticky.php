@@ -19,7 +19,7 @@ if ( 'en' === $lang ) {
 				<?php echo get_the_title(); ?>
 			</a>
 		</h2>
-		<p class="card-text card-text mb-auto me-5 mt-3"><?php echo xlt_get_excerpt( 40 ); ?>
+		<p class="card-text mb-auto me-5 mt-3"><?php echo xlt_get_excerpt( 40 ); ?>
 			<a href="<?php echo get_the_permalink(); ?>" title="<?php echo $sticky_more . get_the_title(); ?>"
 			   class="display-6 text-decoration-none arrow ln-0 align-middle">
 				<svg fill="currentColor" style="width:20px;height:20px" aria-label="<?php echo $sticky_more . get_the_title(); ?>" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512">
