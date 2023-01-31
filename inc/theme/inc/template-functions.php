@@ -431,7 +431,7 @@ add_action( 'admin_menu', 'xlt_rearrange_admin_menu' );
  * @return string[]
  */
 function xlt_hide_seo_columns( $columns ) {
-	unset( $columns['meta_title'], $columns['meta_description'], $columns['description'], $columns['noindex'] );
+	unset( $columns['meta_title'], $columns['meta_description'], $columns['description'], $columns['noindex'], $columns['index'] );
 
 	return $columns;
 }
@@ -593,7 +593,7 @@ function xlt_en_toolbar_link( $wp_admin_bar ) {
 
 	global $pagenow;
 
-	if ( is_admin() && 'post.php' == $pagenow ) {
+	if ( 'post.php' === $pagenow && is_admin() ) {
 		$args = array(
 			'id'    => 'view-english',
 			'title' => 'Visualizza articolo in Inglese',
@@ -620,6 +620,7 @@ function xlt_deepl_auth_key_callback_function( $val ) {
 	$id          = $val['id'];
 	$option_name = $val['option_name'];
 	?>
+	<label for="<?php echo esc_attr( $id ); ?>">Auth Key</label>
 	<input type="password" name="<?php echo esc_attr( $option_name ); ?>"
 		   id="<?php echo esc_attr( $id ); ?>" value="<?php echo esc_attr( get_option( $option_name ) ); ?>" />
 	<?php

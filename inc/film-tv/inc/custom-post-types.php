@@ -64,11 +64,15 @@ function xlt_film_init() {
 			'block_editor'       => true,
 			'supports'           => array( 'title', 'editor', 'thumbnail', 'revisions', 'convert-to-blocks' ),
 			'admin_cols'         => array(
-				'title'    => array(
+				'title' => array(
 					'title'   => 'Film',
 					'default' => 'ASC',
 				),
-				'year'     => array(
+				'featured_image' => array(
+					'title'          => 'Locandina',
+					'featured_image' => 'thumbnail',
+				),
+				'year' => array(
 					'title'    => 'Anno',
 					'meta_key' => 'year',
 				),
@@ -76,11 +80,14 @@ function xlt_film_init() {
 					'title'    => 'Regista',
 					'taxonomy' => 'director',
 				),
-				'actor'    => array(
+				'actor' => array(
 					'title'    => 'Attori',
 					'taxonomy' => 'actor',
 				),
-				'date'     => array(
+				'modified' => array(
+					'title'    => 'Data modifica',
+				),
+				'date' => array(
 					'title' => 'Data',
 				),
 			),
@@ -200,11 +207,15 @@ function xlt_tv_series_init() {
 			'block_editor'       => true,
 			'supports'           => array( 'title', 'editor', 'thumbnail', 'revisions', 'convert-to-blocks' ),
 			'admin_cols'         => array(
-				'title'    => array(
+				'title' => array(
 					'title'   => 'TV Series',
 					'default' => 'ASC',
 				),
-				'year'     => array(
+				'featured_image' => array(
+					'title'          => 'Locandina',
+					'featured_image' => 'thumbnail',
+				),
+				'year' => array(
 					'title'    => 'Anno',
 					'meta_key' => 'year',
 				),
@@ -212,11 +223,14 @@ function xlt_tv_series_init() {
 					'title'    => 'Regista',
 					'taxonomy' => 'director',
 				),
-				'actor'    => array(
+				'actor' => array(
 					'title'    => 'Attori',
 					'taxonomy' => 'actor',
 				),
-				'date'     => array(
+				'modified' => array(
+					'title'    => 'Data modifica',
+				),
+				'date' => array(
 					'title' => 'Data',
 				),
 			),

@@ -20,7 +20,7 @@ function xlt_posts_columns( $columns ) {
 		$columns = array_merge(
 			$columns,
 			array(
-				'thumbs'   => __( 'Thumbnail', 'xlthlx' ),
+				'thumbs'   => __( 'Miniatura', 'xlthlx' ),
 				'modified' => __( 'Data ultima modifica', 'xlthlx' ),
 				'date'     => __( 'Date', 'xlthlx' ),
 			)

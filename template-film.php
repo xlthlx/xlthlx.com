@@ -35,7 +35,7 @@ while ( have_posts() ) :
 							<hr class="pt-0 mt-0 mb-4"/>
 							<?php
 							$paging = ( 0 !== get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-							$films = xlt_get_all_film_tv( 'film', $lang, $paging );
+							$films  = xlt_get_all_film_tv( 'film', $lang, $paging );
 
 							if ( ! empty( $films ) ) {
 								foreach ( $films as $film ) {

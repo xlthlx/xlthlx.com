@@ -38,6 +38,8 @@ add_filter( 'query_vars', 'xlt_query_vars_lang' );
 /**
  * Template redirect for en.
  *
+ * @param string $template The template filename.
+ *
  * @return string
  */
 function xlt_template_redirect( $template ) {
@@ -303,7 +305,7 @@ function xlt_set_title_en_pages( $pages ) {
 
 	global $lang;
 
-	if ( ! is_admin() && 'en' === $lang ) {
+	if ( 'en' === $lang && ! is_admin() ) {
 		foreach ( $pages as $page ) {
 			$page->post_title = get_title_en( $page->ID );
 		}
