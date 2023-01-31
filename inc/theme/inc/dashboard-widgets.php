@@ -26,10 +26,9 @@ add_action( 'wp_dashboard_setup', 'xlt_add_dashboard_widgets' );
 function plausible_widget_callback() {
 	?>
 	<div>
-		<p>Click the button below to toggle your exclusion in analytics for this site.</p>
-		<p>You currently <span id="plausible_not">are not</span><span id="plausible_yes">are</span>
-			excluding your visits.<br/>
-			<a id="plausible_button" href="javascript:toggleExclusion()">Exclude my visits</a></p>
+		<p>Fai clic sul pulsante in basso per attivare o disattivare la tua esclusione nell'analisi per questo sito.</p>
+		<p>Al momento <span id="plausible_not">non stai</span><span id="plausible_yes">stai</span> escludendo le tue visite.<br/>
+			<a id="plausible_button" href="javascript:toggleExclusion()">Escludi le mie visite</a></p>
 	</div>
 
 	<script>
@@ -39,11 +38,11 @@ function plausible_widget_callback() {
 			if ( exclusionState ) {
 				document.getElementById("plausible_not").style.display = "none"
 				document.getElementById("plausible_yes").style.display = "inline"
-				document.getElementById("plausible_button").innerHTML = 'Stop excluding my visits'
+				document.getElementById("plausible_button").innerHTML = 'Includi le mie visite'
 			} else {
 				document.getElementById("plausible_yes").style.display = "none"
 				document.getElementById("plausible_not").style.display = "inline"
-				document.getElementById("plausible_button").innerHTML = 'Exclude my visits'
+				document.getElementById("plausible_button").innerHTML = 'Escludi le mie visite'
 			}
 		});
 
@@ -54,21 +53,17 @@ function plausible_widget_callback() {
 				delete window.localStorage.plausible_ignore
 				document.getElementById("plausible_yes").style.display = "none"
 				document.getElementById("plausible_not").style.display = "inline"
-				document.getElementById("plausible_button").innerHTML = 'Exclude my visits'
+				document.getElementById("plausible_button").innerHTML = 'Escludi le mie visite'
 			} else {
 				window.localStorage.plausible_ignore = "true"
 				document.getElementById("plausible_not").style.display = "none"
 				document.getElementById("plausible_yes").style.display = "inline"
-				document.getElementById("plausible_button").innerHTML = 'Stop excluding my visits'
+				document.getElementById("plausible_button").innerHTML = 'Includi le mie visite'
 			}
 		}
 	</script>
 	<div>
-		<p>Numero di post da controllare rimasti:</p>
-		<?php
-		global $to_do;
-		echo $to_do;
-		?>
+		<p>Numero di post da controllare rimasti: <?php global $to_do; echo $to_do; ?></p>
 	</div>
 	<?php
 }
