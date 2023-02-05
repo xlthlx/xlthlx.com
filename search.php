@@ -9,7 +9,7 @@ global $lang;
 get_header();
 
 $search_title = ( 'en' === $lang ) ? 'Search results for: ' . get_query_var( 's' ) : 'Risultati della ricerca per: ' . get_query_var( 's' );
-$paging = ( 0 !== get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+$paging       = ( 0 !== get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
 $search_query = new WP_Query(
 	array(

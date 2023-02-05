@@ -30,7 +30,7 @@ function xlt_user_trailingslashit( $string ) {
 }
 
 /**
- * No idea.
+ * Define $pagenow content (context).
  *
  * @return void
  */
@@ -112,7 +112,7 @@ function xlt_wp_loaded() {
 add_action( 'wp_loaded', 'xlt_wp_loaded' );
 
 /**
- * No idea.
+ * Rewrite the request uri.
  *
  * @return void
  */

@@ -2,7 +2,7 @@
 /**
  * Minify HTML.
  *
- * @package  Xlthlx
+ * @package  xlthlx
  */
 
 /**
@@ -217,7 +217,7 @@ function xlt_minify_html_output( $buffer ) {
 			'<meta property="og:image" content="https://xlthlx.com/',
 			'<meta name="twitter:image" content="https://xlthlx.com/',
 		),
-		$buffer 
+		$buffer
 	);
 
 	return ( $buffer );

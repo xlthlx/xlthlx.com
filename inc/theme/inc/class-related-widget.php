@@ -33,7 +33,6 @@ class Related_Widget extends WP_Widget {
 	 * @param array $args Widgets args.
 	 * @param array $instance Widget instance.
 	 *
-	 * @uses this->render()
 	 * @return void
 	 */
 	public function widget( $args, $instance ) {

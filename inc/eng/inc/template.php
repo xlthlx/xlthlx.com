@@ -9,8 +9,6 @@
  * Save comment meta lang.
  *
  * @param int $comment_id The comment ID.
- *
- * @return void
  */
 function xlt_save_comment_lang( $comment_id ) {
 	// @codingStandardsIgnoreStart
@@ -108,8 +106,6 @@ add_filter( 'template_include', 'xlt_template_redirect' );
 
 /**
  * Add rewrite endpoints.
- *
- * @return void
  */
 function xlt_rewrite_tags_lang() {
 	add_rewrite_endpoint( 'en', EP_ALL, 'en' );
@@ -451,7 +447,7 @@ function xlt_en_title( $title ) {
 		}
 
 		if ( is_archive() && is_paged() ) {
-			$title =  get_the_archive_title() . ' | Page ' . get_query_var( 'paged' ) . ' | xlthlx';
+			$title = get_the_archive_title() . ' | Page ' . get_query_var( 'paged' ) . ' | xlthlx';
 		}
 
 		if ( is_404() ) {
@@ -563,8 +559,6 @@ add_filter( 'posts_distinct', 'xlt_search_distinct' );
 
 /**
  * Pretty permalink for search.
- *
- * @return void.
  */
 function xlt_search_url_rewrite() {
 	global $wp_rewrite;
@@ -608,8 +602,6 @@ add_action( 'template_redirect', 'xlt_search_url_rewrite' );
  * Filters the search results.
  *
  * @param object $query The WP_Query instance.
- *
- * @return void.
  */
 function xlt_exclude_pages_from_search_results( $query ) {
 	if ( $query->is_search() && ! is_admin() ) {
@@ -622,8 +614,6 @@ add_action( 'pre_get_posts', 'xlt_exclude_pages_from_search_results' );
 
 /**
  * Adds rewrite rule for English paginated search.
- *
- * @return void
  */
 function xlt_rewrite_search_pages_en() {
 	add_rewrite_rule(
