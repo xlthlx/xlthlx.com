@@ -45,6 +45,7 @@ async function startPoe() {
 		Poe.start();
 		btn_poe.innerHTML = svg_sheep;
 		document.body.classList.toggle("sheep");
+		localStorage.setItem("poe", "true");
 	})
 }
 
@@ -52,7 +53,7 @@ if (isPoeActive === "true") {
 	startPoe().then();
 }
 
-btn_poe.addEventListener("click", function (e) {
+btn_poe.addEventListener("click", async function (e) {
 	e.preventDefault();
 	let js = document.createElement("script");
 
@@ -62,10 +63,9 @@ btn_poe.addEventListener("click", function (e) {
 		js.src = src;
 		document.body.removeChild(js)
 		localStorage.setItem("poe", "false");
+		document.body.classList.toggle("sheep");
 	}
 	else {
 		startPoe().then();
 	}
-
-	document.body.classList.toggle("sheep");
 });
