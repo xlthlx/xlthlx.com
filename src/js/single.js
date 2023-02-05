@@ -35,6 +35,7 @@ const isPoeActive = localStorage.getItem("poe");
 async function startPoe() {
 	await new Promise((resolve, reject) => {
 		let js = document.createElement("script");
+		js.id = 'sheep';
 		js.src = src;
 		js.onload = resolve;
 		js.onerror = reject;
@@ -55,12 +56,11 @@ if (isPoeActive === "true") {
 
 btn_poe.addEventListener("click", async function (e) {
 	e.preventDefault();
-	let js = document.createElement("script");
 
 	if (document.body.classList.contains("sheep")) {
 		Poe.stop();
 		btn_poe.innerHTML = svg_sheep_gray;
-		js.src = src;
+		let js = document.getElementById("sheep");
 		document.body.removeChild(js)
 		localStorage.setItem("poe", "false");
 		document.body.classList.toggle("sheep");
