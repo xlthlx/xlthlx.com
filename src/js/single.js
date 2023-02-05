@@ -52,7 +52,7 @@ if (isPoeActive === "true") {
 	startPoe().then();
 }
 
-poe.addEventListener("click", function (e) {
+btn_poe.addEventListener("click", function (e) {
 	e.preventDefault();
 	let js = document.createElement("script");
 
