@@ -50,22 +50,25 @@ async function startPoe() {
 	})
 }
 
+function stopPoe() {
+	Poe.stop();
+	btn_poe.innerHTML = svg_sheep_gray;
+	let js = document.getElementById("sheep");
+	document.body.removeChild(js)
+	localStorage.setItem("poe", "false");
+	document.body.classList.toggle("sheep");
+}
+
 if (isPoeActive === "true") {
-	startPoe().then();
+	startPoe().then()
 }
 
 btn_poe.addEventListener("click", async function (e) {
 	e.preventDefault();
 
 	if (document.body.classList.contains("sheep")) {
-		Poe.stop();
-		btn_poe.innerHTML = svg_sheep_gray;
-		let js = document.getElementById("sheep");
-		document.body.removeChild(js)
-		localStorage.setItem("poe", "false");
-		document.body.classList.toggle("sheep");
-	}
-	else {
-		startPoe().then();
+		stopPoe()
+	} else {
+		startPoe().then()
 	}
 });

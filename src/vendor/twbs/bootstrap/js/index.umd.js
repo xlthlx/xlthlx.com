@@ -5,30 +5,30 @@
  * --------------------------------------------------------------------------
  */
 
-import Alert from './src/alert'
+//import Alert from './src/alert'
 import Button from './src/button'
-import Carousel from './src/carousel'
+//import Carousel from './src/carousel'
 import Collapse from './src/collapse'
 import Dropdown from './src/dropdown'
-import Modal from './src/modal'
-import Offcanvas from './src/offcanvas'
-import Popover from './src/popover'
+//import Modal from './src/modal'
+//import Offcanvas from './src/offcanvas'
+//import Popover from './src/popover'
 import ScrollSpy from './src/scrollspy'
-import Tab from './src/tab'
-import Toast from './src/toast'
-import Tooltip from './src/tooltip'
+//import Tab from './src/tab'
+//import Toast from './src/toast'
+//import Tooltip from './src/tooltip'
 
 export default {
-  Alert,
+  //Alert,
   Button,
-  Carousel,
+  //Carousel,
   Collapse,
   Dropdown,
-  Modal,
-  Offcanvas,
-  Popover,
+  //Modal,
+  //Offcanvas,
+  //Popover,
   ScrollSpy,
-  Tab,
-  Toast,
-  Tooltip
+  //Tab,
+  //Toast,
+  //Tooltip
 }
