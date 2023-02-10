@@ -1,6 +1,6 @@
 body {
-	font-family: 'Titillium Web', Geneva, Verdana, sans-serif !important;
-	font-size: 1.2rem;
+	font-family: Verdana, sans-serif !important;
+	font-size: 1.1rem;
 	position: relative;
 	background-color: #f0f1ff;
 }
@@ -93,8 +93,8 @@ a.dropdown-item:focus, a.dropdown-item:hover {
 }
 
 .article-content p {
-	font-size: 1.2rem;
-	line-height: 1.75;
+	font-size: 1.1rem;
+	line-height: 1.5;
 }
 
 .left-page {
