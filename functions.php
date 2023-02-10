@@ -223,7 +223,7 @@ add_action( 'wp_head', 'xlt_add_to_header' );
  */
 function xlt_add_to_footer() {
 	// @codingStandardsIgnoreStart ?>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Open+Sans&family=Shadows+Into+Light&display=swap" rel="stylesheet">
 <?php // @codingStandardsIgnoreEnd
 }
 
