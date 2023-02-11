@@ -655,3 +655,49 @@ function xlt_deepl_auth_key_field_to_writing_admin_page() {
 }
 
 add_action( 'admin_menu', 'xlt_deepl_auth_key_field_to_writing_admin_page' );
+
+/**
+ * Iframe shortcode.
+ *
+ * @param array $atts Array of attributes.
+ *
+ * @return string The iframe HTML.
+ */
+function xlt_add_shortcode_iframe( $atts ) {
+	$defaults = array(
+		'src'         => '',
+		'width'       => '100%',
+		'height'      => '500',
+		'scrolling'   => 'yes',
+		'frameborder' => '0'
+	);
+
+	foreach ( $defaults as $default => $value ) {
+		if ( ! array_key_exists( $default, $atts ) ) {
+			$atts[ $default ] = $value;
+		}
+	}
+
+	$html = '<iframe';
+	foreach ( $atts as $attr => $value ) {
+
+		if ( strtolower( $attr ) === 'src' ) {
+			$value = esc_url( $value );
+		}
+
+		if ( strtolower( $attr ) !== 'same_height_as' && strtolower( $attr ) !== 'onload'
+			 && strtolower( $attr ) !== 'onpageshow' && strtolower( $attr ) !== 'onclick' ) {
+			if ( $value !== '' ) {
+				$html .= ' ' . esc_attr( $attr ) . '="' . esc_attr( $value ) . '"';
+			} else {
+				$html .= ' ' . esc_attr( $attr );
+			}
+		}
+
+	}
+	$html .= '></iframe>' . "\n";
+
+	return $html;
+}
+
+add_shortcode( 'iframe', 'xlt_add_shortcode_iframe' );
