@@ -7,6 +7,7 @@
 
 // @codingStandardsIgnoreStart
 use Highlight\Highlighter;
+
 // @codingStandardsIgnoreEnd
 
 /**
@@ -153,6 +154,7 @@ function xlt_en_comment_redirect( $location, $comment ) {
 	if ( isset( $_POST['en_redirect_to'] ) ) {
 		$location = get_permalink( $comment->comment_post_ID ) . 'en/#comment-' . $comment->comment_ID;
 	}
+
 	// @codingStandardsIgnoreEnd
 
 	return $location;
@@ -622,7 +624,7 @@ function xlt_deepl_auth_key_callback_function( $val ) {
 	?>
 	<label for="<?php echo esc_attr( $id ); ?>">Auth Key</label>
 	<input type="password" name="<?php echo esc_attr( $option_name ); ?>"
-		   id="<?php echo esc_attr( $id ); ?>" value="<?php echo esc_attr( get_option( $option_name ) ); ?>" />
+		   id="<?php echo esc_attr( $id ); ?>" value="<?php echo esc_attr( get_option( $option_name ) ); ?>"/>
 	<?php
 }
 
@@ -637,7 +639,7 @@ function xlt_deepl_auth_key_field_to_writing_admin_page() {
 		'writing',
 		'deepl_auth_key',
 		array(
-			'show_in_rest'      => true,
+			'show_in_rest' => true,
 		)
 	);
 
@@ -669,7 +671,7 @@ function xlt_add_shortcode_iframe( $atts ) {
 		'width'       => '100%',
 		'height'      => '500',
 		'scrolling'   => 'yes',
-		'frameborder' => '0'
+		'frameborder' => '0',
 	);
 
 	foreach ( $defaults as $default => $value ) {
@@ -685,19 +687,19 @@ function xlt_add_shortcode_iframe( $atts ) {
 			$value = esc_url( $value );
 		}
 
-		if ( strtolower( $attr ) !== 'same_height_as' && strtolower( $attr ) !== 'onload'
-			 && strtolower( $attr ) !== 'onpageshow' && strtolower( $attr ) !== 'onclick' ) {
-			if ( $value !== '' ) {
+		if ( strtolower( $attr ) !== 'onload' && strtolower( $attr ) !== 'onpageshow' && strtolower( $attr ) !== 'onclick' ) {
+			if ( '' !== $value ) {
 				$html .= ' ' . esc_attr( $attr ) . '="' . esc_attr( $value ) . '"';
 			} else {
 				$html .= ' ' . esc_attr( $attr );
 			}
 		}
-
 	}
 	$html .= '></iframe>' . "\n";
 
 	return $html;
 }
 
+// @codingStandardsIgnoreStart
 add_shortcode( 'iframe', 'xlt_add_shortcode_iframe' );
+// @codingStandardsIgnoreEnd
