@@ -32,10 +32,14 @@ $content         = ( 'en' === $lang ) ? 'The hamsters running this website have 
 							<p class="text-center mb-5 mt-5">
 								<?php echo $content; ?>
 							</p>
-							<p>
-								<img class="img-fluid mx-auto d-block"
-									 src="<?php echo get_template_directory_uri(); ?>/assets/img/404.gif" alt="404"/>
-							</p>
+							<figure class="wp-block-image size-full is-style-default">
+								<picture>
+									<source srcset="<?php echo get_template_directory_uri(); ?>/assets/img/404.webp" type="image/webp">
+									<source srcset="<?php echo get_template_directory_uri(); ?>/assets/img/404.gif" type="image/gif">
+									<img decoding="async" width="400" height="200" class="img-fluid"
+										 src="<?php echo get_template_directory_uri(); ?>/assets/img/404.gif" alt="404"/>
+								</picture>
+							</figure>
 							<div class="text-center pt-3 px-5 m-5">
 								<?php get_template_part( 'parts/search-form' ); ?>
 							</div>
