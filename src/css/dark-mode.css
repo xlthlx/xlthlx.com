@@ -149,7 +149,7 @@ body.dark-theme .dropdown-item a, body.dark-theme .btn-outline-secondary:hover {
 
 body.dark-theme .dropdown-item:focus, body.dark-theme .dropdown-item:hover {
 	text-decoration: none !important;
-	font-weight: bold;
+	background-color: #333456;
 }
 
 body.dark-theme .page-content .btn.bg-white:not(:hover) {
