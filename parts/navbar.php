@@ -28,7 +28,7 @@ global $site_url,$site_name,$site_desc; ?>
 						<?php if ( isset( $menu_item['submenu'] ) ) { ?>
 							<li class="nav-item dropdown<?php echo $menu_item['classes']; ?>">
 								<a class="nav-link dropdown-toggle"<?php echo $menu_item['target']; ?>
-								   href="<?php echo $menu_item['url']; ?>"
+								   href="<?php echo $menu_item['url']; ?>" title="<?php echo $menu_item['title']; ?>"
 								   id="<?php echo sanitize_title( $menu_item['title'] ); ?>" data-bs-toggle="dropdown"
 								   aria-expanded="true"><?php echo $menu_item['title']; ?></a>
 								<ul class="dropdown-menu bg-dark border-0 rounded-0"
@@ -36,7 +36,7 @@ global $site_url,$site_name,$site_desc; ?>
 									<?php foreach ( $menu_item['submenu'] as $menu_subitem ) { ?>
 										<li class="white">
 											<a class="dropdown-item white"<?php echo $menu_subitem['target']; ?>
-											   href="<?php echo $menu_subitem['url']; ?>">
+											   href="<?php echo $menu_subitem['url']; ?>" title="<?php echo $menu_subitem['title']; ?>">
 												<?php echo $menu_subitem['title']; ?>
 											</a>
 										</li>
@@ -46,7 +46,7 @@ global $site_url,$site_name,$site_desc; ?>
 						<?php } else { ?>
 							<li class="nav-item white-text<?php echo $menu_item['classes']; ?>">
 								<a class="nav-link white-text"<?php echo $menu_item['target']; ?>
-								   href="<?php echo $menu_item['url']; ?>">
+								   href="<?php echo $menu_item['url']; ?>" title="<?php echo $menu_item['title']; ?>">
 									<?php echo $menu_item['title']; ?>
 								</a>
 							</li>
