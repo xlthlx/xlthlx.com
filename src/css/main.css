@@ -768,3 +768,7 @@ a.hover-none:hover {
 .svg-sheep {
 	margin-top:-4px;
 }
+
+.footer-hover:hover {
+	color: #b73275 !important;
+}

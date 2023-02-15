@@ -189,6 +189,10 @@ body.dark-theme .btn-dark:hover {
 	background-color: #f1469c;
 }
 
+body.dark-theme .footer-hover:hover {
+	color: #f1469c !important;
+}
+
 body.dark-theme .btn-secondary.active {
 	color: #fff;
 	background-color: #333456 !important;
