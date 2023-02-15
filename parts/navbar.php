@@ -19,7 +19,7 @@ global $site_url,$site_name,$site_desc; ?>
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarPrimary">
-			<div class="col-7 d-flex flex-wrap align-items-lg-end justify-content-lg-end py-lg-3" id="navbarPrimary">
+			<div class="col-7 d-flex flex-wrap align-items-lg-end justify-content-lg-end pt-lg-4 pb-lg-3">
 				<ul class="nav navbar-nav navbar-nav-scroll col-auto mb-2 mb-lg-0 justify-content-lg-end">
 					<?php
 					$menu_items = xlt_get_menu_items( 'primary' );
