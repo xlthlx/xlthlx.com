@@ -170,32 +170,6 @@ function xlt_add_to_globals() {
 
 add_action( 'after_setup_theme', 'xlt_add_to_globals' );
 
-
-/**
- * Gets the number of post in English to be controlled.
- *
- * @return void
- */
-function xlt_get_todo_number() {
-	global $to_do;
-
-	$args  = array(
-		'post_type'   => 'post',
-		'post_status' => 'publish',
-		'meta_query'  => array(
-			array(
-				'key'     => 'content_en',
-				'value'   => '<!-- Automagically translated. -->',
-				'compare' => 'LIKE',
-			),
-		),
-	);
-	$query = new WP_Query( $args );
-	$to_do = $query->found_posts;
-}
-
-add_action( 'after_setup_theme', 'xlt_get_todo_number' );
-
 /**
  * Adds the plausible scripts to header.
  *

@@ -92,7 +92,6 @@ function xlt_eng_posts_columns( $defaults ) {
 		if ( isset( $defaults['comments'] ) ) {
 			unset( $defaults['comments'] );
 		}
-		$defaults['eng'] = 'English';
 	}
 	if ( 'post' === $post_type ) {
 		$defaults['comments-number'] = __( 'Commenti', 'xlthlx' );
@@ -113,21 +112,6 @@ add_filter( 'manage_pages_columns', 'xlt_eng_posts_columns', 20 );
  * @return void
  */
 function xlt_eng_posts_custom_columns( $column_name, $id ) {
-	if ( 'eng' === $column_name ) {
-		$content_en = get_post_meta( $id, 'content_en', true );
-		if ( '' === $content_en ) {
-			echo 'No';
-		}
-		if ( '' !== $content_en && ( false !== strpos( $content_en, '<!-- GT -->' ) ) ) {
-			echo 'Something is wrong';
-		}
-		if ( '' !== $content_en && ( false !== strpos( $content_en, '<!-- Automagically translated. -->' ) ) ) {
-			echo 'To check';
-		}
-		if ( '' !== $content_en && false === strpos( $content_en, '<!-- Automagically translated. -->' ) ) {
-			echo '';
-		}
-	}
 
 	if ( 'comments-number' === $column_name ) {
 		$comments_number = ( get_comments_number( $id ) === '0' ) ? '' : get_comments_number( $id );

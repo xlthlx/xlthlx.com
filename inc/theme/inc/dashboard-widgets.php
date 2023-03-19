@@ -62,14 +62,6 @@ function plausible_widget_callback() {
 			}
 		}
 	</script>
-	<div>
-		<p>Numero di post da controllare rimasti: 
-		<?php 
-		global $to_do;
-		echo $to_do; 
-		?>
-		</p>
-	</div>
 	<?php
 }
 
