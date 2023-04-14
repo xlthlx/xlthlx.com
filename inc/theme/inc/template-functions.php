@@ -395,20 +395,10 @@ function xlt_add_admin_menu_separator( $position ) {
  * @return void
  */
 function xlt_rearrange_admin_menu() {
-	remove_menu_page( 'wp-tweets-pro' );
+
 	remove_menu_page( 'edit-comments.php' );
 
 	// @codingStandardsIgnoreStart
-	add_menu_page(
-		'Twitter',
-		'Twitter',
-		'manage_options',
-		'wp-tweets-pro',
-		'',
-		'dashicons-twitter',
-		34
-	);
-
 	add_submenu_page(
 		'edit.php',
 		'Commenti',
