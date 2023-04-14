@@ -710,8 +710,8 @@ function xlt_set_phpmailer_smtp( $phpmailer ) {
 	$phpmailer->Host       = 'ssl0.ovh.net';
 	$phpmailer->SMTPAuth   = true;
 	$phpmailer->Port       = 465;
-	$phpmailer->Username   = 'xlthlx@xlthlx.com';
-	$phpmailer->Password   = 'VG79%diNdT@tGy$2$8mXsxkk';
+	$phpmailer->Username   = SMTP_username;
+	$phpmailer->Password   = SMTP_password;
 	$phpmailer->SMTPSecure = 'ssl';
 	$phpmailer->SMTPDebug  = PHPMailer\PHPMailer\SMTP::DEBUG_SERVER;
 }
