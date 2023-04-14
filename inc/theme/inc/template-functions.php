@@ -712,7 +712,7 @@ function xlt_set_phpmailer_smtp( $phpmailer ) {
 	$phpmailer->Port       = 465;
 	$phpmailer->Username   = 'xlthlx@xlthlx.com';
 	$phpmailer->Password   = 'OVU2dmNZVXhhR0BMN0RtKjhCQ0dGa282';
-	$phpmailer->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
+	$phpmailer->SMTPSecure = 'ssl';
 	$phpmailer->SMTPDebug  = PHPMailer\PHPMailer\SMTP::DEBUG_SERVER;
 }
 
