@@ -702,6 +702,9 @@ add_shortcode( 'iframe', 'xlt_add_shortcode_iframe' );
  * @return void
  */
 function xlt_set_phpmailer_smtp( $phpmailer ) {
+	require_once ABSPATH . WPINC . '/PHPMailer/PHPMailer.php';
+	require_once ABSPATH . WPINC . '/PHPMailer/SMTP.php';
+
 	$phpmailer->isSMTP();
 	$phpmailer->setFrom( 'noreply@xlthlx.com', 'xlthlx.com', false );
 	$phpmailer->Host       = 'ssl0.ovh.net';
@@ -709,7 +712,7 @@ function xlt_set_phpmailer_smtp( $phpmailer ) {
 	$phpmailer->Port       = 465;
 	$phpmailer->Username   = SMTP_username;
 	$phpmailer->Password   = SMTP_password;
-	$phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+	$phpmailer->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
 	$phpmailer->SMTPDebug = SMTP::DEBUG_SERVER;
 }
 
