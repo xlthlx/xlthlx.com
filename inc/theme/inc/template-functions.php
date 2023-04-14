@@ -38,7 +38,7 @@ add_action( 'admin_menu', 'xlt_admin_footer_remove' );
  * Modify the rendering of code Gutenberg block.
  *
  * @param string $block_content The block content.
- * @param array  $block The full block, including name and attributes.
+ * @param array $block The full block, including name and attributes.
  *
  * @return string
  * @throws Exception Exception.
@@ -437,10 +437,10 @@ add_filter( 'manage_tvseries_posts_columns', 'xlt_hide_seo_columns', 20 );
 /**
  * Wrap the image with picture tag to support webp.
  *
- * @param string   $html HTML img element or empty string on failure.
- * @param int      $attachment_id Image attachment ID.
- * @param string   $size Requested image size.
- * @param bool     $icon Whether the image should be treated as an icon.
+ * @param string $html HTML img element or empty string on failure.
+ * @param int $attachment_id Image attachment ID.
+ * @param string $size Requested image size.
+ * @param bool $icon Whether the image should be treated as an icon.
  * @param string[] $attr Attributes for the image markup.
  *
  * @return string
@@ -472,7 +472,7 @@ add_filter( 'wp_get_attachment_image', 'xlt_wrap_image_with_picture', 10, 5 );
  *
  * @param string $filtered_image Full img tag with attributes that will replace the source img tag.
  * @param string $context Additional context, like the current filter name or the function name from where this was called.
- * @param int    $attachment_id Image attachment ID.
+ * @param int $attachment_id Image attachment ID.
  *
  * @return string
  */
@@ -548,7 +548,7 @@ function xlt_add_remove_link_columns( $post_columns ) {
  * Display column content.
  *
  * @param string $column_name The name of the column to display.
- * @param int    $post_id The current post ID.
+ * @param int $post_id The current post ID.
  *
  * @return void
  */
@@ -693,3 +693,24 @@ function xlt_add_shortcode_iframe( $atts ) {
 // @codingStandardsIgnoreStart
 add_shortcode( 'iframe', 'xlt_add_shortcode_iframe' );
 // @codingStandardsIgnoreEnd
+
+/**
+ * Sets the SMTP details.
+ *
+ * @param object $phpmailer The PHP mailer.
+ *
+ * @return void
+ */
+function xlt_set_phpmailer_smtp( $phpmailer ) {
+	$phpmailer->isSMTP();
+	$phpmailer->setFrom( 'noreply@xlthlx.com', 'xlthlx.com', false );
+	$phpmailer->Host       = 'ssl0.ovh.net';
+	$phpmailer->SMTPAuth   = true;
+	$phpmailer->Port       = 465;
+	$phpmailer->Username   = SMTP_username;
+	$phpmailer->Password   = SMTP_password;
+	$phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+	$phpmailer->SMTPDebug = SMTP::DEBUG_SERVER;
+}
+
+add_action( 'phpmailer_init', 'xlt_set_phpmailer_smtp' );
