@@ -32,7 +32,7 @@ $content         = ( 'en' === $lang ) ? 'The hamsters running this website have 
 							<p class="text-center mb-5 mt-5">
 								<?php echo $content; ?>
 							</p>
-							<figure class="wp-block-image size-full is-style-default">
+							<figure class="wp-block-image aligncenter size-full">
 								<picture>
 									<source srcset="<?php echo get_template_directory_uri(); ?>/assets/img/404.webp" type="image/webp">
 									<source srcset="<?php echo get_template_directory_uri(); ?>/assets/img/404.gif" type="image/gif">
