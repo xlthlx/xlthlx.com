@@ -431,7 +431,7 @@ function xlt_en_title( $title ) {
 	if ( 'en' === $lang ) {
 
 		if ( is_home() || is_front_page() ) {
-			$title = get_bloginfo( 'name' ) . ' | Better than a cyber duck.';
+			$title = get_bloginfo( 'name' ) . " | " . get_option( 'english_tagline', '' );
 		}
 
 		if ( is_singular() && ! is_preview() ) {
@@ -480,7 +480,7 @@ function xlt_en_description( $description ) {
 	if ( 'en' === $lang ) {
 
 		if ( is_home() || is_front_page() ) {
-			$description = 'xlthlx. Better than a cyber duck.';
+			$description = "xlthlx. ". get_option( 'english_tagline', '' );
 		}
 
 		if ( is_singular() ) {

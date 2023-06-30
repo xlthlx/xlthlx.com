@@ -163,7 +163,7 @@ function xlt_add_to_globals() {
 
 	if ( 'en' === $lang ) {
 		$site_url .= 'en/';
-		$site_desc = 'Better than a cyber duck.';
+		$site_desc = get_option( 'english_tagline', '' );
 	}
 
 }

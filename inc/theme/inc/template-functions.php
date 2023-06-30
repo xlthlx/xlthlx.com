@@ -716,3 +716,26 @@ function xlt_set_phpmailer_smtp( $phpmailer ) {
 }
 
 add_action( 'phpmailer_init', 'xlt_set_phpmailer_smtp' );
+
+/**
+ * Add settings field.
+ *
+ * @return void
+ */
+function xlt_add_english_tagline_settings() {
+	register_setting( 'general', 'english_tagline', 'esc_attr' );
+	add_settings_field( 'english_tagline', '<label for="english_tagline">' . __( 'English Tagline', 'xlthlx' ) . '</label>', 'xlt_english_tagline_field', 'general' );
+}
+
+/**
+ * Echo settings fields.
+ *
+ * @return void
+ */
+function xlt_english_tagline_field() {
+	$english_tagline = get_option( 'english_tagline', '' );
+	echo '<input aria-describedby="tagline-english" class="regular-text" type="text" id="english_tagline" name="english_tagline" value="' . $english_tagline . '" />';
+	echo '<p class="description" id="tagline-english">In a few words, explain what this site is about.</p>';
+}
+
+add_filter( 'admin_init', 'xlt_add_english_tagline_settings' );
