@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Newsletter | xlthlx</title>
 </head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" style="margin:0;padding:0;background-color:#ffffff;font-family: Verdana, Geneva,sans-serif">
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" style="margin:0;padding:0;background-color:#FFFFFF;font-family: Verdana, Geneva,sans-serif">
 <table border="0" width="100%" cellpadding="0" cellspacing="0"
 	   style="border-collapse:collapse;border-spacing:0;mso-table-lspace:0;mso-table-rspace:0">
 	<tbody>
@@ -17,7 +17,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td align="center" valign="top" style="border-collapse:collapse;background-color:#ffffff">
+		<td align="center" valign="top" style="border-collapse:collapse;background-color:#FFFFFF">
 			<!--[if mso]>
 			<table align="center" border="0" cellspacing="0" cellpadding="0"
 				   width="660">
@@ -25,12 +25,12 @@
 					<td align="center" valign="top" width="660">
 			<![endif]-->
 			<table border="0" width="660" cellpadding="0" cellspacing="0"
-				   style="border-collapse:collapse;background-color:#ffffff;border-spacing:0;mso-table-lspace:0;mso-table-rspace:0;max-width:660px;width:100%">
+				   style="border-collapse:collapse;background-color:#FFFFFF;border-spacing:0;mso-table-lspace:0;mso-table-rspace:0;max-width:660px;width:100%">
 				<tbody>
 
 				<tr>
-					<td align="center" style="border-collapse:collapse;background-color:#6667ab!important"
-						bgcolor="#6667ab">
+					<td align="center" style="border-collapse:collapse;background-color:#CACBE2!important"
+						bgcolor="#CACBE2">
 						<table width="100%" border="0" cellpadding="0" cellspacing="0"
 							   style="border-collapse:collapse;border-spacing:0;mso-table-lspace:0;mso-table-rspace:0">
 							<tbody>
@@ -40,19 +40,19 @@
 										   style="border-collapse:collapse;border-spacing:0;mso-table-lspace:0;mso-table-rspace:0;table-layout:fixed;margin-left:auto;margin-right:auto;padding-left:0;padding-right:0">
 										<tbody>
 										<tr>
-											<td bgcolor="#ffffff" height="30" valign="top"
+											<td bgcolor="#FFFFFF" height="30" valign="top"
 												style="border-collapse:collapse"></td>
 										</tr>
 										<tr>
 											<td valign="top"
 												style="border-collapse:collapse;padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:20px;word-break:break-word;word-wrap:break-word">
-												<h1 style="mso-ansi-font-size:30px;color:#111111;font-size:30px;line-height:48px;mso-line-height-alt:48px;margin: 0;text-align:center;padding:0;font-style:normal;font-weight:normal">
-													<a href="https://xlthlx.com" style="color:#ffffff;text-decoration:none!important" target="_blank">xlthlx.com</a>
+												<h1 style="mso-ansi-font-size:30px;color:#0A0A11;font-size:30px;line-height:48px;mso-line-height-alt:48px;margin: 0;text-align:center;padding:0;font-style:normal;font-weight:normal">
+													<a href="https://xlthlx.com" style="color:#0A0A11;text-decoration:none!important" target="_blank">xlthlx.com</a>
 												</h1>
 											</td>
 										</tr>
 										<tr>
-											<td bgcolor="#ffffff" height="30" valign="top"
+											<td bgcolor="#FFFFFF" height="30" valign="top"
 												style="border-collapse:collapse"></td>
 										</tr>
 										</tbody>
@@ -137,15 +137,15 @@
 																		   v-text-anchor:middle;"
 																	arcsize="0%"
 																	strokeweight="0px"
-																	strokecolor="#000000"
-																	fillcolor="#b73275">
+																	strokecolor="#0A0A11"
+																	fillcolor="#CACBE2">
 																  <w:anchorlock/>
-																  <center style="color:#ffffff;
+																  <center style="color:#0A0A11;
 																	font-size:16px;
 																	font-weight:bold;">CONFERMA EMAIL
 																  </center>
 																  </v:roundrect>
-																  <![endif]--><a href="https://xlthlx.com/newsletter/?act=confirm&cod=<?php echo $code; ?>" style="color:#ffffff;text-decoration:none !important;display:inline-block;-webkit-text-size-adjust:none;mso-hide:all;text-align:center;background-color:#6667ab;border-color:#000000;border-width:0px;border-radius:0px;border-style:solid;width:288px;line-height:36px;font-size:16px;font-weight:normal">
+																  <![endif]--><a href="https://xlthlx.com/newsletter/?act=confirm&cod=<?php echo $code; ?>" style="color:#0A0A11;text-decoration:none !important;display:inline-block;-webkit-text-size-adjust:none;mso-hide:all;text-align:center;background-color:#CACBE2;border-color:#CACBE2;border-width:0px;border-radius:0px;border-style:solid;width:288px;line-height:36px;font-size:16px;font-weight:normal">
 																		CONFERMA EMAIL</a>
 																</td>
 															</tr>
@@ -164,8 +164,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td align="center" style="border-collapse:collapse;background-color:#333456!important"
-						bgcolor="#333456">
+					<td align="center" style="border-collapse:collapse;background-color:#6667AB!important"
+						bgcolor="#6667AB">
 						<table width="100%" border="0" cellpadding="0" cellspacing="0"
 							   style="border-collapse:collapse;border-spacing:0;mso-table-lspace:0;mso-table-rspace:0">
 							<tbody>
@@ -175,7 +175,7 @@
 										   style="border-collapse:collapse;border-spacing:0;mso-table-lspace:0;mso-table-rspace:0;table-layout:fixed;margin-left:auto;margin-right:auto;padding-left:0;padding-right:0">
 										<tbody>
 										<tr>
-											<td bgcolor="#ffffff" height="30" valign="top"
+											<td bgcolor="#FFFFFF" height="30" valign="top"
 												style="border-collapse:collapse"></td>
 										</tr>
 										<tr>
@@ -183,10 +183,10 @@
 												style="border-collapse:collapse"></td>
 										</tr>
 										<tr>
-											<td style="border-collapse:collapse;padding:10px 20px;line-height:20px;text-align:center;color:#222222;font-size:12px">
-												<span style="color: #ffffff">
-													I criceti che gestiscono il sito <a target="_blank" href="https://xlthlx.com/" style="color:#ffffff">xlthlx.com</a> dicono<br/>
-													che ricevi questa email perché ti sei iscritto alla newsletter.<br/>
+											<td style="border-collapse:collapse;padding:10px 20px;line-height:20px;text-align:center;color:#FFFFFF;font-size:12px">
+												<span style="color: #FFFFFF">
+													I criceti che gestiscono il sito <a target="_blank" href="https://xlthlx.com/" style="color:#FFFFFF">xlthlx.com</a> dicono<br/>
+													che hai ricevuto questa email perché ti sei iscritto alla newsletter.<br/>
 													Questa è una email generata automaticamente; l'indirizzo non accetta risposte.
 												</span>
 											</td>

@@ -1,13 +1,21 @@
 /*
-Theme Name: xlthlx
+Theme Name: xlthlx 2023
 Theme URI: https://xlthlx.com/
 Author: xlthlx
 Author URI: https://xlthlx.com/
-Description: Theme based on Bootstrap 5.
+Description: Theme for xlthlx.com based on Schism https://justevolve.it/downloads/schism/ layout
 Requires at least: 5.3
-Tested up to: 6.0.0
+Tested up to: 6.2.2
 Requires PHP: 7.4
-Version: 2.0
+Version: 1.0.0
+License: GNU General Public License v3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: xlthlx
-Tags: boostrap, custom-menu, sticky-post
+Tags: two-columns, right-sidebar, grid-layout, footer-widgets, threaded-comments, translation-ready, blog, news
+
+All files, unless otherwise stated, are released under the GNU General Public
+License version 3.0 (http://www.gnu.org/licenses/gpl-3.0.html)
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
 */

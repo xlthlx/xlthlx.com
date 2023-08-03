@@ -40,7 +40,7 @@ function xlt_send_confirmation( $lang, $to, $_code ) {
 	ob_start();
 	$email = $to;
 	$code  = $_code;
-	include sprintf( '%s/email/confirm-%s.php', dirname( __FILE__ ), $lang );
+	include sprintf( '%s/inc/newsletter/inc/email/confirm-%s.php', get_template_directory(), $lang );
 	$body = ob_get_clean();
 
 	xlt_send_email( $to, $subject, $body );
@@ -94,13 +94,13 @@ function xlt_post_published_notification( $new_status, $old_status, $post ) {
 					$title     = $_title_en;
 					$permalink = $_permalink_en;
 					$excerpt   = $_excerpt_en;
-					include dirname( __FILE__ ) . '/email/post-en.php';
+					include get_template_directory() . '/inc/newsletter/inc/email/post-en.php';
 				} else {
 					$subject   = 'Nuovo post su xlthlx.com';
 					$title     = $_title;
 					$permalink = $_permalink;
 					$excerpt   = $_excerpt;
-					include dirname( __FILE__ ) . '/email/post-it.php';
+					include get_template_directory() . '/inc/newsletter/inc/email/post-it.php';
 				}
 				$body = ob_get_clean();
 

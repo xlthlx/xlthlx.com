@@ -15,7 +15,6 @@ function xlt_enqueue_login() {
 	wp_deregister_style( 'login' );
 
 	wp_enqueue_style( 'custom-login', get_template_directory_uri() . '/assets/css/admin/login.min.css', array(), filemtime( get_template_directory() . '/assets/css/admin/login.min.css' ) );
-	wp_enqueue_script( 'custom-login', get_template_directory_uri() . '/assets/js/admin/login.min.js', array(), filemtime( get_template_directory() . '/assets/js/admin/login.min.js' ), true );
 }
 
 add_action( 'login_enqueue_scripts', 'xlt_enqueue_login', 10 );
@@ -72,24 +71,6 @@ function xlt_gettext( $translation, $text ) {
 	return $translation;
 
 }
-
-/**
- * Init filter strings and add fonts.
- */
-function xlt_login_head() {
-	add_filter( 'gettext', 'xlt_gettext', 20, 2 );
-	?>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<?php // @codingStandardsIgnoreStart ?>
-	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Shadows+Into+Light&family=Titillium+Web&display=swap" rel="stylesheet">
-	<?php // @codingStandardsIgnoreEnd ?>
-	<?php
-}
-
-add_action( 'login_head', 'xlt_login_head' );
-
-
 
 /**
  * Change login title.

@@ -11,17 +11,22 @@ $content_search = ( 'en' === $lang ) ? 'Sorry, but nothing matched your search t
 $content        = ( 'en' === $lang ) ? 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.' : 'Sembra che non riusciamo a trovare quello che stai cercando. Forse la ricerca può aiutare.';
 ?>
 
-<div class="row mb-2">
-	<article class="no-results not-found">
-		<div class="col-md-12 text-break">
-			<?php if ( is_search() ) { ?>
-				<p><?php echo $content_search; ?></p>
-			<?php } else { ?>
-				<p><?php echo $content; ?></p>
-			<?php } ?>
-			<div class="text-center pt-3 px-5 m-5">
-				<?php get_template_part( 'parts/search-form' ); ?>
+<div id="main-content">
+	<div class="xlt-loop__wrapper" id="xlt-loop__wrapper">
+		<article class="xlt-entry">
+			<div class="xlt-row">
+				<div class="xlt-entry__header xlt-spacing xlt-sticky">
+				</div>
+
+				<div class="xlt-entry__content xlt-spacing">
+					<?php if ( is_search() ) { ?>
+						<p><?php echo $content_search; ?></p>
+					<?php } else { ?>
+						<p><?php echo $content; ?></p>
+					<?php } ?>
+					<?php get_template_part( 'parts/search-form' ); ?>
+				</div>
+
 			</div>
-		</div>
 	</article>
 </div>

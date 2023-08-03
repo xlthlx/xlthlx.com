@@ -17,11 +17,11 @@
 # Do NOT ignore .editorconfig
 !.editorconfig
 
+# Do NOT ignore .wp-env.json
+!.wp-env.json
+
 # Do NOT ignore .README.md
 !README.md
-
-!_root/.htaccess
-!_root/.well-known
 
 # Ignore all files that start with ~
 ~*
@@ -47,25 +47,10 @@ Thumbs.db
 *.lock
 
 # Ignore build Tools
-/assets/node_modules
 /node_modules
 .idea
-/assets/vendor/composer/
-/assets/vendor/twbs/bootstrap/build/
-/assets/vendor/twbs/bootstrap/nuget/
-/assets/vendor/twbs/bootstrap/site/
-/assets/vendor/twbs/bootstrap/vendor/
-/assets/vendor/autoload.php
-/assets/vendor/twbs/bootstrap/.editorconfig
-/assets/vendor/twbs/bootstrap/.gitattributes
-/assets/vendor/twbs/bootstrap/.gitignore
-/assets/vendor/twbs/bootstrap/CODE_OF_CONDUCT.md
-/assets/vendor/twbs/bootstrap/SECURITY.md
-/assets/vendor/twbs/bootstrap/composer.json
-/assets/vendor/twbs/bootstrap/config.yml
-/assets/vendor/twbs/bootstrap/package.js
-/assets/vendor/twbs/bootstrap/package.json
 /_root/
 /vendor/
+/content/
 phpcs.xml.dist
 package-lock.json

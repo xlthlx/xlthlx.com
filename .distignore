@@ -13,7 +13,6 @@ build
 .circleci/config.yml
 composer.json
 composer.lock
-Gruntfile.js
 package.json
 package-lock.json
 phpcs.xml.dist
@@ -23,5 +22,4 @@ phpcs.xml.dist
 README.md
 debug.log
 wp-config.php
-_root/
 src/

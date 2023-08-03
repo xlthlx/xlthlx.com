@@ -12,7 +12,7 @@
  */
 function xlt_save_comment_lang( $comment_id ) {
 	// @codingStandardsIgnoreStart
-		update_comment_meta( $comment_id, 'comment_lang', $_POST['comment_lang'] );
+	update_comment_meta( $comment_id, 'comment_lang', $_POST['comment_lang'] );
 	// @codingStandardsIgnoreEnd
 }
 
@@ -74,14 +74,6 @@ function xlt_template_redirect( $template ) {
 		}
 	}
 
-	if ( is_page_template( 'template-film.php' ) ) {
-		$template = '/template-film.php';
-	}
-
-	if ( is_page_template( 'template-tv.php' ) ) {
-		$template = '/template-tv.php';
-	}
-
 	if ( is_404() ) {
 		$template = '/404.php';
 	}
@@ -99,6 +91,7 @@ function xlt_template_redirect( $template ) {
 	}
 
 	set_query_var( 'template', $template );
+
 	return get_template_directory() . $template;
 }
 
@@ -127,36 +120,6 @@ function xlt_home_posts_per_page( $query ) {
 }
 
 add_action( 'pre_get_posts', 'xlt_home_posts_per_page' );
-
-/**
- * Set up an excerpt from $content.
- *
- * @param int $length Excerpt length.
- *
- * @return string
- * @throws Exception Exception.
- */
-function xlt_get_excerpt( $length = 50 ) {
-
-	global $lang,$post;
-	$content = get_the_content();
-
-	if ( isset( $post ) && 'en' === $lang ) {
-		$content = get_content_en( $post->ID );
-	}
-
-	$content = strip_shortcodes( $content );
-	$content = excerpt_remove_blocks( $content );
-	$content = apply_filters( 'the_content', $content );
-	$content = str_replace( ']]>', ']]&gt;', $content );
-	$content = wp_trim_words( $content, $length, '...' );
-
-	if ( '' === trim( $content ) ) {
-		$content = ( 'en' === $lang ) ? get_trans( get_the_excerpt() ) : get_the_excerpt();
-	}
-
-	return $content;
-}
 
 /**
  * Filters the title.
@@ -385,7 +348,7 @@ function xlt_filter_next_post_link( $link ) {
 
 	return str_replace(
 		'rel=',
-		'title="' . $title . '" class="display-5 arrow" rel=',
+		'title="' . $title . '" rel=',
 		$link
 	);
 }
@@ -410,7 +373,7 @@ function xlt_filter_previous_post_link( $link ) {
 
 	return str_replace(
 		'rel=',
-		'title="' . $title . '" class="display-5 arrow" rel=',
+		'title="' . $title . '" rel=',
 		$link
 	);
 }
@@ -426,12 +389,12 @@ add_filter( 'previous_post_link', 'xlt_filter_previous_post_link' );
  */
 function xlt_en_title( $title ) {
 
-	global $lang,$post;
+	global $lang, $post;
 
 	if ( 'en' === $lang ) {
 
 		if ( is_home() || is_front_page() ) {
-			$title = get_bloginfo( 'name' ) . " | " . get_option( 'english_tagline', '' );
+			$title = get_bloginfo( 'name' ) . ' | ' . get_option( 'english_tagline', '' );
 		}
 
 		if ( is_singular() && ! is_preview() ) {
@@ -480,7 +443,7 @@ function xlt_en_description( $description ) {
 	if ( 'en' === $lang ) {
 
 		if ( is_home() || is_front_page() ) {
-			$description = "xlthlx. ". get_option( 'english_tagline', '' );
+			$description = 'xlthlx. ' . get_option( 'english_tagline', '' );
 		}
 
 		if ( is_singular() ) {
@@ -619,18 +582,6 @@ function xlt_rewrite_search_pages_en() {
 	add_rewrite_rule(
 		'^search/([^/]+)/en/page/([0-9]+)/?$',
 		'index.php?s=$matches[1]&lang=en&paged=$matches[2]',
-		'top'
-	);
-
-	add_rewrite_rule(
-		'^film/en/page/([0-9]+)/?$',
-		'index.php?pagename=film&lang=en&paged=$matches[1]',
-		'top'
-	);
-
-	add_rewrite_rule(
-		'^tv-series/en/page/([0-9]+)/?$',
-		'index.php?pagename=tv-series&lang=en&paged=$matches[1]',
 		'top'
 	);
 }

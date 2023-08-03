@@ -8,20 +8,18 @@
 /**
  * Load vendors.
  */
-require_once dirname( __FILE__ ) . '/vendor.phar';
-
-add_filter( 'login_display_language_dropdown', '__return_false' );
-add_filter( 'pre_option_link_manager_enabled', '__return_true' );
-add_filter( 'wpcf7_load_js', '__return_false' );
-add_filter( 'wpcf7_load_css', '__return_false' );
-add_filter( 'enable_post_by_email_configuration', '__return_false' );
+require_once get_template_directory() . '/vendor.phar';
 
 /**
- * Set theme supports and image sizes.
- *
- * @return void
+ * General setup.
  */
-function xlt_add_supports() {
+function xlt_setup() {
+	add_filter( 'login_display_language_dropdown', '__return_false' );
+	add_filter( 'wpcf7_load_js', '__return_false' );
+	add_filter( 'wpcf7_load_css', '__return_false' );
+	add_filter( 'enable_post_by_email_configuration', '__return_false' );
+
+	add_filter( 'pre_option_link_manager_enabled', '__return_true' );
 
 	add_theme_support( 'block-templates' );
 	add_theme_support( 'title-tag' );
@@ -45,21 +43,12 @@ function xlt_add_supports() {
 	);
 
 	remove_theme_support( 'automatic-feed-links' );
-	remove_theme_support( 'widgets-block-editor' );
+	//remove_theme_support( 'widgets-block-editor' );
 
 	remove_action( 'wp_head', 'feed_links_extra', 3 );
 
 	add_image_size( 'featured', 1200, 675, true );
-	add_image_size( 'sticky', 437, 225, true );
-	add_image_size( 'cover', 250, 370, true );
-}
 
-add_action( 'init', 'xlt_add_supports' );
-
-/**
- * Register main and footer menu.
- */
-function xlt_register_menus() {
 	register_nav_menus(
 		array(
 			'primary' => 'Main',
@@ -68,7 +57,7 @@ function xlt_register_menus() {
 	);
 }
 
-add_action( 'init', 'xlt_register_menus' );
+add_action( 'init', 'xlt_setup' );
 
 /**
  * Register widget area.
@@ -79,22 +68,10 @@ function xlt_widgets_init() {
 			'name'          => esc_html__( 'Post Sidebar', 'xlthlx' ),
 			'id'            => 'post-sidebar',
 			'description'   => esc_html__( 'Post Sidebar', 'xlthlx' ),
-			'before_widget' => '<div id="%1$s" class="widget %2$s p-4">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h3 class="h2 pb-2 shadows">',
-			'after_title'   => '</h3>',
-		)
-	);
-
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Footer Post Sidebar', 'xlthlx' ),
-			'id'            => 'post-footer',
-			'description'   => esc_html__( 'Footer Post Sidebar', 'xlthlx' ),
-			'before_widget' => '<div class="p-2 my-4">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h3 class="h2 pb-2 shadows">',
-			'after_title'   => '</h3>',
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<p class="xlt-widget__title"><span>',
+			'after_title'   => '</span></p>',
 		)
 	);
 
@@ -103,10 +80,46 @@ function xlt_widgets_init() {
 			'name'          => esc_html__( 'Page Sidebar', 'xlthlx' ),
 			'id'            => 'page-sidebar',
 			'description'   => esc_html__( 'Page Sidebar', 'xlthlx' ),
-			'before_widget' => '<div id="%1$s" class="widget %2$s p-4">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h3 class="h2 pb-2 shadows">',
-			'after_title'   => '</h3>',
+			'before_widget' => '<section id="%1$s" class="%2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<p class="xlt-widget__title"><span>',
+			'after_title'   => '</span></p>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Sidebar Left', 'xlthlx' ),
+			'id'            => 'footer-sidebar-left',
+			'description'   => esc_html__( 'Footer Sidebar Left', 'xlthlx' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<p class="xlt-widget__title"><span>',
+			'after_title'   => '</span></p>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Sidebar Center', 'xlthlx' ),
+			'id'            => 'footer-sidebar-center',
+			'description'   => esc_html__( 'Footer Sidebar Center', 'xlthlx' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<p class="xlt-widget__title"><span>',
+			'after_title'   => '</span></p>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Sidebar Right', 'xlthlx' ),
+			'id'            => 'footer-sidebar-right',
+			'description'   => esc_html__( 'Footer Sidebar Right', 'xlthlx' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<p class="xlt-widget__title"><span>',
+			'after_title'   => '</span></p>',
 		)
 	);
 }
@@ -116,37 +129,21 @@ add_action( 'widgets_init', 'xlt_widgets_init' );
 /**
  * Enqueue scripts and styles.
  */
-function xlt_scripts() {
+function xlt_enqueue_scripts() {
 	// Styles.
 	wp_dequeue_style( 'wp-block-library' );
 	wp_deregister_style( 'classic-theme-styles' );
 	wp_dequeue_style( 'classic-theme-styles' );
 	// Scripts.
 	wp_deregister_script( 'wp-embed' );
-	if ( 'http://localhost' !== home_url() && ! is_admin() ) {
+	if ( 'http://localhost:1050' !== home_url() && ! is_admin() ) {
 		wp_deregister_script( 'jquery' );
 		wp_deregister_script( 'wp-polyfill' );
 	}
+	wp_deregister_script( 'comment-reply' );
 }
 
-add_action( 'wp_enqueue_scripts', 'xlt_scripts' );
-
-/**
- * Enqueue editor scripts.
- *
- * @return void
- */
-function enqueue_editor_scripts() {
-	wp_enqueue_script(
-		'theme-editor',
-		get_template_directory_uri() . '/assets/js/admin/editor.min.js',
-		array( 'wp-blocks', 'wp-dom' ),
-		filemtime( get_template_directory() . '/assets/js/admin/editor.min.js' ),
-		true
-	);
-}
-
-add_action( 'enqueue_block_editor_assets', 'enqueue_editor_scripts' );
+add_action( 'wp_enqueue_scripts', 'xlt_enqueue_scripts' );
 
 /**
  * Set up globals.
@@ -170,64 +167,26 @@ function xlt_add_to_globals() {
 
 add_action( 'after_setup_theme', 'xlt_add_to_globals' );
 
-/**
- * Adds the plausible scripts to header.
- *
- * @return void
- */
-function xlt_add_to_header() {
-	?>
-	<?php // @codingStandardsIgnoreStart ?>
-	<script id="stats" defer data-domain="xlthlx.com" src="https://plausible.io/js/script.outbound-links.file-downloads.hash.js"></script>
-	<script>
-		window.plausible = window.plausible || function () {
-			(window.plausible.q = window.plausible.q || []).push(arguments)
-		}
-	</script>
-	<?php // @codingStandardsIgnoreEnd ?>
-	<?php
-}
-
-add_action( 'wp_head', 'xlt_add_to_header' );
-
-/**
- * Adds to wp_footer.
- *
- * @return void
- */
-function xlt_add_to_footer() {
-	// @codingStandardsIgnoreStart ?>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Shadows+Into+Light&family=Titillium+Web&display=swap" rel="stylesheet">
-<?php // @codingStandardsIgnoreEnd
-}
-
-add_action( 'wp_footer', 'xlt_add_to_footer', 100 );
-
-if ( file_exists( dirname( __FILE__ ) . '/inc/cmb2/cmb2/init.php' ) ) {
-	require_once dirname( __FILE__ ) . '/inc/cmb2/cmb2/init.php';
+if ( file_exists( get_template_directory() . '/inc/cmb2/cmb2/init.php' ) ) {
+	require_once get_template_directory() . '/inc/cmb2/cmb2/init.php';
 }
 
 /**
  * Theme functions and tags.
  */
-require_once 'inc/theme/index.php';
+require_once get_template_directory() . '/inc/theme/index.php';
 
 /**
  * Functions for English translation.
  */
-require_once 'inc/eng/index.php';
-
-/**
- * Film and TV Series.
- */
-require_once 'inc/film-tv/index.php';
+require_once get_template_directory() . '/inc/eng/index.php';
 
 /**
  * Toolkit.
  */
-require_once 'inc/toolkit/index.php';
+require_once get_template_directory() . '/inc/toolkit/index.php';
 
 /**
  * Newsletter.
  */
-require_once 'inc/newsletter/index.php';
+require_once get_template_directory() . '/inc/newsletter/index.php';

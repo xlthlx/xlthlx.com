@@ -38,7 +38,7 @@ add_action( 'admin_menu', 'xlt_admin_footer_remove' );
  * Modify the rendering of code Gutenberg block.
  *
  * @param string $block_content The block content.
- * @param array $block The full block, including name and attributes.
+ * @param array  $block The full block, including name and attributes.
  *
  * @return string
  * @throws Exception Exception.
@@ -88,17 +88,6 @@ function xlt_render_code( $content ) {
 }
 
 /**
- * Removes the comment-reply script.
- *
- * @return void
- */
-function xlt_remove_comment_reply() {
-	wp_deregister_script( 'comment-reply' );
-}
-
-add_action( 'init', 'xlt_remove_comment_reply' );
-
-/**
  * Remove the very annoying jQuery Migrate notice.
  *
  * @return void
@@ -127,10 +116,10 @@ function xlt_comment_fields_custom_order( $fields ) {
 
 	unset( $fields['comment'], $fields['author'], $fields['email'], $fields['url'], $fields['cookies'] );
 
+	$fields['comment'] = $comment_field;
 	$fields['author']  = $author_field;
 	$fields['email']   = $email_field;
 	$fields['url']     = $url_field;
-	$fields['comment'] = $comment_field;
 
 	return $fields;
 }
@@ -278,14 +267,30 @@ add_filter( 'embed_oembed_discover', 'xlt_restore_oembed_cache' );
  * @return void
  */
 function xlt_insert_css() {
-	$file  = get_template_directory() . '/assets/css/main.min.css';
-	$style = str_replace(
-		'../fonts/',
-		get_template_directory_uri() . '/assets/fonts/',
-		xlt_get_file_content( $file )
-	);
+	$file  = get_template_directory() . '/src/css/main.css';
+	$style = xlt_get_file_content( $file );
 
-	echo '<style id="all-styles-inline">' . $style . '</style>';
+	$dir = ABSPATH . 'wp-content/plugins/contact-form-7/';
+	$cf7 = xlt_get_file_content( $dir . '/includes/css/styles.css' );
+
+	echo '
+<style id="all-styles-inline">' . $cf7 . $style . '</style>
+';
+
+	$plausible = '
+<script id="stats" defer>
+';
+
+	$response   = wp_remote_get( 'https://plausible.io/js/script.outbound-links.file-downloads.hash.js' );
+	$plausible .= str_replace( 'o.getAttribute("data-domain")', '"xlthlx.com"', str_replace( 'o.src', "'https://plausible.io/js/script.outbound-links.file-downloads.hash.js'", $response['body'] ) );
+	$plausible .= '
+        window.plausible = window.plausible || function () {
+			(window.plausible.q = window.plausible.q || []).push(arguments)
+		}
+	</script>
+	';
+
+	echo $plausible;
 }
 
 add_action( 'wp_head', 'xlt_insert_css' );
@@ -296,27 +301,34 @@ add_action( 'wp_head', 'xlt_insert_css' );
  * @return void
  */
 function xlt_insert_scripts() {
+	echo '<script type="text/javascript">const theme_url = "' . get_template_directory_uri() . '"; </script>';
 	$file   = get_template_directory() . '/assets/js/main.min.js';
 	$script = xlt_get_file_content( $file );
 
 	echo '<script type="text/javascript">' . $script . '</script>';
+
+	$dir           = ABSPATH . 'wp-content/plugins/contact-form-7/';
+	$first_script  = xlt_get_file_content( $dir . '/includes/swv/js/index.js' );
+	$second_script = xlt_get_file_content( $dir . '/includes/js/index.js' );
+	$rest_url      = str_replace( '/', '\\/', ( esc_url( get_rest_url() ) ) );
+
+	$cf7 = '
+<script id="cf7">' . $first_script;
+
+	$cf7 .= '
+/* <![CDATA[ */
+var wpcf7 = {"api":{"root":"' . $rest_url . '","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+';
+	$cf7 .= $second_script;
+	$cf7 .= '
+!function(){var s,o=document.body,e="className",a="customize-support",c=RegExp("(^|\\s+)(no-)?"+a+"(\\s+|$)");s=!0,o[e]=o[e].replace(c," "),o[e]+=(window.postMessage&&s?" ":" no-")+a}();</script>
+';
+
+	echo $cf7;
 }
 
 add_action( 'wp_footer', 'xlt_insert_scripts' );
-
-/**
- * Add a class to previous/next links.
- *
- * @param string $output The post link.
- *
- * @return array|string|string[]
- */
-function xlt_add_post_link( $output ) {
-	return str_replace( '<a ', '<a class="text-decoration-none" ', $output );
-}
-
-add_filter( 'next_post_link', 'xlt_add_post_link' );
-add_filter( 'previous_post_link', 'xlt_add_post_link' );
 
 /**
  * Send 404 to Plausible.
@@ -437,10 +449,10 @@ add_filter( 'manage_tvseries_posts_columns', 'xlt_hide_seo_columns', 20 );
 /**
  * Wrap the image with picture tag to support webp.
  *
- * @param string $html HTML img element or empty string on failure.
- * @param int $attachment_id Image attachment ID.
- * @param string $size Requested image size.
- * @param bool $icon Whether the image should be treated as an icon.
+ * @param string   $html HTML img element or empty string on failure.
+ * @param int      $attachment_id Image attachment ID.
+ * @param string   $size Requested image size.
+ * @param bool     $icon Whether the image should be treated as an icon.
  * @param string[] $attr Attributes for the image markup.
  *
  * @return string
@@ -452,8 +464,8 @@ function xlt_wrap_image_with_picture( $html, $attachment_id, $size, $icon, $attr
 
 	$type = get_post_mime_type( $attachment_id );
 
-	if ( ( ! $icon ) && ( 'image/gif' !== $type ) ) {
-		$webp_src = preg_replace( '/(?:jpg|png|jpeg)$/i', 'webp', $attr['src'] );
+	if ( ! $icon ) {
+		$webp_src = preg_replace( '/(?:jpg|png|jpeg|gif)$/i', 'webp', $attr['src'] );
 
 		$html = '<picture>
 			  <source srcset="' . $webp_src . '" type="image/webp">
@@ -472,7 +484,7 @@ add_filter( 'wp_get_attachment_image', 'xlt_wrap_image_with_picture', 10, 5 );
  *
  * @param string $filtered_image Full img tag with attributes that will replace the source img tag.
  * @param string $context Additional context, like the current filter name or the function name from where this was called.
- * @param int $attachment_id Image attachment ID.
+ * @param int    $attachment_id Image attachment ID.
  *
  * @return string
  */
@@ -483,25 +495,22 @@ function xlt_image_with_picture( $filtered_image, $context, $attachment_id ) {
 
 	$type = get_post_mime_type( $attachment_id );
 
-	if ( 'image/gif' !== $type ) {
+	preg_match( '/width="([^"]+)/i', $filtered_image, $width, PREG_OFFSET_CAPTURE );
+	preg_match( '/height="([^"]+)/i', $filtered_image, $height, PREG_OFFSET_CAPTURE );
+	if ( isset( $width[1], $height[1] ) ) {
+		$size = array( $width[1][0], $height[1][0] );
+	} else {
+		$size = 'full';
+	}
 
-		preg_match( '/width="([^"]+)/i', $filtered_image, $width, PREG_OFFSET_CAPTURE );
-		preg_match( '/height="([^"]+)/i', $filtered_image, $height, PREG_OFFSET_CAPTURE );
-		if ( isset( $width[1], $height[1] ) ) {
-			$size = array( $width[1][0], $height[1][0] );
-		} else {
-			$size = 'full';
-		}
+	$img_src  = wp_get_attachment_image_url( $attachment_id, $size );
+	$webp_src = preg_replace( '/(?:jpg|png|jpeg|gif)$/i', 'webp', $img_src );
 
-		$img_src  = wp_get_attachment_image_url( $attachment_id, $size );
-		$webp_src = preg_replace( '/(?:jpg|png|jpeg)$/i', 'webp', $img_src );
-
-		$filtered_image = '<picture>
+	$filtered_image = '<picture>
 			  <source srcset="' . $webp_src . '" type="image/webp">
 			  <source srcset="' . $img_src . '" type="' . $type . '">
 			  ' . $filtered_image . '
 			</picture>';
-	}
 
 	return $filtered_image;
 }
@@ -516,11 +525,11 @@ add_filter( 'wp_content_img_tag', 'xlt_image_with_picture', 10, 3 );
 function xlt_add_admin_icons() {
 	// @codingStandardsIgnoreStart
 	?>
-	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/favicon.ico"
-		  sizes="any"><!-- 32×32 -->
-	<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/icon.svg" type="image/svg+xml">
-	<link rel="apple-touch-icon"
-		  href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/apple-touch-icon.png">
+    <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/favicon.ico"
+          sizes="any"><!-- 32×32 -->
+    <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon"
+          href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/apple-touch-icon.png">
 	<?php
 	// @codingStandardsIgnoreEnd
 }
@@ -548,7 +557,7 @@ function xlt_add_remove_link_columns( $post_columns ) {
  * Display column content.
  *
  * @param string $column_name The name of the column to display.
- * @param int $post_id The current post ID.
+ * @param int    $post_id The current post ID.
  *
  * @return void
  */
@@ -705,6 +714,7 @@ function xlt_set_phpmailer_smtp( $phpmailer ) {
 	require_once ABSPATH . WPINC . '/PHPMailer/PHPMailer.php';
 	require_once ABSPATH . WPINC . '/PHPMailer/SMTP.php';
 
+	// @codingStandardsIgnoreStart
 	$phpmailer->isSMTP();
 	$phpmailer->setFrom( 'noreply@xlthlx.com', 'xlthlx.com', false );
 	$phpmailer->Host       = 'ssl0.ovh.net';
@@ -713,6 +723,7 @@ function xlt_set_phpmailer_smtp( $phpmailer ) {
 	$phpmailer->Username   = SMTP_username;
 	$phpmailer->Password   = SMTP_password;
 	$phpmailer->SMTPSecure = 'ssl';
+	// @codingStandardsIgnoreEnd
 }
 
 add_action( 'phpmailer_init', 'xlt_set_phpmailer_smtp' );
@@ -739,3 +750,79 @@ function xlt_english_tagline_field() {
 }
 
 add_filter( 'admin_init', 'xlt_add_english_tagline_settings' );
+
+/**
+ * Allowed tags into excerpt.
+ *
+ * @return string
+ */
+function xlt_allowedtags() {
+	return '<p>,<br>,<em>,<i>,<ul>,<ol>,<li>,<p>,<img>,<video>,<audio>,<figure>,<picture>,<source>';
+}
+
+/**
+ * Set up an excerpt from $content.
+ *
+ * @param string $xlt_excerpt The post excerpt.
+ *
+ * @return string
+ * @throws Exception Exception.
+ */
+function xlt_custom_wp_trim_excerpt( $xlt_excerpt ) {
+	$raw_excerpt = $xlt_excerpt;
+
+	if ( '' === $xlt_excerpt ) {
+
+		global $lang, $post;
+		$xlt_excerpt = get_the_content( '' );
+
+		if ( isset( $post ) && 'en' === $lang ) {
+			$xlt_excerpt = get_content_en( $post->ID );
+		}
+
+		$xlt_excerpt = strip_shortcodes( $xlt_excerpt );
+		$xlt_excerpt = apply_filters( 'the_content', $xlt_excerpt );
+		$xlt_excerpt = str_replace( ']]>', ']]&gt;', $xlt_excerpt );
+		$xlt_excerpt = strip_tags( $xlt_excerpt, xlt_allowedtags() );
+
+		$excerpt_word_count = 60;
+		$excerpt_length     = apply_filters( 'excerpt_length', $excerpt_word_count );
+		$tokens             = array();
+		$excerpt_output     = '';
+		$count              = 0;
+
+		preg_match_all( '/(<[^>]+>|[^<>\s]+)\s*/u', $xlt_excerpt, $tokens );
+
+		foreach ( $tokens[0] as $token ) {
+
+			if ( $count >= $excerpt_word_count && preg_match( '/[,;?.!]\s*$/uS', $token ) ) {
+				$excerpt_output .= trim( $token );
+				break;
+			}
+
+			$count ++;
+			$excerpt_output .= $token;
+		}
+
+		$xlt_excerpt = trim( force_balance_tags( $excerpt_output ) );
+
+		$xlt_excerpt = str_replace( '<p></p>', '', $xlt_excerpt );
+
+		$excerpt_end  = '...';
+		$excerpt_more = apply_filters( 'excerpt_more', ' ' . $excerpt_end );
+
+		$pos    = strrpos( $xlt_excerpt, '</' );
+		$figure = strrpos( $xlt_excerpt, '</figure>' );
+		if ( false !== $pos && false === $figure ) {
+			$xlt_excerpt = substr_replace( $xlt_excerpt, $excerpt_end, $pos, 0 );
+		}
+
+		return $xlt_excerpt;
+
+	}
+
+	return apply_filters( 'xlt_custom_wp_trim_excerpt', $xlt_excerpt, $raw_excerpt );
+}
+
+remove_filter( 'get_the_excerpt', 'wp_trim_excerpt' );
+add_filter( 'get_the_excerpt', 'xlt_custom_wp_trim_excerpt' );

@@ -5,9 +5,24 @@
  * @package  xlthlx
  */
 
+global $lang;
 ?>
-<div class="col-md-3">
-	<aside class="sidebar mt-md-0 mt-4 ps-md-3 ps-0">
-		<?php dynamic_sidebar( 'page-sidebar' ); ?>
-	</aside>
-</div>
+<aside class="xlt-widgetarea xlt-sticky_top" role="complementary" aria-label="Sidebar">
+	<?php if ( ( is_year() || is_month() ) ) { ?>
+
+		<section id="months" class="widget widget_months">
+			<p class="xlt-widget__title"><span><?php echo ( 'en' === $lang ) ? 'Months' : 'Mesi'; ?></span></p>
+			<?php $month = ( is_year() ) ? '' : get_the_time( 'n' ); ?>
+
+			<?php xlt_get_months( get_the_time( 'Y' ), $month ); ?>
+		</section>
+
+		<section id="years" class="widget widget_years">
+			<p class="xlt-widget__title"><span><?php echo ( 'en' === $lang ) ? 'Years' : 'Anni'; ?></span></p>
+
+			<?php xlt_get_years( get_the_time( 'Y' ) ); ?>
+		</section>
+
+	<?php } ?>
+	<?php dynamic_sidebar( 'page-sidebar' ); ?>
+</aside>

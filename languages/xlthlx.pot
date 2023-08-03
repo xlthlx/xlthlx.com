@@ -1,0 +1,231 @@
+# Copyright (C) 2023 xlthlx
+# This file is distributed under the GNU General Public License v3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: xlthlx 2023 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/2023\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-08-03T16:58:23+01:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.8.1\n"
+"X-Domain: xlthlx\n"
+
+#. Theme Name of the theme
+msgid "xlthlx 2023"
+msgstr ""
+
+#. Theme URI of the theme
+#. Author URI of the theme
+msgid "https://xlthlx.com/"
+msgstr ""
+
+#. Description of the theme
+msgid "Theme for xlthlx.com based on Schism https://justevolve.it/downloads/schism/ layout"
+msgstr ""
+
+#. Author of the theme
+msgid "xlthlx"
+msgstr ""
+
+#: functions.php:68
+#: functions.php:70
+msgid "Post Sidebar"
+msgstr ""
+
+#: functions.php:80
+#: functions.php:82
+msgid "Page Sidebar"
+msgstr ""
+
+#: functions.php:92
+#: functions.php:94
+msgid "Footer Sidebar Left"
+msgstr ""
+
+#: functions.php:104
+#: functions.php:106
+msgid "Footer Sidebar Center"
+msgstr ""
+
+#: functions.php:116
+#: functions.php:118
+msgid "Footer Sidebar Right"
+msgstr ""
+
+#: inc/eng/inc/custom-fields.php:97
+msgid "Commenti"
+msgstr ""
+
+#: inc/newsletter/inc/news-admin.php:161
+msgid "Contatti"
+msgstr ""
+
+#: inc/newsletter/inc/news-admin.php:170
+msgid "Nome"
+msgstr ""
+
+#: inc/newsletter/inc/news-admin.php:179
+msgid "Email"
+msgstr ""
+
+#: inc/newsletter/inc/news-admin.php:188
+msgid "Conferma"
+msgstr ""
+
+#: inc/newsletter/inc/news-admin.php:194
+msgid "No"
+msgstr ""
+
+#: inc/newsletter/inc/news-admin.php:195
+msgid "Si"
+msgstr ""
+
+#: inc/newsletter/inc/news-admin.php:203
+msgid "Lingua"
+msgstr ""
+
+#: inc/newsletter/inc/news-admin.php:209
+msgid "Italiano"
+msgstr ""
+
+#: inc/newsletter/inc/news-admin.php:210
+msgid "English"
+msgstr ""
+
+#: inc/newsletter/inc/news-admin.php:218
+msgid "Codice"
+msgstr ""
+
+#: inc/newsletter/inc/news-admin.php:227
+msgid "Ultima modifica"
+msgstr ""
+
+#: inc/theme/inc/template-functions.php:336
+msgid "Xlthlx"
+msgstr ""
+
+#: inc/theme/inc/template-functions.php:713
+msgid "English Tagline"
+msgstr ""
+
+#: inc/toolkit/inc/pages-columns.php:21
+msgid "Template"
+msgstr ""
+
+#: inc/toolkit/inc/pages-columns.php:22
+#: inc/toolkit/inc/posts-columns.php:24
+msgid "Data ultima modifica"
+msgstr ""
+
+#: inc/toolkit/inc/pages-columns.php:23
+#: inc/toolkit/inc/posts-columns.php:25
+msgid "Date"
+msgstr ""
+
+#: inc/toolkit/inc/posts-columns.php:23
+msgid "Miniatura"
+msgstr ""
+
+#: inc/toolkit/inc/rest-api.php:20
+msgid "REST API restricted to authenticated users."
+msgstr ""
+
+#. Template Name of the theme
+msgid "Friends & Others"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Makeup"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Newsletter"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Referral"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "White"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Darker White"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Light Grey"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Grey"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Darker Grey"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Highlight"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Dark Highlight"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Black"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "System"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Monospace"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "X Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Medium"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Medium Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "X Large"
+msgstr ""

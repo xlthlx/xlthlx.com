@@ -22,15 +22,23 @@ $args = array(
 	'hierarchical' => 'threaded',
 );
 
-$all_comments = get_comments( $args );
-if ( $all_comments ) { ?>
-	<section id="post-comments" class="comment-box mb-5">
-		<h3 class="mb-4"><?php echo ( 'en' === $lang ) ? 'Comments' : 'Commenti'; ?></h3>
-		<?php foreach ( $all_comments as $single_comment ) { ?>
-			<?php get_template_part( 'parts/comment', null, array( 'comment' => $single_comment ) ); ?>
-		<?php } ?>
-	</section>
-<?php } ?>
-<section id="comment-form" class="comment-box mb-5">
-	<?php ( 'en' === $lang ) ? xlt_comment_form_en() : xlt_comment_form(); ?>
-</section>
+$all_comments = get_comments( $args ); ?>
+	<div id="post-comments" class="xlt-row xlt-row_break">
+		<div class="xlt-comments__heading xlt-spacing">
+			<h2 class="xlt-comments__title xlt-sticky_top"><?php echo ( 'en' === $lang ) ? 'Thread' : 'Discussione'; ?></h2>
+		</div>
+		<div class="xlt-comments__loop xlt-spacing">
+			<?php if ( $all_comments ) { ?>
+			<div id="comments">
+				<ol class="xlt-comments">
+					<?php foreach ( $all_comments as $single_comment ) { ?>
+						<?php get_template_part( 'parts/comment', null, array( 'comment' => $single_comment ) ); ?>
+					<?php } ?>
+				</ol>
+			</div>
+			<?php } ?>
+			<div id="respond" class="comment-respond">
+				<?php ( 'en' === $lang ) ? xlt_comment_form_en() : xlt_comment_form(); ?>
+			</div>
+		</div>
+	</div>

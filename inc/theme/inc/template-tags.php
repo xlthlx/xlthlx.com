@@ -30,493 +30,6 @@ if ( ! function_exists( 'xlt_get_link' ) ) {
 	}
 }
 
-if ( ! function_exists( 'xlt_breadcrumbs' ) ) {
-	/**
-	 * Breadcrumbs.
-	 */
-	function xlt_breadcrumbs() {
-
-		global $post,$lang;
-
-		$args = array(
-			'before'        => '<li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">',
-			'before_active' => '<li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">',
-			'link'          => '<a href="%1$s" title="%2$s" itemscope itemtype="https://schema.org/Thing" itemprop="item" itemid="%1$s">%3$s</a>',
-			'active'        => '<span itemscope itemtype="https://schema.org/Thing" itemprop="name" itemid="%1$s">%2$s</span>',
-			'name'          => '<span itemprop="name">%1$s</span>',
-			'position'      => '<meta itemprop="position" content="%1$s">',
-			'text'          => array(
-				'home'     => 'Home',
-				'category' => '%s',
-				'search'   => ( 'en' === $lang ) ? 'Search results for "%s"' : 'Risultati della ricerca per "%s"',
-				'tag'      => '%s',
-				'author'   => ( 'en' === $lang ) ? 'Posts by %s' : 'Articoli di %s',
-				'404'      => ( 'en' === $lang ) ? 'Error 404' : 'Errore 404',
-				'page'     => ( 'en' === $lang ) ? 'Page %s' : 'Pagina %s',
-				'cpage'    => ( 'en' === $lang ) ? 'Comments page %s' : 'Commenti pagina %s',
-			),
-		);
-
-
-		$home_url  = home_url( '/' );
-		$parent_id = ( isset( $post->post_parent ) ) ? $post->post_parent : 0;
-		if ( is_404() ) {
-			$title = ( 'en' === $lang ) ? 'Error 404' : get_the_title();
-		} else {
-			$title = ( 'en' === $lang ) ? get_title_en( $post->ID ) : get_the_title();
-		}
-
-		$home_link = xlt_get_link( $args, $home_url, $args['text']['home'], 1 );
-
-		if ( ! is_home() && ! is_front_page() ) {
-
-			$position = 0;
-			echo '<ol class="breadcrumb" id="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">';
-
-			$position ++;
-			echo $home_link;
-
-			if ( is_category() ) {
-				$parents = get_ancestors( get_query_var( 'cat' ), 'category' );
-				foreach ( array_reverse( $parents ) as $cat ) {
-					$position ++;
-					echo xlt_get_link(
-						$args,
-						get_category_link( $cat ),
-						get_cat_name( $cat ),
-						$position
-					);
-				}
-				if ( get_query_var( 'paged' ) ) {
-					$position ++;
-					echo xlt_get_link(
-						$args,
-						get_category_link( get_query_var( 'cat' ) ),
-						get_cat_name( get_query_var( 'cat' ) ),
-						$position
-					);
-					echo $args['before'] . sprintf(
-						$args['text']['page'],
-						get_query_var( 'paged' )
-					);
-
-				} else {
-					$position ++;
-					echo $args['before_active'] . sprintf(
-						$args['active'],
-						get_permalink(),
-						sprintf(
-							$args['name'],
-							sprintf(
-								$args['text']['category'],
-								single_cat_title(
-									'',
-									false
-								)
-							)
-						)
-					) . sprintf(
-						$args['position'],
-						$position
-					);
-				}
-			} elseif ( is_search() ) {
-				if ( get_query_var( 'paged' ) ) {
-
-					$position ++;
-					echo xlt_get_link(
-						$args,
-						$home_url . '?s=' . get_search_query(),
-						sprintf( $args['text']['search'], get_search_query() ),
-						$position
-					);
-					echo $args['before'] . sprintf(
-						$args['text']['page'],
-						get_query_var( 'paged' )
-					);
-
-				} else {
-
-					$position ++;
-					echo $args['before_active'] . sprintf(
-						$args['active'],
-						get_permalink(),
-						sprintf(
-							$args['text']['search'],
-							get_search_query()
-						)
-					) . sprintf(
-						$args['position'],
-						$position
-					);
-
-
-				}
-			} elseif ( is_year() ) {
-
-				$position ++;
-				echo $args['before_active'] . sprintf(
-					$args['active'],
-					get_permalink(),
-					get_the_time( 'Y' )
-				) . sprintf(
-					$args['position'],
-					$position
-				);
-
-
-			} elseif ( is_month() ) {
-
-				$month = get_the_time( 'F' );
-				if ( 'en' === $lang ) {
-					$month = get_trans( $month );
-				}
-
-				$position ++;
-				echo xlt_get_link(
-					$args,
-					get_year_link( get_the_time( 'Y' ) ),
-					get_the_time( 'Y' ),
-					$position
-				);
-
-				$position ++;
-				echo $args['before_active'] . sprintf(
-					$args['active'],
-					get_permalink(),
-					$month
-				) . sprintf(
-					$args['position'],
-					$position
-				);
-
-			} elseif ( is_day() ) {
-
-				$month = get_the_time( 'F' );
-				if ( 'en' === $lang ) {
-					$month = get_trans( $month );
-				}
-
-				$position ++;
-				echo xlt_get_link(
-					$args,
-					get_year_link( get_the_time( 'Y' ) ),
-					get_the_time( 'Y' ),
-					$position
-				);
-
-				$position ++;
-				echo xlt_get_link(
-					$args,
-					get_month_link( get_the_time( 'Y' ), get_the_time( 'm' ) ),
-					$month,
-					$position
-				);
-
-
-				$position ++;
-				echo $args['before_active'] . sprintf(
-					$args['active'],
-					get_permalink(),
-					get_the_time( 'd' )
-				) . sprintf(
-					$args['position'],
-					$position
-				);
-
-			} elseif ( is_single() && ! is_attachment() ) {
-				$post_type = get_post_type_object( get_post_type() );
-				if ( $post_type && 'post' !== get_post_type() ) {
-					$position ++;
-					echo xlt_get_link(
-						$args,
-						get_post_type_archive_link( $post_type->name ),
-						$post_type->labels->name,
-						$position
-					);
-					$position ++;
-					$args['before_active'] . sprintf(
-						$args['active'],
-						get_permalink(),
-						$title
-					) . sprintf(
-						$args['position'],
-						$position
-					);
-
-				} else {
-					$cat       = get_the_category();
-					$cat_id    = $cat[0]->cat_ID;
-					$parents   = array_reverse( get_ancestors( $cat_id, 'category' ) );
-					$parents[] = $cat_id;
-
-					foreach ( $parents as $cat ) {
-						$position ++;
-						echo xlt_get_link(
-							$args,
-							get_category_link( $cat ),
-							get_cat_name( $cat ),
-							$position
-						);
-					}
-
-					if ( get_query_var( 'cpage' ) ) {
-						$position ++;
-						echo xlt_get_link(
-							$args,
-							get_permalink(),
-							$title,
-							$position
-						);
-
-						$position ++;
-						echo $args['before_active'] . sprintf(
-							$args['active'],
-							get_permalink(),
-							sprintf(
-								$args['text']['cpage'],
-								get_query_var( 'cpage' )
-							)
-						) . sprintf(
-							$args['position'],
-							$position
-						);
-
-					} else {
-						$position ++;
-						echo $args['before_active'] . sprintf(
-							$args['active'],
-							get_permalink(),
-							sprintf(
-								$args['name'],
-								$title
-							)
-						) . sprintf(
-							$args['position'],
-							$position
-						);
-
-					}
-				}
-			} elseif ( is_post_type_archive() ) {
-				$post_type = get_post_type_object( get_post_type() );
-				if ( $post_type && get_query_var( 'paged' ) ) {
-
-					$position ++;
-					echo xlt_get_link(
-						$args,
-						get_post_type_archive_link( $post_type->name ),
-						$post_type->label,
-						$position
-					);
-
-					$position ++;
-					echo $args['before_active'] . sprintf(
-						$args['active'],
-						get_permalink(),
-						sprintf(
-							$args['text']['page'],
-							get_query_var( 'paged' )
-						)
-					) . sprintf(
-						$args['position'],
-						$position
-					);
-				} else {
-
-					$position ++;
-					echo $args['before_active'] . sprintf(
-						$args['active'],
-						get_permalink(),
-						$post_type->label
-					) . sprintf(
-						$args['position'],
-						$position
-					);
-
-				}
-			} elseif ( is_attachment() ) {
-				$parent    = get_post( $parent_id );
-				$cat       = get_the_category( $parent->ID );
-				$cat_id    = $cat[0]->cat_ID;
-				$parents   = array_reverse(
-					get_ancestors(
-						$cat_id,
-						'category'
-					)
-				);
-				$parents[] = $cat_id;
-				foreach ( $parents as $cat ) {
-					$position ++;
-					echo xlt_get_link(
-						$args,
-						get_category_link( $cat ),
-						get_cat_name( $cat ),
-						$position
-					);
-				}
-
-				$position ++;
-				echo xlt_get_link(
-					$args,
-					get_permalink( $parent ),
-					$parent->post_title,
-					$position
-				);
-
-				$position ++;
-				echo $args['before_active'] . sprintf(
-					$args['active'],
-					get_permalink(),
-					$title
-				) . sprintf(
-					$args['position'],
-					$position
-				);
-
-			} elseif ( ! $parent_id && is_page() ) {
-
-				$position ++;
-				echo $args['before_active'] . sprintf(
-					$args['active'],
-					get_permalink(),
-					$title
-				) . sprintf(
-					$args['position'],
-					$position
-				);
-
-
-			} elseif ( $parent_id && is_page() ) {
-				$parents = get_post_ancestors( get_the_ID() );
-				foreach ( array_reverse( $parents ) as $page_id ) {
-					$position ++;
-					echo xlt_get_link(
-						$args,
-						get_page_link( $page_id ),
-						get_the_title( $page_id ),
-						$position
-					);
-				}
-
-				$position ++;
-				echo $args['before_active'] . sprintf(
-					$args['active'],
-					get_permalink(),
-					$title
-				) . sprintf(
-					$args['position'],
-					$position
-				);
-
-			} elseif ( is_tag() ) {
-				if ( get_query_var( 'paged' ) ) {
-					$position ++;
-					$tag_id = get_query_var( 'tag_id' );
-					echo xlt_get_link(
-						$args,
-						get_tag_link( $tag_id ),
-						single_tag_title( '', false ),
-						$position
-					);
-
-					$position ++;
-					echo $args['before_active'] . sprintf(
-						$args['active'],
-						get_permalink(),
-						sprintf(
-							$args['text']['page'],
-							get_query_var( 'paged' )
-						)
-					) . sprintf(
-						$args['position'],
-						$position
-					);
-				} else {
-
-					$position ++;
-					echo $args['before_active'] . sprintf(
-						$args['active'],
-						get_permalink(),
-						sprintf(
-							$args['text']['tag'],
-							single_tag_title(
-								'',
-								false
-							)
-						)
-					) . sprintf(
-						$args['position'],
-						$position
-					);
-
-				}
-			} elseif ( is_author() ) {
-				$author = get_userdata( get_query_var( 'author' ) );
-				if ( get_query_var( 'paged' ) ) {
-
-					$position ++;
-					echo xlt_get_link(
-						$args,
-						get_author_posts_url( $author->ID ),
-						sprintf(
-							$args['text']['author'],
-							$author->display_name
-						),
-						$position
-					);
-
-					$position ++;
-					echo $args['before_active'] . sprintf(
-						$args['active'],
-						get_permalink(),
-						sprintf(
-							$args['text']['page'],
-							get_query_var( 'paged' )
-						)
-					) . sprintf(
-						$args['position'],
-						$position
-					);
-
-				} else {
-
-					$position ++;
-					echo $args['before_active'] . sprintf(
-						$args['active'],
-						get_permalink(),
-						sprintf(
-							$args['text']['author'],
-							$author->display_name
-						)
-					) . sprintf(
-						$args['position'],
-						$position
-					);
-
-				}
-			} elseif ( is_404() ) {
-
-				$position ++;
-				echo $args['before_active'] . sprintf(
-					$args['active'],
-					get_permalink(),
-					$args['text']['404']
-				) . sprintf(
-					$args['position'],
-					$position
-				);
-
-			} elseif ( has_post_format() && ! is_singular() ) {
-
-				echo get_post_format_string( get_post_format() );
-			}
-
-			echo '</ol>';
-		}
-	}
-}
-
 if ( ! function_exists( 'xlt_comment_form' ) ) {
 	/**
 	 * Custom comments form.
@@ -528,36 +41,37 @@ if ( ! function_exists( 'xlt_comment_form' ) ) {
 	function xlt_comment_form( $post_id = false ) {
 
 		$comments_args = array(
-			'format'               => 'xhtml',
-			'label_submit'         => 'Invia',
-			'comment_notes_before' => '<p>Il tuo indirizzo email non sarà pubblicato.</p>',
-			'class_submit'         => 'btn btn-outline-primary btn-lg py-1 px-5 pink-hover rounded-0',
+			'format'               => 'html5',
+			'label_submit'         => 'Invia commento',
+			'comment_notes_before' => '<p class="comment-notes"><span id="email-notes">Il tuo indirizzo email non sarà pubblicato.</span></p>',
+			'class_submit'         => 'submit',
+			'comment_field'        => '<p class="comment-form-comment">
+        <label for="comment">Commento</label>
+        <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea>
+    </p>
+    <input id="comment_lang" name="comment_lang" type="hidden" value="it" />',
 			'fields'               => array(
-				'author' => '<div class="form-floating mb-3">
-							<input placeholder="Nome" class="form-control rounded-0" type="text" id="author" name="author" required>
-							<label for="author">Nome</label>
-						</div>',
-				'email'  => '<div class="form-floating mb-3">
-							<input placeholder="Email" class="form-control rounded-0" type="email" id="email" name="email" required>
-							<label for="email">Email</label>
-						</div>',
-				'url'    => '<div class="form-floating mb-3">
-							<input placeholder="Url" class="form-control rounded-0" type="url" id="url" name="url">
-							<label for="url">Url</label>
-						</div>',
+				'author' => '<p class="comment-form-author">
+        <label for="author">Nome</label>
+        <input id="author" name="author" type="text" value="" size="30" maxlength="245" autocomplete="name" required="required"/>
+    </p>',
+				'email'  => '<p class="comment-form-email">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" value="" size="30" maxlength="100"
+               aria-describedby="email-notes" autocomplete="email" required="required"/>
+    </p>',
+				'url'    => '    <p class="comment-form-url">
+        <label for="url">Sito web</label>
+        <input id="url" name="url" type="url" size="30" maxlength="200" autocomplete="url"/>
+    </p>
+    <p id="comment-subscribe">
+	' . wp_nonce_field( 'nonce_comment', 'nonce_comment', true, false ) . '
+	  <input class="form-check-input" type="checkbox" value="1" name="comment_subscribe" id="comment_subscribe">
+	  <label class="form-check-label" for="comment_subscribe">
+	    Avvisami quando vengono aggiunti nuovi commenti
+	  </label>
+	</p>',
 			),
-			'comment_field'        => '<div class="form-floating mb-3">
-								<textarea placeholder="Commento" class="form-control rounded-0" id="comment" name="comment" style="height: 150px" required></textarea>
-								<label for="comment">Commento</label>
-								<input id="comment_lang" name="comment_lang" type="hidden" value="it" />
-								<div id="comment-subscribe" class="form-check mt-3">
-								' . wp_nonce_field( 'nonce_comment', 'nonce_comment', true, false ) . '
-								  <input class="form-check-input" type="checkbox" value="1" name="comment_subscribe" id="comment_subscribe">
-								  <label class="form-check-label" for="comment_subscribe">
-								    Avvisami quando vengono aggiunti nuovi commenti
-								  </label>
-								</div>
-								</div>',
 		);
 
 		if ( $post_id ) {
@@ -579,40 +93,41 @@ if ( ! function_exists( 'xlt_comment_form_en' ) ) {
 	function xlt_comment_form_en( $post_id = false ) {
 
 		$comments_args = array(
-			'format'               => 'xhtml',
-			'label_submit'         => 'Send',
+			'format'               => 'html5',
+			'label_submit'         => 'Send comment',
 			'title_reply'          => 'Leave a comment',
 			'title_reply_to'       => 'Reply to %s',
 			'cancel_reply_link'    => 'Cancel reply',
-			'comment_notes_before' => '<p>Your email address will not be published.</p>',
-			'class_submit'         => 'btn btn-outline-primary btn-lg py-1 px-5 pink-hover rounded-0',
+			'comment_notes_before' => '<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span></p>',
+			'class_submit'         => 'submit',
+			'comment_field'        => '<p class="comment-form-comment">
+        <label for="comment">Comment</label>
+        <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea>
+    </p>
+    <input id="comment_lang" name="comment_lang" type="hidden" value="en" />
+	<input id="en_redirect_to" name="en_redirect_to" type="hidden" value="true" />',
 			'fields'               => array(
-				'author' => '<div class="form-floating mb-3">
-							<input placeholder="Name" class="form-control rounded-0" type="text" id="author" name="author" required>
-							<label for="author">Name</label>
-						</div>',
-				'email'  => '<div class="form-floating mb-3">
-							<input placeholder="Email" class="form-control rounded-0" type="email" id="email" name="email" required>
-							<label for="email">Email</label>
-						</div>',
-				'url'    => '<div class="form-floating mb-3">
-							<input placeholder="Url" class="form-control rounded-0" type="url" id="url" name="url">
-							<label for="url">Url</label>
-						</div>',
+				'author' => '<p class="comment-form-author">
+        <label for="author">Name</label>
+        <input id="author" name="author" type="text" value="" size="30" maxlength="245" autocomplete="name" required="required"/>
+    </p>',
+				'email'  => '<p class="comment-form-email">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" value="" size="30" maxlength="100"
+               aria-describedby="email-notes" autocomplete="email" required="required"/>
+    </p>',
+				'url'    => '    <p class="comment-form-url">
+        <label for="url">Website</label>
+        <input id="url" name="url" type="url" size="30" maxlength="200" autocomplete="url"/>
+    </p>
+    <p id="comment-subscribe">
+	' . wp_nonce_field( 'nonce_comment', 'nonce_comment', true, false ) . '
+	  <input class="form-check-input" type="checkbox" value="1" name="comment_subscribe" id="comment_subscribe">
+	  <label class="form-check-label" for="comment_subscribe">
+	    Notify me when new comments are added
+	  </label>
+	</p>',
 			),
-			'comment_field'        => '<div class="form-floating mb-3">
-								<textarea placeholder="Comment" class="form-control rounded-0" id="comment" name="comment" style="height: 150px" required></textarea>
-								<label for="comment">Comment</label>
-								<input id="comment_lang" name="comment_lang" type="hidden" value="en" />
-								<input id="en_redirect_to" name="en_redirect_to" type="hidden" value="true" />
-								<div id="comment-subscribe" class="form-check mt-3">
-								' . wp_nonce_field( 'nonce_comment', 'nonce_comment', true, false ) . '
-								  <input class="form-check-input" type="checkbox" value="1" name="comment_subscribe" id="comment_subscribe">
-								  <label class="form-check-label" for="comment_subscribe">
-								    Notify me when new comments are added
-								  </label>
-								</div>
-								</div>',
 		);
 
 		if ( $post_id ) {
@@ -635,7 +150,7 @@ if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 	 */
 	function xlt_old_posts_warning( $lang, $post_id = null ) {
 
-		$warning = '<hr class="mt-2 mb-4 pt-0"/>';
+		$warning = '';
 
 		if ( ! $post_id ) {
 			global $post;
@@ -674,9 +189,9 @@ if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 			$when          = ( 1 === (int) $years ) ? $ay_label : $years . ' ' . $ys_label;
 			if ( $diff > $days ) {
 				if ( 'en' !== $lang ) {
-					$warning = '<div class="alert alert-primary rounded-0 border-0 mt-2 black" role="alert"><small>Attenzione: questo articolo è stato scritto più di ' . $when . ' fa, alcune informazioni potrebbero essere obsolete.</small></div>';
+					$warning = '<blockquote><em>Attenzione: questo articolo è stato scritto più di ' . $when . ' fa, alcune informazioni potrebbero essere obsolete.</em></blockquote>';
 				} else {
-					$warning = '<div class="alert alert-primary rounded-0 border-0 mt-2 black" role="alert"><small>Warning: this article was written over ' . $when . ' ago, some information may be out of date.</small></div>';
+					$warning = '<blockquote><em>Warning: this article was written over ' . $when . ' ago, some information may be out of date.</em></blockquote>';
 				}
 			}
 		}
@@ -698,7 +213,7 @@ if ( ! function_exists( 'xlt_get_avatar' ) ) {
 	 */
 	function xlt_get_avatar( $comment, $author_name ) {
 		$args = array(
-			'size'    => '64',
+			'size'    => '60',
 			'default' => '404',
 		);
 
@@ -706,15 +221,16 @@ if ( ! function_exists( 'xlt_get_avatar' ) ) {
 
 		if ( ! xlt_gravatar_exists( $url ) ) {
 			$first_letter = substr( xlt_clean( $author_name ), 0, 1 );
-			$avatar       = '<div class="letter-avatar">
+			$avatar       = '<div class="avatar avatar-60 photo letter-avatar">
 							    <span>' . $first_letter . '</span>
 							</div>';
 		} else {
-			$avatar = '<img class="img-fluid p-1" src="' . $url . '" alt="' . $author_name . '">';
+			$avatar = '<img class="avatar avatar-60 photo" height="60" width="60" loading="lazy"
+                     decoding="async" src="' . $url . '" alt="' . $author_name . '">';
 		}
 
 		if ( '' !== $comment->comment_author_url ) {
-			$avatar = '<a class="hover-none" title="' . $comment->comment_author_url . '" target="_blank" href="' . $comment->comment_author_url . '">' . $avatar . '</a>';
+			$avatar = '<a title="' . $comment->comment_author_url . '" target="_blank" href="' . $comment->comment_author_url . '">' . $avatar . '</a>';
 		}
 
 		return $avatar;
@@ -801,29 +317,6 @@ if ( ! function_exists( 'xlt_get_file_content' ) ) {
 	}
 }
 
-if ( ! function_exists( 'xlt_download_url' ) ) {
-	/**
-	 * Download a file from the url.
-	 *
-	 * @param string $file_url File url.
-	 * @param string $filepath File path with extension.
-	 *
-	 * @return void
-	 */
-	function xlt_download_url( $file_url, $filepath ) {
-
-		global $wp_filesystem;
-		require_once ABSPATH . '/wp-admin/includes/file.php';
-
-		WP_Filesystem();
-
-		$tmp_file = $wp_filesystem->download_url( $file_url );
-
-		copy( $tmp_file, $filepath );
-		unlink( $tmp_file );
-	}
-}
-
 if ( ! function_exists( 'xlt_get_url_content' ) ) {
 	/**
 	 * Get contents from a url.
@@ -841,30 +334,6 @@ if ( ! function_exists( 'xlt_get_url_content' ) ) {
 		}
 
 		return false;
-	}
-}
-
-if ( ! function_exists( 'xlt_get_sticky_img' ) ) {
-	/**
-	 * Returns the HTML for the sticky image.
-	 *
-	 * @param int    $id Image ID.
-	 * @param string $alt Image alt text.
-	 *
-	 * @return string
-	 */
-	function xlt_get_sticky_img( $id, $alt ) {
-		return wp_get_attachment_image(
-			$id,
-			array( '437', '225' ),
-			false,
-			array(
-				'src'     => wp_get_attachment_image_url( $id, array( '437', '225' ) ),
-				'class'   => 'img-fluid grey_img',
-				'alt'     => $alt,
-				'loading' => false,
-			)
-		);
 	}
 }
 
@@ -956,48 +425,6 @@ if ( ! function_exists( 'xlt_get_menu_items' ) ) {
 	}
 }
 
-if ( ! function_exists( 'xlt_get_first_post' ) ) {
-	/**
-	 * Get the first or the sticky post.
-	 *
-	 * @return array
-	 */
-	function xlt_get_first_post() {
-
-		$sticky = get_option( 'sticky_posts' );
-		$first  = array_slice( $sticky, 0, 1 );
-
-		$offset = array();
-
-		if ( 1 === count( $first ) ) {
-			$args             = array(
-				'post__in'            => $first,
-				'ignore_sticky_posts' => 1,
-			);
-			$first_post_query = get_posts( $args );
-			$offset           = $first;
-		} else {
-			$args             = array( 'numberposts' => 1 );
-			$first_post_query = get_posts( $args );
-
-			if ( $first_post_query ) {
-				foreach ( $first_post_query as $post ) {
-					$offset[0] = $post->ID;
-				}
-			}
-		}
-
-		if ( 1 === count( $first ) ) {
-			$offset = array_slice( $sticky, 0, 3 );
-		}
-
-		$return['first_post_query'] = $first_post_query;
-		$return['offset']           = $offset;
-
-		return $return;
-	}
-}
-
 if ( ! function_exists( 'xlt_pagination' ) ) {
 	/**
 	 * Pagination.
@@ -1005,7 +432,7 @@ if ( ! function_exists( 'xlt_pagination' ) ) {
 	 * @param object $wp_query Query object.
 	 * @param string $paged Page number.
 	 *
-	 * @return void
+	 * @return string
 	 */
 	function xlt_pagination( $wp_query, $paged ) {
 		global $lang;
@@ -1051,59 +478,40 @@ if ( ! function_exists( 'xlt_pagination' ) ) {
 
 		if ( $max_page > 1 ) {
 
-			$return  = '<nav class="mt-1 mb-5">' . "\n";
-			$return .= '<ul class="pagination flex-wrap">' . "\n";
+			$return = '';
 
 			if ( 1 < (int) $paged ) {
-				$return .= '<li class="page-item">' . "\n";
-				$return .= '<a href="' . esc_url( get_pagenum_link() ) . '" class="page-link btn-50" title="' . $first . '">&laquo;</a>' . "\n";
-				$return .= '</li>' . "\n";
+				$return .= '<a href="' . esc_url( get_pagenum_link() ) . '" class="page-numbers" title="' . $first . '">&laquo;</a>' . "\n";
 			}
 
-			$return .= '<li class="page-item">' . "\n";
-			$return .= str_replace( '<a href="', '<a class="page-link btn-50" title="' . $previous . '" href="', get_previous_posts_link( '&lsaquo;' ) );
-			$return .= '</li>' . "\n";
+			$return .= str_replace( '<a href="', '<a class="page-numbers" title="' . $previous . '" href="', get_previous_posts_link( '&lsaquo;' ) );
 
 			if ( (int) $start_page >= 2 && $pages_to_show < $max_page ) {
-				$return .= '<li class="page-item">' . "\n";
-				$return .= '<a href="' . esc_url( get_pagenum_link() ) . '" class="page-link btn-50" title="1">1</a>' . "\n";
-				$return .= '</li>' . "\n";
-				$return .= '<li class="page-item"><span class="page-link">...</span></li>';
+				$return .= '<a href="' . esc_url( get_pagenum_link() ) . '" class="page-numbers" title="1">1</a>' . "\n";
+				$return .= '<span class="page-numbers dots">&hellip;</span>';
 			}
 
 			for ( $i = $start_page; $i <= $end_page; $i ++ ) {
 				if ( (int) $i === (int) $paged ) {
-					$return .= '<li class="page-item active" aria-current="page">
-						<span class="page-link page-number page-numbers current btn-50">' . number_format_i18n( $i ) . ' <span class="visually-hidden">(current)</span></span>
-					</li>';
+					$return .= '<span class="current page-numbers">' . number_format_i18n( $i ) . ' <span class="meta-nav screen-reader-text">(current)</span></span>';
 				} else {
-					$return .= '<li class="page-item">' . "\n";
-					$return .= '<a href="' . esc_url( get_pagenum_link( $i ) ) . '" class="page-link btn-50" title="' . number_format_i18n( $i ) . '">' . number_format_i18n( $i ) . '</a>';
-					$return .= '</li>' . "\n";
+					$return .= '<a href="' . esc_url( get_pagenum_link( $i ) ) . '" class="page-numbers" title="' . number_format_i18n( $i ) . '">' . number_format_i18n( $i ) . '</a>';
 				}
 			}
 
 			if ( (int) $end_page < $max_page ) {
-				$return .= '<li class="page-item"><span class="page-link">...</span></li>';
-				$return .= '<li class="page-item">' . "\n";
-				$return .= '<a href="' . esc_url( get_pagenum_link( $max_page ) ) . '" class="page-link btn-50" title="' . $max_page . '">' . $max_page . '</a>';
-				$return .= '</li>' . "\n";
+				$return .= '<span class="page-numbers dots">&hellip;</span>';
+				$return .= '<a href="' . esc_url( get_pagenum_link( $max_page ) ) . '" class="page-numbers" title="' . $max_page . '">' . $max_page . '</a>';
 			}
 
-			$return .= '<li class="page-item">' . "\n";
-			$return .= str_replace( '<a href="', '<a class="page-link btn-50" title="' . $next . '" href="', get_next_posts_link( '&rsaquo;', $max_page ) );
-			$return .= '</li>' . "\n";
+			$return .= str_replace( '<a href="', '<a class="page-numbers" title="' . $next . '" href="', get_next_posts_link( '&rsaquo;', $max_page ) );
 
 			if ( (int) $max_page > (int) $paged ) {
-				$return .= '<li class="page-item">' . "\n";
-				$return .= '<a href="' . esc_url( get_pagenum_link( $max_page ) ) . '" class="page-link btn-50" title="' . $last . '">&raquo;</a>';
-				$return .= '</li>' . "\n";
-			}
-			$return .= '</ul>' . "\n";
-			$return .= '</nav>' . "\n";
+				$return .= '<a href="' . esc_url( get_pagenum_link( $max_page ) ) . '" class="page-numbers" title="' . $last . '">&raquo;</a>';
+			}       
 		}
 
-		echo $return;
+		return $return;
 	}
 }
 
@@ -1127,13 +535,13 @@ if ( ! function_exists( 'xlt_get_the_terms' ) ) {
 			$term_links = array();
 
 			foreach ( $terms as $term ) {
-				$term_links[] = '<li class="d-inline fw-bold"><a href="' . esc_attr( get_term_link( $term->slug, $taxonomy ) ) . '">' . esc_html( $term->name ) . '</a></li>';
+				$term_links[] = '<a href="' . esc_attr( get_term_link( $term->slug, $taxonomy ) ) . '">' . esc_html( $term->name ) . '</a>';
 			}
 
 			if ( $cut ) {
 				$term_links    = array();
 				$key           = count( $terms ) - 1;
-				$term_links[0] = '<li class="d-inline fw-bold"><a href="' . esc_attr( get_term_link( $terms[ $key ]->slug, $taxonomy ) ) . '">' . esc_html( $terms[ $key ]->name ) . '</a></li>';
+				$term_links[0] = '<a href="' . esc_attr( get_term_link( $terms[ $key ]->slug, $taxonomy ) ) . '">' . esc_html( $terms[ $key ]->name ) . '</a>';
 			}
 
 			$all_terms = implode( ', ', $term_links );
@@ -1153,7 +561,7 @@ if ( ! function_exists( 'xlt_get_years' ) ) {
 	 * @return void
 	 */
 	function xlt_get_years( $actual_year = null ) {
-		global $wpdb,$lang;
+		global $wpdb, $lang;
 
 		$array = array();
 
@@ -1166,13 +574,13 @@ if ( ! function_exists( 'xlt_get_years' ) ) {
 
 		foreach ( $years as $year ) {
 			if ( ( isset( $actual_year ) ) && $year->year === $actual_year ) {
-				$array[] = '<span class="text-black">' . $year->year . '</span>';
+				$array[] = '<strong>' . $year->year . '</strong>';
 			} else {
 				$array[] = '<a href="' . home_url( '/' ) . $year->year . $url . '">' . $year->year . '</a>';
 			}
 		}
 
-		echo implode( ' | ', $array );
+		echo implode( ' ', $array );
 	}
 }
 
@@ -1186,7 +594,7 @@ if ( ! function_exists( 'xlt_get_months' ) ) {
 	 * @return void
 	 */
 	function xlt_get_months( $year, $actual_month = null ) {
-		global $wpdb,$lang;
+		global $wpdb, $lang;
 
 		$array = array();
 
@@ -1203,9 +611,9 @@ if ( ! function_exists( 'xlt_get_months' ) ) {
 			$month_name = ( 'en' === $lang ) ? date( 'F', strtotime( $datetime ) ) : date_i18n( 'F', strtotime( $datetime ) );
 
 			if ( ( isset( $actual_month ) ) && $actual_month === $month->month ) {
-				$array[] = '<li><span class="text-black">' . $month_name . '</span></li>';
+				$array[] = '<strong>' . $month_name . '</strong>';
 			} else {
-				$array[] = '<li><a href="' . home_url( '/' ) . $year . '/' . $l_month . $url . '">' . $month_name . '</a></li>';
+				$array[] = '<a href="' . home_url( '/' ) . $year . '/' . $l_month . $url . '">' . $month_name . '</a>';
 			}
 		}
 
@@ -1215,7 +623,7 @@ if ( ! function_exists( 'xlt_get_months' ) ) {
 
 if ( ! function_exists( 'xlt_print_svg' ) ) {
 	/**
-	 * Print an svg into the HTML.
+	 * Print a svg into the HTML.
 	 *
 	 * @param string $svg The SVG url.
 	 *
@@ -1228,3 +636,97 @@ if ( ! function_exists( 'xlt_print_svg' ) ) {
 	}
 }
 
+if ( ! function_exists( 'xlt_atom_date' ) ) {
+	/**
+	 * Convert a date to ATOM format.
+	 *
+	 * @param string $date The date to convert.
+	 *
+	 * @return string
+	 * @throws Exception Exception.
+	 */
+	function xlt_atom_date( $date ) {
+		// @codingStandardsIgnoreStart
+		return ( new DateTime( $date, new DateTimeZone( 'Europe/Rome' ) ) )->format( DateTimeInterface::ATOM );
+		// @codingStandardsIgnoreEnd
+	}
+}
+
+if ( ! function_exists( 'xlt_related_links' ) ) {
+	/**
+	 * Get related articles list.
+	 *
+	 * @return string
+	 */
+	function xlt_related_links() {
+		$related_links = '';
+
+		if ( is_single() ) {
+
+			global $post;
+
+			$num_posts = 6;
+			$count     = 0;
+			$post_ids  = array( $post->ID );
+			$related   = '';
+			$cats      = wp_get_post_categories( $post->ID );
+
+			if ( $count <= ( $num_posts - 1 ) ) {
+
+				$cat_ids = array();
+				foreach ( $cats as $cat ) {
+					$cat_ids[] = $cat;
+				}
+
+				$show_posts = $num_posts - $count;
+
+				$args = array(
+					'category__in'        => $cat_ids,
+					'post__not_in'        => $post_ids,
+					'showposts'           => $show_posts,
+					'ignore_sticky_posts' => 1,
+					'orderby'             => 'rand',
+					'tax_query'           => array(
+						array(
+							'taxonomy' => 'post_format',
+							'field'    => 'slug',
+							'terms'    => array(
+								'post-format-link',
+								'post-format-status',
+								'post-format-aside',
+								'post-format-quote',
+							),
+							'operator' => 'NOT IN',
+						),
+					),
+				);
+
+				$cat_query = new WP_Query( $args );
+
+				if ( $cat_query->have_posts() ) {
+
+					while ( $cat_query->have_posts() ) {
+
+						$cat_query->the_post();
+
+						$title = ( 'en' === get_lang() ) ? get_title_en() : get_the_title();
+						$link  = ( 'en' === get_lang() ) ? get_permalink() . 'en/' : get_permalink();
+
+						$related .= '<li><a href="' . $link . '" rel="bookmark" title="' . $title . '">' . $title . '</a></li>';
+					}
+				}
+			}
+
+			if ( $related ) {
+
+				$class = 'two-columns';
+
+				$related_links = '<ul class="' . $class . '">' . $related . '</ul>';
+			}
+
+			wp_reset_query();
+		}
+
+		return $related_links;
+	}
+}

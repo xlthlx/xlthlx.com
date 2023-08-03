@@ -69,6 +69,23 @@ function get_date_en() {
 }
 
 /**
+ * Convert the comment date.
+ *
+ * @param string $date The date to convert.
+ *
+ * @return string
+ */
+function xlt_get_comment_date( $date ) {
+	global $lang;
+
+	if ( 'en' === $lang ) {
+		return date( 'd F Y', strtotime( $date ) ) . ' &ndash; ' . date( 'H:i', strtotime( $date ) );
+	}
+
+	return date_i18n( 'd F Y', strtotime( $date ) ) . ' &ndash; ' . date( 'H:i', strtotime( $date ) );
+}
+
+/**
  * Translate the title.
  *
  * @param int $post_id The post ID.

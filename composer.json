@@ -30,12 +30,12 @@
     "wpreadme2markdown/wp2md": "^4.0.2"
   },
   "scripts": {
-    "lint:wpcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs --ignore=vendor/*,node_modules/*,inc/cmb2/*,_root/* --extensions=php . -n -v --report-file=report.txt",
-    "lint:wpcs:fix": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf --ignore=vendor/*,node_modules/*,inc/cmb2/*,_root/* --extensions=php .",
+    "lint:wpcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs --ignore=vendor/*,node_modules/*,inc/cmb2/*,_root/*,content/* --extensions=php . -n -v --report-file=report.txt",
+    "lint:wpcs:fix": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf --ignore=vendor/*,node_modules/*,inc/cmb2/*,_root/*,content/* --extensions=php .",
     "lint:php": "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor .",
     "make-pot": "wp i18n make-pot . languages/xlthlx.pot",
     "post-update-cmd": "vendor/bin/phar-install",
-    "readme": "@php ./vendor/wpreadme2markdown/wp2md/bin/wp2md -i readme.txt -o README.md"
+    "readme": "@php ./vendor/wpreadme2markdown/wp2md/bin/wp2md < readme.txt > README.md"
   },
   "config": {
     "allow-plugins": {

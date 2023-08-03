@@ -14,51 +14,46 @@ while ( have_posts() ) :
 	the_post();
 	?>
 
-	<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
-
-		<div class="row">
-			<div class="col-md-9">
-
-				<div class="row">
-
-					<div class="d-flex">
-						<div class="col-12 d-flex">
-							<h2 class="display-5 pb-3 shadows text-dark"><?php echo get_the_title(); ?></h2>
-						</div>
-					</div>
-
-					<div class="col-md-12 text-break">
-						<section class="article-content mb-4">
-							<hr class="pt-0 mt-0 mb-2"/>
-							<p class="mb-0"><?php echo ( 'en' === $lang ) ? get_date_en() : get_the_date(); ?></p>
-
-							<div class="article-body">
-								<?php echo xlt_old_posts_warning( $lang ); ?>
-								<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() ); ?>
-							</div>
-
-							<?php get_template_part( 'parts/social' ); ?>
-
-							<div class="pt-4">
-								<?php get_template_part( 'parts/terms' ); ?>
-							</div>
-
-							<hr class="mt-4 mb-0"/>
-							<?php get_template_part( 'parts/navigation' ); ?>
-						</section>
-
-						<?php comments_template(); ?>
-
-						<?php get_template_part( 'parts/sidebar-post-footer' ); ?>
-
-				</div>
+	<div class="xlt-row" id="main-content">
+		<div class="xlt-ph xlt-spacing xlt-sticky">
+			<div class="xlt-ph__wrapper xlt-sticky_top">
+				<h1 class="xlt-ph__title"><?php echo get_the_title(); ?></h1>
 			</div>
 		</div>
 
-		<?php get_template_part( 'parts/sidebar-post' ); ?>
+		<div class="xlt-content xlt-spacing">
+			<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
+				<?php echo xlt_old_posts_warning( $lang ); ?>
+				<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() ); ?>
 
+			</article>
 		</div>
-	</article>
+
+		<div class="xlt-meta xlt-spacing">
+			<div class="xlt-meta__wrapper xlt-sticky_top">
+				<div class="xlt-meta__date">
+					<time class="entry-date published" datetime="<?php echo xlt_atom_date( $post->post_date ); ?>">
+						<?php echo ( 'en' === $lang ) ? get_date_en() : get_the_date(); ?></time>
+					<time class="updated screen-reader-text" datetime="<?php echo xlt_atom_date( $post->post_modified ); ?>">
+						<?php echo ( 'en' === $lang ) ? get_date_en() : get_the_date(); ?></time>
+				</div>
+
+				<div class="xlt-meta__categories">
+					<div class="xlt-cl">
+						<?php get_template_part( 'parts/terms' ); ?>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="xlt-main-sidebar xlt-spacing">
+			<?php get_template_part( 'parts/sidebar-post' ); ?>
+		</div>
+	</div>
+	<?php get_template_part( 'parts/navigation' ); ?>
+	<?php comments_template(); ?>
+
 <?php endwhile; ?>
 <?php
 get_footer();

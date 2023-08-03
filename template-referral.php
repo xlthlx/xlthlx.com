@@ -51,40 +51,29 @@ while ( have_posts() ) :
 	the_post();
 	?>
 
-	<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
-
-		<div class="row">
-			<div class="col-md-9">
-
-				<div class="row">
-
-					<div class="col-12 d-flex">
-						<div class="col-md-12 d-flex">
-							<h2 class="display-4 pb-3 shadows"><?php echo get_the_title(); ?></h2>
-						</div>
-					</div>
-
-					<div class="col-md-12 text-break">
-
-						<section class="page-content mb-4">
-							<hr class="pt-0 mt-0 mb-4"/>
-							<?php echo $ref; ?>
-							<h4 class="display-6 mt-4 shadows">
-								<?php echo ( 'en' === $lang ) ? 'Buy me a coffee' : 'Offrimi un caffè'; ?>
-							</h4>
-							<hr class="mt-4 mb-4">
-							<?php echo $coffee; ?>
-							<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() ); ?>
-						</section>
-					</div>
-				</div>
-
+	<div class="xlt-row" id="main-content">
+		<div class="xlt-ph xlt-spacing xlt-sticky">
+			<div class="xlt-ph__wrapper xlt-sticky_top"><h1 class="xlt-ph__title"><?php echo get_the_title(); ?></h1>
 			</div>
+		</div>
 
+		<div class="xlt-content xlt-spacing">
+			<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
+
+				<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() ); ?>
+
+				<?php echo $ref; ?>
+				<h2><?php echo ( 'en' === $lang ) ? 'Buy me a coffee' : 'Offrimi un caffè'; ?></h2>
+				<?php echo $coffee; ?>
+
+			</article>
+		</div>
+
+		<div class="xlt-main-sidebar xlt-spacing">
 			<?php get_template_part( 'parts/sidebar-page' ); ?>
 		</div>
 
-	</article>
+	</div>
 
 <?php endwhile; ?>
 <?php

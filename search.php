@@ -8,7 +8,7 @@
 global $lang;
 get_header();
 
-$search_title = ( 'en' === $lang ) ? 'Search results for: ' . get_query_var( 's' ) : 'Risultati della ricerca per: ' . get_query_var( 's' );
+$search_title = ( 'en' === $lang ) ? 'Search results for:' : 'Risultati della ricerca per:';
 $paging       = ( 0 !== get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
 $search_query = new WP_Query(
@@ -19,21 +19,36 @@ $search_query = new WP_Query(
 		'orderby' => 'date',
 	)
 );
-?>
-<?php if ( have_posts() ) { ?>
-
-	<h2 class="display-5 pb-3"><?php echo $search_title; ?></h2>
-	<hr class="pt-0 mt-0 mb-4"/>
-
+if ( $search_query->have_posts() ) {
+	?>
+	<div class="xlt-row" id="main-content">
+		<div class="xlt-ph xlt-spacing xlt-sticky">
+			<div class="xlt-ph__wrapper xlt-sticky_top">
+				<p class="xlt-ph__before-title"><?php echo $search_title; ?></p>
+				<h1 class="xlt-ph__title">“<?php echo get_query_var( 's' ); ?>”</h1></div>
+		</div>
+		<div class="xlt-loop__wrapper" id="xlt-loop__wrapper">
+			<?php
+			while ( $search_query->have_posts() ) {
+				$search_query->the_post();
+				get_template_part( 'parts/tease', 'post' );
+			}
+			?>
+		</div>
+		<div class="xlt-main-sidebar xlt-spacing">
+			<?php get_template_part( 'parts/sidebar-page' ); ?>
+		</div>
+		<?php if ( '' !== xlt_pagination( $search_query, $paging ) ) { ?>
+			<div class="xlt-page-navigation">
+				<nav class="navigation pagination">
+					<div class="nav-links">
+						<?php echo xlt_pagination( $search_query, $paging ); ?>
+					</div>
+				</nav>
+			</div>
+		<?php } ?>
+	</div>
 	<?php
-	while ( have_posts() ) {
-		the_post();
-
-		get_template_part( 'parts/tease', 'post' );
-
-	}
-
-	xlt_pagination( $search_query, $paging );
 
 } else {
 	get_template_part( 'parts/no-content' );

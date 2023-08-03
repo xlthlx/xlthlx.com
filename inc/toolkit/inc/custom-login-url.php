@@ -211,7 +211,7 @@ function xlt_new_login_url( $scheme = null ) {
 		);
 	}
 
-	return home_url( '/', $scheme ) . '?' . $_GET['xlt_login'];
+	return home_url( '/', $scheme ) . '?' . $xlt_login;
 }
 
 /**

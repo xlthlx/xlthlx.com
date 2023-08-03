@@ -8,55 +8,51 @@
 global $lang;
 get_header();
 
-$not_found_title = ( 'en' === $lang ) ? 'Not found' : 'Non trovato';
-$content         = ( 'en' === $lang ) ? 'The hamsters running this website have not found what you are looking for.' : 'I criceti che gestiscono questo sito non hanno trovato quello che stavi cercando.';
+$not_found_title          = ( 'en' === $lang ) ? 'Not found' : 'Non trovato';
+$not_found_content_before = ( 'en' === $lang ) ? 'Something went wrong.' : 'Qualcosa è andato storto.';
+$not_found_content        = ( 'en' === $lang ) ? 'It seems we can&rsquo;t find what you&rsquo;re looking for. <br/>Perhaps searching can help.' : 'Sembra che non riusciamo a trovare quello che stai cercando. <br/>Forse fare una ricerca può aiutare.';
+$not_found_content_after  = ( 'en' === $lang ) ? 'While you think about it, here is a photo of Petula, my cat.' : 'Mentre ci pensi, ecco una foto di Petula, la mia gatta.';
+$not_found_content_last   = ( 'en' === $lang ) ? 'She greets you and says: Meow.' : 'Ti saluta, e dice: Miao.';
 ?>
 
-	<article class="post-type-404" id="post-404">
-
-		<div class="row">
-			<div class="col-md-8">
-
-				<div class="row">
-
-					<div class="col-12 d-flex">
-						<div class="col-md-12 d-flex">
-							<h2 class="display-4 pb-3 shadows"><?php echo $not_found_title; ?></h2>
-						</div>
-					</div>
-
-					<div class="col-md-12 text-break">
-
-						<section class="page-content mb-4">
-							<hr class="pt-0 mt-0 mb-4"/>
-							<p class="text-center mb-5 mt-5">
-								<?php echo $content; ?>
-							</p>
-							<figure class="wp-block-image aligncenter size-full">
-								<picture>
-									<source srcset="<?php echo get_template_directory_uri(); ?>/assets/img/404.webp" type="image/webp">
-									<source srcset="<?php echo get_template_directory_uri(); ?>/assets/img/404.gif" type="image/gif">
-									<img decoding="async" width="400" height="200" class="img-fluid"
-										 src="<?php echo get_template_directory_uri(); ?>/assets/img/404.gif" alt="404"/>
-								</picture>
-							</figure>
-							<div class="text-center pt-3 px-5 m-5">
-								<?php get_template_part( 'parts/search-form' ); ?>
-							</div>
-						</section>
-					</div>
-				</div>
-
-			</div>
-
-			<div class="col-md-4">
-				<aside class="sidebar mt-md-0 mt-4 ps-md-4 ps-0">
-					<?php dynamic_sidebar( 'page_sidebar' ); ?>
-				</aside>
+	<div class="xlt-row" id="main-content">
+		<div class="xlt-ph xlt-spacing xlt-sticky">
+			<div class="xlt-ph__wrapper xlt-sticky_top"><h1 class="xlt-ph__title"><?php echo $not_found_title; ?></h1>
 			</div>
 		</div>
 
-	</article>
+		<div class="xlt-content xlt-spacing">
+			<article class="post-type-404" id="post-404">
+
+				<p><?php echo $not_found_content_before; ?></p>
+				<p><?php echo $not_found_content; ?></p>
+
+				<?php get_template_part( 'parts/search-form' ); ?>
+
+				<p></p>
+				<p><?php echo $not_found_content_after; ?></p>
+
+				<figure class="wp-block-image aligncenter size-full">
+					<picture>
+						<source srcset="<?php echo get_template_directory_uri(); ?>/assets/img/404.webp"
+								type="image/webp">
+						<source srcset="<?php echo get_template_directory_uri(); ?>/assets/img/404.jpg"
+								type="image/jpg">
+						<img decoding="async" width="800" height="450"
+							 src="<?php echo get_template_directory_uri(); ?>/assets/img/404.jpg" alt="Petula"/>
+					</picture>
+				</figure>
+
+				<p><?php echo $not_found_content_last; ?></p>
+
+			</article>
+		</div>
+
+		<div class="xlt-main-sidebar xlt-spacing">
+			<?php get_template_part( 'parts/sidebar-page' ); ?>
+		</div>
+
+	</div>
 
 <?php
 get_footer();

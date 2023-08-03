@@ -29,57 +29,39 @@ if ( is_day() ) {
 }
 
 $paging = ( 0 !== get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-?>
 
-<?php if ( have_posts() ) { ?>
-
-	<div class="row">
-		<?php
-		echo ( is_year() || is_month() ) ? '<div class="col-md-8">' : '<div class="col-md-12">';
-		?>
-		<h2 class="display-5 pb-3"><?php echo $archive_title; ?></h2>
-		<hr class="pt-0 mt-0 mb-4"/>
-
-		<?php
-		while ( have_posts() ) {
-			the_post();
-
-			get_template_part( 'parts/tease', 'post' );
-
-		}
-		?>
-	</div>
-	<?php if ( ( is_year() || is_month() ) ) { ?>
-		<div class="col-md-4">
-			<aside class="sidebar mt-md-0 mt-4 ps-md-4 ps-0">
-				<div id="xlthlx-months" class="widget widget_xlthlx-archive p-4">
-					<h3 class="h2 pb-2 shadows">
-						<?php echo ( 'en' === $lang ) ? 'Months' : 'Mesi'; ?>
-					</h3>
-					<div class="text-widget">
-						<?php $month = ( is_year() ) ? '' : get_the_time( 'n' ); ?>
-						<ul>
-							<?php xlt_get_months( get_the_time( 'Y' ), $month ); ?>
-						</ul>
-					</div>
-				</div>
-				<div id="xlthlx-archive" class="widget widget_xlthlx-archive p-4">
-					<h3 class="h2 pb-2 shadows">
-						<?php echo ( 'en' === $lang ) ? 'Years' : 'Anni'; ?>
-					</h3>
-					<div class="text-widget">
-						<?php xlt_get_years( get_the_time( 'Y' ) ); ?>
-					</div>
-				</div>
-			</aside>
+if ( have_posts() ) { ?>
+	<div class="xlt-row" id="main-content">
+		<div class="xlt-ph xlt-spacing xlt-sticky">
+			<div class="xlt-ph__wrapper xlt-sticky_top">
+				<h1 class="xlt-ph__title"><?php echo $archive_title; ?></h1></div>
 		</div>
-	<?php } ?>
+		<div class="xlt-loop__wrapper" id="xlt-loop__wrapper">
+			<?php
+			while ( have_posts() ) {
+				the_post();
+				get_template_part( 'parts/tease', 'post' );
+			}
+			?>
+		</div>
+		<div class="xlt-main-sidebar xlt-spacing">
+			<?php get_template_part( 'parts/sidebar-page' ); ?>
+		</div>
+		<?php if ( '' !== xlt_pagination( $wp_query, $paging ) ) { ?>
+			<div class="xlt-page-navigation">
+				<nav class="navigation pagination">
+					<div class="nav-links">
+						<?php echo xlt_pagination( $wp_query, $paging ); ?>
+					</div>
+				</nav>
+			</div>
+		<?php } ?>
 	</div>
 	<?php
-	xlt_pagination( $wp_query, $paging );
 
 } else {
 	get_template_part( 'parts/no-content' );
 }
 
 get_footer();
+
