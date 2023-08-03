@@ -43,7 +43,7 @@ function xlt_setup() {
 	);
 
 	remove_theme_support( 'automatic-feed-links' );
-	//remove_theme_support( 'widgets-block-editor' );
+	remove_theme_support( 'widgets-block-editor' );
 
 	remove_action( 'wp_head', 'feed_links_extra', 3 );
 
