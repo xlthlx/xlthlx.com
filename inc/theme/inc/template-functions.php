@@ -267,7 +267,7 @@ add_filter( 'embed_oembed_discover', 'xlt_restore_oembed_cache' );
  * @return void
  */
 function xlt_insert_css() {
-	$file  = get_template_directory() . '/src/css/main.css';
+	$file  = get_template_directory() . '/assets/css/main.min.css';
 	$style = xlt_get_file_content( $file );
 
 	$dir = ABSPATH . 'wp-content/plugins/contact-form-7/';
