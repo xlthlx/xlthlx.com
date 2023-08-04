@@ -7,6 +7,7 @@
 
 // @codingStandardsIgnoreStart
 use Highlight\Highlighter;
+
 // @codingStandardsIgnoreEnd
 
 /**
@@ -37,7 +38,7 @@ add_action( 'admin_menu', 'xlt_admin_footer_remove' );
  * Modify the rendering of code Gutenberg block.
  *
  * @param string $block_content The block content.
- * @param array  $block The full block, including name and attributes.
+ * @param array $block The full block, including name and attributes.
  *
  * @return string
  * @throws Exception Exception.
@@ -322,7 +323,7 @@ add_action( 'wp_footer', 'xlt_insert_scripts' );
 function xlt_404_plausible() {
 	if ( is_404() ) {
 		?>
-		<script>plausible("404", {props: {path: document.location.pathname}});</script>
+        <script>plausible('404', { props: { path: document.location.pathname } })</script>
 		<?php
 	}
 }
@@ -433,10 +434,10 @@ add_filter( 'manage_tvseries_posts_columns', 'xlt_hide_seo_columns', 20 );
 /**
  * Wrap the image with picture tag to support webp.
  *
- * @param string   $html HTML img element or empty string on failure.
- * @param int      $attachment_id Image attachment ID.
- * @param string   $size Requested image size.
- * @param bool     $icon Whether the image should be treated as an icon.
+ * @param string $html HTML img element or empty string on failure.
+ * @param int $attachment_id Image attachment ID.
+ * @param string $size Requested image size.
+ * @param bool $icon Whether the image should be treated as an icon.
  * @param string[] $attr Attributes for the image markup.
  *
  * @return string
@@ -468,7 +469,7 @@ add_filter( 'wp_get_attachment_image', 'xlt_wrap_image_with_picture', 10, 5 );
  *
  * @param string $filtered_image Full img tag with attributes that will replace the source img tag.
  * @param string $context Additional context, like the current filter name or the function name from where this was called.
- * @param int    $attachment_id Image attachment ID.
+ * @param int $attachment_id Image attachment ID.
  *
  * @return string
  */
@@ -541,7 +542,7 @@ function xlt_add_remove_link_columns( $post_columns ) {
  * Display column content.
  *
  * @param string $column_name The name of the column to display.
- * @param int    $post_id The current post ID.
+ * @param int $post_id The current post ID.
  *
  * @return void
  */
@@ -605,9 +606,9 @@ function xlt_deepl_auth_key_callback_function( $val ) {
 	$id          = $val['id'];
 	$option_name = $val['option_name'];
 	?>
-	<label for="<?php echo esc_attr( $id ); ?>">Auth Key</label>
-	<input type="password" name="<?php echo esc_attr( $option_name ); ?>"
-		   id="<?php echo esc_attr( $id ); ?>" value="<?php echo esc_attr( get_option( $option_name ) ); ?>"/>
+    <label for="<?php echo esc_attr( $id ); ?>">Auth Key</label>
+    <input type="password" name="<?php echo esc_attr( $option_name ); ?>"
+           id="<?php echo esc_attr( $id ); ?>" value="<?php echo esc_attr( get_option( $option_name ) ); ?>"/>
 	<?php
 }
 
@@ -810,3 +811,16 @@ function xlt_custom_wp_trim_excerpt( $xlt_excerpt ) {
 
 remove_filter( 'get_the_excerpt', 'wp_trim_excerpt' );
 add_filter( 'get_the_excerpt', 'xlt_custom_wp_trim_excerpt' );
+
+/**
+ * Add favicon to admin.
+ *
+ * @return void
+ */
+function xlt_add_admin_favicon() {
+	$favicon = get_template_directory_uri() . '/assets/img/favicon.ico';
+
+	echo '<link rel="shortcut icon" href="' . esc_url( $favicon ) . '" />';
+}
+
+add_action( 'admin_head', 'xlt_add_admin_favicon' );
