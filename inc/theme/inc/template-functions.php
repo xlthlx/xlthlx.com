@@ -266,7 +266,7 @@ add_filter( 'embed_oembed_discover', 'xlt_restore_oembed_cache' );
  * @return void
  */
 function xlt_insert_css() {
-	$file  = get_template_directory() . '/assets/css/main.min.css';
+	$file  = get_template_directory() . '/src/css/main.css';
 	$style = xlt_get_file_content( $file );
 
 	$dir = ABSPATH . 'wp-content/plugins/contact-form-7/';
@@ -490,11 +490,13 @@ function xlt_image_with_picture( $filtered_image, $context, $attachment_id ) {
 	$img_src  = wp_get_attachment_image_url( $attachment_id, $size );
 	$webp_src = preg_replace( '/(?:jpg|png|jpeg|gif)$/i', 'webp', $img_src );
 
-	return '<picture>
+	$filtered_image = '<picture>
 			  <source srcset="' . $webp_src . '" type="image/webp">
 			  <source srcset="' . $img_src . '" type="' . $type . '">
 			  ' . $filtered_image . '
 			</picture>';
+
+	return $filtered_image;
 }
 
 add_filter( 'wp_content_img_tag', 'xlt_image_with_picture', 10, 3 );
@@ -796,7 +798,7 @@ function xlt_custom_wp_trim_excerpt( $xlt_excerpt ) {
 		$pos    = strrpos( $xlt_excerpt, '</' );
 		$figure = strrpos( $xlt_excerpt, '</figure>' );
 		if ( false !== $pos && false === $figure ) {
-			$xlt_excerpt = str_replace( $xlt_excerpt, $excerpt_end, $pos );
+			$xlt_excerpt = substr_replace( $xlt_excerpt, $excerpt_end, $pos, 0 );
 		}
 
 		return $xlt_excerpt;
