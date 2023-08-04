@@ -7,7 +7,6 @@
 
 // @codingStandardsIgnoreStart
 use Highlight\Highlighter;
-
 // @codingStandardsIgnoreEnd
 
 /**
@@ -276,21 +275,6 @@ function xlt_insert_css() {
 	echo '
 <style id="all-styles-inline">' . $cf7 . $style . '</style>
 ';
-
-	$plausible = '
-<script id="stats" defer>
-';
-
-	$response   = wp_remote_get( 'https://plausible.io/js/script.outbound-links.file-downloads.hash.js' );
-	$plausible .= str_replace( 'o.getAttribute("data-domain")', '"xlthlx.com"', str_replace( 'o.src', "'https://plausible.io/js/script.outbound-links.file-downloads.hash.js'", $response['body'] ) );
-	$plausible .= '
-        window.plausible = window.plausible || function () {
-			(window.plausible.q = window.plausible.q || []).push(arguments)
-		}
-	</script>
-	';
-
-	echo $plausible;
 }
 
 add_action( 'wp_head', 'xlt_insert_css' );
@@ -506,13 +490,11 @@ function xlt_image_with_picture( $filtered_image, $context, $attachment_id ) {
 	$img_src  = wp_get_attachment_image_url( $attachment_id, $size );
 	$webp_src = preg_replace( '/(?:jpg|png|jpeg|gif)$/i', 'webp', $img_src );
 
-	$filtered_image = '<picture>
+	return '<picture>
 			  <source srcset="' . $webp_src . '" type="image/webp">
 			  <source srcset="' . $img_src . '" type="' . $type . '">
 			  ' . $filtered_image . '
 			</picture>';
-
-	return $filtered_image;
 }
 
 add_filter( 'wp_content_img_tag', 'xlt_image_with_picture', 10, 3 );
@@ -814,7 +796,7 @@ function xlt_custom_wp_trim_excerpt( $xlt_excerpt ) {
 		$pos    = strrpos( $xlt_excerpt, '</' );
 		$figure = strrpos( $xlt_excerpt, '</figure>' );
 		if ( false !== $pos && false === $figure ) {
-			$xlt_excerpt = substr_replace( $xlt_excerpt, $excerpt_end, $pos, 0 );
+			$xlt_excerpt = str_replace( $xlt_excerpt, $excerpt_end, $pos );
 		}
 
 		return $xlt_excerpt;

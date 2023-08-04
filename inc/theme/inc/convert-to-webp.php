@@ -43,9 +43,8 @@ function xlt_check_mime_type( $filename ) {
 	$allowed_mime_types[] = 'image/jpeg';
 	$allowed_mime_types[] = 'image/jpg';
 	$allowed_mime_types[] = 'image/png';
-	$allowed_mime_types[] = 'image/gif';
 
-	if ( ! in_array( xlt_get_mime_type( $filename ), $allowed_mime_types ) ) {
+	if ( ! in_array( xlt_get_mime_type( $filename ), $allowed_mime_types, true ) ) {
 		return;
 	}
 
@@ -61,7 +60,7 @@ function xlt_check_mime_type( $filename ) {
  * @throws ConversionFailedException Exception.
  */
 function xlt_convert_to_webp( $source ) {
-	$destination = preg_replace( '/(?:jpg|png|jpeg|gif)$/i', 'webp', $source );
+	$destination = preg_replace( '/(?:jpg|png|jpeg)$/i', 'webp', $source );
 
 	WebPConvert::convert(
 		$source,
@@ -120,20 +119,19 @@ function xlt_delete_webp( $file ) {
 	$allowed_mime_types[] = 'image/jpeg';
 	$allowed_mime_types[] = 'image/jpg';
 	$allowed_mime_types[] = 'image/png';
-	$allowed_mime_types[] = 'image/gif';
 
-	if ( ! in_array( xlt_get_mime_type( $file ), $allowed_mime_types ) ) {
+	if ( ! in_array( xlt_get_mime_type( $file ), $allowed_mime_types, true ) ) {
 		return $file;
 	}
 
 
-	$destination = preg_replace( '/(?:jpg|png|jpeg|gif)$/i', 'webp', $file );
+	$destination = preg_replace( '/(?:jpg|png|jpeg)$/i', 'webp', $file );
 	if ( file_exists( $destination ) ) {
 		if ( unlink( $destination ) ) {
 			return $file;
-		} else {
-			error_log( 'WebP Express failed deleting webp:' . $destination );
 		}
+
+		error_log( 'WebP Express failed deleting webp:' . $destination );
 	}
 
 	return $file;
