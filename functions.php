@@ -80,7 +80,7 @@ function xlt_widgets_init() {
 			'name'          => esc_html__( 'Page Sidebar', 'xlthlx' ),
 			'id'            => 'page-sidebar',
 			'description'   => esc_html__( 'Page Sidebar', 'xlthlx' ),
-			'before_widget' => '<section id="%1$s" class="%2$s">',
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<p class="xlt-widget__title"><span>',
 			'after_title'   => '</span></p>',

@@ -3060,10 +3060,6 @@ body.xlt-h-nav_open {
     padding-left: 0;
 }
 
-.widget.widget_years {
-    margin-bottom: 48px;
-}
-
 .widget_recent_entries .post-date {
     font-family: var(--font);
     font-style: italic;
