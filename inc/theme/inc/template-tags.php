@@ -418,8 +418,8 @@ if ( ! function_exists( 'xlt_get_menu_items' ) ) {
 		$menu_array[ $i ]['url']     = ( '#' !== $menu->url ) ? $menu->url : false;
 		$title_en                    = ( '' !== get_title_en( $menu->object_id ) ) ? get_title_en( $menu->object_id ) : $menu->title;
 		$menu_array[ $i ]['title']   = ( 'it' === $lang ) ? $menu->title : $title_en;
-		$menu_array[ $i ]['target']  = ( '' !== $menu->target ) ? ' target="' . $menu->target . '"' : '';
-		$menu_array[ $i ]['classes'] = implode( ' ', $menu->classes );
+		$menu_array[ $i ]['target']  = ! empty( $menu->target ) ? ' target="' . $menu->target . '"' : '';
+		$menu_array[ $i ]['classes'] = ! empty( $menu->classes ) ? ' class="' . implode( ' ', $menu->classes ) . '"' : '';
 
 		return $menu_array;
 	}

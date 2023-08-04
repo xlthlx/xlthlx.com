@@ -78,9 +78,9 @@ global $lang, $site_url, $site_name, $site_desc; ?>
 							?>
 
 							<?php if ( isset( $menu_item['submenu'] ) ) { ?>
-                                <li class="<?php echo $menu_item['classes']; ?>">
+                                <li<?php echo $menu_item['classes']; ?>>
 									<?php if ( $menu_item['url'] ) { ?>
-                                        <a <?php echo $menu_item['target']; ?> href="<?php echo $menu_item['url']; ?>"
+                                        <a<?php echo $menu_item['target']; ?> href="<?php echo $menu_item['url']; ?>"
                                                                                title="<?php echo $menu_item['title']; ?>">
 											<?php echo $menu_item['title']; ?>
                                         </a>
@@ -89,9 +89,9 @@ global $lang, $site_url, $site_name, $site_desc; ?>
 									<?php } ?>
                                     <ul class="sub-menu">
 										<?php foreach ( $menu_item['submenu'] as $menu_subitem ) { ?>
-                                            <li class="<?php echo $menu_subitem['classes']; ?>">
+                                            <li<?php echo $menu_subitem['classes']; ?>>
 	                                            <?php if ( $menu_subitem['url'] ) { ?>
-                                                    <a <?php echo $menu_subitem['target']; ?>
+                                                    <a<?php echo $menu_subitem['target']; ?>
                                                             title="<?php echo $menu_subitem['title']; ?>"
                                                             href="<?php echo $menu_subitem['url']; ?>">
 			                                            <?php echo $menu_subitem['title']; ?>
@@ -104,9 +104,9 @@ global $lang, $site_url, $site_name, $site_desc; ?>
                                     </ul>
                                 </li>
 							<?php } else { ?>
-                                <li class="<?php echo $menu_item['classes']; ?>">
+                                <li<?php echo $menu_item['classes']; ?>>
 	                                <?php if ( $menu_item['url'] ) { ?>
-                                        <a <?php echo $menu_item['target']; ?> href="<?php echo $menu_item['url']; ?>"
+                                        <a<?php echo $menu_item['target']; ?> href="<?php echo $menu_item['url']; ?>"
                                                                                title="<?php echo $menu_item['title']; ?>">
 			                                <?php echo $menu_item['title']; ?>
                                         </a>
