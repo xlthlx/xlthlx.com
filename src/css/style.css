@@ -2343,6 +2343,9 @@ h6 {
 
 .xlt-nav .sub-menu > li > a {
     position: relative;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-weight: 500;
 }
 
 .xlt-nav .sub-menu > li > a::before {
