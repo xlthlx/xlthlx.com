@@ -2595,6 +2595,12 @@ body.xlt-h-nav_open {
     }
 }
 
+@media only screen and (max-width: 768px) {
+    .xlt-spacing.xlt-spacing-title {
+        max-width: 53%;
+    }
+}
+
 .xlt-sticky_top {
     position: -webkit-sticky;
     position: sticky;
