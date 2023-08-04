@@ -78,7 +78,7 @@ global $lang, $site_url, $site_name, $site_desc; ?>
 							?>
 
 							<?php if ( isset( $menu_item['submenu'] ) ) { ?>
-                                <li class="href <?php echo $menu_item['classes']; ?>">
+                                <li class="xlt-nav-title <?php echo $menu_item['classes']; ?>">
 									<?php if ( $menu_item['url'] ) { ?>
                                         <a<?php echo $menu_item['target']; ?> href="<?php echo $menu_item['url']; ?>"
                                                                                title="<?php echo $menu_item['title']; ?>">
@@ -104,7 +104,7 @@ global $lang, $site_url, $site_name, $site_desc; ?>
                                     </ul>
                                 </li>
 							<?php } else { ?>
-                                <li class="href <?php echo $menu_item['classes']; ?>">
+                                <li class="xlt-nav-title <?php echo $menu_item['classes']; ?>">
 	                                <?php if ( $menu_item['url'] ) { ?>
                                         <a<?php echo $menu_item['target']; ?> href="<?php echo $menu_item['url']; ?>"
                                                                                title="<?php echo $menu_item['title']; ?>">
