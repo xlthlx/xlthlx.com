@@ -8,7 +8,6 @@
     "https://downloads.wordpress.org/plugin/plausible-analytics.zip",
     "https://downloads.wordpress.org/plugin/query-monitor.zip",
     "https://downloads.wordpress.org/plugin/slim-seo.zip",
-    "https://downloads.wordpress.org/plugin/sqlite-object-cache.zip",
     "https://downloads.wordpress.org/plugin/wp-sweep.zip"
   ],
   "mappings": {
@@ -20,8 +19,6 @@
     "WP_DEBUG": true,
     "WP_DEBUG_LOG": true,
     "WP_DEBUG_DISPLAY": false,
-    "SCRIPT_DEBUG": true,
-    "WPLANG": "it_IT",
-    "FORCE_SSL_ADMIN": true
+    "SCRIPT_DEBUG": true
   }
 }
