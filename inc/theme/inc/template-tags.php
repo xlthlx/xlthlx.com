@@ -9,7 +9,7 @@ if ( ! function_exists( 'xlt_get_link' ) ) {
 	/**
 	 * Set up the single link.
 	 *
-	 * @param array  $args Link args.
+	 * @param array $args Link args.
 	 * @param string $link Link.
 	 * @param string $name Link name.
 	 * @param string $position Link position.
@@ -17,7 +17,7 @@ if ( ! function_exists( 'xlt_get_link' ) ) {
 	 * @return string
 	 */
 	function xlt_get_link( $args, $link, $name, $position ) {
-		$return  = $args['before'];
+		$return = $args['before'];
 		$return .= sprintf(
 			$args['link'],
 			$link,
@@ -143,7 +143,7 @@ if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 	/**
 	 * Old posts warning.
 	 *
-	 * @param string   $lang Language.
+	 * @param string $lang Language.
 	 * @param int|bool $post_id The post ID.
 	 *
 	 * @return string
@@ -364,40 +364,46 @@ if ( ! function_exists( 'xlt_get_menu_items' ) ) {
 	 */
 	function xlt_get_menu_items( $theme_location ) {
 
+		$menu_list = [];
+
 		$locations = get_nav_menu_locations();
 		if ( ( $locations ) && isset( $locations[ $theme_location ] ) ) {
 
-			$menu       = get_term( $locations[ $theme_location ], 'nav_menu' );
-			$menu_items = wp_get_nav_menu_items( $menu->term_id );
-			$menu_list  = array();
-			$bool       = false;
+			$menu = get_term( $locations[ $theme_location ], 'nav_menu' );
+			if ( null !== $menu && ! is_wp_error( $menu ) ) {
 
-			$i = 0;
-			foreach ( $menu_items as $menu_item ) {
-				if ( 0 === (int) $menu_item->menu_item_parent ) {
+				$menu_items = wp_get_nav_menu_items( $menu->term_id );
+				if ( $menu_items ) {
 
-					$parent     = $menu_item->ID;
-					$menu_array = array();
-					$y          = 0;
+					$menu_list = array();
+					$bool      = false;
 
-					foreach ( $menu_items as $submenu ) {
-						if ( isset( $submenu ) && (int) $submenu->menu_item_parent === (int) $parent ) {
-							$bool       = true;
-							$menu_array = xlt_get_arr( $submenu, $menu_array, $y );
-							$y ++;
+					$i = 0;
+					foreach ( $menu_items as $menu_item ) {
+						if ( 0 === (int) $menu_item->menu_item_parent ) {
+
+							$parent     = $menu_item->ID;
+							$menu_array = array();
+							$y          = 0;
+
+							foreach ( $menu_items as $submenu ) {
+								if ( isset( $submenu ) && (int) $submenu->menu_item_parent === (int) $parent ) {
+									$bool       = true;
+									$menu_array = xlt_get_arr( $submenu, $menu_array, $y );
+									$y ++;
+								}
+							}
+
+							$menu_list = xlt_get_arr( $menu_item, $menu_list, $i );
+
+							if ( true === $bool && count( $menu_array ) > 0 ) {
+								$menu_list[ $i ]['submenu'] = $menu_array;
+							}
+							$i ++;
 						}
 					}
-
-					$menu_list = xlt_get_arr( $menu_item, $menu_list, $i );
-
-					if ( true === $bool && count( $menu_array ) > 0 ) {
-						$menu_list[ $i ]['submenu'] = $menu_array;
-					}
-					$i ++;
 				}
 			}
-		} else {
-			$menu_list[] = '';
 		}
 
 		return $menu_list;
@@ -407,8 +413,8 @@ if ( ! function_exists( 'xlt_get_menu_items' ) ) {
 	 * Set up the menu array.
 	 *
 	 * @param object $menu The menu object.
-	 * @param array  $menu_array The menu array.
-	 * @param int    $i The menu position.
+	 * @param array $menu_array The menu array.
+	 * @param int $i The menu position.
 	 *
 	 * @return array
 	 */
@@ -508,7 +514,7 @@ if ( ! function_exists( 'xlt_pagination' ) ) {
 
 			if ( (int) $max_page > (int) $paged ) {
 				$return .= '<a href="' . esc_url( get_pagenum_link( $max_page ) ) . '" class="page-numbers" title="' . $last . '">&raquo;</a>';
-			}       
+			}
 		}
 
 		return $return;
@@ -521,7 +527,7 @@ if ( ! function_exists( 'xlt_get_the_terms' ) ) {
 	 * Function to return list of the terms.
 	 *
 	 * @param string $taxonomy The taxonomy.
-	 * @param bool   $cut No idea.
+	 * @param bool $cut No idea.
 	 *
 	 * @return string Returns the list of elements.
 	 */

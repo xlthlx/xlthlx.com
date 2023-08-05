@@ -74,7 +74,8 @@ global $lang, $site_url, $site_name, $site_desc; ?>
                     <ul id="menu-main" class="menu">
 						<?php
 						$menu_items = xlt_get_menu_items( 'primary' );
-						foreach ( $menu_items as $menu_item ) {
+						if ( ! empty( $menu_items ) ) {
+							foreach ( $menu_items as $menu_item ) {
 							?>
 
 							<?php if ( isset( $menu_item['submenu'] ) ) { ?>
@@ -115,7 +116,7 @@ global $lang, $site_url, $site_name, $site_desc; ?>
 	                                <?php } ?>
                                 </li>
 							<?php } ?>
-						<?php } ?>
+						<?php } } ?>
                     </ul>
                 </div>
             </nav>
