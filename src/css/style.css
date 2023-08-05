@@ -1799,7 +1799,7 @@ form fieldset {
 }
 
 @media only screen and (max-width: 768px) {
-    .xlt-meta__tools ul {
+    .xlt-meta__tools ul li {
         justify-content: flex-end;
     }
 }
@@ -1826,7 +1826,7 @@ form fieldset {
 @media only screen and (max-width: 768px) {
     .xlt-meta__tools ul li {
         margin-left: 0;
-        margin-right: 5px;
+        margin-right: 0;
         padding-top: 0;
     }
 }
