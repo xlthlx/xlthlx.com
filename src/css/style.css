@@ -1826,7 +1826,7 @@ form fieldset {
 @media only screen and (max-width: 768px) {
     .xlt-meta__tools ul li {
         margin-left: 0;
-        margin-right: 0;
+        margin-right: 0!important;
         padding-top: 0;
     }
 }
