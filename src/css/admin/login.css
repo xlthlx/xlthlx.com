@@ -130,8 +130,9 @@ p {
     margin-bottom: 1rem;
     padding: 0 24px;
     font-family: var(--font);
-    font-size: 1.6rem;
+    font-size: .9rem;
     color: var(--theme-text-color);
+    font-style: italic;
 }
 
 .login form {
@@ -200,7 +201,7 @@ p {
 .login label[for=user_login], .login label[for=user_pass] {
     font-size: 1.125rem;
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     text-align: left;
 }
 
@@ -580,6 +581,8 @@ form textarea {
     max-width: 100%;
     background-color: var(--theme-bg-color);
     color: var(--theme-text-color);
+    display: block;
+    margin-bottom: 1.5rem;
 }
 
 form input:not([type="submit"]):focus,
