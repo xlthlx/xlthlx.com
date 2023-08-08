@@ -15,6 +15,7 @@ function xlt_enqueue_login() {
 	wp_deregister_style( 'login' );
 
 	wp_enqueue_style( 'custom-login', get_template_directory_uri() . '/assets/css/admin/login.min.css', array(), filemtime( get_template_directory() . '/assets/css/admin/login.min.css' ) );
+	wp_enqueue_script( 'custom-script', get_template_directory_uri() . '/assets/js/admin/login.min.js', array(), filemtime( get_template_directory() . '/assets/js/admin/login.min.js' ), true );
 }
 
 add_action( 'login_enqueue_scripts', 'xlt_enqueue_login', 10 );
@@ -89,8 +90,8 @@ add_filter( 'login_title', 'xlt_login_page_title', 99 );
  * Force the login with email.
  *
  * @param null|WP_User|WP_Error $user WP_User if the user is authenticated. WP_Error or null otherwise.
- * @param string                $username Username or email address.
- * @param string                $password User password.
+ * @param string $username Username or email address.
+ * @param string $password User password.
  *
  * @return bool|WP_Error|WP_User
  */

@@ -2,12 +2,35 @@
     color-scheme: light dark;
 
     --white: #FFFFFF;
+    --darkerwhite: #F2F2F2;
     --black: #0A0A11;
     --darkgrey: #444444;
+    --grey: #666666;
+    --lightgrey: #EEEEEE;
+    --high-light: #CACBE2;
     --high-dark: #6667AB;
-    --green: #46b450;
-    --red: #dc3232;
     --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    --mono: Consolas, Menlo, Monaco, "SF Mono", "DejaVu Sans Mono", "Roboto Mono", "Courier New", Courier, monospace;
+}
+
+body {
+    --theme-text-color: var(--black) !important;
+    --theme-bg-color: var(--white) !important;
+    --theme-hl-color: var(--high-light) !important;
+    --theme-grey-color: var(--grey) !important;
+    background-color: var(--theme-bg-color);
+    color: var(--theme-text-color);
+}
+
+body.dark-theme {
+    --theme-text-color: var(--darkerwhite) !important;
+    --theme-bg-color: var(--black) !important;
+    --theme-hl-color: var(--high-dark) !important;
+    --theme-grey-color: var(--lightgrey) !important;
+}
+
+body.dark-theme img {
+    filter: brightness(.8) contrast(1.2);
 }
 
 html,
@@ -15,12 +38,6 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-}
-
-body {
-    font-family: var(--font);
-    font-size: 1.2rem;
-    background-color: var(--white) !important;
 }
 
 a, a:hover {
@@ -58,16 +75,17 @@ p {
 
 .login h1 a {
     height: auto;
-    font-size: 6rem;
-    font-weight: 300;
     width: auto;
-    line-height: 1.3;
     margin: 0 auto;
     padding: 0;
     outline: none;
     overflow: hidden;
     display: block;
     font-family: var(--font);
+    font-size: 1.8rem;
+    font-weight: 900;
+    line-height: 1.25;
+    color: var(--theme-text-color);
 }
 
 .login h1 a:hover {
