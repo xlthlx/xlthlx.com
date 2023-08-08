@@ -73,6 +73,11 @@ function xlt_gettext( $translation, $text ) {
 
 }
 
+add_action( 'login_head', 'xlt_login_head' );
+function xlt_login_head() {
+	add_filter( 'gettext', 'xlt_gettext', 20, 3 );
+}
+
 /**
  * Change login title.
  *

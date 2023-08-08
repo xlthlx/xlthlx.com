@@ -508,15 +508,9 @@ add_filter( 'wp_content_img_tag', 'xlt_image_with_picture', 10, 3 );
  * @return void
  */
 function xlt_add_admin_icons() {
-	// @codingStandardsIgnoreStart
-	?>
-    <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/favicon.ico"
-          sizes="any"><!-- 32×32 -->
-    <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon"
-          href="<?php echo get_template_directory_uri(); ?>/assets/img/icons/apple-touch-icon.png">
-	<?php
-	// @codingStandardsIgnoreEnd
+	$favicon = get_template_directory_uri() . '/assets/img/favicon.ico';
+
+	echo '<link rel="shortcut icon" href="' . esc_url( $favicon ) . '" />';
 }
 
 add_action( 'login_head', 'xlt_add_admin_icons' );
@@ -811,16 +805,3 @@ function xlt_custom_wp_trim_excerpt( $xlt_excerpt ) {
 
 remove_filter( 'get_the_excerpt', 'wp_trim_excerpt' );
 add_filter( 'get_the_excerpt', 'xlt_custom_wp_trim_excerpt' );
-
-/**
- * Add favicon to admin.
- *
- * @return void
- */
-function xlt_add_admin_favicon() {
-	$favicon = get_template_directory_uri() . '/assets/img/favicon.ico';
-
-	echo '<link rel="shortcut icon" href="' . esc_url( $favicon ) . '" />';
-}
-
-add_action( 'admin_head', 'xlt_add_admin_favicon' );
