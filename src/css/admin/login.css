@@ -18,7 +18,7 @@
 body {
     --theme-text-color: var(--black) !important;
     --theme-bg-color: var(--white) !important;
-    --theme-hl-color: var(--high-light) !important;
+    --theme-hl-color: var(--high-dark) !important;
     --theme-grey-color: var(--grey) !important;
     background-color: var(--theme-bg-color);
     color: var(--theme-text-color);
@@ -27,7 +27,7 @@ body {
 body.dark-theme {
     --theme-text-color: var(--darkerwhite) !important;
     --theme-bg-color: var(--black) !important;
-    --theme-hl-color: var(--high-dark) !important;
+    --theme-hl-color: var(--high-light) !important;
     --theme-grey-color: var(--lightgrey) !important;
 }
 
