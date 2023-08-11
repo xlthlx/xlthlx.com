@@ -15,7 +15,8 @@ while ( have_posts() ) :
 	?>
 	<div class="xlt-row" id="main-content">
 		<div class="xlt-ph xlt-spacing xlt-sticky">
-			<div class="xlt-ph__wrapper xlt-sticky_top"><h1 class="xlt-ph__title"><?php echo get_the_title(); ?></h1>
+			<div class="xlt-ph__wrapper xlt-sticky_top">
+                <h2 class="xlt-ph__title"><?php echo get_the_title(); ?></h2>
 			</div>
 		</div>
 

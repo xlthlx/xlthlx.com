@@ -3,9 +3,6 @@
 .distignore
 .git
 .gitignore
-.DS_Store
-.wp-env.json
-Thumbs.db
 bin
 build
 .circleci
@@ -14,11 +11,39 @@ composer.json
 composer.lock
 package.json
 package-lock.json
-phpcs.xml.dist
+README.md
+src
+.wp-env.json
+
+# Ignore packaged files
+*.7z
+*.csv
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
 *.sql
 *.tar.gz
-*.zip
-README.md
-debug.log
-wp-config.php
-src/
+
+# Ignore OS generated files
+ehthumbs.db
+Thumbs.db
+.DS_Store
+
+# Ignore log files
+*.log
+
+# Ignore lock files
+*.lock
+
+# Build Tools
+.idea
+node_modules
+vendor
+
+# Project specific
+content
+_root

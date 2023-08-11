@@ -40,7 +40,7 @@ $parent_id = get_the_ID();
 			<?php
 			$default = array(
 				'add_below'  => 'comment',
-				'respond_id' => 'respond',
+				'respond_id' => 'respond-' . $args['comment']->comment_ID,
 				'reply_text' => ( 'en' === $lang ) ? 'Reply' : 'Rispondi',
 				'depth'      => 1,
 				'max_depth'  => get_option( 'thread_comments_depth' ),

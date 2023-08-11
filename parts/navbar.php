@@ -10,7 +10,7 @@ global $lang, $site_url, $site_name, $site_desc; ?>
     <div class="xlt-spacing xlt-spacing-title">
         <div class='xlt-logo'>
             <a href="<?php echo $site_url; ?>" rel="home" itemprop="url">
-                <p class="xlt-site__title"><?php echo $site_name; ?></p>
+                <h1 class="xlt-site__title"><?php echo $site_name; ?></h1>
                 <p class="xlt-site__description"><?php echo $site_desc; ?></p>
             </a>
         </div>
