@@ -5,17 +5,11 @@
 # Do NOT ignore .gitignore
 !.gitignore
 
-# Do NOT ignore .gitattributes
-!.gitattributes
-
 # Do NOT ignore .distignore
 !.distignore
 
 # Do NOT ignore .circleci
 !.circleci
-
-# Do NOT ignore .editorconfig
-!.editorconfig
 
 # Do NOT ignore .wp-env.json
 !.wp-env.json
