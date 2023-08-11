@@ -340,10 +340,10 @@ add_filter( 'widget_title', 'xlt_change_widget_title', 10, 2 );
 function xlt_filter_next_post_link( $link ) {
 
 	global $lang;
-	$title = 'Post successivo';
+	$title = 'Articolo successivo';
 
 	if ( 'en' === $lang ) {
-		$title = 'Next post';
+		$title = 'Next article';
 	}
 
 	return str_replace(
@@ -365,10 +365,10 @@ add_filter( 'next_post_link', 'xlt_filter_next_post_link' );
 function xlt_filter_previous_post_link( $link ) {
 
 	global $lang;
-	$title = 'Post precedente';
+	$title = 'Articolo precedente';
 
 	if ( 'en' === $lang ) {
-		$title = 'Previous post';
+		$title = 'Previous article';
 	}
 
 	return str_replace(
