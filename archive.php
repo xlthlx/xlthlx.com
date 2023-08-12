@@ -34,7 +34,8 @@ if ( have_posts() ) { ?>
 	<div class="xlt-row" id="main-content">
 		<div class="xlt-ph xlt-spacing xlt-sticky">
 			<div class="xlt-ph__wrapper xlt-sticky_top">
-				<h1 class="xlt-ph__title"><?php echo $archive_title; ?></h1></div>
+				<h2 class="xlt-ph__title"><?php echo $archive_title; ?></h2>
+            </div>
 		</div>
 		<div class="xlt-loop__wrapper" id="xlt-loop__wrapper">
 			<?php
