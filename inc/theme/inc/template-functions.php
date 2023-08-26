@@ -35,6 +35,16 @@ function xlt_admin_footer_remove() {
 add_action( 'admin_menu', 'xlt_admin_footer_remove' );
 
 /**
+ * Remove the Thank you text in the admin footer.
+ * 
+ * @return string The content that will be printed.
+ */
+function xlt_custom_admin_footer_text() {
+	return '';
+}
+add_filter( 'admin_footer_text', 'xlt_custom_admin_footer_text' );
+
+/**
  * Modify the rendering of code Gutenberg block.
  *
  * @param string $block_content The block content.
