@@ -712,7 +712,7 @@ add_action( 'phpmailer_init', 'xlt_set_phpmailer_smtp' );
 function xlt_add_english_fields_settings() {
 	register_setting( 'general', 'english_title', 'esc_attr' );
 	register_setting( 'general', 'english_tagline', 'esc_attr' );
-    
+
 	add_settings_field( 'english_title', '<label for="english_title">' . __( 'English title', 'xlthlx' ) . '</label>', 'xlt_english_title_field', 'general' );
 	add_settings_field( 'english_tagline', '<label for="english_tagline">' . __( 'English tagline', 'xlthlx' ) . '</label>', 'xlt_english_tagline_field', 'general' );
 }

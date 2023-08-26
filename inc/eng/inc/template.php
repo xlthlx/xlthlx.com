@@ -394,32 +394,32 @@ function xlt_en_title( $title ) {
 	if ( 'en' === $lang ) {
 
 		if ( is_home() || is_front_page() ) {
-			$title = get_bloginfo( 'name' ) . ' | ' . get_option( 'english_tagline', '' );
+			$title = get_option( 'english_title', '' ) . ' | ' . get_option( 'english_tagline', '' );
 		}
 
 		if ( is_singular() && ! is_preview() ) {
-			$title = get_title_en( $post->ID ) . ' | ' . get_bloginfo( 'name' );
+			$title = get_title_en( $post->ID ) . ' | ' . get_option( 'english_title', '' );
 		}
 
 		if ( is_search() ) {
-			$title = 'Search results for: ' . get_search_query() . ' | xlthlx';
+			$title = 'Search results for: ' . get_search_query() . ' | ' . get_option( 'english_title', '' );
 		}
 
 		if ( is_search() && is_paged() ) {
-			$title = 'Search results for: ' . get_search_query() . ' | Page ' . get_query_var( 'paged' ) . ' | xlthlx';
+			$title = 'Search results for: ' . get_search_query() . ' | Page ' . get_query_var( 'paged' ) . ' | ' . get_option( 'english_title', '' );
 		}
 
 		if ( is_archive() && is_paged() ) {
-			$title = get_the_archive_title() . ' | Page ' . get_query_var( 'paged' ) . ' | xlthlx';
+			$title = get_the_archive_title() . ' | Page ' . get_query_var( 'paged' ) . ' | ' . get_option( 'english_title', '' );
 		}
 
 		if ( is_404() ) {
-			$title = 'Page not found | xlthlx';
+			$title = 'Page not found | ' . get_option( 'english_title', '' );
 		}
 
 		if ( is_month() ) {
 			$datetime = get_the_time( 'm' ) . '/01/' . get_the_time( 'Y' );
-			$title    = date( 'F', strtotime( $datetime ) ) . ' ' . get_the_time( 'Y' ) . ' | xlthlx';
+			$title    = date( 'F', strtotime( $datetime ) ) . ' ' . get_the_time( 'Y' ) . ' | ' . get_option( 'english_title', '' );
 		}
 	}
 
@@ -443,7 +443,7 @@ function xlt_en_description( $description ) {
 	if ( 'en' === $lang ) {
 
 		if ( is_home() || is_front_page() ) {
-			$description = 'xlthlx. ' . get_option( 'english_tagline', '' );
+			$description = get_option( 'english_title', '' ) . '. ' . get_option( 'english_tagline', '' );
 		}
 
 		if ( is_singular() ) {
