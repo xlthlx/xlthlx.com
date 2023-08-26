@@ -2598,7 +2598,7 @@ body.xlt-h-nav_open {
 
 @media only screen and (max-width: 768px) {
     .xlt-spacing {
-        padding: 36px 20px;
+        padding: 20px;
     }
 }
 
@@ -2694,6 +2694,12 @@ body.xlt-h-nav_open {
     -ms-word-wrap: break-word;
     word-wrap: break-word;
     font-size: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .xlt-entry__title {
+        padding-bottom: 0;
+    }
 }
 
 @media (min-width: 1024px) {
