@@ -31,6 +31,8 @@ function xlt_trim( $text ) {
  */
 function xlt_send_confirmation( $lang, $to, $_code ) {
 
+	global $site_name;
+
 	if ( 'en' === $lang ) {
 		$subject = 'Confirm your subscription to xlthlx.com';
 	} else {
@@ -40,6 +42,7 @@ function xlt_send_confirmation( $lang, $to, $_code ) {
 	ob_start();
 	$email = $to;
 	$code  = $_code;
+	$site_title = $site_name;
 	include sprintf( '%s/inc/newsletter/inc/email/confirm-%s.php', get_template_directory(), $lang );
 	$body = ob_get_clean();
 
@@ -57,6 +60,8 @@ function xlt_send_confirmation( $lang, $to, $_code ) {
  * @throws Exception Exception.
  */
 function xlt_post_published_notification( $new_status, $old_status, $post ) {
+
+	global $site_name;
 
 	if ( 'publish' === $new_status && 'publish' !== $old_status && 'post' === $post->post_type ) {
 
@@ -90,12 +95,14 @@ function xlt_post_published_notification( $new_status, $old_status, $post ) {
 				$code = $_code;
 
 				if ( 'en' === $_lang ) {
+					$site_title = $site_name;
 					$subject   = 'New post on xlthlx.com';
 					$title     = $_title_en;
 					$permalink = $_permalink_en;
 					$excerpt   = $_excerpt_en;
 					include get_template_directory() . '/inc/newsletter/inc/email/post-en.php';
 				} else {
+					$site_title = $site_name;
 					$subject   = 'Nuovo post su xlthlx.com';
 					$title     = $_title;
 					$permalink = $_permalink;
