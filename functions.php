@@ -159,7 +159,8 @@ function xlt_add_to_globals() {
 	$site_desc = get_bloginfo( 'description' );
 
 	if ( 'en' === $lang ) {
-		$site_url .= 'en/';
+		$site_url  = home_url( '/en/' );
+		$site_name = get_option( 'english_title', '' );
 		$site_desc = get_option( 'english_tagline', '' );
 	}
 
