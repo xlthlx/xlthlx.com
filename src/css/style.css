@@ -1785,7 +1785,7 @@ form fieldset {
     font-weight: 500;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
     .xlt-meta__language {
         margin-bottom: -17px;
     }
@@ -1837,7 +1837,7 @@ form fieldset {
 @media only screen and (max-width: 768px) {
     .xlt-meta__tools ul li {
         margin-left: 0;
-        margin-right: 0!important;
+        margin-right: 0 !important;
         padding-top: 0;
     }
 }
@@ -2602,6 +2602,12 @@ body.xlt-h-nav_open {
     }
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+    .xlt-spacing {
+        padding: 20px 35px;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .xlt-spacing.xlt-spacing-title {
         max-width: 53%;
@@ -2696,7 +2702,7 @@ body.xlt-h-nav_open {
     font-size: 2rem;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
     .xlt-entry__title {
         padding-bottom: 0;
     }
