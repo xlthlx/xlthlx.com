@@ -1785,6 +1785,12 @@ form fieldset {
     font-weight: 500;
 }
 
+@media only screen and (max-width: 768px) {
+    .xlt-meta__language {
+        margin-bottom: -17px;
+    }
+}
+
 .xlt-meta__tools ul {
     display: flex;
     padding: 0;
