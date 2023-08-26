@@ -2201,12 +2201,6 @@ h6 {
     grid-area: left;
 }
 
-@media only screen and (max-width: 768px) {
-    .xlt-logo {
-        margin-bottom: 24px;
-    }
-}
-
 .xlt-logo a {
     text-decoration: none;
     box-shadow: none !important;
