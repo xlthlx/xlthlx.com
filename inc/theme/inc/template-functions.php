@@ -36,7 +36,7 @@ add_action( 'admin_menu', 'xlt_admin_footer_remove' );
 
 /**
  * Remove the Thank you text in the admin footer.
- * 
+ *
  * @return string The content that will be printed.
  */
 function xlt_custom_admin_footer_text() {
@@ -711,11 +711,23 @@ add_action( 'phpmailer_init', 'xlt_set_phpmailer_smtp' );
  */
 function xlt_add_english_tagline_settings() {
 	register_setting( 'general', 'english_tagline', 'esc_attr' );
-	add_settings_field( 'english_tagline', '<label for="english_tagline">' . __( 'English Tagline', 'xlthlx' ) . '</label>', 'xlt_english_tagline_field', 'general' );
+	add_settings_field( 'english_title', '<label for="english_title">' . __( 'English title', 'xlthlx' ) . '</label>', 'xlt_english_title_field', 'general' );
+	add_settings_field( 'english_tagline', '<label for="english_tagline">' . __( 'English tagline', 'xlthlx' ) . '</label>', 'xlt_english_tagline_field', 'general' );
 }
 
 /**
- * Echo settings fields.
+ * English title field.
+ *
+ * @return void
+ */
+function xlt_english_title_field() {
+	$english_title = get_option( 'english_title', '' );
+	echo '<input aria-describedby="title-english" class="regular-text" type="text" id="english_title" name="english_title" value="' . $english_title . '" />';
+	echo '<p class="description" id="title-english">Website title.</p>';
+}
+
+/**
+ * English tagline field.
  *
  * @return void
  */
