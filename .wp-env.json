@@ -13,8 +13,8 @@
   "mappings": {
     "wp-content": "./content"
   },
-  "port": 1050,
-  "testsPort": 1051,
+  "port": 1070,
+  "testsPort": 1071,
   "config": {
     "WP_DEBUG": true,
     "WP_DEBUG_LOG": true,
