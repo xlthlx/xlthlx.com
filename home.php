@@ -6,36 +6,33 @@
  */
 
 get_header();
-global $lang;
+global $lang, $wp_query;
 
 $paging = ( 0 !== get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-if ( 'en' === $lang ) {
-	$paging = ( '' !== get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
-}
+$args = array_merge( $wp_query->query_vars, array( 'is_paged' => true, 'paged' => $paging ) );
+query_posts( $args );
 
-$main_query = new WP_Query( array( 'paged' => $paging ) );
-
-if ( $main_query->have_posts() ) {
+if ( have_posts() ) {
 	?>
-	<div id="main-content">
-		<div class="xlt-loop__wrapper" id="xlt-loop__wrapper">
+    <div id="main-content">
+        <div class="xlt-loop__wrapper" id="xlt-loop__wrapper">
 			<?php
-			while ( $main_query->have_posts() ) {
-				$main_query->the_post();
+			while ( have_posts() ) {
+				the_post();
 				get_template_part( 'parts/tease', 'home' );
 			}
 			?>
-		</div>
-		<?php if ( '' !== xlt_pagination( $main_query, $paging ) ) { ?>
-			<div class="xlt-page-navigation">
-				<nav class="navigation pagination">
-					<div class="nav-links">
-						<?php echo xlt_pagination( $main_query, $paging ); ?>
-					</div>
-				</nav>
-			</div>
+        </div>
+		<?php if ( '' !== xlt_pagination( $wp_query, $paging ) ) { ?>
+            <div class="xlt-page-navigation">
+                <nav class="navigation pagination">
+                    <div class="nav-links">
+						<?php echo xlt_pagination( $wp_query, $paging ); ?>
+                    </div>
+                </nav>
+            </div>
 		<?php } ?>
-	</div>
+    </div>
 	<?php
 
 } else {

@@ -8,16 +8,8 @@
 global $lang, $post;
 $text_more = ( 'en' === $lang ) ? "Keep reading: '" : "Continua a leggere: '";
 ?>
-<article id="<?php echo $post->post_type; ?>-<?php echo $post->ID; ?>" 
-						<?php 
-						post_class(
-							array(
-								'xlt-spacing',
-								'xlt-entry_archive',
-							) 
-						); 
-						?>
->
+<article id="<?php echo $post->post_type; ?>-<?php echo $post->ID; ?>"<?php
+						post_class( [ 'xlt-spacing', 'xlt-entry_archive' ] ); ?>>
 
 	<div class="xlt-entry__header">
 		<header>

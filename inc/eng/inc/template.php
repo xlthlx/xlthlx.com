@@ -50,11 +50,15 @@ function xlt_template_redirect( $template ) {
 	$url = get_abs_url();
 	$url = str_replace( get_home_url() . '/en/', '', $url );
 
-	$page = explode( '/', $url );
+	$pieces = explode( '/', $url );
 
-	if ( isset( $page[0], $page[1] ) && 'page' === $page[0] ) {
-		set_query_var( 'page', (int) $page[1] );
-		set_query_var( 'paged', (int) $page[1] );
+	if ( ! empty( $pieces ) ) {
+		foreach ( $pieces as $key => $value ) {
+			if ( 'page' === $value ) {
+				set_query_var( 'page', (int) $pieces[ $key + 1 ] );
+				set_query_var( 'paged', (int) $pieces[ $key + 1 ] );
+			}
+		}
 	}
 
 	if ( is_single() || is_preview() ) {
@@ -108,24 +112,10 @@ function xlt_rewrite_tags_lang() {
 add_action( 'init', 'xlt_rewrite_tags_lang' );
 
 /**
- * Controls the number of search results.
- *
- * @param object $query The WP_Query instance.
- */
-function xlt_home_posts_per_page( $query ) {
-
-	if ( ! is_admin() && $query->is_main_query() && is_front_page() ) {
-		set_query_var( 'posts_per_page', 5 );
-	}
-}
-
-add_action( 'pre_get_posts', 'xlt_home_posts_per_page' );
-
-/**
  * Filters the title.
  *
  * @param string $title The title.
- * @param int    $id The post ID.
+ * @param int $id The post ID.
  *
  * @return string
  */
@@ -159,7 +149,7 @@ add_filter( 'the_title', 'xlt_set_title_en', 10, 2 );
  * Filters a taxonomy term object.
  *
  * @param WP_Term $term Term object.
- * @param string  $taxonomy The taxonomy slug.
+ * @param string $taxonomy The taxonomy slug.
  *
  * @return WP_Term
  */
@@ -192,33 +182,33 @@ add_filter( 'get_term', 'xlt_filter_term_name', 10, 2 );
 /**
  * Filters the term link.
  *
- * @param string  $termlink Term link URL.
+ * @param string $term_link Term link URL.
  * @param WP_Term $term Term object.
- * @param string  $taxonomy Taxonomy slug.
+ * @param string $taxonomy Taxonomy slug.
  *
  * @return string
  */
-function xlt_term_link_filter( $termlink, $term, $taxonomy ) {
+function xlt_term_link_filter( $term_link, $term, $taxonomy ) {
 
 	global $lang;
 
 	if ( null === $term ) {
-		return $termlink;
+		return $term_link;
 	}
 
 	if ( is_admin() ) {
-		return $termlink;
+		return $term_link;
 	}
 
 	if ( 'category' !== $taxonomy ) {
-		return $termlink;
+		return $term_link;
 	}
 
 	if ( 'en' === $lang ) {
-		$termlink = str_replace( '/cat/', '/cat/en/', $termlink );
+		$term_link = str_replace( '/cat/', '/cat/en/', $term_link );
 	}
 
-	return $termlink;
+	return $term_link;
 
 }
 
@@ -279,7 +269,7 @@ add_filter( 'get_pages', 'xlt_set_title_en_pages' );
  * Filters the permalink for page/post.
  *
  * @param string $link The page's permalink.
- * @param int    $post_id The ID of the page.
+ * @param int $post_id The ID of the page.
  *
  * @return string
  */
@@ -309,7 +299,7 @@ add_filter( 'post_link', 'xlt_set_url_en', 10, 2 );
  * Filters the widget title.
  *
  * @param string $title The widget title.
- * @param array  $instance Array of settings for the current widget.
+ * @param array $instance Array of settings for the current widget.
  *
  * @return string
  */
@@ -533,26 +523,17 @@ function xlt_search_url_rewrite() {
 	$needle      = '/' . $search_base . '/';
 	$uri         = $_SERVER['REQUEST_URI'];
 
-	if ( strpos( $uri, $needle ) === false && strpos(
-		$uri,
-		'&lang=en'
-	) !== false ) {
+	if ( strpos( $uri, $needle ) === false && strpos( $uri, '&lang=en' ) !== false ) {
 
 		$search = urlencode( get_query_var( 's' ) );
-		$search = str_replace(
-			'%2F',
-			'/',
-			$search
-		); // %2F(/) is not valid within a URL, send it un-encoded.
+		$search = str_replace( '%2F', '/', $search );
+		// %2F(/) is not valid within a URL, send it un-encoded.
 
 		wp_redirect( home_url() . '/search/' . $search . '/en/' );
 		exit();
 	}
 
-	if ( is_search() && strpos( $uri, $needle ) === false && strpos(
-		$uri,
-		'&'
-	) === false ) {
+	if ( is_search() && strpos( $uri, $needle ) === false && strpos( $uri, '&' ) === false ) {
 		wp_redirect( get_search_link() );
 		exit();
 	}
