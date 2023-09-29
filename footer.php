@@ -35,7 +35,7 @@ global $lang, $site_url, $site_name; ?>
 				<?php dynamic_sidebar( 'footer-sidebar-center' ); ?>
 			</aside>
 			<?php } ?>
-			<?php if ( is_search() ) { ?>
+			<?php if ( ! empty( get_query_var( "s" ) ) ) { ?>
 				<aside class="xlt-widgetarea xlt-spacing" role="complementary" aria-label="Footer Sidebar Center">
 					<p><?php echo ( 'en' === $lang ) ? 'Search again:' : 'Cerca ancora:'; ?></p>
 					<?php get_template_part( 'parts/search-form' ); ?>
