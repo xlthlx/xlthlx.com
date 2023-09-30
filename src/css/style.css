@@ -3205,3 +3205,43 @@ a.bmc-btn:hover {
     left: 0;
     width: 100%;
 }
+
+/** Details **/
+summary {
+    position: relative;
+}
+
+summary::marker {
+    content: none;
+}
+
+summary::before,
+summary::after {
+    content: '';
+}
+
+summary::before,
+summary::after {
+    width: .75em;
+    height: 0;
+    border-bottom: 2px solid;
+    border-top: 2px solid;
+    position: absolute;
+    top: calc(50% - 1px);
+    right: 0;
+    transform: translateY(-50%);
+    color: var(--theme-hl-color);
+}
+
+summary::before {
+    top: calc(50%);
+}
+
+summary::after {
+    transform: rotate(90deg);
+    transform-origin: 50% 50%;
+}
+
+[open] summary::after {
+    transform: rotate(0deg);
+}

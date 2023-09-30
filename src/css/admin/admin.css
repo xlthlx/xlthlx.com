@@ -1,21 +1,3 @@
-.interface-interface-skeleton__content .wp-block {
-	max-width: 90%
-}
-
-.interface-interface-skeleton__content .wp-block .wp-block {
-	max-width: 100%
-}
-
-.interface-interface-skeleton__content .block-list-appender {
-	margin-left: auto;
-	margin-right: auto
-}
-
-#group_contacts, #group_en {
-	float: left;
-	width: 100%;
-}
-
 .half-width {
 	float: left;
 	width: 50%;
@@ -25,11 +7,51 @@
 	clear: both;
 }
 
+#group_contacts, #group_en {
+	float: left;
+	width: 100%;
+}
+
 .editor-styles-wrapper {
 	font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 	font-size: 1.2rem;
 }
 
-#wp-content_en-wrap {
-	clear: both;
+/** Details **/
+summary {
+	position: relative;
+}
+
+summary::marker {
+	content: none;
+}
+
+summary::before,
+summary::after {
+	content: '';
+}
+
+summary::before,
+summary::after {
+	width: .75em;
+	height: 0;
+	border-bottom: 2px solid;
+	border-top: 2px solid;
+	position: absolute;
+	top: calc(50% - 1px);
+	right: 0;
+	transform: translateY(-50%);
+}
+
+summary::before {
+	top: calc(50%);
+}
+
+summary::after {
+	transform: rotate(90deg);
+	transform-origin: 50% 50%;
+}
+
+[open] summary::after {
+	transform: rotate(0deg);
 }
