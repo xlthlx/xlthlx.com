@@ -447,7 +447,7 @@ function xlt_wrap_image_with_picture( $html, $attachment_id, $size, $icon, $attr
 	$type = get_post_mime_type( $attachment_id );
 
 	if ( ! $icon ) {
-		$webp_src = preg_replace( '/(?:jpg|png|jpeg|gif)$/i', 'webp', $attr['src'] );
+		$webp_src = preg_replace( '/(?:jpg|png|jpeg)$/i', 'webp', $attr['src'] );
 
 		$html = '<picture>
 			  <source srcset="' . $webp_src . '" type="image/webp">
