@@ -486,7 +486,7 @@ function xlt_image_with_picture( $filtered_image, $context, $attachment_id ) {
 	}
 
 	$img_src  = wp_get_attachment_image_url( $attachment_id, $size );
-	$webp_src = preg_replace( '/(?:jpg|png|jpeg|gif)$/i', 'webp', $img_src );
+	$webp_src = preg_replace( '/(?:jpg|png|jpeg)$/i', 'webp', $img_src );
 
 	$filtered_image = '<picture>
 			  <source srcset="' . $webp_src . '" type="image/webp">
