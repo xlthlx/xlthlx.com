@@ -136,7 +136,7 @@ function xlt_enqueue_scripts() {
 	wp_dequeue_style( 'classic-theme-styles' );
 	// Scripts.
 	wp_deregister_script( 'wp-embed' );
-	if ( 'http://localhost:1050' !== home_url() && ! is_admin() ) {
+	if ( 'http://localhost:1070' !== home_url() && ! is_admin() ) {
 		wp_deregister_script( 'jquery' );
 		wp_deregister_script( 'wp-polyfill' );
 	}
@@ -191,3 +191,8 @@ require_once get_template_directory() . '/inc/toolkit/index.php';
  * Newsletter.
  */
 require_once get_template_directory() . '/inc/newsletter/index.php';
+
+/**
+ * SWF Player.
+ */
+require_once get_template_directory() . '/inc/swf-reader/index.php';
