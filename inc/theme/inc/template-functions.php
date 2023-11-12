@@ -284,10 +284,13 @@ add_action( 'wp_head', 'xlt_insert_css' );
  */
 function xlt_insert_scripts() {
 	echo '<script type="text/javascript">const theme_url = "' . get_template_directory_uri() . '"; </script>';
+	$snow   = get_template_directory() . '/assets/js/snow.min.js';
+	$script_snow = xlt_get_file_content( $snow );
 	$file   = get_template_directory() . '/assets/js/main.min.js';
 	$script = xlt_get_file_content( $file );
 
 	echo '<script type="text/javascript">' . $script . '</script>';
+	//echo '<script type="text/javascript">' . $script_snow . '</script>';
 
 	$dir           = ABSPATH . 'wp-content/plugins/contact-form-7/';
 	$first_script  = xlt_get_file_content( $dir . '/includes/swv/js/index.js' );
