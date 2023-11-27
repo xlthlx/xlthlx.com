@@ -3245,7 +3245,3 @@ summary::after {
 [open] summary::after {
     transform: rotate(0deg);
 }
-
-:host-context(svg) defs g#b path {
-    fill: black !important
-}
