@@ -3246,6 +3246,6 @@ summary::after {
     transform: rotate(0deg);
 }
 
-ruffle-player div#play-button div.icon svg defs g#b path {
+:host-context(svg) defs g#b path {
     fill: black !important
 }
