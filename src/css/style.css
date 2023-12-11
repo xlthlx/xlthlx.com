@@ -49,10 +49,6 @@ html {
     -webkit-tap-highlight-color: var(--theme-text-color);
 }
 
-@-ms-viewport {
-    width: device-width;
-}
-
 article,
 aside,
 figcaption,
@@ -155,7 +151,7 @@ img.screen-reader-text {
 
 [aria-disabled],
 [disabled] {
-    cursor: disabled;
+    cursor: none;
 }
 
 [aria-hidden="false"][hidden]:not(:focus) {
@@ -2615,7 +2611,6 @@ body.xlt-h-nav_open {
 }
 
 .xlt-sticky_top {
-    position: -webkit-sticky;
     position: sticky;
     top: 48px;
 }
@@ -2636,7 +2631,6 @@ body.xlt-h-nav_open {
 }
 
 .xlt-sticky_bottom {
-    position: -webkit-sticky;
     position: sticky;
     bottom: 48px;
 }

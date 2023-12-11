@@ -290,7 +290,7 @@ function xlt_insert_scripts() {
 	$script = xlt_get_file_content( $file );
 
 	echo '<script type="text/javascript">' . $script . '</script>';
-	//echo '<script type="text/javascript">' . $script_snow . '</script>';
+	echo '<script type="text/javascript">' . $script_snow . '</script>';
 
 	$dir           = ABSPATH . 'wp-content/plugins/contact-form-7/';
 	$first_script  = xlt_get_file_content( $dir . '/includes/swv/js/index.js' );
