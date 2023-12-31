@@ -63,7 +63,11 @@ function xlt_post_published_notification( $new_status, $old_status, $post ) {
 
 	global $site_name;
 
-	if ( 'publish' === $new_status && 'publish' !== $old_status && 'post' === $post->post_type ) {
+	if ( $old_status === $new_status ) {
+		return;
+	}
+
+	if ( 'publish' === $new_status && 'post' === $post->post_type ) {
 
 		$_title        = $post->post_title;
 		$_permalink    = get_permalink( $post->ID );

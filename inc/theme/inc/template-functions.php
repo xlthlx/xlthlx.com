@@ -698,10 +698,10 @@ function xlt_set_phpmailer_smtp( $phpmailer ) {
 	$phpmailer->setFrom( 'noreply@xlthlx.com', 'xlthlx.com', false );
 	$phpmailer->Host       = 'ssl0.ovh.net';
 	$phpmailer->SMTPAuth   = true;
-	$phpmailer->Port       = 587;
+	$phpmailer->Port       = 465;
 	$phpmailer->Username   = SMTP_username;
 	$phpmailer->Password   = SMTP_password;
-	$phpmailer->SMTPSecure = 'tls';
+	$phpmailer->SMTPSecure = 'ssl';
 	// @codingStandardsIgnoreEnd
 }
 
