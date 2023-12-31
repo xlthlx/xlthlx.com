@@ -701,7 +701,7 @@ function xlt_set_phpmailer_smtp( $phpmailer ) {
 	$phpmailer->Port       = 465;
 	$phpmailer->Username   = SMTP_username;
 	$phpmailer->Password   = SMTP_password;
-	$phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+	$phpmailer->SMTPSecure = 'ssl';
 	$phpmailer->SMTPDebug  = 4;
 
 	if (!$phpmailer->send()) {
