@@ -116,6 +116,7 @@ function xlt_post_published_notification( $new_status, $old_status, $post ) {
 				$body = ob_get_clean();
 
 				xlt_send_email( $to, $subject, $body );
+				sleep( 30 );
 
 				$contact_id = '';
 				$to         = '';

@@ -702,6 +702,7 @@ function xlt_set_phpmailer_smtp( $phpmailer ) {
 	$phpmailer->Username   = SMTP_username;
 	$phpmailer->Password   = SMTP_password;
 	$phpmailer->SMTPSecure = 'ssl';
+	$phpmailer->SMTPDebug = 4;
 	// @codingStandardsIgnoreEnd
 }
 
