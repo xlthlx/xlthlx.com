@@ -151,7 +151,7 @@ function xlt_send_email( $to, $subject, $body ) {
 function xlt_log_mail_error( $wp_error ) {
 
 	$result = print_r( $wp_error, true );
-	error_log( '<pre>' . $result, true . '</pre>' );
+	error_log( $result );
 }
 
 add_action( 'wp_mail_failed', 'xlt_log_mail_error', 10, 1 );
