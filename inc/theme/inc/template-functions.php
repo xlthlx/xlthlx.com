@@ -702,7 +702,18 @@ function xlt_set_phpmailer_smtp( $phpmailer ) {
 	$phpmailer->Username   = SMTP_username;
 	$phpmailer->Password   = SMTP_password;
 	$phpmailer->SMTPSecure = 'ssl';
-	$phpmailer->SMTPDebug = 4;
+	$phpmailer->SMTPDebug  = 4;
+
+	$phpmailer->SMTPOptions = array(
+		'ssl' => array(
+			'verify_peer'       => false,
+			'verify_peer_name'  => false,
+			'allow_self_signed' => true
+		)
+	);
+	if (!$phpmailer->send()) {
+		error_log( 'Email not sent an error was encountered: ' . $phpmailer->ErrorInfo );
+	}
 	// @codingStandardsIgnoreEnd
 }
 

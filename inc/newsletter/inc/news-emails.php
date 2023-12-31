@@ -116,7 +116,7 @@ function xlt_post_published_notification( $new_status, $old_status, $post ) {
 				$body = ob_get_clean();
 
 				xlt_send_email( $to, $subject, $body );
-				sleep( 30 );
+				sleep( 5 );
 
 				$contact_id = '';
 				$to         = '';
@@ -151,7 +151,7 @@ function xlt_send_email( $to, $subject, $body ) {
 function xlt_log_mail_error( $wp_error ) {
 
 	$result = print_r( $wp_error, true );
-	error_log( '<pre>' . print_r( $result, true ) . '</pre>' );
+	error_log( '<pre>' . $result, true . '</pre>' );
 }
 
 add_action( 'wp_mail_failed', 'xlt_log_mail_error', 10, 1 );
