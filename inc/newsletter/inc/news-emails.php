@@ -52,29 +52,25 @@ function xlt_send_confirmation( $lang, $to, $_code ) {
 /**
  * Send an email when a post is published.
  *
- * @param string $new_status New post status.
- * @param string $old_status Old post status.
+ * @param int $post_id Post ID.
  * @param object $post Post object.
+ * @param string $old_status Old post status.
  *
  * @return void
  * @throws Exception Exception.
  */
-function xlt_post_published_notification( $new_status, $old_status, $post ) {
+function xlt_post_published_notification( $post_id, $post, $old_status ) {
 
 	global $site_name;
 
-	if ( $old_status === $new_status ) {
-		return;
-	}
-
-	if ( 'publish' === $new_status && 'post' === $post->post_type ) {
+	if ( 'publish' !== $old_status ) {
 
 		$_title        = $post->post_title;
-		$_permalink    = get_permalink( $post->ID );
+		$_permalink    = get_permalink( $post_id );
 		$_excerpt      = xlt_trim( $post->post_content );
-		$_title_en     = get_title_en( $post->ID );
-		$_permalink_en = get_permalink( $post->ID ) . 'en/';
-		$_excerpt_en   = xlt_trim( get_content_en( $post->ID ) );
+		$_title_en     = get_title_en( $post_id );
+		$_permalink_en = get_permalink( $post_id ) . 'en/';
+		$_excerpt_en   = xlt_trim( get_content_en( $post_id ) );
 
 		$args = array(
 			'numberposts' => - 1,
@@ -129,7 +125,7 @@ function xlt_post_published_notification( $new_status, $old_status, $post ) {
 	}
 }
 
-add_action( 'transition_post_status', 'xlt_post_published_notification', 10, 3 );
+add_action( 'publish_post', 'xlt_post_published_notification', 10, 3 );
 
 /**
  * Send HTML email.
