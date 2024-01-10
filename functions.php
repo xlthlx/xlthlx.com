@@ -15,8 +15,6 @@ require_once get_template_directory() . '/vendor.phar';
  */
 function xlt_setup() {
 	add_filter( 'login_display_language_dropdown', '__return_false' );
-	add_filter( 'wpcf7_load_js', '__return_false' );
-	add_filter( 'wpcf7_load_css', '__return_false' );
 	add_filter( 'enable_post_by_email_configuration', '__return_false' );
 
 	add_filter( 'pre_option_link_manager_enabled', '__return_true' );
@@ -141,6 +139,8 @@ function xlt_enqueue_scripts() {
 		wp_deregister_script( 'wp-polyfill' );
 	}
 	wp_deregister_script( 'comment-reply' );
+	wp_deregister_script( 'contact-form-7' );
+	wp_dequeue_style( 'contact-form-7' );
 }
 
 add_action( 'wp_enqueue_scripts', 'xlt_enqueue_scripts' );
