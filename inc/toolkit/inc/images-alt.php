@@ -15,6 +15,10 @@
 function xlt_add_image_alt( $content ) {
 	global $post;
 
+	if ( is_admin() ) {
+		return $content;
+	}
+
 	if ( null === $post ) {
 		return $content;
 	}
@@ -81,6 +85,10 @@ add_filter( 'the_content', 'xlt_add_image_alt', 9999 );
  * @return array The attributes filtered.
  */
 function xlt_change_image_attr( $attr, $attachment ) {
+	if ( is_admin() ) {
+		return $attr;
+	}
+
 	$parent = get_post_field( 'post_parent', $attachment );
 	$title  = get_post_field( 'post_title', $parent );
 
