@@ -292,26 +292,6 @@ function xlt_insert_scripts() {
 //	$snow   = get_template_directory() . '/assets/js/snow.min.js';
 //	$script_snow = xlt_get_file_content( $snow );
 //	echo '<script type="text/javascript">' . $script_snow . '</script>';
-
-//	$dir           = ABSPATH . 'wp-content/plugins/contact-form-7/';
-//	$first_script  = xlt_get_file_content( $dir . '/includes/swv/js/index.js' );
-//	$second_script = xlt_get_file_content( $dir . '/includes/js/index.js' );
-//	$rest_url      = str_replace( '/', '\\/', ( esc_url( get_rest_url() ) ) );
-//
-//	$cf7 = '
-//<script id="cf7">' . $first_script;
-//
-//	$cf7 .= '
-//            /* <![CDATA[ */
-//            var wpcf7 = {"api":{"root":"' . $rest_url . '","namespace":"contact-form-7\/v1"}};
-//            /* ]]> */
-//            ';
-//	$cf7 .= $second_script;
-//	$cf7 .= '
-//            !function(){var s,o=document.body,e="className",a="customize-support",c=RegExp("(^|\\s+)(no-)?"+a+"(\\s+|$)");s=!0,o[e]=o[e].replace(c," "),o[e]+=(window.postMessage&&s?" ":" no-")+a}();</script>
-//            ';
-//
-//	echo $cf7;
 }
 
 add_action( 'wp_footer', 'xlt_insert_scripts' );
