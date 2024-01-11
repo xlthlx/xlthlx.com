@@ -97,15 +97,15 @@ window.addComment = ( function( window ) {
 		cancelElement.addEventListener( 'click',      cancelEvent );
 
 		// Submit the comment form when the user types [Ctrl] or [Cmd] + [Enter].
-		const submitFormHandler = function (e) {
-			if ((e.metaKey || e.ctrlKey) && e.keyCode === 13) {
-				commentFormElement.removeEventListener('keydown', submitFormHandler)
-				e.preventDefault()
+		var submitFormHandler = function( e ) {
+			if ( ( e.metaKey || e.ctrlKey ) && e.keyCode === 13 ) {
+				commentFormElement.removeEventListener( 'keydown', submitFormHandler );
+				e.preventDefault();
 				// The submit button ID is 'submit' so we can't call commentFormElement.submit(). Click it instead.
-				commentFormElement.submit.click()
-				return false
+				commentFormElement.submit.click();
+				return false;
 			}
-		}
+		};
 
 		if ( commentFormElement ) {
 			commentFormElement.addEventListener( 'keydown', submitFormHandler );
