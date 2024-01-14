@@ -683,7 +683,6 @@ function xlt_set_phpmailer_smtp( $phpmailer ) {
 	$phpmailer->Username   = SMTP_username;
 	$phpmailer->Password   = SMTP_password;
 	$phpmailer->SMTPSecure = 'ssl';
-	$phpmailer->SMTPDebug  = 4;
 
 	if (!$phpmailer->send()) {
 		error_log( 'Email not sent an error was encountered: ' . $phpmailer->ErrorInfo );
