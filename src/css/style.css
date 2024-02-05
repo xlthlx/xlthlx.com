@@ -9,6 +9,7 @@
     --lightgrey: #EEEEEE;
     --high-light: #CACBE2;
     --high-dark: #6667AB;
+    --border: #484848;
     --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     --mono: Consolas, Menlo, Monaco, "SF Mono", "DejaVu Sans Mono", "Roboto Mono", "Courier New", Courier, monospace;
 }
@@ -2649,7 +2650,7 @@ body.xlt-h-nav_open {
 }
 
 .xlt-entry {
-    border-bottom: 1px solid var(--darkerwhite);
+    border-bottom: 1px solid var(--border);
 }
 
 @media only screen and (max-width: 1200px) {
@@ -2658,7 +2659,7 @@ body.xlt-h-nav_open {
     }
 
     .xlt-entry .xlt-row {
-        border-bottom: 1px solid var(--darkerwhite);
+        border-bottom: 1px solid var(--border);
     }
 }
 
