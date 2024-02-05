@@ -9,7 +9,8 @@
     --lightgrey: #EEEEEE;
     --high-light: #CACBE2;
     --high-dark: #6667AB;
-    --border: #484848;
+    --border-light: #CCCCCC;
+    --border-dark: #484848;
     --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     --mono: Consolas, Menlo, Monaco, "SF Mono", "DejaVu Sans Mono", "Roboto Mono", "Courier New", Courier, monospace;
 }
@@ -19,7 +20,7 @@ body {
     --theme-bg-color: var(--white) !important;
     --theme-hl-color: var(--high-light) !important;
     --theme-grey-color: var(--grey) !important;
-    --theme-border-color: var(--lightgrey) !important;
+    --theme-border-color: var(--border-light) !important;
     background-color: var(--theme-bg-color);
     color: var(--theme-text-color);
 }
@@ -29,7 +30,7 @@ body.dark-theme {
     --theme-bg-color: var(--black) !important;
     --theme-hl-color: var(--high-dark) !important;
     --theme-grey-color: var(--lightgrey) !important;
-    --theme-border-color: var(--border) !important;
+    --theme-border-color: var(--border-dark) !important;
 }
 
 body.dark-theme img {
