@@ -19,7 +19,7 @@ body {
     --theme-bg-color: var(--white) !important;
     --theme-hl-color: var(--high-light) !important;
     --theme-grey-color: var(--grey) !important;
-    --theme-border-color: var(--grey) !important;
+    --theme-border-color: var(--lightgrey) !important;
     background-color: var(--theme-bg-color);
     color: var(--theme-text-color);
 }
