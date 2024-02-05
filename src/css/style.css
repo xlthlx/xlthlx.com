@@ -1546,7 +1546,7 @@ form fieldset {
 }
 
 .xlt-page-navigation {
-    border-top: 1px solid var(--darkerwhite);
+    border-top: 1px solid var(--border);
     grid-row: 2;
     grid-column: 1 / span 3;
     width: 100%;
@@ -2484,7 +2484,7 @@ h6 {
 
 .xlt-grid_vertical {
     width: 1px;
-    background: var(--darkerwhite);
+    background: var(--border);
 }
 
 .xlt-grid_vertical:nth-child(1) {
