@@ -664,35 +664,6 @@ add_shortcode( 'iframe', 'xlt_add_shortcode_iframe' );
 // @codingStandardsIgnoreEnd
 
 /**
- * Sets the SMTP details.
- *
- * @param object $phpmailer The PHP mailer.
- *
- * @return void
- */
-function xlt_set_phpmailer_smtp( $phpmailer ) {
-	require_once ABSPATH . WPINC . '/PHPMailer/PHPMailer.php';
-	require_once ABSPATH . WPINC . '/PHPMailer/SMTP.php';
-
-	// @codingStandardsIgnoreStart
-	$phpmailer->isSMTP();
-	$phpmailer->setFrom( 'noreply@xlthlx.com', 'xlthlx.com', false );
-	$phpmailer->Host       = 'ssl0.ovh.net';
-	$phpmailer->SMTPAuth   = true;
-	$phpmailer->Port       = 465;
-	$phpmailer->Username   = SMTP_username;
-	$phpmailer->Password   = SMTP_password;
-	$phpmailer->SMTPSecure = 'ssl';
-
-	if (!$phpmailer->send()) {
-		error_log( 'Email not sent an error was encountered: ' . $phpmailer->ErrorInfo );
-	}
-	// @codingStandardsIgnoreEnd
-}
-
-add_action( 'phpmailer_init', 'xlt_set_phpmailer_smtp' );
-
-/**
  * Add settings field.
  *
  * @return void
