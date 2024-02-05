@@ -19,6 +19,7 @@ body {
     --theme-bg-color: var(--white) !important;
     --theme-hl-color: var(--high-light) !important;
     --theme-grey-color: var(--grey) !important;
+    --theme-border-color: var(--grey) !important;
     background-color: var(--theme-bg-color);
     color: var(--theme-text-color);
 }
@@ -28,6 +29,7 @@ body.dark-theme {
     --theme-bg-color: var(--black) !important;
     --theme-hl-color: var(--high-dark) !important;
     --theme-grey-color: var(--lightgrey) !important;
+    --theme-border-color: var(--border) !important;
 }
 
 body.dark-theme img {
@@ -1546,7 +1548,7 @@ form fieldset {
 }
 
 .xlt-page-navigation {
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--theme-border-color);
     grid-row: 2;
     grid-column: 1 / span 3;
     width: 100%;
@@ -2484,7 +2486,7 @@ h6 {
 
 .xlt-grid_vertical {
     width: 1px;
-    background: var(--border);
+    background: var(--theme-border-color);
 }
 
 .xlt-grid_vertical:nth-child(1) {
@@ -2583,7 +2585,7 @@ body.xlt-h-nav_open {
     content: "";
     display: block;
     height: 1px;
-    background: var(--border);
+    background: var(--theme-border-color);
     position: absolute;
     right: 0;
     left: 0;
@@ -2650,7 +2652,7 @@ body.xlt-h-nav_open {
 }
 
 .xlt-entry {
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--theme-border-color);
 }
 
 @media only screen and (max-width: 1200px) {
@@ -2659,7 +2661,7 @@ body.xlt-h-nav_open {
     }
 
     .xlt-entry .xlt-row {
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid var(--theme-border-color);
     }
 }
 
