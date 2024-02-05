@@ -72,3 +72,9 @@ btn_poe.addEventListener("click", async function (e) {
 		startPoe().then()
 	}
 });
+
+// Smooth scroll to top.
+document.getElementById('top-arrow').addEventListener('click', function (e) {
+	e.preventDefault();
+	window.scrollTo({top: 0, behavior: 'smooth'});
+});
