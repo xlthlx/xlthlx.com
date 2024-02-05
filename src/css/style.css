@@ -2583,7 +2583,7 @@ body.xlt-h-nav_open {
     content: "";
     display: block;
     height: 1px;
-    background: var(--darkerwhite);
+    background: var(--border);
     position: absolute;
     right: 0;
     left: 0;
