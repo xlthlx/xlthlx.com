@@ -68,9 +68,7 @@ switch ( $act ) {
 		break;
 	case 'subscribe':
 		$news_title = 'Newsletter';
-		$form_id    = ( 'en' === $lang ) ? 34503 : 34396;
-		$content    = ( 'en' === $lang ) ? '<p>Do you want to receive an email when a new article is published?</p>' : '<p>Vuoi ricevere una email quando viene pubblicato un nuovo post?</p>';
-		$content   .= do_shortcode( '[contact-form-7 id="' . $form_id . '"]' );
+		$content   = apply_filters( 'the_content', get_the_content() );
 		break;
 }
 ?>
