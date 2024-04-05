@@ -135,10 +135,7 @@ function xlt_enqueue_scripts() {
 	// Scripts.
 	wp_deregister_script( 'wp-embed' );
 	if ( 'http://localhost:1070' !== home_url() && ! is_admin() ) {
-		wp_deregister_script( 'jquery' );
 		wp_deregister_script( 'wp-polyfill' );
-		wp_deregister_script( 'contact-form-7' );
-		wp_dequeue_style( 'contact-form-7' );
 	}
 	wp_deregister_script( 'comment-reply' );
 }
