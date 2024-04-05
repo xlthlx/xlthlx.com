@@ -132,12 +132,6 @@ function xlt_enqueue_scripts() {
 	wp_dequeue_style( 'wp-block-library' );
 	wp_deregister_style( 'classic-theme-styles' );
 	wp_dequeue_style( 'classic-theme-styles' );
-	// Scripts.
-	wp_deregister_script( 'wp-embed' );
-	if ( 'http://localhost:1070' !== home_url() && ! is_admin() ) {
-		wp_deregister_script( 'wp-polyfill' );
-	}
-	wp_deregister_script( 'comment-reply' );
 }
 
 add_action( 'wp_enqueue_scripts', 'xlt_enqueue_scripts' );

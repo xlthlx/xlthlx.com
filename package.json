@@ -13,7 +13,7 @@
     "url": "git+https://github.com/xlthlx/xlthlx.com"
   },
   "scripts": {
-    "minify:js": "uglifyjs src/js/menu.js src/js/sticky.js src/js/code.js src/js/single.js src/js/dark-mode.js src/js/wp/wp-embed.js src/js/wp/comment-reply.js --compress --mangle --warn --output assets/js/main.min.js && uglifyjs src/js/admin/admin.js --compress --mangle --output assets/js/admin/admin.min.js && uglifyjs src/js/admin/login.js --compress --mangle --output assets/js/admin/login.min.js && uglifyjs src/js/snowflakes.js src/js/snow.js --compress --mangle --output assets/js/snow.min.js",
+    "minify:js": "uglifyjs src/js/menu.js src/js/sticky.js src/js/code.js src/js/single.js src/js/dark-mode.js --compress --mangle --warn --output assets/js/main.min.js && uglifyjs src/js/admin/admin.js --compress --mangle --output assets/js/admin/admin.min.js && uglifyjs src/js/admin/login.js --compress --mangle --output assets/js/admin/login.min.js && uglifyjs src/js/snowflakes.js src/js/snow.js --compress --mangle --output assets/js/snow.min.js",
     "minify:css": "cleancss -o assets/css/main.min.css src/css/style.css src/css/code.css src/css/wp/style.css && cleancss -o assets/css/admin/admin.min.css src/css/admin/admin.css && cleancss -o assets/css/admin/color-scheme.min.css src/css/admin/color-scheme.css && cleancss -o assets/css/admin/login.min.css src/css/admin/login.css",
     "watch:css": "onchange 'src/css/*.css' -- npm run minify:css",
     "watch:js": "onchange 'src/js/*.js' -- npm run minify:js",
