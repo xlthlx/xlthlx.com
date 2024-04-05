@@ -31,6 +31,10 @@ function xlt_trim( $text ) {
  */
 function xlt_send_confirmation( $lang, $to, $_code ) {
 
+	if ( 'en' !== $lang ) {
+		$lang = 'it';
+	}
+
 	global $site_name;
 
 	if ( 'en' === $lang ) {
@@ -43,7 +47,8 @@ function xlt_send_confirmation( $lang, $to, $_code ) {
 	$email = $to;
 	$code  = $_code;
 	$site_title = $site_name;
-	include sprintf( '%s/inc/newsletter/inc/email/confirm-%s.php', get_template_directory(), $lang );
+	$include = get_template_directory() . '/inc/newsletter/inc/email/confirm-' . $lang . '.php';
+	include $include;
 	$body = ob_get_clean();
 
 	xlt_send_email( $to, $subject, $body );
