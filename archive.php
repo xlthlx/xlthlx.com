@@ -48,7 +48,7 @@ if ( have_posts() ) { ?>
 			}
 			?>
         </div>
-        <div class="xlt-main-sidebar xlt-spacing">
+        <div class="xlt-main-sidebar xlt-spacing xlt-sticky">
 			<?php get_template_part( 'parts/sidebar-page' ); ?>
         </div>
 		<?php if ( '' !== xlt_pagination( $wp_query, $paging ) ) { ?>

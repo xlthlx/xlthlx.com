@@ -2447,8 +2447,19 @@ h6 {
 }
 
 .xlt-nav_footer a {
-    margin-right: 5px;
+    margin: 0 5px;
     box-shadow: none;
+    text-decoration: underline;
+}
+
+.xlt-nav_footer a:hover {
+    text-decoration: none;
+}
+
+.xlt-f .creative {
+    width: 16px;
+    height: 16px;
+    margin: 0 4px;
 }
 
 /** Layout **/
@@ -2608,6 +2619,22 @@ body.xlt-h-nav_open {
     }
 }
 
+.xlt-spacing-min {
+    padding: 20px 35px;
+}
+
+@media only screen and (max-width: 768px) {
+    .xlt-spacing-min {
+        padding: 20px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .xlt-spacing-min {
+        padding: 20px 35px;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .xlt-spacing.xlt-spacing-title {
         max-width: 53%;
@@ -2639,11 +2666,19 @@ body.xlt-h-nav_open {
     bottom: 48px;
 }
 
+.admin-bar .xlt-sticky_bottom {
+    bottom: 80px;
+}
+
 @media only screen and (max-width: 1200px) {
     .xlt-sticky_bottom {
         position: relative;
         bottom: auto;
         margin-top: 0 !important;
+    }
+
+    .admin-bar .xlt-sticky_bottom {
+        bottom: auto;
     }
 }
 
@@ -3143,22 +3178,30 @@ body.admin-bar .xlt-nav {
     border-right: 1px solid var(--theme-grey-color);
 }
 
-/** Buy me a coffee **/
-.bmc-btn svg {
+.svg-btn svg {
     vertical-align: middle !important;
 }
 
-.bmc-btn {
+.svg-btn {
     display: inline !important;
     box-shadow: none !important;
 }
 
-a.bmc-btn:hover {
+a.svg-btn {
+    text-decoration: underline !important;
+    color: var(--theme-text-color);
+}
+
+a.svg-btn:hover {
     text-decoration: none !important;
     color: var(--theme-text-color);
 }
 
-.bmc-btn span {
+a.no-under {
+    text-decoration: none !important;
+}
+
+.svg-btn span {
     margin-left: 8px;
 }
 
@@ -3242,4 +3285,16 @@ summary::after {
 
 [open] summary::after {
     transform: rotate(0deg);
+}
+
+button.search {
+    padding: 12px 15px;
+    margin: 0;
+    display: inline;
+    border: 1px solid var(--lightgrey);
+}
+
+input.search {
+    display: inline;
+    max-width: 165px !important;
 }

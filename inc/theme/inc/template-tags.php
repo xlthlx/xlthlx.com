@@ -484,13 +484,11 @@ if ( ! function_exists( 'xlt_pagination' ) ) {
 
 		if ( $max_page > 1 ) {
 
-			$return = '';
-
 			if ( 1 < (int) $paged ) {
 				$return .= '<a href="' . esc_url( get_pagenum_link() ) . '" class="page-numbers" title="' . $first . '">&laquo;</a>' . "\n";
 			}
 
-			$return .= str_replace( '<a href="', '<a class="page-numbers" title="' . $previous . '" href="', get_previous_posts_link( '&lsaquo;' ) );
+			$return .= str_replace( '<a href="', '<a class="page-numbers" title="' . $previous . '" href="', get_previous_posts_link( '&lsaquo;' ) ?? '' );
 
 			if ( (int) $start_page >= 2 && $pages_to_show < $max_page ) {
 				$return .= '<a href="' . esc_url( get_pagenum_link() ) . '" class="page-numbers" title="1">1</a>' . "\n";

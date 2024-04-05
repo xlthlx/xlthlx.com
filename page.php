@@ -29,7 +29,7 @@ while ( have_posts() ) :
 			</article>
 		</div>
 
-		<div class="xlt-main-sidebar xlt-spacing">
+		<div class="xlt-main-sidebar xlt-spacing xlt-sticky">
 			<?php get_template_part( 'parts/sidebar-page' ); ?>
 		</div>
 
