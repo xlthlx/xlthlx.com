@@ -125,6 +125,24 @@ function xlt_widgets_init() {
 add_action( 'widgets_init', 'xlt_widgets_init' );
 
 /**
+ * Enqueue scripts and styles.
+ */
+function xlt_enqueue_scripts() {
+	// CF7.
+	if ( is_page( 'contatti' ) || is_page( 'newsletter' ) ) {
+		if ( function_exists( 'wpcf7_enqueue_scripts' ) ) {
+			wpcf7_enqueue_scripts();
+		}
+
+		if ( function_exists( 'wpcf7_enqueue_styles' ) ) {
+			wpcf7_enqueue_styles();
+		}
+	}
+}
+
+add_action( 'wp_enqueue_scripts', 'xlt_enqueue_scripts' );
+
+/**
  * Set up globals.
  *
  * @return void
