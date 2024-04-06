@@ -125,18 +125,6 @@ function xlt_widgets_init() {
 add_action( 'widgets_init', 'xlt_widgets_init' );
 
 /**
- * Enqueue scripts and styles.
- */
-function xlt_enqueue_scripts() {
-	// Styles.
-	wp_dequeue_style( 'wp-block-library' );
-	wp_deregister_style( 'classic-theme-styles' );
-	wp_dequeue_style( 'classic-theme-styles' );
-}
-
-add_action( 'wp_enqueue_scripts', 'xlt_enqueue_scripts' );
-
-/**
  * Set up globals.
  *
  * @return void
