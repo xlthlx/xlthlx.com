@@ -267,12 +267,7 @@ function xlt_insert_css() {
 	$file  = get_template_directory() . '/assets/css/main.min.css';
 	$style = xlt_get_file_content( $file );
 
-	$dir = ABSPATH . 'wp-content/plugins/contact-form-7/';
-	$cf7 = xlt_get_file_content( $dir . '/includes/css/styles.css' );
-
-	echo '
-<style id="all-styles-inline">' . $cf7 . $style . '</style>
-';
+	echo '<style id="all-styles-inline">' . $style . '</style>';
 }
 
 add_action( 'wp_head', 'xlt_insert_css' );
@@ -287,7 +282,7 @@ function xlt_insert_scripts() {
 	$file   = get_template_directory() . '/assets/js/main.min.js';
 	$script = xlt_get_file_content( $file );
 
-	echo '<script type="text/javascript">' . $script . '</script>';
+	echo '<script id="all-scripts-inline" type="text/javascript">' . $script . '</script>';
 
 //	$snow   = get_template_directory() . '/assets/js/snow.min.js';
 //	$script_snow = xlt_get_file_content( $snow );
