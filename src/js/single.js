@@ -43,19 +43,19 @@ async function startPoe() {
 	});
 
 	Promise.resolve().then(function () {
-		Poe.start();
 		btn_poe.innerHTML = svg_sheep;
 		document.body.classList.toggle("sheep");
 		localStorage.setItem("poe", "true");
+		Poe.active = 1;
 	})
 }
 
 function stopPoe() {
-	Poe.stop();
+	Poe.active = 0;
 	btn_poe.innerHTML = svg_sheep_gray;
 	let js = document.getElementById("sheep");
 	document.body.removeChild(js)
-	localStorage.setItem("poe", "false");
+	localStorage.removeItem("poe");
 	document.body.classList.toggle("sheep");
 }
 
