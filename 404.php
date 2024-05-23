@@ -33,11 +33,10 @@ $not_found_content_last   = ( 'en' === $lang ) ? 'She greets you and says: Meow.
 				<p></p>
 				<p><?php echo $not_found_content_after; ?></p>
 
-				<figure class="wp-block-image aligncenter size-full">
-					<picture>
-						<img decoding="async" width="800" height="450" src="<?php echo get_template_directory_uri(); ?>/assets/img/404.jpg" alt="Petula"/>
-					</picture>
-				</figure>
+                <figure class="wp-block-image aligncenter size-full">
+                    <img decoding="async" width="800" height="450"
+                         src="<?php echo get_template_directory_uri(); ?>/assets/img/404.jpg" alt="Petula"/>
+                </figure>
 
 				<p><?php echo $not_found_content_last; ?></p>
 

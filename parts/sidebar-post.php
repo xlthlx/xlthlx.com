@@ -44,24 +44,20 @@ global $lang;
             <figure class="wp-block-image size-full is-style-default">
                 <a title="#FixTheDigitalStatus!" href="https://the3million.org.uk/fix-the-digital-status"
                    target="_blank">
-                    <picture>
-                        <img width="300" height="120"
-                             src="<?php echo get_template_directory_uri(); ?>/assets/img/fix-digital-status.jpg"
-                             alt="#FixTheDigitalStatus!"
-                             srcset="<?php echo get_template_directory_uri(); ?>/assets/img/fix-digital-status.jpg 300w, <?php echo get_template_directory_uri(); ?>/assets/img/fix-digital-status-150x60.jpg 150w"
-                             sizes="(max-width: 300px) 100vw, 300px">
-                    </picture>
+                    <img width="300" height="120"
+                         src="<?php echo get_template_directory_uri(); ?>/assets/img/fix-digital-status.jpg"
+                         alt="#FixTheDigitalStatus!"
+                         srcset="<?php echo get_template_directory_uri(); ?>/assets/img/fix-digital-status.jpg 300w, <?php echo get_template_directory_uri(); ?>/assets/img/fix-digital-status-150x60.jpg 150w"
+                         sizes="(max-width: 300px) 100vw, 300px">
                 </a>
             </figure>
 		<?php } else { ?>
             <figure class="wp-block-image size-full is-style-default">
                 <a title="Sbattèzzati!" href="https://www.sbattezzati.it/" target="_blank">
-                    <picture>
-                        <img width="300" height="78"
-                             src="<?php echo get_template_directory_uri(); ?>/assets/img/exit.jpg" alt="Sbattèzzati!"
-                             srcset="<?php echo get_template_directory_uri(); ?>/assets/img/exit.jpg 300w, <?php echo get_template_directory_uri(); ?>/assets/img/exit-150x39.jpg 150w"
-                             sizes="(max-width: 300px) 100vw, 300px">
-                    </picture>
+                    <img width="300" height="78"
+                         src="<?php echo get_template_directory_uri(); ?>/assets/img/exit.jpg" alt="Sbattèzzati!"
+                         srcset="<?php echo get_template_directory_uri(); ?>/assets/img/exit.jpg 300w, <?php echo get_template_directory_uri(); ?>/assets/img/exit-150x39.jpg 150w"
+                         sizes="(max-width: 300px) 100vw, 300px">
                 </a>
             </figure>
 		<?php } ?>
