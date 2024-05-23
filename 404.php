@@ -35,12 +35,7 @@ $not_found_content_last   = ( 'en' === $lang ) ? 'She greets you and says: Meow.
 
 				<figure class="wp-block-image aligncenter size-full">
 					<picture>
-						<source srcset="<?php echo get_template_directory_uri(); ?>/assets/img/404.webp"
-								type="image/webp">
-						<source srcset="<?php echo get_template_directory_uri(); ?>/assets/img/404.jpg"
-								type="image/jpg">
-						<img decoding="async" width="800" height="450"
-							 src="<?php echo get_template_directory_uri(); ?>/assets/img/404.jpg" alt="Petula"/>
+						<img decoding="async" width="800" height="450" src="<?php echo get_template_directory_uri(); ?>/assets/img/404.jpg" alt="Petula"/>
 					</picture>
 				</figure>
 
