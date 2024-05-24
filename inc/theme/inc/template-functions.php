@@ -206,59 +206,6 @@ function xlt_unregister_tags() {
 add_action( 'init', 'xlt_unregister_tags' );
 
 /**
- * Replace YouTube.com with the no cookie version.
- *
- * @param string $return The returned oEmbed HTML.
- * @param object $data A data object result from an oEmbed provider.
- *
- * @return string
- */
-function xlt_youtube_oembed_filters( $return, $data ) {
-	if ( false === $return || ! in_array( $data->type, array( 'rich', 'video' ), true ) ) {
-		return $return;
-	}
-
-	if ( false !== strpos( $return, 'youtube' ) || false !== strpos( $return, 'youtu.be' ) ) {
-		$return = str_replace( 'youtube.com/embed', 'youtube-nocookie.com/embed', $return );
-	}
-
-	return $return;
-}
-
-add_filter( 'oembed_dataparse', 'xlt_youtube_oembed_filters', 99, 2 );
-
-/**
- * Clean the oembed cache.
- *
- * @return int
- */
-function xlt_clean_oembed_cache() {
-	$GLOBALS['wp_embed']->usecache = 0;
-	do_action( 'wpse_do_cleanup' );
-
-	return 0;
-}
-
-add_filter( 'oembed_ttl', 'xlt_clean_oembed_cache' );
-
-/**
- * Restore the oembed cache.
- *
- * @param bool $enable Whether to enable <link> tag discovery. Default true.
- *
- * @return bool
- */
-function xlt_restore_oembed_cache( $enable ) {
-	if ( 1 === did_action( 'wpse_do_cleanup' ) ) {
-		$GLOBALS['wp_embed']->usecache = 1;
-	}
-
-	return $enable;
-}
-
-add_filter( 'embed_oembed_discover', 'xlt_restore_oembed_cache' );
-
-/**
  * Insert minified CSS into header.
  *
  * @return void
