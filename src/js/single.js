@@ -32,23 +32,30 @@ const svg_sheep = '<svg width="32" height="26" aria-label="Poe" role="img" xmlns
 const svg_sheep_gray = '<svg width="32" height="26" aria-label="Poe" role="img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" viewBox="0 0 40 40"><image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAgZJREFUWEftmF2ShCAMhPGaej69pluwhm1jAh2cnfLBeZiySiQfnV+d0sN/08P50l3APXDAIVtDD6WUCti+83zTVE2FbIYWH2rtETCtMIDKrSZDFNCEM4wW48xBespGAC9wsjmCLMuS1nUtgNZ9L2aPtRceFtCEEzCEsq6z8YCaJyYaEF3GGNRKMoCgeiijqnoYa9mgQFgxqN2+bduQioyCpnvneS7hlA3n6xx3GTj/8rWojIdgVNSx2AN0S4qoJqACiKBaNSY0tJu7gJh1WgHLtQIszyHkpwFrmxCwngEEtkKg93yt3L9d5+/PqU2nPmZB6qRBA3cA0c0tF9d+iyf3VLAyfDQGGcDLFNByc6v8oJJMFqM3876WgiVzW+5DWNkQu4qUH10rPwF4KivandrVGQQVwtNj+WGTw5p8UMHupOIlii4tWAtRzcBwW4cNAaRnPEsNnFp0N2HHLgteYpCGk+zyYkkX7mjMeS6mAUdjKeparKfZxS/gq2AvOUYVaj0ncyFVZr6dHF4vdgv13XIRVRinaqqTPAWwFH1d+b/tXvadxBxWo66KrtdwdawmNqKLObGXucSCiwAenre/Zt0JA+jf5nTfe6vTp6W+t7HDxLH5/33dEuUM97gHQXjPrahKWEFtAF4Pmi9gsu4FNBSo41sjgy8fAbCdNXtysCxYsRUJk/DzP0Upri7dyfyeAAAAAElFTkSuQmCC" /></svg>'
 const isPoeActive = localStorage.getItem('poe')
 
-function loadJs () {
-  let js = document.createElement('script')
-  js.id = 'sheep'
-  js.src = src
-  document.body.appendChild(js)
-  return 'loaded'
-}
+const startPoe = (src, async = true, id = 'sheep') => {
+  return new Promise((resolve, reject) => {
+    try {
+      const scriptEle = document.createElement('script')
+      scriptEle.id = id
+      scriptEle.async = async
+      scriptEle.src = src
 
-async function startPoe () {
-	const [load] = await Promise.all([loadJs()])
-  if (load === 'loaded') {
-    btn_poe.innerHTML = svg_sheep
-    document.body.classList.toggle('sheep')
-    localStorage.setItem('poe', 'true')
-    Poe.active = 1
-  }
-  throw Error('Nope. Try again.')
+      scriptEle.addEventListener('load', (ev) => {
+        resolve({ status: true })
+      })
+
+      scriptEle.addEventListener('error', (ev) => {
+        reject({
+          status: false,
+          message: `Failed to load the script ${src}`
+        })
+      })
+
+      document.body.appendChild(scriptEle)
+    } catch (error) {
+      reject(error)
+    }
+  })
 }
 
 function stopPoe () {
@@ -61,7 +68,15 @@ function stopPoe () {
 }
 
 if (isPoeActive === 'true') {
-  startPoe().then()
+  startPoe(src)
+    .then(data => {
+      btn_poe.innerHTML = svg_sheep
+      document.body.classList.toggle('sheep')
+      localStorage.setItem('poe', 'true')
+    })
+    .catch(err => {
+      console.error(err)
+    })
 }
 
 btn_poe.addEventListener('click', async function (e) {
@@ -70,7 +85,15 @@ btn_poe.addEventListener('click', async function (e) {
   if (document.body.classList.contains('sheep')) {
     stopPoe()
   } else {
-    startPoe().then()
+    startPoe(src)
+      .then(data => {
+        btn_poe.innerHTML = svg_sheep
+        document.body.classList.toggle('sheep')
+        localStorage.setItem('poe', 'true')
+      })
+      .catch(err => {
+        console.error(err)
+      })
   }
 })
 
