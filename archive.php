@@ -34,6 +34,7 @@ if ( is_day() ) {
 }
 
 if ( have_posts() ) { ?>
+	<?php get_template_part( 'parts/first-row' ); ?>
     <div class="xlt-row" id="main-content">
         <div class="xlt-ph xlt-spacing xlt-sticky">
             <div class="xlt-ph__wrapper xlt-sticky_top">

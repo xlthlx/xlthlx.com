@@ -1821,17 +1821,8 @@ form fieldset {
 }
 
 .xlt-sidebar_active .xlt-meta__tools ul li {
-    margin-right: 5px;
-    margin-left: 0;
-    padding-top: 0;
-    margin-top: 0;
-}
-
-@media only screen and (max-width: 1200px) {
-    .xlt-meta__tools ul li {
-        margin-left: 0;
-        margin-right: 5px;
-    }
+    margin: 0 5px 0 0 !important;
+    padding: 0 !important;
 }
 
 @media only screen and (max-width: 768px) {
@@ -1844,10 +1835,7 @@ form fieldset {
 
 .xlt-meta__tools ul li a {
     box-shadow: none !important;
-    display: block;
     transition: background-color .2s;
-    height: 32px;
-    width: 32px;
 }
 
 .xlt-meta__tools ul li a svg {
@@ -2637,7 +2625,7 @@ body.xlt-h-nav_open {
 
 @media only screen and (max-width: 768px) {
     .xlt-spacing.xlt-spacing-title {
-        max-width: 53%;
+        max-width: 60%;
     }
 }
 
@@ -2860,7 +2848,7 @@ body.xlt-h-nav_open {
 }
 
 .xlt-entry_archive + .xlt-entry_archive {
-    border-top: 1px solid var(--darkerwhite);
+    border-top: 1px solid var(--darkgrey);
 }
 
 .xlt-loop-search {
@@ -3207,8 +3195,6 @@ a.no-under {
 
 /** Shrink **/
 .xlt-shrink {
-    display: inline-block;
-    vertical-align: middle;
     -webkit-transform: perspective(1px) translateZ(0);
     transform: perspective(1px) translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);

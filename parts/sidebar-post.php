@@ -8,19 +8,6 @@
 global $lang;
 ?>
 <aside class="xlt-widgetarea xlt-sticky_top" role="complementary" aria-label="Sidebar">
-	<section id="xlthlx-newsletter" class="widget widget_xlthlx-newsletter">
-		<p class="xlt-widget__title">
-			<?php $text = ( 'en' === $lang ) ? 'Subscribe to the newsletter' : 'Iscriviti alla Newsletter'; ?>
-			<?php $url = ( 'en' === $lang ) ? '/en/' : '/'; ?>
-            <a title="<?php echo $text; ?>" class="svg-btn no-under" href="https://xlthlx.com/newsletter<?php echo $url; ?>">
-	            <?php echo xlt_print_svg( '/assets/img/newsletter.svg' ); ?>
-            </a>
-            <a title="<?php echo $text; ?>" class="svg-btn" href="https://xlthlx.com/newsletter<?php echo $url; ?>">
-                <span>Newsletter</span>
-            </a>
-        </p>
-	</section>
-
     <section id="xlthlx-search" class="widget widget_xlthlx-search">
 		<?php get_template_part( 'parts/search-form' ); ?>
     </section>

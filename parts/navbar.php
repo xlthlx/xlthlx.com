@@ -14,16 +14,6 @@ global $lang, $site_url, $site_name, $site_desc; ?>
                 <p class="xlt-site__description"><?php echo $site_desc; ?></p>
             </a>
         </div>
-        <div class="xlt-meta__language">
-            <br/>
-			<?php if ( 'en' === $lang ) { ?>
-                <a href="<?php echo get_url_trans(); ?>" title="Italiano">Italiano</a>&nbsp;&mdash;&nbsp;
-                <span>English</span>
-			<?php } else { ?>
-                <span>Italiano</span>&nbsp;&mdash;&nbsp;
-                <a href="<?php echo get_url_trans(); ?>" title="English">English</a>
-			<?php } ?>
-        </div>
     </div>
 
     <div class="xlt-h__right-col xlt-spacing">

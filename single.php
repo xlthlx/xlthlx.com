@@ -9,6 +9,7 @@ global $lang, $post;
 get_header();
 ?>
 
+<?php get_template_part( 'parts/first-row' ); ?>
 <?php
 while ( have_posts() ) :
 	the_post();
