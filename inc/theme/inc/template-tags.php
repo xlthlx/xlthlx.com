@@ -9,7 +9,7 @@ if ( ! function_exists( 'xlt_get_link' ) ) {
 	/**
 	 * Set up the single link.
 	 *
-	 * @param array $args Link args.
+	 * @param array  $args Link args.
 	 * @param string $link Link.
 	 * @param string $name Link name.
 	 * @param string $position Link position.
@@ -17,7 +17,7 @@ if ( ! function_exists( 'xlt_get_link' ) ) {
 	 * @return string
 	 */
 	function xlt_get_link( $args, $link, $name, $position ) {
-		$return = $args['before'];
+		$return  = $args['before'];
 		$return .= sprintf(
 			$args['link'],
 			$link,
@@ -143,7 +143,7 @@ if ( ! function_exists( 'xlt_old_posts_warning' ) ) {
 	/**
 	 * Old posts warning.
 	 *
-	 * @param string $lang Language.
+	 * @param string   $lang Language.
 	 * @param int|bool $post_id The post ID.
 	 *
 	 * @return string
@@ -364,7 +364,7 @@ if ( ! function_exists( 'xlt_get_menu_items' ) ) {
 	 */
 	function xlt_get_menu_items( $theme_location ) {
 
-		$menu_list = [];
+		$menu_list = array();
 
 		$locations = get_nav_menu_locations();
 		if ( ( $locations ) && isset( $locations[ $theme_location ] ) ) {
@@ -413,8 +413,8 @@ if ( ! function_exists( 'xlt_get_menu_items' ) ) {
 	 * Set up the menu array.
 	 *
 	 * @param object $menu The menu object.
-	 * @param array $menu_array The menu array.
-	 * @param int $i The menu position.
+	 * @param array  $menu_array The menu array.
+	 * @param int    $i The menu position.
 	 *
 	 * @return array
 	 */
@@ -525,7 +525,7 @@ if ( ! function_exists( 'xlt_get_the_terms' ) ) {
 	 * Function to return list of the terms.
 	 *
 	 * @param string $taxonomy The taxonomy.
-	 * @param bool $cut No idea.
+	 * @param bool   $cut No idea.
 	 *
 	 * @return string Returns the list of elements.
 	 */

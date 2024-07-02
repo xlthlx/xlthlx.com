@@ -1,4 +1,11 @@
-<?php global $lang; ?>
+<?php
+/**
+ * Template part for first row in all site.
+ *
+ * @package  xlthlx
+ */
+
+global $lang; ?>
 <article class="xlt-entry">
 	<div class="xlt-row">
 		<div class="xlt-entry__content xlt-spacing-min">
@@ -15,7 +22,14 @@
 		</div>
 		<div class="xlt-entry__content xlt-spacing-min">
 			<div class="xlt-widget__title">
-				<?php if ( 'en' === $lang ) { ?>Sign the <?php } else { ?>Firma il <?php } ?>
+				<?php
+				if ( 'en' === $lang ) {
+					?>
+					Sign the 
+					<?php
+				} else {
+					?>
+					Firma il <?php } ?>
 				<a class="svg-btn" title="Sign the Sustainable Web Manifesto"
 				   target="_blank" href="https://www.sustainablewebmanifesto.com/">
 					Sustainable Web Manifesto

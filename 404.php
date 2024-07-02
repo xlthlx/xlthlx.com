@@ -18,7 +18,7 @@ $not_found_content_last   = ( 'en' === $lang ) ? 'She greets you and says: Meow.
 	<div class="xlt-row" id="main-content">
 		<div class="xlt-ph xlt-spacing xlt-sticky">
 			<div class="xlt-ph__wrapper xlt-sticky_top">
-                <h2 class="xlt-ph__title"><?php echo $not_found_title; ?></h2>
+				<h2 class="xlt-ph__title"><?php echo $not_found_title; ?></h2>
 			</div>
 		</div>
 
@@ -33,10 +33,10 @@ $not_found_content_last   = ( 'en' === $lang ) ? 'She greets you and says: Meow.
 				<p></p>
 				<p><?php echo $not_found_content_after; ?></p>
 
-                <figure class="wp-block-image aligncenter size-full">
-                    <img decoding="async" width="800" height="450"
-                         src="<?php echo get_template_directory_uri(); ?>/assets/img/404.jpg" alt="Petula"/>
-                </figure>
+				<figure class="wp-block-image aligncenter size-full">
+					<img decoding="async" width="800" height="450"
+						 src="<?php echo get_template_directory_uri(); ?>/assets/img/404.jpg" alt="Petula"/>
+				</figure>
 
 				<p><?php echo $not_found_content_last; ?></p>
 

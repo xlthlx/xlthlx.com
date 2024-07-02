@@ -115,7 +115,7 @@ add_action( 'init', 'xlt_rewrite_tags_lang' );
  * Filters the title.
  *
  * @param string $title The title.
- * @param int $id The post ID.
+ * @param int    $id The post ID.
  *
  * @return string
  */
@@ -149,7 +149,7 @@ add_filter( 'the_title', 'xlt_set_title_en', 10, 2 );
  * Filters a taxonomy term object.
  *
  * @param WP_Term $term Term object.
- * @param string $taxonomy The taxonomy slug.
+ * @param string  $taxonomy The taxonomy slug.
  *
  * @return WP_Term
  */
@@ -182,9 +182,9 @@ add_filter( 'get_term', 'xlt_filter_term_name', 10, 2 );
 /**
  * Filters the term link.
  *
- * @param string $term_link Term link URL.
+ * @param string  $term_link Term link URL.
  * @param WP_Term $term Term object.
- * @param string $taxonomy Taxonomy slug.
+ * @param string  $taxonomy Taxonomy slug.
  *
  * @return string
  */
@@ -269,7 +269,7 @@ add_filter( 'get_pages', 'xlt_set_title_en_pages' );
  * Filters the permalink for page/post.
  *
  * @param string $link The page's permalink.
- * @param int $post_id The ID of the page.
+ * @param int    $post_id The ID of the page.
  *
  * @return string
  */
@@ -299,7 +299,7 @@ add_filter( 'post_link', 'xlt_set_url_en', 10, 2 );
  * Filters the widget title.
  *
  * @param string $title The widget title.
- * @param array $instance Array of settings for the current widget.
+ * @param array  $instance Array of settings for the current widget.
  *
  * @return string
  */

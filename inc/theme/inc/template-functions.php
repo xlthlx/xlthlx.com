@@ -48,7 +48,7 @@ add_filter( 'admin_footer_text', 'xlt_custom_admin_footer_text' );
  * Modify the rendering of code Gutenberg block.
  *
  * @param string $block_content The block content.
- * @param array $block The full block, including name and attributes.
+ * @param array  $block The full block, including name and attributes.
  *
  * @return string
  * @throws Exception Exception.
@@ -231,9 +231,9 @@ function xlt_insert_scripts() {
 
 	echo '<script id="all-scripts-inline" type="text/javascript">' . $script . '</script>';
 
-//	$snow   = get_template_directory() . '/assets/js/snow.min.js';
-//	$script_snow = xlt_get_file_content( $snow );
-//	echo '<script type="text/javascript">' . $script_snow . '</script>';
+	// $snow   = get_template_directory() . '/assets/js/snow.min.js';
+	// $script_snow = xlt_get_file_content( $snow );
+	// echo '<script type="text/javascript">' . $script_snow . '</script>';
 }
 
 add_action( 'wp_footer', 'xlt_insert_scripts' );
@@ -246,7 +246,7 @@ add_action( 'wp_footer', 'xlt_insert_scripts' );
 function xlt_404_plausible() {
 	if ( is_404() ) {
 		?>
-        <script>plausible('404', { props: { path: document.location.pathname } })</script>
+		<script>plausible('404', { props: { path: document.location.pathname } })</script>
 		<?php
 	}
 }
@@ -355,20 +355,6 @@ add_filter( 'manage_film_posts_columns', 'xlt_hide_seo_columns', 20 );
 add_filter( 'manage_tvseries_posts_columns', 'xlt_hide_seo_columns', 20 );
 
 /**
- * Add icons into admin.
- *
- * @return void
- */
-function xlt_add_admin_icons() {
-	$favicon = get_template_directory_uri() . '/assets/img/favicon.ico';
-
-	echo '<link rel="shortcut icon" href="' . esc_url( $favicon ) . '" />';
-}
-
-add_action( 'login_head', 'xlt_add_admin_icons' );
-add_action( 'admin_head', 'xlt_add_admin_icons' );
-
-/**
  * Add column Description.
  *
  * @param string[] $post_columns An associative array of column headings.
@@ -388,7 +374,7 @@ function xlt_add_remove_link_columns( $post_columns ) {
  * Display column content.
  *
  * @param string $column_name The name of the column to display.
- * @param int $post_id The current post ID.
+ * @param int    $post_id The current post ID.
  *
  * @return void
  */
@@ -452,9 +438,9 @@ function xlt_deepl_auth_key_callback_function( $val ) {
 	$id          = $val['id'];
 	$option_name = $val['option_name'];
 	?>
-    <label for="<?php echo esc_attr( $id ); ?>">Auth Key</label>
-    <input type="password" name="<?php echo esc_attr( $option_name ); ?>"
-           id="<?php echo esc_attr( $id ); ?>" value="<?php echo esc_attr( get_option( $option_name ) ); ?>"/>
+	<label for="<?php echo esc_attr( $id ); ?>">Auth Key</label>
+	<input type="password" name="<?php echo esc_attr( $option_name ); ?>"
+		   id="<?php echo esc_attr( $id ); ?>" value="<?php echo esc_attr( get_option( $option_name ) ); ?>"/>
 	<?php
 }
 

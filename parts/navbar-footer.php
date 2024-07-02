@@ -12,6 +12,8 @@ if ( ! empty( $menu_items ) ) { ?>
 	<a title="<?php echo $menu_item['title']; ?>" <?php echo $menu_item['target']; ?> href="<?php echo $menu_item['url']; ?>">
 		<?php echo $menu_item['title']; ?>
 	</a>
-	<?php }
-	} ?>
+		<?php
+	}
+}
+?>
 </div>

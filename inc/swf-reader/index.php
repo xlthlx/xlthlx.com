@@ -14,7 +14,7 @@
  *
  * @return array
  */
-function xlt_swf_custom_mime_type( array $mimes ): array {
+function xlt_swf_custom_mime_type( $mimes ) {
 
 	// Add swf extension.
 	$mimes['swf'] = 'application/x-shockwave-flash';
@@ -28,11 +28,17 @@ add_filter( 'upload_mimes', 'xlt_swf_custom_mime_type' );
  * Enqueue blocks variations script.
  */
 function xlt_enqueue_post_types_variations() {
-	wp_enqueue_script( 'post-types-variations', get_stylesheet_directory_uri() . '/inc/swf-reader/script.js', [
-		'wp-blocks',
-		'wp-dom-ready',
-		'wp-edit-post',
-	], wp_get_theme()->get( 'Version' ), false );
+	wp_enqueue_script(
+		'post-types-variations',
+		get_stylesheet_directory_uri() . '/inc/swf-reader/script.js',
+		array(
+			'wp-blocks',
+			'wp-dom-ready',
+			'wp-edit-post',
+		),
+		wp_get_theme()->get( 'Version' ),
+		false 
+	);
 }
 
 add_action( 'enqueue_block_editor_assets', 'xlt_enqueue_post_types_variations' );
@@ -41,12 +47,12 @@ add_action( 'enqueue_block_editor_assets', 'xlt_enqueue_post_types_variations' )
  * Render the block variation.
  *
  * @param string $block_content The block content.
- * @param array $block The full block, including name and attributes.
+ * @param array  $block The full block, including name and attributes.
  *
  * @return string
  */
 function xlt_set_swf_player( $block_content, $block ) {
-	if ( ! empty( $block_content ) && $block['blockName'] === 'core/file' ) {
+	if ( ! empty( $block_content ) && 'core/file' === $block['blockName'] ) {
 
 		$dom = new DOMDocument();
 		$dom->loadHTML( $block_content );
@@ -57,15 +63,16 @@ function xlt_set_swf_player( $block_content, $block ) {
 
 		$file_types = array( '.swf' );
 
-		if ( str_replace( $file_types, '', mb_strtolower( $url ) ) !== mb_strtolower( $url ) ) {
+		if ( str_replace( $file_types, '', mb_strtolower( $url, 'UTF-8' ) ) !== mb_strtolower( $url, 'UTF-8' ) ) {
+			// @codingStandardsIgnoreStart
 			return '<div class="wp-block-xlt-swf-player" id="' . $id . '"></div>
 					<script>
 					let player_id = "' . $id . '";
 					let player_file = "' . $url . '";
 					</script>
-					<script type="text/javascript" src="' . get_stylesheet_directory_uri() . '/inc/swf-reader/config.js" 
-					id="ruffle-config"></script>
+					<script src="' . get_stylesheet_directory_uri() . '/inc/swf-reader/config.js" id="ruffle-config"></script>
 					';
+			// @codingStandardsIgnoreEnd
 		}
 
 		return $block_content;
@@ -85,8 +92,13 @@ function xlt_enqueue_ruffle_script() {
 	if ( is_singular() ) {
 		$id = get_the_ID();
 		if ( has_block( 'core/file', $id ) ) {
-			wp_enqueue_script( 'ruffle', 'https://unpkg.com/@ruffle-rs/ruffle', [],
-				wp_get_theme()->get( 'Version' ), true );
+			wp_enqueue_script(
+				'ruffle',
+				'https://unpkg.com/@ruffle-rs/ruffle',
+				array(),
+				wp_get_theme()->get( 'Version' ),
+				true 
+			);
 		}
 	}
 }

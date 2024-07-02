@@ -35,33 +35,33 @@ if ( is_day() ) {
 
 if ( have_posts() ) { ?>
 	<?php get_template_part( 'parts/first-row' ); ?>
-    <div class="xlt-row" id="main-content">
-        <div class="xlt-ph xlt-spacing xlt-sticky">
-            <div class="xlt-ph__wrapper xlt-sticky_top">
-                <h2 class="xlt-ph__title"><?php echo $archive_title; ?></h2>
-            </div>
-        </div>
-        <div class="xlt-loop__wrapper" id="xlt-loop__wrapper">
+	<div class="xlt-row" id="main-content">
+		<div class="xlt-ph xlt-spacing xlt-sticky">
+			<div class="xlt-ph__wrapper xlt-sticky_top">
+				<h2 class="xlt-ph__title"><?php echo $archive_title; ?></h2>
+			</div>
+		</div>
+		<div class="xlt-loop__wrapper" id="xlt-loop__wrapper">
 			<?php
 			while ( have_posts() ) {
 				the_post();
 				get_template_part( 'parts/tease', 'post' );
 			}
 			?>
-        </div>
-        <div class="xlt-main-sidebar xlt-spacing xlt-sticky">
+		</div>
+		<div class="xlt-main-sidebar xlt-spacing xlt-sticky">
 			<?php get_template_part( 'parts/sidebar-page' ); ?>
-        </div>
+		</div>
 		<?php if ( '' !== xlt_pagination( $wp_query, $paging ) ) { ?>
-            <div class="xlt-page-navigation">
-                <nav class="navigation pagination">
-                    <div class="nav-links">
+			<div class="xlt-page-navigation">
+				<nav class="navigation pagination">
+					<div class="nav-links">
 						<?php echo xlt_pagination( $wp_query, $paging ); ?>
-                    </div>
-                </nav>
-            </div>
+					</div>
+				</nav>
+			</div>
 		<?php } ?>
-    </div>
+	</div>
 	<?php
 
 } else {

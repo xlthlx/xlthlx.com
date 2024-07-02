@@ -73,10 +73,16 @@ function xlt_gettext( $translation, $text ) {
 
 }
 
-add_action( 'login_head', 'xlt_login_head' );
+/**
+ * Add filter to change some text strings into login.
+ *
+ * @return void
+ */
 function xlt_login_head() {
 	add_filter( 'gettext', 'xlt_gettext', 20, 3 );
 }
+
+add_action( 'login_head', 'xlt_login_head' );
 
 /**
  * Change login title.
@@ -95,8 +101,8 @@ add_filter( 'login_title', 'xlt_login_page_title', 99 );
  * Force the login with email.
  *
  * @param null|WP_User|WP_Error $user WP_User if the user is authenticated. WP_Error or null otherwise.
- * @param string $username Username or email address.
- * @param string $password User password.
+ * @param string                $username Username or email address.
+ * @param string                $password User password.
  *
  * @return bool|WP_Error|WP_User
  */

@@ -44,10 +44,10 @@ function xlt_send_confirmation( $lang, $to, $_code ) {
 	}
 
 	ob_start();
-	$email = $to;
-	$code  = $_code;
+	$email      = $to;
+	$code       = $_code;
 	$site_title = $site_name;
-	$include = get_template_directory() . '/inc/newsletter/inc/email/confirm-' . $lang . '.php';
+	$include    = get_template_directory() . '/inc/newsletter/inc/email/confirm-' . $lang . '.php';
 	include $include;
 	$body = ob_get_clean();
 
@@ -57,7 +57,7 @@ function xlt_send_confirmation( $lang, $to, $_code ) {
 /**
  * Send an email when a post is published.
  *
- * @param int $post_id Post ID.
+ * @param int    $post_id Post ID.
  * @param object $post Post object.
  * @param string $old_status Old post status.
  *
@@ -101,17 +101,17 @@ function xlt_post_published_notification( $post_id, $post, $old_status ) {
 
 				if ( 'en' === $_lang ) {
 					$site_title = $site_name;
-					$subject   = 'New post on xlthlx.com';
-					$title     = $_title_en;
-					$permalink = $_permalink_en;
-					$excerpt   = $_excerpt_en;
+					$subject    = 'New post on xlthlx.com';
+					$title      = $_title_en;
+					$permalink  = $_permalink_en;
+					$excerpt    = $_excerpt_en;
 					include get_template_directory() . '/inc/newsletter/inc/email/post-en.php';
 				} else {
 					$site_title = $site_name;
-					$subject   = 'Nuovo post su xlthlx.com';
-					$title     = $_title;
-					$permalink = $_permalink;
-					$excerpt   = $_excerpt;
+					$subject    = 'Nuovo post su xlthlx.com';
+					$title      = $_title;
+					$permalink  = $_permalink;
+					$excerpt    = $_excerpt;
 					include get_template_directory() . '/inc/newsletter/inc/email/post-it.php';
 				}
 				$body = ob_get_clean();
