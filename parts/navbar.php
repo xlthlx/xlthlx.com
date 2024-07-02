@@ -52,12 +52,14 @@ global $lang, $site_url, $site_name, $site_desc; ?>
 						</svg>
 					</a>
 				</li>
+                <li>
+                    <button type="button" class="xlt-h-nav__trigger xlt-shrink">
+                        <span></span>
+                        <span class="screen-reader-text">Menu</span>
+                    </button>
+                </li>
 			</ul>
 		</div>
-		<button type="button" class="xlt-h-nav__trigger xlt-shrink">
-			<span></span>
-			<span class="screen-reader-text">Menu</span>
-		</button>
 		<div class="xlt-nav__wrapper">
 			<nav id="xlt-nav-primary" class="xlt-nav">
 				<div class="menu-main-container">

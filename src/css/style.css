@@ -2362,7 +2362,6 @@ h6 {
 
 .xlt-h-nav__trigger {
     width: 32px;
-    height: 32px;
     cursor: pointer;
     position: relative;
     -webkit-appearance: none;
@@ -2371,6 +2370,7 @@ h6 {
     background: transparent;
     border: none;
     z-index: 100;
+    vertical-align: middle;
 }
 
 .xlt-h-nav__trigger:focus {
