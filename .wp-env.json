@@ -2,12 +2,9 @@
   "core":  null,
   "themes": [ "." ],
   "plugins": [
-    "https://downloads.wordpress.org/plugin/akismet.zip",
     "https://downloads.wordpress.org/plugin/contact-form-7.zip",
     "https://downloads.wordpress.org/plugin/flamingo.zip",
-    "https://downloads.wordpress.org/plugin/plausible-analytics.zip",
     "https://downloads.wordpress.org/plugin/query-monitor.zip",
-    "https://downloads.wordpress.org/plugin/slim-seo.zip",
     "https://downloads.wordpress.org/plugin/wp-sweep.zip"
   ],
   "mappings": {

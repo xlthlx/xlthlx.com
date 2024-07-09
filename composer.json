@@ -15,18 +15,18 @@
     }
   ],
   "require": {
-    "rosell-dk/webp-convert": "^2.9.2",
+    "rosell-dk/webp-convert": "^2.9.3",
     "deeplcom/deepl-php": "^0.4.1",
-    "cmb2/cmb2": "^2.10.1",
-    "johnbillion/extended-cpts": "^5.0.6",
+    "cmb2/cmb2": "^v2.11.0",
+    "johnbillion/extended-cpts": "^5.0.8",
     "scrivo/highlight.php": "v9.18.1.9"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
     "wptrt/wpthemereview": "^0.2.1",
-    "php-parallel-lint/php-parallel-lint": "^1.3.2",
-    "wp-cli/i18n-command": "^2.5.0",
+    "php-parallel-lint/php-parallel-lint": "^1.4.0",
+    "wp-cli/i18n-command": "^2.6.1",
     "dxw/phar-install": "^1.1.2",
     "wpreadme2markdown/wp2md": "^4.0.2"
   },

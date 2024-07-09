@@ -7,7 +7,7 @@
 
 global $lang; ?>
 <article class="xlt-entry">
-	<div class="xlt-row">
+	<div class="xlt-row xlt-row_break">
 		<div class="xlt-entry__content xlt-spacing-min">
 			<div class="xlt-widget__title">
 				<?php if ( 'en' === $lang ) { ?>
@@ -37,7 +37,7 @@ global $lang; ?>
 			</div>
 		</div>
 		<div class="xlt-entry__meta xlt-spacing-min">
-			<p class="xlt-widget__title">
+			<div class="xlt-widget__title">
 				<?php $text = ( 'en' === $lang ) ? 'Subscribe to the newsletter' : 'Iscriviti alla Newsletter'; ?>
 				<?php $url = ( 'en' === $lang ) ? '/en/' : '/'; ?>
 				<a title="<?php echo $text; ?>" class="svg-btn no-under"
@@ -48,7 +48,7 @@ global $lang; ?>
 				   href="https://xlthlx.com/newsletter<?php echo $url; ?>">
 					<span>Newsletter</span>
 				</a>
-			</p>
+			</div>
 		</div>
 	</div>
 </article>
