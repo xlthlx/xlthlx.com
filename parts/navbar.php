@@ -52,12 +52,12 @@ global $lang, $site_url, $site_name, $site_desc; ?>
 						</svg>
 					</a>
 				</li>
-                <li>
-                    <button type="button" class="xlt-h-nav__trigger xlt-shrink">
-                        <span></span>
-                        <span class="screen-reader-text">Menu</span>
-                    </button>
-                </li>
+				<li>
+					<button type="button" class="xlt-h-nav__trigger xlt-shrink">
+						<span></span>
+						<span class="screen-reader-text">Menu</span>
+					</button>
+				</li>
 			</ul>
 		</div>
 		<div class="xlt-nav__wrapper">
@@ -74,7 +74,7 @@ global $lang, $site_url, $site_name, $site_desc; ?>
 								<li class="xlt-nav-title <?php echo $menu_item['classes']; ?>">
 									<?php if ( $menu_item['url'] ) { ?>
 										<a <?php echo $menu_item['target']; ?>
-                                                href="<?php echo $menu_item['url']; ?>"
+												href="<?php echo $menu_item['url']; ?>"
 												title="<?php echo $menu_item['title']; ?>">
 											<?php echo $menu_item['title']; ?>
 										</a>
@@ -101,8 +101,8 @@ global $lang, $site_url, $site_name, $site_desc; ?>
 								<li class="xlt-nav-title <?php echo $menu_item['classes']; ?>">
 									<?php if ( $menu_item['url'] ) { ?>
 										<a <?php echo $menu_item['target']; ?>
-                                                href="<?php echo $menu_item['url']; ?>"
-                                                title="<?php echo $menu_item['title']; ?>">
+												href="<?php echo $menu_item['url']; ?>"
+												title="<?php echo $menu_item['title']; ?>">
 											<?php echo $menu_item['title']; ?>
 										</a>
 									<?php } else { ?>

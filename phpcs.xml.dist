@@ -59,6 +59,7 @@
 		<exclude name="PHPCompatibility.PHP.NewConstants.t_traitFound"/>
 		<exclude name="PHPCompatibility.Operators.NewOperators.t_coalesceFound"/>
 		<exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_columnFound"/>
+		<exclude name="PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ellipsisFound"/>
 	</rule>
 
 </ruleset>

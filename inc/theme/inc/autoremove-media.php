@@ -42,7 +42,7 @@ function xlt_media_used_in( $attachment_id ) {
 		$results[] = $query->posts;
 	}
 
-	$results            = array_merge( [], ...$results );
+	$results            = array_merge( array(), ...$results );
 	$attachment_used_in = array_merge( $attachment_used_in, $results );
 
 	// If the attachment is an image, find the URLs for all intermediate sizes.
@@ -74,7 +74,7 @@ function xlt_media_used_in( $attachment_id ) {
 		$results[] = $query->posts;
 	}
 
-	$results            = array_merge( [], ...$results );
+	$results            = array_merge( array(), ...$results );
 	$attachment_used_in = array_merge( $attachment_used_in, $results );
 	$attachment_used_in = array_unique( $attachment_used_in );
 	$attachment_used_in = array_filter( $attachment_used_in );
@@ -98,7 +98,7 @@ function xlt_remove_media( $post_id ) {
 	if ( $post_id ) {
 		$additional_checks = 'enabled';
 
-		$args  = array(
+		$args = array(
 			'post_type'              => 'attachment',
 			'post_parent'            => $post_id,
 			'post_status'            => 'any',
