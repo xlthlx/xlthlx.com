@@ -66,7 +66,7 @@ if ( ! function_exists( 'xlt_comment_form' ) ) {
     </p>
     <p id="comment-subscribe">
 	' . wp_nonce_field( 'nonce_comment', 'nonce_comment', true, false ) . '
-	  <input class="form-check-input" type="checkbox" value="1" name="comment_subscribe" id="comment_subscribe">
+	  <input class="form-check-input" type="checkbox" value="1" name="comment_subscribe" id="comment_subscribe" checked="checked">
 	  <label class="form-check-label" for="comment_subscribe">
 	    Avvisami quando vengono aggiunti nuovi commenti
 	  </label>
