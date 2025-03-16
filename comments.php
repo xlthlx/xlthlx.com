@@ -38,7 +38,9 @@ $all_comments = get_comments( $args ); ?>
 			</div>
 			<?php } ?>
 			<div id="respond" class="comment-respond">
-				<?php comment_form(); ?>
+				<?php if ( function_exists( 'xlt_comment_form' ) && function_exists( 'xlt_comment_form_en' ) ) {
+					( 'en' === $lang ) ? xlt_comment_form_en() : xlt_comment_form();
+				} ?>
 			</div>
 		</div>
 	</div>
