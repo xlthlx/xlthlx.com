@@ -55,7 +55,7 @@ $parent_id = get_the_ID();
         </div>
     </article>
 
-	<?php if ( null !== $args['comment']->get_children() ) { ?>
+	<?php if ( isset( $args['comment'] ) && null !== $args['comment']->get_children() ) { ?>
 		<?php $all_comments = $args['comment']->get_children(); ?>
 		<?php foreach ( $all_comments as $single_comment ) { ?>
             <ol class="children">
