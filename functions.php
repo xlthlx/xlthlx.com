@@ -6,11 +6,6 @@
  */
 
 /**
- * Load vendors.
- */
-require_once get_template_directory() . '/vendor.phar';
-
-/**
  * General setup.
  */
 function xlt_setup() {
@@ -148,48 +143,113 @@ add_action( 'wp_enqueue_scripts', 'xlt_enqueue_scripts' );
  * @return void
  */
 function xlt_add_to_globals() {
-	global $lang,$charset,$site_url,$site_name,$site_desc;
-	$lang      = get_lang();
+	global $charset, $site_url, $site_name, $site_desc;
 	$charset   = get_bloginfo( 'charset' );
 	$site_url  = home_url( '/' );
 	$site_name = get_bloginfo( 'name' );
 	$site_desc = get_bloginfo( 'description' );
 
-	if ( 'en' === $lang ) {
-		$site_url  = home_url( '/en/' );
-		$site_name = get_option( 'english_title', '' );
-		$site_desc = get_option( 'english_tagline', '' );
+	if ( function_exists( 'get_lang' ) ) {
+		global $lang;
+		$lang = get_lang();
+		if ( 'en' === $lang ) {
+			$site_url  = home_url( '/en/' );
+			$site_name = get_option( 'english_title', '' );
+			$site_desc = get_option( 'english_tagline', '' );
+		}
 	}
 
 }
 
 add_action( 'after_setup_theme', 'xlt_add_to_globals' );
 
-if ( file_exists( get_template_directory() . '/inc/cmb2/cmb2/init.php' ) ) {
-	require_once get_template_directory() . '/inc/cmb2/cmb2/init.php';
+/**
+ * Enqueue login CSS.
+ *
+ * @return void
+ */
+function xlt_enqueue_login() {
+	wp_dequeue_style( 'login' );
+	wp_deregister_style( 'login' );
+
+	wp_enqueue_style( 'custom-login', get_template_directory_uri() . '/assets/css/admin/login.min.css', array(), filemtime( get_template_directory() . '/assets/css/admin/login.min.css' ) );
+	wp_enqueue_script( 'custom-script', get_template_directory_uri() . '/assets/js/admin/login.min.js', array(), filemtime( get_template_directory() . '/assets/js/admin/login.min.js' ), true );
+}
+
+add_action( 'login_enqueue_scripts', 'xlt_enqueue_login' );
+
+/**
+ * Enqueue js and css into admin.
+ *
+ * @return void
+ */
+function xlt_enqueue_admin_css_js() {
+	wp_enqueue_style(
+		'admin',
+		get_template_directory_uri() . '/assets/css/admin/admin.min.css',
+		array(),
+		filemtime( get_template_directory() . '/assets/css/admin/admin.min.css' )
+	);
+	wp_enqueue_script(
+		'admin',
+		get_template_directory_uri() . '/assets/js/admin/admin.min.js',
+		array(),
+		filemtime( get_template_directory() . '/assets/js/admin/admin.min.js' ),
+		true
+	);
+}
+
+add_action( 'admin_enqueue_scripts', 'xlt_enqueue_admin_css_js' );
+
+/**
+ * This method gets the content of a given file.
+ *
+ * @param string $file_path The file path.
+ *
+ * @return  string Content of $file_path
+ */
+function xlt_get_asset_content( $file_path ) {
+
+	global $wp_filesystem;
+	require_once ABSPATH . '/wp-admin/includes/file.php';
+
+	WP_Filesystem();
+	$content = '';
+
+	if ( $wp_filesystem->exists( $file_path ) ) {
+		$content = $wp_filesystem->get_contents( $file_path );
+	}
+
+	return $content;
+
 }
 
 /**
- * Theme functions and tags.
+ * Insert minified CSS into header.
+ *
+ * @return void
  */
-require_once get_template_directory() . '/inc/theme/index.php';
+function xlt_insert_css() {
+	$file  = get_template_directory() . '/assets/css/main.min.css';
+	$style = xlt_get_asset_content( $file );
+
+	echo '<style id="all-styles-inline">' . $style . '</style>';
+}
+
+add_action( 'wp_head', 'xlt_insert_css' );
 
 /**
- * Functions for English translation.
+ * Insert minified JS into footer.
+ *
+ * @return void
  */
-require_once get_template_directory() . '/inc/eng/index.php';
+function xlt_insert_scripts() {
 
-/**
- * Toolkit.
- */
-require_once get_template_directory() . '/inc/toolkit/index.php';
+	echo '<script type="text/javascript">const theme_url = "' . get_template_directory_uri() . '"; </script>';
+	$file   = get_template_directory() . '/assets/js/main.min.js';
+	$script = xlt_get_asset_content( $file );
 
-/**
- * Newsletter.
- */
-require_once get_template_directory() . '/inc/newsletter/index.php';
+	echo '<script id="all-scripts-inline" type="text/javascript">' . $script . '</script>';
+}
 
-/**
- * SWF Player.
- */
-require_once get_template_directory() . '/inc/swf-reader/index.php';
+add_action( 'wp_footer', 'xlt_insert_scripts' );

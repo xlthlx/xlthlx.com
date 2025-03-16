@@ -9,7 +9,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 == Description ==
 
-xlthlx 2023 is the theme used by [xlthlx.com](https://xlthlx.com) website.
+xlthlx is the theme used by [xlthlx.com](https://xlthlx.com) website.
 
 == Changelog ==
 
@@ -19,12 +19,11 @@ xlthlx 2023 is the theme used by [xlthlx.com](https://xlthlx.com) website.
 == Credits ==
 
 - [CMB2](https://github.com/CMB2/CMB2)
-- [John Billion's Extended CPTS library](https://github.com/johnbillion/extended-cpts)
 
 
 == Copyright ==
 
-xlthlx Theme, (C) 2020-2023 xlthlx.com
+xlthlx Theme, (C) 2020-2025 xlthlx.com
 xlthlx is distributed under the terms of the GNU GPL.
 
 This program is free software: you can redistribute it and/or modify

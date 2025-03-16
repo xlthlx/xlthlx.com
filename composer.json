@@ -14,20 +14,12 @@
       "homepage": "https://xlthlx.com"
     }
   ],
-  "require": {
-    "rosell-dk/webp-convert": "^2.9.3",
-    "deeplcom/deepl-php": "^0.4.1",
-    "cmb2/cmb2": "^v2.11.0",
-    "johnbillion/extended-cpts": "^5.0.8",
-    "scrivo/highlight.php": "v9.18.1.9"
-  },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
     "wptrt/wpthemereview": "^0.2.1",
     "php-parallel-lint/php-parallel-lint": "^1.4.0",
     "wp-cli/i18n-command": "^2.6.1",
-    "dxw/phar-install": "^1.1.2",
     "wpreadme2markdown/wp2md": "^4.0.2"
   },
   "scripts": {
@@ -35,20 +27,12 @@
     "lint:wpcs:fix": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf --ignore=vendor/*,node_modules/*,inc/cmb2/*,_root/*,content/* --extensions=php .",
     "lint:php": "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor .",
     "make-pot": "wp i18n make-pot . languages/xlthlx.pot",
-    "post-update-cmd": "vendor/bin/phar-install",
     "readme": "@php ./vendor/wpreadme2markdown/wp2md/bin/wp2md < readme.txt > README.md"
   },
   "config": {
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true,
       "composer/installers": true
-    }
-  },
-  "extra": {
-    "installer-paths": {
-      "inc/{$vendor}/{$name}/": [
-        "type:wordpress-plugin"
-      ]
     }
   }
 }

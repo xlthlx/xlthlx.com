@@ -68,7 +68,7 @@ switch ( $act ) {
 		break;
 	case 'subscribe':
 		$news_title = 'Newsletter';
-		$content    = ( 'en' === $lang ) ? get_content_en( get_the_ID() ) : apply_filters( 'the_content', get_the_content() );
+		$content    = apply_filters( 'the_content', get_the_content() );
 		break;
 }
 ?>

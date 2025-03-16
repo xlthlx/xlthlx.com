@@ -61,7 +61,7 @@ while ( have_posts() ) :
 		<div class="xlt-content xlt-spacing">
 			<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
 
-				<?php echo ( 'en' === $lang ) ? get_content_en() : apply_filters( 'the_content', get_the_content() ); ?>
+				<?php echo apply_filters( 'the_content', get_the_content() ); ?>
 
 				<?php echo $ref; ?>
 				<h2><?php echo ( 'en' === $lang ) ? 'Buy me a coffee' : 'Offrimi un caffè'; ?></h2>

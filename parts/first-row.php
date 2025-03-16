@@ -10,14 +10,9 @@ global $lang; ?>
 	<div class="xlt-row xlt-row_break">
 		<div class="xlt-entry__content xlt-spacing-min">
 			<div class="xlt-widget__title">
-				<?php if ( 'en' === $lang ) { ?>
-					<a href="<?php echo get_url_trans(); ?>"
-					   class="svg-btn" title="Italiano">Italiano</a>&nbsp;&mdash;&nbsp;
-					<span>English</span>
-				<?php } else { ?>
-					<span>Italiano</span>&nbsp;&mdash;&nbsp;
-					<a class="svg-btn" href="<?php echo get_url_trans(); ?>" title="English">English</a>
-				<?php } ?>
+				<?php if ( function_exists('xlt_get_switcher') ) {
+					xlt_get_switcher();
+                } ?>
 			</div>
 		</div>
 		<div class="xlt-entry__content xlt-spacing-min">
@@ -42,7 +37,7 @@ global $lang; ?>
 				<?php $url = ( 'en' === $lang ) ? '/en/' : '/'; ?>
 				<a title="<?php echo $text; ?>" class="svg-btn no-under"
 				   href="https://xlthlx.com/newsletter<?php echo $url; ?>">
-					<?php echo xlt_print_svg( '/assets/img/newsletter.svg' ); ?>
+					<?php if ( function_exists('xlt_print_svg') ) { echo xlt_print_svg( '/assets/img/newsletter.svg' ); } ?>
 				</a>
 				<a title="<?php echo $text; ?>" class="svg-btn"
 				   href="https://xlthlx.com/newsletter<?php echo $url; ?>">

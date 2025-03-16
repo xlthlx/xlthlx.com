@@ -17,11 +17,11 @@ $text_more = ( 'en' === $lang ) ? "Keep reading: '" : "Continua a leggere: '";
 	<div class="xlt-entry__header">
 		<header>
 			<p class="xlt-entry__before-title">
-				<time class="entry-date published" datetime="<?php echo xlt_atom_date( $post->post_date ); ?>">
-					<?php echo ( 'en' === $lang ) ? get_date_en() : get_the_date(); ?></time>
+				<time class="entry-date published" datetime="<?php if ( function_exists('xlt_atom_date') ) { echo xlt_atom_date( $post->post_date ); } ?>">
+					<?php get_the_date(); ?></time>
 				<time class="updated screen-reader-text"
-					  datetime="<?php echo xlt_atom_date( $post->post_modified ); ?>">
-					<?php echo ( 'en' === $lang ) ? get_date_en() : get_the_date(); ?></time>
+					  datetime="<?php if ( function_exists('xlt_atom_date') ) { echo xlt_atom_date( $post->post_modified ); } ?>">
+					<?php get_the_date(); ?></time>
 			</p>
 
 			<h2 class="xlt-entry__title">

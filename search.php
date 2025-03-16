@@ -38,7 +38,7 @@ if ( $search_query->have_posts() ) {
 		<div class="xlt-main-sidebar xlt-spacing">
 			<?php get_template_part( 'parts/sidebar-page' ); ?>
 		</div>
-		<?php if ( '' !== xlt_pagination( $search_query, $paging ) ) { ?>
+		<?php if ( function_exists('xlt_pagination') && '' !== xlt_pagination( $search_query, $paging ) ) { ?>
 			<div class="xlt-page-navigation">
 				<nav class="navigation pagination">
 					<div class="nav-links">
