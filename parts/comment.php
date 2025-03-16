@@ -7,6 +7,7 @@
 
 global $lang, $args;
 $parent_id = get_the_ID();
+if ( isset( $args['comment'] ) ) {
 ?>
 <li id="comment-<?php echo $args['comment']->comment_ID; ?>"
     class="comment even thread-even depth-1 parent <?php echo $args['comment']->comment_type . '-' . $lang; ?>">
@@ -55,7 +56,7 @@ $parent_id = get_the_ID();
         </div>
     </article>
 
-	<?php if ( isset( $args['comment'] ) && null !== $args['comment']->get_children() ) { ?>
+	<?php if ( null !== $args['comment']->get_children() ) { ?>
 		<?php $all_comments = $args['comment']->get_children(); ?>
 		<?php foreach ( $all_comments as $single_comment ) { ?>
             <ol class="children">
@@ -63,3 +64,4 @@ $parent_id = get_the_ID();
             </ol>
 		<?php } ?>
 	<?php } ?>
+<?php }
