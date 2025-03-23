@@ -14,17 +14,15 @@ $args   = array_merge( $wp_query->query_vars, array( 'is_paged' => true ) );
 query_posts( $args );
 
 
-$month = get_the_time( 'F' );
-if ( 'en' === $lang ) {
-	$month = get_trans( $month );
-}
+$archive_month = get_the_date( 'F' );
+$archive_year  = get_the_date( 'Y' );
 
 if ( is_day() ) {
-	$archive_title = get_the_date( 'd' ) . ' ' . $month . ' ' . get_the_date( 'Y' );
+	$archive_title = get_the_date( 'd' ) . ' ' . $archive_month . ' ' . $archive_year;
 } elseif ( is_month() ) {
-	$archive_title = $month . ' ' . get_the_date( 'Y' );
+	$archive_title = $archive_month . ' ' . $archive_year;
 } elseif ( is_year() ) {
-	$archive_title = get_the_date( 'Y' );
+	$archive_title = $archive_year;
 } elseif ( is_tag() ) {
 	$archive_title = single_tag_title( '', false );
 } elseif ( is_category() ) {
@@ -52,7 +50,7 @@ if ( have_posts() ) { ?>
 		<div class="xlt-main-sidebar xlt-spacing xlt-sticky">
 			<?php get_template_part( 'parts/sidebar-page' ); ?>
 		</div>
-		<?php if ( function_exists('xlt_pagination') && '' !== xlt_pagination( $wp_query, $paging ) ) { ?>
+		<?php if ( function_exists( 'xlt_pagination' ) && '' !== xlt_pagination( $wp_query, $paging ) ) { ?>
 			<div class="xlt-page-navigation">
 				<nav class="navigation pagination">
 					<div class="nav-links">

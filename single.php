@@ -24,9 +24,11 @@ while ( have_posts() ) :
 
 		<div class="xlt-content xlt-spacing">
 			<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
-				<?php if ( function_exists( 'xlt_old_posts_warning' ) ) {
+				<?php
+				if ( function_exists( 'xlt_old_posts_warning' ) ) {
 					echo xlt_old_posts_warning( $lang );
-				} ?>
+				}
+				?>
 				<?php echo apply_filters( 'the_content', get_the_content() ); ?>
 
 			</article>
@@ -35,11 +37,21 @@ while ( have_posts() ) :
 		<div class="xlt-meta xlt-spacing xlt-sticky">
 			<div class="xlt-meta__wrapper xlt-sticky_top">
 				<div class="xlt-meta__date">
-					<time class="entry-date published" datetime="<?php if ( function_exists('xlt_atom_date') ) { echo xlt_atom_date( $post->post_date ); } ?>">
-						<?php get_the_date(); ?></time>
+					<time class="entry-date published" datetime="
+					<?php
+					if ( function_exists( 'xlt_atom_date' ) ) {
+						echo xlt_atom_date( $post->post_date ); }
+					?>
+					">
+						<?php echo get_the_date(); ?></time>
 					<time class="updated screen-reader-text"
-						  datetime="<?php if ( function_exists('xlt_atom_date') ) { echo xlt_atom_date( $post->post_modified ); } ?>">
-						<?php get_the_date(); ?></time>
+						  datetime="
+						  <?php
+							if ( function_exists( 'xlt_atom_date' ) ) {
+								echo xlt_atom_date( $post->post_modified ); }
+							?>
+							">
+						<?php echo get_the_date(); ?></time>
 				</div>
 
 				<div class="xlt-meta__categories">

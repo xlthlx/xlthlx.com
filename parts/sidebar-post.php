@@ -16,7 +16,10 @@ global $lang;
 		<?php $text = ( 'en' === $lang ) ? 'Buy me a coffee' : 'Offrimi un caffè'; ?>
 		<p class="xlt-widget__title">
 			<a title="<?php echo $text; ?>" class="svg-btn no-under" target="_blank" href="https://buymeacoffee.com/xlthlx">
-				<?php if ( function_exists('xlt_print_svg') ) { echo xlt_print_svg( '/assets/img/bmc.svg' ); } ?>
+				<?php
+				if ( function_exists( 'xlt_print_svg' ) ) {
+					echo xlt_print_svg( '/assets/img/bmc.svg' ); }
+				?>
 			</a>
 			<a title="<?php echo $text; ?>" class="svg-btn" target="_blank" href="https://buymeacoffee.com/xlthlx">
 				<span><?php echo $text; ?></span>

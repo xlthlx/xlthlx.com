@@ -30,7 +30,7 @@ if ( have_posts() ) {
 			}
 			?>
 		</div>
-		<?php if ( function_exists('xlt_pagination') && '' !== xlt_pagination( $wp_query, $paging ) ) { ?>
+		<?php if ( function_exists( 'xlt_pagination' ) && '' !== xlt_pagination( $wp_query, $paging ) ) { ?>
 			<div class="xlt-page-navigation">
 				<nav class="navigation pagination">
 					<div class="nav-links">

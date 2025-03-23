@@ -16,7 +16,10 @@ global $lang, $site_url, $site_name; ?>
 						<span><?php echo ( 'en' === $lang ) ? 'Archives' : 'Archivi'; ?></span>
 					</p>
 
-					<?php if ( function_exists('xlt_get_years') ) { xlt_get_years(); } ?>
+					<?php
+					if ( function_exists( 'xlt_get_years' ) ) {
+						xlt_get_years(); }
+					?>
 				</section>
 				<?php dynamic_sidebar( 'footer-sidebar-left' ); ?>
 			</aside>
@@ -28,9 +31,11 @@ global $lang, $site_url, $site_name; ?>
 						<span><?php echo ( 'en' === $lang ) ? 'Related articles' : 'Articoli correlati'; ?></span>
 					</p>
 
-					<?php if ( function_exists('xlt_related_links') ) {
-                        echo xlt_related_links();
-					} ?>
+					<?php
+					if ( function_exists( 'xlt_related_links' ) ) {
+						echo xlt_related_links();
+					}
+					?>
 				</section>
 				<?php dynamic_sidebar( 'footer-sidebar-center' ); ?>
 			</aside>
