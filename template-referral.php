@@ -7,7 +7,7 @@
 
 global $lang;
 get_header();
-
+get_template_part( 'parts/first-row' );
 $ref    = '';
 $coffee = '';
 

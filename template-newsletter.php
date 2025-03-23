@@ -7,7 +7,7 @@
 
 global $lang;
 get_header();
-
+get_template_part( 'parts/first-row' );
 $cod        = get_query_var( 'cod', false );
 $act        = get_query_var( 'act', false );
 $news_title = '';
