@@ -2,10 +2,15 @@
   "core":  null,
   "themes": [ "." ],
   "plugins": [
+    "https://downloads.wordpress.org/plugin/akismet.zip",
+    "https://downloads.wordpress.org/plugin/comments-subscriber.zip",
     "https://downloads.wordpress.org/plugin/contact-form-7.zip",
+    "https://downloads.wordpress.org/plugin/eazy-cf-catpcha.zip",
     "https://downloads.wordpress.org/plugin/flamingo.zip",
+    "https://downloads.wordpress.org/plugin/plausible-analytics.zip",
     "https://downloads.wordpress.org/plugin/query-monitor.zip",
-    "https://downloads.wordpress.org/plugin/theme-check.zip",
+    "https://downloads.wordpress.org/plugin/simple-auto-poster-for-bluesky.zip",
+    "https://downloads.wordpress.org/plugin/slim-seo.zip",
     "https://downloads.wordpress.org/plugin/wp-sweep.zip"
   ],
   "mappings": {
@@ -14,10 +19,11 @@
   "port": 1070,
   "testsPort": 1071,
   "config": {
-    "WP_DEBUG": true,
-    "WP_DEBUG_LOG": true,
-    "WP_DEBUG_DISPLAY": false,
+    "ALTERNATE_WP_CRON": true,
     "SCRIPT_DEBUG": true,
-    "ALTERNATE_WP_CRON": true
+    "WP_DEBUG": true,
+    "WP_DEBUG_DISPLAY": false,
+    "WP_DEBUG_LOG": true,
+    "WP_DEVELOPMENT_MODE": "theme"
   }
 }
