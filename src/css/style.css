@@ -3285,3 +3285,17 @@ input.search {
     display: inline;
     max-width: 165px !important;
 }
+
+/** Captcha **/
+input[name="eazycfc_captcha"] {
+    max-width: 40px!important;
+    height: 40px!important;
+    padding: 8px!important;
+}
+span.eazycfc_captcha {
+    margin-top: 10px;
+    margin-bottom: -10px;
+}
+form input:not([type="submit"]), form textarea, button.search {
+    padding: 12px!important;
+}
