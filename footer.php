@@ -11,16 +11,6 @@ global $lang, $site_url, $site_name; ?>
 		<?php if ( is_singular( 'post' ) ) { ?>
 		<div class="xlt-f__col">
 			<aside class="xlt-widgetarea xlt-spacing" role="complementary" aria-label="Footer Sidebar Left">
-				<section id="xlthlx-archives" class="widget widget_xlthlx-archives">
-					<p class="xlt-widget__title">
-						<span><?php echo ( 'en' === $lang ) ? 'Archives' : 'Archivi'; ?></span>
-					</p>
-
-					<?php
-					if ( function_exists( 'xlt_get_years' ) ) {
-						xlt_get_years(); }
-					?>
-				</section>
 				<?php dynamic_sidebar( 'footer-sidebar-left' ); ?>
 			</aside>
 		</div>
@@ -60,6 +50,7 @@ global $lang, $site_url, $site_name; ?>
 	</div>
 
 	<div class="xlt-row xlt-row_break">
+		<div class="xlt-copy"></div>
 		<div class="xlt-copy">
 			<p class="xtl-inline" prefix="dct: https://purl.org/dc/terms/ cc: https://creativecommons.org/ns#">
 				<a title="by <?php echo $site_name; ?>"
@@ -94,19 +85,11 @@ global $lang, $site_url, $site_name; ?>
 			<?php get_template_part( 'parts/navbar-footer' ); ?>
 		</div>
 		<div class="xlt-copy">
-			<p class="xtl-inline">
-				<a target="blank" href="https://512kb.club" title="512KB Club Blue Team">
-					<span class="kb-club-no-bg">512KB Club</span><span class="kb-club-bg">Blue Team</span>
-				</a>
-			</p>
-		</div>
-		<div class="xlt-copy">
 			<p>
 				<a id="top-arrow" title="Back to top" class="xlt-arrow-up" href="#top">
-					<svg width="25" height="25" data-icon="arrow-up" role="img" aria-label="Back to top" xmlns="http://www.w3.org/2000/svg"
-						 viewBox="0 0 448 512">
-						<path fill="currentColor"
-							  d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path>
+					<svg style="transform: rotate(270deg);" fill="currentColor" data-icon="arrow-up" aria-label="Back to top" role="img" height="18" width="29" viewBox="0 0 50 31" xmlns="http://www.w3.org/2000/svg">
+						<path d="m1060.3125 264.84375c-.625-.625003-.625-1.249997 0-1.875l10.46875-11.5625h-44.53125c-.83334 0-1.25-.41666-1.25-1.25s.41666-1.25 1.25-1.25h44.53125l-10.46875-11.5625c-.625-.625-.625-1.25 0-1.875s1.25-.625 1.875 0c8.22921 9.06255 12.39583 13.64583 12.5 13.75.20833.20833.3125.52083.3125.9375s-.10417.72917-.3125.9375l-12.5 13.75c-.20833.208334-.52083.3125-.9375.3125s-.72917-.104166-.9375-.3125z"
+							  fill-rule="evenodd" transform="translate(-1025 -235)" />
 					</svg>
 				</a>
 			</p>

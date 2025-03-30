@@ -13,7 +13,7 @@ global $lang, $site_url;
 
 <?php get_template_part( 'parts/head' ); ?>
 
-<body <?php body_class( 'xlt-sidebar_active' ); ?>>
+<body <?php body_class( 'xlt-sidebar_active dark-theme' ); ?>>
 
 <a class="screen-reader-text" href="#main-content">Skip to content</a>
 

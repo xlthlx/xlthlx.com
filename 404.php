@@ -7,6 +7,7 @@
 
 global $lang;
 get_header();
+get_template_part( 'parts/first-row' );
 
 $not_found_title          = ( 'en' === $lang ) ? 'Not found' : 'Non trovato';
 $not_found_content_before = ( 'en' === $lang ) ? 'Something went wrong.' : 'Qualcosa è andato storto.';
@@ -16,14 +17,14 @@ $not_found_content_last   = ( 'en' === $lang ) ? 'She greets you and says: Meow.
 ?>
 
 	<div class="xlt-row" id="main-content">
-		<div class="xlt-ph xlt-spacing xlt-sticky">
-			<div class="xlt-ph__wrapper xlt-sticky_top">
-				<h2 class="xlt-ph__title"><?php echo $not_found_title; ?></h2>
-			</div>
-		</div>
+		<div class="xlt-ph xlt-spacing xlt-top-smaller"></div>
 
-		<div class="xlt-content xlt-spacing">
+		<div class="xlt-content xlt-spacing xlt-top-smaller">
 			<article class="post-type-404" id="post-404">
+
+				<div class="xlt-ph__wrapper">
+					<h2 class="xlt-ph__title"><?php echo $not_found_title; ?></h2>
+				</div>
 
 				<p><?php echo $not_found_content_before; ?></p>
 				<p><?php echo $not_found_content; ?></p>
@@ -43,7 +44,7 @@ $not_found_content_last   = ( 'en' === $lang ) ? 'She greets you and says: Meow.
 			</article>
 		</div>
 
-		<div class="xlt-main-sidebar xlt-spacing">
+		<div class="xlt-main-sidebar xlt-spacing xlt-top-smaller">
 			<?php get_template_part( 'parts/sidebar-page' ); ?>
 		</div>
 

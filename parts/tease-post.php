@@ -8,11 +8,7 @@
 global $lang, $post;
 $text_more = ( 'en' === $lang ) ? "Keep reading: '" : "Continua a leggere: '";
 ?>
-<article id="<?php echo $post->post_type; ?>-<?php echo $post->ID; ?>"
-						<?php
-						post_class( array( 'xlt-spacing', 'xlt-entry_archive' ) );
-						?>
-						>
+<article id="<?php echo $post->post_type; ?>-<?php echo $post->ID; ?>"<?php post_class( array( 'xlt-spacing-min', 'xlt-entry_archive', 'xlt-top-smaller' ) ); ?>>
 
 	<div class="xlt-entry__header">
 		<header>
@@ -24,8 +20,7 @@ $text_more = ( 'en' === $lang ) ? "Keep reading: '" : "Continua a leggere: '";
 				?>
 				">
 					<?php echo get_the_date(); ?></time>
-				<time class="updated screen-reader-text"
-					  datetime="
+				<time class="updated screen-reader-text" datetime="
 					  <?php
 						if ( function_exists( 'xlt_atom_date' ) ) {
 							echo xlt_atom_date( $post->post_modified ); }
@@ -34,17 +29,13 @@ $text_more = ( 'en' === $lang ) ? "Keep reading: '" : "Continua a leggere: '";
 					<?php echo get_the_date(); ?></time>
 			</p>
 
-			<h2 class="xlt-entry__title">
+			<h3 class="xlt-entry__title">
 				<a title="<?php echo $text_more . get_the_title(); ?>"
 				   aria-label="<?php echo $text_more . get_the_title(); ?>" href="<?php echo get_the_permalink(); ?>">
 					<?php echo get_the_title(); ?>
 				</a>
-			</h2>
+			</h3>
 		</header>
-	</div>
-
-	<div class="xlt-entry__content">
-		<?php echo get_the_excerpt(); ?>
 	</div>
 
 </article>

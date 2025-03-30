@@ -7,26 +7,25 @@
 
 global $lang;
 ?>
-<aside class="xlt-widgetarea xlt-sticky_top" role="complementary" aria-label="Sidebar">
-	<section id="xlthlx-search" class="widget widget_xlthlx-search">
-		<?php get_template_part( 'parts/search-form' ); ?>
-	</section>
-
-	<section id="xlthlx-buy-coffee" class="widget widget_xlthlx-buy-coffee">
-		<?php $text = ( 'en' === $lang ) ? 'Buy me a coffee' : 'Offrimi un caffè'; ?>
-		<p class="xlt-widget__title">
-			<a title="<?php echo $text; ?>" class="svg-btn no-under" target="_blank" href="https://buymeacoffee.com/xlthlx">
+<aside class="xlt-widgetarea" role="complementary" aria-label="Sidebar">
+	<section id="xlthlx-newsletter" class="widget widget_xlthlx-newsletter">
+		<div class="xlt-widget__title">
+			<?php $text = ( 'en' === $lang ) ? 'Subscribe to the newsletter' : 'Iscriviti alla Newsletter'; ?>
+			<?php $url = ( 'en' === $lang ) ? '/en/' : '/'; ?>
+			<a title="<?php echo $text; ?>" class="svg-btn no-under"
+			   href="https://xlthlx.com/newsletter<?php echo $url; ?>">
 				<?php
 				if ( function_exists( 'xlt_print_svg' ) ) {
-					echo xlt_print_svg( '/assets/img/bmc.svg' ); }
+					echo xlt_print_svg( '/assets/img/newsletter.svg' );
+				}
 				?>
 			</a>
-			<a title="<?php echo $text; ?>" class="svg-btn" target="_blank" href="https://buymeacoffee.com/xlthlx">
-				<span><?php echo $text; ?></span>
+			<a title="<?php echo $text; ?>" class="svg-btn"
+			   href="https://xlthlx.com/newsletter<?php echo $url; ?>">
+				<span>Newsletter</span>
 			</a>
-		</p>
+		</div>
 	</section>
-
 	<section id="xlthlx-image" class="widget widget_xlthlx-image">
 		<?php
 		if ( ( 'en' === $lang ) ) {
@@ -52,6 +51,76 @@ global $lang;
 			</figure>
 		<?php } ?>
 	</section>
+	<section id="xlthlx-archives" class="widget widget_xlthlx-archives">
+		<p class="xlt-widget__title">
+			<span><?php echo ( 'en' === $lang ) ? 'Topics' : 'Argomenti'; ?></span>
+		</p>
+
+		<?php
+		if ( function_exists( 'xlt_print_menu' ) ) {
+			xlt_print_menu( 'Topics' );
+		}
+		?>
+	</section>
+
+	<section id="xlthlx-archives" class="widget widget_xlthlx-archives">
+		<p class="xlt-widget__title">
+			<span><?php echo ( 'en' === $lang ) ? 'Archives' : 'Archivi'; ?></span>
+		</p>
+
+		<?php
+		if ( function_exists( 'xlt_get_years' ) ) {
+			xlt_get_years();
+		}
+		?>
+	</section>
+
+	<section id="xlthlx-pages" class="widget widget_xlthlx-pages">
+		<p class="xlt-widget__title">
+			<span><?php echo ( 'en' === $lang ) ? 'Pages' : 'Pagine'; ?></span>
+		</p>
+
+		<?php
+		if ( function_exists( 'xlt_print_menu' ) ) {
+			xlt_print_menu( 'Main' );
+		}
+		?>
+	</section>
+
+	<section id="xlthlx-stuff" class="widget widget_xlthlx-stuff">
+		<p class="xlt-widget__title">
+			<span><?php echo ( 'en' === $lang ) ? 'My stuff' : 'Stuff'; ?></span>
+		</p>
+
+		<?php
+		if ( function_exists( 'xlt_print_menu' ) ) {
+			xlt_print_menu( 'Stuff' );
+		}
+		?>
+	</section>
 
 	<?php dynamic_sidebar( 'post-sidebar' ); ?>
+	<section id="xlthlx-coffee" class="widget widget_xlthlx-coffee">
+		<div class="xlt-widget__title">
+			<?php $text = ( 'en' === $lang ) ? 'Buy me a coffee' : 'Offrimi un caffè'; ?>
+			<a title="<?php echo $text; ?>" class="svg-btn no-under" target="_blank"
+			   href="https://buymeacoffee.com/xlthlx">
+				<?php
+				if ( function_exists( 'xlt_print_svg' ) ) {
+					echo xlt_print_svg( '/assets/img/bmc.svg' );
+				}
+				?>
+			</a>
+			<a title="<?php echo $text; ?>" class="svg-btn" target="_blank" href="https://buymeacoffee.com/xlthlx">
+				<span><?php echo $text; ?></span>
+			</a>
+		</div>
+	</section>
+	<section id="xlthlx-512kb-club" class="widget widget_xlthlx-512kb-club">
+		<div class="xtl-inline">
+			<a target="blank" href="https://512kb.club" title="512KB Club Blue Team">
+				<span class="kb-club-no-bg">512KB Club</span><span class="kb-club-bg">Blue Team</span>
+			</a>
+		</div>
+	</section>
 </aside>

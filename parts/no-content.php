@@ -15,7 +15,7 @@ $content        = ( 'en' === $lang ) ? 'It seems we can&rsquo;t find what you&rs
 	<div class="xlt-loop__wrapper" id="xlt-loop__wrapper">
 		<article class="xlt-entry">
 			<div class="xlt-row">
-				<div class="xlt-entry__header xlt-spacing xlt-sticky">
+				<div class="xlt-entry__header xlt-spacing">
 				</div>
 
 				<div class="xlt-entry__content xlt-spacing">

@@ -79,21 +79,21 @@ while ( have_posts() ) :
 	?>
 
 	<div class="xlt-row" id="main-content">
-		<div class="xlt-ph xlt-spacing xlt-sticky">
-			<div class="xlt-ph__wrapper xlt-sticky_top">
-				<h2 class="xlt-ph__title"><?php echo $news_title; ?></h2>
-			</div>
-		</div>
+		<div class="xlt-ph xlt-spacing xlt-top-smaller"></div>
 
-		<div class="xlt-content xlt-spacing">
+		<div class="xlt-content xlt-spacing xlt-top-smaller">
 			<article class="post-type-<?php echo get_post_type(); ?>" id="post-<?php echo get_the_ID(); ?>">
+
+				<div class="xlt-ph__wrapper">
+					<h2 class="xlt-ph__title"><?php echo $news_title; ?></h2>
+				</div>
 
 				<?php echo $content; ?>
 
 			</article>
 		</div>
 
-		<div class="xlt-main-sidebar xlt-spacing">
+		<div class="xlt-main-sidebar xlt-spacing xlt-top-smaller">
 			<?php get_template_part( 'parts/sidebar-page' ); ?>
 		</div>
 

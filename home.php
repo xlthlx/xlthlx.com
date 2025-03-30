@@ -14,21 +14,24 @@ $args   = array_merge(
 	array(
 		'is_paged' => true,
 		'paged'    => $paging,
-	) 
+	)
 );
 query_posts( $args );
 
 if ( have_posts() ) {
 	?>
-	<div id="main-content">
-		<div class="xlt-loop__wrapper" id="xlt-loop__wrapper">
-			<?php get_template_part( 'parts/first-row' ); ?>
+	<?php get_template_part( 'parts/first-row' ); ?>
+	<div class="xlt-row" id="main-content">
+		<div class="xlt-loop__wrapper xlt-top-smaller" id="xlt-loop__wrapper">
 			<?php
 			while ( have_posts() ) {
 				the_post();
 				get_template_part( 'parts/tease', 'home' );
 			}
 			?>
+		</div>
+		<div class="xlt-main-sidebar xlt-spacing xlt-top-smaller">
+			<?php get_template_part( 'parts/sidebar-page' ); ?>
 		</div>
 		<?php if ( function_exists( 'xlt_pagination' ) && '' !== xlt_pagination( $wp_query, $paging ) ) { ?>
 			<div class="xlt-page-navigation">
