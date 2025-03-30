@@ -1652,12 +1652,6 @@ form fieldset {
     transform: rotate(180deg);
 }
 
-@media only screen and (max-width: 1200px) {
-    .xlt-post-nav__item {
-        width: 50%;
-    }
-}
-
 @media only screen and (max-width: 768px) {
     .xlt-post-nav__item {
         line-height: 1.25;
