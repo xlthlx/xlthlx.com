@@ -1698,6 +1698,10 @@ form fieldset {
 }
 
 @media only screen and (max-width: 768px) {
+    .xlt-post-nav__item_prev {
+        padding-left: 0;
+    }
+
     .xlt-post-nav__item_prev a {
         margin-left: 0;
     }
@@ -1706,6 +1710,12 @@ form fieldset {
 .xlt-post-nav__item_next {
     text-align: right;
     padding-right: 48px;
+}
+
+@media only screen and (max-width: 768px) {
+    .xlt-post-nav__item_next {
+        padding-left: 0;
+    }
 }
 
 .page-links {
