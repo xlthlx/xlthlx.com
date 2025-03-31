@@ -3173,15 +3173,11 @@ span.eazycfc_captcha {
     margin-bottom: -10px;
 }
 
-form input:not([type="submit"]), form textarea, button.search {
-    padding: 12px !important;
-}
-
 .xlt-top-smaller {
     padding-top: 18px;
 }
 
 .xlt-inline {
-    display: inline;
-    margin-right: 3px
+    display: inline-block;
+    margin-right: 5px
 }
