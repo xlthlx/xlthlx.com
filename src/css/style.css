@@ -2119,17 +2119,19 @@ h6 {
 }
 
 .xlt-copy a, .xlt-copy a:hover {
-    box-shadow: none;
+    text-decoration: none;
+    box-shadow: none!important;
 }
 
 .xlt-arrow-up {
     font-size: 2rem;
     margin-top: -20px;
     display: inline-block;
+    text-decoration: none;
 }
 
 .xlt-arrow-up:hover {
-    box-shadow: none;
+    box-shadow: none!important;
 }
 
 @media only screen and (max-width: 768px) {
@@ -3026,13 +3028,8 @@ body.admin-bar .xlt-nav {
 }
 
 /** 512KB Club **/
-.kb-club a {
+a.kb-club {
     text-decoration: none;
-    color: var(--theme-text-color);
-    font-weight: bold !important;
-    font-family: sans-serif;
-    padding: .25rem 0;
-    transition: .4s;
 }
 
 .kb-club-bg,
@@ -3160,14 +3157,17 @@ summary::after {
 }
 
 button.search {
-    padding: 12px 15px;
+    padding: 0 15px;
     margin: 0;
-    display: inline;
-    border: 1px solid var(--lightgrey);
+    display: inline-block;
+    width: auto;
+    max-width: 55px !important;
+    height: 55px !important;
 }
 
 input.search {
     display: inline;
+    max-height: 55px;
 }
 
 /** Captcha **/

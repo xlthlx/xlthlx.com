@@ -64,7 +64,7 @@ global $lang;
 	<?php dynamic_sidebar( 'page-sidebar' ); ?>
 	<section id="xlthlx-512kb-club" class="widget widget_xlthlx-512kb-club">
 		<div class="xtl-inline">
-			<a target="blank" href="https://512kb.club" title="512KB Club Blue Team">
+			<a class="kb-club" target="blank" href="https://512kb.club" title="512KB Club Blue Team">
 				<span class="kb-club-no-bg">512KB Club</span><span class="kb-club-bg">Blue Team</span>
 			</a>
 		</div>
