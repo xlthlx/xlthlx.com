@@ -9,7 +9,7 @@
     --high-dark: #6667AB;
     --border-light: #CCCCCC;
     --border-dark: #484848;
-    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    --sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     --mono: Consolas, Menlo, Monaco, "SF Mono", "DejaVu Sans Mono", "Roboto Mono", "Courier New", Courier, monospace;
 }
 
@@ -24,7 +24,7 @@ body {
 }
 
 body {
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-size: 1.2rem;
     line-height: 1.6;
     letter-spacing: 0;
@@ -45,7 +45,7 @@ body img {
 }
 
 html {
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
@@ -709,7 +709,7 @@ video {
 }
 
 figcaption {
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-style: italic;
     font-size: 0.9rem;
     color: var(--theme-grey-color);
@@ -966,7 +966,7 @@ div[class^="grids-s-"].alignfull {
 }
 
 .wp-block-latest-comments__comment-date {
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-style: italic;
     font-size: 0.9rem;
     color: var(--theme-grey-color);
@@ -977,7 +977,7 @@ div[class^="grids-s-"].alignfull {
 }
 
 .wp-block-latest-posts__post-date {
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-style: italic;
     font-size: 0.9rem;
     color: var(--theme-grey-color);
@@ -1093,7 +1093,7 @@ div[class^="grids-s-"].alignfull {
 }
 
 .comment-metadata {
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-style: italic;
     font-size: 0.9rem;
 }
@@ -1153,7 +1153,7 @@ div[class^="grids-s-"].alignfull {
 .comment-notes {
     font-size: 0.9rem;
     margin-top: 6px;
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-style: italic;
     color: var(--theme-grey-color);
 }
@@ -1527,7 +1527,7 @@ form fieldset {
 
 .gallery .gallery-caption {
     font-size: 0.9rem;
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     color: var(--theme-grey-color);
     max-width: none;
     margin-top: 12px;
@@ -1598,17 +1598,15 @@ form fieldset {
     position: relative;
 }
 
-.nav-links > *.current {
-    font-weight: bold;
-}
 
 .nav-links > *.current,
 .nav-links > *:hover:not(.dots) {
     opacity: 1;
+    font-weight: bold;
 }
 
 .nav-links a {
-    box-shadow: none !important;
+    text-decoration: none !important;
 }
 
 .nav-links a:hover {
@@ -1663,7 +1661,7 @@ form fieldset {
 }
 
 .xlt-post-nav__item p {
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-style: italic;
     font-size: 0.9rem;
     color: var(--theme-grey-color);
@@ -1725,25 +1723,6 @@ form fieldset {
 .page-links a:hover {
     box-shadow: none !important;
     color: var(--theme-text-color);
-}
-
-.post-page-numbers {
-    text-align: center;
-    font-weight: normal;
-    width: 36px;
-    line-height: 36px;
-    transition: opacity .2s ease;
-    opacity: .4;
-    position: relative;
-}
-
-.post-page-numbers.current {
-    font-weight: bold;
-}
-
-.post-page-numbers.current,
-.post-page-numbers:hover {
-    opacity: 1;
 }
 
 .page-links-title {
@@ -1963,7 +1942,7 @@ blockquote {
 }
 
 cite {
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-style: italic;
     color: var(--theme-grey-color);
     font-size: 0.9rem;
@@ -1971,7 +1950,7 @@ cite {
 
 .xlt-heading_small {
     font-size: 0.9rem;
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-style: italic;
     color: var(--theme-grey-color);
 }
@@ -2049,7 +2028,7 @@ h4 {
 }
 
 h5 {
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-size: 1rem;
     line-height: 1.25em;
     font-weight: 700;
@@ -2058,7 +2037,7 @@ h5 {
 }
 
 h6 {
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-size: 0.9rem;
     line-height: 1.25em;
     font-weight: 700;
@@ -2186,7 +2165,7 @@ h6 {
 }
 
 .xlt-site__description {
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-style: italic;
     color: var(--theme-grey-color);
     margin-bottom: 0;
@@ -2612,7 +2591,7 @@ body.xlt-h-nav_open {
 }
 
 .xlt-entry__before-title {
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-style: italic;
     font-size: 1rem;
     color: var(--theme-grey-color);
@@ -2648,7 +2627,7 @@ body.xlt-h-nav_open {
 
 .archive .xlt-entry__title,
 .search .xlt-entry__title {
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-size: 2rem;
     line-height: 1.25em;
     font-weight: 700;
@@ -2853,7 +2832,7 @@ body.xlt-h-nav_open {
 }
 
 .xlt-ph__author p {
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-size: 0.9rem;
     font-style: italic;
     color: var(--theme-grey-color);
@@ -2866,7 +2845,7 @@ body.xlt-h-nav_open {
 }
 
 .xlt-ph__before-title {
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-style: italic;
     color: var(--theme-grey-color);
     margin-bottom: 8px;
@@ -2958,7 +2937,7 @@ h2.xlt-ph__title {
 }
 
 .xlt-meta__date {
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-style: italic;
     color: var(--theme-grey-color);
 }
@@ -3012,7 +2991,7 @@ h2.xlt-ph__title {
 }
 
 .widget_recent_entries .post-date {
-    font-family: var(--font);
+    font-family: var(--sans-serif);
     font-style: italic;
     color: var(--theme-grey-color);
     margin-left: .3rem;
