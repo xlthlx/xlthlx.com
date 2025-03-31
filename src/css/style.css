@@ -2572,6 +2572,10 @@ body.xlt-h-nav_open {
     }
 }
 
+.xlt-top-smaller {
+    padding-top: 18px;
+}
+
 @media only screen and (max-width: 768px) {
     .xlt-spacing.xlt-spacing-title {
         max-width: 60%;
@@ -3000,6 +3004,11 @@ h2.xlt-ph__title {
     padding-left: 0;
 }
 
+.xlt-inline {
+    display: inline-block;
+    margin: 5px 0 0 0;
+}
+
 .widget_recent_entries .post-date {
     font-family: var(--font);
     font-style: italic;
@@ -3171,13 +3180,4 @@ input[name="eazycfc_captcha"] {
 span.eazycfc_captcha {
     margin-top: 10px;
     margin-bottom: -10px;
-}
-
-.xlt-top-smaller {
-    padding-top: 18px;
-}
-
-.xlt-inline {
-    display: inline-block;
-    margin-right: 5px
 }
