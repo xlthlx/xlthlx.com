@@ -11,6 +11,7 @@
 function xlt_setup() {
 	add_filter( 'login_display_language_dropdown', '__return_false' );
 	add_filter( 'enable_post_by_email_configuration', '__return_false' );
+	add_filter( 'enable_update_services_configuration', '__return_false' );
 
 	add_filter( 'pre_option_link_manager_enabled', '__return_true' );
 
@@ -37,6 +38,7 @@ function xlt_setup() {
 
 	remove_theme_support( 'automatic-feed-links' );
 	remove_theme_support( 'widgets-block-editor' );
+	remove_theme_support( 'post-formats' );
 
 	remove_action( 'wp_head', 'feed_links_extra', 3 );
 
@@ -46,6 +48,8 @@ function xlt_setup() {
 		array(
 			'primary' => 'Main',
 			'footer'  => 'Footer',
+			'topics'  => 'Topics',
+			'stuff'   => 'Stuff',
 		)
 	);
 }
