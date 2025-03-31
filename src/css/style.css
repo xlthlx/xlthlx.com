@@ -3136,17 +3136,15 @@ summary::after {
 }
 
 button.search {
-    padding: 0 15px;
+    padding: 0;
     margin: 0;
-    display: inline-block;
-    width: auto;
-    max-width: 55px !important;
+    width: 55px !important;
     height: 55px !important;
 }
 
 input.search {
     display: inline;
-    max-height: 55px;
+    height: 55px;
 }
 
 /** Captcha **/
