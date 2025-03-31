@@ -7,8 +7,10 @@
 
 /**
  * General setup.
+ *
+ * @return void
  */
-function xlt_setup() {
+function xlt_setup(): void {
 	add_filter( 'login_display_language_dropdown', '__return_false' );
 	add_filter( 'enable_post_by_email_configuration', '__return_false' );
 	add_filter( 'enable_update_services_configuration', '__return_false' );
@@ -58,8 +60,10 @@ add_action( 'init', 'xlt_setup' );
 
 /**
  * Register widget area.
+ *
+ * @return void
  */
-function xlt_widgets_init() {
+function xlt_widgets_init(): void {
 	register_sidebar(
 		array(
 			'name'          => esc_html__( 'Post Sidebar', 'xlthlx' ),
@@ -125,8 +129,10 @@ add_action( 'widgets_init', 'xlt_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
+ *
+ * @return void
  */
-function xlt_enqueue_scripts() {
+function xlt_enqueue_scripts(): void {
 	// CF7.
 	if ( is_page( 'contatti' ) || is_page( 'newsletter' ) ) {
 		if ( function_exists( 'wpcf7_enqueue_scripts' ) ) {
@@ -146,7 +152,7 @@ add_action( 'wp_enqueue_scripts', 'xlt_enqueue_scripts' );
  *
  * @return void
  */
-function xlt_add_to_globals() {
+function xlt_add_to_globals(): void {
 	global $charset, $site_url, $site_name, $site_desc;
 	$charset   = get_bloginfo( 'charset' );
 	$site_url  = home_url( '/' );
@@ -172,7 +178,7 @@ add_action( 'after_setup_theme', 'xlt_add_to_globals' );
  *
  * @return void
  */
-function xlt_enqueue_login() {
+function xlt_enqueue_login(): void {
 	wp_dequeue_style( 'login' );
 	wp_deregister_style( 'login' );
 
@@ -187,7 +193,7 @@ add_action( 'login_enqueue_scripts', 'xlt_enqueue_login' );
  *
  * @return void
  */
-function xlt_enqueue_admin_css_js() {
+function xlt_enqueue_admin_css_js(): void {
 	wp_enqueue_style(
 		'admin',
 		get_template_directory_uri() . '/assets/css/admin/admin.min.css',
@@ -212,7 +218,7 @@ add_action( 'admin_enqueue_scripts', 'xlt_enqueue_admin_css_js' );
  *
  * @return  string Content of $file_path
  */
-function xlt_get_asset_content( $file_path ) {
+function xlt_get_asset_content( string $file_path ): string {
 
 	global $wp_filesystem;
 	require_once ABSPATH . '/wp-admin/includes/file.php';
@@ -233,7 +239,7 @@ function xlt_get_asset_content( $file_path ) {
  *
  * @return void
  */
-function xlt_insert_css() {
+function xlt_insert_css(): void {
 	$file  = get_template_directory() . '/assets/css/main.min.css';
 	$style = xlt_get_asset_content( $file );
 
@@ -247,7 +253,7 @@ add_action( 'wp_head', 'xlt_insert_css' );
  *
  * @return void
  */
-function xlt_insert_scripts() {
+function xlt_insert_scripts(): void {
 
 	echo '<script type="text/javascript">const theme_url = "' . get_template_directory_uri() . '"; </script>';
 	$file   = get_template_directory() . '/assets/js/main.min.js';
