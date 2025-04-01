@@ -22,6 +22,7 @@ $args = array(
 	'hierarchical' => 'threaded',
 );
 
+
 $all_comments = get_comments( $args ); ?>
 	<div id="post-comments" class="xlt-row xlt-row_break">
 		<div class="xlt-spacing"></div>
@@ -30,8 +31,9 @@ $all_comments = get_comments( $args ); ?>
 			<?php if ( $all_comments ) { ?>
 			<div id="comments">
 				<ol class="xlt-comments">
-					<?php foreach ( $all_comments as $single_comment ) { ?>
-						<?php get_template_part( 'parts/comment', null, array( 'comment' => $single_comment ) ); ?>
+					<?php foreach ( $all_comments as $single_comment ) {
+						set_query_var( 'comment', $single_comment ); ?>
+						<?php get_template_part( 'parts/comment' ); ?>
 					<?php } ?>
 				</ol>
 			</div>

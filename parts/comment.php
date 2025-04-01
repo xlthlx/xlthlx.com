@@ -7,6 +7,7 @@
 
 global $lang, $args;
 $parent_id = get_the_ID();
+$args['comment'] = get_query_var('comment');
 if ( isset( $args['comment'] ) ) {
 	?>
 <li id="comment-<?php echo $args['comment']->comment_ID; ?>"
