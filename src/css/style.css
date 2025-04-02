@@ -269,8 +269,8 @@ pre,
 code,
 kbd,
 samp {
-    font-family: monospace, monospace;
-    font-size: 1rem;
+    font-family: monospace;
+    font-size: 1.1rem;
 }
 
 pre {
@@ -1866,7 +1866,6 @@ kbd,
 tt,
 var {
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    background-color: var(--darkerwhite);
 }
 
 pre {
@@ -3149,7 +3148,7 @@ input.search {
 
 /** Captcha **/
 input[name="eazycfc_captcha"] {
-    max-width: 40px !important;
+    max-width: 48px !important;
     height: 40px !important;
     padding: 8px !important;
 }
