@@ -7,7 +7,7 @@
 
 global $lang, $site_url;
 $label = ( 'en' === $lang ) ? 'Search' : 'Cerca'; ?>
-<form action="<?php echo $site_url; ?>" method="get" id="searchform" novalidate>
+<form action="<?php echo $site_url; ?>" method="post" id="searchform" novalidate>
     <input type="hidden" name="lang" id="lang" value="<?php echo ( 'en' === $lang ) ? 'en' : 'it'; ?>">
 	<label for="s" class="screen-reader-text"><?php echo $label; ?></label>
 	<input class="search" value="<?php echo get_query_var( 's' ); ?>" type="text" aria-label="<?php echo $label; ?>" name="s" id="s" placeholder="<?php echo $label; ?>"><button class="submit search" type="submit">
