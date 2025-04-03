@@ -16,7 +16,7 @@ global $lang, $site_url; ?>
 				}
 				$feed_url = get_home_url() . '/feed/';
 				if ( 'en' === $lang ) {
-                    $feed_url .= 'en/';
+                    $feed_url .= 'english/';
 				}
 				?>
 			</div>
