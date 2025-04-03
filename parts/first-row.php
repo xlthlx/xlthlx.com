@@ -14,6 +14,10 @@ global $lang, $site_url; ?>
 				if ( function_exists( 'xlt_get_switcher' ) ) {
 					xlt_get_switcher();
 				}
+				$feed_url = get_home_url() . '/feed/';
+				if ( 'en' === $lang ) {
+                    $feed_url .= 'en/';
+				}
 				?>
 			</div>
 			<div class="xlt-meta__tools xlt-widget__title">
@@ -30,7 +34,7 @@ global $lang, $site_url; ?>
 						</a>
 					</li>
 					<li>
-						<a title="Feed RSS" target="_blank" href="<?php echo get_home_url(); ?>/feed/">
+						<a title="Feed RSS" target="_blank" href="<?php echo $feed_url; ?>">
 							<span class="screen-reader-text">Feed RSS</span>
 							<svg class="xlt-shrink" width="32" height="26" aria-label="Feed RSS" role="img"
 								 viewBox="0 0 24 24" fill="none"
