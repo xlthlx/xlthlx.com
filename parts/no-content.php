@@ -8,7 +8,7 @@
 global $lang;
 
 $content_search = ( 'en' === $lang ) ? 'Sorry, but nothing matched your search terms. Please try again with different keywords.' : 'Siamo spiacenti, ma nulla corrisponde ai termini di ricerca. Riprova con altre parole chiave.';
-$content        = ( 'en' === $lang ) ? 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.' : 'Sembra che non riusciamo a trovare quello che stai cercando. Forse la ricerca può aiutare.';
+$content        = ( 'en' === $lang ) ? 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.' : 'Sembra che non riusciamo a trovare quello che stai cercando. Forse fare una ricerca può aiutare.';
 ?>
 
 <div id="main-content">
