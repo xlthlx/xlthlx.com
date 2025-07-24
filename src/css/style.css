@@ -3166,13 +3166,13 @@ table.wp-inci tr {
 table.wp-inci td {
     padding: 5px 5px 0;
     vertical-align: top;
-    min-width: 60px;
+    min-width: 80px;
     border: 0;
     word-break: break-all
 }
 
 table.wp-inci td:first-child {
-    width: 60px;
+    width: 80px;
     line-height: initial
 }
 
