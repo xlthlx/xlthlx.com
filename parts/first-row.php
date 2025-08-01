@@ -55,8 +55,7 @@ global $lang, $site_url; ?>
 				<?php
 				if ( 'en' === $lang ) {
 					?>
-					Sign the
-					<?php
+					Sign the <?php
 				} else {
 					?>
 					Firma il <?php } ?>
