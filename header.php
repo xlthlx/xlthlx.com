@@ -9,7 +9,6 @@ global $lang, $site_url;
 ?>
 <!doctype html>
 <html lang="<?php echo $lang; ?>" id="top">
-<meta name="color-scheme" content="dark light">
 
 <?php get_template_part( 'parts/head' ); ?>
 
