@@ -3230,3 +3230,7 @@ table.wp-inci div.w {
     line-height: normal;
     color: #6c757d !important
 }
+
+.trustcaptcha {
+    clear: both;
+}
