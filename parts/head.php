@@ -27,9 +27,11 @@ function xlt_get_text() {
             $text = str_replace( ']]>', ']]&gt;', $text );
             $text = wp_strip_all_tags( $text );
             $text = html_entity_decode( $text, ENT_HTML5 );
+            $text = preg_replace( '/(^|[^\n\r])[\r\n](?![\n\r])/', '$1 ', $text );
+            $text = str_replace( '.', '. ', $text );
 
             if ( strlen( $text ) > 200 ) {
-                $text = substr( $text, 0, 200 );
+                $text = substr( $text, 0, 200 ) . '...';
             }
 
             return $text;
@@ -45,11 +47,11 @@ function xlt_get_text() {
 
 global $charset; ?>
 <head>
-    <meta charset="<?php echo $charset; ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="<?php echo $charset; ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="fediverse:creator" content="@xlthlx@hachyderm.io">
     <meta property="og:description" name="description" content="<?php echo xlt_get_text(); ?>">
-    <link rel="author" href="<?php echo get_template_directory_uri(); ?>/humans.txt"/>
+	<link rel="author" href="<?php echo get_template_directory_uri(); ?>/humans.txt"/>
     <link rel="canonical" href="<?php echo esc_attr( get_permalink() ); ?>">
-    <?php wp_head(); ?>
+	<?php wp_head(); ?>
 </head>
