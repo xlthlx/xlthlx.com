@@ -26,7 +26,7 @@ function xlt_get_text() {
             $text = apply_filters( 'the_excerpt', $text );
             $text = str_replace( ']]>', ']]&gt;', $text );
             $text = wp_strip_all_tags( $text );
-            $text = wp_specialchars_decode( $text, ENT_QUOTES );
+            $text = html_entity_decode( $text, ENT_HTML5 );
 
             if ( strlen( $text ) > 200 ) {
                 $text = substr( $text, 0, 200 );
