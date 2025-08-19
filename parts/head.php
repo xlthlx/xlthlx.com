@@ -11,7 +11,7 @@
  * @return string
  */
 function xlt_get_text() {
-    global $post;
+    global $post, $site_desc;
 
     if ( ! is_home() && ! is_front_page() ) {
 
@@ -34,11 +34,13 @@ function xlt_get_text() {
                 $text = substr( $text, 0, 200 ) . '...';
             }
 
+            if ( '' === $text ) {
+                return $site_desc;
+            }
+
             return $text;
         }
     } else {
-        global $site_desc;
-
         return $site_desc;
     }
 
