@@ -14,26 +14,17 @@ function xlt_get_text() {
     global $post;
 
     if ( isset( $post->post_content ) && '' !== trim( $post->post_content ) ) {
-        $post_desc = get_post( $post );
-        $text      = get_the_content( '', false, $post_desc );
+        $post_object = get_post( $post );
+        $text      = get_the_content( '', false, $post_object );
 
         $text = strip_shortcodes( $text );
         $text = excerpt_remove_blocks( $text );
         $text = excerpt_remove_footnotes( $text );
 
-        $filter_image_removed = remove_filter( 'the_content', 'wp_filter_content_tags', 12 );
-        $filter_block_removed = remove_filter( 'the_content', 'do_blocks', 9 );
-
         $text = apply_filters( 'the_excerpt', $text );
         $text = str_replace( ']]>', ']]&gt;', $text );
         $text = wp_strip_all_tags( $text );
-
-        if ( $filter_block_removed ) {
-            add_filter( 'the_content', 'do_blocks', 9 );
-        }
-        if ( $filter_image_removed ) {
-            add_filter( 'the_content', 'wp_filter_content_tags', 12 );
-        }
+        $text = preg_replace("/<br>|<br \/>/", " ", $text);
 
         if ( strlen( $text ) > 200 ) {
             $text = substr( $text, 0, 200 );
