@@ -26,6 +26,7 @@ function xlt_get_text() {
 
         $text = apply_filters( 'the_excerpt', $text );
         $text = str_replace( ']]>', ']]&gt;', $text );
+        $text = wp_strip_all_tags( $text );
 
         if ( $filter_block_removed ) {
             add_filter( 'the_content', 'do_blocks', 9 );
