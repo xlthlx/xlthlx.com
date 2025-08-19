@@ -24,7 +24,7 @@ function xlt_get_text() {
         $filter_image_removed = remove_filter( 'the_content', 'wp_filter_content_tags', 12 );
         $filter_block_removed = remove_filter( 'the_content', 'do_blocks', 9 );
 
-        $text = apply_filters( 'the_content', $text );
+        $text = apply_filters( 'the_excerpt', $text );
         $text = str_replace( ']]>', ']]&gt;', $text );
 
         if ( $filter_block_removed ) {
@@ -49,7 +49,7 @@ global $charset; ?>
 	<meta charset="<?php echo $charset; ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="fediverse:creator" content="@xlthlx@hachyderm.io">
-    <meta property="og:description" name="description" content="<?php echo esc_attr( xlt_get_text() ); ?>">
+    <meta property="og:description" name="description" content="<?php echo xlt_get_text(); ?>">
 	<link rel="author" href="<?php echo get_template_directory_uri(); ?>/humans.txt"/>
     <link rel="canonical" href="<?php echo esc_attr( get_permalink() ); ?>">
 	<?php wp_head(); ?>
